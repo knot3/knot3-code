@@ -21,32 +21,24 @@ using KnotData;
 namespace Widgets
 {
     /// <summary>
-    /// Ein Dialog, der eine Texteingabe des Spielers entgegennimmt.
+    /// Der Zustand eines Menüeintrags.
     /// </summary>
-    public class TextInputDialog : ConfirmDialog
+    public enum ItemState
     {
-
-        #region Properties
-
         /// <summary>
-        /// Der Text, der durch den Spieler eingegeben wurde.
+        /// Ausgewählt.
         /// </summary>
-        public String InputText { get; set; }
-
-        #endregion
-
-        #region Constructors
-
+        Selected=1,
         /// <summary>
+        /// Die Maus wurde direkt über den Menüeintrag navigiert und verweilt dort.
+        /// </summary>
+        Hovered=2,
+        /// <summary>
+        /// Kein gültiger oder ein undefinierter Zustand.
+        /// Keine Reihenfolge.
         /// 
         /// </summary>
-        public void TextInputDialog (GameScreen screen, DisplayLayer drawOrder, String title, String text, String inputText)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        #endregion
-
+        None=0,
     }
 }
 

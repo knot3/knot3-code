@@ -12,41 +12,33 @@ using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
 
-using Core;
 using GameObjects;
 using Screens;
 using RenderEffects;
 using KnotData;
+using Widgets;
 
-namespace Widgets
+namespace Core
 {
     /// <summary>
-    /// Ein Dialog, der eine Texteingabe des Spielers entgegennimmt.
+    /// Eine Wertesammlung der möglichen Klickzustände einer Maustaste.
     /// </summary>
-    public class TextInputDialog : ConfirmDialog
+    public enum ClickState
     {
-
-        #region Properties
-
         /// <summary>
-        /// Der Text, der durch den Spieler eingegeben wurde.
-        /// </summary>
-        public String InputText { get; set; }
-
-        #endregion
-
-        #region Constructors
-
-        /// <summary>
+        /// Kein gültiger oder ein undefinierter Zustand.
+        /// Keine Reihenfolge.
         /// 
         /// </summary>
-        public void TextInputDialog (GameScreen screen, DisplayLayer drawOrder, String title, String text, String inputText)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        #endregion
-
+        None=0,
+        /// <summary>
+        /// Ein Einzelklick.
+        /// </summary>
+        SingleClick=1,
+        /// <summary>
+        /// Ein Doppelklick.
+        /// </summary>
+        DoubleClick=2,
     }
 }
 

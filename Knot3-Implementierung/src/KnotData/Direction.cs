@@ -21,59 +21,39 @@ using Widgets;
 namespace KnotData
 {
     /// <summary>
-    /// 
+    /// Eine Wertesammlung der möglichen Richtungen in einem dreidimensionalen Raum.
+    /// Wird benutzt, damit keine ungültigen Kantenrichtungen angegeben werden können.
     /// </summary>
-    public class Node : 
+    public enum Direction
     {
-
-        #region Properties
-
         /// <summary>
-        /// 
+        /// Links.
         /// </summary>
-        public Integer X { get; set; }
-
+        Left=1,
         /// <summary>
-        /// 
+        /// Rechts.
         /// </summary>
-        public Integer Y { get; set; }
-
+        Right=2,
         /// <summary>
-        /// 
+        /// Hoch.
         /// </summary>
-        public Integer Z { get; set; }
-
+        Up=3,
         /// <summary>
-        /// 
+        /// Runter.
         /// </summary>
-        private Integer scale { get; set; }
-
-        #endregion
-
-        #region Constructors
-
+        Down=4,
         /// <summary>
-        /// 
+        /// Vorwärts.
         /// </summary>
-        public void Node (Integer x, Integer y, Integer z)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        #endregion
-
-        #region Methods
-
+        Forward=5,
         /// <summary>
-        /// 
+        /// Rückwärts.
         /// </summary>
-        public Vector3 ToVector ()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        #endregion
-
+        Backward=6,
+        /// <summary>
+        /// Keine Richtung.
+        /// </summary>
+        Zero=0,
     }
 }
 

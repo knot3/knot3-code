@@ -21,32 +21,22 @@ using KnotData;
 namespace Widgets
 {
     /// <summary>
-    /// Ein Dialog, der eine Texteingabe des Spielers entgegennimmt.
+    /// Eine horizontale Ausrichtung.
     /// </summary>
-    public class TextInputDialog : ConfirmDialog
+    public enum HorizontalAlignment
     {
-
-        #region Properties
-
         /// <summary>
-        /// Der Text, der durch den Spieler eingegeben wurde.
+        /// Links.
         /// </summary>
-        public String InputText { get; set; }
-
-        #endregion
-
-        #region Constructors
-
+        Left=0,
         /// <summary>
-        /// 
+        /// Mittig.
         /// </summary>
-        public void TextInputDialog (GameScreen screen, DisplayLayer drawOrder, String title, String text, String inputText)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        #endregion
-
+        Center=1,
+        /// <summary>
+        /// Rechts.
+        /// </summary>
+        Right=2,
     }
 }
 

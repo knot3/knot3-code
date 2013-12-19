@@ -12,68 +12,61 @@ using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
 
-using Core;
 using GameObjects;
 using Screens;
 using RenderEffects;
+using KnotData;
 using Widgets;
 
-namespace KnotData
+namespace Core
 {
     /// <summary>
-    /// 
+    /// Die Zeichenreihenfolge der Elemente der grafischen Benutzeroberfläche.
     /// </summary>
-    public class Node : 
+    public enum DisplayLayer
     {
-
-        #region Properties
-
+        /// <summary>
+        /// Kein gültiger oder ein undefinierter Zustand.
+        /// Keine Reihenfolge.
+        /// 
+        /// </summary>
+        None=0,
+        /// <summary>
+        /// !!!
+        /// </summary>
+        Background=1,
         /// <summary>
         /// 
         /// </summary>
-        public Integer X { get; set; }
-
+        GameWorld=2,
         /// <summary>
         /// 
         /// </summary>
-        public Integer Y { get; set; }
-
+        Dialog=3,
         /// <summary>
         /// 
         /// </summary>
-        public Integer Z { get; set; }
-
+        Menu=4,
         /// <summary>
         /// 
         /// </summary>
-        private Integer scale { get; set; }
-
-        #endregion
-
-        #region Constructors
-
+        MenuItem=5,
         /// <summary>
         /// 
         /// </summary>
-        public void Node (Integer x, Integer y, Integer z)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        #endregion
-
-        #region Methods
-
+        SubMenu=6,
         /// <summary>
         /// 
         /// </summary>
-        public Vector3 ToVector ()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        #endregion
-
+        SubMenuItem=7,
+        /// <summary>
+        /// 
+        /// </summary>
+        Overlay=8,
+        /// <summary>
+        /// 
+        /// </summary>
+        Cursor=9,
     }
 }
 
