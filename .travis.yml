@@ -1,0 +1,12 @@
+language: c
+install:
+  - sudo apt-get install mono-devel mono-dmcs nunit-console
+before_install:
+  - wget https://github.com/pse-knot/MonoGame/releases/download/v3.1.2/MonoGame-Linux-20130126.zip
+  - mkdir -p src/bin/Debug/
+  - unzip -d src/bin/Debug/ MonoGame-Linux-20130126.zip
+  - mkdir -p tests/bin/Debug/
+  - unzip -d tests/bin/Debug/ MonoGame-Linux-20130126.zip
+script:
+  - xbuild Knot3-MonoGame.sln
+  - nunit-console tests/bin/Debug/Knot3.UnitTests.dll
