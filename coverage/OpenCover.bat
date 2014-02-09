@@ -33,7 +33,7 @@ set PATH_TO_NUNIT=%ProgramFiles(x86)%\NUnit 2.6.3\bin
 cd ..
 cd ..
 cd ..
-set PATH_TO_PROJECT=%CD%\Knot3-Unit-Tests\bin\Debug\Knot3.UnitTests.dll
+set PATH_TO_PROJECT=%CD%\tests\bin\Debug\Knot3.UnitTests.dll
 set PATH_TO_REPORTGENERATOR=%ProgramFiles(x86)%\ReportGenerator\bin
 echo.
 echo.
@@ -50,12 +50,12 @@ echo.
 ::
 :: Hinweis: Auf einem 64-Bit-System ist nunit-console-x86.exe für 32-Bit-Projekte zu verwenden! (sonst tritt ein Fehler auf)
 ::
-"%PATH_TO_OPENCOVER%\OpenCover.Console.exe" -target:"%PATH_TO_NUNIT%\nunit-console-x86.exe" -targetargs:"/noshadow "%USERPROFILE%\Documents\GitHub\pse-knot\Knot3\Knot3-Unit-Tests\bin\Debug\Knot3.UnitTests.dll"" -register:user -filter:"+[*]*" -output:"%USERPROFILE%\Documents\GitHub\pse-knot\Knot3\NUnit-Test-Coverage-Windows\bin\Debug\NUnit_test_coverage.xml"
+"%PATH_TO_OPENCOVER%\OpenCover.Console.exe" -target:"%PATH_TO_NUNIT%\nunit-console-x86.exe" -targetargs:"/noshadow "%USERPROFILE%\Documents\GitHub\knot3-code\tests\bin\Debug\Knot3.UnitTests.dll"" -register:user -filter:"+[*]*" -output:"%USERPROFILE%\Documents\GitHub\knot3-code\coverage\bin\Debug\NUnit_test_coverage.xml"
 echo.
 echo Current path: %CD%
 echo.
 set PATH_TO_REPORT=%CD%\NUnit-Test-Coverage-Windows\bin\Debug
 echo Path to report: %PATH_TO_REPORT%
 echo.
-"%PATH_TO_REPORTGENERATOR%\ReportGenerator.exe" "%USERPROFILE%\Documents\GitHub\pse-knot\Knot3\NUnit-Test-Coverage-Windows\bin\Debug\NUnit_test_coverage.xml" "%USERPROFILE%\Documents\GitHub\pse-knot\Knot3\NUnit-Test-Coverage-Windows\bin\Debug\"
-start "" "%USERPROFILE%\Documents\GitHub\pse-knot\Knot3\NUnit-Test-Coverage-Windows\bin\Debug\index.htm"
+"%PATH_TO_REPORTGENERATOR%\ReportGenerator.exe" "%USERPROFILE%\Documents\GitHub\knot3-code\coverage\bin\Debug\NUnit_test_coverage.xml" "%USERPROFILE%\Documents\GitHub\knot3-code\coverage\bin\Debug\"
+start "" "%USERPROFILE%\Documents\GitHub\knot3-code\coverage\bin\Debug\index.htm"
