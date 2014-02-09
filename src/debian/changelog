@@ -1,3 +1,9 @@
+knot3 (2.0-beta-1-g5be0bb4) unstable; urgency=low
+
+  * merge
+
+ -- PSE Knot³ <uaeti@student.kit.edu>  Sun, 9 Feb 2014 23:09:20 +0100
+
 knot3 (2.0-beta) unstable; urgency=low
 
   * Lokale Coverage
