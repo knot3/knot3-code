@@ -76,17 +76,16 @@ namespace Knot3.Knot_Tests
 			Assert.AreEqual (knot.Count (), edges.Length, "Knotenlänge nach Verschiebung #3");
 		}
 
-        [Test]
-        public void Knot_Equals_Test()
-        {
-            CircleEntry<Edge> start = new CircleEntry<Edge>(new Edge[] { Edge.Up, Edge.Left, Edge.Backward, Edge.Down, Edge.Right, Edge.Forward });
-            KnotMetaData metaData = new KnotMetaData(name: "test", countEdges: () => start.Count());
-            Knot knot = new Knot(metaData, start);
-            for (int i = 0; i < 6; i++)
-            {
-                Assert.IsTrue(knot.Equals(new Knot(metaData, start)));
-                start = start.Previous;
-            }
-        }
+		[Test]
+		public void Knot_Equals_Test()
+		{
+			CircleEntry<Edge> start = new CircleEntry<Edge>(new Edge[] { Edge.Up, Edge.Left, Edge.Backward, Edge.Down, Edge.Right, Edge.Forward });
+			KnotMetaData metaData = new KnotMetaData(name: "test", countEdges: () => start.Count());
+			Knot knot = new Knot(metaData, start);
+			for (int i = 0; i < 6; i++) {
+				Assert.IsTrue(knot.Equals(new Knot(metaData, start)));
+				start = start.Previous;
+			}
+		}
 	}
 }
