@@ -165,7 +165,7 @@ namespace Knot3.Core
 			return new Bounds (
 			           position: new ScreenPoint (screen, Vector2.Zero),
 			           size: new ScreenPoint (screen, Vector2.One)
-			       );
+			);
 		}
 
 		private static IRenderEffect DefaultEffect (IGameScreen screen)
@@ -221,20 +221,27 @@ namespace Knot3.Core
 		public Viewport Viewport
 		{
 			get {
-				PresentationParameters pp = Screen.Device.PresentationParameters;
-				Point resolution = new Point (pp.BackBufferWidth, pp.BackBufferHeight);
-				Vector4 key = Bounds.Vector4;
-				if (!viewportCache.ContainsKey (resolution)) {
-					viewportCache [resolution] = new Dictionary<Vector4, Viewport> ();
-				}
-				if (!viewportCache [resolution].ContainsKey (key)) {
-					Rectangle subScreen = Bounds.Rectangle;
-					viewportCache [resolution] [key] = new Viewport (subScreen.X, subScreen.Y, subScreen.Width, subScreen.Height) {
+				// when we have a graphics device
+				if (Screen.Device != null) {
+					PresentationParameters pp = Screen.Device.PresentationParameters;
+					Point resolution = new Point (pp.BackBufferWidth, pp.BackBufferHeight);
+					Vector4 key = Bounds.Vector4;
+					if (!viewportCache.ContainsKey (resolution)) {
+						viewportCache [resolution] = new Dictionary<Vector4, Viewport> ();
+					}
+					if (!viewportCache [resolution].ContainsKey (key)) {
+						Rectangle subScreen = Bounds.Rectangle;
+						viewportCache [resolution] [key] = new Viewport (subScreen.X, subScreen.Y, subScreen.Width, subScreen.Height) {
 						MinDepth = 0,
 						MaxDepth = 1
 					};
+					}
+					return viewportCache [resolution] [key];
 				}
-				return viewportCache [resolution] [key];
+				// for unit tests
+				else {
+					return Screen.Viewport;
+				}
 			}
 		}
 
@@ -319,7 +326,7 @@ namespace Knot3.Core
 					Vector3 position3D = Camera.To3D (
 					                         position: nearTo,
 					                         nearTo: obj.Center ()
-					                     );
+					);
 					// Berechne die Distanz zwischen 3D-Mausposition und dem Spielobjekt
 					float distance = Math.Abs ((position3D - obj.Center ()).Length ());
 					distances [distance] = obj;
