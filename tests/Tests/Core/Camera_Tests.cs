@@ -48,6 +48,7 @@ namespace Knot3.UnitTests.Test_Camera
 			cam1.PositionToTargetDistance -= 50;
 			cam1.PositionToTargetDistance += 100;
 			cam1.PositionToTargetDistance -= 50;
+			cam1.PositionToTargetDistance = cam1.PositionToTargetDistance;
 			Assert.True (Equals (pos, cam1.Position));
 			Assert.True (Equals (target, cam1.Target));
 		}
@@ -68,6 +69,25 @@ namespace Knot3.UnitTests.Test_Camera
 			Vector3 mouse3D = cam1.To3D (position: mouse, nearTo: cam1.Target);
 			Vector2 mouse2D = cam1.To2D (position: mouse3D);
 			Assert.True (Equals (mouse, mouse2D));
+		}
+
+		[Test]
+		public void ResetTest ()
+		{
+			cam1.ResetCamera ();
+			Vector3 pos = cam1.Position;
+			Vector3 target = cam1.Target;
+			float fov = cam1.FoV;
+			cam1.Position += new Vector3 (43, 24, 64);
+			cam1.Target += new Vector3 (29, 24, 234);
+			cam1.FoV += 10;
+			Assert.AreNotEqual (pos, cam1.Position);
+			Assert.AreNotEqual (target, cam1.Target);
+			Assert.AreNotEqual (fov, cam1.FoV);
+			cam1.ResetCamera ();
+			Assert.AreEqual (pos, cam1.Position);
+			Assert.AreEqual (target, cam1.Target);
+			Assert.AreEqual (fov, cam1.FoV);
 		}
 
 		private static bool Equals (Vector3 a, Vector3 b)

@@ -113,14 +113,8 @@ namespace Knot3.UnitTests.Tests.Core
 			Assert.AreEqual(quot1, new Angles3(0.33333333333f, 1, 3));
 			Angles3 quot2 = angle2 / divider;
 			Assert.AreEqual(quot2, angle2);
-			bool same1 = (angle2 == angle2);
-			bool nsame1 = (angle2 == angle4);
-			Assert.AreEqual(true, same1);
-			Assert.AreEqual(false, nsame1);
-			bool same2 = (angle2 != angle2);
-			bool nsame2 = (angle2 != angle4);
-			Assert.AreEqual(false, same2);
-			Assert.AreEqual(true, nsame2);
+			Assert.AreEqual(angle2, angle2);
+			Assert.AreNotEqual(angle2, angle4);
 		}
 	}
 }
