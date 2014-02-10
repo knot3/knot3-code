@@ -56,7 +56,7 @@ namespace Knot3.Node_Tests
 		{
 			Assert.IsTrue(node1.Equals(node1));
 			Assert.IsTrue(node1.Equals(node2));
-			Assert.IsFalse(node1.Equals(null));
+			Assert.IsFalse(Node.Equals(node1, null));
 			Assert.IsTrue(Node.Equals(node1, node2));
 		}
 
