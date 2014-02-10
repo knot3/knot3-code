@@ -117,6 +117,7 @@
     <Compile Include="Tests\KnotData\Challenge_Tests.cs" />
     <Compile Include="Tests\KnotData\CircleEntry_Tests.cs" />
     <Compile Include="Tests\KnotData\KnotStringIO_Tests.cs" />
+    <Compile Include="Tests\KnotData\Node_Tests.cs" />
     <Compile Include="Tests\KnotData\Knot_Tests.cs" />
     <Compile Include="Tests\RenderEffects\RenderEffect_Tests.cs" />
     <Compile Include="Tests\Screens\Screen_Tests.cs" />
