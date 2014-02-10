@@ -13,11 +13,9 @@ using Knot3.RenderEffects;
 
 namespace Knot3.Node_Tests
 {
-
 	[TestFixture]
 	public class Node_Tests
 	{
-
 		public static Node node1;
 		public static Node node2;
 
