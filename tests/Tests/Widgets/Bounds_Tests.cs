@@ -30,6 +30,7 @@ namespace Knot3.UnitTests.Tests.Widgets
 			testPoint = new ScreenPoint(fakeScreen, 0.5f, 0.5f);
 			bound = new Bounds(point, size);
 		}
+
 		[Test]
 		public void Bounds_Contains_Test()
 		{
