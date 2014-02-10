@@ -4,7 +4,7 @@ Bei Knot3 handelt es sich um ein innovatives Spiel bei dem man Knoten im dreidim
 
 ##Installation
 
-###Debian
+###Debian / Ubuntu / SteamOS
 
 A debian repository is available. You need to include it in your sources.list file to install Knot3:
 
