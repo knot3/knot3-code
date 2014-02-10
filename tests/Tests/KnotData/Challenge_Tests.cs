@@ -3,6 +3,7 @@ using System.Text;
 using System.Collections.Generic;
 
 using NUnit.Framework;
+using Knot3.KnotData;
 
 namespace Knot3.UnitTests.Tests.KnotData
 {
@@ -20,11 +21,9 @@ namespace Knot3.UnitTests.Tests.KnotData
 		}
 
 		[Test]
-		public void TestMethod1 ()
+        public void Challenge_Constructor_Tests()
 		{
-			//
-			// TODO: Testlogik hier hinzufügen
-			//
+			
 		}
 	}
 }
