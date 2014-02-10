@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Text;
 using System.Collections.Generic;
+
 using Microsoft.Xna.Framework;
 
 using NUnit.Framework;
+
 using Knot3.Core;
 using Knot3.Utilities;
 
@@ -31,7 +33,7 @@ namespace Knot3.UnitTests.Test_Camera
 			Vector3 pos = cam1.Position;
 			cam1.Position += Vector3.Left;
 			Assert.AreEqual(pos+Vector3.Left, cam1.Position);
-			
+
 			Vector3 target = cam1.Target;
 			cam1.Target += Vector3.Up;
 			Assert.AreEqual(target+Vector3.Up, cam1.Target);
