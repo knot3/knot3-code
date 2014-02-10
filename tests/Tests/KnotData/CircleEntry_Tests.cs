@@ -21,8 +21,8 @@ namespace Knot3.UnitTests.Tests.KnotData
 			//
 		}
 
-        [Test]
-        public void CircleEntry_Constructor_Tests()
+		[Test]
+		public void CircleEntry_Constructor_Tests()
 		{
 			CircleEntry<int> start = new CircleEntry<int>(new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 });
 			for (int n = 0; n < 10; n++) {
@@ -31,15 +31,14 @@ namespace Knot3.UnitTests.Tests.KnotData
 			}
 		}
 
-        [Test]
-        public void CircleEntry_RandomAccess_Test()
+		[Test]
+		public void CircleEntry_RandomAccess_Test()
 		{
-            int[] reff = new int[] { 2, 6, 4, 5, 8, 7, 3, 1, 0, 9 };
-            CircleEntry<int> circle = new CircleEntry<int>(reff);
-            foreach (int n in reff)
-            {
-                Assert.AreEqual(circle[n], reff[n]);
-            }
+			int[] reff = new int[] { 2, 6, 4, 5, 8, 7, 3, 1, 0, 9 };
+			CircleEntry<int> circle = new CircleEntry<int>(reff);
+			foreach (int n in reff) {
+				Assert.AreEqual(circle[n], reff[n]);
+			}
 		}
 
 		[Test]
