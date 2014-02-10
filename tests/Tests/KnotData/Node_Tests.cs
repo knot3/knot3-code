@@ -16,8 +16,8 @@ namespace Knot3.Node_Tests
 	[TestFixture]
 	public class Node_Tests
 	{
-		public static Node node1;
-		public static Node node2;
+		private Node node1;
+		private Node node2;
 
 		public Node_Tests()
 		{
