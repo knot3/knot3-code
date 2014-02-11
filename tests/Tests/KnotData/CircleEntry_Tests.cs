@@ -42,11 +42,23 @@ namespace Knot3.UnitTests.Tests.KnotData
 		}
 
 		[Test]
-		public void TestMethod1 ()
+        public void CircleEntry_Insert_Test()
 		{
-			//
-			// TODO: Testlogik hier hinzufügen
-			//
+            CircleEntry<int> start = new CircleEntry<int>(new int[] {1});
+            start.InsertBefore(0);
+            start.InsertAfter(2);
+            start = start.Previous;
+            for (int n = 0; n < 3; n++)
+            {
+                Assert.AreEqual(start.Value, n);
+                start = start.Next;
+            }
+            start.InsertBefore(3);
+            for (int n = 0; n < 4; n++)
+            {
+                Assert.AreEqual(start.Value, n);
+                start = start.Next;
+            }
 		}
 	}
 }
