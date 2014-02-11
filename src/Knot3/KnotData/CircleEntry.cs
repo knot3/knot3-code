@@ -39,7 +39,7 @@ namespace Knot3.KnotData
 			Next = this;
 		}
 
-		public CircleEntry(IEnumerable<T> list)
+		public CircleEntry (IEnumerable<T> list)
 		{
 			bool first = true;
 			CircleEntry<T> inserted = this;
@@ -149,6 +149,16 @@ namespace Knot3.KnotData
 			while (current != other.Next && current != this);
 		}
 
+		public IEnumerable<Tuple<T,T>> Pairs ()
+		{
+			CircleEntry<T> current = this;
+			do {
+				yield return Tuple.Create (current.Value, current.Next.Value);
+				current = current.Next;
+			}
+			while (current != this);
+		}
+
 		public IEnumerator<T> GetEnumerator ()
 		{
 			CircleEntry<T> current = this;
@@ -168,7 +178,7 @@ namespace Knot3.KnotData
 
 		public override string ToString ()
 		{
-			return "CircleEntry(" + Value.ToString() + ")";
+			return "CircleEntry(" + Value.ToString () + ")";
 		}
 
 		public static CircleEntry<T> operator + (CircleEntry<T> circle, int i)
