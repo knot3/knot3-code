@@ -1,3 +1,7 @@
+notifications:
+  email:
+    - pascal.knodel@student.kit.edu
+    - tobias.schulz186@gmail.com
 language: c
 install:
   - sudo apt-get install mono-devel mono-dmcs nunit-console
