@@ -6,6 +6,7 @@ using NUnit.Framework;
 
 using Knot3.Widgets;
 using Knot3.Core;
+using Microsoft.Xna.Framework;
 
 namespace Knot3.UnitTests.Tests.Widgets
 {
@@ -35,6 +36,7 @@ namespace Knot3.UnitTests.Tests.Widgets
 		public void Bounds_Contains_Test()
 		{
 			Assert.AreEqual(true , bound.Contains(testPoint));
+            Assert.AreEqual(true, bound.Contains((Point) testPoint));
 		}
 
 		[Test]
