@@ -237,7 +237,7 @@ namespace Knot3.Widgets
 			//	* ((float)minScrollPosition / (maxScrollPosition - pageScrollPosition)));
 
 			if (IsVisible && IsEnabled && HasScrollbar) {
-				Bounds slider = ScrollSliderInBarBounds;
+				//Bounds slider = ScrollSliderInBarBounds;
 				Bounds bar = ScrollBarBounds;
 
 				float percentOfBar = move.Relative.Y / bar.Size.Relative.Y;

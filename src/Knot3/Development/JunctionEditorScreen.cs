@@ -169,8 +169,8 @@ namespace Knot3.Development
 
 		private void OnAnglesChanged (GameTime time)
 		{
-			var directions = Directions;
 			/*
+			var directions = Directions;
 			for (int i = 0; i < 3; ++i) {
 				Options.Models [NodeConfigKey (directions.ToEnumerable ()), "bump" + i, 0f] = Options.Default ["debug", "debug_junction_angle_bump" + i, 0f];
 			}

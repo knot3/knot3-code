@@ -176,7 +176,7 @@ namespace Knot3.Screens
 			ChallengeWorld.Add (challengeSkyCube);
 
 			// Die Spielzeit-Anzeige
-			playTimeDisplay = new TextItem(screen: this, drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem, name: String.Empty);
+			playTimeDisplay = new TextItem(screen: this, drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem, text: String.Empty);
 			playTimeDisplay.Bounds.Position = new ScreenPoint (this, 0.800f, 0.01f);
 			playTimeDisplay.Bounds.Size = new ScreenPoint (this, 0.15f, 0.04f);
 			playTimeDisplay.BackgroundColorFunc = (s) => Design.WidgetBackground;

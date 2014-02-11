@@ -290,7 +290,7 @@ namespace Knot3.GameObjects
 				};
 				Vector2[] sides = bounds.Where (x => x.Bounds.Contains (currentPosition)).Select (x => x.Side).ToArray ();
 				if (sides.Length == 1) {
-					InputAction action = Screen.Input.CurrentInputAction;
+					//InputAction action = Screen.Input.CurrentInputAction;
 					MoveTarget (new Vector3 (sides [0].X, sides [0].Y, 0) * 0.5f, time);
 					world.Redraw = true;
 					Screen.Input.CurrentInputAction = InputAction.FreeMouse;
