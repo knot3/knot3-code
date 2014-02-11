@@ -262,27 +262,22 @@ namespace Knot3.KnotData
 			return true;
 		}
 
-        public bool TryMove(Direction direction, int distance, out Knot newknot)
-        {
-            CircleEntry<Edge> newCircle = new CircleEntry<Edge>(startElement.Value);
-            CircleEntry<Edge> newCircleIterator = newCircle;
-            CircleEntry<Edge> iterator = startElement;
-            do
-            {
-                if (selectedEdges.Contains(iterator.Value) && !selectedEdges.Contains(iterator.Next))
-                {
-                    for (int n = 0; n < distance; n++)
-                    {
-                        newCircleIterator = newCircleIterator.InsertAfter(new Edge(direction.Reverse, iterator.Value.Color));
-                    }
-                }
-
-            }
-            while (iterator != startElement);
-            newknot = null;
-            return true;
-
-        }
+		public bool TryMove(Direction direction, int distance, out Knot newknot)
+		{
+			CircleEntry<Edge> newCircle = new CircleEntry<Edge>(startElement.Value);
+			CircleEntry<Edge> newCircleIterator = newCircle;
+			CircleEntry<Edge> iterator = startElement;
+			do {
+				if (selectedEdges.Contains(iterator.Value) && !selectedEdges.Contains(iterator.Next)) {
+					for (int n = 0; n < distance; n++) {
+						newCircleIterator = newCircleIterator.InsertAfter(new Edge(direction.Reverse, iterator.Value.Color));
+					}
+				}
+			}
+			while (iterator != startElement);
+			newknot = null;
+			return true;
+		}
 
 		/// <summary>
 		/// Gibt an ob ein Move in diese Richtung überhaupt möglich ist.
