@@ -85,14 +85,6 @@ namespace Knot3.UnitTests.Tests.Core
 		}
 
 		[Test]
-		public void Angles3_GetHashCode_Test()
-		{
-			hash1 = angle1.GetHashCode();
-			hash2 = 7;
-			Assert.AreEqual(hash1, hash2);
-		}
-
-		[Test]
 		public void Angles3_Operator_Test()
 		{
 			Angles3 angle2 = new Angles3(1, 2, 3);

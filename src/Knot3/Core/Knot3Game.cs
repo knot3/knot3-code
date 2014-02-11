@@ -52,8 +52,8 @@ namespace Knot3.Core
 					}
 					else {
 						string currentResolution = Graphics.GraphicsDevice.DisplayMode.Width.ToString ()
-						                           + "x"
-						                           + Graphics.GraphicsDevice.DisplayMode.Height.ToString ();
+							+ "x"
+							+ Graphics.GraphicsDevice.DisplayMode.Height.ToString ();
 
 						Options.Default ["video", "resolution", currentResolution] = "1280x720";
 					}
@@ -148,7 +148,7 @@ namespace Knot3.Core
 			Graphics.PreferMultiSampling = true;
 
 			// design
-			new HfGDesign().Apply();
+			new HfGDesign ().Apply ();
 
 			// screens
 			Screens = new Stack<IGameScreen> ();
@@ -164,27 +164,33 @@ namespace Knot3.Core
 		/// </summary>
 		protected override void Draw (GameTime time)
 		{
-			// Lade den aktuellen Screen
-			IGameScreen current = Screens.Peek ();
-
-			// Starte den Post-Processing-Effekt des Screens
-			current.PostProcessingEffect.Begin (time);
-			Graphics.GraphicsDevice.Clear (current.BackgroundColor);
-
 			try {
-				// Rufe Draw() auf dem aktuellen Screen auf
-				current.Draw (time);
+				// Lade den aktuellen Screen
+				IGameScreen current = Screens.Peek ();
 
-				// Rufe Draw() auf den Spielkomponenten auf
-				base.Draw (time);
+				// Starte den Post-Processing-Effekt des Screens
+				current.PostProcessingEffect.Begin (time);
+				Graphics.GraphicsDevice.Clear (current.BackgroundColor);
+
+				try {
+					// Rufe Draw() auf dem aktuellen Screen auf
+					current.Draw (time);
+
+					// Rufe Draw() auf den Spielkomponenten auf
+					base.Draw (time);
+				}
+				catch (Exception ex) {
+					// Error Screen
+					ShowError (ex);
+				}
+
+				// Beende den Post-Processing-Effekt des Screens
+				current.PostProcessingEffect.End (time);
 			}
 			catch (Exception ex) {
 				// Error Screen
 				ShowError (ex);
 			}
-
-			// Beende den Post-Processing-Effekt des Screens
-			current.PostProcessingEffect.End (time);
 		}
 
 		/// <summary>
@@ -255,8 +261,8 @@ namespace Knot3.Core
 			int width;
 			int height;
 			string currentResolution = Graphics.GraphicsDevice.DisplayMode.Width.ToString ()
-			                           + "x"
-			                           + Graphics.GraphicsDevice.DisplayMode.Height.ToString ();
+				+ "x"
+				+ Graphics.GraphicsDevice.DisplayMode.Height.ToString ();
 			if (lastResolution != Options.Default ["video", "resolution", currentResolution] && !isFullscreen) {
 				String strReso = Options.Default ["video", "resolution", currentResolution];
 				string[] reso = strReso.Split ('x');
