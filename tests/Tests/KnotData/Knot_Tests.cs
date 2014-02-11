@@ -86,6 +86,13 @@ namespace Knot3.UnitTests.Knot_Tests
 				Assert.IsTrue(knot.Equals(new Knot(metaData, start)));
 				start = start.Previous;
 			}
+            start.InsertBefore(Edge.Forward);
+            start.InsertAfter(Edge.Backward);
+            for (int i = 0; i < 6; i++)
+            {
+                Assert.IsFalse(knot.Equals(new Knot(metaData, start)));
+                start = start.Previous;
+            }
 		}
 	}
 }
