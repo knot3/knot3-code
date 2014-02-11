@@ -18,13 +18,14 @@ using Knot3.GameObjects;
 using Knot3.Screens;
 using Knot3.RenderEffects;
 using Knot3.KnotData;
+using Knot3.Utilities;
 
 namespace Knot3.Widgets
 {
 	/// <summary>
 	/// Ein Widget, der eine Zeichenkette anzeigt.
 	/// </summary>
-	public class TextItem : MenuItem
+	public class TextBox : MenuItem
 	{
 		#region Properties
 
@@ -54,7 +55,7 @@ namespace Knot3.Widgets
 		/// Erzeugt ein neues TextItem-Objekt und initialisiert dieses mit dem zugehörigen IGameScreen-Objekt.
 		/// Zudem sind Angabe der Zeichenreihenfolge und der Zeichenkette, die angezeigt wird, für Pflicht.
 		/// </summary>
-		public TextItem (IGameScreen screen, DisplayLayer drawOrder, string text)
+		public TextBox (IGameScreen screen, DisplayLayer drawOrder, string text)
 		: base(screen, drawOrder, text)
 		{
 		}
@@ -62,6 +63,46 @@ namespace Knot3.Widgets
 		#endregion
 
 		#region Methods
+
+		public override void Draw (GameTime time)
+		{
+			if (IsVisible) {
+				spriteBatch.Begin ();
+
+				// zeichne den Hintergrund
+				spriteBatch.DrawColoredRectangle (BackgroundColor, Bounds);
+
+				// lade die Schrift
+				SpriteFont font = Design.MenuFont (Screen);
+
+				// zeichne die Schrift
+				Color foreground = ForegroundColor * (IsEnabled ? 1f : 0.5f);
+				spriteBatch.DrawStringInRectangle (font, parseText (Text), foreground, Bounds, AlignX, AlignY);
+
+				spriteBatch.End ();
+			}
+		}
+
+		private String parseText (String text)
+		{
+			// lade die Schrift
+			SpriteFont font = Design.MenuFont (Screen);
+
+			String line = String.Empty;
+			String returnString = String.Empty;
+			String[] wordArray = text.Split (' ');
+ 
+			foreach (String word in wordArray) {
+				if (font.MeasureString (line + word).Length () > Bounds.Rectangle.Width) {
+					returnString = returnString + line + '\n';
+					line = String.Empty;
+				}
+ 
+				line = line + word + ' ';
+			}
+ 
+			return returnString + line;
+		}
 
 		//Da TextItems werden nicht unterlegt um sie von Buttons abzugrenzen
 		public override void SetHovered (bool hovered, GameTime time)

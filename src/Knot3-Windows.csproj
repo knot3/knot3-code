@@ -284,6 +284,7 @@
     <Compile Include="Knot3\Utilities\Design.cs" />
     <Compile Include="Knot3\Utilities\HfGDesign.cs" />
     <Compile Include="Knot3\Utilities\IDesign.cs" />
+    <Compile Include="Knot3\Widgets\TextBox.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
