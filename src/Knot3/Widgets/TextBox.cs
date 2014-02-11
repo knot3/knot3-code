@@ -87,7 +87,7 @@ namespace Knot3.Widgets
 			String[] wordArray = text.Split (' ');
 
 			foreach (String word in wordArray) {
-				if (font.MeasureString (line + word).Length () > Bounds.Rectangle.Width) {
+				if (font.MeasureString (line + word).Length () * 0.15f > Bounds.Rectangle.Width) {
 					returnString = returnString + line + '\n';
 					line = String.Empty;
 				}

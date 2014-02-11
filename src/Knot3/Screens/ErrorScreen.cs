@@ -38,6 +38,7 @@ namespace Knot3.Screens
 		{
 			string msg = CreateMessage (ex);
 			dialog = new ErrorDialog (screen: this, drawOrder: DisplayLayer.Dialog, message: msg);
+			dialog.Bounds.Size = new ScreenPoint (screen: this, x: 0.750f, y: 0.750f);
 		}
 
 		#endregion
