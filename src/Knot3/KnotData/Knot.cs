@@ -206,10 +206,9 @@ namespace Knot3.KnotData
 				// Wenn das der Fall ist stattdessen die Kante löschen.
 				for (int n = 0; n < distance; n++) {
 					if (pointer.Previous.Value.Direction == direction.Reverse) {
-                        if (pointer.Previous == virtualKnot)
-                        {
-                            virtualKnot = pointer;
-                        }
+						if (pointer.Previous == virtualKnot) {
+							virtualKnot = pointer;
+						}
 						pointer.Previous.Remove ();
 					}
 					else {
@@ -222,10 +221,9 @@ namespace Knot3.KnotData
 				// Wenn das der Fall ist stattdessen die Kante löschen.
 				for (int n = 0; n < distance; n++) {
 					if (pointer.Next.Value.Direction == direction) {
-                        if (pointer.Next == virtualKnot)
-                        {
-                            virtualKnot = pointer;
-                        }
+						if (pointer.Next == virtualKnot) {
+							virtualKnot = pointer;
+						}
 						pointer.Next.Remove ();
 					}
 					else {
