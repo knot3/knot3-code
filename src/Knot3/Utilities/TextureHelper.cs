@@ -119,15 +119,14 @@ namespace Knot3.Utilities
 			Vector2 scaledSize = new Vector2 (bounds.Width, bounds.Height);
 			try {
 				// finde die richtige Skalierung
-				Vector2 scale = scaledSize / font.MeasureString (text) * 0.9f;
-				scale.Y = scale.X = MathHelper.Min (scale.X, scale.Y);
+				Vector2 scale = spriteBatch.ScaleStringInRectangle (font, text, color, bounds, alignX, alignY);
 
 				// finde die richtige Position
 				Vector2 textPosition = TextPosition (
 				                           font: font, text: text, scale: scale,
 				                           position: scaledPosition, size: scaledSize,
 				                           alignX: alignX, alignY: alignY
-				                       );
+				);
 
 				// zeichne die Schrift
 				spriteBatch.DrawString (font, text, textPosition, color, 0, Vector2.Zero, scale, SpriteEffects.None, 0.6f);
@@ -137,6 +136,26 @@ namespace Knot3.Utilities
 			}
 			catch (InvalidOperationException exp) {
 				Log.Debug (exp);
+			}
+		}
+
+		public static Vector2 ScaleStringInRectangle (this SpriteBatch spriteBatch, SpriteFont font,
+		        string text, Color color, Rectangle bounds,
+		        HorizontalAlignment alignX, VerticalAlignment alignY)
+		{
+			Vector2 scaledPosition = new Vector2 (bounds.X, bounds.Y);
+			Vector2 scaledSize = new Vector2 (bounds.Width, bounds.Height);
+			try {
+				// finde die richtige Skalierung
+				Vector2 scale = scaledSize / font.MeasureString (text) * 0.9f;
+				if (!text.Contains ("\n")) {
+					scale.Y = scale.X = MathHelper.Min (scale.X, scale.Y);
+				}
+				return scale;
+			}
+			catch (Exception exp) {
+				Log.Debug (exp);
+				return Vector2.One;
 			}
 		}
 

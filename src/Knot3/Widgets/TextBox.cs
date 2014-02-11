@@ -25,27 +25,14 @@ namespace Knot3.Widgets
 	/// <summary>
 	/// Ein Widget, der eine Zeichenkette anzeigt.
 	/// </summary>
-	public class TextBox : MenuItem
+	public class TextBox : Widget
 	{
 		#region Properties
 
-		/// <summary>
-		/// Wie viel Prozent der Name des Eintrags (auf der linken Seite) von der Breite des Eintrags einnehmen darf.
-		/// </summary>
-		public override float NameWidth
-		{
-			get { return 1.00f; }
-			set { throw new ArgumentException ("You can't change the NameWidth of a TextItem!"); }
-		}
+		// ein Spritebatch
+		protected SpriteBatch spriteBatch;
 
-		/// <summary>
-		/// Wie viel Prozent der Wert des Eintrags (auf der rechten Seite) von der Breite des Eintrags einnehmen darf.
-		/// </summary>
-		public override float ValueWidth
-		{
-			get { return 0.00f; }
-			set { throw new ArgumentException ("You can't change the ValueWidth of a TextItem!"); }
-		}
+		public string Text { get; set; }
 
 		#endregion
 
@@ -56,8 +43,11 @@ namespace Knot3.Widgets
 		/// Zudem sind Angabe der Zeichenreihenfolge und der Zeichenkette, die angezeigt wird, für Pflicht.
 		/// </summary>
 		public TextBox (IGameScreen screen, DisplayLayer drawOrder, string text)
-		: base(screen, drawOrder, text)
+		: base(screen, drawOrder)
 		{
+			Text = text;
+			State = State.None;
+			spriteBatch = new SpriteBatch (screen.Device);
 		}
 
 		#endregion
@@ -66,6 +56,8 @@ namespace Knot3.Widgets
 
 		public override void Draw (GameTime time)
 		{
+			base.Draw (time);
+
 			if (IsVisible) {
 				spriteBatch.Begin ();
 
@@ -87,6 +79,8 @@ namespace Knot3.Widgets
 		{
 			// lade die Schrift
 			SpriteFont font = Design.MenuFont (Screen);
+			// berechne die Skalierung der schrift
+			//spriteBatch.DrawStringInRectangle (font, parseText (Text), foreground, Bounds, AlignX, AlignY);
 
 			String line = String.Empty;
 			String returnString = String.Empty;
@@ -102,12 +96,6 @@ namespace Knot3.Widgets
 			}
 
 			return returnString + line;
-		}
-
-		//Da TextItems werden nicht unterlegt um sie von Buttons abzugrenzen
-		public override void SetHovered (bool hovered, GameTime time)
-		{
-			State = State.None;
 		}
 
 		#endregion

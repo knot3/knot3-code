@@ -37,7 +37,7 @@ namespace Knot3.Screens
 		: base(game)
 		{
 			string msg = CreateMessage (ex);
-			dialog = new ErrorDialog (screen: this, drawIndex: DisplayLayer.Dialog, message: msg);
+			dialog = new ErrorDialog (screen: this, drawOrder: DisplayLayer.Dialog, message: msg);
 		}
 
 		#endregion

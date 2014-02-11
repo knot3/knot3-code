@@ -23,9 +23,21 @@ namespace Knot3.Widgets
 {
 	public class ErrorDialog : ConfirmDialog
 	{
-		public ErrorDialog (IGameScreen screen, DisplayLayer drawIndex, string message)
-		: base(screen, drawIndex, "Error", message)
+		private TextBox textBox;
+
+		public ErrorDialog (IGameScreen screen, DisplayLayer drawOrder, string message)
+		: base(screen: screen, drawOrder: drawOrder, title: "Error")
 		{
+			textBox = new TextBox (screen: Screen, drawOrder: Index + DisplayLayer.MenuItem, text: message);
+			textBox.Bounds = ContentBounds;
+		}
+
+		public override IEnumerable<IGameScreenComponent> SubComponents (GameTime time)
+		{
+			foreach (DrawableGameScreenComponent component in base.SubComponents(time)) {
+				yield return component;
+			}
+			yield return textBox;
 		}
 	}
 }

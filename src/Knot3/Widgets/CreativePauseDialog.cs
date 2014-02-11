@@ -44,7 +44,7 @@ namespace Knot3.Widgets
 		///
 		/// </summary>
 		public CreativePauseDialog (IGameScreen screen, DisplayLayer drawOrder, Knot knot)
-		: base(screen, drawOrder, "Pause", String.Empty)
+		: base(screen, drawOrder, "Pause")
 		{
 			this.knot = knot;
 
@@ -160,7 +160,7 @@ namespace Knot3.Widgets
 				catch (IOException ex) {
 					ErrorDialog errorDialog = new ErrorDialog (
 					    screen: Screen,
-					    drawIndex: DisplayLayer.Dialog * 2,
+					    drawOrder: DisplayLayer.Dialog * 2,
 					    message: "Error in Knot.Save(): " + ex.ToString ()
 					);
 					Screen.AddGameComponents (null, errorDialog);

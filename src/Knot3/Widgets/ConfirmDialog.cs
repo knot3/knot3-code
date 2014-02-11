@@ -33,7 +33,7 @@ namespace Knot3.Widgets
 		/// </summary>
 		private Container buttons { get; set; }
 
-		private Menu menu;
+		protected Menu menu;
 
 		#endregion
 
@@ -44,8 +44,8 @@ namespace Knot3.Widgets
 		/// Zudem sind Angaben zur Zeichenreihenfolge, einer Zeichenkette für den Titel und für den eingeblendeten Text Pflicht.
 		/// [base=screen, drawOrder, title, text]
 		/// </summary>
-		public ConfirmDialog (IGameScreen screen, DisplayLayer drawOrder, string title, string text)
-		: base(screen, drawOrder, title, text)
+		public ConfirmDialog (IGameScreen screen, DisplayLayer drawOrder, string title)
+		: base(screen, drawOrder, title)
 		{
 			// Der Titel-Text ist mittig ausgerichtet
 			AlignX = HorizontalAlignment.Center;
@@ -58,11 +58,15 @@ namespace Knot3.Widgets
 			menu.ItemAlignX = HorizontalAlignment.Left;
 			menu.ItemAlignY = VerticalAlignment.Center;
 
+			ValidKeys.AddRange (new Keys[] { Keys.Enter, Keys.Escape });
+		}
+
+		public ConfirmDialog (IGameScreen screen, DisplayLayer drawOrder, string title, string text)
+		: this(screen, drawOrder, title)
+		{
 			// Die Textanzeige
 			TextItem textInput = new TextItem (Screen, Index + DisplayLayer.MenuItem, text);
 			menu.Add (textInput);
-
-			ValidKeys.AddRange (new Keys[] { Keys.Enter, Keys.Escape });
 		}
 
 		#endregion

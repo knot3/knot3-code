@@ -40,7 +40,7 @@ namespace Knot3.Widgets
 		///
 		/// </summary>
 		public HighscoreDialog (IGameScreen screen, DisplayLayer drawOrder, Challenge challenge)
-		: base(screen, drawOrder, "Highscores", String.Empty)
+		: base(screen, drawOrder, "Highscores")
 		{
 			// Der Titel-Text ist mittig ausgerichtet
 			AlignX = HorizontalAlignment.Center;

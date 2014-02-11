@@ -81,7 +81,7 @@ namespace Knot3.Widgets
 		///
 		/// </summary>
 		public TextInputDialog (IGameScreen screen, DisplayLayer drawOrder, string title, string text, string inputText)
-		: base (screen, drawOrder, title, text)
+		: base (screen, drawOrder, title)
 		{
 			textItem = new TextItem(screen, drawOrder, String.Empty);
 

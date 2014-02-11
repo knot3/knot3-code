@@ -63,7 +63,7 @@ namespace Knot3.Widgets
 		/// Zudem sind Angaben zur Zeichenreihenfolge, einer Zeichenkette für den Titel und für den eingeblendeten Text Pflicht.
 		/// [base=screen, drawOrder]
 		/// </summary>
-		public Dialog (IGameScreen screen, DisplayLayer drawOrder, string title, string text)
+		public Dialog (IGameScreen screen, DisplayLayer drawOrder, string title)
 		: base(screen, drawOrder)
 		{
 			// Setzte Titel und Text
