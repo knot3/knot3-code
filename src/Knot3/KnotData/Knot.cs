@@ -428,7 +428,9 @@ namespace Knot3.KnotData
 			if (!selectedEdges.Contains (edge)) {
 				selectedEdges.Add (edge);
 			}
-			lastSelected = startElement.Find (edge).ElementAt (0);
+			IEnumerable<Edge> found = startElement.Find (edge);
+			if (found.Any ())
+			lastSelected = found.ElementAt (0);
 			OnSelectionChanged ();
 		}
 
