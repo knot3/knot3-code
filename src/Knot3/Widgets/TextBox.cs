@@ -91,16 +91,16 @@ namespace Knot3.Widgets
 			String line = String.Empty;
 			String returnString = String.Empty;
 			String[] wordArray = text.Split (' ');
- 
+
 			foreach (String word in wordArray) {
 				if (font.MeasureString (line + word).Length () > Bounds.Rectangle.Width) {
 					returnString = returnString + line + '\n';
 					line = String.Empty;
 				}
- 
+
 				line = line + word + ' ';
 			}
- 
+
 			return returnString + line;
 		}
 
