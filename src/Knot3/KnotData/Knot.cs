@@ -429,8 +429,9 @@ namespace Knot3.KnotData
 				selectedEdges.Add (edge);
 			}
 			IEnumerable<CircleEntry<Edge>> found = startElement.Find (edge);
-			if (found.Any ())
-			lastSelected = found.ElementAt (0);
+			if (found.Any ()) {
+				lastSelected = found.ElementAt (0);
+			}
 			OnSelectionChanged ();
 		}
 
