@@ -63,7 +63,7 @@ namespace Knot3.KnotData
 		/// </summary>
 		public IEnumerable<Edge> SelectedEdges { get { return selectedEdges; } }
 
-		private List<Edge> selectedEdges;
+		private HashSet<Edge> selectedEdges;
 		public int debugId;
 		/// <summary>
 		///
@@ -91,7 +91,7 @@ namespace Knot3.KnotData
 				Edge.Up, Edge.Left, Edge.Left, Edge.Down, Edge.Forward
 			}
 			                                     );
-			selectedEdges = new List<Edge> ();
+			selectedEdges = new HashSet<Edge> ();
 		}
 
 		/// <summary>
@@ -117,7 +117,7 @@ namespace Knot3.KnotData
 			    filename: metaData.Filename
 			);
 			this.startElement = new CircleEntry<Edge> (edges);
-			selectedEdges = new List<Edge> ();
+			selectedEdges = new HashSet<Edge> ();
 		}
 
 		#endregion
@@ -261,6 +261,28 @@ namespace Knot3.KnotData
 			}
 			return true;
 		}
+
+        public bool TryMove(Direction direction, int distance, out Knot newknot)
+        {
+            CircleEntry<Edge> newCircle = new CircleEntry<Edge>(startElement.Value);
+            CircleEntry<Edge> newCircleIterator = newCircle;
+            CircleEntry<Edge> iterator = startElement;
+            do
+            {
+                if (selectedEdges.Contains(iterator.Value) && !selectedEdges.Contains(iterator.Next))
+                {
+                    for (int n = 0; n < distance; n++)
+                    {
+                        newCircleIterator = newCircleIterator.InsertAfter(new Edge(direction.Reverse, iterator.Value.Color));
+                    }
+                }
+
+            }
+            while (iterator != startElement);
+            newknot = null;
+            return true;
+
+        }
 
 		/// <summary>
 		/// Gibt an ob ein Move in diese Richtung überhaupt möglich ist.
@@ -408,7 +430,7 @@ namespace Knot3.KnotData
 			    filename: MetaData.Filename
 			);
 			return new Knot (metaData: metaData, edges: newCircle) {
-				selectedEdges = new List<Edge> (selectedEdges),
+				selectedEdges = new HashSet<Edge> (selectedEdges),
 				EdgesChanged = null,
 				SelectionChanged = null,
 			};
