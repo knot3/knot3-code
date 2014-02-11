@@ -120,16 +120,17 @@ namespace Knot3.KnotData
 			selectedEdges = new HashSet<Edge> ();
 		}
 
-        private Knot (KnotMetaData metaData, CircleEntry<Edge> start) {
-            startElement = start;
-            MetaData = new KnotMetaData(
-                name: metaData.Name,
-                countEdges: () => this.startElement.Count,
-                format: metaData.Format,
-                filename: metaData.Filename
-            );
-            selectedEdges = new HashSet<Edge>();
-        }
+		private Knot (KnotMetaData metaData, CircleEntry<Edge> start)
+		{
+			startElement = start;
+			MetaData = new KnotMetaData(
+			    name: metaData.Name,
+			    countEdges: () => this.startElement.Count,
+			    format: metaData.Format,
+			    filename: metaData.Filename
+			);
+			selectedEdges = new HashSet<Edge>();
+		}
 
 		#endregion
 
@@ -281,55 +282,46 @@ namespace Knot3.KnotData
 			do {
 				if (selectedEdges.Contains(iterator.Value) && !selectedEdges.Contains(iterator.Next)) {
 					for (int n = 0; n < distance; n++) {
-                        if (iterator.Value.Direction == direction.Reverse)
-                        {
-                            newCircleIterator = newCircleIterator.InsertAfter(new Edge(direction.Reverse, iterator.Value.Color));
-                            iterator++;
-                        } else
-                        {
-                            newCircleIterator = newCircleIterator.InsertAfter(new Edge(direction.Reverse, iterator.Value.Color));
-                        }
+						if (iterator.Value.Direction == direction.Reverse) {
+							newCircleIterator = newCircleIterator.InsertAfter(new Edge(direction.Reverse, iterator.Value.Color));
+							iterator++;
+						}
+						else {
+							newCircleIterator = newCircleIterator.InsertAfter(new Edge(direction.Reverse, iterator.Value.Color));
+						}
 					}
 				}
-                if (selectedEdges.Contains(iterator.Value) == selectedEdges.Contains(iterator.Next.Value))
-                {
-                    newCircleIterator = newCircleIterator.InsertAfter(new Edge(direction.Reverse, iterator.Value.Color));
-                    iterator++;
-                }
-                if (!selectedEdges.Contains(iterator.Value) && selectedEdges.Contains(iterator.Next))
-                {
-                    for (int n = 0; n < distance; n++)
-                    {
-                        if (iterator.Value.Direction == direction)
-                        {
-                            newCircleIterator = newCircleIterator.Previous;
-                            if (newCircleIterator == newCircle)
-                            {
-                                newCircle = newCircle.Previous;
-                            }
-                            newCircleIterator.Next.Remove();
-                            iterator++;
-                        }
-                        else
-                        {
-                            newCircleIterator = newCircleIterator.InsertAfter(new Edge(direction, iterator.Value.Color));
-                        }
-                    }
-                }
+				if (selectedEdges.Contains(iterator.Value) == selectedEdges.Contains(iterator.Next.Value)) {
+					newCircleIterator = newCircleIterator.InsertAfter(new Edge(direction.Reverse, iterator.Value.Color));
+					iterator++;
+				}
+				if (!selectedEdges.Contains(iterator.Value) && selectedEdges.Contains(iterator.Next)) {
+					for (int n = 0; n < distance; n++) {
+						if (iterator.Value.Direction == direction) {
+							newCircleIterator = newCircleIterator.Previous;
+							if (newCircleIterator == newCircle) {
+								newCircle = newCircle.Previous;
+							}
+							newCircleIterator.Next.Remove();
+							iterator++;
+						}
+						else {
+							newCircleIterator = newCircleIterator.InsertAfter(new Edge(direction, iterator.Value.Color));
+						}
+					}
+				}
 			}
 			while (iterator != startElement);
-            Stack<Direction> structure = new Stack<Direction>();
-            foreach (Edge edge in newCircle)
-            {
-                structure.Push(edge.Direction);
-            }
-            if (!IsValidStructure(structure))
-            {
-                newknot = null;
-                return false;
-            }
-            newknot = new Knot(MetaData, newCircle);
-            return true;
+			Stack<Direction> structure = new Stack<Direction>();
+			foreach (Edge edge in newCircle) {
+				structure.Push(edge.Direction);
+			}
+			if (!IsValidStructure(structure)) {
+				newknot = null;
+				return false;
+			}
+			newknot = new Knot(MetaData, newCircle);
+			return true;
 		}
 
 		/// <summary>
