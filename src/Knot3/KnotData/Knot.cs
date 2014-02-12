@@ -123,7 +123,7 @@ namespace Knot3.KnotData
 		private Knot (KnotMetaData metaData, CircleEntry<Edge> start, HashSet<Edge> selected)
 		{
 			startElement = start;
-			MetaData = new KnotMetaData(
+			MetaData = new KnotMetaData (
 			    name: metaData.Name,
 			    countEdges: () => this.startElement.Count,
 			    format: metaData.Format,

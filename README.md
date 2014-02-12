@@ -9,8 +9,8 @@ Bei Knot3 handelt es sich um ein innovatives Spiel bei dem man Knoten im dreidim
 A debian repository is available. You need to include it in your sources.list file to install Knot3:
 
     echo deb http://www.knot3.de debian/ | sudo tee /etc/apt/sources.list.d/knot3
-    apt-get update
-    apt-get install knot3
+    sudo apt-get update
+    sudo apt-get install knot3
 
 ###Other Linux
 
@@ -18,7 +18,7 @@ You need to have Mono (3.0+), MonoGame (3.1.X+) and xbuild installed. Once insta
 simply run:
 
     make
-    make install
+    sudo make install
 
 ##Authors
 
