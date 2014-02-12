@@ -23,8 +23,6 @@ namespace Knot3.UnitTests.Tests.Core
 		float redianZ;
 		float scaleFactor;
 		float divider;
-		int hash1;
-		int hash2;
 		Angles3 angle1;
 		Angles3 angle2;
 		Angles3 angle3;
