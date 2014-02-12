@@ -300,7 +300,7 @@ namespace Knot3.KnotData
 		{
 			HashSet<Edge> selected = new HashSet<Edge>();
 			CircleEntry<Edge> newCircle = new CircleEntry<Edge>(new Edge(startElement.Value.Direction, startElement.Value.Color));
-			foreach (Tuple<Edge, Edge> currentPair in startElement.Pairs()) {
+			foreach (Tuple<Edge, Edge> currentPair in startElement.Pairs) {
 				if (selectedEdges.Contains(currentPair.Item1) && selectedEdges.Contains(currentPair.Item2)) {
 					InsideSelectionCreateNew(newCircle, currentPair.Item1, selected);
 					continue;
