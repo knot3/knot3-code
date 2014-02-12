@@ -87,8 +87,7 @@ namespace Knot3.KnotData
 			debugId++;
 			MetaData = new KnotMetaData (String.Empty, () => startElement.Count, null, null);
 			startElement = new CircleEntry<Edge> (new Edge[] {
-				Edge.Up, Edge.Right, Edge.Right, Edge.Down, Edge.Backward,
-				Edge.Up, Edge.Left, Edge.Left, Edge.Down, Edge.Forward
+				Edge.Up, Edge.Right, Edge.Down, Edge.Left
 			}
 			                                     );
 			selectedEdges = new HashSet<Edge> ();
@@ -316,7 +315,7 @@ namespace Knot3.KnotData
 					continue;
 				}
 				if (!selectedEdges.Contains (currentEdge) && !selectedEdges.Contains (nextEdge)) {
-					OutsideSelection (newCircle, currentEdge);
+					OutsideSelectionCreateNew (newCircle, currentEdge);
 					continue;
 				}
 				if (selectedEdges.Contains (currentEdge) && !selectedEdges.Contains (nextEdge)) {
@@ -324,7 +323,7 @@ namespace Knot3.KnotData
 					continue;
 				}
 				if (!selectedEdges.Contains (currentEdge) && selectedEdges.Contains (nextEdge)) {
-					SelectionBorderCreateNew (newCircle, currentEdge, direction.Reverse, distance);
+					SelectionBorderCreateNew (newCircle, nextEdge, direction.Reverse, distance);
 					continue;
 				}
 			}
@@ -362,7 +361,7 @@ namespace Knot3.KnotData
 			return true;
 		}
 
-		private void OutsideSelection (CircleEntry<Edge> newCircle, Edge current)
+		private void OutsideSelectionCreateNew (CircleEntry<Edge> newCircle, Edge current)
 		{
 			newCircle.InsertBefore (new Edge (current.Direction, current.Color));
 		}
