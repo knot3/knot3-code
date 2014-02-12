@@ -313,19 +313,16 @@ namespace Knot3.KnotData
 
 				if (selectedEdges.Contains (currentEdge)) {
 					InsideSelectionCreateNew (newCircle, currentEdge, selected);
-                    if (!selectedEdges.Contains(nextEdge))
-                    {
-                        SelectionBorderCreateNew(newCircle, currentEdge, direction, distance);
-                    }
+					if (!selectedEdges.Contains(nextEdge)) {
+						SelectionBorderCreateNew(newCircle, currentEdge, direction, distance);
+					}
 					continue;
 				}
-                else
-				{
+				else {
 					OutsideSelectionCreateNew (newCircle, currentEdge);
-                    if (selectedEdges.Contains(nextEdge))
-                    {
-                        SelectionBorderCreateNew(newCircle, nextEdge, direction.Reverse, distance);
-                    }
+					if (selectedEdges.Contains(nextEdge)) {
+						SelectionBorderCreateNew(newCircle, nextEdge, direction.Reverse, distance);
+					}
 					continue;
 				}
 			}
