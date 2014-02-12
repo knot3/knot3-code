@@ -303,20 +303,23 @@ namespace Knot3.KnotData
 
 			// Erstes Element wurde schon vor der Schleife eingefügt
 			foreach (Tuple<Edge, Edge> currentPair in startElement.Pairs.Skip(1)) {
-				if (selectedEdges.Contains (currentPair.Item1) && selectedEdges.Contains (currentPair.Item2)) {
-					InsideSelectionCreateNew (newCircle, currentPair.Item1, selected);
+				Edge currentEdge = currentPair.Item1;
+				Edge nextEdge = currentPair.Item2;
+
+				if (selectedEdges.Contains (currentEdge) && selectedEdges.Contains (nextEdge)) {
+					InsideSelectionCreateNew (newCircle, currentEdge, selected);
 					continue;
 				}
-				if (!selectedEdges.Contains (currentPair.Item1) && !selectedEdges.Contains (currentPair.Item2)) {
-					OutsideSelection (newCircle, currentPair.Item1);
+				if (!selectedEdges.Contains (currentEdge) && !selectedEdges.Contains (nextEdge)) {
+					OutsideSelection (newCircle, currentEdge);
 					continue;
 				}
-				if (selectedEdges.Contains (currentPair.Item1) && !selectedEdges.Contains (currentPair.Item2)) {
-					SelectionBorderCreateNew (newCircle, currentPair.Item1, direction, distance);
+				if (selectedEdges.Contains (currentEdge) && !selectedEdges.Contains (nextEdge)) {
+					SelectionBorderCreateNew (newCircle, currentEdge, direction, distance);
 					continue;
 				}
-				if (!selectedEdges.Contains (currentPair.Item1) && selectedEdges.Contains (currentPair.Item2)) {
-					SelectionBorderCreateNew (newCircle, currentPair.Item1, direction.Reverse, distance);
+				if (!selectedEdges.Contains (currentEdge) && selectedEdges.Contains (nextEdge)) {
+					SelectionBorderCreateNew (newCircle, currentEdge, direction.Reverse, distance);
 					continue;
 				}
 			}
