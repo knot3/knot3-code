@@ -120,7 +120,7 @@ namespace Knot3.KnotData
 			selectedEdges = new HashSet<Edge> ();
 		}
 
-		private Knot (KnotMetaData metaData, CircleEntry<Edge> start)
+		private Knot (KnotMetaData metaData, CircleEntry<Edge> start, HashSet<Edge> selected)
 		{
 			startElement = start;
 			MetaData = new KnotMetaData(
@@ -129,7 +129,7 @@ namespace Knot3.KnotData
 			    format: metaData.Format,
 			    filename: metaData.Filename
 			);
-			selectedEdges = new HashSet<Edge>();
+			selectedEdges = selected;
 		}
 
 		#endregion
@@ -274,55 +274,105 @@ namespace Knot3.KnotData
 			return true;
 		}
 
+        private bool IsValidStructure(IEnumerable<Edge> edges)
+        {
+            Vector3 position3D = Vector3.Zero;
+            HashSet<Vector3> occupancy = new HashSet<Vector3>();
+            if (edges.Count() < 4)
+            {
+                return false;
+            }
+            foreach (Direction edge in edges)
+            {
+                if (occupancy.Contains(position3D + (edge / 2)))
+                {
+                    return false;
+                }
+                else
+                {
+                    occupancy.Add(position3D + (edge / 2));
+                    position3D += edge;
+                }
+            }
+            if (position3D.DistanceTo(Vector3.Zero) > 0.00001f)
+            {
+                return false;
+            }
+            return true;
+        }
+
 		public bool TryMove(Direction direction, int distance, out Knot newknot)
 		{
-			CircleEntry<Edge> newCircle = new CircleEntry<Edge>(startElement.Value);
-			CircleEntry<Edge> newCircleIterator = newCircle;
-			CircleEntry<Edge> iterator = startElement;
-			do {
-				if (selectedEdges.Contains(iterator.Value) && !selectedEdges.Contains(iterator.Next)) {
-					for (int n = 0; n < distance; n++) {
-						if (iterator.Value.Direction == direction.Reverse) {
-							newCircleIterator = newCircleIterator.InsertAfter(new Edge(direction.Reverse, iterator.Value.Color));
-							iterator++;
-						}
-						else {
-							newCircleIterator = newCircleIterator.InsertAfter(new Edge(direction.Reverse, iterator.Value.Color));
-						}
-					}
-				}
-				if (selectedEdges.Contains(iterator.Value) == selectedEdges.Contains(iterator.Next.Value)) {
-					newCircleIterator = newCircleIterator.InsertAfter(new Edge(direction.Reverse, iterator.Value.Color));
-					iterator++;
-				}
-				if (!selectedEdges.Contains(iterator.Value) && selectedEdges.Contains(iterator.Next)) {
-					for (int n = 0; n < distance; n++) {
-						if (iterator.Value.Direction == direction) {
-							newCircleIterator = newCircleIterator.Previous;
-							if (newCircleIterator == newCircle) {
-								newCircle = newCircle.Previous;
-							}
-							newCircleIterator.Next.Remove();
-							iterator++;
-						}
-						else {
-							newCircleIterator = newCircleIterator.InsertAfter(new Edge(direction, iterator.Value.Color));
-						}
-					}
-				}
-			}
-			while (iterator != startElement);
-			Stack<Direction> structure = new Stack<Direction>();
-			foreach (Edge edge in newCircle) {
-				structure.Push(edge.Direction);
-			}
-			if (!IsValidStructure(structure)) {
+            HashSet<Edge> selected = new HashSet<Edge>();
+			CircleEntry<Edge> newCircle = new CircleEntry<Edge>(new Edge(startElement.Value.Direction, startElement.Value.Color));
+			foreach (Tuple<Edge, Edge> currentPair in startElement.Pairs()) {
+                if (selectedEdges.Contains(currentPair.Item1) && selectedEdges.Contains(currentPair.Item2)) {
+                    InsideSelectionCreateNew(newCircle, currentPair.Item1, selected);
+                    continue;
+                }
+                if (!selectedEdges.Contains(currentPair.Item1) && !selectedEdges.Contains(currentPair.Item2)) {
+                    OutsideSelection(newCircle, currentPair.Item1);
+                    continue;
+                }
+                if (selectedEdges.Contains(currentPair.Item1) && !selectedEdges.Contains(currentPair.Item2)) {
+                    SelectionBorderCreateNew(newCircle, currentPair.Item1, direction, distance);
+                    continue;
+                }
+                if (!selectedEdges.Contains(currentPair.Item1) && selectedEdges.Contains(currentPair.Item2)) {
+                    SelectionBorderCreateNew(newCircle, currentPair.Item1, direction.Reverse, distance);
+                    continue;
+                }
+            }
+            CircleEntry<Edge> current = newCircle;
+            do
+            {
+                if (current.Value.Direction == current.Next.Value.Direction.Reverse)
+                {
+                    // Selectierte nicht löschen
+                    if (selected.Contains(current.Value) || selected.Contains(current.Next.Value))
+                    {
+                        newknot = null;
+                        return false;
+                    }
+                    if (current == newCircle)
+                    {
+                        newCircle++;
+                    }
+                    if (current.Next == newCircle)
+                    {
+                        newCircle++;
+                    }
+                    current.Next.Remove();
+                    current.Remove();
+                }
+                current++;
+            } while (current != newCircle);
+			if (!IsValidStructure(newCircle)) {
 				newknot = null;
 				return false;
 			}
-			newknot = new Knot(MetaData, newCircle);
+			newknot = new Knot(MetaData, newCircle, selected);
 			return true;
 		}
+
+        private void OutsideSelection(CircleEntry<Edge> newCircle, Edge current)
+        {
+            newCircle.InsertBefore(new Edge(current.Direction, current.Color));
+        }
+
+        private void SelectionBorderCreateNew(CircleEntry<Edge> newCircle, Edge oldSelectedEdge, Direction dir, int distance)
+        {
+            for (int n = 0; n < distance; n++)
+            {
+                newCircle.InsertBefore(new Edge(dir, oldSelectedEdge.Color));
+            }
+        }
+        private void InsideSelectionCreateNew(CircleEntry<Edge> newCircle, Edge current, HashSet<Edge> selected)
+        {
+            Edge newOne = new Edge(current.Direction, current.Color);
+            selected.Add(newOne);
+            newCircle.InsertBefore(newOne);
+        }
 
 		/// <summary>
 		/// Gibt an ob ein Move in diese Richtung überhaupt möglich ist.
