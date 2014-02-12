@@ -328,7 +328,8 @@ namespace Knot3.KnotData
 				}
 			}
 
-			Log.Debug ("Current Knot = #", startElement.Count, ", New Knot = #", newCircle.Count);
+			Log.Debug ("Current Knot #", startElement.Count, " = ", string.Join(", ", from c in startElement select c.Direction));
+			Log.Debug ("New Knot #", newCircle.Count, " = ", string.Join(", ", from c in newCircle select c.Direction));
 
 			CircleEntry<Edge> current = newCircle;
 			do {
@@ -352,7 +353,7 @@ namespace Knot3.KnotData
 			}
 			while (current != newCircle);
 			
-			Log.Debug ("New Knot 2 = #", newCircle.Count);
+			Log.Debug ("New Knot after Remove #", newCircle.Count, " = ", string.Join(", ", from c in newCircle select c.Direction));
 
 			if (!IsValidStructure (newCircle)) {
 				Log.Debug ("Error: newCircle ist keine valide Struktur");
