@@ -351,6 +351,8 @@ namespace Knot3.KnotData
 				current++;
 			}
 			while (current != newCircle);
+			
+			Log.Debug ("New Knot 2 = #", newCircle.Count);
 
 			if (!IsValidStructure (newCircle)) {
 				Log.Debug ("Error: newCircle ist keine valide Struktur");
