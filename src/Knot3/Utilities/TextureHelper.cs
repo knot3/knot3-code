@@ -143,7 +143,6 @@ namespace Knot3.Utilities
 		        string text, Color color, Rectangle bounds,
 		        HorizontalAlignment alignX, VerticalAlignment alignY)
 		{
-			Vector2 scaledPosition = new Vector2 (bounds.X, bounds.Y);
 			Vector2 scaledSize = new Vector2 (bounds.Width, bounds.Height);
 			try {
 				// finde die richtige Skalierung

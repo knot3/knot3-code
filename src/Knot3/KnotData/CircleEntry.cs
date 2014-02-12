@@ -149,14 +149,16 @@ namespace Knot3.KnotData
 			while (current != other.Next && current != this);
 		}
 
-		public IEnumerable<Tuple<T,T>> Pairs ()
+		public IEnumerable<Tuple<T,T>> Pairs
 		{
-			CircleEntry<T> current = this;
-			do {
-				yield return Tuple.Create (current.Value, current.Next.Value);
-				current = current.Next;
+			get {
+				CircleEntry<T> current = this;
+				do {
+					yield return Tuple.Create (current.Value, current.Next.Value);
+					current = current.Next;
+				}
+				while (current != this);
 			}
-			while (current != this);
 		}
 
 		public IEnumerator<T> GetEnumerator ()

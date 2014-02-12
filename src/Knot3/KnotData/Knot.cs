@@ -90,7 +90,7 @@ namespace Knot3.KnotData
 				Edge.Up, Edge.Right, Edge.Right, Edge.Down, Edge.Backward,
 				Edge.Up, Edge.Left, Edge.Left, Edge.Down, Edge.Forward
 			}
-			                                     );
+			);
 			selectedEdges = new HashSet<Edge> ();
 		}
 
@@ -123,13 +123,13 @@ namespace Knot3.KnotData
 		private Knot (KnotMetaData metaData, CircleEntry<Edge> start)
 		{
 			startElement = start;
-			MetaData = new KnotMetaData(
+			MetaData = new KnotMetaData (
 			    name: metaData.Name,
 			    countEdges: () => this.startElement.Count,
 			    format: metaData.Format,
 			    filename: metaData.Filename
 			);
-			selectedEdges = new HashSet<Edge>();
+			selectedEdges = new HashSet<Edge> ();
 		}
 
 		#endregion
@@ -274,53 +274,51 @@ namespace Knot3.KnotData
 			return true;
 		}
 
-		public bool TryMove(Direction direction, int distance, out Knot newknot)
+		public bool TryMove (Direction direction, int distance, out Knot newknot)
 		{
-			CircleEntry<Edge> newCircle = new CircleEntry<Edge>(startElement.Value);
-			CircleEntry<Edge> newCircleIterator = newCircle;
+			CircleEntry<Edge> newCircle = new CircleEntry<Edge> (startElement.Value);
+
 			CircleEntry<Edge> iterator = startElement;
 			do {
-				if (selectedEdges.Contains(iterator.Value) && !selectedEdges.Contains(iterator.Next)) {
+				if (selectedEdges.Contains (iterator.Value) && !selectedEdges.Contains (iterator.Next)) {
 					for (int n = 0; n < distance; n++) {
 						if (iterator.Value.Direction == direction.Reverse) {
-							newCircleIterator = newCircleIterator.InsertAfter(new Edge(direction.Reverse, iterator.Value.Color));
+							newCircle.InsertBefore (new Edge (direction.Reverse, iterator.Value.Color));
 							iterator++;
 						}
 						else {
-							newCircleIterator = newCircleIterator.InsertAfter(new Edge(direction.Reverse, iterator.Value.Color));
+							newCircle.InsertBefore (new Edge (direction.Reverse, iterator.Value.Color));
 						}
 					}
 				}
-				if (selectedEdges.Contains(iterator.Value) == selectedEdges.Contains(iterator.Next.Value)) {
-					newCircleIterator = newCircleIterator.InsertAfter(new Edge(direction.Reverse, iterator.Value.Color));
+				if (selectedEdges.Contains (iterator.Value) == selectedEdges.Contains (iterator.Next.Value)) {
+					newCircle.InsertBefore (new Edge (direction.Reverse, iterator.Value.Color));
 					iterator++;
 				}
-				if (!selectedEdges.Contains(iterator.Value) && selectedEdges.Contains(iterator.Next)) {
+				if (!selectedEdges.Contains (iterator.Value) && selectedEdges.Contains (iterator.Next)) {
 					for (int n = 0; n < distance; n++) {
 						if (iterator.Value.Direction == direction) {
-							newCircleIterator = newCircleIterator.Previous;
-							if (newCircleIterator == newCircle) {
-								newCircle = newCircle.Previous;
-							}
-							newCircleIterator.Next.Remove();
+							newCircle.Previous.Remove ();
 							iterator++;
 						}
 						else {
-							newCircleIterator = newCircleIterator.InsertAfter(new Edge(direction, iterator.Value.Color));
+							newCircle.InsertBefore (new Edge (direction, iterator.Value.Color));
 						}
 					}
 				}
 			}
 			while (iterator != startElement);
-			Stack<Direction> structure = new Stack<Direction>();
+
+			Stack<Direction> structure = new Stack<Direction> ();
 			foreach (Edge edge in newCircle) {
-				structure.Push(edge.Direction);
+				structure.Push (edge.Direction);
 			}
-			if (!IsValidStructure(structure)) {
+			if (!IsValidStructure (structure)) {
 				newknot = null;
 				return false;
 			}
-			newknot = new Knot(MetaData, newCircle);
+			newknot = new Knot (MetaData, newCircle);
+
 			return true;
 		}
 
@@ -645,8 +643,8 @@ namespace Knot3.KnotData
 			for (edgeCount = 1; edgePointer != startElement; edgePointer++, edgeCount++) {
 				Vector3 nextPosition3D = position3D + edgePointer.Value.Direction / 2;
 				if ((nextPosition3D.X < bestPosition3D.X)
-				        || (nextPosition3D.X == bestPosition3D.X && nextPosition3D.Y < bestPosition3D.Y)
-				        || (nextPosition3D.X == bestPosition3D.X && nextPosition3D.Y == bestPosition3D.Y && nextPosition3D.Z < bestPosition3D.Z)) {
+					|| (nextPosition3D.X == bestPosition3D.X && nextPosition3D.Y < bestPosition3D.Y)
+					|| (nextPosition3D.X == bestPosition3D.X && nextPosition3D.Y == bestPosition3D.Y && nextPosition3D.Z < bestPosition3D.Z)) {
 					bestPosition3D = position3D + edgePointer.Value.Direction / 2;
 					charakteristikElement = edgePointer;
 				}
@@ -660,8 +658,8 @@ namespace Knot3.KnotData
 		public override string ToString ()
 		{
 			return "Knot(name=" + Name + ",#edgecount=" + startElement.Count.ToString ()
-			       + ",format=" + (MetaData.Format != null ? MetaData.ToString () : "null")
-			       + ")";
+				+ ",format=" + (MetaData.Format != null ? MetaData.ToString () : "null")
+				+ ")";
 		}
 
 		/// <summary>
@@ -738,7 +736,8 @@ namespace Knot3.KnotData
 			}
 		}
 
-		private struct KnotCharakteristic {
+		private struct KnotCharakteristic
+		{
 			public CircleEntry<Edge> CharacteristicalEdge { get; private set; }
 
 			public int CountEdges { get; private set; }
