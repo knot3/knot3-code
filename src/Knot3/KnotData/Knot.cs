@@ -300,14 +300,13 @@ namespace Knot3.KnotData
 		{
 			HashSet<Edge> selected = new HashSet<Edge>();
 			CircleEntry<Edge> newCircle = new CircleEntry<Edge>(new Edge(startElement.Value.Direction, startElement.Value.Color));
-            bool first = true;
+			bool first = true;
 			foreach (Tuple<Edge, Edge> currentPair in startElement.Pairs) {
-                //Erstes Element wurde schon vor der Schleife eingefügt
-                if (first)
-                {
-                    first = false;
-                    continue;
-                }
+				//Erstes Element wurde schon vor der Schleife eingefügt
+				if (first) {
+					first = false;
+					continue;
+				}
 				if (selectedEdges.Contains(currentPair.Item1) && selectedEdges.Contains(currentPair.Item2)) {
 					InsideSelectionCreateNew(newCircle, currentPair.Item1, selected);
 					continue;
