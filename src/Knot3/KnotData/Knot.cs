@@ -298,6 +298,11 @@ namespace Knot3.KnotData
 
 		public bool TryMove (Direction direction, int distance, out Knot newknot)
 		{
+            if (direction == Direction.Zero || distance == 0)
+            {
+                newknot = this;
+                return true;
+            }
 			HashSet<Edge> selected = new HashSet<Edge> ();
 			CircleEntry<Edge> newCircle = new CircleEntry<Edge> (new Edge (startElement.Value.Direction, startElement.Value.Color));
 
