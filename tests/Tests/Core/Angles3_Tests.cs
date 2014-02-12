@@ -105,7 +105,7 @@ namespace Knot3.UnitTests.Tests.Core
 			Assert.AreEqual(quot2, angle2);
 			Assert.AreEqual(angle2, angle2);
 			Assert.AreNotEqual(angle2, angle4);
-            Assert.IsTrue(angle1 != angle2);
+			Assert.IsTrue(angle1 != angle2);
 		}
 	}
 }
