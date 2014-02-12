@@ -138,122 +138,9 @@ namespace Knot3.KnotData
 		#region Methods
 
 		/// <summary>
-		/// Prüft, ob eine Verschiebung der aktuellen Kantenauswahl in die angegebene Richtung
-		/// um die angegebene Distanz gültig ist.
-		/// </summary>
-		public bool IsValidMove (Direction direction, int distance)
-		{
-			// Erstelle die Liste nur, wenn es notwendig ist.
-			if (StructuredSelection == null) {
-				StructuredSelection = CreateStructuredSelection (startElement);
-			}
-
-			if (StructuredSelection.Count == 0) {
-				return false;
-			}
-			if (StructuredSelection [0].Begin == StructuredSelection [0].End.Next) {
-				return true;
-			}
-			if (!IsValidMove (direction)) {
-				return false;
-			}
-			Stack<Direction> stack = new Stack<Direction> ();
-			for (int b = 0; b < StructuredSelection.Count; ++b) {
-				SelectionBlock currentBlock = StructuredSelection [b];
-				SelectionBlock nextBlock = StructuredSelection.At (b + 1);
-
-				CircleEntry<Edge> pointer = currentBlock.Begin;
-				do {
-					stack.Push (pointer.Value.Direction);
-					pointer++;
-				}
-				while (pointer != currentBlock.End.Next);
-
-				for (int i = 0; i < distance; i++) {
-					stack.Push (direction.Reverse);
-				}
-				int counter = 0;
-				while (stack.Peek () == pointer.Value.Direction.Reverse && pointer != nextBlock.Begin) {
-					if (counter >= distance) { // Passiert, wenn man versucht den Knoten vollständig ineinander zu schieben.
-						return false;
-					}
-					stack.Pop ();
-					pointer++;
-					counter++;
-				}
-				while (pointer != nextBlock.Begin) {
-					stack.Push (pointer.Value);
-					pointer++;
-				}
-				for (int i = 0; i < distance; i++) {
-					if (stack.Peek () == direction.Reverse) {
-						stack.Pop ();
-					}
-					else {
-						stack.Push (direction);
-					}
-				}
-			}
-
-			return IsValidStructure (stack);
-		}
-
-		public bool ShadowKnot (Direction direction, int distance, out IEnumerable<Edge> _virtualKnot)
-		{
-			if (!IsValidMove (direction, distance)) {
-				_virtualKnot = new Edge[] {};
-				return false;
-			}
-			Log.Debug ("ShadowKnot: direction=", direction, ", distance=", distance);
-
-			CircleEntry<Edge> virtualKnot = new CircleEntry<Edge> (startElement as IEnumerable<Edge>);
-			List<SelectionBlock> selection = new List<SelectionBlock> ();
-			selection = CreateStructuredSelection (virtualKnot);
-
-			// Durchlauf über die Selektionsblöcke
-			for (int b = 0; b < selection.Count; ++b) {
-				SelectionBlock currentBlock = selection [b];
-
-				CircleEntry<Edge> pointer = currentBlock.Begin;
-				// Vor der Selektion Kanten einfügen, wenn die vorhandenen nicht in die entgegengesetzte Richtung zeigen.
-				// Wenn das der Fall ist stattdessen die Kante löschen.
-				for (int n = 0; n < distance; n++) {
-					if (pointer.Previous.Value.Direction == direction.Reverse) {
-						if (pointer.Previous == virtualKnot) {
-							virtualKnot = pointer;
-						}
-						pointer.Previous.Remove ();
-					}
-					else {
-						pointer.InsertBefore (new Edge (direction, pointer.Value.Color));
-					}
-				}
-
-				pointer = currentBlock.End;
-				// Hinter der Selektion Kanten einfügen, wenn die vorhandenen nicht in die entgegengesetzte Richtung zeigen.
-				// Wenn das der Fall ist stattdessen die Kante löschen.
-				for (int n = 0; n < distance; n++) {
-					if (pointer.Next.Value.Direction == direction) {
-						if (pointer.Next == virtualKnot) {
-							virtualKnot = pointer;
-						}
-						pointer.Next.Remove ();
-					}
-					else {
-						pointer.InsertAfter (new Edge (direction.Reverse, pointer.Value.Color));
-					}
-				}
-			}
-
-			_virtualKnot = virtualKnot;
-
-			return true;
-		}
-
-		/// <summary>
 		/// Prüft ob die gegeben Struktur einen gültigen Knoten darstellt.
 		/// </summary>
-		public static bool IsValidStructure (IEnumerable<Direction> knot)
+		public bool IsValidStructure (IEnumerable<Direction> knot)
 		{
 			Vector3 position3D = Vector3.Zero;
 			HashSet<Vector3> occupancy = new HashSet<Vector3> ();
@@ -296,7 +183,10 @@ namespace Knot3.KnotData
 			}
 			return true;
 		}
-
+		
+		/// <summary>
+		/// Verschiebt die aktuelle Kantenauswahl in die angegebene Richtung um die angegebene Distanz.
+		/// </summary>
 		public bool TryMove (Direction direction, int distance, out Knot newknot)
 		{
 			if (direction == Direction.Zero || distance == 0) {
@@ -387,6 +277,23 @@ namespace Knot3.KnotData
 			selected.Add (newOne);
 			newCircle.InsertBefore (newOne);
 		}
+		
+		
+		/// <summary>
+		/// Verschiebt die aktuelle Kantenauswahl in die angegebene Richtung um die angegebene Distanz.
+		/// </summary>
+		public bool Move (Direction direction, int distance)
+		{
+			Knot newKnot;
+			if (TryMove (direction, distance, out newKnot)) {
+				startElement = newKnot.startElement;
+				selectedEdges = newKnot.selectedEdges;
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
 
 		/// <summary>
 		/// Gibt an ob ein Move in diese Richtung überhaupt möglich ist.
@@ -426,68 +333,6 @@ namespace Knot3.KnotData
 			return true;
 		}
 
-		/// <summary>
-		/// Verschiebt die aktuelle Kantenauswahl in die angegebene Richtung um die angegebene Distanz.
-		/// </summary>
-		public bool Move (Direction direction, int distance)
-		{
-			Log.Debug ("Moving edges of knot#", debugId);
-			if (!IsValidMove (direction, distance)) {
-				return false;
-			}
-
-			// Durchlauf über die Selektionsblöcke
-			for (int b = 0; b < StructuredSelection.Count; ++b) {
-				Log.Debug ("Moving edges of knot#", debugId);
-				SelectionBlock currentBlock = StructuredSelection [b];
-
-				CircleEntry<Edge> pointer = currentBlock.Begin;
-				// Vor der Selektion Kanten einfügen, wenn die vorhandenen nicht in die entgegengesetzte Richtung zeigen.
-				// Wenn das der Fall ist stattdessen die Kante löschen.
-				for (int n = 0; n < distance; n++) {
-					if (pointer.Previous.Value.Direction == direction.Reverse) {
-						// Wenn die zu löschende Kante der Einstigspunkt ist, einen neuen setzten.
-						if (pointer.Previous == startElement) {
-							StartEdgeChanged (pointer.Previous.Value);
-							startElement = pointer;
-						}
-						pointer.Previous.Remove ();
-					}
-					else {
-						pointer.InsertBefore (new Edge (direction, pointer.Value.Color));
-					}
-				}
-
-				//Log.Debug("startElement=",startElement);
-				for (pointer = currentBlock.Begin; pointer != currentBlock.End.Next; pointer++) {
-					//Log.Debug("pointer=",pointer);
-					if (pointer == startElement) {
-						StartEdgeChanged (direction * distance);
-					}
-				}
-
-				pointer = currentBlock.End;
-				// Hinter der Selektion Kanten einfügen, wenn die vorhandenen nicht in die entgegengesetzte Richtung zeigen.
-				// Wenn das der Fall ist stattdessen die Kante löschen.
-				for (int n = 0; n < distance; n++) {
-					if (pointer.Next.Value.Direction == direction) {
-						// Wenn die zu löschende Kante der Einstigspunkt ist, einen neuen setzten.
-						if (pointer.Next == startElement) {
-							StartEdgeChanged (pointer.Value);
-							startElement = pointer;
-						}
-						pointer.Next.Remove ();
-					}
-					else {
-						pointer.InsertAfter (new Edge (direction.Reverse, pointer.Value.Color));
-					}
-				}
-			}
-			Log.Debug ("Moving edges of knot#", debugId);
-			onEdgesChanged ();
-
-			return true;
-		}
 
 		private void onEdgesChanged ()
 		{
