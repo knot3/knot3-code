@@ -183,7 +183,7 @@ namespace Knot3.KnotData
 			}
 			return true;
 		}
-		
+
 		/// <summary>
 		/// Verschiebt die aktuelle Kantenauswahl in die angegebene Richtung um die angegebene Distanz.
 		/// </summary>
@@ -277,8 +277,7 @@ namespace Knot3.KnotData
 			selected.Add (newOne);
 			newCircle.InsertBefore (newOne);
 		}
-		
-		
+
 		/// <summary>
 		/// Verschiebt die aktuelle Kantenauswahl in die angegebene Richtung um die angegebene Distanz.
 		/// </summary>
@@ -332,7 +331,6 @@ namespace Knot3.KnotData
 			}
 			return true;
 		}
-
 
 		private void onEdgesChanged ()
 		{
