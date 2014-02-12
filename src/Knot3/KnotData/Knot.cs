@@ -319,8 +319,7 @@ namespace Knot3.KnotData
                     }
 					continue;
 				}
-                else
-				{
+				else {
 					OutsideSelectionCreateNew (newCircle, currentEdge);
                     if (selectedEdges.Contains(nextEdge))
                     {
