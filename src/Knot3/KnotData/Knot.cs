@@ -297,11 +297,10 @@ namespace Knot3.KnotData
 
 		public bool TryMove (Direction direction, int distance, out Knot newknot)
 		{
-            if (direction == Direction.Zero || distance == 0)
-            {
-                newknot = this;
-                return true;
-            }
+			if (direction == Direction.Zero || distance == 0) {
+				newknot = this;
+				return true;
+			}
 			HashSet<Edge> selected = new HashSet<Edge> ();
 			CircleEntry<Edge> newCircle = new CircleEntry<Edge> (new Edge (startElement.Value.Direction, startElement.Value.Color));
 
@@ -328,7 +327,9 @@ namespace Knot3.KnotData
 				}
 			}
 
-			Log.Debug ("Current Knot = #", startElement.Count, ", New Knot = #", newCircle.Count);
+			Log.Debug ("TryMove: direction = ", direction, ", distance = ", distance);
+			Log.Debug ("Current Knot #", startElement.Count, " = ", string.Join (", ", from c in startElement select c.Direction));
+			Log.Debug ("New Knot #", newCircle.Count, " = ", string.Join (", ", from c in newCircle select c.Direction));
 
 			CircleEntry<Edge> current = newCircle;
 			do {
@@ -351,6 +352,8 @@ namespace Knot3.KnotData
 				current++;
 			}
 			while (current != newCircle);
+
+			Log.Debug ("New Knot after Remove #", newCircle.Count, " = ", string.Join (", ", from c in newCircle select c.Direction));
 
 			if (!IsValidStructure (newCircle)) {
 				Log.Debug ("Error: newCircle ist keine valide Struktur");
