@@ -193,6 +193,8 @@ namespace Knot3.GameObjects
 			nodeMap.Offset = Info.Position;
 			nodeMap.OnEdgesChanged ();
 
+			Log.Debug ("=> render Knot #", knot.Count (), " = ", string.Join (", ", from c in knot select c.Direction));
+
 			CreatePipes (knot);
 			if (Options.Default ["debug", "show-startedge-direction", false]) {
 				CreateStartArrow ();

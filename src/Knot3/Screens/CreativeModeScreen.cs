@@ -120,7 +120,7 @@ namespace Knot3.Screens
 
 			// der Input-Handler zur Kanten-Verschiebung
 			edgeMovement = new EdgeMovement (screen: this, world: world, knotRenderer : knotRenderer, position: Vector3.Zero);
-			edgeMovement.KnotMoved = (newKnot) => knot = newKnot;
+			edgeMovement.KnotMoved = OnKnotMoved;
 			world.Add (edgeMovement);
 
 			// der Input-Handler zur Kanten-Einfärbung
@@ -193,9 +193,17 @@ namespace Knot3.Screens
 
 		#region Methods
 
+		private void OnKnotMoved (Knot newKnot)
+		{
+			OnEdgesChanged ();
+			knot = newKnot;
+			Log.Debug ("=> set Knot #", knot.Count (), " = ", string.Join (", ", from c in knot select c.Direction));
+			registerCurrentKnot ();
+		}
+
 		private void OnEdgesChanged ()
 		{
-			Knot push = knot.Clone ()as Knot;
+			Knot push = knot.Clone () as Knot;
 			Undo.Push (push);
 			Redo.Clear ();
 			redoButton.IsVisible = false;
@@ -224,7 +232,7 @@ namespace Knot3.Screens
 
 		private void OnRedo ()
 		{
-			Log.Debug("Redo: Redo.Count=", Redo.Count);
+			Log.Debug ("Redo: Redo.Count=", Redo.Count);
 			if (Redo.Count >= 1) {
 				Knot next = Redo.Pop ();
 				Knot push = next.Clone ()as Knot;
