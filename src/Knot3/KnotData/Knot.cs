@@ -90,7 +90,7 @@ namespace Knot3.KnotData
 				Edge.Up, Edge.Right, Edge.Right, Edge.Down, Edge.Backward,
 				Edge.Up, Edge.Left, Edge.Left, Edge.Down, Edge.Forward
 			}
-			                                     );
+			);
 			selectedEdges = new HashSet<Edge> ();
 		}
 
@@ -324,11 +324,14 @@ namespace Knot3.KnotData
 				}
 			}
 
+			Log.Debug ("Current Knot = #", startElement.Count, ", New Knot = #", newCircle.Count);
+
 			CircleEntry<Edge> current = newCircle;
 			do {
 				if (current.Value.Direction == current.Next.Value.Direction.Reverse) {
-					// Selectierte nicht löschen
+					// Selektierte nicht löschen
 					if (selected.Contains (current.Value) || selected.Contains (current.Next.Value)) {
+						Log.Debug ("Error: Selektierte nicht löschen");
 						newknot = null;
 						return false;
 					}
@@ -346,6 +349,7 @@ namespace Knot3.KnotData
 			while (current != newCircle);
 
 			if (!IsValidStructure (newCircle)) {
+				Log.Debug ("Error: newCircle ist keine valide Struktur");
 				newknot = null;
 				return false;
 			}
@@ -693,8 +697,8 @@ namespace Knot3.KnotData
 			for (edgeCount = 1; edgePointer != startElement; edgePointer++, edgeCount++) {
 				Vector3 nextPosition3D = position3D + edgePointer.Value.Direction / 2;
 				if ((nextPosition3D.X < bestPosition3D.X)
-				        || (nextPosition3D.X == bestPosition3D.X && nextPosition3D.Y < bestPosition3D.Y)
-				        || (nextPosition3D.X == bestPosition3D.X && nextPosition3D.Y == bestPosition3D.Y && nextPosition3D.Z < bestPosition3D.Z)) {
+					|| (nextPosition3D.X == bestPosition3D.X && nextPosition3D.Y < bestPosition3D.Y)
+					|| (nextPosition3D.X == bestPosition3D.X && nextPosition3D.Y == bestPosition3D.Y && nextPosition3D.Z < bestPosition3D.Z)) {
 					bestPosition3D = position3D + edgePointer.Value.Direction / 2;
 					charakteristikElement = edgePointer;
 				}
@@ -708,8 +712,8 @@ namespace Knot3.KnotData
 		public override string ToString ()
 		{
 			return "Knot(name=" + Name + ",#edgecount=" + startElement.Count.ToString ()
-			       + ",format=" + (MetaData.Format != null ? MetaData.ToString () : "null")
-			       + ")";
+				+ ",format=" + (MetaData.Format != null ? MetaData.ToString () : "null")
+				+ ")";
 		}
 
 		/// <summary>
@@ -786,7 +790,8 @@ namespace Knot3.KnotData
 			}
 		}
 
-		private struct KnotCharakteristic {
+		private struct KnotCharakteristic
+		{
 			public CircleEntry<Edge> CharacteristicalEdge { get; private set; }
 
 			public int CountEdges { get; private set; }
