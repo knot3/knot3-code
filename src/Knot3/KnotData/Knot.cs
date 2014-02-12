@@ -309,20 +309,21 @@ namespace Knot3.KnotData
 				Edge currentEdge = currentPair.Item1;
 				Edge nextEdge = currentPair.Item2;
 
-				if (selectedEdges.Contains (currentEdge) && selectedEdges.Contains (nextEdge)) {
+				if (selectedEdges.Contains (currentEdge)) {
 					InsideSelectionCreateNew (newCircle, currentEdge, selected);
+                    if (!selectedEdges.Contains(nextEdge))
+                    {
+                        SelectionBorderCreateNew(newCircle, currentEdge, direction, distance);
+                    }
 					continue;
 				}
-				if (!selectedEdges.Contains (currentEdge) && !selectedEdges.Contains (nextEdge)) {
+                else
+				{
 					OutsideSelectionCreateNew (newCircle, currentEdge);
-					continue;
-				}
-				if (selectedEdges.Contains (currentEdge) && !selectedEdges.Contains (nextEdge)) {
-					SelectionBorderCreateNew (newCircle, currentEdge, direction, distance);
-					continue;
-				}
-				if (!selectedEdges.Contains (currentEdge) && selectedEdges.Contains (nextEdge)) {
-					SelectionBorderCreateNew (newCircle, nextEdge, direction.Reverse, distance);
+                    if (selectedEdges.Contains(nextEdge))
+                    {
+                        SelectionBorderCreateNew(newCircle, nextEdge, direction.Reverse, distance);
+                    }
 					continue;
 				}
 			}
