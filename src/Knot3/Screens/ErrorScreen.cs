@@ -18,6 +18,7 @@ using Knot3.GameObjects;
 using Knot3.RenderEffects;
 using Knot3.KnotData;
 using Knot3.Widgets;
+using Knot3.Development;
 
 namespace Knot3.Screens
 {
@@ -37,6 +38,7 @@ namespace Knot3.Screens
 		: base(game)
 		{
 			string msg = CreateMessage (ex);
+			Log.Error(ex);
 			dialog = new ErrorDialog (screen: this, drawOrder: DisplayLayer.Dialog, message: msg);
 			dialog.Bounds.Size = new ScreenPoint (screen: this, x: 0.750f, y: 0.750f);
 		}

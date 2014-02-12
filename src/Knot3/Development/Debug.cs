@@ -41,5 +41,10 @@ namespace Knot3.Development
 		{
 			Console.WriteLine (string.Join ("", message));
 		}
+
+		public static void Error (Exception ex)
+		{
+			Console.WriteLine (ex.ToString ());
+		}
 	}
 }
