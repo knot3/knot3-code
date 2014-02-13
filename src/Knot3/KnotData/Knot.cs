@@ -220,7 +220,7 @@ namespace Knot3.KnotData
 
 			CircleEntry<Edge> current = newCircle;
 			do {
-				if (current [- 1].Direction == current [- 2].Direction.Reverse && current.Count > 4) {
+				if (current [- 1].Direction == current [- 2].Direction.Reverse) {
 					// Selektierte nicht löschen
 					if (selected.Contains (current [- 1]) || selected.Contains (current [- 2])) {
 						Log.Debug ("Error: Selektierte nicht löschen");
