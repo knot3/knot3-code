@@ -94,7 +94,7 @@ namespace Knot3.KnotData
 		/// </summary>
 		private KnotCharakteristic? CharakteristicCache = null;
 
-        public Vector3 OffSet { get; private set;}
+		public Vector3 OffSet { get; private set;}
 
 		#endregion
 
@@ -115,7 +115,7 @@ namespace Knot3.KnotData
 			}
 			                                     );
 			selectedEdges = new HashSet<Edge> ();
-            OffSet = Vector3.Zero;
+			OffSet = Vector3.Zero;
 		}
 
 		/// <summary>
@@ -142,7 +142,7 @@ namespace Knot3.KnotData
 			);
 			this.startElement = new CircleEntry<Edge> (edges);
 			selectedEdges = new HashSet<Edge> ();
-            OffSet = Vector3.Zero;
+			OffSet = Vector3.Zero;
 		}
 
 		private Knot (KnotMetaData metaData, CircleEntry<Edge> start, HashSet<Edge> selected, Vector3 offset)
@@ -155,7 +155,7 @@ namespace Knot3.KnotData
 			    filename: metaData.Filename
 			);
 			selectedEdges = selected;
-            OffSet = offset;
+			OffSet = offset;
 		}
 
 		#endregion
@@ -226,7 +226,7 @@ namespace Knot3.KnotData
 
 			Log.Debug ("New Knot #", newCircle.Count, " = ", string.Join (", ", from c in newCircle select c.Direction));
 
-            Vector3 localOffset = OffSet;
+			Vector3 localOffset = OffSet;
 			CircleEntry<Edge> current = newCircle;
 			do {
 				if (current [- 1].Direction == current [- 2].Direction.Reverse) {
@@ -236,13 +236,13 @@ namespace Knot3.KnotData
 						newknot = null;
 						return false;
 					}
-                    if (newCircle == current - 1)
-                    {
-                        localOffset += (current - 1).Value;
-                        newCircle = current;
-                    } else if (newCircle == current - 2) {
-                        localOffset += (current - 1).Value.Direction + (current - 1).Value.Direction;
-                        newCircle = current;
+					if (newCircle == current - 1) {
+						localOffset += (current - 1).Value;
+						newCircle = current;
+					}
+					else if (newCircle == current - 2) {
+						localOffset += (current - 1).Value.Direction + (current - 1).Value.Direction;
+						newCircle = current;
 					}
 					(current - 2).Remove ();
 					(current - 1).Remove ();
