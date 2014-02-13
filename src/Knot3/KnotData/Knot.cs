@@ -259,7 +259,7 @@ namespace Knot3.KnotData
 			if (selectedEdges.Count == startElement.Count) {
 				return true;
 			}
-			
+
 			HashSet<Axis> axes = new HashSet<Axis> ();
 			foreach (Tuple<Edge, Edge, Edge> triple in startElement.Triples) {
 				Edge previousEdge = triple.Item1;
@@ -268,12 +268,12 @@ namespace Knot3.KnotData
 
 				// Wenn Kante nach der Bewegung gelöscht werden müsste ist ein Zug nicht möglich
 				if (selectedEdges.Contains (currentEdge) && !selectedEdges.Contains (previousEdge)
-					&& currentEdge.Direction == dir.Reverse && previousEdge.Direction != dir.Reverse) {
+				        && currentEdge.Direction == dir.Reverse && previousEdge.Direction != dir.Reverse) {
 					return false;
 				}
 				// Wenn Kante nach der Bewegung gelöscht werden müsste ist ein Zug nicht möglich
 				if (selectedEdges.Contains (currentEdge) && !selectedEdges.Contains (nextEdge)
-					&& currentEdge.Direction == dir && nextEdge.Direction != dir) {
+				        && currentEdge.Direction == dir && nextEdge.Direction != dir) {
 					return false;
 				}
 
