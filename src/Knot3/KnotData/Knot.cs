@@ -87,11 +87,11 @@ namespace Knot3.KnotData
 			debugId++;
 			MetaData = new KnotMetaData (String.Empty, () => startElement.Count, null, null);
 			startElement = new CircleEntry<Edge> (new Edge[] {
-				// Edge.Up, Edge.Right, Edge.Right, Edge.Down, Edge.Backward,
-				// Edge.Up, Edge.Left, Edge.Left, Edge.Down, Edge.Forward
+			// Edge.Up, Edge.Right, Edge.Right, Edge.Down, Edge.Backward,
+			// Edge.Up, Edge.Left, Edge.Left, Edge.Down, Edge.Forward
 				Edge.Up, Edge.Right, Edge.Down, Edge.Left
 			}
-			                                     );
+			);
 			selectedEdges = new HashSet<Edge> ();
 		}
 
@@ -193,58 +193,50 @@ namespace Knot3.KnotData
 				newknot = this;
 				return true;
 			}
-			HashSet<Edge> selected = new HashSet<Edge> ();
-			CircleEntry<Edge> newCircle = new CircleEntry<Edge> (new Edge (startElement.Value.Direction, startElement.Value.Color));
-			if (selectedEdges.Contains(startElement.Value) && !selectedEdges.Contains(startElement.Next.Value)) {
-				SelectionBorderCreateNew(newCircle, startElement.Value, direction.Reverse, distance);
-			}
-			if (!selectedEdges.Contains(startElement.Value) && selectedEdges.Contains(startElement.Next.Value)) {
-				SelectionBorderCreateNew(newCircle, startElement.Next.Value, direction, distance);
-			}
-			// Erstes Element wurde schon vor der Schleife eingefügt
-			foreach (Tuple<Edge, Edge> currentPair in startElement.Pairs.Skip(1)) {
-				Edge currentEdge = currentPair.Item1;
-				Edge nextEdge = currentPair.Item2;
-
-				if (selectedEdges.Contains (currentEdge)) {
-					InsideSelectionCreateNew (newCircle, currentEdge, selected);
-					if (!selectedEdges.Contains(nextEdge)) {
-						SelectionBorderCreateNew(newCircle, currentEdge, direction.Reverse, distance);
-					}
-					continue;
-				}
-				else {
-					OutsideSelectionCreateNew (newCircle, currentEdge);
-					if (selectedEdges.Contains(nextEdge)) {
-						SelectionBorderCreateNew(newCircle, nextEdge, direction, distance);
-					}
-					continue;
-				}
-			}
 
 			Log.Debug ("TryMove: direction = ", direction, ", distance = ", distance);
 			Log.Debug ("Current Knot #", startElement.Count, " = ", string.Join (", ", from c in startElement select c.Direction));
-			Log.Debug ("New Knot #", newCircle.Count, " = ", string.Join (", ", from c in newCircle select c.Direction));
 
+			HashSet<Edge> selected = new HashSet<Edge> ();
+			List<Edge> list = new List<Edge> ();
+
+			foreach (Tuple<Edge, Edge, Edge> triple in startElement.Triples) {
+				Edge previousEdge = triple.Item1;
+				Edge currentEdge = triple.Item2;
+				Edge nextEdge = triple.Item3;
+
+				if (selectedEdges.Contains (currentEdge) && !selectedEdges.Contains (previousEdge)) {
+					Log.Debug ("Insert ", distance, "x: ", direction);
+					distance.Repeat (i => list.Add (new Edge (direction: direction, color: currentEdge)));
+				}
+
+				Log.Debug ("Copy: ", currentEdge);
+				list.Add (currentEdge);
+
+				if (selectedEdges.Contains (currentEdge) && !selectedEdges.Contains (nextEdge)) {
+					Log.Debug ("Insert ", distance, "x: ", direction.Reverse);
+					distance.Repeat (i => list.Add (new Edge (direction: direction.Reverse, color: currentEdge)));
+				}
+			}
+
+			Log.Debug ("New Knot #", list.Count, " = ", string.Join (", ", from c in list select c.Direction));
+
+			CircleEntry<Edge> newCircle = list.ToCircle ();
 			CircleEntry<Edge> current = newCircle;
 			do {
-				if (current.Value.Direction == current.Next.Value.Direction.Reverse) {
+				if ((current - 1).Value.Direction == (current - 2).Value.Direction.Reverse && current.Count > 4) {
 					// Selektierte nicht löschen
-					if (selected.Contains (current.Value) || selected.Contains (current.Next.Value)) {
+					if (selected.Contains ((current - 1).Value) || selected.Contains ((current - 2).Value)) {
 						Log.Debug ("Error: Selektierte nicht löschen");
 						newknot = null;
 						return false;
 					}
-					if (current == newCircle) {
-						newCircle++;
-					}
-					if (current.Next == newCircle) {
-						newCircle++;
-					}
-					current.Next.Remove ();
-					current.Remove ();
+					if (newCircle == current - 1 || newCircle == current - 2)
+						newCircle = current;
+					(current - 2).Remove ();
+					(current - 1).Remove ();
 				}
-				current++;
+				++ current;
 			}
 			while (current != newCircle);
 
@@ -257,25 +249,6 @@ namespace Knot3.KnotData
 			}
 			newknot = new Knot (MetaData, newCircle, selected);
 			return true;
-		}
-
-		private void OutsideSelectionCreateNew (CircleEntry<Edge> newCircle, Edge current)
-		{
-			newCircle.InsertBefore (new Edge (current.Direction, current.Color));
-		}
-
-		private void SelectionBorderCreateNew (CircleEntry<Edge> newCircle, Edge oldSelectedEdge, Direction dir, int distance)
-		{
-			for (int n = 0; n < distance; n++) {
-				newCircle.InsertBefore (new Edge (dir, oldSelectedEdge.Color));
-			}
-		}
-
-		private void InsideSelectionCreateNew (CircleEntry<Edge> newCircle, Edge current, HashSet<Edge> selected)
-		{
-			Edge newOne = new Edge (current.Direction, current.Color);
-			selected.Add (newOne);
-			newCircle.InsertBefore (newOne);
 		}
 
 		/// <summary>
@@ -552,8 +525,8 @@ namespace Knot3.KnotData
 			for (edgeCount = 1; edgePointer != startElement; edgePointer++, edgeCount++) {
 				Vector3 nextPosition3D = position3D + edgePointer.Value.Direction / 2;
 				if ((nextPosition3D.X < bestPosition3D.X)
-				        || (nextPosition3D.X == bestPosition3D.X && nextPosition3D.Y < bestPosition3D.Y)
-				        || (nextPosition3D.X == bestPosition3D.X && nextPosition3D.Y == bestPosition3D.Y && nextPosition3D.Z < bestPosition3D.Z)) {
+					|| (nextPosition3D.X == bestPosition3D.X && nextPosition3D.Y < bestPosition3D.Y)
+					|| (nextPosition3D.X == bestPosition3D.X && nextPosition3D.Y == bestPosition3D.Y && nextPosition3D.Z < bestPosition3D.Z)) {
 					bestPosition3D = position3D + edgePointer.Value.Direction / 2;
 					charakteristikElement = edgePointer;
 				}
@@ -567,8 +540,8 @@ namespace Knot3.KnotData
 		public override string ToString ()
 		{
 			return "Knot(name=" + Name + ",#edgecount=" + startElement.Count.ToString ()
-			       + ",format=" + (MetaData.Format != null ? MetaData.ToString () : "null")
-			       + ")";
+				+ ",format=" + (MetaData.Format != null ? MetaData.ToString () : "null")
+				+ ")";
 		}
 
 		/// <summary>
@@ -645,7 +618,8 @@ namespace Knot3.KnotData
 			}
 		}
 
-		private struct KnotCharakteristic {
+		private struct KnotCharakteristic
+		{
 			public CircleEntry<Edge> CharacteristicalEdge { get; private set; }
 
 			public int CountEdges { get; private set; }

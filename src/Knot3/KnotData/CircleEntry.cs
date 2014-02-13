@@ -81,6 +81,8 @@ namespace Knot3.KnotData
 		{
 			Previous.Next = Next;
 			Next.Previous = Previous;
+			Previous = null;
+			Next = null;
 		}
 
 		public int Count
@@ -161,6 +163,37 @@ namespace Knot3.KnotData
 			}
 		}
 
+		public IEnumerable<Tuple<T,T,T>> Triples
+		{
+			get {
+				CircleEntry<T> current = this;
+				do {
+					yield return Tuple.Create (current.Previous.Value, current.Value, current.Next.Value);
+					current = current.Next;
+				}
+				while (current != this);
+			}
+		}
+
+		public CircleEntry<CircleEntry<T>> Circles
+		{
+			get {
+				return new CircleEntry<CircleEntry<T>> (circles);
+			}
+		}
+
+		private IEnumerable<CircleEntry<T>> circles
+		{
+			get {
+				CircleEntry<T> current = this;
+				do {
+					yield return current;
+					current = current.Next;
+				}
+				while (current != this);
+			}
+		}
+
 		public IEnumerator<T> GetEnumerator ()
 		{
 			CircleEntry<T> current = this;
@@ -222,6 +255,14 @@ namespace Knot3.KnotData
 		public static implicit operator T (CircleEntry<T> circle)
 		{
 			return circle.Value;
+		}
+	}
+
+	public static class CircleExtensions
+	{
+		public static CircleEntry<T> ToCircle<T> (this IEnumerable<T> enumerable)
+		{
+			return new CircleEntry<T> (enumerable);
 		}
 	}
 }

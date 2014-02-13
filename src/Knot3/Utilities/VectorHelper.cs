@@ -118,7 +118,7 @@ namespace Knot3.Utilities
 			           MathHelper.Clamp (v.X, lower.X, higher.X),
 			           MathHelper.Clamp (v.Y, lower.Y, higher.Y),
 			           MathHelper.Clamp (v.Z, lower.Z, higher.Z)
-			       );
+			);
 		}
 
 		public static Vector3 Clamp (this Vector3 v, int minLength, int maxLength)
@@ -374,12 +374,12 @@ namespace Knot3.Utilities
 		public static string Print (this Vector3 v)
 		{
 			return   "("
-			         + v.X.ToString()
-			         + ","
-			         + v.Y.ToString()
-			         + ","
-			         + v.Z.ToString()
-			         + ")";
+				+ v.X.ToString ()
+				+ ","
+				+ v.Y.ToString ()
+				+ ","
+				+ v.Z.ToString ()
+				+ ")";
 		}
 
 		public static BoundingSphere[] CylinderBounds (float length, float radius, Vector3 direction, Vector3 position)
@@ -509,6 +509,18 @@ namespace Knot3.Utilities
 		{
 			Random rnd = new Random ();
 			return source.OrderBy<T, int> ((item) => rnd.Next ());
+		}
+
+		public static void Repeat (this int repeatCount, Action action)
+		{
+			for (int i = 0; i < repeatCount; i++)
+				action ();
+		}
+
+		public static void Repeat (this int repeatCount, Action<int> action)
+		{
+			for (int i = 0; i < repeatCount; i++)
+				action (i);
 		}
 	}
 }

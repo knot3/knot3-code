@@ -24,7 +24,7 @@ namespace Knot3.KnotData
 	/// <summary>
 	/// Eine Kante eines Knotens, die aus einer Richtung und einer Farbe, sowie optional einer Liste von Flächennummern besteht.
 	/// </summary>
-	public sealed class Edge : IEquatable<Edge>
+	public sealed class Edge : IEquatable<Edge>, ICloneable
 	{
 		#region Properties
 
@@ -169,6 +169,11 @@ namespace Knot3.KnotData
 		{
 			int i = r.Next () % 6;
 			return i == 0 ? Left : i == 1 ? Right : i == 2 ? Up : i == 3 ? Down : i == 4 ? Forward : Backward;
+		}
+
+		public Object Clone ()
+		{
+			return new Edge(Direction, Color);
 		}
 
 		#endregion
