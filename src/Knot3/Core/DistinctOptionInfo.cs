@@ -68,11 +68,11 @@ namespace Knot3.Core
 		/// [base=section, name, defaultValue, configFile]
 		/// </summary>
 		public DistinctOptionInfo (string section, string name, string defaultValue, IEnumerable<string> validValues, ConfigFile configFile)
-		: base(section, name, defaultValue, configFile)
+		: base (section, name, defaultValue, configFile)
 		{
 			ValidValues = new HashSet<string> (validValues);
 			ValidValues.Add (defaultValue);
-			DisplayValidValues = new Dictionary<string,string> (ValidValues.ToDictionary(x=>x,x=>x));
+			DisplayValidValues = new Dictionary<string,string> (ValidValues.ToDictionary (x=>x,x=>x));
 		}
 
 		#endregion

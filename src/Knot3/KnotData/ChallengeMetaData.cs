@@ -105,9 +105,9 @@ namespace Knot3.KnotData
 		{
 			get {
 				float time = AvgTime;
-				Log.Debug(time);
-				if(time != 0f) {
-					return formatTime(time);
+				Log.Debug (time);
+				if (time != 0f) {
+					return formatTime (time);
 				}
 				return "Not yet set.";
 			}
@@ -155,12 +155,12 @@ namespace Knot3.KnotData
 			}
 		}
 
-		public static string formatTime(float secs)
+		public static string formatTime (float secs)
 		{
-			Log.Debug(secs);
-			TimeSpan t = TimeSpan.FromSeconds( secs );
+			Log.Debug (secs);
+			TimeSpan t = TimeSpan.FromSeconds ( secs );
 
-			string answer = string.Format("{0:D2}h:{1:D2}m:{2:D2}s",
+			string answer = string.Format ("{0:D2}h:{1:D2}m:{2:D2}s",
 			                              t.Hours,
 			                              t.Minutes,
 			                              t.Seconds);
@@ -179,7 +179,7 @@ namespace Knot3.KnotData
 
 		public override int GetHashCode ()
 		{
-			return (name ?? String.Empty).GetHashCode();
+			return (name ?? String.Empty).GetHashCode ();
 		}
 
 		public static bool operator == (ChallengeMetaData a, ChallengeMetaData b)

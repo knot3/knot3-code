@@ -27,7 +27,7 @@ namespace Knot3.KnotData
 		#region Properties
 
 		/// <summary>
-		/// Die Skalierung, die bei einer Konvertierung in einen Vector3 des XNA-Frameworks durch die ToVector()-Methode der Node-Objekte verwendet wird.
+		/// Die Skalierung, die bei einer Konvertierung in einen Vector3 des XNA-Frameworks durch die ToVector ()-Methode der Node-Objekte verwendet wird.
 		/// </summary>
 		int Scale { get; set; }
 

@@ -45,7 +45,7 @@ namespace Knot3.GameObjects
 		/// [base=screen, info]
 		/// </summary>
 		public NodeModel (IGameScreen screen, NodeModelInfo info)
-		: base(screen, info)
+		: base (screen, info)
 		{
 		}
 

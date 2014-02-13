@@ -53,7 +53,7 @@ namespace Knot3.Widgets
 
 		public Border (IGameScreen screen, DisplayLayer drawOrder, Bounds bounds,
 		               int lineWidth, int padding, Color lineColor, Color outlineColor)
-		: base(screen, drawOrder)
+		: base (screen, drawOrder)
 		{
 			LineWidth = lineWidth;
 			Padding = padding;
@@ -63,25 +63,25 @@ namespace Knot3.Widgets
 
 		public Border (IGameScreen screen, DisplayLayer drawOrder, Widget widget, int lineWidth, int padding,
 		               Color lineColor, Color outlineColor)
-		: this(screen, drawOrder, widget.Bounds, lineWidth, padding, lineColor, outlineColor)
+		: this (screen, drawOrder, widget.Bounds, lineWidth, padding, lineColor, outlineColor)
 		{
 			OnUpdate += (time) => IsVisible = lines.IsVisible = widget.IsVisible;
 		}
 
 		public Border (IGameScreen screen, DisplayLayer drawOrder, Bounds bounds, int lineWidth, int padding)
-		: this(screen: screen, drawOrder: drawOrder, bounds: bounds, lineWidth: lineWidth, padding: lineWidth,
+		: this (screen: screen, drawOrder: drawOrder, bounds: bounds, lineWidth: lineWidth, padding: lineWidth,
 		       lineColor: Design.DefaultLineColor, outlineColor: Design.DefaultOutlineColor)
 		{
 		}
 
 		public Border (IGameScreen screen, DisplayLayer drawOrder, Widget widget, int lineWidth, int padding)
-		: this(screen: screen, drawOrder: drawOrder, widget: widget, lineWidth: lineWidth, padding: lineWidth,
+		: this (screen: screen, drawOrder: drawOrder, widget: widget, lineWidth: lineWidth, padding: lineWidth,
 		       lineColor: Design.DefaultLineColor, outlineColor: Design.DefaultOutlineColor)
 		{
 		}
 
 		public Border (IGameScreen screen, DisplayLayer drawOrder, Widget widget)
-		: this(screen: screen, drawOrder: drawOrder, widget: widget, lineWidth: 2, padding: 0)
+		: this (screen: screen, drawOrder: drawOrder, widget: widget, lineWidth: 2, padding: 0)
 		{
 		}
 
@@ -116,7 +116,7 @@ namespace Knot3.Widgets
 
 		public override IEnumerable<IGameScreenComponent> SubComponents (GameTime time)
 		{
-			foreach (DrawableGameScreenComponent component in base.SubComponents(time)) {
+			foreach (DrawableGameScreenComponent component in base.SubComponents (time)) {
 				yield return component;
 			}
 			yield return lines;

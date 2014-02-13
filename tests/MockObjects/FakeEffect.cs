@@ -31,8 +31,8 @@ namespace Knot3.UnitTests
 		#region Properties
 
 		/// <summary>
-		/// Das Rendertarget, in das zwischen dem Aufruf der Begin()- und der End()-Methode gezeichnet wird,
-		/// weil es in Begin() als primäres Rendertarget des XNA-Frameworks gesetzt wird.
+		/// Das Rendertarget, in das zwischen dem Aufruf der Begin ()- und der End ()-Methode gezeichnet wird,
+		/// weil es in Begin () als primäres Rendertarget des XNA-Frameworks gesetzt wird.
 		/// </summary>
 		public RenderTarget2D RenderTarget { get; private set; }
 
@@ -55,7 +55,7 @@ namespace Knot3.UnitTests
 		#region Methods
 
 		/// <summary>
-		/// In der Methode Begin() wird das aktuell von XNA genutzte Rendertarget auf einem Stack gesichert
+		/// In der Methode Begin () wird das aktuell von XNA genutzte Rendertarget auf einem Stack gesichert
 		/// und das Rendertarget des Effekts wird als aktuelles Rendertarget gesetzt.
 		/// </summary>
 		public void Begin (GameTime time)

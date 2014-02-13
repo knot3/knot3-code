@@ -136,7 +136,7 @@ namespace Knot3.Core
 		}
 
 		public World (IGameScreen screen, DisplayLayer drawIndex, Bounds bounds)
-		: this (screen, drawIndex, DefaultEffect(screen), bounds)
+		: this (screen, drawIndex, DefaultEffect (screen), bounds)
 		{
 			RenderEffectLibrary.RenderEffectChanged += (newEffectName, time) => {
 				CurrentEffect = RenderEffectLibrary.CreateEffect (screen: screen, name: newEffectName);
@@ -173,7 +173,7 @@ namespace Knot3.Core
 		}
 
 		/// <summary>
-		/// Ruft auf allen Spielobjekten die Update()-Methode auf.
+		/// Ruft auf allen Spielobjekten die Update ()-Methode auf.
 		/// </summary>
 		public override void Update (GameTime time)
 		{
@@ -221,7 +221,7 @@ namespace Knot3.Core
 		}
 
 		/// <summary>
-		/// Ruft auf allen Spielobjekten die Draw()-Methode auf.
+		/// Ruft auf allen Spielobjekten die Draw ()-Methode auf.
 		/// </summary>
 		public override void Draw (GameTime time)
 		{
@@ -253,7 +253,7 @@ namespace Knot3.Core
 		/// </summary>
 		public IEnumerator<IGameObject> GetEnumerator ()
 		{
-			foreach (IGameObject obj in flat(Objects)) {
+			foreach (IGameObject obj in flat (Objects)) {
 				yield return obj;
 			}
 		}
@@ -262,7 +262,7 @@ namespace Knot3.Core
 		{
 			foreach (IGameObject obj in enumerable) {
 				if (obj is IEnumerable<IGameObject>) {
-					foreach (IGameObject subobj in flat(obj as IEnumerable<IGameObject>)) {
+					foreach (IGameObject subobj in flat (obj as IEnumerable<IGameObject>)) {
 						yield return subobj;
 					}
 				}
@@ -279,7 +279,7 @@ namespace Knot3.Core
 
 		public override IEnumerable<IGameScreenComponent> SubComponents (GameTime time)
 		{
-			foreach (DrawableGameScreenComponent component in base.SubComponents(time)) {
+			foreach (DrawableGameScreenComponent component in base.SubComponents (time)) {
 				yield return component;
 			}
 			if (useInternalCamera) {

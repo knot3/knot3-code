@@ -40,7 +40,7 @@ namespace Knot3.Screens
 		#region Constructors
 
 		public MenuScreen (Knot3Game game)
-		: base(game)
+		: base (game)
 		{
 			// die Linien
 			lines = new Lines (screen: this, drawOrder: DisplayLayer.Dialog, lineWidth: 6);
@@ -72,9 +72,9 @@ namespace Knot3.Screens
 			//test:
 			//MediaPlayer.IsRepeating = true;
 			//var song = Content.Load<Song>("Music-Challenge/Frame_-_13_-_Spiral_Beams");
-			//MediaPlayer.Play(song);
-			//System.Media.SoundPlayer player = new System.Media.SoundPlayer("Music-Challenge/Frame_-_13_-_Spiral_Beams.mp3");
-			//player.PlayLooping();
+			//MediaPlayer.Play (song);
+			//System.Media.SoundPlayer player = new System.Media.SoundPlayer ("Music-Challenge/Frame_-_13_-_Spiral_Beams.mp3");
+			//player.PlayLooping ();
 		}
 
 		#endregion

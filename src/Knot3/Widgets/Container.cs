@@ -77,7 +77,7 @@ namespace Knot3.Widgets
 		/// Zudem ist die Angabe der Zeichenreihenfolge Pflicht.
 		/// </summary>
 		public Container (IGameScreen screen, DisplayLayer drawOrder)
-		: base(screen, drawOrder)
+		: base (screen, drawOrder)
 		{
 			items = new List<Widget> ();
 			ItemAlignX = HorizontalAlignment.Left;
@@ -171,7 +171,7 @@ namespace Knot3.Widgets
 
 		public override IEnumerable<IGameScreenComponent> SubComponents (GameTime time)
 		{
-			foreach (DrawableGameScreenComponent component in base.SubComponents(time)) {
+			foreach (DrawableGameScreenComponent component in base.SubComponents (time)) {
 				yield return component;
 			}
 			foreach (DrawableGameScreenComponent item in items) {

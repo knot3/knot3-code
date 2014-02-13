@@ -48,7 +48,7 @@ namespace Knot3.Core
 		{
 			get {
 				if (_models == null) {
-					String seperatorString = FileUtility.Separator.ToString();
+					String seperatorString = FileUtility.Separator.ToString ();
 					_models = new ConfigFile (FileUtility.BaseDirectory + seperatorString
 					                          + "Content" + seperatorString + "models.ini");
 				}

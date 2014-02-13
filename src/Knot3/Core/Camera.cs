@@ -127,7 +127,7 @@ namespace Knot3.Core
 		/// Erstellt eine neue Kamera in einem bestimmten IGameScreen für eine bestimmte Spielwelt.
 		/// </summary>
 		public Camera (IGameScreen screen, World world)
-		: base(screen, DisplayLayer.None)
+		: base (screen, DisplayLayer.None)
 		{
 			World = world;
 			Position = defaultPosition;

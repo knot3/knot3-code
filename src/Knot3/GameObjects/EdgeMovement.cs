@@ -118,7 +118,7 @@ namespace Knot3.GameObjects
 
 					try {
 						Edge selectedEdge = pipe.Info.Edge;
-						Log.Debug ("knot.Count() = ", Knot.Count ());
+						Log.Debug ("knot.Count () = ", Knot.Count ());
 
 						// Ctrl gedrückt
 						if (KnotInputHandler.CurrentKeyAssignmentReversed [PlayerActions.AddToEdgeSelection].IsHeldDown ()) {

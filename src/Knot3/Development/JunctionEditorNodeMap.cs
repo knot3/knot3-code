@@ -32,7 +32,7 @@ namespace Knot3.Development
 		private Dictionary<Node, List<IJunction>> junctionMap = new Dictionary<Node, List<IJunction>> ();
 
 		/// <summary>
-		/// Die Skalierung, die bei einer Konvertierung in einen Vector3 des XNA-Frameworks durch die ToVector()-Methode der Node-Objekte verwendet wird.
+		/// Die Skalierung, die bei einer Konvertierung in einen Vector3 des XNA-Frameworks durch die ToVector ()-Methode der Node-Objekte verwendet wird.
 		/// </summary>
 		public int Scale { get; set; }
 
@@ -64,9 +64,9 @@ namespace Knot3.Development
 		public void Render (Tuple<Direction, Direction, Direction> direction)
 		{
 			_edges = new Edge[] {
-				new Edge(direction.Item1), new Edge(direction.Item1),
-				new Edge(direction.Item2), new Edge(direction.Item2),
-				new Edge(direction.Item3), new Edge(direction.Item3),
+				new Edge (direction.Item1), new Edge (direction.Item1),
+				new Edge (direction.Item2), new Edge (direction.Item2),
+				new Edge (direction.Item3), new Edge (direction.Item3),
 			};
 			BuildIndex ();
 		}
@@ -95,13 +95,13 @@ namespace Knot3.Development
 		public List<IJunction> JunctionsBeforeEdge (Edge edge)
 		{
 			Node node = NodeBeforeEdge (edge);
-			return junctionMap.ContainsKey(node) ? junctionMap [node] : new List<IJunction>();
+			return junctionMap.ContainsKey (node) ? junctionMap [node] : new List<IJunction>();
 		}
 
 		public List<IJunction> JunctionsAfterEdge (Edge edge)
 		{
 			Node node = NodeAfterEdge (edge);
-			return junctionMap.ContainsKey(node) ? junctionMap [node] : new List<IJunction>();
+			return junctionMap.ContainsKey (node) ? junctionMap [node] : new List<IJunction>();
 		}
 
 		public IEnumerable<Node> Nodes

@@ -191,7 +191,7 @@ namespace Knot3.GameObjects
 
 		public GameObjectDistance Intersects (Ray ray)
 		{
-			foreach (BoundingBox bounds in Bounds()) {
+			foreach (BoundingBox bounds in Bounds ()) {
 				Nullable<float> distance = ray.Intersects (bounds);
 				if (distance != null) {
 					GameObjectDistance intersection = new GameObjectDistance () {
@@ -210,7 +210,7 @@ namespace Knot3.GameObjects
 
 		public override string ToString ()
 		{
-			return "TexturedRectangle(" + UpperLeft + "," + UpperRight + "," + LowerRight + "," + LowerLeft + ")";
+			return "TexturedRectangle (" + UpperLeft + "," + UpperRight + "," + LowerRight + "," + LowerLeft + ")";
 		}
 
 		public void Dispose ()

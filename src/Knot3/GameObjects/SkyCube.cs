@@ -80,7 +80,7 @@ namespace Knot3.GameObjects
 		}
 
 		public SkyCube (IGameScreen screen, Vector3 position, float distance)
-		: this(screen, position)
+		: this (screen, position)
 		{
 			Distance = distance;
 			ConstructRectangles ();

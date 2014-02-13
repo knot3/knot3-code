@@ -62,7 +62,7 @@ namespace Knot3.Widgets
 		/// Zudem sind Angaben zur Zeichenreihenfolge und der Eingabeoption Pflicht.
 		/// </summary>
 		public KeyInputItem (IGameScreen screen, DisplayLayer drawOrder, string text, KeyOptionInfo option)
-		: base(screen, drawOrder, text, (option as DistinctOptionInfo).Value)
+		: base (screen, drawOrder, text, (option as DistinctOptionInfo).Value)
 		{
 			this.option = option;
 		}
@@ -107,7 +107,7 @@ namespace Knot3.Widgets
 				IsInputEnabled = false;
 			}
 			else {
-				ValidKeys.AddRange (typeof(Keys).ToEnumValues<Keys> ());
+				ValidKeys.AddRange (typeof (Keys).ToEnumValues<Keys> ());
 				IsInputEnabled = true;
 				InputText = String.Empty;
 			}

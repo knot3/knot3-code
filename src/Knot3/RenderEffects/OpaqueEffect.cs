@@ -24,18 +24,18 @@ namespace Knot3.RenderEffects
 {
 	class OpaqueEffect : RenderEffect
 	{
-		public OpaqueEffect(IGameScreen screen)
-		: base(screen)
+		public OpaqueEffect (IGameScreen screen)
+		: base (screen)
 		{
-			pascalEffect = screen.LoadEffect("OpaqueShader");
+			pascalEffect = screen.LoadEffect ("OpaqueShader");
 		}
 
-		protected override void DrawRenderTarget(GameTime GameTime)
+		protected override void DrawRenderTarget (GameTime GameTime)
 		{
-			spriteBatch.Draw(RenderTarget, Vector2.Zero, Color.White);
+			spriteBatch.Draw (RenderTarget, Vector2.Zero, Color.White);
 		}
 
-		public override void RemapModel(Model model)
+		public override void RemapModel (Model model)
 		{
 			foreach (ModelMesh mesh in model.Meshes) {
 				foreach (ModelMeshPart part in mesh.MeshParts) {
@@ -53,7 +53,7 @@ namespace Knot3.RenderEffects
 			}
 		}
 
-		public override void DrawModel(GameModel model, GameTime time)
+		public override void DrawModel (GameModel model, GameTime time)
 		{
 			// Setze den Viewport auf den der aktuellen Spielwelt
 			Viewport original = screen.Viewport;
@@ -61,18 +61,18 @@ namespace Knot3.RenderEffects
 
 			Camera camera = model.World.Camera;
 
-			//lightDirection = new Vector4(-Vector3.Cross(Vector3.Normalize(camera.TargetDirection), camera.UpVector), 1);
-			pascalEffect.Parameters["World"].SetValue(model.WorldMatrix * camera.WorldMatrix);
-			pascalEffect.Parameters["View"].SetValue(camera.ViewMatrix);
-			pascalEffect.Parameters["Projection"].SetValue(camera.ProjectionMatrix);
+			//lightDirection = new Vector4 (-Vector3.Cross (Vector3.Normalize (camera.TargetDirection), camera.UpVector), 1);
+			pascalEffect.Parameters["World"].SetValue (model.WorldMatrix * camera.WorldMatrix);
+			pascalEffect.Parameters["View"].SetValue (camera.ViewMatrix);
+			pascalEffect.Parameters["Projection"].SetValue (camera.ProjectionMatrix);
 
-			pascalEffect.Parameters["color1"].SetValue(Color.Yellow.ToVector4());
-			pascalEffect.Parameters["color2"].SetValue(Color.Red.ToVector4());
+			pascalEffect.Parameters["color1"].SetValue (Color.Yellow.ToVector4 ());
+			pascalEffect.Parameters["color2"].SetValue (Color.Red.ToVector4 ());
 
 			pascalEffect.CurrentTechnique = pascalEffect.Techniques["Technique1"];
 
 			foreach (ModelMesh mesh in model.Model.Meshes) {
-				mesh.Draw();
+				mesh.Draw ();
 			}
 
 			// Setze den Viewport wieder auf den ganzen Screen

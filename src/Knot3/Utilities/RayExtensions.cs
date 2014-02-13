@@ -75,8 +75,8 @@ namespace Knot3.Knot3.Utilities
 			/*
 			Vector3 diffA = capsule.CornerA - ray.Position;
 			Vector3 diffB = capsule.CornerB - ray.Position;
-			float diffASquared = diffA.LengthSquared();
-			float diffBSquared = diffB.LengthSquared();
+			float diffASquared = diffA.LengthSquared ();
+			float diffBSquared = diffB.LengthSquared ();
 			float radiusSquared = capsule.Radius * capsule.Radius;
 			// Startpunkt innerhalb der Eckkugeln
 			if (diffASquared < radiusSquared || diffBSquared < radiusSquared)
@@ -84,31 +84,31 @@ namespace Knot3.Knot3.Utilities
 			    return 0.0f;
 			}
 			Vector3 dirBA = (capsule.CornerA - capsule.CornerB);
-			float distAlongAB = Vector3.Dot(diffA, dirBA) / dirBA.Length();
+			float distAlongAB = Vector3.Dot (diffA, dirBA) / dirBA.Length ();
 			// Startpunkt innerhalb des Zylinders
-			if (distAlongAB > 0 && distAlongAB < dirBA.Length() && (distAlongAB * distAlongAB + radiusSquared - diffA.LengthSquared() < 0))
+			if (distAlongAB > 0 && distAlongAB < dirBA.Length () && (distAlongAB * distAlongAB + radiusSquared - diffA.LengthSquared () < 0))
 			{
 			    return 0.0f;
 			}
-			float distAlongRayA = Vector3.Dot(ray.Direction, diffA);
-			float distAlongRayB = Vector3.Dot(ray.Direction, diffB);
+			float distAlongRayA = Vector3.Dot (ray.Direction, diffA);
+			float distAlongRayB = Vector3.Dot (ray.Direction, diffB);
 			// Richtung geht weg von der Kapsel
 			if (distAlongRayA < 0 && distAlongRayB < 0)
 			    return null;
-			Vector3 perpendicular = Vector3.Cross(ray.Direction, dirBA);
-			perpendicular.Normalize();
-			float minDistance = Math.Abs(Vector3.Dot(diffA, perpendicular));
+			Vector3 perpendicular = Vector3.Cross (ray.Direction, dirBA);
+			perpendicular.Normalize ();
+			float minDistance = Math.Abs (Vector3.Dot (diffA, perpendicular));
 			// Kommt selbst der Geraden nie nahe genug.
 			if (minDistance > capsule.Radius)
 			{
 			    return null;
 			}
 			Vector3 normDirAB = -dirBA;
-			normDirAB.Normalize();
-			Vector3 extensionToBase = Vector3.Cross(normDirAB, perpendicular);
-			extensionToBase.Normalize();
-			Matrix transformation = new Matrix(normDirAB.X, normDirAB.Y, normDirAB.Z, 0, perpendicular.X, perpendicular.Y, perpendicular.Z, 0, extensionToBase.X, extensionToBase.Y, extensionToBase.Z, 0, capsule.CornerA.X, capsule.CornerA.Y, capsule.CornerA.Z, 1);
-			transformation = Matrix.Invert(transformation);
+			normDirAB.Normalize ();
+			Vector3 extensionToBase = Vector3.Cross (normDirAB, perpendicular);
+			extensionToBase.Normalize ();
+			Matrix transformation = new Matrix (normDirAB.X, normDirAB.Y, normDirAB.Z, 0, perpendicular.X, perpendicular.Y, perpendicular.Z, 0, extensionToBase.X, extensionToBase.Y, extensionToBase.Z, 0, capsule.CornerA.X, capsule.CornerA.Y, capsule.CornerA.Z, 1);
+			transformation = Matrix.Invert (transformation);
 			 */
 		}
 	}

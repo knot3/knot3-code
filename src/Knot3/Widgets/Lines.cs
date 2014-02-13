@@ -43,7 +43,7 @@ namespace Knot3.Widgets
 		public Color OutlineColor { get; private set; }
 
 		public Lines (IGameScreen screen, DisplayLayer drawOrder, int lineWidth, Color lineColor, Color outlineColor)
-		: base(screen, drawOrder)
+		: base (screen, drawOrder)
 		{
 			this.lineWidth = lineWidth;
 			points = new List<Vector2> ();
@@ -56,7 +56,7 @@ namespace Knot3.Widgets
 		}
 
 		public Lines (IGameScreen screen, DisplayLayer drawOrder, int lineWidth)
-		: this(screen, drawOrder, lineWidth, Design.DefaultLineColor, Design.DefaultOutlineColor)
+		: this (screen, drawOrder, lineWidth, Design.DefaultLineColor, Design.DefaultOutlineColor)
 		{
 		}
 

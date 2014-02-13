@@ -113,8 +113,8 @@ namespace Knot3.GameObjects
 		/// </summary>
 		public virtual void Update (GameTime time)
 		{
-			if (Info != null && Info.Position.Length() > World.Camera.MaxPositionDistance) {
-				World.Camera.MaxPositionDistance = Info.Position.Length() + 250;
+			if (Info != null && Info.Position.Length () > World.Camera.MaxPositionDistance) {
+				World.Camera.MaxPositionDistance = Info.Position.Length () + 250;
 			}
 		}
 

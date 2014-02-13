@@ -55,7 +55,7 @@ namespace Knot3.Widgets
 		/// Zudem sind Angabe der Zeichenreihenfolge und der Zeichenkette, die angezeigt wird, für Pflicht.
 		/// </summary>
 		public TextItem (IGameScreen screen, DisplayLayer drawOrder, string text)
-		: base(screen, drawOrder, text)
+		: base (screen, drawOrder, text)
 		{
 		}
 

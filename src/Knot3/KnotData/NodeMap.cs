@@ -34,7 +34,7 @@ namespace Knot3.KnotData
 		private Dictionary<Node, List<IJunction>> junctionMap = new Dictionary<Node, List<IJunction>> ();
 
 		/// <summary>
-		/// Die Skalierung, die bei einer Konvertierung in einen Vector3 des XNA-Frameworks durch die ToVector()-Methode der Node-Objekte verwendet wird.
+		/// Die Skalierung, die bei einer Konvertierung in einen Vector3 des XNA-Frameworks durch die ToVector ()-Methode der Node-Objekte verwendet wird.
 		/// </summary>
 		public int Scale { get; set; }
 
@@ -54,7 +54,7 @@ namespace Knot3.KnotData
 		}
 
 		public NodeMap (IEnumerable<Edge> edges)
-		: this()
+		: this ()
 		{
 			Edges = edges;
 			BuildIndex ();

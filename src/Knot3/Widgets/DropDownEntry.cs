@@ -49,7 +49,7 @@ namespace Knot3.Widgets
 		/// </summary>
 		public DropDownEntry (string text, Action onSelect)
 		{
-			throw new System.NotImplementedException();
+			throw new System.NotImplementedException ();
 		}
 
 		#endregion

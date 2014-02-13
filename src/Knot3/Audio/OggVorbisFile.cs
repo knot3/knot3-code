@@ -40,10 +40,10 @@ namespace Knot3.Audio
 		{
 			Name = name;
 			string cachefile = FileUtility.DecodedMusicCache
-			                   + FileUtility.Separator.ToString()
-			                   + soundType.ToString()
+			                   + FileUtility.Separator.ToString ()
+			                   + soundType.ToString ()
 			                   + "_"
-			                   + name.GetHashCode().ToString()
+			                   + name.GetHashCode ().ToString ()
 			                   + ".wav";
 
 			byte[] data;
@@ -56,8 +56,8 @@ namespace Knot3.Audio
 				OggDecoder decoder = new OggDecoder ();
 				decoder.Initialize (TitleContainer.OpenStream (filepath));
 				data = decoder.SelectMany (chunk => chunk.Bytes.Take (chunk.Length)).ToArray ();
-				using (MemoryStream stream = new MemoryStream())
-				using (BinaryWriter writer = new BinaryWriter(stream)) {
+				using (MemoryStream stream = new MemoryStream ())
+				using (BinaryWriter writer = new BinaryWriter (stream)) {
 					WriteWave (writer, decoder.Stereo ? 2 : 1, decoder.SampleRate, data);
 					stream.Position = 0;
 					data = stream.ToArray ();
@@ -65,7 +65,7 @@ namespace Knot3.Audio
 				File.WriteAllBytes (cachefile, data);
 			}
 
-			using (MemoryStream stream = new MemoryStream(data)) {
+			using (MemoryStream stream = new MemoryStream (data)) {
 				stream.Position = 0;
 				SoundEffect soundEffect = SoundEffect.FromStream (stream);
 				internalFile = new SoundEffectFile (name, soundEffect, soundType);

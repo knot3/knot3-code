@@ -64,7 +64,7 @@ namespace Knot3.Widgets
 		/// [base=screen, drawOrder]
 		/// </summary>
 		public Dialog (IGameScreen screen, DisplayLayer drawOrder, string title)
-		: base(screen, drawOrder)
+		: base (screen, drawOrder)
 		{
 			// Setzte Titel und Text
 			Title = title;
@@ -142,7 +142,7 @@ namespace Knot3.Widgets
 
 		public override IEnumerable<IGameScreenComponent> SubComponents (GameTime time)
 		{
-			foreach (DrawableGameScreenComponent component in base.SubComponents(time)) {
+			foreach (DrawableGameScreenComponent component in base.SubComponents (time)) {
 				yield return component;
 			}
 			yield return titleBorder;
@@ -196,7 +196,7 @@ namespace Knot3.Widgets
 		public void OnLeftMove (ScreenPoint previousPosition, ScreenPoint currentPosition, ScreenPoint move, GameTime time)
 		{
 			Log.Debug (
-			    "OnLeftMove("
+			    "OnLeftMove ("
 			    + previousPosition.ToString ()
 			    + ","
 			    + currentPosition.ToString ()
@@ -205,7 +205,7 @@ namespace Knot3.Widgets
 			    + ")"
 			);
 
-			if (new Bounds(ScreenPoint.Zero(Screen), MouseMoveBounds.Size).Contains (previousPosition)) {
+			if (new Bounds (ScreenPoint.Zero (Screen), MouseMoveBounds.Size).Contains (previousPosition)) {
 				Log.Debug (
 				    "TitleBounds ="
 				    + Vector2.Zero.CreateRectangle (TitleBounds.Size).ToString ()

@@ -28,7 +28,7 @@ namespace Knot3.Widgets
 	public sealed class WidgetKeyHandler : GameScreenComponent
 	{
 		public WidgetKeyHandler (IGameScreen screen)
-		: base(screen, DisplayLayer.None)
+		: base (screen, DisplayLayer.None)
 		{
 		}
 
@@ -38,13 +38,13 @@ namespace Knot3.Widgets
 		public override void Update (GameTime time)
 		{
 			foreach (IKeyEventListener component in Screen.Game.Components.OfType<IKeyEventListener>()
-			         .Where(c => c.IsKeyEventEnabled).OrderByDescending(c => c.Index.Index)) {
+			         .Where (c => c.IsKeyEventEnabled).OrderByDescending (c => c.Index.Index)) {
 				// keyboard input
 				KeyEvent keyEvent = KeyEvent.None;
 				List<Keys> keysInvolved = new List<Keys> ();
 
 				foreach (Keys key in component.ValidKeys) {
-					// Log.Debug("receiver=",receiver,",validkeys=",key,", receiver.IsKeyEventEnabled=",((dynamic)receiver).IsVisible);
+					// Log.Debug ("receiver=",receiver,",validkeys=",key,", receiver.IsKeyEventEnabled=",((dynamic)receiver).IsVisible);
 
 					if (key.IsDown ()) {
 						keysInvolved.Add (key);

@@ -53,7 +53,7 @@ namespace Knot3.Widgets
 			set;
 		}
 
-		private static readonly Regex Whitespace = new Regex("^\\s*$"); // Todo: global besser!?
+		private static readonly Regex Whitespace = new Regex ("^\\s*$"); // Todo: global besser!?
 
 		public string Text
 		{
@@ -83,14 +83,14 @@ namespace Knot3.Widgets
 		public TextInputDialog (IGameScreen screen, DisplayLayer drawOrder, string title, string text, string inputText)
 		: base (screen, drawOrder, title)
 		{
-			textItem = new TextItem(screen, drawOrder, String.Empty);
+			textItem = new TextItem (screen, drawOrder, String.Empty);
 
-			Bounds.Size = new ScreenPoint(screen,0.5f,0.3f);
+			Bounds.Size = new ScreenPoint (screen,0.5f,0.3f);
 			// Der Titel-Text ist mittig ausgerichtet
 			AlignX = HorizontalAlignment.Center;
 			menu = new Menu (Screen, Index + DisplayLayer.Menu);
 			menu.Bounds = ContentBounds;
-			menu.Bounds.Padding = new ScreenPoint(screen,0.010f,0.019f);
+			menu.Bounds.Padding = new ScreenPoint (screen,0.010f,0.019f);
 			menu.ItemAlignX = HorizontalAlignment.Left;
 			menu.ItemAlignY = VerticalAlignment.Center;
 
@@ -127,7 +127,7 @@ namespace Knot3.Widgets
 				}
 
 				if (NoWhiteSpace) {
-					if (Whitespace.IsMatch(textInput.InputText)) {
+					if (Whitespace.IsMatch (textInput.InputText)) {
 						canClose = false;
 						textInput.InputText = String.Empty;
 						textInput.IsInputEnabled = true; // Fokus
@@ -136,7 +136,7 @@ namespace Knot3.Widgets
 				}
 
 				if (canClose) {
-					Close(time);
+					Close (time);
 				}
 			}
 			base.OnKeyEvent (key, keyEvent, time);
@@ -144,7 +144,7 @@ namespace Knot3.Widgets
 
 		public override IEnumerable<IGameScreenComponent> SubComponents (GameTime time)
 		{
-			foreach (DrawableGameScreenComponent component in base.SubComponents(time)) {
+			foreach (DrawableGameScreenComponent component in base.SubComponents (time)) {
 				yield return component;
 			}
 			yield return menu;

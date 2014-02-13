@@ -44,13 +44,13 @@ namespace Knot3.Widgets
 		///
 		/// </summary>
 		public CreativePauseDialog (IGameScreen screen, DisplayLayer drawOrder, Knot knot)
-		: base(screen, drawOrder, "Pause")
+		: base (screen, drawOrder, "Pause")
 		{
 			this.knot = knot;
 
 			// Der Titel-Text ist mittig ausgerichtet
 			AlignX = HorizontalAlignment.Center;
-			Bounds.Size = new ScreenPoint(screen,0.3f,0.31f);
+			Bounds.Size = new ScreenPoint (screen,0.3f,0.31f);
 			// Erstelle das Pause-Menü
 			pauseMenu = new Menu (Screen, Index + DisplayLayer.Menu);
 			pauseMenu.Bounds = ContentBounds;
@@ -123,7 +123,7 @@ namespace Knot3.Widgets
 
 		public override IEnumerable<IGameScreenComponent> SubComponents (GameTime time)
 		{
-			foreach (DrawableGameScreenComponent component in base.SubComponents(time)) {
+			foreach (DrawableGameScreenComponent component in base.SubComponents (time)) {
 				yield return component;
 			}
 			yield return pauseMenu;
@@ -161,7 +161,7 @@ namespace Knot3.Widgets
 					ErrorDialog errorDialog = new ErrorDialog (
 					    screen: Screen,
 					    drawOrder: DisplayLayer.Dialog * 2,
-					    message: "Error in Knot.Save(): " + ex.ToString ()
+					    message: "Error in Knot.Save (): " + ex.ToString ()
 					);
 					Screen.AddGameComponents (null, errorDialog);
 				}

@@ -39,14 +39,14 @@ namespace Knot3.Core
 			}
 		}
 
-		public new static IEnumerable<string> ValidValues = typeof(Keys).ToEnumValues<Keys> ().ToEnumDescriptions<Keys> ();
+		public new static IEnumerable<string> ValidValues = typeof (Keys).ToEnumValues<Keys> ().ToEnumDescriptions<Keys> ();
 
 		#endregion
 
 		#region Constructors
 
 		public KeyOptionInfo (string section, string name, Keys defaultValue, ConfigFile configFile)
-		: base(section, name, defaultValue.ToEnumDescription<Keys> (), ValidValues, configFile)
+		: base (section, name, defaultValue.ToEnumDescription<Keys> (), ValidValues, configFile)
 		{
 		}
 

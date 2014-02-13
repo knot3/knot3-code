@@ -55,9 +55,9 @@ namespace Knot3.Widgets
 		/// </summary>
 		public Func<State, Color> ForegroundColorFunc { private get; set; }
 
-		public Color BackgroundColor { get { return BackgroundColorFunc(State); } }
+		public Color BackgroundColor { get { return BackgroundColorFunc (State); } }
 
-		public Color ForegroundColor { get { return ForegroundColorFunc(State); } }
+		public Color ForegroundColor { get { return ForegroundColorFunc (State); } }
 
 		/// <summary>
 		/// Die horizontale Ausrichtung.

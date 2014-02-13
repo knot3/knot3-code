@@ -43,7 +43,7 @@ namespace Knot3.Screens
 		/// Erzeugt ein neues ControlSettingsScreen-Objekt und initialisiert dieses mit einem Knot3Game-Objekt.
 		/// </summary>
 		public ControlSettingsScreen (Knot3Game game)
-		: base(game)
+		: base (game)
 		{
 			MenuName = "Controls";
 
@@ -66,7 +66,7 @@ namespace Knot3.Screens
 			Dictionary<PlayerActions, Keys> defaultReversed = KnotInputHandler.DefaultKeyAssignment.ReverseDictionary ();
 
 			// Iteriere dazu über alle gültigen PlayerActions...
-			foreach (PlayerActions action in typeof(PlayerActions).ToEnumValues<PlayerActions>()) {
+			foreach (PlayerActions action in typeof (PlayerActions).ToEnumValues<PlayerActions>()) {
 				string actionName = action.ToEnumDescription ();
 
 				// Erstelle das dazugehörige Options-Objekt...

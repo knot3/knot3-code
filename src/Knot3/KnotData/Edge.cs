@@ -64,7 +64,7 @@ namespace Knot3.KnotData
 		/// <summary>
 		/// Erstellt eine neue Kante mit der angegebenen Richtung und Farbe.
 		/// </summary>
-		public Edge(Direction direction, Color color)
+		public Edge (Direction direction, Color color)
 		{
 			Direction = direction;
 			Color = color;
@@ -173,7 +173,7 @@ namespace Knot3.KnotData
 
 		public Object Clone ()
 		{
-			return new Edge(Direction, Color);
+			return new Edge (Direction, Color);
 		}
 
 		#endregion

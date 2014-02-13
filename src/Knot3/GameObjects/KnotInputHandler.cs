@@ -263,7 +263,7 @@ namespace Knot3.GameObjects
 			}
 			Screen.Input.CurrentInputAction = action;
 
-			//Log.Debug("action=",action);
+			//Log.Debug ("action=",action);
 
 			switch (action) {
 			case InputAction.ArcballMove:
@@ -303,12 +303,12 @@ namespace Knot3.GameObjects
 			// scroll wheel zoom
 			if (InputManager.CurrentMouseState.ScrollWheelValue < InputManager.PreviousMouseState.ScrollWheelValue) {
 				// camera.FoV += 1;
-				zoom(8,time);
+				zoom (8,time);
 			}
 			else if (InputManager.CurrentMouseState.ScrollWheelValue > InputManager.PreviousMouseState.ScrollWheelValue) {
 				// camera.FoV -= 1
 
-				zoom(-8,time);
+				zoom (-8,time);
 			}
 			world.Redraw = true;
 		}
@@ -495,7 +495,7 @@ namespace Knot3.GameObjects
 
 			// Fülle die aktuelle Zuordnung mit aus der Einstellungsdatei gelesenen werten.
 			// Iteriere dazu über alle gültigen PlayerActions...
-			foreach (PlayerActions action in typeof(PlayerActions).ToEnumValues<PlayerActions>()) {
+			foreach (PlayerActions action in typeof (PlayerActions).ToEnumValues<PlayerActions>()) {
 				string actionName = action.ToEnumDescription ();
 
 				// Erstelle eine Option...
@@ -517,7 +517,7 @@ namespace Knot3.GameObjects
 		/// </summary>
 		public void OnControlSettingsChanged ()
 		{
-			ReadKeyAssignments();
+			ReadKeyAssignments ();
 
 			// Aktualisiere die Liste von Tasten, zu denen wir als IKeyEventListener benachrichtigt werden
 			ValidKeys.Clear ();

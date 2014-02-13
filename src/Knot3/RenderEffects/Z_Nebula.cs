@@ -24,18 +24,18 @@ namespace Knot3.RenderEffects
 {
 	class Z_Nebula : RenderEffect
 	{
-		public Z_Nebula(IGameScreen screen)
-		: base(screen)
+		public Z_Nebula (IGameScreen screen)
+		: base (screen)
 		{
-			zNebulaEffect = screen.LoadEffect("Z_Nebula");
+			zNebulaEffect = screen.LoadEffect ("Z_Nebula");
 		}
 
-		protected override void DrawRenderTarget(GameTime GameTime)
+		protected override void DrawRenderTarget (GameTime GameTime)
 		{
-			spriteBatch.Draw(RenderTarget, Vector2.Zero, Color.White);
+			spriteBatch.Draw (RenderTarget, Vector2.Zero, Color.White);
 		}
 
-		public override void RemapModel(Model model)
+		public override void RemapModel (Model model)
 		{
 			foreach (ModelMesh mesh in model.Meshes) {
 				foreach (ModelMeshPart part in mesh.MeshParts) {
@@ -53,7 +53,7 @@ namespace Knot3.RenderEffects
 			}
 		}
 
-		public override void DrawModel(GameModel model, GameTime time)
+		public override void DrawModel (GameModel model, GameTime time)
 		{
 			// Setze den Viewport auf den der aktuellen Spielwelt
 			Viewport original = screen.Viewport;
@@ -61,14 +61,14 @@ namespace Knot3.RenderEffects
 
 			Camera camera = model.World.Camera;
 
-			zNebulaEffect.Parameters["World"].SetValue(model.WorldMatrix * camera.WorldMatrix);
-			zNebulaEffect.Parameters["View"].SetValue(camera.ViewMatrix);
-			zNebulaEffect.Parameters["Projection"].SetValue(camera.ProjectionMatrix);
+			zNebulaEffect.Parameters["World"].SetValue (model.WorldMatrix * camera.WorldMatrix);
+			zNebulaEffect.Parameters["View"].SetValue (camera.ViewMatrix);
+			zNebulaEffect.Parameters["Projection"].SetValue (camera.ProjectionMatrix);
 
 			zNebulaEffect.CurrentTechnique = zNebulaEffect.Techniques["Simplest"];
 
 			foreach (ModelMesh mesh in model.Model.Meshes) {
-				mesh.Draw();
+				mesh.Draw ();
 			}
 
 			// Setze den Viewport wieder auf den ganzen Screen

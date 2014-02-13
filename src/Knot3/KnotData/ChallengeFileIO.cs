@@ -67,7 +67,7 @@ namespace Knot3.KnotData
 		/// </summary>
 		public void Save (Challenge challenge)
 		{
-			using (ZipFile zip = new ZipFile()) {
+			using (ZipFile zip = new ZipFile ()) {
 				// Namen
 				zip.AddEntry ("name.txt", challenge.Name);
 				// Startknoten
@@ -92,7 +92,7 @@ namespace Knot3.KnotData
 			Knot start = null;
 			Knot target = null;
 
-			using (ZipFile zip = ZipFile.Read(filename)) {
+			using (ZipFile zip = ZipFile.Read (filename)) {
 				foreach (ZipEntry entry in zip) {
 					string content = entry.ReadContent ();
 
@@ -136,7 +136,7 @@ namespace Knot3.KnotData
 			KnotMetaData start = null;
 			KnotMetaData target = null;
 			IEnumerable<KeyValuePair<string, int>> highscore = null;
-			using (ZipFile zip = ZipFile.Read(filename)) {
+			using (ZipFile zip = ZipFile.Read (filename)) {
 				foreach (ZipEntry entry in zip) {
 					string content = entry.ReadContent ();
 
@@ -164,7 +164,7 @@ namespace Knot3.KnotData
 				}
 			}
 			if (name != null && start != null && target != null) {
-				Log.Debug("Load challenge file: ", filename, " (name=", name, ",start=", start, ",target=", target, ",highscore=", highscore);
+				Log.Debug ("Load challenge file: ", filename, " (name=", name, ",start=", start, ",target=", target, ",highscore=", highscore);
 				return new ChallengeMetaData (
 				           name: name,
 				           start: start,
@@ -185,7 +185,7 @@ namespace Knot3.KnotData
 		IEnumerable<string> printHighscore (IEnumerable<KeyValuePair<string, int>> highscore)
 		{
 			foreach (KeyValuePair<string, int> entry in highscore) {
-				Log.Debug(
+				Log.Debug (
 				    "Save Highscore: "
 				    + entry.Value.ToString ()
 				    + ":"
@@ -199,13 +199,13 @@ namespace Knot3.KnotData
 		IEnumerable<KeyValuePair<string, int>> parseHighscore (IEnumerable<string> highscore)
 		{
 			foreach (string line in highscore) {
-				Log.Debug("Load Highscore: ",line);
+				Log.Debug ("Load Highscore: ",line);
 				if (line.Contains (":")) {
 					string[] entry = line.Split (new char[] {':'}, 2, StringSplitOptions.None);
 					string name = entry [1].Trim ();
 					int time;
 					if (Int32.TryParse (entry [0], out time)) {
-						Log.Debug("=> ", name, ":", time);
+						Log.Debug ("=> ", name, ":", time);
 						yield return new KeyValuePair<string, int> (name, time);
 					}
 				}
@@ -222,8 +222,8 @@ namespace Knot3.KnotData
 			MemoryStream memory = new MemoryStream ();
 			entry.Extract (memory);
 			memory.Position = 0;
-			var sr = new StreamReader(memory);
-			return sr.ReadToEnd();
+			var sr = new StreamReader (memory);
+			return sr.ReadToEnd ();
 		}
 	}
 }

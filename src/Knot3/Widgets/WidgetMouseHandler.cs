@@ -28,7 +28,7 @@ namespace Knot3.Widgets
 	public sealed class WidgetMouseHandler : GameScreenComponent
 	{
 		public WidgetMouseHandler (IGameScreen screen)
-		: base(screen, DisplayLayer.None)
+		: base (screen, DisplayLayer.None)
 		{
 		}
 
@@ -46,7 +46,7 @@ namespace Knot3.Widgets
 		{
 			// Mausklicks
 			foreach (IMouseClickEventListener component in Screen.Game.Components.OfType<IMouseClickEventListener>()
-			         .Where(c => c.IsMouseClickEventEnabled).OrderByDescending(c => c.Index.Index)) {
+			         .Where (c => c.IsMouseClickEventEnabled).OrderByDescending (c => c.Index.Index)) {
 				Rectangle bounds = component.MouseClickBounds;
 				bool hovered = bounds.Contains (InputManager.CurrentMouseState.ToPoint ());
 				component.SetHovered (hovered, time);
@@ -67,7 +67,7 @@ namespace Knot3.Widgets
 		private void UpdateMouseScroll (GameTime time)
 		{
 			foreach (IMouseScrollEventListener component in Screen.Game.Components.OfType<IMouseScrollEventListener>()
-			         .Where(c => c.IsMouseScrollEventEnabled).OrderByDescending(c => c.Index.Index)) {
+			         .Where (c => c.IsMouseScrollEventEnabled).OrderByDescending (c => c.Index.Index)) {
 				Rectangle bounds = component.MouseScrollBounds;
 				bool hovered = bounds.Contains (InputManager.CurrentMouseState.ToPoint ());
 
@@ -105,10 +105,10 @@ namespace Knot3.Widgets
 			else if (InputManager.CurrentMouseState.RightButton == ButtonState.Released) {
 				lastRightClickPosition = null;
 			}
-			//Log.Debug("left=",(lastLeftClickPosition ?? ScreenPoint.Zero(Screen)),"right=",(lastRightClickPosition ?? ScreenPoint.Zero(Screen)));
+			//Log.Debug ("left=",(lastLeftClickPosition ?? ScreenPoint.Zero (Screen)),"right=",(lastRightClickPosition ?? ScreenPoint.Zero (Screen)));
 
 			foreach (IMouseMoveEventListener component in Screen.Game.Components.OfType<IMouseMoveEventListener>()
-			         .Where(c => c.IsMouseMoveEventEnabled).OrderByDescending(c => c.Index.Index)) {
+			         .Where (c => c.IsMouseMoveEventEnabled).OrderByDescending (c => c.Index.Index)) {
 				Bounds bounds = component.MouseMoveBounds;
 
 				ScreenPoint relativePositionPrevious = previous - bounds.Position;
@@ -135,7 +135,7 @@ namespace Knot3.Widgets
 					notify = true;
 				}
 
-				//Log.Debug("notify=",notify,", component=",component,", cntains=",(lastLeftClickPosition != null ? bounds.Contains (lastLeftClickPosition),"" : ""),",bounds=",bounds,",precious=",previous);
+				//Log.Debug ("notify=",notify,", component=",component,", cntains=",(lastLeftClickPosition != null ? bounds.Contains (lastLeftClickPosition),"" : ""),",bounds=",bounds,",precious=",previous);
 
 				if (notify && (relativePositionMove
 				               || InputManager.PreviousMouseState.LeftButton != InputManager.CurrentMouseState.LeftButton

@@ -111,7 +111,7 @@ namespace Knot3.KnotData
 
 		#region Methods and Operators
 
-		public static Direction FromAxis(Axis axis)
+		public static Direction FromAxis (Axis axis)
 		{
 			return axis == Axis.X ? Right : axis == Axis.Y ? Up : axis == Axis.Z ? Backward : Zero;
 		}
@@ -119,7 +119,7 @@ namespace Knot3.KnotData
 		public static Direction FromString (string str)
 		{
 			foreach (Direction direction in Values) {
-				if (str.ToLower() == direction.Description.ToLower()) {
+				if (str.ToLower () == direction.Description.ToLower ()) {
 					return direction;
 				}
 			}

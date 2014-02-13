@@ -38,7 +38,7 @@ namespace Knot3.Screens
 		/// Erzeugt ein neues CreditsScreen-Objekt und initialisiert dieses mit einem Knot3Game-Objekt.
 		/// </summary>
 		public CreditsScreen (Knot3Game game)
-		: base(game)
+		: base (game)
 		{
 			text = "...";
 		}

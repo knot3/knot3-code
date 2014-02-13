@@ -67,7 +67,7 @@ namespace Knot3.Widgets
 		/// Zudem sind Angaben zur Zeichenreihenfolge und für evtl. bereits vor-eingetragenen Text Pflicht.
 		/// </summary>
 		public InputItem (IGameScreen screen, DisplayLayer drawOrder, string text, string inputText)
-		: base(screen, drawOrder, text)
+		: base (screen, drawOrder, text)
 		{
 			InputText = inputText;
 			ValidKeys.AddRange (TextHelper.ValidKeys);

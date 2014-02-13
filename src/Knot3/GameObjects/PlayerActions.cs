@@ -31,39 +31,39 @@ namespace Knot3.GameObjects
 	/// </summary>
 	public enum PlayerActions
 	{
-		[Description("Move Up")]
+		[Description ("Move Up")]
 		MoveUp,
-		[Description("Move Down")]
+		[Description ("Move Down")]
 		MoveDown,
-		[Description("Move Left")]
+		[Description ("Move Left")]
 		MoveLeft,
-		[Description("Move Right")]
+		[Description ("Move Right")]
 		MoveRight,
-		[Description("Move Forward")]
+		[Description ("Move Forward")]
 		MoveForward,
-		[Description("Move Backward")]
+		[Description ("Move Backward")]
 		MoveBackward,
-		[Description("Rotate Up")]
+		[Description ("Rotate Up")]
 		RotateUp,
-		[Description("Rotate Down")]
+		[Description ("Rotate Down")]
 		RotateDown,
-		[Description("Rotate Left")]
+		[Description ("Rotate Left")]
 		RotateLeft,
-		[Description("Rotate Right")]
+		[Description ("Rotate Right")]
 		RotateRight,
-		[Description("Zoom In")]
+		[Description ("Zoom In")]
 		ZoomIn,
-		[Description("Zoom Out")]
+		[Description ("Zoom Out")]
 		ZoomOut,
-		[Description("Reset Camera")]
+		[Description ("Reset Camera")]
 		ResetCamera,
-		[Description("Move Selection to Center")]
+		[Description ("Move Selection to Center")]
 		MoveToCenter,
-		[Description("Toggle Mouse Lock")]
+		[Description ("Toggle Mouse Lock")]
 		ToggleMouseLock,
-		[Description("Add to Selection")]
+		[Description ("Add to Selection")]
 		AddToEdgeSelection,
-		[Description("Add Range to Selection")]
+		[Description ("Add Range to Selection")]
 		AddRangeToEdgeSelection,
 	}
 }

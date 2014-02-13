@@ -31,8 +31,8 @@ namespace Knot3.RenderEffects
 		#region Properties
 
 		/// <summary>
-		/// Das Rendertarget, in das zwischen dem Aufruf der Begin()- und der End()-Methode gezeichnet wird,
-		/// weil es in Begin() als primäres Rendertarget des XNA-Frameworks gesetzt wird.
+		/// Das Rendertarget, in das zwischen dem Aufruf der Begin ()- und der End ()-Methode gezeichnet wird,
+		/// weil es in Begin () als primäres Rendertarget des XNA-Frameworks gesetzt wird.
 		/// </summary>
 		public RenderTarget2D RenderTarget { get; private set; }
 
@@ -64,13 +64,13 @@ namespace Knot3.RenderEffects
 		#region Methods
 
 		/// <summary>
-		/// In der Methode Begin() wird das aktuell von XNA genutzte Rendertarget auf einem Stack gesichert
+		/// In der Methode Begin () wird das aktuell von XNA genutzte Rendertarget auf einem Stack gesichert
 		/// und das Rendertarget des Effekts wird als aktuelles Rendertarget gesetzt.
 		/// </summary>
 		public void Begin (GameTime time)
 		{
 			if (screen.CurrentRenderEffects.CurrentEffect == this) {
-				throw new InvalidOperationException ("Begin() can be called only once on " + this + "!");
+				throw new InvalidOperationException ("Begin () can be called only once on " + this + "!");
 			}
 
 			RenderTarget = CurrentRenderTarget;
@@ -78,7 +78,7 @@ namespace Knot3.RenderEffects
 			screen.Device.Clear (Color.Transparent);
 
 			//spriteBatch.Begin (SpriteSortMode.Immediate, BlendState.NonPremultiplied);
-			//spriteBatch.Draw (TextureHelper.Create(screen.Device, screen.Viewport.Width, screen.Viewport.Height, background),
+			//spriteBatch.Draw (TextureHelper.Create (screen.Device, screen.Viewport.Width, screen.Viewport.Height, background),
 			//                  Vector2.Zero, Color.White);
 			//spriteBatch.End ();
 
@@ -212,7 +212,7 @@ namespace Knot3.RenderEffects
 				}
 				while (!renderTargets [resolution][viewport].ContainsKey (Supersampling)) {
 					try {
-						Log.Debug("Supersampling=", Supersampling);
+						Log.Debug ("Supersampling=", Supersampling);
 						renderTargets [resolution] [viewport] [Supersampling] = new RenderTarget2D (
 						    screen.Device, (int)(viewport.Width * Supersampling), (int)(viewport.Height * Supersampling),
 						    false, SurfaceFormat.Color, DepthFormat.Depth24, 1, RenderTargetUsage.PreserveContents
@@ -220,7 +220,7 @@ namespace Knot3.RenderEffects
 						break;
 					}
 					catch (NotSupportedException ex) {
-						Log.Debug(ex);
+						Log.Debug (ex);
 						if (Options.Default ["video", "Supersamples", 1] > 1) {
 							Options.Default ["video", "Supersamples", 1] *= 0.8f;
 						}

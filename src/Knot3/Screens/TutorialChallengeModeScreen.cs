@@ -30,7 +30,7 @@ namespace Knot3.Screens
 		#region Constructors
 
 		public TutorialChallengeModeScreen (Knot3Game game, Challenge challenge)
-		: base(game, challenge)
+		: base (game, challenge)
 		{
 			throw new System.NotImplementedException ();
 		}
@@ -44,7 +44,7 @@ namespace Knot3.Screens
 		/// </summary>
 		public override void Entered (IGameScreen previousScreen, GameTime GameTime)
 		{
-			throw new System.NotImplementedException();
+			throw new System.NotImplementedException ();
 		}
 
 		#endregion

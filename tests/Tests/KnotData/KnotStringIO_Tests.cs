@@ -17,15 +17,15 @@ namespace Knot3.UnitTests.Tests.KnotData
 		[Test]
 		public void KnotStringIO_Test ()
 		{
-			KnotStringIO knotStringIO = new KnotStringIO(KnotGenerator.generateValidSquaredKnot(10));
-			KnotStringIO other = new KnotStringIO(knotStringIO.Content);
+			KnotStringIO knotStringIO = new KnotStringIO (KnotGenerator.generateValidSquaredKnot (10));
+			KnotStringIO other = new KnotStringIO (knotStringIO.Content);
 
-			Assert.AreEqual(knotStringIO.Content, other.Content, "Contetnt equal");
+			Assert.AreEqual (knotStringIO.Content, other.Content, "Contetnt equal");
 			KnotStringIO invalidContent = null;
 
-			Assert.Catch(() => { invalidContent = new KnotStringIO("Name \n" + "Invalid Line \n"); });
-			Assert.IsNull(invalidContent);
-			Assert.AreEqual(knotStringIO.Content, other.Content, "Contetnt equal");
+			Assert.Catch (() => { invalidContent = new KnotStringIO ("Name \n" + "Invalid Line \n"); });
+			Assert.IsNull (invalidContent);
+			Assert.AreEqual (knotStringIO.Content, other.Content, "Contetnt equal");
 		}
 	}
 }

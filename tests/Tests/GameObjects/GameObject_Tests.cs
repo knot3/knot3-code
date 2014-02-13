@@ -16,12 +16,12 @@ namespace Knot3.GameObject_Tests
 	{
 		/*
 		[Test]
-		public void Test_1()
+		public void Test_1 ()
 		{
 		}
 
 		[Test]
-		public void Test_2()
+		public void Test_2 ()
 		{
 		}
 		*/

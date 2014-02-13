@@ -39,7 +39,7 @@ namespace Knot3.GameObjects
 		/// sowie eine Spielwelt world.
 		/// </summary>
 		public ModelMouseHandler (IGameScreen screen, World world)
-		: base(screen, DisplayLayer.None)
+		: base (screen, DisplayLayer.None)
 		{
 			World = world;
 		}

@@ -41,7 +41,7 @@ namespace Knot3.Screens
 		/// Erzeugt ein neues GraphicsSettingsScreen-Objekt und initialisiert dieses mit einem Knot3Game-Objekt.
 		/// </summary>
 		public GraphicsSettingsScreen (Knot3Game game)
-		: base(game)
+		: base (game)
 		{
 			MenuName = "Graphics";
 

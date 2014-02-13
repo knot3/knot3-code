@@ -43,7 +43,7 @@ namespace Knot3.Development
 		/// Erzeugt ein neues DebugSettingsScreen-Objekt und initialisiert dieses mit einem Knot3Game-Objekt.
 		/// </summary>
 		public DebugSettingsScreen (Knot3Game game)
-		: base(game)
+		: base (game)
 		{
 			MenuName = "Debug";
 

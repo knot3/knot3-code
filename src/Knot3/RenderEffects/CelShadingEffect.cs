@@ -41,7 +41,7 @@ namespace Knot3.RenderEffects
 		/// Erstellt einen neuen Cel-Shading-Effekt für den angegebenen IGameScreen.
 		/// </summary>
 		public CelShadingEffect (IGameScreen screen)
-		: base(screen)
+		: base (screen)
 		{
 			/* Set our light direction for the cel-shader
 			 */
@@ -51,7 +51,7 @@ namespace Knot3.RenderEffects
 			 */
 			celShader = screen.LoadEffect ("CelShader");
 			celShader.Parameters ["LightDirection"].SetValue (lightDirection);
-			celMap = screen.LoadTexture("CelMap");
+			celMap = screen.LoadTexture ("CelMap");
 			celShader.Parameters ["Color"].SetValue (Color.Green.ToVector4 ());
 			celShader.Parameters ["CelMap"].SetValue (celMap);
 

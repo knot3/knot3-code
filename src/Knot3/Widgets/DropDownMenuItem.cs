@@ -59,7 +59,7 @@ namespace Knot3.Widgets
 		/// Zudem ist die Angabe der Zeichenreihenfolge Pflicht.
 		/// </summary>
 		public DropDownMenuItem (IGameScreen screen, DisplayLayer drawOrder, string text)
-		: base(screen, drawOrder, String.Empty)
+		: base (screen, drawOrder, String.Empty)
 		{
 			dropdown = new Menu (screen: screen, drawOrder: Index + DisplayLayer.Menu);
 			dropdown.Bounds.Position = ValueBounds.Position;
@@ -157,7 +157,7 @@ namespace Knot3.Widgets
 
 		public override IEnumerable<IGameScreenComponent> SubComponents (GameTime time)
 		{
-			foreach (DrawableGameScreenComponent component in base.SubComponents(time)) {
+			foreach (DrawableGameScreenComponent component in base.SubComponents (time)) {
 				yield return component;
 			}
 			yield return dropdown;

@@ -262,12 +262,12 @@ namespace Knot3.KnotData
 			return true;
 		}
 
-		public Vector3 MoveCenterToZero()
+		public Vector3 MoveCenterToZero ()
 		{
 			Vector3 position3D = Vector3.Zero;
 			Dictionary<Vector3, Edge> occupancy = new Dictionary<Vector3, Edge>();
 			foreach (Edge edge in startElement) {
-				occupancy.Add(position3D + (edge.Direction / 2), edge);
+				occupancy.Add (position3D + (edge.Direction / 2), edge);
 				position3D += edge;
 			}
 			Vector3 mid = Vector3.Zero;
@@ -275,20 +275,20 @@ namespace Knot3.KnotData
 				mid += pos.Key;
 			}
 			mid /= startElement.Count;
-			float minDistance = mid.Length();
+			float minDistance = mid.Length ();
 			Edge newStart = startElement.Value;
 			foreach (KeyValuePair<Vector3,Edge> pos in occupancy) {
-				float testDistance = pos.Key.DistanceTo(mid);
+				float testDistance = pos.Key.DistanceTo (mid);
 				if (testDistance < minDistance) {
 					newStart = pos.Value;
 					minDistance = testDistance;
 				}
 			}
 			Vector3 offset = Vector3.Zero;
-			foreach (Edge edge in startElement.WayTo(newStart)) {
+			foreach (Edge edge in startElement.WayTo (newStart)) {
 				offset += edge;
 			}
-			startElement.Contains(newStart, out startElement);
+			startElement.Contains (newStart, out startElement);
 			offset += OffSet;
 			OffSet = Vector3.Zero;
 			return offset;
@@ -584,7 +584,7 @@ namespace Knot3.KnotData
 
 		public override string ToString ()
 		{
-			return "Knot(name=" + Name + ",#edgecount=" + startElement.Count.ToString ()
+			return "Knot (name=" + Name + ",#edgecount=" + startElement.Count.ToString ()
 			       + ",format=" + (MetaData.Format != null ? MetaData.ToString () : "null")
 			       + ")";
 		}
@@ -599,7 +599,7 @@ namespace Knot3.KnotData
 			public int CountEdges { get; private set; }
 
 			public KnotCharakteristic (CircleEntry<Edge> characteristicalEdge, int countEdges)
-			: this()
+			: this ()
 			{
 				CharacteristicalEdge = characteristicalEdge;
 				CountEdges = countEdges;

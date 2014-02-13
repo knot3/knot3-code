@@ -19,7 +19,7 @@ namespace Knot3.UnitTests.Knot_Tests
 		{
 		}
 
-		[Test, Description("Knot Contruction")]
+		[Test, Description ("Knot Contruction")]
 		public void Knot_Construct_Test ()
 		{
 			Edge[] edges = new Edge[] {
@@ -36,10 +36,10 @@ namespace Knot3.UnitTests.Knot_Tests
 			Assert.AreEqual (knot.Name, name, "Knotenname #1");
 			Assert.AreEqual (knot.MetaData.Name, name, "Knotenname #2");
 
-			Assert.Catch(() => { KnotGenerator.generateInvalidKnot(); }, "invalid Knot construction");
+			Assert.Catch (() => { KnotGenerator.generateInvalidKnot (); }, "invalid Knot construction");
 		}
 
-		[Test, Description("Knot Move")]
+		[Test, Description ("Knot Move")]
 		public void Knot_Move_Test ()
 		{
 			Edge[] edges = new Edge[] {
@@ -80,19 +80,19 @@ namespace Knot3.UnitTests.Knot_Tests
 		}
 
 		[Test]
-		public void Knot_Equals_Test()
+		public void Knot_Equals_Test ()
 		{
 			CircleEntry<Edge> start = new CircleEntry<Edge>(new Edge[] { Edge.Up, Edge.Left, Edge.Backward, Edge.Down, Edge.Right, Edge.Forward });
-			KnotMetaData metaData = new KnotMetaData(name: "test", countEdges: () => start.Count());
-			Knot knot = new Knot(metaData, start);
+			KnotMetaData metaData = new KnotMetaData (name: "test", countEdges: () => start.Count ());
+			Knot knot = new Knot (metaData, start);
 			for (int i = 0; i < 6; i++) {
-				Assert.IsTrue(knot.Equals(new Knot(metaData, start)));
+				Assert.IsTrue (knot.Equals (new Knot (metaData, start)));
 				start = start.Previous;
 			}
-			start.InsertBefore(Edge.Forward);
-			start.InsertAfter(Edge.Backward);
+			start.InsertBefore (Edge.Forward);
+			start.InsertAfter (Edge.Backward);
 			for (int i = 0; i < 6; i++) {
-				Assert.IsFalse(knot.Equals(new Knot(metaData, start)));
+				Assert.IsFalse (knot.Equals (new Knot (metaData, start)));
 				start = start.Previous;
 			}
 		}

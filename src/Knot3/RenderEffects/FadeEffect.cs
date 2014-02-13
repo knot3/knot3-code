@@ -48,7 +48,7 @@ namespace Knot3.RenderEffects
 		/// Erstellt einen Überblende-Effekt zwischen den angegebenen Spielzuständen.
 		/// </summary>
 		public FadeEffect (IGameScreen newScreen, IGameScreen oldScreen)
-		: base(newScreen)
+		: base (newScreen)
 		{
 			if (oldScreen != null) {
 				PreviousRenderTarget = oldScreen.PostProcessingEffect.RenderTarget;

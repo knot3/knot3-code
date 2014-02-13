@@ -32,7 +32,7 @@ namespace Knot3.GameObjects
 		public float Height;
 
 		public TexturedRectangleInfo (string texturename, Vector3 origin, Vector3 left, float width, Vector3 up, float height)
-		: base(position: origin, isVisible: true, isSelectable: false, isMovable: false)
+		: base (position: origin, isVisible: true, isSelectable: false, isMovable: false)
 		{
 			Texturename = texturename;
 			Left = left;
@@ -43,7 +43,7 @@ namespace Knot3.GameObjects
 		}
 
 		public TexturedRectangleInfo (Texture2D texture, Vector3 origin, Vector3 left, float width, Vector3 up, float height)
-		: base(position: origin, isVisible: true, isSelectable: false, isMovable: false)
+		: base (position: origin, isVisible: true, isSelectable: false, isMovable: false)
 		{
 			Texture = texture;
 			Left = left;

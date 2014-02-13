@@ -27,7 +27,7 @@ namespace Knot3.GameObjects
 		public Knot Knot { get; set; }
 
 		public EdgeColoring (GameScreen screen)
-		: base(screen, DisplayLayer.None)
+		: base (screen, DisplayLayer.None)
 		{
 			ValidKeys = new List<Keys> ();
 			ValidKeys.Add (Keys.C);

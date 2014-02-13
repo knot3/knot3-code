@@ -31,17 +31,17 @@ namespace Knot3.Core
 		#region Properties
 
 		/// <summary>
-		/// Der Winkel im Bogenmaß für das Rollen um die X-Achse. Siehe statische Methode Matrix.CreateRotationX(float) des XNA-Frameworks.
+		/// Der Winkel im Bogenmaß für das Rollen um die X-Achse. Siehe statische Methode Matrix.CreateRotationX (float) des XNA-Frameworks.
 		/// </summary>
 		public float X { get; set; }
 
 		/// <summary>
-		/// Der Winkel im Bogenmaß für das Rollen um die Y-Achse. Siehe statische Methode Matrix.CreateRotationY(float) des XNA-Frameworks.
+		/// Der Winkel im Bogenmaß für das Rollen um die Y-Achse. Siehe statische Methode Matrix.CreateRotationY (float) des XNA-Frameworks.
 		/// </summary>
 		public float Y { get; set; }
 
 		/// <summary>
-		/// Der Winkel im Bogenmaß für das Rollen um die Z-Achse. Siehe statische Methode Matrix.CreateRotationZ(float) des XNA-Frameworks.
+		/// Der Winkel im Bogenmaß für das Rollen um die Z-Achse. Siehe statische Methode Matrix.CreateRotationZ (float) des XNA-Frameworks.
 		/// </summary>
 		public float Z { get; set; }
 
@@ -173,17 +173,17 @@ namespace Knot3.Core
 			return new Angles3 (value.X * scaleFactor, value.Y * scaleFactor, value.Z * scaleFactor);
 		}
 
-		public override string ToString()
+		public override string ToString ()
 		{
 			float x, y, z;
 			ToDegrees (out x, out y, out z);
 
-			return   "Angles3("
-			         + x.ToString()
+			return   "Angles3 ("
+			         + x.ToString ()
 			         + ","
-			         + y.ToString()
+			         + y.ToString ()
 			         + ","
-			         + z.ToString()
+			         + z.ToString ()
 			         + ")";
 		}
 

@@ -41,7 +41,7 @@ namespace Knot3.Widgets
 		public override float NameWidth
 		{
 			get { return Math.Min (0.90f, 1.0f - ValueWidth); }
-			set { throw new ArgumentException("You can't change the NameWidth of a CheckBoxItem!"); }
+			set { throw new ArgumentException ("You can't change the NameWidth of a CheckBoxItem!"); }
 		}
 
 		/// <summary>
@@ -50,7 +50,7 @@ namespace Knot3.Widgets
 		public override float ValueWidth
 		{
 			get { return Bounds.Size.Relative.Y / Bounds.Size.Relative.X; }
-			set { throw new ArgumentException("You can't change the ValueWidth of a CheckBoxItem!"); }
+			set { throw new ArgumentException ("You can't change the ValueWidth of a CheckBoxItem!"); }
 		}
 
 		private bool currentValue;
@@ -64,7 +64,7 @@ namespace Knot3.Widgets
 		/// Zudem sind Angaben zur Zeichenreihenfolge und der Auswahloption Pflicht.
 		/// </summary>
 		public CheckBoxItem (IGameScreen screen, DisplayLayer drawOrder, string text, BooleanOptionInfo option)
-		: base(screen, drawOrder, text)
+		: base (screen, drawOrder, text)
 		{
 			this.option = option;
 			currentValue = option.Value;

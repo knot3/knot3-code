@@ -176,7 +176,7 @@ namespace Knot3.Screens
 			ChallengeWorld.Add (challengeSkyCube);
 
 			// Die Spielzeit-Anzeige
-			playTimeDisplay = new TextItem(screen: this, drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem, text: String.Empty);
+			playTimeDisplay = new TextItem (screen: this, drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem, text: String.Empty);
 			playTimeDisplay.Bounds.Position = new ScreenPoint (this, 0.800f, 0.01f);
 			playTimeDisplay.Bounds.Size = new ScreenPoint (this, 0.15f, 0.04f);
 			playTimeDisplay.BackgroundColorFunc = (s) => Design.WidgetBackground;
@@ -351,13 +351,13 @@ namespace Knot3.Screens
 				AddGameComponents (time, highscoreDialog);
 			};
 
-			Undo.Clear();
-			Redo.Clear();
+			Undo.Clear ();
+			Redo.Clear ();
 
-			RemoveGameComponents(time, undoButton);
-			RemoveGameComponents(time, undoButtonBorder);
-			RemoveGameComponents(time, redoButton);
-			RemoveGameComponents(time, redoButtonBorder);
+			RemoveGameComponents (time, undoButton);
+			RemoveGameComponents (time, undoButtonBorder);
+			RemoveGameComponents (time, redoButton);
+			RemoveGameComponents (time, redoButtonBorder);
 		}
 
 		/// <summary>

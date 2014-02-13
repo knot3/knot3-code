@@ -81,7 +81,7 @@ namespace Knot3.KnotData
 
 		public CircleEntry<T> InsertAfter (T obj)
 		{
-			//Log.Debug (this, ".InsertAfter(", obj, ")");
+			//Log.Debug (this, ".InsertAfter (", obj, ")");
 			CircleEntry<T> insert = new CircleEntry<T> (obj);
 			insert.Next = this.Next;
 			insert.Previous = this;
@@ -184,10 +184,10 @@ namespace Knot3.KnotData
 			while (current != other.Next && current != this);
 		}
 
-		public IEnumerable<T> WayTo(T other)
+		public IEnumerable<T> WayTo (T other)
 		{
 			CircleEntry<T> current = this;
-			while (!current.Value.Equals(other)) {
+			while (!current.Value.Equals (other)) {
 				yield return current.Value;
 				current = current.Next;
 				if (current == this) {
@@ -239,7 +239,7 @@ namespace Knot3.KnotData
 
 		public override string ToString ()
 		{
-			return "CircleEntry(" + Value.ToString () + ")";
+			return "CircleEntry (" + Value.ToString () + ")";
 		}
 
 		public static CircleEntry<T> operator + (CircleEntry<T> circle, int i)

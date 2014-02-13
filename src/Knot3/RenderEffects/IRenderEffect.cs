@@ -29,8 +29,8 @@ namespace Knot3.RenderEffects
 		#region Properties
 
 		/// <summary>
-		/// Das Rendertarget, in das zwischen dem Aufruf der Begin()- und der End()-Methode gezeichnet wird,
-		/// weil es in Begin() als primäres Rendertarget des XNA-Frameworks gesetzt wird.
+		/// Das Rendertarget, in das zwischen dem Aufruf der Begin ()- und der End ()-Methode gezeichnet wird,
+		/// weil es in Begin () als primäres Rendertarget des XNA-Frameworks gesetzt wird.
 		/// </summary>
 		RenderTarget2D RenderTarget { get; }
 
@@ -39,7 +39,7 @@ namespace Knot3.RenderEffects
 		#region Methods
 
 		/// <summary>
-		/// In der Methode Begin() wird das aktuell von XNA genutzte Rendertarget auf einem Stapel gesichert
+		/// In der Methode Begin () wird das aktuell von XNA genutzte Rendertarget auf einem Stapel gesichert
 		/// und das Rendertarget des Effekts wird als aktuelles Rendertarget gesetzt.
 		/// </summary>
 		void Begin (GameTime time);

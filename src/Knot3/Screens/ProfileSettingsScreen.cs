@@ -41,18 +41,18 @@ namespace Knot3.Screens
 		/// Erzeugt eine neue Instanz eines ProfileSettingsScreen-Objekts und initialisiert dieses mit einem Knot3Game-Objekt.
 		/// </summary>
 		public ProfileSettingsScreen (Knot3Game game)
-		: base(game)
+		: base (game)
 		{
 			MenuName = "Profile";
 
-			settingsMenu = new Menu(this, DisplayLayer.ScreenUI + DisplayLayer.Menu);
+			settingsMenu = new Menu (this, DisplayLayer.ScreenUI + DisplayLayer.Menu);
 			settingsMenu.Bounds.Position = new ScreenPoint (this, 0.400f, 0.180f);
 			settingsMenu.Bounds.Size = new ScreenPoint (this, 0.500f, 0.720f);
 			settingsMenu.Bounds.Padding = new ScreenPoint (this, 0.010f, 0.010f);
 			settingsMenu.ItemAlignX = HorizontalAlignment.Left;
 			settingsMenu.ItemAlignY = VerticalAlignment.Center;
 
-			InputItem playerNameInput = new InputItem(
+			InputItem playerNameInput = new InputItem (
 			    screen: this,
 			    drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
 			    text: "Player Name:",
@@ -62,7 +62,7 @@ namespace Knot3.Screens
 				Options.Default["profile", "name", String.Empty] = playerNameInput.InputText;
 			};
 
-			settingsMenu.Add(playerNameInput);
+			settingsMenu.Add (playerNameInput);
 		}
 
 		#endregion
@@ -81,8 +81,8 @@ namespace Knot3.Screens
 		/// </summary>
 		public override void Entered (IGameScreen previousScreen, GameTime time)
 		{
-			base.Entered(previousScreen, time);
-			AddGameComponents(time, settingsMenu);
+			base.Entered (previousScreen, time);
+			AddGameComponents (time, settingsMenu);
 		}
 
 		#endregion

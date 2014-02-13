@@ -66,13 +66,13 @@ namespace Knot3.GameObjects
 	public sealed class SingleColor : ModelColoring
 	{
 		public SingleColor (Color color)
-		: base()
+		: base ()
 		{
 			BaseColor = color;
 		}
 
 		public SingleColor (Color color, float alpha)
-		: this(color)
+		: this (color)
 		{
 			Alpha = alpha;
 		}
@@ -90,13 +90,13 @@ namespace Knot3.GameObjects
 	public sealed class GradientColor : ModelColoring
 	{
 		public GradientColor (Color color1, Color color2)
-		: base()
+		: base ()
 		{
 			Color1 = color1;
 			Color2 = color2;
 		}
 		public GradientColor (Color color1, Color color2, float alpha)
-		: this(color1, color2)
+		: this (color1, color2)
 		{
 			Alpha = alpha;
 		}

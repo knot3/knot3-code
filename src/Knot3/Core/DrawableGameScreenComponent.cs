@@ -56,7 +56,7 @@ namespace Knot3.Core
 		/// index bezeichnet die Zeichenebene, auf welche die Komponente zu zeichnen ist.
 		/// </summary>
 		public DrawableGameScreenComponent (IGameScreen screen, DisplayLayer index)
-		: base(screen.Game)
+		: base (screen.Game)
 		{
 			this.Screen = screen;
 			this.Index = index;

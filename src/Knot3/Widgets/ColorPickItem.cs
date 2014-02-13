@@ -47,7 +47,7 @@ namespace Knot3.Widgets
 		/// Zudem sind Angaben zur Zeichenreihenfolge und der Auswahloption Pflicht.
 		/// </summary>
 		public ColorPickItem (IGameScreen screen, DisplayLayer drawOrder, string text, Color color)
-		: base(screen, drawOrder, text)
+		: base (screen, drawOrder, text)
 		{
 		}
 

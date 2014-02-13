@@ -23,7 +23,7 @@ namespace Knot3.KnotData
 {
 	/// <summary>
 	/// Eine Position im 3D-Raster. Die Werte für alle drei Koordinaten sind Integer, wobei 1 die Breite der Raster-Abschnitte angibt.
-	/// Eine Skalierung auf Koordinaten im 3D-Raum und damit einhergehend eine Konvertierung in ein Vector3-Objekt des XNA-Frameworks kann mit der Methode ToVector() angefordert werden.
+	/// Eine Skalierung auf Koordinaten im 3D-Raum und damit einhergehend eine Konvertierung in ein Vector3-Objekt des XNA-Frameworks kann mit der Methode ToVector () angefordert werden.
 	/// </summary>
 	public sealed class Node : IEquatable<Node>, ICloneable
 	{
@@ -127,7 +127,7 @@ namespace Knot3.KnotData
 
 		public override string ToString ()
 		{
-			return "(" + X.ToString() + "," + Y.ToString() + "," + Z.ToString() + ")";
+			return "(" + X.ToString () + "," + Y.ToString () + "," + Z.ToString () + ")";
 		}
 
 		public object Clone ()

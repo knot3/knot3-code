@@ -53,7 +53,7 @@ namespace Knot3.GameObjects
 		/// Erstellt ein neues Vorschaumodell in dem angegebenen Spielzustand für das angegebene zu dekorierende Modell.
 		/// </summary>
 		public ShadowGameModel (IGameScreen screen, GameModel decoratedModel)
-		: base(screen, decoratedModel)
+		: base (screen, decoratedModel)
 		{
 		}
 
@@ -70,7 +70,7 @@ namespace Knot3.GameObjects
 			Vector3 originalPositon = decoratedModel.Info.Position;
 			ModelColoring originalColoring = decoratedModel.Coloring;
 			decoratedModel.Info.Position = ShadowPosition;
-			decoratedModel.Coloring = new SingleColor(originalColoring.MixedColor, alpha: ShadowAlpha);
+			decoratedModel.Coloring = new SingleColor (originalColoring.MixedColor, alpha: ShadowAlpha);
 
 			// draw
 			screen.CurrentRenderEffects.CurrentEffect.DrawModel (decoratedModel, time);

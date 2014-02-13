@@ -57,7 +57,7 @@ namespace Knot3.GameObjects
 		#region Methods
 
 		/// <summary>
-		/// Falls das 3D-Modell zwischengespeichert ist, wird es zurückgegeben, sonst mit createModel() erstellt.
+		/// Falls das 3D-Modell zwischengespeichert ist, wird es zurückgegeben, sonst mit createModel () erstellt.
 		/// </summary>
 		public GameModel this [IGameScreen screen, GameModelInfo info]
 		{
@@ -66,7 +66,7 @@ namespace Knot3.GameObjects
 					return cache [info];
 				}
 				else {
-					return cache [info] = createModel(screen, info);
+					return cache [info] = createModel (screen, info);
 				}
 			}
 		}

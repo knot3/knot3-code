@@ -68,7 +68,7 @@ namespace Knot3.Widgets
 		private float SliderRectangleWidth
 		{
 			get {
-				return new Vector2(0, 0.020f).Scale(Screen.Viewport).Y;
+				return new Vector2 (0, 0.020f).Scale (Screen.Viewport).Y;
 			}
 		}
 		/// <summary>
@@ -96,7 +96,7 @@ namespace Knot3.Widgets
 		{
 			get {
 				Rectangle valueBounds = ValueBounds;
-				Rectangle rect = new Rectangle();
+				Rectangle rect = new Rectangle ();
 				rect.Height = valueBounds.Height;
 				rect.Width = (int)SliderRectangleWidth;
 				rect.Y = valueBounds.Y;
@@ -119,7 +119,7 @@ namespace Knot3.Widgets
 		/// einem minimalen einstellbaren Wert, einem maximalen einstellbaren Wert und einem Standardwert Pflicht.
 		/// </summary>
 		public SliderItem (IGameScreen screen, DisplayLayer drawOrder, string text, int max, int min, int step, int value)
-		: base(screen, drawOrder, text)
+		: base (screen, drawOrder, text)
 		{
 			MaxValue = max;
 			MinValue = min;
@@ -153,7 +153,7 @@ namespace Knot3.Widgets
 			dataRec [0] = Design.DefaultLineColor;
 			rectangleTexture.SetData (dataRec);
 
-			Vector2 coordinateLine = new Vector2(valueBounds.X, valueBounds.Y + Bounds.Size.Absolute.Y / 2);
+			Vector2 coordinateLine = new Vector2 (valueBounds.X, valueBounds.Y + Bounds.Size.Absolute.Y / 2);
 
 			spriteBatch.Begin ();
 
@@ -168,16 +168,16 @@ namespace Knot3.Widgets
 			float min = SliderRectangleMinX-ValueBounds.Rectangle.X;
 			float max = SliderRectangleMaxX-ValueBounds.Rectangle.X;
 
-			Log.Debug(
+			Log.Debug (
 			    "position="
 			    + position.ToString ()
 			    + ", min="
-			    + min.ToString()
+			    + min.ToString ()
 			    + ", max="
-			    + max.ToString()
+			    + max.ToString ()
 			);
 
-			float mousePositionX = ((float)(position.Absolute.X)).Clamp(min, max);
+			float mousePositionX = ((float)(position.Absolute.X)).Clamp (min, max);
 			float percent = (mousePositionX - min)/(max-min);
 
 			Value = (int)(MinValue + percent * (MaxValue-MinValue));
@@ -185,12 +185,12 @@ namespace Knot3.Widgets
 
 		public override void OnLeftClick (Vector2 position, ClickState state, GameTime time)
 		{
-			//UpdateSlider(position);
+			//UpdateSlider (position);
 		}
 
 		public void OnLeftMove (ScreenPoint previousPosition, ScreenPoint currentPosition, ScreenPoint move, GameTime time)
 		{
-			UpdateSlider(currentPosition);
+			UpdateSlider (currentPosition);
 		}
 
 		public void OnRightMove (ScreenPoint previousPosition, ScreenPoint currentPosition, ScreenPoint move, GameTime time)

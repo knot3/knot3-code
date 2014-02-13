@@ -158,7 +158,7 @@ namespace Knot3.GameObjects
 		}
 
 		/// <summary>
-		/// Ruft die Intersects(Ray)-Methode der Kanten, Übergänge und Pfeile auf und liefert das beste Ergebnis zurück.
+		/// Ruft die Intersects (Ray)-Methode der Kanten, Übergänge und Pfeile auf und liefert das beste Ergebnis zurück.
 		/// </summary>
 		public GameObjectDistance Intersects (Ray ray)
 		{
@@ -426,7 +426,7 @@ namespace Knot3.GameObjects
 		}
 
 		/// <summary>
-		/// Ruft die Update()-Methoden der Kanten, Übergänge und Pfeile auf.
+		/// Ruft die Update ()-Methoden der Kanten, Übergänge und Pfeile auf.
 		/// </summary>
 		public void Update (GameTime time)
 		{
@@ -445,7 +445,7 @@ namespace Knot3.GameObjects
 		}
 
 		/// <summary>
-		/// Ruft die Draw()-Methoden der Kanten, Übergänge und Pfeile auf.
+		/// Ruft die Draw ()-Methoden der Kanten, Übergänge und Pfeile auf.
 		/// </summary>
 		public void Draw (GameTime time)
 		{

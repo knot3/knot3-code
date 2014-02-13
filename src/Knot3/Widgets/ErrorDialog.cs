@@ -26,7 +26,7 @@ namespace Knot3.Widgets
 		private TextBox textBox;
 
 		public ErrorDialog (IGameScreen screen, DisplayLayer drawOrder, string message)
-		: base(screen: screen, drawOrder: drawOrder, title: "Error")
+		: base (screen: screen, drawOrder: drawOrder, title: "Error")
 		{
 			textBox = new TextBox (screen: Screen, drawOrder: Index + DisplayLayer.MenuItem, text: message);
 			textBox.Bounds = ContentBounds;
@@ -34,7 +34,7 @@ namespace Knot3.Widgets
 
 		public override IEnumerable<IGameScreenComponent> SubComponents (GameTime time)
 		{
-			foreach (DrawableGameScreenComponent component in base.SubComponents(time)) {
+			foreach (DrawableGameScreenComponent component in base.SubComponents (time)) {
 				yield return component;
 			}
 			yield return textBox;

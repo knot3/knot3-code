@@ -22,7 +22,7 @@ namespace Knot3.UnitTests.Tests.KnotData
 		}
 
 		[Test]
-		public void Challenge_Constructor_Tests()
+		public void Challenge_Constructor_Tests ()
 		{
 		}
 	}

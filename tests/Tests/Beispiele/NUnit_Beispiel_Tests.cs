@@ -19,13 +19,13 @@ public class NUnit_Beispiel_Tests
 		//Assert.IsNotNull (null);
 	}
 
-	public static void DoSomething()
+	public static void DoSomething ()
 	{
 		try {
-			Console.WriteLine("I Random!");
+			Console.WriteLine ("I Random!");
 		}
 		catch (Exception ex) {
-			Console.WriteLine(ex.Message);
+			Console.WriteLine (ex.Message);
 		}
 	}
 }

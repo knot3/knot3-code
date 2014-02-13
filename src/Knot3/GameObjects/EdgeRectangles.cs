@@ -31,7 +31,7 @@ namespace Knot3.GameObjects
 		private Random random = new Random ();
 
 		public EdgeRectangles (GameScreen screen)
-		: base(screen, DisplayLayer.None)
+		: base (screen, DisplayLayer.None)
 		{
 			ValidKeys = new List<Keys> ();
 			ValidKeys.Add (Keys.N);

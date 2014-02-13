@@ -40,7 +40,7 @@ namespace Knot3.Widgets
 		///
 		/// </summary>
 		public HighscoreDialog (IGameScreen screen, DisplayLayer drawOrder, Challenge challenge)
-		: base(screen, drawOrder, "Highscores")
+		: base (screen, drawOrder, "Highscores")
 		{
 			// Der Titel-Text ist mittig ausgerichtet
 			AlignX = HorizontalAlignment.Center;
@@ -52,7 +52,7 @@ namespace Knot3.Widgets
 			if (challenge.Highscore != null) {
 				//sotiert die Highscoreliste wird nach der Zeit sotiert
 				int highscoreCounter = 0;
-				foreach (KeyValuePair<string, int> entry in challenge.Highscore.OrderBy(key => key.Value)) {
+				foreach (KeyValuePair<string, int> entry in challenge.Highscore.OrderBy (key => key.Value)) {
 					TextItem firstScore = new TextItem (screen, drawOrder, entry.Value + " " + entry.Key);
 					highscoreList.Add (firstScore);
 					highscoreCounter++;
@@ -75,7 +75,7 @@ namespace Knot3.Widgets
 			    name: "Restart challenge",
 			    onClick: restartAction
 			);
-			restartButton.Bounds.Size = new ScreenPoint(screen, ContentBounds.Size.Relative.X/2, 0.05f);
+			restartButton.Bounds.Size = new ScreenPoint (screen, ContentBounds.Size.Relative.X/2, 0.05f);
 			restartButton.Bounds.Position = ContentBounds.Position + ContentBounds.Size.OnlyY
 			                                - restartButton.Bounds.Size.OnlyY;
 			restartButton.AlignX = HorizontalAlignment.Center;
@@ -92,7 +92,7 @@ namespace Knot3.Widgets
 			    name: "Return to menu",
 			    onClick: returnAction
 			);
-			returnButton.Bounds.Size = new ScreenPoint(screen, ContentBounds.Size.Relative.X/2, 0.05f);
+			returnButton.Bounds.Size = new ScreenPoint (screen, ContentBounds.Size.Relative.X/2, 0.05f);
 			returnButton.Bounds.Position = ContentBounds.Position + ContentBounds.Size.OnlyY
 			                               - returnButton.Bounds.Size.OnlyY + ContentBounds.Size.OnlyX / 2;
 			returnButton.AlignX = HorizontalAlignment.Center;
@@ -105,7 +105,7 @@ namespace Knot3.Widgets
 
 		public override IEnumerable<IGameScreenComponent> SubComponents (GameTime time)
 		{
-			foreach (DrawableGameScreenComponent component in base.SubComponents(time)) {
+			foreach (DrawableGameScreenComponent component in base.SubComponents (time)) {
 				yield return component;
 			}
 			yield return highscoreList;

@@ -183,7 +183,7 @@ namespace Knot3.Screens
 		}
 
 		/*
-		public void Dispose()
+		public void Dispose ()
 		{
 		    // Undo, Redo, knot ...
 		}

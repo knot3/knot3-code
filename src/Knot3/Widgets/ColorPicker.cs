@@ -56,7 +56,7 @@ namespace Knot3.Widgets
 		/// mit der Farbe, auf welche der Farbwähler beim Aufruf aus Sicht des Spielers zeigt.
 		/// </summary>
 		public ColorPicker (IGameScreen screen, DisplayLayer drawOrder, Color def)
-		: base(screen, drawOrder)
+		: base (screen, drawOrder)
 		{
 			tileSize = new ScreenPoint (screen, 0.032f, 0.032f);
 
@@ -173,7 +173,7 @@ namespace Knot3.Widgets
 			int row = 0;
 			int column = 0;
 			foreach (Color color in colors) {
-				yield return new ScreenPoint(Screen, tileSize * new Vector2(column, row));
+				yield return new ScreenPoint (Screen, tileSize * new Vector2 (column, row));
 
 				++column;
 				if (column >= sqrt) {

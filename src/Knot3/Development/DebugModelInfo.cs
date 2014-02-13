@@ -25,7 +25,7 @@ namespace Knot3.Development
 {
 	public class DebugModelInfo:GameModelInfo
 	{
-		public DebugModelInfo (String modelname) : base(modelname)
+		public DebugModelInfo (String modelname) : base (modelname)
 		{
 		}
 	}

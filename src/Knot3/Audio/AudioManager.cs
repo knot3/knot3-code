@@ -74,11 +74,11 @@ namespace Knot3.Audio
 		/// Erstellt einen neuen AudioManager für den angegebenen Spielzustand.
 		/// </summary>
 		public AudioManager (IGameScreen screen)
-		: base(screen, DisplayLayer.None)
+		: base (screen, DisplayLayer.None)
 		{
 			if (AudioFiles.Count == 0) {
 				// Erstelle für alle Enum-Werte von Sound ein HashSet
-				foreach (Sound soundType in typeof(Sound).ToEnumValues<Sound>()) {
+				foreach (Sound soundType in typeof (Sound).ToEnumValues<Sound>()) {
 					AudioFiles [soundType] = new HashSet<IAudioFile> ();
 					VolumeMap [soundType] = ValidVolume (Options.Default ["volume", soundType.ToString (), 1]);
 				}
@@ -93,7 +93,7 @@ namespace Knot3.Audio
 
 		private void AddXnaAudioFile (string filepath)
 		{
-			filepath = filepath.Replace(".xnb", String.Empty).Replace(@"Content\", String.Empty).Replace("Content/", String.Empty).Replace(@"\", "/");
+			filepath = filepath.Replace (".xnb", String.Empty).Replace (@"Content\", String.Empty).Replace ("Content/", String.Empty).Replace (@"\", "/");
 
 			foreach (KeyValuePair<Sound,string> pair in AudioDirectories) {
 				Sound soundType = pair.Key;

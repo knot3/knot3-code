@@ -61,7 +61,7 @@ namespace Knot3.Audio
 		public void Play ()
 		{
 			Log.Debug ("Play: ", Name);
-			Instance.Volume = volume = AudioManager.Volume(SoundType);
+			Instance.Volume = volume = AudioManager.Volume (SoundType);
 			Instance.Play ();
 		}
 
@@ -74,7 +74,7 @@ namespace Knot3.Audio
 		public void Update (GameTime time)
 		{
 			if (volume != AudioManager.Volume (SoundType)) {
-				Instance.Volume = volume = AudioManager.Volume(SoundType);
+				Instance.Volume = volume = AudioManager.Volume (SoundType);
 			}
 		}
 	}

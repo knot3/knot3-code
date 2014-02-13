@@ -21,7 +21,7 @@ namespace Knot3.UnitTests
 		{
 		}
 
-		[Test, Description("World Add/Remove")]
+		[Test, Description ("World Add/Remove")]
 		public void AddRemoveTest ()
 		{
 			screen = screen ?? new FakeScreen ();
@@ -41,7 +41,7 @@ namespace Knot3.UnitTests
 				PipeModel pipe = new PipeModel (screen: screen, info: pipeInfo);
 				models.Add (pipe);
 			}
-			Assert.AreEqual (knot.Count(), models.Count(), "Für jede Edge eine Pipe");
+			Assert.AreEqual (knot.Count (), models.Count (), "Für jede Edge eine Pipe");
 
 			return;
 			// das hier zu sehr in XNA verwoben, macht als test wahrscheinlich keinen sinn!!
@@ -51,22 +51,22 @@ namespace Knot3.UnitTests
 			World world = new World (screen: screen, effect: effect);
 
 			foreach (PipeModel model in models) {
-				world.Add(model);
+				world.Add (model);
 			}
 
-			Assert.AreEqual (knot.Count(), world.Count(), "Anzahl GameObjects");
+			Assert.AreEqual (knot.Count (), world.Count (), "Anzahl GameObjects");
 
 			foreach (PipeModel model in models) {
-				world.Add(model);
+				world.Add (model);
 			}
 
-			Assert.AreEqual (knot.Count(), world.Count(), "GameObjects sind Unique");
+			Assert.AreEqual (knot.Count (), world.Count (), "GameObjects sind Unique");
 
 			foreach (PipeModel model in models) {
-				world.Remove(model);
+				world.Remove (model);
 			}
 
-			Assert.AreEqual (0, world.Count(), "Leere World");
+			Assert.AreEqual (0, world.Count (), "Leere World");
 
 			*/
 		}

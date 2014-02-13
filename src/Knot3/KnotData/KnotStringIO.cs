@@ -58,7 +58,7 @@ namespace Knot3.KnotData
 						line = line.Substring (1);
 					}
 					if (line.Length > 0) {
-						foreach (int rect in line.Split(',').Select(int.Parse).ToList()) {
+						foreach (int rect in line.Split (',').Select (int.Parse).ToList ()) {
 							edge.Rectangles.Add (rect);
 						}
 					}
@@ -96,7 +96,7 @@ namespace Knot3.KnotData
 				return Name + "\n" + string.Join ("\n", edgeLines);
 			}
 			set {
-				if (value.Trim().Contains("\n")) {
+				if (value.Trim ().Contains ("\n")) {
 					string[] parts = value.Split (new char[] {'\r','\n'}, StringSplitOptions.RemoveEmptyEntries);
 					Name = parts [0];
 					edgeLines = parts.Skip (1);
@@ -224,7 +224,7 @@ namespace Knot3.KnotData
 
 		public override string ToString ()
 		{
-			return "KnotStringIO(length=" + Content.Length + ")";
+			return "KnotStringIO (length=" + Content.Length + ")";
 		}
 
 		#endregion

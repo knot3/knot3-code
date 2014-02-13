@@ -202,7 +202,7 @@ namespace Knot3.Utilities
 
 		public static BoundingSphere[] Bounds (this Model model)
 		{
-			//Log.Debug(model);
+			//Log.Debug (model);
 			BoundingSphere[] bounds = new BoundingSphere[model.Meshes.Count];
 			int i = 0;
 			foreach (ModelMesh mesh in model.Meshes) {
@@ -441,12 +441,12 @@ namespace Knot3.Utilities
 
 		public static T At<T> (this Tuple<T,T> tuple, int i)
 		{
-			return i == 0 ? tuple.Item1 : i == 1 ? tuple.Item2 : default(T);
+			return i == 0 ? tuple.Item1 : i == 1 ? tuple.Item2 : default (T);
 		}
 
 		public static T At<T> (this Tuple<T,T,T> tuple, int i)
 		{
-			return i == 0 ? tuple.Item1 : i == 1 ? tuple.Item2 : i == 2 ? tuple.Item3 : default(T);
+			return i == 0 ? tuple.Item1 : i == 1 ? tuple.Item2 : i == 2 ? tuple.Item3 : default (T);
 		}
 
 		public static IEnumerable<T> ToEnumerable<T> (this Tuple<T,T> tuple)

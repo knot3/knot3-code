@@ -42,7 +42,7 @@ namespace Knot3.Widgets
 		/// [base=screen, drawOrder, title, text]
 		/// </summary>
 		public ColorPickDialog (IGameScreen screen, DisplayLayer drawOrder, Color selectedColor)
-		: base(screen, drawOrder, "Select a color")
+		: base (screen, drawOrder, "Select a color")
 		{
 			// Die ausgewählte Farbe
 			SelectedColor = selectedColor;
@@ -86,7 +86,7 @@ namespace Knot3.Widgets
 
 		public override IEnumerable<IGameScreenComponent> SubComponents (GameTime time)
 		{
-			foreach (DrawableGameScreenComponent component in base.SubComponents(time)) {
+			foreach (DrawableGameScreenComponent component in base.SubComponents (time)) {
 				yield return component;
 			}
 			yield return colorPicker;

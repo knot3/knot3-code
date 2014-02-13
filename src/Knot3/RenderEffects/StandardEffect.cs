@@ -33,7 +33,7 @@ namespace Knot3.RenderEffects
 		/// Erstellt einen neuen Standardeffekt.
 		/// </summary>
 		public StandardEffect (IGameScreen screen)
-		: base(screen)
+		: base (screen)
 		{
 		}
 

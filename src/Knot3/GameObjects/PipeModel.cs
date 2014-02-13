@@ -52,7 +52,7 @@ namespace Knot3.GameObjects
 		/// [base=screen, info]
 		/// </summary>
 		public PipeModel (IGameScreen screen, PipeModelInfo info)
-		: base(screen, info)
+		: base (screen, info)
 		{
 			float length = (info.PositionTo - info.PositionFrom).Length ();
 			float radius = 5.1f;

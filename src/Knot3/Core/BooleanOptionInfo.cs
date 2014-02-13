@@ -56,7 +56,7 @@ namespace Knot3.Core
 		/// [base=section, name, defaultValue?ConfigFile.True:ConfigFile.False, ValidValues, configFile]
 		/// </summary>
 		public BooleanOptionInfo (string section, string name, bool defaultValue, ConfigFile configFile)
-		: base(section, name, defaultValue?ConfigFile.True:ConfigFile.False, ValidValues, configFile)
+		: base (section, name, defaultValue?ConfigFile.True:ConfigFile.False, ValidValues, configFile)
 		{
 		}
 

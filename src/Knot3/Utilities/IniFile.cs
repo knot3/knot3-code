@@ -16,9 +16,9 @@ namespace Knot3.Utilities
 			Data = new Dictionary<string, Dictionary<string, string>> ();
 			Filename = filename;
 			if (File.Exists (filename)) {
-				using (StreamReader reader = new StreamReader(filename)) {
+				using (StreamReader reader = new StreamReader (filename)) {
 					string section = null;
-					while (reader.Peek() != -1) {
+					while (reader.Peek () != -1) {
 						string line = StripComments (reader.ReadLine ().Trim ());
 						if (line.StartsWith ("[") && line.EndsWith ("]")) {
 							section = line.Substring (1, line.Length - 2);
@@ -52,10 +52,10 @@ namespace Knot3.Utilities
 
 		public void Save ()
 		{
-			using (StreamWriter writer = new StreamWriter(Filename)) {
-				foreach (string section in Data.Keys.OrderBy(x => x)) {
+			using (StreamWriter writer = new StreamWriter (Filename)) {
+				foreach (string section in Data.Keys.OrderBy (x => x)) {
 					writer.WriteLine ("[" + section + "]");
-					foreach (string key  in Data[section].Keys.OrderBy(x => x)) {
+					foreach (string key  in Data[section].Keys.OrderBy (x => x)) {
 						writer.WriteLine (key + "=" + Data [section] [key]);
 					}
 				}

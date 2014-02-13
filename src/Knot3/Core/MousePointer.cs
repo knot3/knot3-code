@@ -36,7 +36,7 @@ namespace Knot3.Core
 		/// Erstellt einen neuen Mauszeiger für den angegebenen Spielzustand.
 		/// </summary>
 		public MousePointer (IGameScreen screen)
-		: base(screen, DisplayLayer.Cursor)
+		: base (screen, DisplayLayer.Cursor)
 		{
 			cursorTex = Screen.LoadTexture ("cursor");
 			spriteBatch = new SpriteBatch (screen.Device);
@@ -56,7 +56,7 @@ namespace Knot3.Core
 
 		private void DrawCursor (GameTime time)
 		{
-			if (!MonoHelper.IsRunningOnLinux()) {
+			if (!MonoHelper.IsRunningOnLinux ()) {
 				spriteBatch.Begin ();
 
 				if (Screen.Input.GrabMouseMovement || Screen.Input.CurrentInputAction == InputAction.CameraTargetMove

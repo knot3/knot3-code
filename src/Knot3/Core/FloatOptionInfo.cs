@@ -44,14 +44,14 @@ namespace Knot3.Core
 		public override string DisplayValue
 		{
 			get {
-				return String.Empty + stringToFloat(base.Value);
+				return String.Empty + stringToFloat (base.Value);
 			}
 		}
 
 		public override Dictionary<string,string> DisplayValidValues
 		{
 			get {
-				return new Dictionary<string, string>(base.ValidValues.ToDictionary(s => String.Empty + stringToFloat(s), s => s));
+				return new Dictionary<string, string>(base.ValidValues.ToDictionary (s => String.Empty + stringToFloat (s), s => s));
 			}
 		}
 
@@ -65,11 +65,11 @@ namespace Knot3.Core
 		/// [base=section, name, defaultValue?ConfigFile.True:ConfigFile.False, ValidValues, configFile]
 		/// </summary>
 		public FloatOptionInfo (string section, string name, float defaultValue, IEnumerable<float> validValues, ConfigFile configFile)
-		: base(section, name, convertToString( defaultValue),validValues.Select(convertToString), configFile)
+		: base (section, name, convertToString ( defaultValue),validValues.Select (convertToString), configFile)
 		{
 		}
 
-		private static string convertToString(float f)
+		private static string convertToString (float f)
 		{
 			return (String.Empty + (int)(f * 1000f));
 		}

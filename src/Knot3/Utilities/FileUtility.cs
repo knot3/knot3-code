@@ -56,7 +56,7 @@ namespace Knot3.Utilities
 		public static string SavegameDirectory
 		{
 			get {
-				string directory = SettingsDirectory + Separator.ToString() + "Savegames";
+				string directory = SettingsDirectory + Separator.ToString () + "Savegames";
 				Directory.CreateDirectory (directory);
 				return directory;
 			}
@@ -69,7 +69,7 @@ namespace Knot3.Utilities
 		{
 			get {
 				string directory;
-				if (MonoHelper.IsRunningOnLinux()) {
+				if (MonoHelper.IsRunningOnLinux ()) {
 					directory = Environment.GetEnvironmentVariable ("HOME");
 				}
 				else {
@@ -84,7 +84,7 @@ namespace Knot3.Utilities
 		{
 			get {
 				string directory;
-				if (MonoHelper.IsRunningOnLinux()) {
+				if (MonoHelper.IsRunningOnLinux ()) {
 					directory = "/var/tmp/knot3/";
 				}
 				else {

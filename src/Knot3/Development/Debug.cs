@@ -11,7 +11,7 @@ namespace Knot3.Development
 		private static string lastDebugStr = "";
 		private static int lastDebugTimes = 0;
 
-		[Conditional("DEBUG")]
+		[Conditional ("DEBUG")]
 		public static void Debug (params object[] message)
 		{
 			string str = string.Join ("", message);

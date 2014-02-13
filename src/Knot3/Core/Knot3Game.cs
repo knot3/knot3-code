@@ -160,7 +160,7 @@ namespace Knot3.Core
 		}
 
 		/// <summary>
-		/// Ruft die Draw()-Methode des aktuellen Spielzustands auf.
+		/// Ruft die Draw ()-Methode des aktuellen Spielzustands auf.
 		/// </summary>
 		protected override void Draw (GameTime time)
 		{
@@ -173,10 +173,10 @@ namespace Knot3.Core
 				Graphics.GraphicsDevice.Clear (current.BackgroundColor);
 
 				try {
-					// Rufe Draw() auf dem aktuellen Screen auf
+					// Rufe Draw () auf dem aktuellen Screen auf
 					current.Draw (time);
 
-					// Rufe Draw() auf den Spielkomponenten auf
+					// Rufe Draw () auf den Spielkomponenten auf
 					base.Draw (time);
 				}
 				catch (Exception ex) {
@@ -235,7 +235,7 @@ namespace Knot3.Core
 					return;
 				}
 
-				// Rufe Update() auf dem aktuellen Screen auf
+				// Rufe Update () auf dem aktuellen Screen auf
 				Screens.Peek ().Update (time);
 
 				// base method

@@ -35,10 +35,10 @@ namespace Knot3.Screens
 		/// Erzeugt ein neues CreditsScreen-Objekt und initialisiert dieses mit einem Knot3Game-Objekt.
 		/// </summary>
 		public ErrorScreen (Knot3Game game, Exception ex)
-		: base(game)
+		: base (game)
 		{
 			string msg = CreateMessage (ex);
-			Log.Error(ex);
+			Log.Error (ex);
 			dialog = new ErrorDialog (screen: this, drawOrder: DisplayLayer.Dialog, message: msg);
 			dialog.Bounds.Size = new ScreenPoint (screen: this, x: 0.750f, y: 0.750f);
 		}

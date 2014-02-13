@@ -15,12 +15,12 @@ namespace Knot3.Screen_Tests
 	public class Screen_Tests
 	{
 		[Test]
-		public void Test_Undo()
+		public void Test_Undo ()
 		{
 		}
 
 		[Test]
-		public void Test_Redo()
+		public void Test_Redo ()
 		{
 		}
 	}

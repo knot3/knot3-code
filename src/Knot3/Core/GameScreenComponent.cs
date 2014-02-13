@@ -46,7 +46,7 @@ namespace Knot3.Core
 		/// Erzeugt eine neue Instanz eines IGameScreenComponent-Objekts und initialisiert diese mit dem zugehörigen IGameScreen und der zugehörigen Zeichenreihenfolge. Diese Spielkomponente kann nur in dem zugehörigen IGameScreen verwendet werden.
 		/// </summary>
 		public GameScreenComponent (IGameScreen screen, DisplayLayer index)
-		: base(screen.Game)
+		: base (screen.Game)
 		{
 			this.Screen = screen;
 			this.Index = index;

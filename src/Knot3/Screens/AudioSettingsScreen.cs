@@ -62,7 +62,7 @@ namespace Knot3.Screens
 		/// Erzeugt ein neues AudioSettingsScreen-Objekt und initialisiert dieses mit einem Knot3Game-Objekt.
 		/// </summary>
 		public AudioSettingsScreen (Knot3Game game)
-		: base(game)
+		: base (game)
 		{
 			MenuName = "Audio";
 
@@ -102,7 +102,7 @@ namespace Knot3.Screens
 					slider.Value = (int)volume;
 				};
 			}
-			UpdateSliders();
+			UpdateSliders ();
 		}
 
 		#endregion
@@ -116,7 +116,7 @@ namespace Knot3.Screens
 		{
 			base.Entered (previousScreen, GameTime);
 			AddGameComponents (GameTime, settingsMenu);
-			UpdateSliders();
+			UpdateSliders ();
 		}
 
 		#endregion

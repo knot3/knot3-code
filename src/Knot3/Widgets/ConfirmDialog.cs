@@ -45,7 +45,7 @@ namespace Knot3.Widgets
 		/// [base=screen, drawOrder, title, text]
 		/// </summary>
 		public ConfirmDialog (IGameScreen screen, DisplayLayer drawOrder, string title)
-		: base(screen, drawOrder, title)
+		: base (screen, drawOrder, title)
 		{
 			// Der Titel-Text ist mittig ausgerichtet
 			AlignX = HorizontalAlignment.Center;
@@ -62,7 +62,7 @@ namespace Knot3.Widgets
 		}
 
 		public ConfirmDialog (IGameScreen screen, DisplayLayer drawOrder, string title, string text)
-		: this(screen, drawOrder, title)
+		: this (screen, drawOrder, title)
 		{
 			// Die Textanzeige
 			TextItem textInput = new TextItem (Screen, Index + DisplayLayer.MenuItem, text);
@@ -88,7 +88,7 @@ namespace Knot3.Widgets
 
 		public override IEnumerable<IGameScreenComponent> SubComponents (GameTime time)
 		{
-			foreach (DrawableGameScreenComponent component in base.SubComponents(time)) {
+			foreach (DrawableGameScreenComponent component in base.SubComponents (time)) {
 				yield return component;
 			}
 			yield return menu;
