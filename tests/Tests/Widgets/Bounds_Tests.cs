@@ -43,16 +43,18 @@ namespace Knot3.UnitTests.Tests.Widgets
 		[Test]
 		public void Bounds_FromDirection_Test()
 		{
+            //top
 			Bounds compareBound = new Bounds(point, new ScreenPoint(fakeScreen,1f, 0.9f));
-			Assert.AreEqual(true, boundsEqual(compareBound, bound.FromTop(0.9f)), "top");
-
-			//Irgendwie will er hier bei bottom, right und left noch nicht mit der boundsEquals arbeiten habe es nun noch nicht geändert
+			Assert.IsTrue(boundsEqual(compareBound, bound.FromTop(0.9f)), "top");
+            //bottom
 			compareBound = new Bounds(new ScreenPoint(fakeScreen, 0f, 0.1f), new ScreenPoint(fakeScreen, 1f, 0.9f));
-			Assert.AreEqual(compareBound.ToString(), bound.FromBottom(0.9f).ToString(), "bottom");
+            Assert.IsTrue(boundsEqual(bound.FromBottom(0.9f), compareBound), "bottom");
+            //right
 			compareBound = new Bounds(new ScreenPoint(fakeScreen, 0.1f, 0f), new ScreenPoint(fakeScreen, 0.9f, 1f));
-			Assert.AreEqual(compareBound.ToString(), bound.FromRight(0.9f).ToString(), "right");
+			Assert.IsTrue(boundsEqual(bound.FromRight(0.9f), compareBound), "right");
+            //left
 			compareBound = new Bounds(point, new ScreenPoint(fakeScreen, 0.9f, 1f));
-			Assert.AreEqual(compareBound.ToString(), bound.FromLeft(0.9f).ToString(), "left");
+			Assert.IsTrue(boundsEqual(bound.FromLeft(0.9f), compareBound), "left");
 		}
 
 		[Test]

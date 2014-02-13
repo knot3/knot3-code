@@ -196,10 +196,13 @@ namespace Knot3.Widgets
 			return !(d1 == d2);
 		}
 
-		public bool Equals (ScreenPoint other)
-		{
-			return other != null && Relative.Equals(other.Relative);
-		}
+        public bool Equals(ScreenPoint other)
+        {
+            
+            float epsilon = 0.000001f;
+
+            return other != null && Math.Abs(Relative.X - other.Relative.X) < epsilon && Math.Abs(Relative.Y - other.Relative.Y) < epsilon;
+        } 
 
 		public override bool Equals (object other)
 		{
