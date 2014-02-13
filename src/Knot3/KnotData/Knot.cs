@@ -226,7 +226,7 @@ namespace Knot3.KnotData
 			do {
 				if ((current - 1).Value.Direction == (current - 2).Value.Direction.Reverse && current.Count > 4) {
 					// Selektierte nicht löschen
-					if (selected.Contains ((current - 1).Value) || selected.Contains ((current - 2).Value)) {
+					if (selected.Contains (current - 1) || selected.Contains (current - 2)) {
 						Log.Debug ("Error: Selektierte nicht löschen");
 						newknot = null;
 						return false;
