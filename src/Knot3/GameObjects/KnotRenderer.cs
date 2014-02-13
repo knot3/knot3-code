@@ -84,7 +84,7 @@ namespace Knot3.GameObjects
 
 		private Knot knot;
 
-		public IEnumerable<Edge> VirtualKnot
+		public Knot VirtualKnot
 		{
 			get {
 				return virtualKnot;
@@ -95,7 +95,7 @@ namespace Knot3.GameObjects
 			}
 		}
 
-		private IEnumerable<Edge> virtualKnot;
+		private Knot virtualKnot;
 
 		/// <summary>
 		/// Der Zwischenspeicher für die 3D-Modelle der Kanten. Hier wird das Fabrik-Entwurfsmuster verwendet.
@@ -190,7 +190,7 @@ namespace Knot3.GameObjects
 		private void OnEdgesChanged ()
 		{
 			nodeMap.Edges = knot;
-			nodeMap.Offset = Info.Position;
+			nodeMap.Offset = Info.Position + knot.OffSet;
 			nodeMap.OnEdgesChanged ();
 
 			Log.Debug ("=> render Knot #", knot.Count (), " = ", string.Join (", ", from c in knot select c.Direction));
@@ -211,7 +211,7 @@ namespace Knot3.GameObjects
 		private void OnVirtualKnotAssigned ()
 		{
 			nodeMap.Edges = virtualKnot;
-			nodeMap.Offset = Info.Position;
+			nodeMap.Offset = Info.Position + virtualKnot.OffSet;
 			nodeMap.OnEdgesChanged ();
 
 			CreatePipes (virtualKnot);
@@ -223,6 +223,7 @@ namespace Knot3.GameObjects
 		private void OnSelectionChanged ()
 		{
 			nodeMap.Edges = knot;
+			nodeMap.Offset = knot.OffSet;
 			if (showArrows) {
 				CreateArrows ();
 			}
