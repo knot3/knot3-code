@@ -67,6 +67,11 @@ echo.
 )
 
 
+::
+:: Filter für OpenCover
+::
+set FILTER="+[*]* -[Knot3.Program]*"
+
 
 echo Paths to ...
 echo.
@@ -81,11 +86,12 @@ echo.
 ::
 :: Hinweis: Auf einem 64-Bit-System ist nunit-console-x86.exe für 32-Bit-Projekte zu verwenden! (sonst tritt ein Fehler auf)
 ::
-"%PATH_TO_OPENCOVER%\OpenCover.Console.exe" -target:"%PATH_TO_NUNIT%\nunit-console-x86.exe" -targetargs:"/noshadow "%PATH_TO_TESTS%\Knot3.UnitTests.dll"" -register:user -filter:"+[*]*" -output:"%PATH_TO_REPORT%\NUnit_test_coverage.xml"
+"%PATH_TO_OPENCOVER%\OpenCover.Console.exe" -target:"%PATH_TO_NUNIT%\nunit-console-x86.exe" -targetargs:"/noshadow "%PATH_TO_TESTS%\Knot3.UnitTests.dll"" -register:user -filter:%FILTER% -output:"%PATH_TO_REPORT%\NUnit_test_coverage.xml"
 echo.
 
 ::
 :: Ausgabe von ReportGenerator auf Konsole unterdrückt.
 ::
-"%PATH_TO_REPORTGENERATOR%\ReportGenerator.exe" "%PATH_TO_REPORT%\NUnit_test_coverage.xml" "%PATH_TO_REPORT%">NUL
+"%PATH_TO_REPORTGENERATOR%\ReportGenerator.exe" "%PATH_TO_REPORT%\NUnit_test_coverage.xml" "%PATH_TO_REPORT%"
+REM >NUL
 start "" "%PATH_TO_REPORT%\index.htm"
