@@ -62,6 +62,7 @@
     <Compile Include="Tests\Widgets\Bounds_Tests.cs" />
     <Compile Include="Tests\Widgets\Widget_Tests.cs" />
     <Compile Include="Tests\Core\ConfigFile_Tests.cs" />
+    <Compile Include="MockObjects\KnotGenerator.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

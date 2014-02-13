@@ -104,7 +104,6 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="MockObjects\KnotGenerator.cs" />
     <Compile Include="MockObjects\FakeEffect.cs" />
     <Compile Include="MockObjects\FakeEffectStack.cs" />
     <Compile Include="MockObjects\FakeScreen.cs" />
@@ -127,6 +126,7 @@
     <Compile Include="Tests\Widgets\Bounds_Tests.cs" />
     <Compile Include="Tests\Widgets\Widget_Tests.cs" />
     <Compile Include="Tests\Core\ConfigFile_Tests.cs" />
+    <Compile Include="MockObjects\KnotGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
