@@ -43,7 +43,7 @@ sub rewrite_csproj {
 	}
 
 	open $f, '>', $args->{csproj};
-	print $f join($args->{linesep}, @newlines);
+	print $f join($args->{linesep}, @newlines, "");
 	close $f;
 }
 
