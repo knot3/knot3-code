@@ -104,6 +104,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="MockObjects\KnotGenerator.cs" />
     <Compile Include="MockObjects\FakeEffect.cs" />
     <Compile Include="MockObjects\FakeEffectStack.cs" />
     <Compile Include="MockObjects\FakeScreen.cs" />
