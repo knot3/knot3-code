@@ -38,4 +38,10 @@
     <Compile Include="Main.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Knot3-MonoGame.csproj">
+      <Project>{A7093300-1D0E-462B-83E2-A5DC7C3D145B}</Project>
+      <Name>Knot3-MonoGame</Name>
+    </ProjectReference>
+  </ItemGroup>
 </Project>
