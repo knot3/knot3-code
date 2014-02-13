@@ -39,6 +39,12 @@ namespace Knot3.KnotData
 			Next = this;
 		}
 
+		private CircleEntry ()
+		{
+			Previous = this;
+			Next = this;
+		}
+
 		public CircleEntry (IEnumerable<T> list)
 		{
 			bool first = true;
@@ -53,6 +59,13 @@ namespace Knot3.KnotData
 					inserted = inserted.InsertAfter (obj);
 				}
 				first = false;
+			}
+		}
+
+		public static CircleEntry<T> Empty
+		{
+			get {
+				return new CircleEntry<T> ();
 			}
 		}
 
@@ -293,7 +306,12 @@ namespace Knot3.KnotData
 
 		public void Add (T value)
 		{
-			InsertBefore (value);
+			if (Value == null) {
+				Value = value;
+			}
+			else {
+				InsertBefore (value);
+			}
 		}
 
 		public void Clear ()

@@ -198,7 +198,7 @@ namespace Knot3.KnotData
 			Log.Debug ("Current Knot #", startElement.Count, " = ", string.Join (", ", from c in startElement select c.Direction));
 
 			HashSet<Edge> selected = new HashSet<Edge> (selectedEdges);
-			List<Edge> list = new List<Edge> ();
+			CircleEntry<Edge> newCircle = CircleEntry<Edge>.Empty;
 
 			foreach (Tuple<Edge, Edge, Edge> triple in startElement.Triples) {
 				Edge previousEdge = triple.Item1;
@@ -206,19 +206,18 @@ namespace Knot3.KnotData
 				Edge nextEdge = triple.Item3;
 
 				if (selectedEdges.Contains (currentEdge) && !selectedEdges.Contains (previousEdge)) {
-					list.AddRange (distance.Repeat (i => new Edge (direction: direction, color: currentEdge)));
+					distance.Repeat (i => newCircle.Add (new Edge (direction: direction, color: currentEdge)));
 				}
 
-				list.Add (currentEdge);
+				newCircle.Add (currentEdge);
 
 				if (selectedEdges.Contains (currentEdge) && !selectedEdges.Contains (nextEdge)) {
-					list.AddRange (distance.Repeat (i => new Edge (direction: direction.Reverse, color: currentEdge)));
+					distance.Repeat (i => newCircle.Add (new Edge (direction: direction.Reverse, color: currentEdge)));
 				}
 			}
 
-			Log.Debug ("New Knot #", list.Count, " = ", string.Join (", ", from c in list select c.Direction));
+			Log.Debug ("New Knot #", newCircle.Count, " = ", string.Join (", ", from c in newCircle select c.Direction));
 
-			CircleEntry<Edge> newCircle = list.ToCircle ();
 			CircleEntry<Edge> current = newCircle;
 			do {
 				if (current [- 1].Direction == current [- 2].Direction.Reverse && current.Count > 4) {
