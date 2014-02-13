@@ -69,7 +69,6 @@ namespace Knot3.KnotData
 		///
 		/// </summary>
 		public Action SelectionChanged = () => {};
-		private List<SelectionBlock> StructuredSelection;
 		private CircleEntry<Edge> lastSelected;
 		public Action<Vector3> StartEdgeChanged = (v) => {};
 		private KnotCharakteristic? CharakteristicCache = null;
@@ -252,30 +251,34 @@ namespace Knot3.KnotData
 		/// </summary>
 		public bool IsValidMove (Direction dir)
 		{
-			// Erstelle die Liste nur, wenn es notwendig ist.
-			if (StructuredSelection == null) {
-				StructuredSelection = CreateStructuredSelection (startElement);
-			}
-			if (StructuredSelection.Count == 0) {
+			// Nichts selektiert
+			if (selectedEdges.Count == 0) {
 				return false;
 			}
 			// Alles selektiert
-			if (StructuredSelection [0].Begin == StructuredSelection [0].End.Next) {
+			if (selectedEdges.Count == startElement.Count) {
 				return true;
 			}
+			
 			HashSet<Axis> axes = new HashSet<Axis> ();
-			// Für Jeden Block werden Start und ende untersucht.
-			foreach (SelectionBlock block in StructuredSelection) {
+			foreach (Tuple<Edge, Edge, Edge> triple in startElement.Triples) {
+				Edge previousEdge = triple.Item1;
+				Edge currentEdge = triple.Item2;
+				Edge nextEdge = triple.Item3;
+
 				// Wenn Kante nach der Bewegung gelöscht werden müsste ist ein Zug nicht möglich
-				if (block.Begin.Value.Direction == dir.Reverse && block.Begin.Previous.Value.Direction != dir.Reverse) {
+				if (selectedEdges.Contains (currentEdge) && !selectedEdges.Contains (previousEdge)
+					&& currentEdge.Direction == dir.Reverse && previousEdge.Direction != dir.Reverse) {
 					return false;
 				}
 				// Wenn Kante nach der Bewegung gelöscht werden müsste ist ein Zug nicht möglich
-				if (block.End.Value.Direction == dir && block.End.Next.Value.Direction != dir) {
+				if (selectedEdges.Contains (currentEdge) && !selectedEdges.Contains (nextEdge)
+					&& currentEdge.Direction == dir && nextEdge.Direction != dir) {
 					return false;
 				}
-				foreach (Edge edge in block.Begin.RangeTo(block.End)) {
-					axes.Add (edge.Direction.Axis);
+
+				if (selectedEdges.Contains(currentEdge)) {
+					axes.Add (currentEdge.Direction.Axis);
 				}
 			}
 			// Wenn alle Kanten entlang einer Achse angeordnet sind und die Verschieberichtung die selbe Achse hat
@@ -338,7 +341,6 @@ namespace Knot3.KnotData
 
 		private void OnSelectionChanged ()
 		{
-			StructuredSelection = null;
 			SelectionChanged ();
 		}
 
@@ -366,7 +368,6 @@ namespace Knot3.KnotData
 			if (lastSelected.Value == edge) {
 				lastSelected = null;
 			}
-			StructuredSelection = null;
 			OnSelectionChanged ();
 		}
 
@@ -524,79 +525,9 @@ namespace Knot3.KnotData
 			       + ")";
 		}
 
-		/// <summary>
-		/// Erstellt, falls notwendig, eine Liste mit Circle Elementen, die jeweils Anfang und Ende eines selektierten Bereiches makieren.
-		/// Die Liste hat immer 2n Einträge. Abwechselnd immer Anfang und Ende. Beide Innerhalb der Selektion.
-		/// D.h. Ist die Selektion nur eine Kante lang, dann sind die Einträge identisch.
-		/// </summary>
-		private List<SelectionBlock> CreateStructuredSelection (CircleEntry<Edge> circle)
-		{
-			List<SelectionBlock> selection = new List<SelectionBlock> ();
-			// wenn nichts ausgewählt ist muss nichts weiter erstellt werden.
-			if (selectedEdges.Count == 0) {
-				return selection;
-			}
-			// wenn alles ausgewählt ist kann man die erstellung verkürzen.
-			if (selectedEdges.Count == MetaData.CountEdges) {
-				selection.Add (new SelectionBlock (circle, circle.Previous));
-				return selection;
-			}
-			CircleEntry<Edge> start = circle;
-			CircleEntry<Edge> stop = start.Previous;
-			// Suche eine Stelle an der ein Selektionsblock beginnt.
-			if (selectedEdges.Contains (start.Value)) {
-				// Wenn "edges" in der Selektion ist geh nach links, bis zum Anfang des Blockes.
-				while (selectedEdges.Contains (start.Previous.Value)) {
-					start--;
-				}
-			}
-			else {
-				// Wenn "edges" nicht selektiert ist, gehe nach rechts bis zum beginn des nächsten Blockes.
-				while (!selectedEdges.Contains (start.Value)) {
-					start++;
-				}
-			}
-			do {
-				// "start" zeigt auf den Beginn eines Blockes und wird daher hinzu gefügt.
-				CircleEntry<Edge> begin = start;
-				stop = start;
-				// Gehe bis zum Ende des selektierten Blockes.
-				while (selectedEdges.Contains (stop.Next.Value)) {
-					stop++;
-				}
-				CircleEntry<Edge> end = stop;
-
-				// Gehe bis zum start des nächsten Blockes.
-				start = stop.Next;
-				while (!selectedEdges.Contains (start.Value)) {
-					start++;
-				}
-
-				// Füge den Selektions-Block der Liste hinzu
-				selection.Add (new SelectionBlock (begin, end));
-			}
-			// Höre auf, wenn man wieder beim element ist mit dem man begonnen hat.
-			while (start != selection [0].Begin);
-
-			return selection;
-		}
-
 		#endregion
 
 		#region Classes and Structs
-
-		private class SelectionBlock
-		{
-			public CircleEntry<Edge> Begin { get; set; }
-
-			public CircleEntry<Edge> End { get; set; }
-
-			public SelectionBlock (CircleEntry<Edge> begin, CircleEntry<Edge> end)
-			{
-				Begin = begin;
-				End = end;
-			}
-		}
 
 		private struct KnotCharakteristic {
 			public CircleEntry<Edge> CharacteristicalEdge { get; private set; }
