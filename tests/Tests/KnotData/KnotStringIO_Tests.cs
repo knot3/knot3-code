@@ -15,15 +15,13 @@ namespace Knot3.UnitTests.Tests.KnotData
 	class Test_KnotStringIO
 	{
 		[Test]
-		public void test_EncodeDecodeEdge ()
+		public void KnotStringIO_Test ()
 		{
-			KnotStringIO knotStringIO = new KnotStringIO(KnotGenerator.generateValidSquaredKnot(10));
+            KnotStringIO knotStringIO = new KnotStringIO(KnotGenerator.generateValidSquaredKnot(10));
+            KnotStringIO other = new KnotStringIO(knotStringIO.Content);
 
-			Edge[] edges = { Edge.Left, Edge.Right, Edge.Up, Edge.Down, Edge.Forward, Edge.Backward };
 
-			foreach (Edge edge in edges) {
-				// EncodeEdge(edge);
-			}
+            Assert.AreEqual(knotStringIO.Content, other.Content, "Contetnt equal");
 		}
 	}
 }

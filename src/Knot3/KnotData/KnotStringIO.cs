@@ -96,12 +96,12 @@ namespace Knot3.KnotData
 				return Name + "\n" + string.Join ("\n", edgeLines);
 			}
 			set {
-				if (value.Length >= 2) {
+				if (value.Trim().Contains("\n")) {
 					string[] parts = value.Split (new char[] {'\r','\n'}, StringSplitOptions.RemoveEmptyEntries);
 					Name = parts [0];
 					edgeLines = parts.Skip (1);
 				}
-				else if (value.Length == 1) {
+				else {
 					Name = value;
 					edgeLines = new string[] {};
 				}
