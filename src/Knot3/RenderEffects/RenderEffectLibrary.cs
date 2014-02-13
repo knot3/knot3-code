@@ -47,6 +47,8 @@ namespace Knot3.RenderEffects
 			),
 		};
 
+		public static Action<string, GameTime> RenderEffectChanged = (e, t) => {};
+
 		public static IEnumerable<string> Names
 		{
 			get {

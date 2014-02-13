@@ -84,14 +84,14 @@ namespace Knot3.Screens
 			);
 			settingsMenu.Add (autoCamera);
 
-			string currentResolution = Graphics.GraphicsDevice.DisplayMode.Width.ToString()
-			                           + "x"
-			                           + Graphics.GraphicsDevice.DisplayMode.Height.ToString ();
+			string currentResolution = Graphics.GraphicsDevice.DisplayMode.Width.ToString ()
+				+ "x"
+				+ Graphics.GraphicsDevice.DisplayMode.Height.ToString ();
 
 			DisplayModeCollection modes = GraphicsAdapter.DefaultAdapter.SupportedDisplayModes;
 			HashSet<string> reso = new HashSet<string> ();
 			foreach (DisplayMode mode in modes) {
-				reso.Add(mode.Width + "x" + mode.Height);
+				reso.Add (mode.Width + "x" + mode.Height);
 			}
 			reso.Add ("1024x600");
 
@@ -129,6 +129,7 @@ namespace Knot3.Screens
 			);
 			supersamplesItem.AddEntries (supersamplesOption);
 			settingsMenu.Add (supersamplesItem);
+
 			string[] validRenderEffects = RenderEffectLibrary.Names.ToArray ();
 			DistinctOptionInfo renderEffectOption = new DistinctOptionInfo (
 			    section: "video",
@@ -142,6 +143,9 @@ namespace Knot3.Screens
 			    drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
 			    text: "Render Effect"
 			);
+			renderEffectItem.ValueChanged += (time) => {
+				RenderEffectLibrary.RenderEffectChanged (Options.Default ["video", "knot-shader", "default"], time);
+			};
 			renderEffectItem.AddEntries (renderEffectOption);
 			settingsMenu.Add (renderEffectItem);
 		}

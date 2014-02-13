@@ -28,7 +28,7 @@ namespace Knot3.UnitTests.Test_Camera
 		{
 			screen = new FakeScreen ();
 			effect = new FakeEffect (screen);
-			world = new World (screen: screen, effect: effect);
+			world = new World (screen: screen, drawIndex: DisplayLayer.GameWorld, effect: effect, bounds: screen.Bounds);
 			cam1 = new Camera (screen: screen, world: world);
 		}
 

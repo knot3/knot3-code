@@ -100,7 +100,7 @@ namespace Knot3.Screens
 		: base (game)
 		{
 			// die Spielwelt
-			world = new World (screen: this, bounds: Bounds);
+			world = new World (screen: this, drawIndex: DisplayLayer.GameWorld, bounds: Bounds);
 			// der Input-Handler
 			knotInput = new KnotInputHandler (screen: this, world: world);
 			// das Overlay zum Debuggen

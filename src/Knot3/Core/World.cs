@@ -135,37 +135,12 @@ namespace Knot3.Core
 			}
 		}
 
-		public World (IGameScreen screen, DisplayLayer drawIndex, IRenderEffect effect)
-		: this (screen, drawIndex, effect, DefaultBounds(screen))
-		{
-		}
-
 		public World (IGameScreen screen, DisplayLayer drawIndex, Bounds bounds)
 		: this (screen, drawIndex, DefaultEffect(screen), bounds)
 		{
-		}
-
-		public World (IGameScreen screen, IRenderEffect effect, Bounds bounds)
-		: this (screen, DisplayLayer.GameWorld, effect, bounds)
-		{
-		}
-
-		public World (IGameScreen screen, IRenderEffect effect)
-		: this (screen, DisplayLayer.GameWorld, effect, DefaultBounds(screen))
-		{
-		}
-
-		public World (IGameScreen screen, Bounds bounds)
-		: this (screen, DisplayLayer.GameWorld, DefaultEffect(screen), bounds)
-		{
-		}
-
-		private static Bounds DefaultBounds (IGameScreen screen)
-		{
-			return new Bounds (
-			           position: new ScreenPoint (screen, Vector2.Zero),
-			           size: new ScreenPoint (screen, Vector2.One)
-			       );
+			RenderEffectLibrary.RenderEffectChanged += (newEffectName, time) => {
+				CurrentEffect = RenderEffectLibrary.CreateEffect (screen: screen, name: newEffectName);
+			};
 		}
 
 		private static IRenderEffect DefaultEffect (IGameScreen screen)
