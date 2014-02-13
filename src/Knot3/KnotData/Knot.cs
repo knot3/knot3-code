@@ -58,19 +58,40 @@ namespace Knot3.KnotData
 		/// Ein Ereignis, das in der Move-Methode ausgelöst wird, wenn sich die Struktur der Kanten geändert hat.
 		/// </summary>
 		public Action EdgesChanged = () => {};
+
 		/// <summary>
 		/// Enthält die aktuell vom Spieler selektierten Kanten in der Reihenfolge, in der sie selektiert wurden.
 		/// </summary>
 		public IEnumerable<Edge> SelectedEdges { get { return selectedEdges; } }
 
-		private HashSet<Edge> selectedEdges;
-		public int debugId;
 		/// <summary>
-		///
+		/// Enthält die selektierten Kanten.
+		/// </summary>
+		private HashSet<Edge> selectedEdges;
+
+		/// <summary>
+		/// WTF?!
+		/// </summary>
+		public int debugId;
+
+		/// <summary>
+		/// Wird aufgerufen, wenn sich die Selektion geändert hat.
 		/// </summary>
 		public Action SelectionChanged = () => {};
+
+		/// <summary>
+		/// Enthält die zuletzt selektierte Kante.
+		/// </summary>
 		private CircleEntry<Edge> lastSelected;
+
+		/// <summary>
+		/// Wird aufgerufen, wenn sich die Startkante geändert hat.
+		/// </summary>
 		public Action<Vector3> StartEdgeChanged = (v) => {};
+
+		/// <summary>
+		/// Der Cache für die Knotencharakteristik.
+		/// </summary>
 		private KnotCharakteristic? CharakteristicCache = null;
 
 		#endregion
@@ -86,11 +107,11 @@ namespace Knot3.KnotData
 			debugId++;
 			MetaData = new KnotMetaData (String.Empty, () => startElement.Count, null, null);
 			startElement = new CircleEntry<Edge> (new Edge[] {
-				// Edge.Up, Edge.Right, Edge.Right, Edge.Down, Edge.Backward,
-				// Edge.Up, Edge.Left, Edge.Left, Edge.Down, Edge.Forward
+			// Edge.Up, Edge.Right, Edge.Right, Edge.Down, Edge.Backward,
+			// Edge.Up, Edge.Left, Edge.Left, Edge.Down, Edge.Forward
 				Edge.Up, Edge.Right, Edge.Down, Edge.Left
 			}
-			                                     );
+			);
 			selectedEdges = new HashSet<Edge> ();
 		}
 
@@ -268,16 +289,16 @@ namespace Knot3.KnotData
 
 				// Wenn Kante nach der Bewegung gelöscht werden müsste ist ein Zug nicht möglich
 				if (selectedEdges.Contains (currentEdge) && !selectedEdges.Contains (previousEdge)
-				        && currentEdge.Direction == dir.Reverse && previousEdge.Direction != dir.Reverse) {
+					&& currentEdge.Direction == dir.Reverse && previousEdge.Direction != dir.Reverse) {
 					return false;
 				}
 				// Wenn Kante nach der Bewegung gelöscht werden müsste ist ein Zug nicht möglich
 				if (selectedEdges.Contains (currentEdge) && !selectedEdges.Contains (nextEdge)
-				        && currentEdge.Direction == dir && nextEdge.Direction != dir) {
+					&& currentEdge.Direction == dir && nextEdge.Direction != dir) {
 					return false;
 				}
 
-				if (selectedEdges.Contains(currentEdge)) {
+				if (selectedEdges.Contains (currentEdge)) {
 					axes.Add (currentEdge.Direction.Axis);
 				}
 			}
@@ -506,8 +527,8 @@ namespace Knot3.KnotData
 			for (edgeCount = 1; edgePointer != startElement; edgePointer++, edgeCount++) {
 				Vector3 nextPosition3D = position3D + edgePointer.Value.Direction / 2;
 				if ((nextPosition3D.X < bestPosition3D.X)
-				        || (nextPosition3D.X == bestPosition3D.X && nextPosition3D.Y < bestPosition3D.Y)
-				        || (nextPosition3D.X == bestPosition3D.X && nextPosition3D.Y == bestPosition3D.Y && nextPosition3D.Z < bestPosition3D.Z)) {
+					|| (nextPosition3D.X == bestPosition3D.X && nextPosition3D.Y < bestPosition3D.Y)
+					|| (nextPosition3D.X == bestPosition3D.X && nextPosition3D.Y == bestPosition3D.Y && nextPosition3D.Z < bestPosition3D.Z)) {
 					bestPosition3D = position3D + edgePointer.Value.Direction / 2;
 					charakteristikElement = edgePointer;
 				}
@@ -521,15 +542,16 @@ namespace Knot3.KnotData
 		public override string ToString ()
 		{
 			return "Knot(name=" + Name + ",#edgecount=" + startElement.Count.ToString ()
-			       + ",format=" + (MetaData.Format != null ? MetaData.ToString () : "null")
-			       + ")";
+				+ ",format=" + (MetaData.Format != null ? MetaData.ToString () : "null")
+				+ ")";
 		}
 
 		#endregion
 
 		#region Classes and Structs
 
-		private struct KnotCharakteristic {
+		private struct KnotCharakteristic
+		{
 			public CircleEntry<Edge> CharacteristicalEdge { get; private set; }
 
 			public int CountEdges { get; private set; }
