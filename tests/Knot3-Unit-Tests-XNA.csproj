@@ -132,9 +132,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\src\Knot3-Windows.csproj">
+    <ProjectReference Include="..\src\Knot3-XNA.csproj">
       <Project>{8e6072ce-a35b-455d-93e1-0aa0ebccbccf}</Project>
-      <Name>Knot3-Windows</Name>
+      <Name>Knot3-XNA</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

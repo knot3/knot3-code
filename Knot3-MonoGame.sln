@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Knot3-Linux", "src\Knot3-Linux.csproj", "{A7093300-1D0E-462B-83E2-A5DC7C3D145B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Knot3-MonoGame", "src\Knot3-MonoGame.csproj", "{A7093300-1D0E-462B-83E2-A5DC7C3D145B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Knot3-Unit-Tests", "tests\Knot3-Unit-Tests-Linux.csproj", "{C19C58CE-8C63-4F7F-A38C-D8B204AA21F2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Knot3-Unit-Tests", "tests\Knot3-Unit-Tests-MonoGame.csproj", "{C19C58CE-8C63-4F7F-A38C-D8B204AA21F2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +21,6 @@ Global
 		{C19C58CE-8C63-4F7F-A38C-D8B204AA21F2}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = src\Knot3-Linux.csproj
+		StartupItem = src\Knot3-MonoGame.csproj
 	EndGlobalSection
 EndGlobal
