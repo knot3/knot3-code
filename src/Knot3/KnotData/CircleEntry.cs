@@ -276,8 +276,9 @@ namespace Knot3.KnotData
 				item.Remove ();
 				return true;
 			}
-			else
+			else {
 				return false;
+			}
 		}
 
 		public void RemoveAt (int i)
