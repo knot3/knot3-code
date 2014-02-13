@@ -21,7 +21,7 @@ sub rewrite_csproj {
 
 	open my $f, '<', $args->{csproj};
 	my @lines = <$f>;
-	map { chomp; } @lines;
+	map { tr/[\r\n]//d; } @lines;
 	close $f;
 
 	my @newlines = ();
@@ -49,9 +49,9 @@ sub rewrite_csproj {
 
 my @csproj_files = (
 	{ csproj => 'src/Knot3-Linux.csproj', dir => 'src/', exclude => ['MonoHelperXNA.cs'], linesep => qq[\n] },
-	{ csproj => 'src/Knot3-Windows.csproj', dir => 'src/', exclude => ['MonoHelperMG.cs'], linesep => qq[\r\n] },
+	{ csproj => 'src/Knot3-Windows.csproj', dir => 'src/', exclude => ['MonoHelperMG.cs'], linesep => qq[\n] },
 	{ csproj => 'tests/Knot3-Unit-Tests-Linux.csproj', dir => 'tests/', exclude => [], linesep => qq[\n] },
-	{ csproj => 'tests/Knot3-Unit-Tests-Windows.csproj', dir => 'tests/', exclude => [], linesep => qq[\r\n] },
+	{ csproj => 'tests/Knot3-Unit-Tests-Windows.csproj', dir => 'tests/', exclude => [], linesep => qq[\n] },
 );
 
 foreach my $csproj_file (@csproj_files) {
