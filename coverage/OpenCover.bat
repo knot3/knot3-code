@@ -39,7 +39,7 @@ echo.
 ::
 :: Standard-Installationsverzeichnisse für die Werkzeuge verwenden!
 ::
-set PATH_TO_PROJECT=%~p0..
+set PATH_TO_PROJECT=%~dp0..
 set PATH_TO_OPENCOVER=%USERPROFILE%\AppData\Local\Apps\OpenCover
 set PATH_TO_NUNIT=%ProgramFiles(x86)%\NUnit 2.6.3\bin
 set PATH_TO_TESTS=%PATH_TO_PROJECT%\tests\bin\Debug
