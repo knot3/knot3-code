@@ -14,7 +14,7 @@ namespace ConfigReset
 			Console.WriteLine ("Settings directory: " + FileUtility.SettingsDirectory);
 			Console.WriteLine ();
 			Console.WriteLine ("Press <Enter> to delete it.");
-			Console.ReadLine();
+			Console.ReadLine ();
 
 			try {
 				Directory.Delete (FileUtility.SettingsDirectory, true);
@@ -26,8 +26,8 @@ namespace ConfigReset
 			}
 			Console.WriteLine ();
 
-			Console.WriteLine("Press <Enter> to exit.");
-			Console.ReadLine();
+			Console.WriteLine ("Press <Enter> to exit.");
+			Console.ReadLine ();
 		}
 	}
 }
