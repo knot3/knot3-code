@@ -184,19 +184,17 @@ namespace Knot3.KnotData
 			while (current != other.Next && current != this);
 		}
 
-        public IEnumerable<T> WayTo(T other)
-        {
-            CircleEntry<T> current = this;
-            while (!current.Value.Equals(other))
-            {
-                yield return current.Value;
-                current = current.Next;
-                if (current == this)
-                {
-                   break;
-                }
-            }
-        }
+		public IEnumerable<T> WayTo(T other)
+		{
+			CircleEntry<T> current = this;
+			while (!current.Value.Equals(other)) {
+				yield return current.Value;
+				current = current.Next;
+				if (current == this) {
+					break;
+				}
+			}
+		}
 
 		public IEnumerable<Tuple<T,T>> Pairs
 		{

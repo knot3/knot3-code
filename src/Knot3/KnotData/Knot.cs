@@ -262,43 +262,37 @@ namespace Knot3.KnotData
 			return true;
 		}
 
-        public Vector3 MoveCenterToZero()
-        {
-            Vector3 position3D = Vector3.Zero;
-            Dictionary<Vector3, Edge> occupancy = new Dictionary<Vector3, Edge>();
-            foreach (Edge edge in startElement)
-            {
-                
-                occupancy.Add(position3D + (edge.Direction / 2), edge);
-                position3D += edge;
-            }
-            Vector3 mid = Vector3.Zero;
-            foreach (KeyValuePair<Vector3,Edge> pos in occupancy)
-            {
-                mid += pos.Key;
-            }
-            mid /= startElement.Count;
-            float minDistance = mid.Length();
-            Edge newStart = startElement.Value;
-            foreach (KeyValuePair<Vector3,Edge> pos in occupancy) 
-            {
-                float testDistance = pos.Key.DistanceTo(mid);
-                if (testDistance < minDistance)
-                {
-                    newStart = pos.Value;
-                    minDistance = testDistance;
-                }
-            }
-            Vector3 offset = Vector3.Zero;
-            foreach (Edge edge in startElement.WayTo(newStart))
-            {
-                offset += edge;
-            }
-            startElement.Contains(newStart, out startElement);
-            offset += OffSet;
-            OffSet = Vector3.Zero;
-            return offset;
-        }
+		public Vector3 MoveCenterToZero()
+		{
+			Vector3 position3D = Vector3.Zero;
+			Dictionary<Vector3, Edge> occupancy = new Dictionary<Vector3, Edge>();
+			foreach (Edge edge in startElement) {
+				occupancy.Add(position3D + (edge.Direction / 2), edge);
+				position3D += edge;
+			}
+			Vector3 mid = Vector3.Zero;
+			foreach (KeyValuePair<Vector3,Edge> pos in occupancy) {
+				mid += pos.Key;
+			}
+			mid /= startElement.Count;
+			float minDistance = mid.Length();
+			Edge newStart = startElement.Value;
+			foreach (KeyValuePair<Vector3,Edge> pos in occupancy) {
+				float testDistance = pos.Key.DistanceTo(mid);
+				if (testDistance < minDistance) {
+					newStart = pos.Value;
+					minDistance = testDistance;
+				}
+			}
+			Vector3 offset = Vector3.Zero;
+			foreach (Edge edge in startElement.WayTo(newStart)) {
+				offset += edge;
+			}
+			startElement.Contains(newStart, out startElement);
+			offset += OffSet;
+			OffSet = Vector3.Zero;
+			return offset;
+		}
 
 		/// <summary>
 		/// Verschiebt die aktuelle Kantenauswahl in die angegebene Richtung um die angegebene Distanz.
