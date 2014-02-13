@@ -36,7 +36,7 @@ namespace Knot3.UnitTests.Knot_Tests
 			Assert.AreEqual (knot.Name, name, "Knotenname #1");
 			Assert.AreEqual (knot.MetaData.Name, name, "Knotenname #2");
 
-            Assert.Catch(() => { KnotGenerator.generateInvalidKnot(); }, "invalid Knot construction");
+			Assert.Catch(() => { KnotGenerator.generateInvalidKnot(); }, "invalid Knot construction");
 		}
 
 		[Test, Description("Knot Move")]
