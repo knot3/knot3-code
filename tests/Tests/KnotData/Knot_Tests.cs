@@ -8,6 +8,7 @@ using Knot3.Core;
 using Knot3.GameObjects;
 using Knot3.KnotData;
 using Knot3.RenderEffects;
+using Knot3.UnitTests.MockObjects;
 
 namespace Knot3.UnitTests.Knot_Tests
 {
@@ -34,6 +35,8 @@ namespace Knot3.UnitTests.Knot_Tests
 
 			Assert.AreEqual (knot.Name, name, "Knotenname #1");
 			Assert.AreEqual (knot.MetaData.Name, name, "Knotenname #2");
+
+            Assert.Catch(() => { KnotGenerator.generateInvalidKnot(); }, "invalid Knot construction");
 		}
 
 		[Test, Description("Knot Move")]

@@ -30,5 +30,15 @@ namespace Knot3.UnitTests.MockObjects
 
 			return squareKnot;
 		}
+        
+        public static Knot generateInvalidKnot() 
+        {
+            Edge[] edgeList = new Edge[]{
+                Edge.Up, Edge.Up, Edge.Up, Edge.Up
+            };
+            KnotMetaData metaData = new KnotMetaData("Invalid", edgeList.Count<Edge>, null, null);
+            Knot invalidKnot = new Knot(metaData, edgeList);
+            return invalidKnot;
+        }
 	}
 }
