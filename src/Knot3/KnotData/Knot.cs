@@ -197,7 +197,7 @@ namespace Knot3.KnotData
 			Log.Debug ("TryMove: direction = ", direction, ", distance = ", distance);
 			Log.Debug ("Current Knot #", startElement.Count, " = ", string.Join (", ", from c in startElement select c.Direction));
 
-			HashSet<Edge> selected = new HashSet<Edge> ();
+			HashSet<Edge> selected = new HashSet<Edge> (selectedEdges);
 			List<Edge> list = new List<Edge> ();
 
 			foreach (Tuple<Edge, Edge, Edge> triple in startElement.Triples) {
@@ -206,16 +206,13 @@ namespace Knot3.KnotData
 				Edge nextEdge = triple.Item3;
 
 				if (selectedEdges.Contains (currentEdge) && !selectedEdges.Contains (previousEdge)) {
-					// Log.Debug ("Insert ", distance, "x: ", direction);
-					distance.Repeat (i => list.Add (new Edge (direction: direction, color: currentEdge)));
+					list.AddRange (distance.Repeat (i => new Edge (direction: direction, color: currentEdge)));
 				}
 
-				// Log.Debug ("Copy: ", currentEdge);
 				list.Add (currentEdge);
 
 				if (selectedEdges.Contains (currentEdge) && !selectedEdges.Contains (nextEdge)) {
-					// Log.Debug ("Insert ", distance, "x: ", direction.Reverse);
-					distance.Repeat (i => list.Add (new Edge (direction: direction.Reverse, color: currentEdge)));
+					list.AddRange (distance.Repeat (i => new Edge (direction: direction.Reverse, color: currentEdge)));
 				}
 			}
 

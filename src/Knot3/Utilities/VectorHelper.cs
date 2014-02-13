@@ -511,17 +511,24 @@ namespace Knot3.Utilities
 			return source.OrderBy<T, int> ((item) => rnd.Next ());
 		}
 
-		public static void Repeat (this int repeatCount, Action action)
+		public static void Repeat (this int count, Action action)
 		{
-			for (int i = 0; i < repeatCount; i++) {
+			for (int i = 0; i < count; i++) {
 				action ();
 			}
 		}
 
-		public static void Repeat (this int repeatCount, Action<int> action)
+		public static void Repeat (this int count, Action<int> action)
 		{
-			for (int i = 0; i < repeatCount; i++) {
+			for (int i = 0; i < count; i++) {
 				action (i);
+			}
+		}
+
+		public static IEnumerable<T> Repeat<T> (this int count, Func<int, T> func)
+		{
+			for (int i = 0; i < count; i++) {
+				yield return func (i);
 			}
 		}
 	}
