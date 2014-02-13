@@ -164,24 +164,7 @@ namespace Knot3.KnotData
 
 		private bool IsValidStructure (IEnumerable<Edge> edges)
 		{
-			Vector3 position3D = Vector3.Zero;
-			HashSet<Vector3> occupancy = new HashSet<Vector3> ();
-			if (edges.Count () < 4) {
-				return false;
-			}
-			foreach (Direction edge in edges) {
-				if (occupancy.Contains (position3D + (edge / 2))) {
-					return false;
-				}
-				else {
-					occupancy.Add (position3D + (edge / 2));
-					position3D += edge;
-				}
-			}
-			if (position3D.DistanceTo (Vector3.Zero) > 0.00001f) {
-				return false;
-			}
-			return true;
+			return IsValidStructure (from e in edges select e.Direction);
 		}
 
 		/// <summary>
