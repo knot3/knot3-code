@@ -24,7 +24,7 @@ namespace Knot3.KnotData
 	/// <summary>
 	/// Eine doppelt verkettete Liste.
 	/// </summary>
-	public class CircleEntry<T> : IEnumerable<T>
+	public class CircleEntry<T> : IEnumerable<T>, ICollection<T>, IList<T>
 	{
 		public T Value { get; set; }
 
@@ -141,6 +141,26 @@ namespace Knot3.KnotData
 			yield break;
 		}
 
+		public int IndexOf (T obj)
+		{
+			return IndexOf ((t) => t.Equals (obj));
+		}
+
+		public int IndexOf (Func<T, bool> func)
+		{
+			int i = 0;
+			CircleEntry<T> current = this;
+			do {
+				if (func (current.Value)) {
+					return i;
+				}
+				current = current.Next;
+				++ i;
+			}
+			while (current != this);
+			return -1;
+		}
+
 		public IEnumerable<T> RangeTo (CircleEntry<T> other)
 		{
 			CircleEntry<T> current = this;
@@ -169,25 +189,6 @@ namespace Knot3.KnotData
 				CircleEntry<T> current = this;
 				do {
 					yield return Tuple.Create (current.Previous.Value, current.Value, current.Next.Value);
-					current = current.Next;
-				}
-				while (current != this);
-			}
-		}
-
-		public CircleEntry<CircleEntry<T>> Circles
-		{
-			get {
-				return new CircleEntry<CircleEntry<T>> (circles);
-			}
-		}
-
-		private IEnumerable<CircleEntry<T>> circles
-		{
-			get {
-				CircleEntry<T> current = this;
-				do {
-					yield return current;
 					current = current.Next;
 				}
 				while (current != this);
@@ -235,6 +236,9 @@ namespace Knot3.KnotData
 			get {
 				return (this + index).Value;
 			}
+			set {
+				(this + index).Value = value;
+			}
 		}
 
 		public static CircleEntry<T> operator - (CircleEntry<T> circle, int i)
@@ -255,6 +259,54 @@ namespace Knot3.KnotData
 		public static implicit operator T (CircleEntry<T> circle)
 		{
 			return circle.Value;
+		}
+
+		public bool IsReadOnly { get { return false; } }
+
+		public bool Contains (T obj)
+		{
+			CircleEntry<T> item = Find (obj).ElementAtOrDefault (0);
+			return item != null;
+		}
+
+		public bool Remove (T value)
+		{
+			CircleEntry<T> item;
+			if (Contains (value, out item)) {
+				item.Remove ();
+				return true;
+			}
+			else
+				return false;
+		}
+
+		public void RemoveAt (int i)
+		{
+			(this + i).Remove ();
+		}
+
+		public void Insert (int i, T value)
+		{
+			(this + i).InsertBefore (value);
+		}
+
+		public void Add (T value)
+		{
+			InsertBefore (value);
+		}
+
+		public void Clear ()
+		{
+			Remove ();
+			Next = Previous = this;
+		}
+
+		public void CopyTo (T[] array, int start)
+		{
+			foreach (T value in this) {
+				array.SetValue (value, start);
+				++start;
+			}
 		}
 	}
 
