@@ -1,5 +1,5 @@
 ::
-:: Stapelverarbeitungs-Skript für den Testabdeckungsbericht unter Windows (V. 1.0)
+:: Stapelverarbeitungs-Skript für den Testabdeckungsbericht unter Windows (V. 1.1)
 ::
 
 @echo off
@@ -44,11 +44,29 @@ echo.
 :: Standard-Installationsverzeichnisse für die Werkzeuge verwenden!
 ::
 set PATH_TO_PROJECT=%~dp0..
-set PATH_TO_OPENCOVER=%USERPROFILE%\AppData\Local\Apps\OpenCover
+
+
+set PATH_TO_OPENCOVER=%LOCALAPPDATA%\Apps\OpenCover
 set PATH_TO_NUNIT=%ProgramFiles(x86)%\NUnit 2.6.3\bin
 set PATH_TO_TESTS=%PATH_TO_PROJECT%\tests\bin\Debug
 set PATH_TO_REPORTGENERATOR=%ProgramFiles(x86)%\ReportGenerator\bin
 set PATH_TO_REPORT=%PATH_TO_PROJECT%\coverage\bin\Debug
+
+
+
+set PATH_TO_CONFIGURATION_FILE=%USERPROFILE%\Documents\vs-crpc.txt
+
+if exist %PATH_TO_CONFIGURATION_FILE% (
+echo.
+echo Visual Studio coverage report path configuration file found.
+echo.
+) else (
+echo.
+echo No configuration, using default settings.
+echo.
+)
+
+
 
 echo Paths to ...
 echo.
