@@ -21,9 +21,11 @@ namespace Knot3.UnitTests.Tests.KnotData
 			KnotStringIO other = new KnotStringIO(knotStringIO.Content);
 
 			Assert.AreEqual(knotStringIO.Content, other.Content, "Contetnt equal");
+            KnotStringIO invalidContent = null;
 
-			KnotStringIO invalidContent = new KnotStringIO("Name \n" + "Invalid Line \n");
-
+            
+            Assert.Catch(() => { invalidContent = new KnotStringIO("Name \n" + "Invalid Line \n"); });
+            Assert.IsNull(invalidContent);
 			Assert.AreEqual(knotStringIO.Content, other.Content, "Contetnt equal");
 		}
 	}
