@@ -388,7 +388,7 @@ namespace Knot3.Data
 		/// <summary>
 		/// Erstellt eine vollständige Kopie des Knotens, inklusive der Kanten-Datenstruktur und des Metadaten-Objekts.
 		/// </summary>
-		public Object Clone ()
+		public object Clone ()
 		{
 			CircleEntry<Edge> newCircle = new CircleEntry<Edge> (startElement as IEnumerable<Edge>);
 			KnotMetaData metaData = new KnotMetaData (

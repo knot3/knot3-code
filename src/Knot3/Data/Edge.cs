@@ -172,7 +172,7 @@ namespace Knot3.Data
 			return i == 0 ? Left : i == 1 ? Right : i == 2 ? Up : i == 3 ? Down : i == 4 ? Forward : Backward;
 		}
 
-		public Object Clone ()
+		public object Clone ()
 		{
 			return new Edge (Direction, Color);
 		}
