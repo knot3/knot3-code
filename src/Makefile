@@ -8,7 +8,7 @@ UNZIP = unzip
 BINDIR = $(DESTDIR)/usr/games
 GAMEDIR = $(DESTDIR)/usr/share/knot3
 NAME = knot3
-SOLUTION=Knot3-Linux.csproj
+SOLUTION=Knot3-MonoGame.csproj
 
 all: build
 

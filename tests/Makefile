@@ -5,7 +5,7 @@ RM = rm -v
 RMR = rm -rvf
 MKDIR = mkdir -p
 UNZIP = unzip
-SOLUTION = ../Knot3-Linux.sln
+SOLUTION = ../Knot3-MonoGame.sln
 
 all: build
 
