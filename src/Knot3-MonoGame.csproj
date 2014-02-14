@@ -138,6 +138,9 @@
     <Compile Include="Knot3\Input\EdgeColoring.cs" />
     <Compile Include="Knot3\Input\EdgeMovement.cs" />
     <Compile Include="Knot3\Input\EdgeRectangles.cs" />
+    <Compile Include="Knot3\Input\IMouseClickEventListener.cs" />
+    <Compile Include="Knot3\Input\IMouseMoveEventListener.cs" />
+    <Compile Include="Knot3\Input\IMouseScrollEventListener.cs" />
     <Compile Include="Knot3\Input\InputAction.cs" />
     <Compile Include="Knot3\Input\InputManager.cs" />
     <Compile Include="Knot3\Input\KnotInputHandler.cs" />
@@ -223,9 +226,6 @@
     <Compile Include="Knot3\Widgets\VerticalAlignment.cs" />
     <Compile Include="Knot3\Widgets\Widget.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Knot3\Input\IMouseClickEventListener.cs" />
-    <Compile Include="Knot3\Input\IMouseMoveEventListener.cs" />
-    <Compile Include="Knot3\Input\IMouseScrollEventListener.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\" />

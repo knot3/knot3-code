@@ -136,9 +136,6 @@
     <Compile Include="Knot3\Core\IGameScreen.cs" />
     <Compile Include="Knot3\Core\IGameScreenComponent.cs" />
     <Compile Include="Knot3\Core\IKeyEventListener.cs" />
-    <Compile Include="Knot3\Core\IMouseClickEventListener.cs" />
-    <Compile Include="Knot3\Core\IMouseMoveEventListener.cs" />
-    <Compile Include="Knot3\Core\IMouseScrollEventListener.cs" />
     <Compile Include="Knot3\Core\KeyOptionInfo.cs" />
     <Compile Include="Knot3\Core\Knot3Game.cs" />
     <Compile Include="Knot3\Core\Localizer.cs" />
@@ -201,6 +198,9 @@
     <Compile Include="Knot3\Input\EdgeColoring.cs" />
     <Compile Include="Knot3\Input\EdgeMovement.cs" />
     <Compile Include="Knot3\Input\EdgeRectangles.cs" />
+    <Compile Include="Knot3\Input\IMouseClickEventListener.cs" />
+    <Compile Include="Knot3\Input\IMouseMoveEventListener.cs" />
+    <Compile Include="Knot3\Input\IMouseScrollEventListener.cs" />
     <Compile Include="Knot3\Input\InputAction.cs" />
     <Compile Include="Knot3\Input\InputManager.cs" />
     <Compile Include="Knot3\Input\KnotInputHandler.cs" />
