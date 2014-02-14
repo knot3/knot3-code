@@ -21,6 +21,7 @@ using Knot3.KnotData;
 using Knot3.Widgets;
 using Knot3.Utilities;
 using Knot3.Development;
+using Knot3.Platform;
 
 namespace Knot3.GameObjects
 {
@@ -365,7 +366,7 @@ namespace Knot3.GameObjects
 				TexturedRectangle rectangle = new TexturedRectangle (screen: screen, info: info);
 				rectangle.World = World;
 
-				if (MonoHelper.IsRunningOnLinux ()) {
+				if (SystemInfo.IsRunningOnLinux ()) {
 					Log.Debug ("rectangle=", rectangle);
 				}
 

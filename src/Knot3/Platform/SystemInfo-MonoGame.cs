@@ -21,28 +21,28 @@ using Knot3.RenderEffects;
 using Knot3.KnotData;
 using Knot3.Widgets;
 
-namespace Knot3.Utilities
+namespace Knot3.Platform
 {
-	public class MonoHelper
+	public static partial class SystemInfo
 	{
 		public static bool IsRunningOnMono ()
 		{
-			return false;
+			return Type.GetType ("Mono.Runtime") != null;
 		}
 
 		public static bool IsRunningOnMonogame ()
 		{
-			return false;
+			return true;
 		}
 
 		public static bool IsRunningOnLinux ()
 		{
-			return false;
+			return Environment.OSVersion.Platform == PlatformID.Unix;
 		}
 
 		public static bool IsRunningOnWindows ()
 		{
-			return true;
+			return !IsRunningOnLinux ();
 		}
 	}
 }

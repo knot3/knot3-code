@@ -19,6 +19,7 @@ using Knot3.RenderEffects;
 using Knot3.KnotData;
 using Knot3.Widgets;
 using Knot3.Utilities;
+using Knot3.Platform;
 
 namespace Knot3.Core
 {
@@ -36,7 +37,7 @@ namespace Knot3.Core
 		{
 			get {
 				if (_default == null) {
-					_default = new ConfigFile (FileUtility.SettingsDirectory + FileUtility.Separator + "knot3.ini");
+					_default = new ConfigFile (SystemInfo.SettingsDirectory + SystemInfo.Separator + "knot3.ini");
 				}
 				return _default;
 			}
@@ -48,8 +49,8 @@ namespace Knot3.Core
 		{
 			get {
 				if (_models == null) {
-					String seperatorString = FileUtility.Separator.ToString ();
-					_models = new ConfigFile (FileUtility.BaseDirectory + seperatorString
+					String seperatorString = SystemInfo.Separator.ToString ();
+					_models = new ConfigFile (SystemInfo.BaseDirectory + seperatorString
 					                          + "Content" + seperatorString + "models.ini");
 				}
 				return _models;

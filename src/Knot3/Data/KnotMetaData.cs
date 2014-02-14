@@ -20,6 +20,7 @@ using Knot3.Screens;
 using Knot3.RenderEffects;
 using Knot3.Widgets;
 using Knot3.Utilities;
+using Knot3.Platform;
 
 namespace Knot3.KnotData
 {
@@ -59,7 +60,7 @@ namespace Knot3.KnotData
 					else {
 						throw new ArgumentException ("Every implementation of IKnotIO must have at least one file extension.");
 					}
-					Filename = FileUtility.SavegameDirectory + FileUtility.Separator.ToString () + FileUtility.ConvertToFileName (name) + extension;
+					Filename = SystemInfo.SavegameDirectory + SystemInfo.Separator.ToString () + FileUtility.ConvertToFileName (name) + extension;
 				}
 			}
 		}

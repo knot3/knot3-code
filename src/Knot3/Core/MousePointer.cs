@@ -20,6 +20,7 @@ using Knot3.KnotData;
 using Knot3.Widgets;
 using Knot3.Utilities;
 using Knot3.Input;
+using Knot3.Platform;
 
 namespace Knot3.Core
 {
@@ -57,7 +58,7 @@ namespace Knot3.Core
 
 		private void DrawCursor (GameTime time)
 		{
-			if (!MonoHelper.IsRunningOnLinux ()) {
+			if (!SystemInfo.IsRunningOnLinux ()) {
 				spriteBatch.Begin ();
 
 				if (Screen.Input.GrabMouseMovement || Screen.Input.CurrentInputAction == InputAction.CameraTargetMove

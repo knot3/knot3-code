@@ -22,10 +22,10 @@ using Knot3.RenderEffects;
 using Knot3.KnotData;
 using Knot3.Widgets;
 using Knot3.Utilities;
+using Knot3.Development;
+using Knot3.Platform;
 
 using OggSharp;
-
-using Knot3.Development;
 
 namespace Knot3.Audio
 {
@@ -40,8 +40,8 @@ namespace Knot3.Audio
 		public OggVorbisFile (string name, string filepath, Sound soundType)
 		{
 			Name = name;
-			string cachefile = FileUtility.DecodedMusicCache
-			                   + FileUtility.Separator.ToString ()
+			string cachefile = SystemInfo.DecodedMusicCache
+			                   + SystemInfo.Separator.ToString ()
 			                   + soundType.ToString ()
 			                   + "_"
 			                   + name.GetHashCode ().ToString ()

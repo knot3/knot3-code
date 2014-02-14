@@ -30,99 +30,6 @@ namespace Knot3.Utilities
 	/// </summary>
 	public static class FileUtility
 	{
-		#region Properties
-
-		/// <summary>
-		/// Das Einstellungsverzeichnis.
-		/// </summary>
-		public static string SettingsDirectory
-		{
-			get {
-				string directory;
-				if (MonoHelper.IsRunningOnLinux ()) {
-					directory = Environment.GetEnvironmentVariable ("HOME") + "/.knot3/";
-				}
-				else {
-					directory = Environment.GetFolderPath (System.Environment.SpecialFolder.Personal) + "\\Knot3\\";
-				}
-				Directory.CreateDirectory (directory);
-				return directory;
-			}
-		}
-
-		/// <summary>
-		/// Das Spielstandverzeichnis.
-		/// </summary>
-		public static string SavegameDirectory
-		{
-			get {
-				string directory = SettingsDirectory + Separator.ToString () + "Savegames";
-				Directory.CreateDirectory (directory);
-				return directory;
-			}
-		}
-
-		/// <summary>
-		/// Das Bildschirmfotoverzeichnis.
-		/// </summary>
-		public static string ScreenshotDirectory
-		{
-			get {
-				string directory;
-				if (MonoHelper.IsRunningOnLinux ()) {
-					directory = Environment.GetEnvironmentVariable ("HOME");
-				}
-				else {
-					directory = Environment.GetFolderPath (System.Environment.SpecialFolder.MyPictures) + "\\Knot3\\";
-				}
-				Directory.CreateDirectory (directory);
-				return directory;
-			}
-		}
-
-		public static string DecodedMusicCache
-		{
-			get {
-				string directory;
-				if (MonoHelper.IsRunningOnLinux ()) {
-					directory = "/var/tmp/knot3/";
-				}
-				else {
-					directory = Environment.GetFolderPath (System.Environment.SpecialFolder.MyMusic) + "\\Knot3\\";
-				}
-				Directory.CreateDirectory (directory);
-				return directory;
-			}
-		}
-
-		public static string BaseDirectory
-		{
-			get {
-				if (baseDirectory != null) {
-					return baseDirectory;
-				}
-				else {
-					string cwd = Directory.GetCurrentDirectory ();
-					string[] binDirectories = new string[] { "Debug", "Release", "x86", "bin" };
-					foreach (string dir in binDirectories) {
-						if (cwd.ToLower ().EndsWith (dir.ToLower ())) {
-							cwd = cwd.Substring (0, cwd.Length - dir.Length - 1);
-						}
-					}
-					// Environment.CurrentDirectory = cwd;
-					Log.Debug (cwd);
-					baseDirectory = cwd;
-					return cwd;
-				}
-			}
-		}
-
-		private static string baseDirectory = null;
-
-		public static char Separator { get { return Path.DirectorySeparatorChar; } }
-
-		#endregion
-
 		#region Methods
 
 		/// <summary>
@@ -132,9 +39,9 @@ namespace Knot3.Utilities
 		{
 			char[] arr = name.ToCharArray ();
 			arr = Array.FindAll<char> (arr, (c => (char.IsLetterOrDigit (c)
-			                                       || char.IsWhiteSpace (c)
-			                                       || c == '-'))
-			                          );
+				|| char.IsWhiteSpace (c)
+				|| c == '-'))
+			);
 			return new string (arr);
 		}
 

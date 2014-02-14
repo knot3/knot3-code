@@ -21,6 +21,7 @@ using Knot3.RenderEffects;
 using Knot3.Widgets;
 using Knot3.KnotData;
 using Knot3.Development;
+using Knot3.Platform;
 
 namespace Knot3.Utilities
 {
@@ -42,12 +43,12 @@ namespace Knot3.Utilities
 		public void FindSavegames (Action<string, SavegameMetaData> onSavegameFound)
 		{
 			// Erstelle einen neuen Index, der eine Datei mit dem angegeben Indexnamen im Spielstandverzeichnis einliest
-			fileIndex = new FileIndex (FileUtility.SavegameDirectory + FileUtility.Separator.ToString () + IndexName + ".txt");
+			fileIndex = new FileIndex (SystemInfo.SavegameDirectory + SystemInfo.Separator.ToString () + IndexName + ".txt");
 
 			// Diese Verzeichnisse werden nach Spielständen durchsucht
 			string[] searchDirectories = new string[] {
-				FileUtility.BaseDirectory,
-				FileUtility.SavegameDirectory
+				SystemInfo.BaseDirectory,
+				SystemInfo.SavegameDirectory
 			};
 			Log.Debug ("Search for Savegames: ", string.Join (", ", searchDirectories));
 

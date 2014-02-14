@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Linq;
 
 using Knot3.Utilities;
+using Knot3.Platform;
 
 namespace Knot3.Development
 {
@@ -15,7 +16,7 @@ namespace Knot3.Development
 		public static void Debug (params object[] message)
 		{
 			string str = string.Join ("", message);
-			if (MonoHelper.IsRunningOnLinux ()) {
+			if (SystemInfo.IsRunningOnLinux ()) {
 				Console.WriteLine (str);
 			}
 			else {

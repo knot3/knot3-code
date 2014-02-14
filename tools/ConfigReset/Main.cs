@@ -4,6 +4,7 @@ using System.IO;
 using Knot3;
 using Knot3.Core;
 using Knot3.Utilities;
+using Knot3.Platform;
 
 namespace ConfigReset
 {
@@ -11,13 +12,13 @@ namespace ConfigReset
 	{
 		public static void Main (string[] args)
 		{
-			Console.WriteLine ("Settings directory: " + FileUtility.SettingsDirectory);
+			Console.WriteLine ("Settings directory: " + SystemInfo.SettingsDirectory);
 			Console.WriteLine ();
 			Console.WriteLine ("Press <Enter> to delete it.");
 			Console.ReadLine ();
 
 			try {
-				Directory.Delete (FileUtility.SettingsDirectory, true);
+				Directory.Delete (SystemInfo.SettingsDirectory, true);
 				Console.WriteLine ("Settings deleted.");
 			}
 			catch (Exception ex) {

@@ -146,6 +146,9 @@
     <Compile Include="Knot3\Input\KnotInputHandler.cs" />
     <Compile Include="Knot3\Input\WidgetKeyHandler.cs" />
     <Compile Include="Knot3\Input\WidgetMouseHandler.cs" />
+    <Compile Include="Knot3\Platform\SystemInfo-MonoGame.cs" />
+    <Compile Include="Knot3\Platform\SystemInfo-XNA.cs" />
+    <Compile Include="Knot3\Platform\SystemInfo.cs" />
     <Compile Include="Knot3\Program.cs" />
     <Compile Include="Knot3\RenderEffects\CelShadingEffect.cs" />
     <Compile Include="Knot3\RenderEffects\FadeEffect.cs" />
@@ -186,7 +189,6 @@
     <Compile Include="Knot3\Utilities\IniFile.cs" />
     <Compile Include="Knot3\Utilities\InputHelper.cs" />
     <Compile Include="Knot3\Utilities\ModelHelper.cs" />
-    <Compile Include="Knot3\Utilities\MonoHelperMG.cs" />
     <Compile Include="Knot3\Utilities\RayExtensions.cs" />
     <Compile Include="Knot3\Utilities\SavegameLoader.cs" />
     <Compile Include="Knot3\Utilities\ShaderHelper.cs" />
@@ -228,8 +230,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\" />
-    <Folder Include="Content\Music\Menu\" />
-    <Folder Include="Knot3\Input\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

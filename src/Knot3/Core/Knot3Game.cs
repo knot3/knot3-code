@@ -20,6 +20,7 @@ using Knot3.Widgets;
 using Knot3.Screens;
 using Knot3.Utilities;
 using Knot3.Development;
+using Knot3.Platform;
 
 namespace Knot3.Core
 {
@@ -93,7 +94,7 @@ namespace Knot3.Core
 		/// </summary>
 		public GraphicsDeviceManager Graphics { get; private set; }
 
-		private static readonly Vector2 defaultSize = MonoHelper.IsRunningOnMono ()
+		private static readonly Vector2 defaultSize = SystemInfo.IsRunningOnMono ()
 		        ? new Vector2 (1024, 600) : new Vector2 (1280, 720);
 
 		#endregion
@@ -116,10 +117,10 @@ namespace Knot3.Core
 			isFullscreen = false;
 			Graphics.ApplyChanges ();
 
-			if (MonoHelper.IsRunningOnLinux ()) {
+			if (SystemInfo.IsRunningOnLinux ()) {
 				IsMouseVisible = true;
 			}
-			else if (MonoHelper.IsRunningOnWindows ()) {
+			else if (SystemInfo.IsRunningOnWindows ()) {
 				IsMouseVisible = false;
 				System.Windows.Forms.Cursor.Hide ();
 			}

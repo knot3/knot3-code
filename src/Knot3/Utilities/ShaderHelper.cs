@@ -20,6 +20,7 @@ using Knot3.Screens;
 using Knot3.RenderEffects;
 using Knot3.KnotData;
 using Knot3.Widgets;
+using Knot3.Platform;
 
 namespace Knot3.Utilities
 {
@@ -27,7 +28,7 @@ namespace Knot3.Utilities
 	{
 		public static Effect LoadEffect (this IGameScreen screen, string name)
 		{
-			if (MonoHelper.IsRunningOnMono () || MonoHelper.IsRunningOnMonogame ()) {
+			if (SystemInfo.IsRunningOnMono () || SystemInfo.IsRunningOnMonogame ()) {
 				return LoadEffectMono (screen, name);
 			}
 			else {
