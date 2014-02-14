@@ -309,9 +309,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="Content\Knot3Content-XNA.contentproj">
+    <ProjectReference Include="Content\Knot3-Content-XNA.contentproj">
       <Project>{CD33049E-0B5F-42BA-B816-658DEDF50DEA}</Project>
-      <Name>Knot3Content-XNA</Name>
+      <Name>Knot3-Content-XNA</Name>
       <XnaReferenceType>Content</XnaReferenceType>
     </ProjectReference>
   </ItemGroup>
