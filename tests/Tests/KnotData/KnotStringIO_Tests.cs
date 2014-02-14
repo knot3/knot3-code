@@ -26,9 +26,10 @@ namespace Knot3.UnitTests.Tests.KnotData
 
 			invalidContent = new KnotStringIO ("Name \n" + "Invalid Line \n");
 			Assert.Catch<IOException> (() => {
-				// damit der Compiler den Aufruf der Decode...-Methoden nicht wegoptimiert, muss man
-				// das Attribut Edges aufrufen (das ist ein Iterator mit lazy evaluation)
-				// und den in eine Liste umwandeln
+				// damit der Compiler den Aufruf der Decode...-Methoden nicht wegoptimiert,
+				// muss man zurück zum Konstruktur noch das eigentlich dort abgespeicherte
+				// Attribut Edges abrufen (das ist ein Iterator mit lazy evaluation)
+				// und das dann in eine Liste umwandeln
 				Console.WriteLine (invalidContent.Edges.ToList ());
 			}
 			                          );
