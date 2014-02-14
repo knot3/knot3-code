@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 using NUnit.Framework;
 
@@ -23,8 +24,14 @@ namespace Knot3.UnitTests.Tests.KnotData
 			Assert.AreEqual (knotStringIO.Content, other.Content, "Contetnt equal");
 			KnotStringIO invalidContent = null;
 
-			Assert.Catch (() => { invalidContent = new KnotStringIO ("Name \n" + "Invalid Line \n"); });
-			Assert.IsNull (invalidContent);
+			invalidContent = new KnotStringIO ("Name \n" + "Invalid Line \n");
+			Assert.Catch<IOException> (() => {
+				// damit der Compiler den Aufruf der Decode...-Methoden nicht wegoptimiert, muss man
+				// das Attribut Edges aufrufen (das ist ein Iterator mit lazy evaluation)
+				// und den in eine Liste umwandeln
+				Console.WriteLine (invalidContent.Edges.ToList ());
+			}
+			);
 			Assert.AreEqual (knotStringIO.Content, other.Content, "Contetnt equal");
 		}
 	}
