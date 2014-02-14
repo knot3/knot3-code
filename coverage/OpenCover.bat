@@ -96,7 +96,7 @@ echo.
 ::
 :: Filter für OpenCover hier einstellen:
 ::
-set FILTER=-filter:"+[Knot3]* -[Knot3]Knot3.Program -[Knot3]Knot3.Widgets.* -[Knot3]Knot3.*Screen"
+set FILTER=-filter:"+[Knot3]* -[Knot3]Knot3.Program -[Knot3]Knot3.Widgets.* -[Knot3]Knot3.Screens.* -[Knot3]Knot3.RenderEffects.*"
 :: set FILTER="-filter:+[Knot3]* -Knot3.Widgets*"
 echo.
 echo OpenCover-Filter-Argument:
