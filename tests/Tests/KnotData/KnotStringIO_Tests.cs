@@ -31,7 +31,7 @@ namespace Knot3.UnitTests.Tests.KnotData
 				// und den in eine Liste umwandeln
 				Console.WriteLine (invalidContent.Edges.ToList ());
 			}
-			);
+			                          );
 			Assert.AreEqual (knotStringIO.Content, other.Content, "Contetnt equal");
 		}
 	}
