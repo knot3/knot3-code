@@ -25,7 +25,7 @@ using Knot3.RenderEffects;
 using Knot3.Widgets;
 using Knot3.Development;
 
-namespace Knot3.KnotData
+namespace Knot3.Data
 {
 	/// <summary>
 	/// Implementiert das Speicherformat für Challenges.

@@ -6,7 +6,7 @@ using NUnit.Framework;
 
 using Knot3.Core;
 using Knot3.GameObjects;
-using Knot3.KnotData;
+using Knot3.Data;
 using Knot3.RenderEffects;
 
 namespace Knot3.GameObject_Tests

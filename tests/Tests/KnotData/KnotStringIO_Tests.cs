@@ -7,7 +7,7 @@ using System.IO;
 
 using NUnit.Framework;
 
-using Knot3.KnotData;
+using Knot3.Data;
 using Knot3.UnitTests.MockObjects;
 
 namespace Knot3.UnitTests.Tests.KnotData

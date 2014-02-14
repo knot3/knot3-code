@@ -23,7 +23,7 @@ using Knot3.Utilities;
 using Knot3.Development;
 using Knot3.Platform;
 
-namespace Knot3.KnotData
+namespace Knot3.Data
 {
 	/// <summary>
 	/// Enthält Metadaten zu einer Challenge.

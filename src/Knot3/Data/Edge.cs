@@ -20,7 +20,7 @@ using Knot3.Screens;
 using Knot3.RenderEffects;
 using Knot3.Widgets;
 
-namespace Knot3.KnotData
+namespace Knot3.Data
 {
 	/// <summary>
 	/// Eine Kante eines Knotens, die aus einer Richtung und einer Farbe, sowie optional einer Liste von Flächennummern besteht.

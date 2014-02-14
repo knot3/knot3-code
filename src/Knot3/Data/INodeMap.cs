@@ -21,7 +21,7 @@ using Knot3.RenderEffects;
 using Knot3.Widgets;
 using Knot3.Utilities;
 
-namespace Knot3.KnotData
+namespace Knot3.Data
 {
 	public interface INodeMap
 	{

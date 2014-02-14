@@ -16,7 +16,7 @@ using Microsoft.Xna.Framework.Storage;
 using Knot3.GameObjects;
 using Knot3.Screens;
 using Knot3.RenderEffects;
-using Knot3.KnotData;
+using Knot3.Data;
 using Knot3.Widgets;
 using Knot3.Audio;
 using Knot3.Input;

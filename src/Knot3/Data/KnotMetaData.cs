@@ -22,7 +22,7 @@ using Knot3.Widgets;
 using Knot3.Utilities;
 using Knot3.Platform;
 
-namespace Knot3.KnotData
+namespace Knot3.Data
 {
 	/// <summary>
 	/// Enthält Metadaten eines Knotens, die aus einer Spielstand-Datei schneller eingelesen werden können,

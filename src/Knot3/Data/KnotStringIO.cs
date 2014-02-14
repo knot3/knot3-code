@@ -22,7 +22,7 @@ using Knot3.RenderEffects;
 using Knot3.Widgets;
 using Knot3.Development;
 
-namespace Knot3.KnotData
+namespace Knot3.Data
 {
 	/// <summary>
 	/// Diese Klasse repräsentiert einen Parser für das Knoten-Austauschformat und enthält die

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 using NUnit.Framework;
 
-using Knot3.KnotData;
+using Knot3.Data;
 
 namespace Knot3.UnitTests.Tests.KnotData
 {

@@ -20,7 +20,7 @@ using Knot3.Screens;
 using Knot3.RenderEffects;
 using Knot3.Widgets;
 
-namespace Knot3.KnotData
+namespace Knot3.Data
 {
 	public interface ISavegameIO<Savegame, SavegameMetaData>
 	{
