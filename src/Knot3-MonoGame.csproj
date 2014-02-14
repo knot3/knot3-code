@@ -76,9 +76,6 @@
     <Compile Include="Knot3\Core\IGameScreen.cs" />
     <Compile Include="Knot3\Core\IGameScreenComponent.cs" />
     <Compile Include="Knot3\Core\IKeyEventListener.cs" />
-    <Compile Include="Knot3\Core\IMouseClickEventListener.cs" />
-    <Compile Include="Knot3\Core\IMouseMoveEventListener.cs" />
-    <Compile Include="Knot3\Core\IMouseScrollEventListener.cs" />
     <Compile Include="Knot3\Core\KeyOptionInfo.cs" />
     <Compile Include="Knot3\Core\Knot3Game.cs" />
     <Compile Include="Knot3\Core\Localizer.cs" />
@@ -226,6 +223,9 @@
     <Compile Include="Knot3\Widgets\VerticalAlignment.cs" />
     <Compile Include="Knot3\Widgets\Widget.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Knot3\Input\IMouseClickEventListener.cs" />
+    <Compile Include="Knot3\Input\IMouseMoveEventListener.cs" />
+    <Compile Include="Knot3\Input\IMouseScrollEventListener.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\" />

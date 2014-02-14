@@ -18,13 +18,14 @@ using Knot3.Screens;
 using Knot3.RenderEffects;
 using Knot3.Data;
 using Knot3.Widgets;
+using Knot3.Core;
 
-namespace Knot3.Core
+namespace Knot3.Input
 {
 	/// <summary>
 	/// Eine Schnittstelle, die von Klassen implementiert wird, die auf Maus-Klicks reagieren.
 	/// </summary>
-	public interface IMouseClickEventListener
+	public interface IMouseMoveEventListener
 	{
 		#region Properties
 
@@ -34,9 +35,9 @@ namespace Knot3.Core
 		DisplayLayer Index { get; }
 
 		/// <summary>
-		/// Ob die Klasse zur Zeit auf Mausklicks reagiert.
+		/// Ob die Klasse zur Zeit auf Mausbewegungen reagiert.
 		/// </summary>
-		bool IsMouseClickEventEnabled { get; }
+		bool IsMouseMoveEventEnabled { get; }
 
 		#endregion
 
@@ -45,19 +46,13 @@ namespace Knot3.Core
 		/// <summary>
 		/// Die Ausmaße des von der Klasse repräsentierten Objektes.
 		/// </summary>
-		Bounds MouseClickBounds { get; }
+		Bounds MouseMoveBounds { get; }
 
-		/// <summary>
-		/// Die Reaktion auf einen Linksklick.
-		/// </summary>
-		void OnLeftClick (Vector2 position, ClickState state, GameTime time);
+		void OnLeftMove (ScreenPoint previousPosition, ScreenPoint currentPosition, ScreenPoint move, GameTime time);
 
-		/// <summary>
-		/// Die Reaktion auf einen Rechtsklick.
-		/// </summary>
-		void OnRightClick (Vector2 position, ClickState state, GameTime time);
+		void OnRightMove (ScreenPoint previousPosition, ScreenPoint currentPosition, ScreenPoint move, GameTime time);
 
-		void SetHovered (bool hovered, GameTime time);
+		void OnMove (ScreenPoint previousPosition, ScreenPoint currentPosition, ScreenPoint move, GameTime time);
 
 		#endregion
 	}

@@ -18,8 +18,9 @@ using Knot3.Screens;
 using Knot3.RenderEffects;
 using Knot3.Data;
 using Knot3.Widgets;
+using Knot3.Core;
 
-namespace Knot3.Core
+namespace Knot3.Input
 {
 	public interface IMouseScrollEventListener
 	{
