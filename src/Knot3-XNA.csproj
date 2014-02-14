@@ -139,8 +139,6 @@
     <Compile Include="Knot3\Core\IMouseClickEventListener.cs" />
     <Compile Include="Knot3\Core\IMouseMoveEventListener.cs" />
     <Compile Include="Knot3\Core\IMouseScrollEventListener.cs" />
-    <Compile Include="Knot3\Core\InputAction.cs" />
-    <Compile Include="Knot3\Core\InputManager.cs" />
     <Compile Include="Knot3\Core\KeyOptionInfo.cs" />
     <Compile Include="Knot3\Core\Knot3Game.cs" />
     <Compile Include="Knot3\Core\Localizer.cs" />
@@ -161,16 +159,12 @@
     <Compile Include="Knot3\Development\Profiler.cs" />
     <Compile Include="Knot3\GameObjects\ArrowModel.cs" />
     <Compile Include="Knot3\GameObjects\ArrowModelInfo.cs" />
-    <Compile Include="Knot3\GameObjects\EdgeColoring.cs" />
-    <Compile Include="Knot3\GameObjects\EdgeMovement.cs" />
-    <Compile Include="Knot3\GameObjects\EdgeRectangles.cs" />
     <Compile Include="Knot3\GameObjects\GameModel.cs" />
     <Compile Include="Knot3\GameObjects\GameModelInfo.cs" />
     <Compile Include="Knot3\GameObjects\GameObjectDistance.cs" />
     <Compile Include="Knot3\GameObjects\GameObjectInfo.cs" />
     <Compile Include="Knot3\GameObjects\IGameObject.cs" />
     <Compile Include="Knot3\GameObjects\IJunction.cs" />
-    <Compile Include="Knot3\GameObjects\KnotInputHandler.cs" />
     <Compile Include="Knot3\GameObjects\KnotRenderer.cs" />
     <Compile Include="Knot3\GameObjects\ModelColoring.cs" />
     <Compile Include="Knot3\GameObjects\ModelFactory.cs" />
@@ -185,6 +179,14 @@
     <Compile Include="Knot3\GameObjects\SkyCube.cs" />
     <Compile Include="Knot3\GameObjects\TexturedRectangle.cs" />
     <Compile Include="Knot3\GameObjects\TexturedRectangleInfo.cs" />
+    <Compile Include="Knot3\Input\EdgeColoring.cs" />
+    <Compile Include="Knot3\Input\EdgeMovement.cs" />
+    <Compile Include="Knot3\Input\EdgeRectangles.cs" />
+    <Compile Include="Knot3\Input\InputAction.cs" />
+    <Compile Include="Knot3\Input\InputManager.cs" />
+    <Compile Include="Knot3\Input\KnotInputHandler.cs" />
+    <Compile Include="Knot3\Input\WidgetKeyHandler.cs" />
+    <Compile Include="Knot3\Input\WidgetMouseHandler.cs" />
     <Compile Include="Knot3\KnotData\Challenge.cs" />
     <Compile Include="Knot3\KnotData\ChallengeFileIO.cs" />
     <Compile Include="Knot3\KnotData\ChallengeMetaData.cs" />
@@ -282,8 +284,6 @@
     <Compile Include="Knot3\Widgets\TextItem.cs" />
     <Compile Include="Knot3\Widgets\VerticalAlignment.cs" />
     <Compile Include="Knot3\Widgets\Widget.cs" />
-    <Compile Include="Knot3\Widgets\WidgetKeyHandler.cs" />
-    <Compile Include="Knot3\Widgets\WidgetMouseHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
