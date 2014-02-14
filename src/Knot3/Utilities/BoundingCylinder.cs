@@ -5,7 +5,7 @@ using System.Text;
 
 using Microsoft.Xna.Framework;
 
-namespace Knot3.Knot3.Utilities
+namespace Knot3.Utilities
 {
 	public struct BoundingCylinder : IEquatable<BoundingCylinder> {
 		public Vector3 SideA;
