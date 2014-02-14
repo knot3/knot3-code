@@ -206,7 +206,6 @@
     <Compile Include="Knot3\Input\KnotInputHandler.cs" />
     <Compile Include="Knot3\Input\WidgetKeyHandler.cs" />
     <Compile Include="Knot3\Input\WidgetMouseHandler.cs" />
-    <Compile Include="Knot3\Platform\SystemInfo-MonoGame.cs" />
     <Compile Include="Knot3\Platform\SystemInfo-XNA.cs" />
     <Compile Include="Knot3\Platform\SystemInfo.cs" />
     <Compile Include="Knot3\Program.cs" />
