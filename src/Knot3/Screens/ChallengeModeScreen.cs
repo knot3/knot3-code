@@ -161,6 +161,7 @@ namespace Knot3.Screens
 
 			// edge movements
 			PlayerEdgeMovement = new EdgeMovement (screen: this, world: PlayerWorld, knotRenderer: PlayerKnotRenderer, position: Vector3.Zero);
+			PlayerEdgeMovement.KnotMoved = OnKnotMoved;
 			PlayerWorld.Add (PlayerEdgeMovement);
 
 			// assign the specified challenge
@@ -221,6 +222,13 @@ namespace Knot3.Screens
 		#endregion
 
 		#region Methods
+
+		private void OnKnotMoved (Knot newKnot)
+		{
+			OnEdgesChanged ();
+			_playerKnot = newKnot;
+			registerCurrentKnot ();
+		}
 
 		private void OnEdgesChanged ()
 		{
