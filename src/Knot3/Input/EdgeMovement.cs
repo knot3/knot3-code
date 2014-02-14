@@ -14,6 +14,7 @@ using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
 
 using Knot3.Core;
+using Knot3.Input;
 using Knot3.Screens;
 using Knot3.RenderEffects;
 using Knot3.KnotData;
@@ -21,8 +22,9 @@ using Knot3.Widgets;
 using Knot3.Utilities;
 using Knot3.Audio;
 using Knot3.Development;
+using Knot3.GameObjects;
 
-namespace Knot3.GameObjects
+namespace Knot3.Input
 {
 	/// <summary>
 	/// Ein Inputhandler, der für das Verschieben der Kanten zuständig ist.

@@ -20,8 +20,9 @@ using Knot3.KnotData;
 using Knot3.Widgets;
 using Knot3.Utilities;
 using Knot3.Development;
+using Knot3.Core;
 
-namespace Knot3.Core
+namespace Knot3.Input
 {
 	/// <summary>
 	/// Stellt für jeden Frame die Maus- und Tastatureingaben bereit. Daraus werden die nicht von XNA bereitgestellten Mauseingaben berechnet. Zusätzlich wird die aktuelle Eingabeaktion berechnet.

@@ -9,6 +9,7 @@ using Knot3.Core;
 using Knot3.Audio;
 using Knot3.RenderEffects;
 using Knot3.Widgets;
+using Knot3.Input;
 
 namespace Knot3.UnitTests
 {

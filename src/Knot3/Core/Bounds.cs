@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework;
 
 using Knot3.Utilities;
 using Knot3.Core;
+using Knot3.Input;
 
 namespace Knot3.Widgets
 {

@@ -19,7 +19,7 @@ using Knot3.RenderEffects;
 using Knot3.KnotData;
 using Knot3.Widgets;
 
-namespace Knot3.Core
+namespace Knot3.Input
 {
 	/// <summary>
 	/// Repräsentiert die möglichen Eingabeaktionen, wie sie von verschiedenen Inputhandlern berechnet und verwendet werden können.
