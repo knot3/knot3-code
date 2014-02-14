@@ -77,7 +77,7 @@ namespace Knot3.UnitTests
 			Input = new InputManager (this);
 			//Audio = new AudioManager (this);
 			BackgroundColor = Color.Black;
-			//Content = new ContentManager(Content.ServiceProvider, Content.RootDirectory);
+			//Content = new ContentManager (Content.ServiceProvider, Content.RootDirectory);
 		}
 
 		#endregion
