@@ -124,7 +124,5 @@ namespace Knot3.Platform
 		public static char Separator { get { return Path.DirectorySeparatorChar; } }
 
 		#endregion
-
 	}
 }
-
