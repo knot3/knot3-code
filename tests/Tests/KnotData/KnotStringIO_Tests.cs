@@ -37,4 +37,3 @@ namespace Knot3.UnitTests.Tests.KnotData
 		}
 	}
 }
-
