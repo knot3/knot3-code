@@ -49,10 +49,8 @@ namespace Knot3.UnitTests.Data
 		[Test]
 		public void CircleEntry_Constructor_Tests ()
 		{
-			CircleEntry<int> start = new CircleEntry<int> (new int[] {
-				0, 1, 2, 3, 4, 5, 6, 7,	8, 9
-			}
-			                                              );
+			int[] arr = new int[] { 0, 1, 2, 3, 4, 5, 6, 7,	8, 9 };
+			CircleEntry<int> start = new CircleEntry<int> (arr);
 			for (int n = 0; n < 10; n++) {
 				Assert.AreEqual (n, start.Value);
 				start = start.Next;
@@ -103,6 +101,29 @@ namespace Knot3.UnitTests.Data
 			count.Repeat (i => Assert.AreEqual ((circle + i).Value, i));
 			// Implicit Cast
 			count.Repeat (i => Assert.AreEqual ((int)(circle + i), i));
+		}
+
+		[Test]
+		public void CircleEntry_Find_Test ()
+		{
+			int count = 100;
+			int[] reff = count.Repeat (i => i).ToArray ();
+			CircleEntry<int> circle = new CircleEntry<int> (reff);
+
+			foreach (int searchFor in count.Range()) {
+				Assert.AreEqual (searchFor, circle.Find (searchFor).At (0));
+				Assert.AreEqual (searchFor, circle.Find (t => t == searchFor).At (0));
+				IEnumerable<CircleEntry<int>> found1;
+				Assert.IsTrue (circle.Contains (searchFor, out found1));
+				Assert.AreEqual (searchFor, found1.At (0));
+				Assert.IsTrue (circle.Contains (t => t == searchFor, out found1));
+				Assert.AreEqual (searchFor, found1.At (0));
+				CircleEntry<int> found2;
+				Assert.IsTrue (circle.Contains (searchFor, out found2));
+				Assert.AreEqual (searchFor, found2);
+				Assert.IsTrue (circle.Contains (t => t == searchFor, out found2));
+				Assert.AreEqual (searchFor, found2);
+			}
 		}
 
 		[Test]

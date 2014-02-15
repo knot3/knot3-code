@@ -563,5 +563,12 @@ namespace Knot3.Utilities
 				yield return func (i);
 			}
 		}
+
+		public static IEnumerable<int> Range (this int count)
+		{
+			for (int i = 0; i < count; i++) {
+				yield return i;
+			}
+		}
 	}
 }
