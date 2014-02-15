@@ -156,7 +156,7 @@ namespace Knot3.UnitTests.Data
 					Assert.IsNull (found1.At (0));
 				}
 			}
-			
+
 			foreach (int searchFor in count.Range ()) {
 				circle.Remove ();
 			}
