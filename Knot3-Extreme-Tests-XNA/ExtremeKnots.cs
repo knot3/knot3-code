@@ -38,11 +38,9 @@ using Knot3.MockObjects;
 
 namespace Knot3.ExtremeTests
 {
-
 	[TestFixture]
 	public class ExtremeKnot
 	{
-
 		[SetUp]
 		public void Init ()
 		{
