@@ -32,13 +32,6 @@ using System.Threading.Tasks;
 
 using NUnit.Framework;
 
-<<<<<<< HEAD
-namespace Knot3.ExtremeTests
-{
-	public class ExtremeKnot
-	{
-	}
-=======
 using Knot3.Data;
 using Knot3.MockObjects;
 
@@ -99,5 +92,4 @@ namespace Knot3.ExtremeTests
 
 
     }
->>>>>>> Tests, Extremtests
 }
