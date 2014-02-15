@@ -451,7 +451,7 @@ namespace Knot3.Utilities
 		public static T At<T> (this List<T> list, int index)
 		{
 			if (list.Count == 0) {
-				return default(T);
+				return default (T);
 			}
 			else {
 				while (index < 0) {
@@ -468,7 +468,7 @@ namespace Knot3.Utilities
 		{
 			int count = list.Count ();
 			if (count == 0) {
-				return default(T);
+				return default (T);
 			}
 			else {
 				while (index < 0) {
