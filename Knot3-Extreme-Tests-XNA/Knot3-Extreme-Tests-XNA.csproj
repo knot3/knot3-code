@@ -40,7 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ExtremeKnot.cs" />
+    <Compile Include="ExtremeChallenges.cs" />
+    <Compile Include="ExtremeKnots.cs" />
+    <Compile Include="ExtremeInputs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
