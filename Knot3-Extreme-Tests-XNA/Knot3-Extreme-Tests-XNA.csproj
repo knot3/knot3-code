@@ -42,7 +42,6 @@
   <ItemGroup>
     <Compile Include="ExtremeChallenges.cs" />
     <Compile Include="ExtremeInputs.cs" />
-    <Compile Include="ExtremeKnot.cs" />
     <Compile Include="ExtremeKnots.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
