@@ -34,30 +34,30 @@ using NUnit.Framework;
 //#endregion
 
 namespace Knot3.UnitTests
-//{
-[TestFixture]
-public class NUnit_Beispiel_Tests
-{
-	[Test]
-	public void Test_Methode1 ()
+	//{
+	[TestFixture]
+	public class NUnit_Beispiel_Tests
 	{
-		Assert.IsNull (null);
-	}
-
-	[Test]
-	public void Test_Methode2 ()
-	{
-		//Assert.IsNotNull (null);
-	}
-
-	public static void DoSomething ()
-	{
-		try {
-			Console.WriteLine ("I Random!");
+		[Test]
+		public void Test_Methode1 ()
+		{
+			Assert.IsNull (null);
 		}
-		catch (Exception ex) {
-			Console.WriteLine (ex.Message);
+
+		[Test]
+		public void Test_Methode2 ()
+		{
+			//Assert.IsNotNull (null);
+		}
+
+		public static void DoSomething ()
+		{
+			try {
+				Console.WriteLine ("I Random!");
+			}
+			catch (Exception ex) {
+				Console.WriteLine (ex.Message);
+			}
 		}
 	}
-}
 //}
