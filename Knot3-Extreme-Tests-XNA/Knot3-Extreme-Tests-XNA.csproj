@@ -7,8 +7,8 @@
     <ProjectGuid>{DABD8115-0533-474A-B4A9-C9AECD1803A8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Knot3_Extreme_Tests_XNA</RootNamespace>
-    <AssemblyName>Knot3-Extreme-Tests-XNA</AssemblyName>
+    <RootNamespace>Knot3.ExtremeTests</RootNamespace>
+    <AssemblyName>Knot3.ExtremeTests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -41,8 +41,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ExtremeChallenges.cs" />
-    <Compile Include="ExtremeKnots.cs" />
     <Compile Include="ExtremeInputs.cs" />
+    <Compile Include="ExtremeKnot.cs" />
+    <Compile Include="ExtremeKnots.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

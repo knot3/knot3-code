@@ -53,6 +53,8 @@ my @csproj_files = (
 	{ csproj => 'tests/Knot3-Unit-Tests-MonoGame.csproj', dir => 'tests/', exclude => [], linesep => qq[\n] },
 	{ csproj => 'tests/Knot3-Unit-Tests-XNA.csproj', dir => 'tests/', exclude => [], linesep => qq[\n] },
 	{ csproj => 'tools/ConfigReset/Knot3-ConfigReset.csproj', dir => 'tools/ConfigReset/', exclude => [], linesep => qq[\n] },
+	{ csproj => 'Knot3-Extreme-Tests-XNA/Knot3-Extreme-Tests-MonoGame.csproj', dir => 'Knot3-Extreme-Tests-XNA/', exclude => [], linesep => qq[\n] },
+	{ csproj => 'Knot3-Extreme-Tests-XNA/Knot3-Extreme-Tests-XNA.csproj', dir => 'Knot3-Extreme-Tests-XNA/', exclude => [], linesep => qq[\n] },
 );
 
 foreach my $csproj_file (@csproj_files) {
