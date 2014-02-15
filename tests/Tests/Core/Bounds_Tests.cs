@@ -32,12 +32,12 @@ using System.Text;
 using System.Collections.Generic;
 
 using NUnit.Framework;
+
 using Microsoft.Xna.Framework;
 
 using Knot3.Widgets;
 using Knot3.Core;
 using Knot3.MockObjects;
-
 
 #endregion
 
