@@ -26,7 +26,6 @@
 #endregion
 
 #region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -130,17 +129,29 @@ namespace Knot3.Data
 			Next = null;
 		}
 
+		private bool IsEmpty
+		{
+			get {
+				return (Next == this || Next == null) && (Previous == this || Previous == null) && Value == null;
+			}
+		}
+
 		public int Count
 		{
 			get {
-				CircleEntry<T> current = this;
-				int count = 0;
-				do {
-					++count;
-					current = current.Next;
+				if (IsEmpty) {
+					return 0;
 				}
-				while (current != this);
-				return count;
+				else {
+					CircleEntry<T> current = this;
+					int count = 0;
+					do {
+						++count;
+						current = current.Next;
+					}
+					while (current != this);
+					return count;
+				}
 			}
 		}
 
@@ -271,7 +282,10 @@ namespace Knot3.Data
 
 		public override string ToString ()
 		{
+			if (IsEmpty)
 			return "CircleEntry (" + Value.ToString () + ")";
+			else 
+			return "CircleEntry.Empty";
 		}
 
 		public static CircleEntry<T> operator + (CircleEntry<T> circle, int i)

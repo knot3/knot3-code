@@ -156,12 +156,23 @@ namespace Knot3.UnitTests.Data
 					Assert.IsNull (found1.At (0));
 				}
 			}
-
-			foreach (int searchFor in count.Range ()) {
-				circle.Remove ();
+			foreach (int searchFor in count.Range ().Skip(1)) {
+				circle.Remove (searchFor);
 			}
 
-			Assert.AreEqual (0, circle.Count);
+			Assert.AreEqual (1, circle.Count);
+		}
+
+		[Test]
+		public void CircleEntry_RemoveAt_Test ()
+		{
+			int count = 100;
+			int[] reff = count.Repeat (i => i).ToArray ();
+			CircleEntry<int> circle = new CircleEntry<int> (reff);
+
+			Assert.IsTrue (circle.Contains(5));
+			circle.RemoveAt (5);
+			Assert.IsFalse (circle.Contains(5));
 		}
 
 		[Test]
