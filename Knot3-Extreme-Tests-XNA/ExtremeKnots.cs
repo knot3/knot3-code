@@ -36,67 +36,45 @@ using NUnit.Framework;
 using Knot3.Data;
 using Knot3.MockObjects;
 
-
-
 namespace Knot3.ExtremeTests
 {
 
+	[TestFixture]
+	public class ExtremeKnot
+	{
 
+		[SetUp]
+		public void Init ()
+		{
+			Knot knot = null;
+			String knotString = null;
+			int squareKnot_100 = 25;
 
-    [TestFixture]
-    public class ExtremeKnot
-    {
+			knot = KnotGenerator.generateSquareKnot (squareKnot_100);
+			knotString = knot.ToString ();
 
+			Console.WriteLine ("Knoten: " + knotString);
+		}
 
-        [SetUp]
-        public void Init() {
+		[Test]
+		public void SquareKnotWith_100_Edges ()
+		{
+		}
 
-            Knot knot = null;
-            String knotString = null;
-            int squareKnot_100 = 25;
+		[Test]
+		public void SquareKnotWith_1000_Edges ()
+		{
+		}
 
-            knot = KnotGenerator.generateSquareKnot(squareKnot_100);
-            knotString = knot.ToString();
-
-            Console.WriteLine("Knoten: " + knotString);
-
-        }
-
-
-
-        [Test]
-        public void SquareKnotWith_100_Edges()
-        {
-
-        }
-
-
-
-        [Test]
-        public void SquareKnotWith_1000_Edges()
-        {
-
-        }
-
-
-
-
-        [Test]
-        public void SquareKnotWith_2000_Edges()
-        {
-
-        }
-
-
-
-
-
-
-    }
+		[Test]
+		public void SquareKnotWith_2000_Edges ()
+		{
+		}
+	}
 }
 =======
-<<<<<<< HEAD
-namespace Knot3.ExtremeTests
+    <<<<<<< HEAD
+    namespace Knot3.ExtremeTests
 {
 	public class ExtremeKnot
 	{
@@ -140,4 +118,4 @@ namespace Knot3.ExtremeTests
 		}
 		>>>>>>> Tests, Extremtests
 	}
->>>>>>> 51233972b8768d1f53236bea7e0e520e0c8c62f8
+	>>>>>>> 51233972b8768d1f53236bea7e0e520e0c8c62f8
