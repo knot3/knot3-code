@@ -32,9 +32,72 @@ using System.Threading.Tasks;
 
 using NUnit.Framework;
 
+<<<<<<< HEAD
 namespace Knot3.ExtremeTests
 {
 	public class ExtremeKnot
 	{
 	}
+=======
+using Knot3.Data;
+using Knot3.MockObjects;
+
+
+
+namespace Knot3.ExtremeTests
+{
+
+
+
+    [TestFixture]
+    public class ExtremeKnot
+    {
+
+
+        [SetUp]
+        public void Init() {
+
+            Knot knot = null;
+            String knotString = null;
+            int squareKnot_100 = 25;
+
+            knot = KnotGenerator.generateSquareKnot(squareKnot_100);
+            knotString = knot.ToString();
+
+            Console.WriteLine("Knoten: " + knotString);
+
+        }
+
+
+
+        [Test]
+        public void SquareKnotWith_100_Edges()
+        {
+
+        }
+
+
+
+        [Test]
+        public void SquareKnotWith_1000_Edges()
+        {
+
+        }
+
+
+
+
+        [Test]
+        public void SquareKnotWith_2000_Edges()
+        {
+
+        }
+
+
+
+
+
+
+    }
+>>>>>>> Tests, Extremtests
 }

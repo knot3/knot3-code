@@ -38,9 +38,9 @@ using System.Threading.Tasks;
 
 namespace Knot3.MockObjects
 {
-	class KnotGenerator
+	public class KnotGenerator
 	{
-		public static Knot generateValidSquaredKnot (int EdgeLength)
+		public static Knot generateSquareKnot (int EdgeLength)
 		{
 			Edge[] edgeList = new Edge[EdgeLength * 4];
 

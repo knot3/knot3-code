@@ -49,7 +49,7 @@ namespace Knot3.UnitTests.Data
 		[Test]
 		public void KnotStringIO_Test ()
 		{
-			KnotStringIO knotStringIO = new KnotStringIO (KnotGenerator.generateValidSquaredKnot (10));
+			KnotStringIO knotStringIO = new KnotStringIO (KnotGenerator.generateSquareKnot (10));
 			KnotStringIO other = new KnotStringIO (knotStringIO.Content);
 
 			Assert.AreEqual (knotStringIO.Content, other.Content, "Contetnt equal");
@@ -64,7 +64,7 @@ namespace Knot3.UnitTests.Data
 				Console.WriteLine (invalidContent.Edges.ToList ());
 			}
 			                          );
-			Assert.AreEqual (knotStringIO.Content, other.Content, "Contetnt equal");
+			Assert.AreEqual (knotStringIO.Content, other.Content, "Content equal");
 		}
 	}
 }

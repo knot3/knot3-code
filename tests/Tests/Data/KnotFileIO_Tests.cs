@@ -49,10 +49,10 @@ namespace Knot3.UnitTests.Data
 		[Test]
 		public void KnotStringIO_Test ()
 		{
-			KnotStringIO knotStringIO = new KnotStringIO (KnotGenerator.generateValidSquaredKnot (10));
+			KnotStringIO knotStringIO = new KnotStringIO (KnotGenerator.generateSquareKnot (10));
 			KnotStringIO other = new KnotStringIO (knotStringIO.Content);
 
-			Assert.AreEqual (knotStringIO.Content, other.Content, "Contetnt equal");
+			Assert.AreEqual (knotStringIO.Content, other.Content, "Content equal");
 			KnotStringIO invalidContent = null;
 
 			invalidContent = new KnotStringIO ("Name \n" + "Invalid Line \n");

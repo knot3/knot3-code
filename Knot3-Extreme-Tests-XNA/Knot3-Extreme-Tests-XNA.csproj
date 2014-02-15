@@ -46,10 +46,17 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\src\Knot3-XNA.csproj">
+      <Project>{8e6072ce-a35b-455d-93e1-0aa0ebccbccf}</Project>
+      <Name>Knot3-XNA</Name>
+    </ProjectReference>
     <ProjectReference Include="..\tests\Knot3-Unit-Tests-XNA.csproj">
       <Project>{8fc6b0be-1fc0-4ac6-8081-7c7cc1d0407d}</Project>
       <Name>Knot3-Unit-Tests-XNA</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
