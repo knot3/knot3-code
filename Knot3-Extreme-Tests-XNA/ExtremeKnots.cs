@@ -57,7 +57,6 @@ namespace Knot3.ExtremeTests
 		[TestFixture]
 		public class ExtremeKnot
 		{
-
 			[SetUp]
 			public void Init ()   // TODO (Pascal)
 			{
