@@ -31,9 +31,9 @@
 
 using NUnit.Framework;
 
-//#endregion
+#endregion
 
-namespace Knot3.UnitTests
+namespace Knot3.UnitTests {
 	//{
 	[TestFixture]
 	public class NUnit_Beispiel_Tests
@@ -60,4 +60,5 @@ namespace Knot3.UnitTests
 			}
 		}
 	}
-//}
+}
+
