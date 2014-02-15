@@ -62,5 +62,3 @@ namespace Knot3.UnitTests
 		}
 	}
 }
-
-
