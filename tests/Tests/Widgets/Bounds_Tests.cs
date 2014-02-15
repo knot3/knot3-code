@@ -25,6 +25,8 @@
 
 #endregion
 
+#region Using
+
 ﻿using System;
 using System.Text;
 using System.Collections.Generic;
@@ -35,6 +37,8 @@ using Knot3.Widgets;
 using Knot3.Core;
 
 using Microsoft.Xna.Framework;
+
+#endregion
 
 namespace Knot3.UnitTests.Tests.Widgets
 {

@@ -25,11 +25,15 @@
 
 #endregion
 
+#region Using
+
 using System;
 
 using Microsoft.Xna.Framework;
 
 using Knot3.Widgets;
+
+#endregion
 
 namespace Knot3.Utilities
 {

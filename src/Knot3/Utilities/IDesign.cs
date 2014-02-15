@@ -25,7 +25,11 @@
 
 #endregion
 
+#region Using
+
 using System;
+
+#endregion
 
 namespace Knot3.Utilities
 {

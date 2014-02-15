@@ -25,6 +25,8 @@
 
 #endregion
 
+#region Using
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -49,6 +51,8 @@ using Knot3.Widgets;
 using Knot3.Utilities;
 using Knot3.Audio;
 using Knot3.Screens;
+
+#endregion
 
 namespace Knot3.Development
 {

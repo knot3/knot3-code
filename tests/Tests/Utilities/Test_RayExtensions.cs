@@ -25,11 +25,15 @@
 
 #endregion
 
+#region Using
+
 ﻿using System;
 using System.Text;
 using System.Collections.Generic;
 
 using NUnit.Framework;
+
+#endregion
 
 namespace Knot3.UnitTests.Tests.Utilities
 {

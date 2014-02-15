@@ -25,6 +25,8 @@
 
 #endregion
 
+#region Using
+
 ﻿using System;
 using System.Text;
 using System.Collections.Generic;
@@ -36,6 +38,8 @@ using NUnit.Framework;
 using Knot3.Core;
 using Knot3.Utilities;
 using Knot3.RenderEffects;
+
+#endregion
 
 namespace Knot3.UnitTests.Test_Camera
 {

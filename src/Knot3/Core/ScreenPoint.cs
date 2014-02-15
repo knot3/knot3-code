@@ -25,6 +25,8 @@
 
 #endregion
 
+#region Using
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -35,6 +37,8 @@ using Microsoft.Xna.Framework;
 using Knot3.Core;
 using Knot3.Input;
 using Knot3.Utilities;
+
+#endregion
 
 namespace Knot3.Widgets
 {

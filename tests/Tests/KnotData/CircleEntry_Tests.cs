@@ -25,6 +25,8 @@
 
 #endregion
 
+#region Using
+
 ﻿using System;
 using System.Text;
 using System.Collections.Generic;
@@ -32,6 +34,8 @@ using System.Collections.Generic;
 using NUnit.Framework;
 
 using Knot3.Data;
+
+#endregion
 
 namespace Knot3.UnitTests.Tests.KnotData
 {

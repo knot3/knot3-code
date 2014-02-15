@@ -25,6 +25,8 @@
 
 #endregion
 
+#region Using
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -53,6 +55,8 @@ using Knot3.Development;
 using Knot3.Platform;
 
 using OggSharp;
+
+#endregion
 
 namespace Knot3.Audio
 {

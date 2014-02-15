@@ -25,6 +25,8 @@
 
 #endregion
 
+#region Using
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -47,6 +49,8 @@ using Knot3.Screens;
 using Knot3.RenderEffects;
 using Knot3.Data;
 using Knot3.Widgets;
+
+#endregion
 
 namespace Knot3.Platform
 {

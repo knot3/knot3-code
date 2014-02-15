@@ -25,6 +25,8 @@
 
 #endregion
 
+#region Using
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -49,6 +51,8 @@ using Knot3.RenderEffects;
 using Knot3.Data;
 using Knot3.Widgets;
 using Knot3.Utilities;
+
+#endregion
 
 namespace Knot3.Audio
 {

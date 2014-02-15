@@ -25,6 +25,8 @@
 
 #endregion
 
+#region Using
+
 using System;
 using System.Windows.Forms;
 
@@ -37,6 +39,8 @@ using Knot3.Audio;
 using Knot3.RenderEffects;
 using Knot3.Widgets;
 using Knot3.Input;
+
+#endregion
 
 namespace Knot3.UnitTests
 {

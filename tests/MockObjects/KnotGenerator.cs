@@ -25,12 +25,16 @@
 
 #endregion
 
+#region Using
+
 ﻿using Knot3.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
+#endregion
 
 namespace Knot3.UnitTests.MockObjects
 {

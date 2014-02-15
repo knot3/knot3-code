@@ -25,6 +25,8 @@
 
 #endregion
 
+#region Using
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -50,6 +52,8 @@ using Knot3.Utilities;
 using Knot3.Audio;
 using Knot3.Development;
 using Knot3.GameObjects;
+
+#endregion
 
 namespace Knot3.Input
 {

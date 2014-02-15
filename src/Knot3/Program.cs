@@ -25,12 +25,16 @@
 
 #endregion
 
+#region Using
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
 using Knot3.Core;
 using Knot3.Development;
+
+#endregion
 
 namespace Knot3
 {
