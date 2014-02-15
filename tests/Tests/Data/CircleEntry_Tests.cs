@@ -26,14 +26,15 @@
 #endregion
 
 #region Using
-
 ﻿using System;
 using System.Text;
 using System.Collections.Generic;
+using System.Linq;
 
 using NUnit.Framework;
 
 using Knot3.Data;
+using Knot3.Utilities;
 
 #endregion
 
@@ -48,27 +49,77 @@ namespace Knot3.UnitTests.Data
 		[Test]
 		public void CircleEntry_Constructor_Tests ()
 		{
-			CircleEntry<int> start = new CircleEntry<int>(new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 });
+			CircleEntry<int> start = new CircleEntry<int> (new int[] {
+				0, 1, 2, 3, 4, 5, 6, 7,	8, 9
+			}
+			);
 			for (int n = 0; n < 10; n++) {
-				Assert.AreEqual (start.Value, n);
+				Assert.AreEqual (n, start.Value);
 				start = start.Next;
 			}
+			for (int n = 0; n < 10; n++) {
+				Assert.AreEqual (n, start.Value);
+				start ++;
+			}
+			start --;
+			for (int n = 9; n >= 0; n--) {
+				Assert.AreEqual (n, start.Value);
+				start --;
+			}
+		}
+
+		[Test]
+		public void CircleEntry_Clear_Test ()
+		{
+			int count = 100;
+			int[] reff = count.Repeat (i => i).ToArray ();
+			CircleEntry<int> circle = new CircleEntry<int> (reff);
+			Assert.AreEqual (reff.Length, circle.Count);
+			circle.Clear ();
+			Assert.AreEqual (1, circle.Count);
+		}
+
+		[Test]
+		public void CircleEntry_CopyTo_Test ()
+		{
+			int count = 100;
+			int[] reff = count.Repeat (i => i).ToArray ();
+			CircleEntry<int> circle = new CircleEntry<int> (reff);
+			int[] copy = count.Repeat (i => -1).ToArray ();
+			circle.CopyTo (copy, 0);
+			count.Repeat (i => Assert.AreEqual (reff [i], copy [i]));
+		}
+
+		[Test]
+		public void CircleEntry_Implicit_Test ()
+		{
+			int count = 100;
+			int[] reff = count.Repeat (i => i).ToArray ();
+			CircleEntry<int> circle = new CircleEntry<int> (reff);
+
+			// []-Operator
+			count.Repeat (i => Assert.AreEqual (circle [i], i));
+			// .Value
+			count.Repeat (i => Assert.AreEqual ((circle + i).Value, i));
+			// Implicit Cast
+			count.Repeat (i => Assert.AreEqual ((int)(circle + i), i));
 		}
 
 		[Test]
 		public void CircleEntry_RandomAccess_Test ()
 		{
 			int[] reff = new int[] { 2, 6, 4, 5, 8, 7, 3, 1, 0, 9 };
-			CircleEntry<int> circle = new CircleEntry<int>(reff);
+			CircleEntry<int> circle = new CircleEntry<int> (reff);
 			foreach (int n in reff) {
-				Assert.AreEqual (circle[n], reff[n]);
+				Assert.AreEqual (circle [n], reff [n]);
+				Assert.AreEqual ((circle + n).Value, reff [n]);
 			}
 		}
 
 		[Test]
 		public void CircleEntry_Insert_Test ()
 		{
-			CircleEntry<int> start = new CircleEntry<int>(new int[] {1});
+			CircleEntry<int> start = new CircleEntry<int> (new int[] {1});
 			start.InsertBefore (0);
 			start.InsertAfter (2);
 			start = start.Previous;
