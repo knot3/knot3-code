@@ -44,11 +44,9 @@ namespace Knot3.ExtremeTests
 
 	namespace Knot3.ExtremeTests
 	{
-
 		[TestFixture]
 		public class ExtremeKnot
 		{
-
 			[SetUp]
 			public void Init ()
 			{
