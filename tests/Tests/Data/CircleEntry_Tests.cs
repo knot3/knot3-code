@@ -104,6 +104,26 @@ namespace Knot3.UnitTests.Data
 		}
 
 		[Test]
+		public void CircleEntry_IndexOf_Test ()
+		{
+			int count = 100;
+			int[] reff = count.Repeat (i => i).ToArray ();
+			CircleEntry<int> circle = new CircleEntry<int> (reff);
+
+			count.Repeat (i => Assert.AreEqual (circle.IndexOf(i), i));
+			count.Repeat (i => Assert.AreEqual (circle.IndexOf(j => j == i), i));
+		}
+
+		[Test]
+		public void CircleEntry_InterfaceNonsense_Test ()
+		{
+			int count = 100;
+			int[] reff = count.Repeat (i => i).ToArray ();
+			CircleEntry<int> circle = new CircleEntry<int> (reff);
+			Assert.IsFalse (circle.IsReadOnly);
+		}
+
+		[Test]
 		public void CircleEntry_Find_Test ()
 		{
 			int count = 100;
@@ -111,18 +131,30 @@ namespace Knot3.UnitTests.Data
 			CircleEntry<int> circle = new CircleEntry<int> (reff);
 
 			foreach (int searchFor in count.Range ()) {
+				Assert.IsTrue (circle.Contains (searchFor));
+
 				Assert.AreEqual (searchFor, circle.Find (searchFor).At (0));
 				Assert.AreEqual (searchFor, circle.Find (t => t == searchFor).At (0));
+
 				IEnumerable<CircleEntry<int>> found1;
 				Assert.IsTrue (circle.Contains (searchFor, out found1));
 				Assert.AreEqual (searchFor, found1.At (0));
 				Assert.IsTrue (circle.Contains (t => t == searchFor, out found1));
 				Assert.AreEqual (searchFor, found1.At (0));
+
 				CircleEntry<int> found2;
 				Assert.IsTrue (circle.Contains (searchFor, out found2));
 				Assert.AreEqual (searchFor, found2);
 				Assert.IsTrue (circle.Contains (t => t == searchFor, out found2));
 				Assert.AreEqual (searchFor, found2);
+
+				if (found2 != circle) {
+					circle.Remove (searchFor);
+					Assert.IsFalse (circle.Contains (searchFor, out found1));
+					Assert.IsNull (found1.At (0));
+					Assert.IsFalse (circle.Contains (t => t == searchFor, out found1));
+					Assert.IsNull (found1.At (0));
+				}
 			}
 		}
 

@@ -450,25 +450,35 @@ namespace Knot3.Utilities
 
 		public static T At<T> (this List<T> list, int index)
 		{
-			while (index < 0) {
-				index += list.Count;
+			if (list.Count == 0) {
+				return default(T);
 			}
-			if (index >= list.Count) {
-				index = index % list.Count;
+			else {
+				while (index < 0) {
+					index += list.Count;
+				}
+				if (index >= list.Count) {
+					index = index % list.Count;
+				}
+				return list [index];
 			}
-			return list [index];
 		}
 
 		public static T At<T> (this IEnumerable<T> list, int index)
 		{
 			int count = list.Count ();
-			while (index < 0) {
-				index += count;
+			if (count == 0) {
+				return default(T);
 			}
-			if (index >= count) {
-				index = index % count;
+			else {
+				while (index < 0) {
+					index += count;
+				}
+				if (index >= count) {
+					index = index % count;
+				}
+				return list.ElementAt (index);
 			}
-			return list.ElementAt (index);
 		}
 
 		public static T At<T> (this Tuple<T,T> tuple, int i)
