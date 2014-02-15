@@ -37,20 +37,17 @@ using Knot3.Core;
 using Knot3.GameObjects;
 using Knot3.Data;
 using Knot3.RenderEffects;
+using Knot3.MockObjects;
 
 #endregion
 
-namespace Knot3.UnitTests
+namespace Knot3.UnitTests.Core
 {
 	[TestFixture]
-	public class Test_World
+	public class World_Tests
 	{
 		private IGameScreen screen;
 		private IRenderEffect effect;
-
-		public Test_World ()
-		{
-		}
 
 		[Test, Description ("World Add/Remove")]
 		public void AddRemoveTest ()

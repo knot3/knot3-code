@@ -32,21 +32,22 @@ using System.Text;
 using System.Collections.Generic;
 
 using NUnit.Framework;
+using Microsoft.Xna.Framework;
 
 using Knot3.Widgets;
 using Knot3.Core;
+using Knot3.MockObjects;
 
-using Microsoft.Xna.Framework;
 
 #endregion
 
-namespace Knot3.UnitTests.Tests.Widgets
+namespace Knot3.UnitTests.Core
 {
 	/// <summary>
 	/// Zusammenfassungsbeschreibung für Test_Bounds
 	/// </summary>
 	[TestFixture]
-	public class Test_Bounds
+	public class Bounds_Tests
 	{
 		FakeScreen fakeScreen;
 		ScreenPoint point;

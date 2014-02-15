@@ -40,7 +40,7 @@ using Knot3.RenderEffects;
 
 #endregion
 
-namespace Knot3.Audio_Tests
+namespace Knot3.UnitTests.Audio
 {
 	[TestFixture]
 	public class Audio_Tests

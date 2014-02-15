@@ -51,7 +51,7 @@ using Knot3.RenderEffects;
 
 #endregion
 
-namespace Knot3.UnitTests
+namespace Knot3.MockObjects
 {
 	/// <summary>
 	/// Ein Stapel, der während der Draw-Aufrufe die Hierarchie der aktuell verwendeten Rendereffekte verwaltet

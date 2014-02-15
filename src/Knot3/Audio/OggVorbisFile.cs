@@ -72,7 +72,7 @@ namespace Knot3.Audio
 		{
 			Name = name;
 			string cachefile = SystemInfo.DecodedMusicCache
-			                   + SystemInfo.Separator.ToString ()
+			                   + SystemInfo.PathSeparator.ToString ()
 			                   + soundType.ToString ()
 			                   + "_"
 			                   + name.GetHashCode ().ToString ()

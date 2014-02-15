@@ -84,7 +84,7 @@ namespace Knot3.Platform
 		public static string SavegameDirectory
 		{
 			get {
-				string directory = SettingsDirectory + Separator.ToString () + "Savegames";
+				string directory = SettingsDirectory + PathSeparator.ToString () + "Savegames";
 				Directory.CreateDirectory (directory);
 				return directory;
 			}
@@ -152,7 +152,7 @@ namespace Knot3.Platform
 
 		private static string baseDirectory = null;
 
-		public static char Separator { get { return Path.DirectorySeparatorChar; } }
+		public static char PathSeparator { get { return Path.DirectorySeparatorChar; } }
 
 		#endregion
 	}

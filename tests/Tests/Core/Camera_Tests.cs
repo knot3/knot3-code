@@ -38,16 +38,17 @@ using NUnit.Framework;
 using Knot3.Core;
 using Knot3.Utilities;
 using Knot3.RenderEffects;
+using Knot3.MockObjects;
 
 #endregion
 
-namespace Knot3.UnitTests.Test_Camera
+namespace Knot3.UnitTests.Core
 {
 	/// <summary>
 	/// Zusammenfassungsbeschreibung für Test_Camera
 	/// </summary>
 	[TestFixture]
-	public class Test_Camera
+	public class Camera_Tests
 	{
 		FakeScreen screen;
 		Camera cam1;

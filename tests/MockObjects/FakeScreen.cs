@@ -42,7 +42,7 @@ using Knot3.Input;
 
 #endregion
 
-namespace Knot3.UnitTests
+namespace Knot3.MockObjects
 {
 	public class FakeScreen : IGameScreen
 	{

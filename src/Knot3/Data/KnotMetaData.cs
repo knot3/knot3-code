@@ -91,7 +91,7 @@ namespace Knot3.Data
 					else {
 						throw new ArgumentException ("Every implementation of IKnotIO must have at least one file extension.");
 					}
-					Filename = SystemInfo.SavegameDirectory + SystemInfo.Separator.ToString () + FileUtility.ConvertToFileName (name) + extension;
+					Filename = SystemInfo.SavegameDirectory + SystemInfo.PathSeparator.ToString () + FileUtility.ConvertToFileName (name) + extension;
 				}
 			}
 		}

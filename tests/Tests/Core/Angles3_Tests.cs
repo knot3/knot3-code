@@ -39,13 +39,13 @@ using Microsoft.Xna.Framework;
 
 #endregion
 
-namespace Knot3.UnitTests.Tests.Core
+namespace Knot3.UnitTests.Core
 {
 	/// <summary>
 	/// Zusammenfassungsbeschreibung für Test_Angles3
 	/// </summary>
 	[TestFixture]
-	public class Test_Angles3
+	public class Angles3_Tests
 	{
 		float X, Y, Z;
 		float rX, rY, rZ;

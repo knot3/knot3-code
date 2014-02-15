@@ -52,7 +52,7 @@ using Knot3.RenderEffects;
 
 #endregion
 
-namespace Knot3.UnitTests
+namespace Knot3.MockObjects
 {
 	/// <summary>
 	/// Eine abstrakte Klasse, die eine Implementierung von IRenderEffect darstellt.

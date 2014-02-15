@@ -40,7 +40,7 @@ using Knot3.RenderEffects;
 
 #endregion
 
-namespace Knot3.ConfigFile_Tests
+namespace Knot3.UnitTests.Core
 {
 	[TestFixture]
 	public class ConfigFile_Tests

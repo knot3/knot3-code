@@ -36,7 +36,7 @@ using System.Threading.Tasks;
 
 #endregion
 
-namespace Knot3.UnitTests.MockObjects
+namespace Knot3.MockObjects
 {
 	class KnotGenerator
 	{

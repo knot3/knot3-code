@@ -37,11 +37,11 @@ using Knot3.Core;
 using Knot3.GameObjects;
 using Knot3.Data;
 using Knot3.RenderEffects;
-using Knot3.UnitTests.MockObjects;
+using Knot3.MockObjects;
 
 #endregion
 
-namespace Knot3.UnitTests.Knot_Tests
+namespace Knot3.UnitTests.Data
 {
 	[TestFixture]
 	public class Knot_Tests

@@ -40,7 +40,7 @@ using Knot3.RenderEffects;
 
 #endregion
 
-namespace Knot3.GameObject_Tests
+namespace Knot3.UnitTests.Screens
 {
 	[TestFixture]
 	public class GameObject_Tests

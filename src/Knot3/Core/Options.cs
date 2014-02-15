@@ -68,7 +68,7 @@ namespace Knot3.Core
 		{
 			get {
 				if (_default == null) {
-					_default = new ConfigFile (SystemInfo.SettingsDirectory + SystemInfo.Separator + "knot3.ini");
+					_default = new ConfigFile (SystemInfo.SettingsDirectory + SystemInfo.PathSeparator + "knot3.ini");
 				}
 				return _default;
 			}
@@ -80,7 +80,7 @@ namespace Knot3.Core
 		{
 			get {
 				if (_models == null) {
-					String seperatorString = SystemInfo.Separator.ToString ();
+					String seperatorString = SystemInfo.PathSeparator.ToString ();
 					_models = new ConfigFile (SystemInfo.BaseDirectory + seperatorString
 					                          + "Content" + seperatorString + "models.ini");
 				}

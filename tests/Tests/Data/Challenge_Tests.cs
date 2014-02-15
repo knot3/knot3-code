@@ -28,43 +28,26 @@
 #region Using
 
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using System.IO;
+using System.Collections.Generic;
 
 using NUnit.Framework;
 
 using Knot3.Data;
-using Knot3.UnitTests.MockObjects;
 
 #endregion
 
-namespace Knot3.UnitTests.Tests.KnotData
+namespace Knot3.UnitTests.Data
 {
+	/// <summary>
+	/// Zusammenfassungsbeschreibung für Test_Challenge
+	/// </summary>
 	[TestFixture]
-	class Test_KnotStringIO
+	public class Challenge_Tests
 	{
 		[Test]
-		public void KnotStringIO_Test ()
+		public void Challenge_Constructor_Tests ()
 		{
-			KnotStringIO knotStringIO = new KnotStringIO (KnotGenerator.generateValidSquaredKnot (10));
-			KnotStringIO other = new KnotStringIO (knotStringIO.Content);
-
-			Assert.AreEqual (knotStringIO.Content, other.Content, "Contetnt equal");
-			KnotStringIO invalidContent = null;
-
-			invalidContent = new KnotStringIO ("Name \n" + "Invalid Line \n");
-			Assert.Catch<IOException> (() => {
-				// damit der Compiler den Aufruf der Decode...-Methoden nicht wegoptimiert,
-				// muss man zurück zum Konstruktur noch das eigentlich dort abgespeicherte
-				// Attribut Edges abrufen (das ist ein Iterator mit lazy evaluation)
-				// und das dann in eine Liste umwandeln
-				Console.WriteLine (invalidContent.Edges.ToList ());
-			}
-			                          );
-			Assert.AreEqual (knotStringIO.Content, other.Content, "Contetnt equal");
 		}
 	}
 }

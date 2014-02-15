@@ -74,7 +74,7 @@ namespace Knot3.Utilities
 		public void FindSavegames (Action<string, SavegameMetaData> onSavegameFound)
 		{
 			// Erstelle einen neuen Index, der eine Datei mit dem angegeben Indexnamen im Spielstandverzeichnis einliest
-			fileIndex = new FileIndex (SystemInfo.SavegameDirectory + SystemInfo.Separator.ToString () + IndexName + ".txt");
+			fileIndex = new FileIndex (SystemInfo.SavegameDirectory + SystemInfo.PathSeparator.ToString () + IndexName + ".txt");
 
 			// Diese Verzeichnisse werden nach Spielständen durchsucht
 			string[] searchDirectories = new string[] {
