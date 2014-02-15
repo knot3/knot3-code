@@ -35,13 +35,25 @@ using NUnit.Framework;
 using Knot3.Data;
 using Knot3.MockObjects;
 
-
-
 namespace Knot3.ExtremeTests
 {
+	[TestFixture]
+	public class ExtremeKnot
+	{
+		[SetUp]
+		public void Init ()
+		{
+			Knot knot = null;
+			String knotString = null;
+			int squareKnot_100 = 25;
 
+			knot = KnotGenerator.generateSquareKnot (squareKnot_100);
+			knotString = knot.ToString ();
 
+			Console.WriteLine ("Knoten: " + knotString);
+		}
 
+<<<<<<< HEAD
     [TestFixture]
     public class ExtremeKnot
     {
@@ -98,7 +110,71 @@ namespace Knot3.ExtremeTests
 
 
 
+=======
+		[Test]
+		public void SquareKnotWith_100_Edges ()
+		{
+		}
+>>>>>>> 3be5da86968235ba035311f277a716b8ab6ddb10
 
+		[Test]
+		public void SquareKnotWith_1000_Edges ()
+		{
+		}
 
-    }
+		[Test]
+		public void SquareKnotWith_2000_Edges ()
+		{
+		}
+	}
 }
+<<<<<<< HEAD
+=======
+=======
+    <<<<<<< HEAD
+    namespace Knot3.ExtremeTests
+{
+	public class ExtremeKnot
+	{
+	}
+	=======
+	    using Knot3.Data;
+	using Knot3.MockObjects;
+
+	namespace Knot3.ExtremeTests
+	{
+		[TestFixture]
+		public class ExtremeKnot
+		{
+			[SetUp]
+			public void Init ()
+			{
+				Knot knot = null;
+				String knotString = null;
+				int squareKnot_100 = 25;
+
+				knot = KnotGenerator.generateSquareKnot (squareKnot_100);
+				knotString = knot.ToString ();
+
+				Console.WriteLine ("Knoten: " + knotString);
+			}
+
+			[Test]
+			public void SquareKnotWith_100_Edges ()
+			{
+			}
+
+			[Test]
+			public void SquareKnotWith_1000_Edges ()
+			{
+			}
+
+			[Test]
+			public void SquareKnotWith_2000_Edges ()
+			{
+			}
+		}
+		>>>>>>> Tests, Extremtests
+	}
+	>>>>>>> 51233972b8768d1f53236bea7e0e520e0c8c62f8
+>>>>>>> 3be5da86968235ba035311f277a716b8ab6ddb10
