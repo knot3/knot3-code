@@ -3,7 +3,9 @@ notifications:
     recipients:
       - pascal.knodel@student.kit.edu
       - tobias.schulz186@gmail.com
-      - knot@gmx.org
+      - daniel.warzel@student.kit.edu
+      - gerd.augsburg@student.kit.edu
+      - uahih@student.kit.edu
     on_success: change
     on_failure: always
 language: c
