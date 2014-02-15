@@ -110,7 +110,7 @@ namespace Knot3.UnitTests.Data
 			int[] reff = count.Repeat (i => i).ToArray ();
 			CircleEntry<int> circle = new CircleEntry<int> (reff);
 
-			foreach (int searchFor in count.Range()) {
+			foreach (int searchFor in count.Range ()) {
 				Assert.AreEqual (searchFor, circle.Find (searchFor).At (0));
 				Assert.AreEqual (searchFor, circle.Find (t => t == searchFor).At (0));
 				IEnumerable<CircleEntry<int>> found1;
