@@ -202,12 +202,15 @@
     <Compile Include="Knot3\Widgets\ConfirmDialog.cs" />
     <Compile Include="Knot3\Widgets\Container.cs" />
     <Compile Include="Knot3\Widgets\CreativePauseDialog.cs" />
+    <Compile Include="Knot3\Widgets\Design.cs" />
     <Compile Include="Knot3\Widgets\Dialog.cs" />
     <Compile Include="Knot3\Widgets\DropDownEntry.cs" />
     <Compile Include="Knot3\Widgets\DropDownMenuItem.cs" />
     <Compile Include="Knot3\Widgets\ErrorDialog.cs" />
+    <Compile Include="Knot3\Widgets\HfGDesign.cs" />
     <Compile Include="Knot3\Widgets\HighscoreDialog.cs" />
     <Compile Include="Knot3\Widgets\HorizontalAlignment.cs" />
+    <Compile Include="Knot3\Widgets\IDesign.cs" />
     <Compile Include="Knot3\Widgets\InputItem.cs" />
     <Compile Include="Knot3\Widgets\KeyEvent.cs" />
     <Compile Include="Knot3\Widgets\KeyInputItem.cs" />
@@ -223,9 +226,6 @@
     <Compile Include="Knot3\Widgets\VerticalAlignment.cs" />
     <Compile Include="Knot3\Widgets\Widget.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Knot3\Widgets\Design.cs" />
-    <Compile Include="Knot3\Widgets\HfGDesign.cs" />
-    <Compile Include="Knot3\Widgets\IDesign.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\" />
