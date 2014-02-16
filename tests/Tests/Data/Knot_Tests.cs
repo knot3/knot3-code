@@ -22,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-using Knot3.Development;
 
 #endregion
 
@@ -85,7 +84,7 @@ namespace Knot3.UnitTests.Data
 
 			knot.AddToSelection (edges [1]); // Edge.Left
 
-			Log.Debug("Selected: ", knot.SelectedEdges);
+			Log.Debug ("Selected: ", knot.SelectedEdges);
 
 			bool success;
 
@@ -168,19 +167,19 @@ namespace Knot3.UnitTests.Data
 
 			KnotMetaData metaData = new KnotMetaData (name: name, countEdges: () => edges.Length);
 			Knot knot = new Knot (metaData, edges);
-			
-			knot.AddRangeToSelection(edges[2]);
-			Assert.AreEqual(1, knot.SelectedEdges.Count ());
-			knot.ClearSelection();
-			Assert.AreEqual(0, knot.SelectedEdges.Count ());
-			knot.AddToSelection(edges[0]);
-			Assert.AreEqual(1, knot.SelectedEdges.Count ());
-			knot.AddRangeToSelection(edges[2]);
-			Assert.AreEqual(3, knot.SelectedEdges.Count ());
-			knot.RemoveFromSelection(edges[1]);
-			Assert.AreEqual(2, knot.SelectedEdges.Count ());
-			knot.ClearSelection();
-			Assert.AreEqual(0, knot.SelectedEdges.Count ());
+
+			knot.AddRangeToSelection (edges[2]);
+			Assert.AreEqual (1, knot.SelectedEdges.Count ());
+			knot.ClearSelection ();
+			Assert.AreEqual (0, knot.SelectedEdges.Count ());
+			knot.AddToSelection (edges[0]);
+			Assert.AreEqual (1, knot.SelectedEdges.Count ());
+			knot.AddRangeToSelection (edges[2]);
+			Assert.AreEqual (3, knot.SelectedEdges.Count ());
+			knot.RemoveFromSelection (edges[1]);
+			Assert.AreEqual (2, knot.SelectedEdges.Count ());
+			knot.ClearSelection ();
+			Assert.AreEqual (0, knot.SelectedEdges.Count ());
 		}
 
 		[Test]
