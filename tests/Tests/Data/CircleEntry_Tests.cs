@@ -110,8 +110,18 @@ namespace Knot3.UnitTests.Data
 			int[] reff = count.Repeat (i => i).ToArray ();
 			CircleEntry<int> circle = new CircleEntry<int> (reff);
 
-			count.Repeat (i => Assert.AreEqual (circle.IndexOf (i), i));
-			count.Repeat (i => Assert.AreEqual (circle.IndexOf (j => j == i), i));
+			count.Repeat (i => Assert.AreEqual (i, circle.IndexOf (i)));
+			count.Repeat (i => Assert.AreEqual (i, circle.IndexOf (j => j == i)));
+		}
+
+		[Test]
+		public void CircleEntry_Set_Test ()
+		{
+			int count = 100;
+			int[] reff = count.Repeat (i => i).ToArray ();
+			CircleEntry<int> circle = new CircleEntry<int> (reff);
+
+			count.Repeat (i => Assert.AreEqual (i + 50, circle [i] = i + 50));
 		}
 
 		[Test]
