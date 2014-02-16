@@ -50,7 +50,7 @@ using Knot3.Widgets;
 
 #endregion
 
-namespace Knot3.Core
+namespace Knot3.Input
 {
 	/// <summary>
 	/// Eine Schnittstelle, die von Klassen implementiert wird, welche auf Tastatureingaben reagieren.
