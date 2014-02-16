@@ -22,11 +22,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+using Knot3.MockObjects;
 
 #endregion
 
 #region Using
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,6 +47,14 @@ namespace Knot3.UnitTests
 	[TestFixture]
 	public class DisplayLayer_Tests
 	{
+		IGameScreen screen;
+
+		[SetUp]
+		public void DisplayLayer_Setup ()
+		{
+			screen = new FakeScreen ();
+		}
+
 		[Test]
 		public void DisplayLayer_Equals_Tests ()
 		{
@@ -80,9 +88,17 @@ namespace Knot3.UnitTests
 			foreach (DisplayLayer lay1 in DisplayLayer.Values) {
 				foreach (DisplayLayer lay2 in DisplayLayer.Values) {
 					Assert.AreEqual (lay1 + lay2, lay2 + lay1);
+					Assert.AreEqual (lay1 + lay2, lay1 + new FakeWidget (screen, lay2));
 				}
 				Assert.AreEqual ((lay1 * 99).Index, lay1.Index * 99);
 			}
+		}
+
+		[Test]
+		public void DisplayLayer_ToString_Tests ()
+		{
+			Assert.IsNotEmpty (DisplayLayer.Background.ToString ());
+			Assert.IsNotEmpty (DisplayLayer.Background.GetHashCode () + "");
 		}
 	}
 }

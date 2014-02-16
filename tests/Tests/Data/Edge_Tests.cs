@@ -26,7 +26,6 @@
 #endregion
 
 #region Using
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -83,6 +82,7 @@ namespace Knot3.UnitTests
 		public void Edge_ToString_Tests ()
 		{
 			Assert.IsNotEmpty (Edge.Zero.ToString ());
+			Assert.IsNotEmpty (Edge.Zero.GetHashCode() + "");
 		}
 
 		[Test]
