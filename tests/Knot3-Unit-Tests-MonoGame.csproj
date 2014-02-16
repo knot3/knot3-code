@@ -64,6 +64,7 @@
     <Compile Include="Tests\TestHelper.cs" />
     <Compile Include="Tests\Utilities\RayExtensions_Tests.cs" />
     <Compile Include="Tests\Utilities\Utility_Tests.cs" />
+    <Compile Include="Tests\Utilities\SystemInfo_Tests.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
