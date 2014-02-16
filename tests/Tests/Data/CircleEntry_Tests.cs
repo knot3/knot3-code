@@ -26,7 +26,6 @@
 #endregion
 
 #region Using
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -205,6 +204,15 @@ namespace Knot3.UnitTests.Data
 			Assert.IsNotEmpty (circle.ToString ());
 			circle = CircleEntry<int>.Empty;
 			Assert.IsNotEmpty (circle.ToString ());
+		}
+
+		[Test]
+		public void CircleEntry_ToCircle_Test ()
+		{
+			int[] reff = new int[] { 2, 6, 4, 5, 8, 7, 3, 1, 0, 9 };
+			CircleEntry<int> circle1 = new CircleEntry<int> (reff);
+			CircleEntry<int> circle2 = reff.ToCircle ();
+			reff.Length.Repeat (i => Assert.AreEqual (circle1 [i], circle2 [i]));
 		}
 
 		[Test]
