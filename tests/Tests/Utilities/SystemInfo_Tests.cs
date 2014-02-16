@@ -26,7 +26,6 @@
 #endregion
 
 #region Using
-
 using System;
 using System.Linq;
 
@@ -57,7 +56,9 @@ namespace Knot3.UnitTests
 		[Test]
 		public void SystemInfo_PathSep_Test ()
 		{
-			Assert.IsNotEmpty (SystemInfo.PathSeparator+"");
+			Console.WriteLine ("Environment.OSVersion.Platform=" + Environment.OSVersion.Platform);
+			Console.WriteLine ("PlatformID.Unix=" + PlatformID.Unix);
+			Assert.IsNotEmpty (SystemInfo.PathSeparator + "");
 		}
 
 		[Test]
