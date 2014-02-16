@@ -26,7 +26,6 @@
 #endregion
 
 #region Using
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -48,8 +47,46 @@ namespace Knot3.UnitTests
 	public class Edge_Tests
 	{
 		[Test]
-		public void Edge_1_Tests ()
+		public void Edge_Equals_Tests ()
 		{
+			Assert.AreNotEqual (Edge.Left, Edge.Left);
+			Assert.AreNotEqual (Edge.Right, Edge.Right);
+			Assert.AreNotEqual (Edge.Down, Edge.Down);
+			Assert.AreNotEqual (Edge.Up, Edge.Up);
+			Assert.AreNotEqual (Edge.Forward, Edge.Forward);
+			Assert.AreNotEqual (Edge.Backward, Edge.Backward);
+
+			Assert.AreEqual ((Direction)Edge.Right, (Direction)Edge.UnitX);
+			Assert.AreEqual ((Direction)Edge.Up, (Direction)Edge.UnitY);
+			Assert.AreEqual ((Direction)Edge.Backward, (Direction)Edge.UnitZ);
+
+			Assert.AreNotEqual (Edge.Zero, Edge.Zero);
+			Assert.AreEqual ((Direction)Edge.Zero, Direction.Zero);
+		}
+		
+		[Test]
+		public void Edge_Nonsense_Tests ()
+		{
+			Assert.False (Edge.Zero.Equals (null));
+			Assert.False (Edge.Zero.Equals (0f));
+			Assert.False (Edge.Zero.Direction.Equals (null));
+			Assert.False (Edge.Zero.Direction.Equals (0f));
+		}
+		
+		[Test]
+		public void Edge_ToString_Tests ()
+		{
+			Assert.IsNotEmpty (Edge.Zero.ToString ());
+		}
+		
+		[Test]
+		public void Edge_Clone_Tests ()
+		{
+			Edge orig = Edge.Left;
+			Edge cloned = orig.Clone () as Edge;
+			Assert.AreNotEqual (orig, cloned);
+			Assert.AreEqual (orig.Direction, cloned.Direction);
+			Assert.AreEqual ((Direction)orig, (Direction)cloned);
 		}
 	}
 }
