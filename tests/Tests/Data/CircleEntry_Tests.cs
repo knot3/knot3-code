@@ -201,9 +201,9 @@ namespace Knot3.UnitTests.Data
 		{
 			int[] reff = new int[] { 2, 6, 4, 5, 8, 7, 3, 1, 0, 9 };
 			CircleEntry<int> circle = new CircleEntry<int> (reff);
-			Assert.IsNotEmpty (reff.ToString ());
+			Assert.IsNotEmpty (circle.ToString ());
 			circle = CircleEntry<int>.Empty;
-			Assert.IsNotEmpty (reff.ToString ());
+			Assert.IsNotEmpty (circle.ToString ());
 		}
 
 		[Test]

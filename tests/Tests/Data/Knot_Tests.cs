@@ -37,6 +37,7 @@ using Knot3.GameObjects;
 using Knot3.Data;
 using Knot3.RenderEffects;
 using Knot3.MockObjects;
+using Knot3.Development;
 
 #endregion
 
@@ -138,13 +139,7 @@ namespace Knot3.UnitTests.Data
 		[Test]
 		public void Knot_Clone_Test ()
 		{
-			Edge[] edges = new Edge[] {
-				Edge.Up, Edge.Left, Edge.Down, Edge.Right
-			};
-			string name = "test";
-
-			KnotMetaData metaData = new KnotMetaData (name: name, countEdges: () => edges.Length);
-			Knot knot = new Knot (metaData, edges);
+			Knot knot = DefaultKnot;
 
 			Knot cloned = knot.Clone () as Knot;
 			Assert.AreEqual (knot, cloned);
@@ -160,40 +155,50 @@ namespace Knot3.UnitTests.Data
 		[Test]
 		public void Knot_Selection_Test ()
 		{
-			Edge[] edges = new Edge[] {
-				Edge.Up, Edge.Left, Edge.Left, Edge.Down, Edge.Right, Edge.Right
-			};
-			string name = "test";
-
-			KnotMetaData metaData = new KnotMetaData (name: name, countEdges: () => edges.Length);
-			Knot knot = new Knot (metaData, edges);
-
-			knot.AddRangeToSelection (edges[2]);
+			Knot knot = DefaultKnot;
+			Edge[] edges = knot.ToArray ();
+			
+			knot.AddRangeToSelection (edges [2]);
 			Assert.AreEqual (1, knot.SelectedEdges.Count ());
 			knot.ClearSelection ();
 			Assert.AreEqual (0, knot.SelectedEdges.Count ());
-			knot.AddToSelection (edges[0]);
+			knot.AddToSelection (edges [0]);
 			Assert.AreEqual (1, knot.SelectedEdges.Count ());
-			knot.AddRangeToSelection (edges[2]);
+			knot.AddRangeToSelection (edges [2]);
 			Assert.AreEqual (3, knot.SelectedEdges.Count ());
-			knot.RemoveFromSelection (edges[1]);
+			knot.RemoveFromSelection (edges [1]);
 			Assert.AreEqual (2, knot.SelectedEdges.Count ());
 			knot.ClearSelection ();
 			Assert.AreEqual (0, knot.SelectedEdges.Count ());
 		}
 
 		[Test]
+		public void Knot_ToString_Test ()
+		{
+			Knot knot = DefaultKnot;
+			Assert.IsNotEmpty (knot.ToString ());
+		}
+
+		[Test]
 		public void Knot_MoveCenterToZero_Test ()
 		{
-			Edge[] edges = new Edge[] {
-				Edge.Up, Edge.Left, Edge.Down, Edge.Right
-			};
-			string name = "test";
-
-			KnotMetaData metaData = new KnotMetaData (name: name, countEdges: () => edges.Length);
-			Knot knot = new Knot (metaData, edges);
+			Knot knot = DefaultKnot;
 
 			knot.MoveCenterToZero ();
+		}
+
+		public Knot DefaultKnot
+		{
+			get {
+				Edge[] edges = new Edge[] {
+				Edge.Up, Edge.Left, Edge.Left, Edge.Down, Edge.Right, Edge.Right
+			};
+				string name = "test";
+
+				KnotMetaData metaData = new KnotMetaData (name: name, countEdges: () => edges.Length);
+				Knot knot = new Knot (metaData, edges);
+				return knot;
+			}
 		}
 
 		[Test]
@@ -207,7 +212,7 @@ namespace Knot3.UnitTests.Data
 				Edge.Right,
 				Edge.Forward
 			}
-			                                                );
+			);
 			KnotMetaData metaData = new KnotMetaData (name: "test", countEdges: () => start.Count ());
 			Knot knot = new Knot (metaData, start);
 			for (int i = 0; i < 6; i++) {
