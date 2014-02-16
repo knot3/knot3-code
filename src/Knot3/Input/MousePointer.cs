@@ -42,6 +42,7 @@ using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
 
+using Knot3.Core;
 using Knot3.GameObjects;
 using Knot3.Screens;
 using Knot3.RenderEffects;
@@ -53,7 +54,7 @@ using Knot3.Platform;
 
 #endregion
 
-namespace Knot3.Core
+namespace Knot3.Input
 {
 	/// <summary>
 	/// Repräsentiert einen Mauszeiger.
