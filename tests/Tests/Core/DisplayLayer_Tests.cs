@@ -62,7 +62,9 @@ namespace Knot3.UnitTests
 			foreach (DisplayLayer lay1 in DisplayLayer.Values) {
 				Assert.AreEqual (lay1, lay1);
 				Assert.IsTrue (lay1.Equals (lay1));
-				Assert.IsTrue (lay1.Equals ((object)lay1));
+				Assert.IsTrue (lay1.Equals (lay1));
+				Assert.IsFalse (lay1.Equals ((object)null));
+				Assert.IsFalse (lay1.Equals ((DisplayLayer)null));
 				foreach (DisplayLayer lay2 in DisplayLayer.Values) {
 					if (lay1.Index == lay2.Index) {
 						Assert.AreEqual (lay1, lay2);
