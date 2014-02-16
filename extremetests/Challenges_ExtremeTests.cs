@@ -33,8 +33,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using NUnit.Framework;
-
 #endregion
 
 namespace Knot3.ExtremeTests

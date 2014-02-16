@@ -33,49 +33,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using NUnit.Framework;
-
-using Knot3.Data;
-using Knot3.MockObjects;
-
 #endregion
 
 namespace Knot3.ExtremeTests
 {
-	public class ExtremeKnot
+	class ExtremeInputs
 	{
-		[SetUp]
-		public void Init ()   // TODO (Pascal)
-		{
-			// Prüfen, ob Test-Dateien bereits vorhanden:
-
-			// Wenn nicht, neu erstellen:
-
-			Knot knot = null;
-			KnotStringIO knotStringIO;
-			String knotString = null;
-			int squareKnot_100 = 25;
-
-			knot = KnotGenerator.generateSquareKnot (squareKnot_100);
-			knotStringIO = new KnotStringIO (knot);
-			knotString = knotStringIO.Content;
-
-			Console.Write (knotString);
-		}
-
-		[Test]
-		public void SquareKnotWith_100_Edges ()
-		{
-		}
-
-		[Test]
-		public void SquareKnotWith_1000_Edges ()
-		{
-		}
-
-		[Test]
-		public void SquareKnotWith_2000_Edges ()
-		{
-		}
 	}
 }

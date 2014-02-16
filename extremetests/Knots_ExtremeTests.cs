@@ -32,14 +32,57 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
-using NUnit.Framework;
+using Knot3.Data;
+using Knot3.MockObjects;
+using System.Threading;
 
 #endregion
 
 namespace Knot3.ExtremeTests
 {
-	class ExtremeInputs
+	public class ExtremeKnots
 	{
+		/*
+			// Prüfen, ob Test-Dateien bereits vorhanden:
+
+			// Wenn nicht, neu erstellen:
+
+			Knot knot = null;
+			KnotStringIO knotStringIO;
+			String knotString = null;
+			int squareKnot_100 = 25;
+
+			knot = KnotGenerator.generateSquareKnot (squareKnot_100);
+			knotStringIO = new KnotStringIO (knot);
+			knotString = knotStringIO.Content;
+
+			Console.Write (knotString);
+		*/
+
+
+        public static void setUp() // todo
+        {
+
+        }
+
+
+        public static void generateSquareKnot(int numberOfEdges, string saveAtPath)
+        {
+
+        }
+
+
+
+        public static void LoadSquareKnot(String loadFromPath)
+        {
+
+            // todo
+            Thread.Sleep(1);
+        }
+
+
+
 	}
 }
