@@ -117,6 +117,7 @@
     <Compile Include="Tests\Core\World_Tests.cs" />
     <Compile Include="Tests\Data\Challenge_Tests.cs" />
     <Compile Include="Tests\Data\CircleEntry_Tests.cs" />
+    <Compile Include="Tests\Data\Edge_Tests.cs" />
     <Compile Include="Tests\Data\KnotFileIO_Tests.cs" />
     <Compile Include="Tests\Data\KnotStringIO_Tests.cs" />
     <Compile Include="Tests\Data\Knot_Tests.cs" />
