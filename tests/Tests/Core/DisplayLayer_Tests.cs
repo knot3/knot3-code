@@ -26,7 +26,6 @@
 #endregion
 
 #region Using
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -90,6 +89,7 @@ namespace Knot3.UnitTests
 				foreach (DisplayLayer lay2 in DisplayLayer.Values) {
 					Assert.AreEqual (lay1 + lay2, lay2 + lay1);
 					Assert.AreEqual (lay1 + lay2, lay1 + new FakeWidget (screen, lay2));
+					Assert.AreEqual (lay1 + new FakeWidget (screen, lay2), lay2 + lay1);
 				}
 				Assert.AreEqual ((lay1 * 99).Index, lay1.Index * 99);
 			}
