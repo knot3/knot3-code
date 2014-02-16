@@ -27,18 +27,18 @@
 
 #region Using
 
-﻿using System;
-using System.Text;
+using System;
 using System.Collections.Generic;
+using System.Text;
 
 using Microsoft.Xna.Framework;
 
 using NUnit.Framework;
 
 using Knot3.Core;
-using Knot3.Utilities;
-using Knot3.RenderEffects;
 using Knot3.MockObjects;
+using Knot3.RenderEffects;
+using Knot3.Utilities;
 
 #endregion
 

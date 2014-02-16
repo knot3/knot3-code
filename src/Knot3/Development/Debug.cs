@@ -31,8 +31,8 @@ using System;
 using System.Diagnostics;
 using System.Linq;
 
-using Knot3.Utilities;
 using Knot3.Platform;
+using Knot3.Utilities;
 
 #endregion
 

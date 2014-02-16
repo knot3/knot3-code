@@ -27,15 +27,15 @@
 
 #region Using
 
-﻿using System;
-using System.Text;
+using System;
 using System.Collections.Generic;
+using System.Text;
+
+using Microsoft.Xna.Framework;
 
 using NUnit.Framework;
 
 using Knot3.Core;
-
-using Microsoft.Xna.Framework;
 
 #endregion
 

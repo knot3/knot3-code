@@ -31,14 +31,14 @@ using System;
 using System.Windows.Forms;
 
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
 
-using Knot3.Core;
 using Knot3.Audio;
+using Knot3.Core;
+using Knot3.Input;
 using Knot3.RenderEffects;
 using Knot3.Widgets;
-using Knot3.Input;
 
 #endregion
 

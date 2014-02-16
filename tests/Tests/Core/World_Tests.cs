@@ -34,10 +34,10 @@ using System.Linq;
 using NUnit.Framework;
 
 using Knot3.Core;
-using Knot3.GameObjects;
 using Knot3.Data;
-using Knot3.RenderEffects;
+using Knot3.GameObjects;
 using Knot3.MockObjects;
+using Knot3.RenderEffects;
 
 #endregion
 

@@ -24,7 +24,10 @@
  */
 
 #endregion
-﻿using System;
+
+#region Using
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -35,6 +38,10 @@ using NUnit.Framework;
 using Knot3.Data;
 using Knot3.MockObjects;
 
+#endregion
+SystemSystem.Collections.GenericSystem.LinqSystem.TextSystem.Threading.Tasks
+NUnit.Framework
+Knot3.DataKnot3.MockObjects
 namespace Knot3.ExtremeTests
 {
 	[TestFixture]

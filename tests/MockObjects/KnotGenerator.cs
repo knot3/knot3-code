@@ -27,12 +27,13 @@
 
 #region Using
 
-﻿using Knot3.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
+using Knot3.Data;
 
 #endregion
 

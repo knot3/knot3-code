@@ -32,8 +32,8 @@ using System.IO;
 
 using Knot3;
 using Knot3.Core;
-using Knot3.Utilities;
 using Knot3.Platform;
+using Knot3.Utilities;
 
 #endregion
 

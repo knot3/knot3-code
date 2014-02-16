@@ -34,9 +34,9 @@ using System.Linq;
 
 using Microsoft.Xna.Framework;
 
-using Knot3.Utilities;
 using Knot3.Core;
 using Knot3.Input;
+using Knot3.Utilities;
 
 #endregion
 
