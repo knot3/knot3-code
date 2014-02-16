@@ -163,6 +163,8 @@ namespace Knot3.UnitTests.Data
 			knot.ClearSelection ();
 			Assert.AreEqual (0, knot.SelectedEdges.Count ());
 			knot.AddToSelection (edges [0]);
+			knot.RemoveFromSelection (edges [0]);
+			knot.AddToSelection (edges [0]);
 			Assert.AreEqual (1, knot.SelectedEdges.Count ());
 			knot.AddRangeToSelection (edges [2]);
 			Assert.AreEqual (3, knot.SelectedEdges.Count ());
