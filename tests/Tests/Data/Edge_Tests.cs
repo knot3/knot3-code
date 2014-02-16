@@ -26,7 +26,6 @@
 #endregion
 
 #region Using
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -72,12 +71,41 @@ namespace Knot3.UnitTests
 			Assert.False (Edge.Zero.Equals (0f));
 			Assert.False (Edge.Zero.Direction.Equals (null));
 			Assert.False (Edge.Zero.Direction.Equals (0f));
+			Assert.False (Edge.Zero.Direction.Equals ((object)new Quaternion (0, 0, 0, 0)));
 		}
 
 		[Test]
 		public void Edge_ToString_Tests ()
 		{
 			Assert.IsNotEmpty (Edge.Zero.ToString ());
+		}
+
+		[Test]
+		public void Edge_FromString_Tests ()
+		{
+			Assert.AreEqual (Direction.FromString ("Left"), Edge.Left.Direction);
+			Assert.AreEqual (Direction.FromString ("Right"), Edge.Right.Direction);
+			Assert.AreEqual (Direction.FromString ("Down"), Edge.Down.Direction);
+			Assert.AreEqual (Direction.FromString ("Up"), Edge.Up.Direction);
+			Assert.AreEqual (Direction.FromString ("Forward"), Edge.Forward.Direction);
+			Assert.AreEqual (Direction.FromString ("Backward"), Edge.Backward.Direction);
+		}
+
+		[Test]
+		public void Edge_FromAxis_Tests ()
+		{
+			Assert.AreEqual (Direction.FromAxis (Axis.X).Axis, Axis.X);
+			Assert.AreEqual (Direction.FromAxis (Axis.Y).Axis, Axis.Y);
+			Assert.AreEqual (Direction.FromAxis (Axis.Z).Axis, Axis.Z);
+		}
+
+		[Test]
+		public void Edge_Math_Tests ()
+		{
+			Assert.AreEqual (Direction.Left.Vector * 3, Direction.Left * 3);
+			Assert.AreEqual (Direction.Left.Vector / 3, Direction.Left / 3);
+			Assert.AreEqual (Direction.Left.Vector + Direction.Forward.Vector, Direction.Left + Direction.Forward);
+			Assert.AreEqual (Direction.Left.Vector - Direction.Forward.Vector, Direction.Left - Direction.Forward);
 		}
 
 		[Test]
