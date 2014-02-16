@@ -26,7 +26,6 @@
 #endregion
 
 #region Using
-
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -97,10 +96,15 @@ namespace Knot3.UnitTests.Core
 		[Test]
 		public void MouseTest ()
 		{
-			Vector2 mouse = screen.Bounds.FromTop (0.5f).FromLeft (0.5f).Position;
-			Vector3 mouse3D = cam1.To3D (position: mouse, nearTo: cam1.Target);
-			Vector2 mouse2D = cam1.To2D (position: mouse3D);
-			Assert.True (Equals (mouse, mouse2D));
+			string orig = Options.Default ["debug", "unproject", "SelectedObject"];
+			foreach (string optionValue in new string[]{ "SelectedObject", "NearFarAverage" }) {
+				Options.Default ["debug", "unproject", "SelectedObject"] = optionValue;
+				Vector2 mouse = screen.Bounds.FromTop (0.5f).FromLeft (0.5f).Position;
+				Vector3 mouse3D = cam1.To3D (position: mouse, nearTo: cam1.Target);
+				Vector2 mouse2D = cam1.To2D (position: mouse3D);
+				Assert.True (Equals (mouse, mouse2D));
+			}
+			Options.Default ["debug", "unproject", "SelectedObject"] = orig;
 		}
 
 		[Test]
