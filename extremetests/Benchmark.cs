@@ -35,6 +35,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 #endregion
+
 SystemSystem.Collections.GenericSystem.LinqSystem.TextSystem.Threading.TasksSystem.Diagnostics
 
 namespace Knot3.ExtremeTests
@@ -49,7 +50,6 @@ namespace Knot3.ExtremeTests
 
 	public class Benchmark
 	{
-
 		public static TimeStatistics StopTime (Action action, int numberOfPasses, TimeStatistics timeStatistics)
 		{
 			Stopwatch stopwatch = new Stopwatch ();
