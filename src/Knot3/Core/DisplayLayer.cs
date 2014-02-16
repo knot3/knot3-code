@@ -96,7 +96,7 @@ namespace Knot3.Core
 		/// im Vordergrund sein. Cursor steht für die vorderste Ebene.
 		/// </summary>
 		public static readonly DisplayLayer Cursor = new DisplayLayer (500, "Cursor");
-		
+
 		public static readonly DisplayLayer[] Values = {
 			None, Background, GameWorld, ScreenUI, Dialog, Menu, MenuItem, Overlay, Cursor
 		};

@@ -114,6 +114,7 @@
     <Compile Include="Tests\Core\Bounds_Tests.cs" />
     <Compile Include="Tests\Core\Camera_Tests.cs" />
     <Compile Include="Tests\Core\ConfigFile_Tests.cs" />
+    <Compile Include="Tests\Core\DisplayLayer_Tests.cs" />
     <Compile Include="Tests\Core\World_Tests.cs" />
     <Compile Include="Tests\Data\Challenge_Tests.cs" />
     <Compile Include="Tests\Data\CircleEntry_Tests.cs" />
