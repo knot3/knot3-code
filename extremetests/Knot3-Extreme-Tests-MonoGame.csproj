@@ -41,9 +41,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ExtremeChallenges.cs" />
-    <Compile Include="ExtremeInputs.cs" />
-    <Compile Include="ExtremeKnots.cs" />
+    <Compile Include="Benchmark.cs" />
+    <Compile Include="Challenges_ExtremeTests.cs" />
+    <Compile Include="Inputs_ExtremeTests.cs" />
+    <Compile Include="Knots_ExtremeTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
