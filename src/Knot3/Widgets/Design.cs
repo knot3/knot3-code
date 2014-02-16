@@ -51,7 +51,7 @@ using Knot3.Widgets;
 
 #endregion
 
-namespace Knot3.Utilities
+namespace Knot3.Widgets
 {
 	public static class Design
 	{

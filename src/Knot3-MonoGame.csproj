@@ -177,14 +177,11 @@
     <Compile Include="Knot3\Screens\TutorialChallengeModeScreen.cs" />
     <Compile Include="Knot3\Utilities\BoundingCylinder.cs" />
     <Compile Include="Knot3\Utilities\ColorHelper.cs" />
-    <Compile Include="Knot3\Utilities\Design.cs" />
     <Compile Include="Knot3\Utilities\DictionaryHelper.cs" />
     <Compile Include="Knot3\Utilities\EnumHelper.cs" />
     <Compile Include="Knot3\Utilities\FileIndex.cs" />
     <Compile Include="Knot3\Utilities\FileUtility.cs" />
     <Compile Include="Knot3\Utilities\FrustumHelper.cs" />
-    <Compile Include="Knot3\Utilities\HfGDesign.cs" />
-    <Compile Include="Knot3\Utilities\IDesign.cs" />
     <Compile Include="Knot3\Utilities\IniFile.cs" />
     <Compile Include="Knot3\Utilities\InputHelper.cs" />
     <Compile Include="Knot3\Utilities\ModelHelper.cs" />
@@ -226,6 +223,9 @@
     <Compile Include="Knot3\Widgets\VerticalAlignment.cs" />
     <Compile Include="Knot3\Widgets\Widget.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Knot3\Widgets\Design.cs" />
+    <Compile Include="Knot3\Widgets\HfGDesign.cs" />
+    <Compile Include="Knot3\Widgets\IDesign.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\" />

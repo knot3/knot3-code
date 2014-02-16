@@ -31,7 +31,7 @@ using System;
 
 #endregion
 
-namespace Knot3.Utilities
+namespace Knot3.Widgets
 {
 	public interface IDesign
 	{
