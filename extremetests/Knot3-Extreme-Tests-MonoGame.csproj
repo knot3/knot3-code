@@ -48,10 +48,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="MockObjects\" />
-    <Folder Include="Tests\" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\tests\Knot3-Unit-Tests-MonoGame.csproj">
       <Project>{C19C58CE-8C63-4F7F-A38C-D8B204AA21F2}</Project>
       <Name>Knot3-Unit-Tests-MonoGame</Name>
