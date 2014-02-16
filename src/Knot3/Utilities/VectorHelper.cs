@@ -569,15 +569,24 @@ namespace Knot3.Utilities
 
 		public static IEnumerable<T> Repeat<T> (this int count, Func<int, T> func)
 		{
+			List<T> list = new List<T> ();
 			for (int i = 0; i < count; i++) {
-				yield return func (i);
+				list.Add (func (i));
 			}
+			return list;
 		}
 
 		public static IEnumerable<int> Range (this int count)
 		{
 			for (int i = 0; i < count; i++) {
 				yield return i;
+			}
+		}
+
+		public static void ForEach<U> (this IEnumerable<U> enumerable, Action<U> action)
+		{
+			foreach (U item in enumerable) {
+				action (item);
 			}
 		}
 	}

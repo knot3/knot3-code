@@ -22,6 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+using System.IO;
 
 #endregion
 
@@ -41,6 +42,21 @@ namespace Knot3.UnitTests
 		{
 			get {
 				return SystemInfo.BaseDirectory + SystemInfo.PathSeparator + "Resources" + SystemInfo.PathSeparator;
+			}
+		}
+
+		public static string TempDirectory
+		{
+			get {
+				string directory;
+				if (SystemInfo.IsRunningOnLinux ()) {
+					directory = "/var/tmp/knot3-tests/";
+				}
+				else {
+					directory = Path.GetTempPath() + "\\Knot3-Tests\\";
+				}
+				Directory.CreateDirectory (directory);
+				return directory;
 			}
 		}
 	}
