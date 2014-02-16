@@ -22,13 +22,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-using System.IO;
 
 #endregion
 
 #region Using
 
 using System;
+using System.IO;
 
 using Knot3.Platform;
 
@@ -53,7 +53,7 @@ namespace Knot3.UnitTests
 					directory = "/var/tmp/knot3-tests/";
 				}
 				else {
-					directory = Path.GetTempPath() + "\\Knot3-Tests\\";
+					directory = Path.GetTempPath () + "\\Knot3-Tests\\";
 				}
 				Directory.CreateDirectory (directory);
 				return directory;

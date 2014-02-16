@@ -22,14 +22,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-using Knot3.Utilities;
-using System.IO;
 
 #endregion
 
 #region Using
+
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 using NUnit.Framework;
@@ -38,6 +38,7 @@ using Knot3.Core;
 using Knot3.Data;
 using Knot3.GameObjects;
 using Knot3.RenderEffects;
+using Knot3.Utilities;
 
 #endregion
 
@@ -114,12 +115,12 @@ namespace Knot3.UnitTests.Core
 
 		public static IEnumerable<float> RandomFloats (int count)
 		{
-			return count.Repeat (i => (float)random.NextDouble());
+			return count.Repeat (i => (float)random.NextDouble ());
 		}
 
 		public static IEnumerable<bool> RandomBooleans (int count)
 		{
-			return count.Repeat (i => random.Next(0, 100) < 50);
+			return count.Repeat (i => random.Next (0, 100) < 50);
 		}
 
 		[Test]
