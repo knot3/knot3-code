@@ -85,6 +85,7 @@ namespace Knot3.UnitTests.Core
 				string[] keys = keyMap [section];
 				float[] values = floatValueMap [section];
 
+				keys.Length.Repeat (i => Assert.Greater (Math.Abs (values [i] - cfg [section, keys [i], floatDefaultValue]), 0.001f));
 				keys.Length.Repeat (i => cfg [section, keys [i], floatDefaultValue] = values [i]);
 				keys.Length.Repeat (i => Assert.Less (Math.Abs (values [i] - cfg [section, keys [i], floatDefaultValue]), 0.001f));
 			}
