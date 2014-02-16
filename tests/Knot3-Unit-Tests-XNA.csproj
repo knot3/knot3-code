@@ -107,6 +107,7 @@
     <Compile Include="MockObjects\FakeEffect.cs" />
     <Compile Include="MockObjects\FakeEffectStack.cs" />
     <Compile Include="MockObjects\FakeScreen.cs" />
+    <Compile Include="MockObjects\FakeWidget.cs" />
     <Compile Include="MockObjects\KnotGenerator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tests\Audio\Audio_Tests.cs" />
