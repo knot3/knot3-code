@@ -139,7 +139,6 @@
     <Compile Include="Knot3\Core\KeyOptionInfo.cs" />
     <Compile Include="Knot3\Core\Knot3Game.cs" />
     <Compile Include="Knot3\Core\Localizer.cs" />
-    <Compile Include="Knot3\Core\MousePointer.cs" />
     <Compile Include="Knot3\Core\OptionInfo.cs" />
     <Compile Include="Knot3\Core\Options.cs" />
     <Compile Include="Knot3\Core\ScreenPoint.cs" />
@@ -204,6 +203,7 @@
     <Compile Include="Knot3\Input\InputAction.cs" />
     <Compile Include="Knot3\Input\InputManager.cs" />
     <Compile Include="Knot3\Input\KnotInputHandler.cs" />
+    <Compile Include="Knot3\Input\MousePointer.cs" />
     <Compile Include="Knot3\Input\WidgetKeyHandler.cs" />
     <Compile Include="Knot3\Input\WidgetMouseHandler.cs" />
     <Compile Include="Knot3\Platform\SystemInfo-XNA.cs" />

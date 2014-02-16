@@ -143,6 +143,7 @@
     <Compile Include="Knot3\Input\InputAction.cs" />
     <Compile Include="Knot3\Input\InputManager.cs" />
     <Compile Include="Knot3\Input\KnotInputHandler.cs" />
+    <Compile Include="Knot3\Input\MousePointer.cs" />
     <Compile Include="Knot3\Input\WidgetKeyHandler.cs" />
     <Compile Include="Knot3\Input\WidgetMouseHandler.cs" />
     <Compile Include="Knot3\Platform\SystemInfo-MonoGame.cs" />
@@ -225,7 +226,6 @@
     <Compile Include="Knot3\Widgets\VerticalAlignment.cs" />
     <Compile Include="Knot3\Widgets\Widget.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Knot3\Input\MousePointer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\" />
