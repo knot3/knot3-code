@@ -345,7 +345,7 @@ namespace Knot3.Data
 		/// <summary>
 		/// Gibt an ob ein Move in diese Richtung überhaupt möglich ist.
 		/// </summary>
-		public bool IsValidMove (Direction dir)
+		public bool IsValidDirection (Direction direction)
 		{
 			// Nichts selektiert
 			if (selectedEdges.Count == 0) {
@@ -364,12 +364,12 @@ namespace Knot3.Data
 
 				// Wenn Kante nach der Bewegung gelöscht werden müsste ist ein Zug nicht möglich
 				if (selectedEdges.Contains (currentEdge) && !selectedEdges.Contains (previousEdge)
-				        && currentEdge.Direction == dir.Reverse && previousEdge.Direction != dir.Reverse) {
+				        && currentEdge.Direction == direction.Reverse && previousEdge.Direction != direction.Reverse) {
 					return false;
 				}
 				// Wenn Kante nach der Bewegung gelöscht werden müsste ist ein Zug nicht möglich
 				if (selectedEdges.Contains (currentEdge) && !selectedEdges.Contains (nextEdge)
-				        && currentEdge.Direction == dir && nextEdge.Direction != dir) {
+				        && currentEdge.Direction == direction && nextEdge.Direction != direction) {
 					return false;
 				}
 
@@ -378,7 +378,7 @@ namespace Knot3.Data
 				}
 			}
 			// Wenn alle Kanten entlang einer Achse angeordnet sind und die Verschieberichtung die selbe Achse hat
-			if (axes.Count == 1 && axes.Contains (dir.Axis)) {
+			if (axes.Count == 1 && axes.Contains (direction.Axis)) {
 				return false;
 			}
 			return true;

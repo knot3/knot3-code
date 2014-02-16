@@ -26,7 +26,6 @@
 #endregion
 
 #region Using
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -67,7 +66,8 @@ namespace Knot3.UnitTests.Data
 			Assert.AreEqual (knot.Name, name, "Knotenname #1");
 			Assert.AreEqual (knot.MetaData.Name, name, "Knotenname #2");
 
-			Assert.Catch (() => { KnotGenerator.generateInvalidKnot (); }, "invalid Knot construction");
+			Assert.Catch (() => {
+				KnotGenerator.generateInvalidKnot (); }, "invalid Knot construction");
 		}
 
 		[Test, Description ("Knot Move")]
@@ -83,7 +83,22 @@ namespace Knot3.UnitTests.Data
 
 			knot.AddToSelection (edges [1]); // Edge.Left
 
-			bool success = knot.Move (direction: Direction.Down, distance: 1);
+			bool success;
+
+			success = knot.IsValidDirection (direction: Direction.Left);
+			Assert.IsFalse (success);
+			success = knot.IsValidDirection (direction: Direction.Right);
+			Assert.IsFalse (success);
+			success = knot.IsValidDirection (direction: Direction.Up);
+			Assert.IsTrue (success);
+			success = knot.IsValidDirection (direction: Direction.Down);
+			Assert.IsTrue (success);
+			success = knot.IsValidDirection (direction: Direction.Forward);
+			Assert.IsTrue (success);
+			success = knot.IsValidDirection (direction: Direction.Backward);
+			Assert.IsTrue (success);
+
+			success = knot.Move (direction: Direction.Down, distance: 1);
 			Assert.IsFalse (success, "Nicht möglich! Knoten würde zu zwei Kanten zusammenfallen!");
 
 			success = knot.Move (direction: Direction.Left, distance: 1);
@@ -108,12 +123,63 @@ namespace Knot3.UnitTests.Data
 			Assert.IsTrue (success, "Gültige Richtung!");
 
 			Assert.AreEqual (knot.Count (), edges.Length, "Knotenlänge nach Verschiebung #3");
+
+			success = knot.Move (direction: Direction.Zero, distance: 3);
+			Assert.AreEqual (knot.Count (), edges.Length, "Null-Move");
+			success = knot.Move (direction: Direction.Left, distance: 0);
+			Assert.AreEqual (knot.Count (), edges.Length, "Null-Move");
+			success = knot.Move (direction: Direction.Zero, distance: 0);
+			Assert.AreEqual (knot.Count (), edges.Length, "Null-Move");
+		}
+
+		[Test]
+		public void Knot_Clone_Test ()
+		{
+			Edge[] edges = new Edge[] {
+				Edge.Up, Edge.Left, Edge.Down, Edge.Right
+			};
+			string name = "test";
+
+			KnotMetaData metaData = new KnotMetaData (name: name, countEdges: () => edges.Length);
+			Knot knot = new Knot (metaData, edges);
+
+			Knot cloned = knot.Clone () as Knot;
+			Assert.AreEqual (knot, cloned);
+			Assert.AreEqual (knot.Name, cloned.Name);
+
+			knot.Name = "test2";
+			Assert.AreNotEqual (knot.Name, cloned.Name);
+
+			cloned = knot.Clone () as Knot;
+			Assert.AreEqual (knot.Name, cloned.Name);
+		}
+
+		[Test]
+		public void Knot_MoveCenterToZero_Test ()
+		{
+			Edge[] edges = new Edge[] {
+				Edge.Up, Edge.Left, Edge.Down, Edge.Right
+			};
+			string name = "test";
+
+			KnotMetaData metaData = new KnotMetaData (name: name, countEdges: () => edges.Length);
+			Knot knot = new Knot (metaData, edges);
+
+			knot.MoveCenterToZero ();
 		}
 
 		[Test]
 		public void Knot_Equals_Test ()
 		{
-			CircleEntry<Edge> start = new CircleEntry<Edge>(new Edge[] { Edge.Up, Edge.Left, Edge.Backward, Edge.Down, Edge.Right, Edge.Forward });
+			CircleEntry<Edge> start = new CircleEntry<Edge> (new Edge[] {
+				Edge.Up,
+				Edge.Left,
+				Edge.Backward,
+				Edge.Down,
+				Edge.Right,
+				Edge.Forward
+			}
+			);
 			KnotMetaData metaData = new KnotMetaData (name: "test", countEdges: () => start.Count ());
 			Knot knot = new Knot (metaData, start);
 			for (int i = 0; i < 6; i++) {
