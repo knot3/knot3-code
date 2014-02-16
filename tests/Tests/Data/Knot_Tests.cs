@@ -157,7 +157,7 @@ namespace Knot3.UnitTests.Data
 		{
 			Knot knot = DefaultKnot;
 			Edge[] edges = knot.ToArray ();
-			
+
 			knot.AddRangeToSelection (edges [2]);
 			Assert.AreEqual (1, knot.SelectedEdges.Count ());
 			knot.ClearSelection ();
@@ -191,8 +191,8 @@ namespace Knot3.UnitTests.Data
 		{
 			get {
 				Edge[] edges = new Edge[] {
-				Edge.Up, Edge.Left, Edge.Left, Edge.Down, Edge.Right, Edge.Right
-			};
+					Edge.Up, Edge.Left, Edge.Left, Edge.Down, Edge.Right, Edge.Right
+				};
 				string name = "test";
 
 				KnotMetaData metaData = new KnotMetaData (name: name, countEdges: () => edges.Length);
@@ -212,7 +212,7 @@ namespace Knot3.UnitTests.Data
 				Edge.Right,
 				Edge.Forward
 			}
-			);
+			                                                );
 			KnotMetaData metaData = new KnotMetaData (name: "test", countEdges: () => start.Count ());
 			Knot knot = new Knot (metaData, start);
 			for (int i = 0; i < 6; i++) {
