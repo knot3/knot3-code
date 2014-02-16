@@ -26,7 +26,6 @@
 #endregion
 
 #region Using
-
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -36,6 +35,7 @@ using Microsoft.Xna.Framework;
 using NUnit.Framework;
 
 using Knot3.Core;
+using Knot3.Utilities;
 
 #endregion
 
@@ -94,8 +94,15 @@ namespace Knot3.UnitTests.Core
 		[Test]
 		public void Angles3_ToDegrees_Test ()
 		{
-			angle1.ToDegrees (out X,out Y, out Z);
+			angle1.ToDegrees (out X, out Y, out Z);
 			Assert.AreEqual (angle1, angle3);
+		}
+
+		[Test]
+		public void Angles3_ToString_Test ()
+		{
+			Assert.IsNotEmpty (angle1.ToString ());
+			Assert.AreNotEqual (angle1.GetHashCode (), (angle1 + angle2).GetHashCode ());
 		}
 
 		[Test]
@@ -111,16 +118,16 @@ namespace Knot3.UnitTests.Core
 			Angles3 angle2 = new Angles3 (1, 2, 3);
 			Angles3 angle4 = new Angles3 (3, 2, 1);
 			Angles3 sum = angle2 + angle4;
-			Assert.AreEqual (sum, new Angles3 (4,4,4));
+			Assert.AreEqual (sum, new Angles3 (4, 4, 4));
 			Angles3 neg = -angle2;
-			Assert.AreEqual (neg, new Angles3 (-1,-2,-3));
+			Assert.AreEqual (neg, new Angles3 (-1, -2, -3));
 			Angles3 diff = angle2 - angle4;
-			Assert.AreEqual (diff, new Angles3 (-2,0,2));
+			Assert.AreEqual (diff, new Angles3 (-2, 0, 2));
 			Angles3 prod = angle2 * angle4;
-			Assert.AreEqual (prod, new Angles3 (3,4,3));
+			Assert.AreEqual (prod, new Angles3 (3, 4, 3));
 			Angles3 scale1 = angle2 * scaleFactor;
 			Angles3 scale2 = scaleFactor * angle2;
-			Assert.AreEqual (scale1, new Angles3 (2.5f,5,7.5f));
+			Assert.AreEqual (scale1, new Angles3 (2.5f, 5, 7.5f));
 			Assert.AreEqual (scale2, new Angles3 (2.5f, 5, 7.5f));
 			Angles3 quot1 = angle2 / angle4;
 			Assert.AreEqual (quot1, new Angles3 (0.33333333333f, 1, 3));
