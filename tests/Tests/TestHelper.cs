@@ -32,8 +32,7 @@ using System;
 using Knot3.Platform;
 
 #endregion
-System
-Knot3.Platform
+
 namespace Knot3.UnitTests
 {
 	public static class TestHelper
