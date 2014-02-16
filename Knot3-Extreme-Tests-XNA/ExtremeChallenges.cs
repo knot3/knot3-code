@@ -37,8 +37,6 @@ using NUnit.Framework;
 
 #endregion
 
-SystemSystem.Collections.GenericSystem.LinqSystem.TextSystem.Threading.Tasks
-NUnit.Framework
 namespace Knot3.ExtremeTests
 {
 	class ExtremeChallenges
