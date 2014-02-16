@@ -36,7 +36,6 @@ using System.Threading.Tasks;
 
 #endregion
 
-
 namespace Knot3.ExtremeTests
 {
 	public struct TimeStatistics {
