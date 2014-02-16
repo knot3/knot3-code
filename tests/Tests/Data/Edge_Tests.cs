@@ -26,6 +26,7 @@
 #endregion
 
 #region Using
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -63,7 +64,7 @@ namespace Knot3.UnitTests
 			Assert.AreNotEqual (Edge.Zero, Edge.Zero);
 			Assert.AreEqual ((Direction)Edge.Zero, Direction.Zero);
 		}
-		
+
 		[Test]
 		public void Edge_Nonsense_Tests ()
 		{
@@ -72,13 +73,13 @@ namespace Knot3.UnitTests
 			Assert.False (Edge.Zero.Direction.Equals (null));
 			Assert.False (Edge.Zero.Direction.Equals (0f));
 		}
-		
+
 		[Test]
 		public void Edge_ToString_Tests ()
 		{
 			Assert.IsNotEmpty (Edge.Zero.ToString ());
 		}
-		
+
 		[Test]
 		public void Edge_Clone_Tests ()
 		{
