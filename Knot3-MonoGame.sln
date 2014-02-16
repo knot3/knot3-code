@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Knot3-Unit-Tests-MonoGame",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Knot3-ConfigReset", "tools\ConfigReset\Knot3-ConfigReset.csproj", "{A0C2FF20-61A7-4EC7-9406-8F6A79993DAB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Knot3-Extreme-Tests-MonoGame", "Knot3-Extreme-Tests-XNA\Knot3-Extreme-Tests-MonoGame.csproj", "{C19C58CE-8C63-4F7F-A38C-D8B204AA21F3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Knot3-Extreme-Tests-MonoGame", "extremetests\Knot3-Extreme-Tests-MonoGame.csproj", "{C19C58CE-8C63-4F7F-A38C-D8B204AA21F3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

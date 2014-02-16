@@ -16,7 +16,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{96CD65
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NUnit-Test-Coverage-XNA", "coverage\NUnit-Test-Coverage-XNA.csproj", "{EB24B7C0-0BD7-4E86-85B3-52B905A5965E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Knot3-Extreme-Tests-XNA", "Knot3-Extreme-Tests-XNA\Knot3-Extreme-Tests-XNA.csproj", "{DABD8115-0533-474A-B4A9-C9AECD1803A8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Knot3-Extreme-Tests-XNA", "extremetests\Knot3-Extreme-Tests-XNA.csproj", "{DABD8115-0533-474A-B4A9-C9AECD1803A8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
