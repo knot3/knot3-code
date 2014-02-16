@@ -282,10 +282,12 @@ namespace Knot3.Data
 
 		public override string ToString ()
 		{
-			if (IsEmpty)
-			return "CircleEntry (" + Value.ToString () + ")";
-			else 
-			return "CircleEntry.Empty";
+			if (IsEmpty) {
+				return "CircleEntry (" + Value.ToString () + ")";
+			}
+			else {
+				return "CircleEntry.Empty";
+			}
 		}
 
 		public static CircleEntry<T> operator + (CircleEntry<T> circle, int i)

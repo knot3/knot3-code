@@ -156,7 +156,7 @@ namespace Knot3.UnitTests.Data
 					Assert.IsNull (found1.At (0));
 				}
 			}
-			foreach (int searchFor in count.Range ().Skip(1)) {
+			foreach (int searchFor in count.Range ().Skip (1)) {
 				circle.Remove (searchFor);
 			}
 
@@ -170,9 +170,9 @@ namespace Knot3.UnitTests.Data
 			int[] reff = count.Repeat (i => i).ToArray ();
 			CircleEntry<int> circle = new CircleEntry<int> (reff);
 
-			Assert.IsTrue (circle.Contains(5));
+			Assert.IsTrue (circle.Contains (5));
 			circle.RemoveAt (5);
-			Assert.IsFalse (circle.Contains(5));
+			Assert.IsFalse (circle.Contains (5));
 		}
 
 		[Test]
