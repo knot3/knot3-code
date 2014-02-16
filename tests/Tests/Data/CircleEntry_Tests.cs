@@ -197,6 +197,16 @@ namespace Knot3.UnitTests.Data
 		}
 
 		[Test]
+		public void CircleEntry_ToString_Test ()
+		{
+			int[] reff = new int[] { 2, 6, 4, 5, 8, 7, 3, 1, 0, 9 };
+			CircleEntry<int> circle = new CircleEntry<int> (reff);
+			Assert.IsNotEmpty(reff.ToString());
+			circle = CircleEntry<int>.Empty;
+			Assert.IsNotEmpty(reff.ToString());
+		}
+
+		[Test]
 		public void CircleEntry_Insert_Test ()
 		{
 			CircleEntry<int> start = new CircleEntry<int> (new int[] {1});
