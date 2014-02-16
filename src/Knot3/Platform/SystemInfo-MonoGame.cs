@@ -69,7 +69,7 @@ namespace Knot3.Platform
 		public static bool IsRunningOnLinux ()
 		{
 			return Environment.OSVersion.Platform == PlatformID.Unix
-				|| Environment.OSVersion.Platform.ToString() == PlatformID.Unix.ToString();
+			       || Environment.OSVersion.Platform.ToString () == PlatformID.Unix.ToString ();
 		}
 
 		public static bool IsRunningOnWindows ()
