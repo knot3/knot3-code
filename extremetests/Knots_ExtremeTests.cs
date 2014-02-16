@@ -29,14 +29,14 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
-using System.Diagnostics;
 
 using Knot3.Data;
 using Knot3.MockObjects;
-using System.Threading;
 
 #endregion
 
@@ -61,28 +61,18 @@ namespace Knot3.ExtremeTests
 			Console.Write (knotString);
 		*/
 
+		public static void setUp () // todo
+		{
+		}
 
-        public static void setUp() // todo
-        {
+		public static void generateSquareKnot (int numberOfEdges, string saveAtPath)
+		{
+		}
 
-        }
-
-
-        public static void generateSquareKnot(int numberOfEdges, string saveAtPath)
-        {
-
-        }
-
-
-
-        public static void LoadSquareKnot(String loadFromPath)
-        {
-
-            // todo
-            Thread.Sleep(1);
-        }
-
-
-
+		public static void LoadSquareKnot (String loadFromPath)
+		{
+			// todo
+			Thread.Sleep (1);
+		}
 	}
 }
