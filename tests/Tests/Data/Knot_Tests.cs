@@ -67,7 +67,8 @@ namespace Knot3.UnitTests.Data
 			Assert.AreEqual (knot.MetaData.Name, name, "Knotenname #2");
 
 			Assert.Catch (() => {
-				KnotGenerator.generateInvalidKnot (); }, "invalid Knot construction");
+				KnotGenerator.generateInvalidKnot ();
+			}, "invalid Knot construction");
 		}
 
 		[Test, Description ("Knot Move")]
@@ -179,7 +180,7 @@ namespace Knot3.UnitTests.Data
 				Edge.Right,
 				Edge.Forward
 			}
-			);
+			                                                );
 			KnotMetaData metaData = new KnotMetaData (name: "test", countEdges: () => start.Count ());
 			Knot knot = new Knot (metaData, start);
 			for (int i = 0; i < 6; i++) {
