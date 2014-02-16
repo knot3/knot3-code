@@ -72,6 +72,9 @@ namespace Knot3.Core
 				}
 				return _default;
 			}
+			set {
+				_default = value;
+			}
 		}
 
 		private static ConfigFile _default;

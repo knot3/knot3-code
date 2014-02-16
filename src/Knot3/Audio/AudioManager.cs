@@ -26,7 +26,6 @@
 #endregion
 
 #region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -105,7 +104,7 @@ namespace Knot3.Audio
 		/// <summary>
 		/// Erstellt einen neuen AudioManager für den angegebenen Spielzustand.
 		/// </summary>
-		public AudioManager (IGameScreen screen)
+		public AudioManager (IGameScreen screen, string directory = ".")
 		: base (screen, DisplayLayer.None)
 		{
 			if (AudioFiles.Count == 0) {
@@ -116,11 +115,17 @@ namespace Knot3.Audio
 				}
 
 				// Suche nach XNA-Audio-Dateien
-				FileUtility.SearchFiles (".", new string[] {".xnb"}, AddXnaAudioFile);
+				FileUtility.SearchFiles (directory, new string[] {".xnb"}, AddXnaAudioFile);
 
 				// Suche nach OGG-Dateien
-				FileUtility.SearchFiles (".", new string[] {".ogg"}, AddOggAudioFile);
+				FileUtility.SearchFiles (directory, new string[] {".ogg"}, AddOggAudioFile);
 			}
+		}
+
+		public static void Reset ()
+		{
+			AudioFiles.Clear ();
+			VolumeMap.Clear ();
 		}
 
 		private void AddXnaAudioFile (string filepath)

@@ -26,7 +26,6 @@
 #endregion
 
 #region Using
-
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -144,6 +143,7 @@ namespace Knot3.Platform
 					}
 					// Environment.CurrentDirectory = cwd;
 					Log.Debug (cwd);
+					cwd = FileUtility.AbsoluteToRelative (cwd);
 					baseDirectory = cwd;
 					return cwd;
 				}
@@ -151,7 +151,6 @@ namespace Knot3.Platform
 		}
 
 		private static string baseDirectory = null;
-
 		public readonly static char PathSeparator = Path.DirectorySeparatorChar;
 
 		#endregion

@@ -148,11 +148,6 @@ namespace Knot3.Core
 			return new DisplayLayer (widget.Index, layer);
 		}
 
-		public static DisplayLayer operator + (Widget widget, DisplayLayer layer)
-		{
-			return new DisplayLayer (widget.Index, layer);
-		}
-
 		public static DisplayLayer operator * (DisplayLayer layer, int i)
 		{
 			return new DisplayLayer (layer.Index * i, "(" + layer + "*" + i + ")");

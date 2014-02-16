@@ -22,11 +22,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+using Knot3.Core;
+using NUnit.Framework;
+using Knot3.Utilities;
 
 #endregion
 
 #region Using
-
 using System;
 using System.IO;
 
@@ -36,8 +38,17 @@ using Knot3.Platform;
 
 namespace Knot3.UnitTests
 {
+	[TestFixture]
 	public static class TestHelper
 	{
+		[SetUp]
+		public static void TestHelper_SetUp ()
+		{
+			// Vorrang beim statischen Initialisieren!
+			var bullshit = Options.Default;
+			Options.Default = new ConfigFile (TempDirectory + "knot3.ini");
+		}
+
 		public static string TestResourcesDirectory
 		{
 			get {
@@ -56,7 +67,7 @@ namespace Knot3.UnitTests
 					directory = Path.GetTempPath () + "\\Knot3-Tests\\";
 				}
 				Directory.CreateDirectory (directory);
-				return directory;
+				return FileUtility.AbsoluteToRelative(directory);
 			}
 		}
 	}

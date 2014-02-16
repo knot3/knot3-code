@@ -26,7 +26,6 @@
 #endregion
 
 #region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -70,9 +69,9 @@ namespace Knot3.Utilities
 		{
 			char[] arr = name.ToCharArray ();
 			arr = Array.FindAll<char> (arr, (c => (char.IsLetterOrDigit (c)
-			                                       || char.IsWhiteSpace (c)
-			                                       || c == '-'))
-			                          );
+				|| char.IsWhiteSpace (c)
+				|| c == '-'))
+			);
 			return new string (arr);
 		}
 
@@ -105,6 +104,16 @@ namespace Knot3.Utilities
 					yield return line;
 				}
 			}
+		}
+
+		public static string AbsoluteToRelative (string directory)
+		{
+			Console.WriteLine ("Absolute: " + directory);
+			Uri currentUri = new Uri (Directory.GetCurrentDirectory ()+"/");
+			Console.WriteLine ("Current: " + currentUri.ToString());
+			Uri relativeUri = currentUri.MakeRelativeUri (new Uri (directory+"/"));
+			Console.WriteLine ("Relative: " + relativeUri);
+			return relativeUri.ToString ();
 		}
 
 		public static void SearchFiles (IEnumerable<string> directories, IEnumerable<string> extensions, Action<string> add)

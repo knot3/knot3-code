@@ -22,11 +22,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+using Knot3.Audio;
+using Knot3.MockObjects;
 
 #endregion
 
 #region Using
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,16 +46,35 @@ namespace Knot3.UnitTests.Audio
 	[TestFixture]
 	public class Audio_Tests
 	{
-		/*
-		[Test]
-		public void Test_1 ()
+		AudioManager audio;
+		FakeScreen screen;
+
+		[SetUp]
+		public void Audio_Setup ()
 		{
+			screen = new FakeScreen ();
+			AudioManager.Reset ();
+			audio = new AudioManager (screen, TestHelper.TestResourcesDirectory);
 		}
 
 		[Test]
-		public void Test_2 ()
+		public void Audio_Volume_Tests ()
+		{
+			AudioManager.SetVolume(Sound.PipeMoveSound, 1f);
+		}
+
+		[Test]
+		public void Audio_Load_Tests ()
+		{
+			string[] filenames = new string[] { "sound1.ogg", "invalid.ogg" };
+			foreach (string filename in filenames) {
+
+			}
+		}
+
+		[Test]
+		public void Audio_LoopPlaylist_Tests ()
 		{
 		}
-		*/
 	}
 }
