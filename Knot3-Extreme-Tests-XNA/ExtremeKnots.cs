@@ -26,6 +26,7 @@
 #endregion
 
 #region Using
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -76,6 +77,5 @@ namespace Knot3.ExtremeTests
 		public void SquareKnotWith_2000_Edges ()
 		{
 		}
-
 	}
 }
