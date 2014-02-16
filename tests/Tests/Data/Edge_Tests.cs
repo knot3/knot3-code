@@ -26,7 +26,6 @@
 #endregion
 
 #region Using
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -103,6 +102,13 @@ namespace Knot3.UnitTests
 			Assert.AreEqual (Direction.FromAxis (Axis.X).Axis, Axis.X);
 			Assert.AreEqual (Direction.FromAxis (Axis.Y).Axis, Axis.Y);
 			Assert.AreEqual (Direction.FromAxis (Axis.Z).Axis, Axis.Z);
+		}
+
+		[Test]
+		public void Edge_Random_Tests ()
+		{
+			Assert.IsNotNull (Edge.RandomEdge ());
+			Assert.IsNotNull (Edge.RandomColor (new GameTime (new TimeSpan (0), new TimeSpan (0))));
 		}
 
 		[Test]
