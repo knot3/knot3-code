@@ -22,21 +22,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-using Knot3.Audio;
-using Knot3.MockObjects;
 
 #endregion
 
 #region Using
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
 using NUnit.Framework;
 
+using Knot3.Audio;
 using Knot3.Core;
 using Knot3.Data;
 using Knot3.GameObjects;
+using Knot3.MockObjects;
 using Knot3.RenderEffects;
 
 #endregion
@@ -60,7 +61,7 @@ namespace Knot3.UnitTests.Audio
 		[Test]
 		public void Audio_Volume_Tests ()
 		{
-			AudioManager.SetVolume(Sound.PipeMoveSound, 1f);
+			AudioManager.SetVolume (Sound.PipeMoveSound, 1f);
 		}
 
 		[Test]
@@ -68,7 +69,6 @@ namespace Knot3.UnitTests.Audio
 		{
 			string[] filenames = new string[] { "sound1.ogg", "invalid.ogg" };
 			foreach (string filename in filenames) {
-
 			}
 		}
 

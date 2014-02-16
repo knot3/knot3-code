@@ -22,17 +22,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-using Knot3.Core;
-using NUnit.Framework;
-using Knot3.Utilities;
 
 #endregion
 
 #region Using
+
 using System;
 using System.IO;
 
+using NUnit.Framework;
+
+using Knot3.Core;
 using Knot3.Platform;
+using Knot3.Utilities;
 
 #endregion
 
@@ -67,7 +69,7 @@ namespace Knot3.UnitTests
 					directory = Path.GetTempPath () + "\\Knot3-Tests\\";
 				}
 				Directory.CreateDirectory (directory);
-				return FileUtility.AbsoluteToRelative(directory);
+				return FileUtility.AbsoluteToRelative (directory);
 			}
 		}
 	}
