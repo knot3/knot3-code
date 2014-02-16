@@ -152,7 +152,7 @@ namespace Knot3.Platform
 
 		private static string baseDirectory = null;
 
-		public static char PathSeparator { get { return Path.DirectorySeparatorChar; } }
+		public readonly static char PathSeparator = Path.DirectorySeparatorChar;
 
 		#endregion
 	}
