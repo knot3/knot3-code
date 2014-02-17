@@ -30,6 +30,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 using Microsoft.Xna.Framework;
@@ -50,7 +51,6 @@ using Knot3.RenderEffects;
 using Knot3.Screens;
 using Knot3.Utilities;
 using Knot3.Widgets;
-using System.Diagnostics.CodeAnalysis;
 
 #endregion
 
@@ -164,7 +164,7 @@ namespace Knot3.Data
 			return other != null && Equals (other as KnotMetaData);
 		}
 
-        [ExcludeFromCodeCoverageAttribute]
+		[ExcludeFromCodeCoverageAttribute]
 		public override int GetHashCode ()
 		{
 			return (countEdges ().ToString () + (name ?? String.Empty)).GetHashCode ();
