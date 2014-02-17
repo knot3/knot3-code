@@ -56,7 +56,7 @@ namespace Knot3.Core
 	/// <summary>
 	/// Eine zeichenbare Spielkomponente, die in einem angegebenen Spielzustand verwendet wird und eine bestimmte Priorität hat.
 	/// </summary>
-    [ExcludeFromCodeCoverageAttribute]
+	[ExcludeFromCodeCoverageAttribute]
 	public abstract class DrawableGameScreenComponent : DrawableGameComponent, IGameScreenComponent
 	{
 		#region Properties
