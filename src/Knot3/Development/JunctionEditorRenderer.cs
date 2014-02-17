@@ -203,6 +203,7 @@ namespace Knot3.Development
 		/// <summary>
 		/// Ruft die Update ()-Methoden der Kanten, Übergänge und Pfeile auf.
 		/// </summary>
+		[ExcludeFromCodeCoverageAttribute]
 		public void Update (GameTime time)
 		{
 			foreach (PipeModel pipe in pipes) {
@@ -216,6 +217,7 @@ namespace Knot3.Development
 		/// <summary>
 		/// Ruft die Draw ()-Methoden der Kanten, Übergänge und Pfeile auf.
 		/// </summary>
+		[ExcludeFromCodeCoverageAttribute]
 		public void Draw (GameTime time)
 		{
 			if (Info.IsVisible) {

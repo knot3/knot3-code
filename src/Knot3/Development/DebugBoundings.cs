@@ -122,10 +122,12 @@ namespace Knot3.Development
 			return Info.Position;
 		}
 
+		[ExcludeFromCodeCoverageAttribute]
 		public void Update (GameTime time)
 		{
 		}
 
+		[ExcludeFromCodeCoverageAttribute]
 		public void Draw (GameTime time)
 		{
 			if (!Info.IsVisible) {

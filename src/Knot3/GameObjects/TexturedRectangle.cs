@@ -107,6 +107,7 @@ namespace Knot3.GameObjects
 
 		#region Update
 
+		[ExcludeFromCodeCoverageAttribute]
 		public void Update (GameTime time)
 		{
 		}
@@ -115,6 +116,7 @@ namespace Knot3.GameObjects
 
 		#region Draw
 
+		[ExcludeFromCodeCoverageAttribute]
 		public void Draw (GameTime time)
 		{
 			if (Info.IsVisible) {

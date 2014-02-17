@@ -131,6 +131,7 @@ namespace Knot3.Input
 		/// <summary>
 		/// Wird für jeden Frame aufgerufen.
 		/// </summary>
+		[ExcludeFromCodeCoverageAttribute]
 		public void Update (GameTime time)
 		{
 			SelectEdges (time);
@@ -425,6 +426,7 @@ namespace Knot3.Input
 		/// <summary>
 		/// Zeichnet die während einer Verschiebeaktion dynamisch erstellten 3D-Modelle.
 		/// </summary>
+		[ExcludeFromCodeCoverageAttribute]
 		public void Draw (GameTime time)
 		{
 			foreach (IGameObject shadowObj in shadowObjects) {

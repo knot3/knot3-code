@@ -115,6 +115,7 @@ namespace Knot3.Audio
 			internalFile.Stop ();
 		}
 
+		[ExcludeFromCodeCoverageAttribute]
 		public void Update (GameTime time)
 		{
 			internalFile.Update (time);

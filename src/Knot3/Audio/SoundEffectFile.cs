@@ -104,6 +104,7 @@ namespace Knot3.Audio
 			Instance.Stop ();
 		}
 
+		[ExcludeFromCodeCoverageAttribute]
 		public void Update (GameTime time)
 		{
 			if (volume != AudioManager.Volume (SoundType)) {

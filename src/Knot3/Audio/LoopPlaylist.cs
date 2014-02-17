@@ -117,6 +117,7 @@ namespace Knot3.Audio
 		/// <summary>
 		/// Wird für jeden Frame aufgerufen.
 		/// </summary>
+		[ExcludeFromCodeCoverageAttribute]
 		public void Update (GameTime time)
 		{
 			if (Sounds.Count > 0) {

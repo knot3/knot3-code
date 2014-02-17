@@ -227,6 +227,7 @@ namespace Knot3.GameObjects
 			return Info.Position;
 		}
 
+		[ExcludeFromCodeCoverageAttribute]
 		public void Update (GameTime time)
 		{
 			if (World.Camera.MaxPositionDistance + 500 != Distance) {
@@ -237,6 +238,7 @@ namespace Knot3.GameObjects
 			}
 		}
 
+		[ExcludeFromCodeCoverageAttribute]
 		public void Draw (GameTime time)
 		{
 			foreach (TexturedRectangle rect in rectangles) {
