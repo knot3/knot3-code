@@ -122,14 +122,14 @@ echo.
 :: Ausgabe von ReportGenerator auf der Konsole wird durch ">NUL" unterdrückt.
 :: Erstellung des Berichts als Html:
 ::
-"%PATH_TO_REPORTGENERATOR%\ReportGenerator.exe" -reporttypes:"Html" -reports:"%PATH_TO_RAW_REPORTDATA%\NUnit_test_coverage.xml" -targetdir:"%PATH_TO_HTML_REPORT%"
+"%PATH_TO_REPORTGENERATOR%\ReportGenerator.exe" -reporttypes:"Html" -reports:"%PATH_TO_RAW_REPORTDATA%\NUnit_test_coverage.xml" -targetdir:"%PATH_TO_HTML_REPORT%">NUL
 
 echo - LaTeX
 echo.
 ::
 :: Erstellung des Berichts als LaTeX:
 ::
-"%PATH_TO_REPORTGENERATOR%\ReportGenerator.exe" -reporttypes:"Latex" -reports:"%PATH_TO_RAW_REPORTDATA%\NUnit_test_coverage.xml" -targetdir:"%PATH_TO_LATEX_REPORT%"
+"%PATH_TO_REPORTGENERATOR%\ReportGenerator.exe" -reporttypes:"LatexSummary" -reports:"%PATH_TO_RAW_REPORTDATA%\NUnit_test_coverage.xml" -targetdir:"%PATH_TO_LATEX_REPORT%">NUL
 
 
 echo ... Showing report.
@@ -139,5 +139,5 @@ echo.
 ::
 start "" "%PATH_TO_HTML_REPORT%\index.htm"
 
-pause
+REM pause
 exit
