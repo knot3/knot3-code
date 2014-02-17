@@ -30,6 +30,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 using Microsoft.Xna.Framework;
@@ -56,6 +57,7 @@ namespace Knot3.Widgets
 	/// <summary>
 	/// Repräsentiert einen Eintrag in einem Dropdown-Menü.
 	/// </summary>
+	[ExcludeFromCodeCoverageAttribute]
 	public class DropDownEntry
 	{
 		#region Properties

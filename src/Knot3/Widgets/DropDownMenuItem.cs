@@ -30,6 +30,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 using Microsoft.Xna.Framework;
@@ -58,6 +59,7 @@ namespace Knot3.Widgets
 	/// <summary>
 	/// Ein Menüeintrag, der den ausgewählten Wert anzeigt und bei einem Linksklick ein Dropdown-Menü zur Auswahl eines neuen Wertes ein- oder ausblendet.
 	/// </summary>
+	[ExcludeFromCodeCoverageAttribute]
 	public sealed class DropDownMenuItem : MenuItem
 	{
 		#region Properties

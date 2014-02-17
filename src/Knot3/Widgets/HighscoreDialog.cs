@@ -30,6 +30,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 using Microsoft.Xna.Framework;
@@ -57,6 +58,7 @@ namespace Knot3.Widgets
 	///Dieser Dialog Zeigt den Highscore f�r die Gegebene Challenge an und bietet die Option
 	///zum Neustarten oder R�ckkehr zum Hauptmen�
 	/// </summary>
+	[ExcludeFromCodeCoverageAttribute]
 	public sealed class HighscoreDialog : Dialog
 	{
 		#region Properties

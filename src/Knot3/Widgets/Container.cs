@@ -30,6 +30,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 using Microsoft.Xna.Framework;
@@ -58,6 +59,7 @@ namespace Knot3.Widgets
 	/// Positionen, Größen, Farben und Ausrichtungen der Menüeinträge. Sie werden gesetzt, wenn die Werte
 	/// der Menüeinträge \glqq null\grqq~sind.
 	/// </summary>
+	[ExcludeFromCodeCoverageAttribute]
 	public class Container : Widget, IEnumerable<Widget>
 	{
 		#region Properties

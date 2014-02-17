@@ -30,6 +30,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 using Microsoft.Xna.Framework;
@@ -57,6 +58,7 @@ namespace Knot3.Widgets
 	/// <summary>
 	/// Ein Menüeintrag, der Texteingaben vom Spieler annimmt.
 	/// </summary>
+	[ExcludeFromCodeCoverageAttribute]
 	public class InputItem : MenuItem
 	{
 		#region Properties

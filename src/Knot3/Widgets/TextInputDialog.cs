@@ -30,6 +30,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text.RegularExpressions;
 
@@ -57,6 +58,7 @@ namespace Knot3.Widgets
 	/// <summary>
 	/// Ein Dialog, der eine Texteingabe des Spielers entgegennimmt.
 	/// </summary>
+	[ExcludeFromCodeCoverageAttribute]
 	public class TextInputDialog : Dialog, IKeyEventListener
 	{
 		#region Properties

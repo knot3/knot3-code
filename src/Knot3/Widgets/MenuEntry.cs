@@ -30,6 +30,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 using Microsoft.Xna.Framework;
@@ -57,6 +58,7 @@ namespace Knot3.Widgets
 	/// <summary>
 	/// Eine Schaltfläche, der eine Zeichenkette anzeigt und auf einen Linksklick reagiert.
 	/// </summary>
+	[ExcludeFromCodeCoverageAttribute]
 	public class MenuEntry : MenuItem
 	{
 		#region Properties

@@ -30,6 +30,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 using Microsoft.Xna.Framework;
@@ -58,6 +59,7 @@ namespace Knot3.Widgets
 	/// <summary>
 	/// Ein abstrakte Klasse für Menüeinträge.
 	/// </summary>
+	[ExcludeFromCodeCoverageAttribute]
 	public abstract class MenuItem : Widget, IKeyEventListener, IMouseClickEventListener, IMouseScrollEventListener
 	{
 		#region Properties

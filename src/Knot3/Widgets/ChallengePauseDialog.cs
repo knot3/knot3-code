@@ -30,6 +30,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 using Microsoft.Xna.Framework;
@@ -58,6 +59,7 @@ namespace Knot3.Widgets
 	/// Pausiert ein Spieler im Creative- oder Challenge-Modus das Spiel,
 	/// wird dieser Dialog über anderen Spielkomponenten angezeigt.
 	/// </summary>
+	[ExcludeFromCodeCoverageAttribute]
 	public sealed class ChallengePauseDialog : Dialog
 	{
 		#region Properties

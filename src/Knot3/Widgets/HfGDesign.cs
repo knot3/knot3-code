@@ -28,6 +28,7 @@
 #region Using
 
 using System;
+using System.Diagnostics.CodeAnalysis;
 
 using Microsoft.Xna.Framework;
 
@@ -37,6 +38,7 @@ using Knot3.Widgets;
 
 namespace Knot3.Widgets
 {
+	[ExcludeFromCodeCoverageAttribute]
 	public sealed class HfGDesign : IDesign
 	{
 		public HfGDesign ()

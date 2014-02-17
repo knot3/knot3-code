@@ -30,6 +30,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 using Microsoft.Xna.Framework;
@@ -56,6 +57,7 @@ namespace Knot3.Widgets
 	/// <summary>
 	/// Ein Menüeintrag, der eine aktuelle Farbe anzeigt und zum Ändern der Farbe per Mausklick einen ColorPicker öffnet.
 	/// </summary>
+	[ExcludeFromCodeCoverageAttribute]
 	public sealed class ColorPickItem : MenuItem
 	{
 		#region Properties

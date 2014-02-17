@@ -30,6 +30,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 using Microsoft.Xna.Framework;
@@ -59,6 +60,7 @@ namespace Knot3.Widgets
 	/// Ein Menüeintrag, der einen Schieberegler bereitstellt, mit dem man einen Wert zwischen einem minimalen
 	/// und einem maximalen Wert über Verschiebung einstellen kann.
 	/// </summary>
+	[ExcludeFromCodeCoverageAttribute]
 	public sealed class SliderItem : MenuItem, IMouseClickEventListener, IMouseMoveEventListener
 	{
 		#region Properties

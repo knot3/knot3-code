@@ -30,6 +30,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 using Microsoft.Xna.Framework;
@@ -54,6 +55,7 @@ using Knot3.Utilities;
 
 namespace Knot3.Widgets
 {
+	[ExcludeFromCodeCoverageAttribute]
 	public sealed class Lines : DrawableGameScreenComponent
 	{
 		private Texture2D texture;
