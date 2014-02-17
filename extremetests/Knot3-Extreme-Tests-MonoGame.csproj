@@ -43,7 +43,7 @@
   <ItemGroup>
     <Compile Include="Benchmark.cs" />
     <Compile Include="Challenges_ExtremeTests.cs" />
-    <Compile Include="Inputs_ExtremeTests.cs" />
+    <Compile Include="Input_ExtremeTests.cs" />
     <Compile Include="Knots_ExtremeTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

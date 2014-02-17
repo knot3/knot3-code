@@ -42,11 +42,9 @@ namespace Knot3.MockObjects
 	public class KnotGenerator
 	{
 
+		public static readonly string FakeName = "FakeKnot";
 
-        public static readonly string FakeName = "FakeKnot";
-
-
-        // TODO(jemand): Wir brauchen hier noch eine bessere Lösung / Überladungen / Umgang mit "FakeKnots"
+		// TODO (jemand): Wir brauchen hier noch eine bessere Lösung / Überladungen / Umgang mit "FakeKnots"
 
 		public static Knot generateSquareKnot (int EdgeLength, string name)
 		{
