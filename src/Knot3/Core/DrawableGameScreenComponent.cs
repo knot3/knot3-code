@@ -30,6 +30,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 using Microsoft.Xna.Framework;
@@ -55,6 +56,7 @@ namespace Knot3.Core
 	/// <summary>
 	/// Eine zeichenbare Spielkomponente, die in einem angegebenen Spielzustand verwendet wird und eine bestimmte Priorität hat.
 	/// </summary>
+	[ExcludeFromCodeCoverage]
 	public abstract class DrawableGameScreenComponent : DrawableGameComponent, IGameScreenComponent
 	{
 		#region Properties
