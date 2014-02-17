@@ -46,8 +46,7 @@ namespace Knot3.ExtremeTests
 	{
 		private static KnotFileIO knotFileIO;
 		// public static List<string> testKnotNames;
-        public static int[] SquareKnot_TestLengths = new int[]{100};
-
+		public static int[] SquareKnot_TestLengths = new int[] {100};
 
 		static ExtremeKnots ()
 		{
@@ -66,8 +65,7 @@ namespace Knot3.ExtremeTests
 
 			Console.WriteLine ("------->>>> " + knot.MetaData.Filename);
 
-
-            // todo: einstellen, dass die Testknoten nicht bei den Savegames landen.
+			// todo: einstellen, dass die Testknoten nicht bei den Savegames landen.
 
 			//knotFileIO.Save (knot);
 		}

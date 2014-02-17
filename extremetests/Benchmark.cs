@@ -175,15 +175,12 @@ namespace Knot3.ExtremeTests
 			// setUp ();
 			PrintTimerProperties ();
 
-            foreach (int length in ExtremeKnots.SquareKnot_TestLengths)
-            {
-
-                description = "Knoten-Laden: Knoten mit 100 Kanten, 100 WH:";
-                test = () => ExtremeKnots.LoadSquareKnot("Square-Knot_" + length);
-                timeStatistics = StopTime(test, 100, timeStatistics);
-                PrintTimeStatistics(timeStatistics, description);
-
-            }
+			foreach (int length in ExtremeKnots.SquareKnot_TestLengths) {
+				description = "Knoten-Laden: Knoten mit 100 Kanten, 100 WH:";
+				test = () => ExtremeKnots.LoadSquareKnot ("Square-Knot_" + length);
+				timeStatistics = StopTime (test, 100, timeStatistics);
+				PrintTimeStatistics (timeStatistics, description);
+			}
 			// ...
 		}
 	}
