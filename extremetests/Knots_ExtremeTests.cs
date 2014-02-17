@@ -59,11 +59,12 @@ namespace Knot3.ExtremeTests
 			Knot knot = null;
 			string knotName = null;
 
-			knotName = "Square-Knot_100";
-			//testKnotNames.Add (knotName);
-			knot = KnotGenerator.generateSquareKnot (100 / 4, knotName);
-
-			Console.WriteLine ("------->>>> " + knot.MetaData.Filename);
+            foreach (int knotLength in SquareKnot_TestLengths)
+            {
+                knotName = "Square-Knot_" + knotLength;
+                knot = KnotGenerator.generateSquareKnot(knotLength / 4, knotName);
+                Console.WriteLine("Generating SK: " + knot.MetaData.Filename);
+            }
 
 			// todo: einstellen, dass die Testknoten nicht bei den Savegames landen.
 
