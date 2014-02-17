@@ -13,6 +13,9 @@ SOLUTION=Knot3-MonoGame.csproj
 all: build
 
 build:
+    ls /tmp/monogame.zip || wget https://github.com/pse-knot/MonoGame/releases/download/v3.1.2/MonoGame-Linux-20130126.zip -O /tmp/monogame.zip
+    mkdir -p bin/Debug/ || true
+    unzip -d bin/Debug/ /tmp/monogame.zip || true
 	xbuild $(SOLUTION)
 
 install: build
