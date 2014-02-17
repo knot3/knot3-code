@@ -26,7 +26,6 @@
 #endregion
 
 #region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -58,6 +57,9 @@ namespace Knot3.GameObjects
 	{
 		#region Properties
 
+		/// <summary>
+		/// Der dazugehörige Screen.
+		/// </summary>
 		private IGameScreen Screen;
 
 		/// <summary>
@@ -79,6 +81,9 @@ namespace Knot3.GameObjects
 
 		private World _world;
 
+		/// <summary>
+		/// Die Distanz zu den Wänden vom Ursprung aus.
+		/// </summary>
 		public float Distance
 		{
 			get { return _distance; }
@@ -94,7 +99,16 @@ namespace Knot3.GameObjects
 		/// Die einzelnen texturierten Rechtecke.
 		/// </summary>
 		private List<TexturedRectangle> rectangles = new List<TexturedRectangle> ();
+
+		/// <summary>
+		/// Der Zufallsgenerator.
+		/// </summary>
 		private Random random;
+
+		/// <summary>
+		/// Der Texture-Cache.
+		/// </summary>
+		private Dictionary<Direction, Texture2D> textureCache = new Dictionary<Direction, Texture2D>();
 
 		#endregion
 
@@ -125,13 +139,13 @@ namespace Knot3.GameObjects
 		private void ConstructRectangles ()
 		{
 			rectangles.Clear ();
-			foreach (Vector3 direction in Direction.Values) {
+			foreach (Direction direction in Direction.Values) {
 				Vector3 position = direction * Distance;
 				Vector3 up = direction == Direction.Up || direction == Direction.Down ? Vector3.Forward : Vector3.Up;
 				Vector3 left = Vector3.Normalize (Vector3.Cross (position, up));
 				TexturedRectangleInfo info = new TexturedRectangleInfo (
 				    // texturename: "sky1",
-				    texture: CreateSkyTexture (),
+				    texture: CachedSkyTexture (direction),
 				    origin: position,
 				    left: left,
 				    width: 2 * Distance,
@@ -142,6 +156,14 @@ namespace Knot3.GameObjects
 				rectangles.Add (new TexturedRectangle (Screen, info));
 			}
 			assignWorld ();
+		}
+
+		private Texture2D CachedSkyTexture (Direction direction)
+		{
+			if (!textureCache.ContainsKey (direction)) {
+				textureCache [direction] = CreateSkyTexture ();
+			}
+			return textureCache [direction];
 		}
 
 		private Texture2D CreateSkyTexture ()
