@@ -150,6 +150,7 @@
     <Compile Include="Knot3\Data\DirectionHelper.cs" />
     <Compile Include="Knot3\Data\Edge.cs" />
     <Compile Include="Knot3\Data\IChallengeIO.cs" />
+    <Compile Include="Knot3\Data\IJunction.cs" />
     <Compile Include="Knot3\Data\IKnotIO.cs" />
     <Compile Include="Knot3\Data\INodeMap.cs" />
     <Compile Include="Knot3\Data\ISavegameIO.cs" />
@@ -178,7 +179,6 @@
     <Compile Include="Knot3\GameObjects\GameObjectDistance.cs" />
     <Compile Include="Knot3\GameObjects\GameObjectInfo.cs" />
     <Compile Include="Knot3\GameObjects\IGameObject.cs" />
-    <Compile Include="Knot3\GameObjects\IJunction.cs" />
     <Compile Include="Knot3\GameObjects\KnotRenderer.cs" />
     <Compile Include="Knot3\GameObjects\ModelColoring.cs" />
     <Compile Include="Knot3\GameObjects\ModelFactory.cs" />
@@ -187,7 +187,6 @@
     <Compile Include="Knot3\GameObjects\NodeModelInfo.cs" />
     <Compile Include="Knot3\GameObjects\PipeModel.cs" />
     <Compile Include="Knot3\GameObjects\PipeModelInfo.cs" />
-    <Compile Include="Knot3\GameObjects\PlayerActions.cs" />
     <Compile Include="Knot3\GameObjects\ShadowGameModel.cs" />
     <Compile Include="Knot3\GameObjects\ShadowGameObject.cs" />
     <Compile Include="Knot3\GameObjects\SkyCube.cs" />
@@ -204,6 +203,7 @@
     <Compile Include="Knot3\Input\InputManager.cs" />
     <Compile Include="Knot3\Input\KnotInputHandler.cs" />
     <Compile Include="Knot3\Input\MousePointer.cs" />
+    <Compile Include="Knot3\Input\PlayerActions.cs" />
     <Compile Include="Knot3\Input\WidgetKeyHandler.cs" />
     <Compile Include="Knot3\Input\WidgetMouseHandler.cs" />
     <Compile Include="Knot3\Platform\SystemInfo-XNA.cs" />
