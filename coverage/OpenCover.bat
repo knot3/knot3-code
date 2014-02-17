@@ -52,6 +52,11 @@ set PATH_TO_RAW_REPORTDATA=%PATH_TO_PROJECT%\coverage\bin\Debug
 set PATH_TO_HTML_REPORT=%PATH_TO_PROJECT%\coverage\bin\Debug
 set PATH_TO_LATEX_REPORT=%PATH_TO_PROJECT%\..\knot-qualitaetssicherung\Bericht\Inhalt\Tests\Abdeckung
 
+set LATEX_FULL_REPORT_NAME=OpenCover_Bericht_komplett.tex
+set LATEX_SUMM_REPORT_NAME=OpenCover_Bericht_uebersicht.tex
+set LATEX_FULL_REPORT="%PATH_TO_LATEX_REPORT%\%LATEX_FULL_REPORT_NAME%"
+set LATEX_SUMM_REPORT="%PATH_TO_LATEX_REPORT%\%LATEX_SUMM_REPORT_NAME%"
+
 ::
 :: Standard-Installationsverzeichnisse der Werkzeuge:
 ::
@@ -116,7 +121,7 @@ echo.
 
 echo ... Generating report ...
 echo.
-echo - HTML
+echo     - HTML
 echo.
 ::
 :: Ausgabe von ReportGenerator auf der Konsole wird durch ">NUL" unterdrückt.
@@ -124,12 +129,24 @@ echo.
 ::
 "%PATH_TO_REPORTGENERATOR%\ReportGenerator.exe" -reporttypes:"Html" -reports:"%PATH_TO_RAW_REPORTDATA%\NUnit_test_coverage.xml" -targetdir:"%PATH_TO_HTML_REPORT%">NUL
 
-echo - LaTeX
+echo     - LaTeX
 echo.
 ::
-:: Erstellung des Berichts als LaTeX:
+:: Erstellung des Berichts als LaTeX (vollständig):
 ::
+if exist %LATEX_FULL_REPORT% (
+del /F %LATEX_FULL_REPORT%
+)
+"%PATH_TO_REPORTGENERATOR%\ReportGenerator.exe" -reporttypes:"Latex" -reports:"%PATH_TO_RAW_REPORTDATA%\NUnit_test_coverage.xml" -targetdir:"%PATH_TO_LATEX_REPORT%">NUL
+ren "%PATH_TO_LATEX_REPORT%\summary.tex" %LATEX_FULL_REPORT_NAME%
+::
+:: Erstellung des Berichts als LaTeX (nur Übersicht):
+::
+if exist %LATEX_SUMM_REPORT% (
+del /F %LATEX_SUMM_REPORT%
+)
 "%PATH_TO_REPORTGENERATOR%\ReportGenerator.exe" -reporttypes:"LatexSummary" -reports:"%PATH_TO_RAW_REPORTDATA%\NUnit_test_coverage.xml" -targetdir:"%PATH_TO_LATEX_REPORT%">NUL
+ren "%PATH_TO_LATEX_REPORT%\summary.tex" %LATEX_SUMM_REPORT_NAME%
 
 
 echo ... Showing report.
@@ -138,6 +155,11 @@ echo.
 :: Startet das Standardprogramm für das Betrachten von .htm:
 ::
 start "" "%PATH_TO_HTML_REPORT%\index.htm"
+
+::
+:: 5 Sekunden Pause.
+::
+ping -n 4 127.0.0.1>NUL
 
 REM pause
 exit
