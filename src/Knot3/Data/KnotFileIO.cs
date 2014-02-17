@@ -145,7 +145,7 @@ namespace Knot3.Data
 		}
 
 		[ExcludeFromCodeCoverageAttribute]
-public override string ToString ()
+		public override string ToString ()
 		{
 			return "KnotFileIO";
 		}

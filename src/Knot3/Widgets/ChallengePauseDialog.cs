@@ -128,7 +128,7 @@ namespace Knot3.Widgets
 		#region Methods
 
 		[ExcludeFromCodeCoverageAttribute]
-public override void Draw (GameTime time)
+		public override void Draw (GameTime time)
 		{
 			spriteBatch.Begin ();
 			spriteBatch.DrawColoredRectangle (Design.WidgetBackground * 0.8f, Screen.Bounds);

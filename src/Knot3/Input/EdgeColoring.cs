@@ -66,7 +66,7 @@ namespace Knot3.Input
 		}
 
 		[ExcludeFromCodeCoverageAttribute]
-public override void Update (GameTime time)
+		public override void Update (GameTime time)
 		{
 		}
 

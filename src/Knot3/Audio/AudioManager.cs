@@ -210,7 +210,7 @@ namespace Knot3.Audio
 		}
 
 		[ExcludeFromCodeCoverageAttribute]
-public override void Update (GameTime time)
+		public override void Update (GameTime time)
 		{
 			if (Playlist != null) {
 				Playlist.Update (time);

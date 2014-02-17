@@ -282,7 +282,7 @@ namespace Knot3.Data
 		}
 
 		[ExcludeFromCodeCoverageAttribute]
-public override string ToString ()
+		public override string ToString ()
 		{
 			if (IsEmpty) {
 				return "CircleEntry (" + Value.ToString () + ")";

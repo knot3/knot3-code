@@ -130,7 +130,7 @@ namespace Knot3.GameObjects
 		/// Zeichnet das Vorschau-Spielobjekt.
 		/// </summary>
 		[ExcludeFromCodeCoverageAttribute]
-public virtual void Draw (GameTime time)
+		public virtual void Draw (GameTime time)
 		{
 			Vector3 originalPositon = decoratedObject.Info.Position;
 			decoratedObject.Info.Position = ShadowPosition;

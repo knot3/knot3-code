@@ -121,7 +121,7 @@ namespace Knot3.GameObjects
 		}
 
 		[ExcludeFromCodeCoverageAttribute]
-public override int GetHashCode ()
+		public override int GetHashCode ()
 		{
 			return Position.GetHashCode ();
 		}

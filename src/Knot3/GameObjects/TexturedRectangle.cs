@@ -241,7 +241,7 @@ namespace Knot3.GameObjects
 		}
 
 		[ExcludeFromCodeCoverageAttribute]
-public override string ToString ()
+		public override string ToString ()
 		{
 			return "TexturedRectangle (" + UpperLeft + "," + UpperRight + "," + LowerRight + "," + LowerLeft + ")";
 		}
@@ -291,7 +291,7 @@ public override string ToString ()
 		}
 
 		[ExcludeFromCodeCoverageAttribute]
-public override int GetHashCode ()
+		public override int GetHashCode ()
 		{
 			return Info.Position.GetHashCode ();
 		}

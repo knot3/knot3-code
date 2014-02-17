@@ -84,7 +84,7 @@ namespace Knot3.Input
 		/// Zeichnet den Mauszeiger.
 		/// </summary>
 		[ExcludeFromCodeCoverageAttribute]
-public override void Draw (GameTime time)
+		public override void Draw (GameTime time)
 		{
 			DrawCursor (time);
 		}

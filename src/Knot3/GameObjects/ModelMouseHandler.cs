@@ -84,7 +84,7 @@ namespace Knot3.GameObjects
 		/// Wird für jeden Frame aufgerufen.
 		/// </summary>
 		[ExcludeFromCodeCoverageAttribute]
-public override void Update (GameTime time)
+		public override void Update (GameTime time)
 		{
 			CheckMouseRay (time);
 		}

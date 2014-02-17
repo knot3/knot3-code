@@ -153,13 +153,13 @@ namespace Knot3.Data
 		}
 
 		[ExcludeFromCodeCoverageAttribute]
-public override int GetHashCode ()
+		public override int GetHashCode ()
 		{
 			return X * 10000 + Y * 100 + Z;
 		}
 
 		[ExcludeFromCodeCoverageAttribute]
-public override string ToString ()
+		public override string ToString ()
 		{
 			return "(" + X.ToString () + "," + Y.ToString () + "," + Z.ToString () + ")";
 		}

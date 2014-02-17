@@ -142,7 +142,7 @@ namespace Knot3.Core
 		}
 
 		[ExcludeFromCodeCoverageAttribute]
-public override int GetHashCode ()
+		public override int GetHashCode ()
 		{
 			return (int)(this.X + this.Y + this.Z);
 		}
@@ -206,7 +206,7 @@ public override int GetHashCode ()
 		}
 
 		[ExcludeFromCodeCoverageAttribute]
-public override string ToString ()
+		public override string ToString ()
 		{
 			float x, y, z;
 			ToDegrees (out x, out y, out z);

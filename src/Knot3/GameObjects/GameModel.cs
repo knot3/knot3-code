@@ -144,7 +144,7 @@ namespace Knot3.GameObjects
 		/// Wird für jeden Frame aufgerufen.
 		/// </summary>
 		[ExcludeFromCodeCoverageAttribute]
-public virtual void Update (GameTime time)
+		public virtual void Update (GameTime time)
 		{
 			if (Info != null && Info.Position.Length () > World.Camera.MaxPositionDistance) {
 				World.Camera.MaxPositionDistance = Info.Position.Length () + 250;
@@ -155,7 +155,7 @@ public virtual void Update (GameTime time)
 		/// Zeichnet das 3D-Modell in der angegebenen Spielwelt mit dem aktuellen Rendereffekt der Spielwelt.
 		/// </summary>
 		[ExcludeFromCodeCoverageAttribute]
-public virtual void Draw (GameTime time)
+		public virtual void Draw (GameTime time)
 		{
 			if (Info.IsVisible) {
 				if (InCameraFrustum) {

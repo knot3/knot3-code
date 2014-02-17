@@ -97,7 +97,7 @@ namespace Knot3.GameObjects
 		/// Zeichnet das Vorschaumodell.
 		/// </summary>
 		[ExcludeFromCodeCoverageAttribute]
-public override void Draw (GameTime time)
+		public override void Draw (GameTime time)
 		{
 			// swap position, colors, alpha
 			Vector3 originalPositon = decoratedModel.Info.Position;

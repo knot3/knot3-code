@@ -89,7 +89,7 @@ namespace Knot3.GameObjects
 		/// Zeichnet das 3D-Modell mit dem aktuellen Rendereffekt.
 		/// </summary>
 		[ExcludeFromCodeCoverageAttribute]
-public override void Draw (GameTime time)
+		public override void Draw (GameTime time)
 		{
 			Coloring = new GradientColor (Info.EdgeFrom, Info.EdgeTo);
 			if (IsVirtual) {
@@ -105,7 +105,7 @@ public override void Draw (GameTime time)
 		/// Wird für jeden Frame aufgerufen.
 		/// </summary>
 		[ExcludeFromCodeCoverageAttribute]
-public override void Update (GameTime time)
+		public override void Update (GameTime time)
 		{
 			base.Update (time);
 		}

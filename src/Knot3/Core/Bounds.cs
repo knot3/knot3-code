@@ -215,7 +215,7 @@ namespace Knot3.Widgets
 		}
 
 		[ExcludeFromCodeCoverageAttribute]
-public override string ToString ()
+		public override string ToString ()
 		{
 			return "("
 			       + Position.Relative.X.ToString ()

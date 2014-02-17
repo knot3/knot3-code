@@ -195,7 +195,7 @@ namespace Knot3.Input
 		/// Wird für jeden Frame aufgerufen.
 		/// </summary>
 		[ExcludeFromCodeCoverageAttribute]
-public override void Update (GameTime time)
+		public override void Update (GameTime time)
 		{
 			// und die linke Maustaste gedrückt gehalten wird
 			if (InputManager.CurrentMouseState.MiddleButton == ButtonState.Pressed && InputManager.PreviousMouseState.MiddleButton == ButtonState.Released) {

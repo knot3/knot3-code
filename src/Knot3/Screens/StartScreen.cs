@@ -171,7 +171,7 @@ namespace Knot3.Screens
 		/// Wird für jeden Frame aufgerufen.
 		/// </summary>
 		[ExcludeFromCodeCoverageAttribute]
-public override void Update (GameTime time)
+		public override void Update (GameTime time)
 		{
 			// Versteckte Funktionen
 			if (Keys.F1.IsDown ()) {
@@ -203,7 +203,7 @@ public override void Update (GameTime time)
 		}
 
 		[ExcludeFromCodeCoverageAttribute]
-public override void Draw (GameTime time)
+		public override void Draw (GameTime time)
 		{
 			base.Draw (time);
 

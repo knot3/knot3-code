@@ -77,7 +77,7 @@ namespace Knot3.Utilities
 		}
 
 		[ExcludeFromCodeCoverageAttribute]
-public override int GetHashCode ()
+		public override int GetHashCode ()
 		{
 			// irgendwas möglichst eindeutiges
 			return (Radius * (SideA + SideB)).GetHashCode ();

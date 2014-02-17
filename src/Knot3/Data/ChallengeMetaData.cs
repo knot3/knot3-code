@@ -210,7 +210,7 @@ namespace Knot3.Data
 		}
 
 		[ExcludeFromCodeCoverageAttribute]
-public override int GetHashCode ()
+		public override int GetHashCode ()
 		{
 			return (name ?? String.Empty).GetHashCode ();
 		}

@@ -134,7 +134,7 @@ namespace Knot3.Core
 		#region Methods and Operators
 
 		[ExcludeFromCodeCoverageAttribute]
-public override string ToString ()
+		public override string ToString ()
 		{
 			return Description;
 		}
@@ -196,7 +196,7 @@ public override string ToString ()
 		}
 
 		[ExcludeFromCodeCoverageAttribute]
-public override int GetHashCode ()
+		public override int GetHashCode ()
 		{
 			return Description.GetHashCode ();
 		}

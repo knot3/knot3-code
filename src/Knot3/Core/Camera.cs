@@ -222,7 +222,7 @@ namespace Knot3.Core
 		/// Wird für jeden Frame aufgerufen.
 		/// </summary>
 		[ExcludeFromCodeCoverageAttribute]
-public override void Update (GameTime time)
+		public override void Update (GameTime time)
 		{
 			// Setze den Viewport auf den der aktuellen Spielwelt
 			Viewport original = Screen.Viewport;

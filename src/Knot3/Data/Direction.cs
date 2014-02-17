@@ -159,7 +159,7 @@ namespace Knot3.Data
 		}
 
 		[ExcludeFromCodeCoverageAttribute]
-public override string ToString ()
+		public override string ToString ()
 		{
 			return Description;
 		}
@@ -240,7 +240,7 @@ public override string ToString ()
 		}
 
 		[ExcludeFromCodeCoverageAttribute]
-public override int GetHashCode ()
+		public override int GetHashCode ()
 		{
 			return Description.GetHashCode ();
 		}

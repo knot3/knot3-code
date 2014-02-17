@@ -173,7 +173,7 @@ namespace Knot3.Widgets
 		}
 
 		[ExcludeFromCodeCoverageAttribute]
-public override string ToString ()
+		public override string ToString ()
 		{
 			return "(" + Relative.X + "x" + Relative.Y + ")";
 		}
@@ -256,7 +256,7 @@ public override string ToString ()
 		}
 
 		[ExcludeFromCodeCoverageAttribute]
-public override int GetHashCode ()
+		public override int GetHashCode ()
 		{
 			return Relative.GetHashCode ();
 		}
