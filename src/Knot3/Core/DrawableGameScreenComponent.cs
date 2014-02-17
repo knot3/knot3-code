@@ -22,6 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+using System.Diagnostics.CodeAnalysis;
 
 #endregion
 
@@ -55,6 +56,7 @@ namespace Knot3.Core
 	/// <summary>
 	/// Eine zeichenbare Spielkomponente, die in einem angegebenen Spielzustand verwendet wird und eine bestimmte Priorität hat.
 	/// </summary>
+	[ExcludeFromCodeCoverage]
 	public abstract class DrawableGameScreenComponent : DrawableGameComponent, IGameScreenComponent
 	{
 		#region Properties
