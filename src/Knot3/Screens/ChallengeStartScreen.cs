@@ -58,6 +58,7 @@ namespace Knot3.Screens
 	/// <summary>
 	/// Der Spielzustand, der den Ladebildschirm für Challenges darstellt.
 	/// </summary>
+	[ExcludeFromCodeCoverageAttribute]
 	public sealed class ChallengeStartScreen : MenuScreen
 	{
 		#region Properties

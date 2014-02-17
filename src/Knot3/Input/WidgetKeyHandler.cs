@@ -59,6 +59,7 @@ namespace Knot3.Input
 	/// <summary>
 	/// Ein Inputhandler, der Tastatureingaben auf Widgets verarbeitet.
 	/// </summary>
+	[ExcludeFromCodeCoverageAttribute]
 	public sealed class WidgetKeyHandler : GameScreenComponent
 	{
 		public WidgetKeyHandler (IGameScreen screen)

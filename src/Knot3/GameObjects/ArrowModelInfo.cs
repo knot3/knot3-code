@@ -58,6 +58,7 @@ namespace Knot3.GameObjects
 	/// <summary>
 	/// Ein Objekt der Klasse ArrowModelInfo hält alle Informationen, die zur Erstellung eines Pfeil-3D-Modelles (s. ArrowModel) notwendig sind.
 	/// </summary>
+	[ExcludeFromCodeCoverageAttribute]
 	public sealed class ArrowModelInfo : GameModelInfo
 	{
 		#region Properties

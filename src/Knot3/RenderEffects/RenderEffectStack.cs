@@ -59,6 +59,7 @@ namespace Knot3.RenderEffects
 	/// und automatisch das aktuell von XNA verwendete Rendertarget auf das Rendertarget des obersten Rendereffekts
 	/// setzt.
 	/// </summary>
+	[ExcludeFromCodeCoverageAttribute]
 	public sealed class RenderEffectStack : IRenderEffectStack
 	{
 		#region Properties

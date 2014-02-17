@@ -57,6 +57,7 @@ namespace Knot3.GameObjects
 	/// <summary>
 	/// Ein Zwischenspeicher für 3D-Modelle.
 	/// </summary>
+	[ExcludeFromCodeCoverageAttribute]
 	public sealed class ModelFactory
 	{
 		#region Properties

@@ -56,6 +56,7 @@ using Knot3.Widgets;
 
 namespace Knot3.Development
 {
+	[ExcludeFromCodeCoverageAttribute]
 	public static class Profiler
 	{
 		public static TimeSpan Time (Action action)

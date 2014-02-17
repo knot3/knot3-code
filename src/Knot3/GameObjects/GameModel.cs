@@ -58,6 +58,7 @@ namespace Knot3.GameObjects
 	/// <summary>
 	/// Repräsentiert ein 3D-Modell in einer Spielwelt.
 	/// </summary>
+	[ExcludeFromCodeCoverageAttribute]
 	public abstract class GameModel : IGameObject
 	{
 		#region Properties

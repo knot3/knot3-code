@@ -56,6 +56,7 @@ using Knot3.Widgets;
 
 namespace Knot3.Development
 {
+	[ExcludeFromCodeCoverageAttribute]
 	public class DebugModel:GameModel
 	{
 		public DebugModel (IGameScreen screen, DebugModelInfo info) : base (screen,info)

@@ -55,6 +55,7 @@ using Knot3.Widgets;
 
 namespace Knot3.GameObjects
 {
+	[ExcludeFromCodeCoverageAttribute]
 	public class SkyCube : IGameObject, IEnumerable<IGameObject>
 	{
 		#region Properties

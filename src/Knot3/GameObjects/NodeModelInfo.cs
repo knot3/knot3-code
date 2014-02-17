@@ -59,6 +59,7 @@ namespace Knot3.GameObjects
 	/// <summary>
 	/// Enthält Informationen über ein 3D-Modell, das einen Kantenübergang darstellt.
 	/// </summary>
+	[ExcludeFromCodeCoverageAttribute]
 	public sealed class NodeModelInfo : GameModelInfo, IJunction
 	{
 		#region Properties

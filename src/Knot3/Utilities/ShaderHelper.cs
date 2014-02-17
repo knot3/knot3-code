@@ -56,6 +56,7 @@ using Knot3.Widgets;
 
 namespace Knot3.Utilities
 {
+	[ExcludeFromCodeCoverageAttribute]
 	public static class ShaderHelper
 	{
 		public static Effect LoadEffect (this IGameScreen screen, string name)

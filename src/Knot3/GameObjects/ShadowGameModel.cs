@@ -57,6 +57,7 @@ namespace Knot3.GameObjects
 	/// <summary>
 	/// Die 3D-Modelle, die während einer Verschiebung von Kanten die Vorschaumodelle repräsentieren.
 	/// </summary>
+	[ExcludeFromCodeCoverageAttribute]
 	public sealed class ShadowGameModel : ShadowGameObject
 	{
 		#region Properties

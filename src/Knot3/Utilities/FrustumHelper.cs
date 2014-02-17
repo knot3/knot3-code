@@ -55,6 +55,7 @@ using Knot3.Widgets;
 
 namespace Knot3.Utilities
 {
+	[ExcludeFromCodeCoverageAttribute]
 	public static class FrustumHelper
 	{
 		public static Vector3 GetNegativeVertex (this BoundingBox aabb, ref Vector3 normal)

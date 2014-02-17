@@ -57,6 +57,7 @@ using Knot3.Widgets;
 
 namespace Knot3.Development
 {
+	[ExcludeFromCodeCoverageAttribute]
 	public class JunctionEditorScreen : GameScreen
 	{
 		#region Properties

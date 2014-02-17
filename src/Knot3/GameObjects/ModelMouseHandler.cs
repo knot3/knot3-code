@@ -59,6 +59,7 @@ namespace Knot3.GameObjects
 	/// <summary>
 	/// Ein Inputhandler, der Mauseingaben auf 3D-Modellen verarbeitet.
 	/// </summary>
+	[ExcludeFromCodeCoverageAttribute]
 	public sealed class ModelMouseHandler : GameScreenComponent
 	{
 		private World World;

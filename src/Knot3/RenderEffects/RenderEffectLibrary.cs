@@ -54,6 +54,7 @@ using Knot3.Widgets;
 
 namespace Knot3.RenderEffects
 {
+	[ExcludeFromCodeCoverageAttribute]
 	public class RenderEffectLibrary
 	{
 		private static EffectFactory[] EffectLibrary

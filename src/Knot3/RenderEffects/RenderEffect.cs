@@ -59,6 +59,7 @@ namespace Knot3.RenderEffects
 	/// <summary>
 	/// Eine abstrakte Klasse, die eine Implementierung von IRenderEffect darstellt.
 	/// </summary>
+	[ExcludeFromCodeCoverageAttribute]
 	public abstract class RenderEffect : IRenderEffect
 	{
 		#region Properties

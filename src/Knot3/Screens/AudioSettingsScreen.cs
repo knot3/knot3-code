@@ -58,6 +58,7 @@ namespace Knot3.Screens
 	/// <summary>
 	/// Die Klasse AudioSettingsScreen steht für den Spielzustand, der die Audio-Einstellungen repräsentiert.
 	/// </summary>
+	[ExcludeFromCodeCoverageAttribute]
 	public class AudioSettingsScreen : SettingsScreen
 	{
 		#region Properties

@@ -59,6 +59,7 @@ namespace Knot3.Core
 	/// <summary>
 	/// Die zentrale Spielklasse, die von der \glqq Game\grqq~-Klasse des XNA-Frameworks erbt.
 	/// </summary>
+	[ExcludeFromCodeCoverageAttribute]
 	public class Knot3Game : Game
 	{
 		#region Properties

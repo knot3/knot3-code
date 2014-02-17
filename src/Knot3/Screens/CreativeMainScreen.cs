@@ -59,6 +59,7 @@ namespace Knot3.Screens
 	/// In diesem Menü trifft der Spieler die Wahl, ob er im Creative-Modus einen neuen Knoten erstellen, einen Knoten laden oder
 	/// eine neue Challenge erstellen möchte.
 	/// </summary>
+	[ExcludeFromCodeCoverageAttribute]
 	public class CreativeMainScreen : MenuScreen
 	{
 		#region Properties

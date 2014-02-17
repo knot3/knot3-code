@@ -59,6 +59,7 @@ namespace Knot3.Input
 	/// <summary>
 	/// Stellt für jeden Frame die Maus- und Tastatureingaben bereit. Daraus werden die nicht von XNA bereitgestellten Mauseingaben berechnet. Zusätzlich wird die aktuelle Eingabeaktion berechnet.
 	/// </summary>
+	[ExcludeFromCodeCoverageAttribute]
 	public sealed class InputManager : GameScreenComponent
 	{
 		#region Properties

@@ -60,6 +60,7 @@ namespace Knot3.Screens
 	/// <summary>
 	/// Der Spielzustand, der während dem Spielen einer Challenge aktiv ist und für den Ausgangs- und Referenzknoten je eine 3D-Welt zeichnet.
 	/// </summary>
+	[ExcludeFromCodeCoverageAttribute]
 	public class ChallengeModeScreen : GameScreen
 	{
 		#region Properties

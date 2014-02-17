@@ -57,6 +57,7 @@ namespace Knot3.Screens
 	/// <summary>
 	/// Der Spielzustand, der die Grafik-Einstellungen darstellt.
 	/// </summary>
+	[ExcludeFromCodeCoverageAttribute]
 	public class GraphicsSettingsScreen : SettingsScreen
 	{
 		#region Properties

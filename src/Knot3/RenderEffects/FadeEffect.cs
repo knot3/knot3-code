@@ -57,6 +57,7 @@ namespace Knot3.RenderEffects
 	/// <summary>
 	/// Ein Postprocessing-Effekt, der eine Überblendung zwischen zwei Spielzuständen darstellt.
 	/// </summary>
+	[ExcludeFromCodeCoverageAttribute]
 	public class FadeEffect : RenderEffect
 	{
 		#region Properties

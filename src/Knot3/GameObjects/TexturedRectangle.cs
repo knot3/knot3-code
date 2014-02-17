@@ -58,6 +58,7 @@ namespace Knot3.GameObjects
 	/// <summary>
 	/// Eine frei in der Spielwelt liegende Textur, die auf ein Rechteck gezeichnet wird.
 	/// </summary>
+	[ExcludeFromCodeCoverageAttribute]
 	public sealed class TexturedRectangle : IGameObject, IDisposable, IEquatable<TexturedRectangle>
 	{
 		#region Attributes and Properties

@@ -57,6 +57,7 @@ using Knot3.Widgets;
 
 namespace Knot3.Utilities
 {
+	[ExcludeFromCodeCoverageAttribute]
 	public static class VectorHelper
 	{
 		private static readonly float MinAngleY = 0.1f;

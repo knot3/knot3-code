@@ -55,6 +55,7 @@ using Knot3.Widgets;
 
 namespace Knot3.Input
 {
+	[ExcludeFromCodeCoverageAttribute]
 	public class EdgeColoring : GameScreenComponent, IKeyEventListener
 	{
 		public Knot Knot { get; set; }

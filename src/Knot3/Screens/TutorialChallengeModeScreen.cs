@@ -58,6 +58,7 @@ namespace Knot3.Screens
 	/// Eine Einführung in das Spielen von Challenges.
 	/// Der Spieler wird dabei durch Anweisungen an das Lösen von Challenges herangeführt.
 	/// </summary>
+	[ExcludeFromCodeCoverageAttribute]
 	public class TutorialChallengeModeScreen : ChallengeModeScreen
 	{
 		#region Constructors

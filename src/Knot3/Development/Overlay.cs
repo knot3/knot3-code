@@ -56,6 +56,7 @@ using Knot3.Widgets;
 
 namespace Knot3.Development
 {
+	[ExcludeFromCodeCoverageAttribute]
 	public sealed class Overlay : DrawableGameScreenComponent
 	{
 		// graphics-related classes

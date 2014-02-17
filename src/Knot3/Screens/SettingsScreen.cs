@@ -59,6 +59,7 @@ namespace Knot3.Screens
 	/// <summary>
 	/// Ein Spielzustand, der das Haupt-Einstellungsmenü zeichnet.
 	/// </summary>
+	[ExcludeFromCodeCoverageAttribute]
 	public class SettingsScreen : MenuScreen
 	{
 		#region Properties

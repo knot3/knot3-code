@@ -58,6 +58,7 @@ namespace Knot3.RenderEffects
 	/// <summary>
 	/// Ein Cel-Shading-Effekt.
 	/// </summary>
+	[ExcludeFromCodeCoverageAttribute]
 	public class CelShadingEffect : RenderEffect
 	{
 		Effect celShader;       // Toon shader effect

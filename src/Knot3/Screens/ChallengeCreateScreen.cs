@@ -59,6 +59,7 @@ namespace Knot3.Screens
 	/// <summary>
 	///
 	/// </summary>
+	[ExcludeFromCodeCoverageAttribute]
 	public class ChallengeCreateScreen : MenuScreen
 	{
 		#region Properties

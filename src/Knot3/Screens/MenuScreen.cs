@@ -59,6 +59,7 @@ namespace Knot3.Screens
 	/// <summary>
 	/// Eine abstrakte Klasse, von der alle Spielzustände erben, die Menüs darstellen.
 	/// </summary>
+	[ExcludeFromCodeCoverageAttribute]
 	public abstract class MenuScreen : GameScreen
 	{
 		#region Properties

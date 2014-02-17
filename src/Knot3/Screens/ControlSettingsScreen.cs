@@ -58,6 +58,7 @@ namespace Knot3.Screens
 	/// <summary>
 	/// Der Spielzustand, der die Steuerungs-Einstellungen darstellt.
 	/// </summary>
+	[ExcludeFromCodeCoverageAttribute]
 	public class ControlSettingsScreen : SettingsScreen
 	{
 		#region Properties

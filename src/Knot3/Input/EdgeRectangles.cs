@@ -57,6 +57,7 @@ using Knot3.Widgets;
 
 namespace Knot3.Input
 {
+	[ExcludeFromCodeCoverageAttribute]
 	public class EdgeRectangles : GameScreenComponent, IKeyEventListener
 	{
 		public Knot Knot { get; set; }

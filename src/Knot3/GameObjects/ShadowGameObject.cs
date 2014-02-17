@@ -57,6 +57,7 @@ namespace Knot3.GameObjects
 	/// <summary>
 	/// Eine abstrakte Klasse, die ein Vorschau-Spielobjekt darstellt.
 	/// </summary>
+	[ExcludeFromCodeCoverageAttribute]
 	public abstract class ShadowGameObject : IGameObject
 	{
 		#region Properties

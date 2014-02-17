@@ -56,6 +56,7 @@ namespace Knot3.Core
 	/// <summary>
 	/// Eine Spielkomponente, die in einem IGameScreen verwendet wird und eine bestimmte Priorität hat.
 	/// </summary>
+	[ExcludeFromCodeCoverageAttribute]
 	public abstract class GameScreenComponent : GameComponent, IGameScreenComponent
 	{
 		#region Properties

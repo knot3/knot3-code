@@ -58,6 +58,7 @@ namespace Knot3.RenderEffects
 	/// Ein Rendereffekt, der 3D-Modelle mit dem von der XNA-Content-Pipeline standardmäßig zugewiesenen
 	/// BasicEffect-Shader zeichnet und keinen Post-Processing-Effekt anwendet.
 	/// </summary>
+	[ExcludeFromCodeCoverageAttribute]
 	public sealed class StandardEffect : RenderEffect
 	{
 		#region Constructors

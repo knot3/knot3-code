@@ -58,6 +58,7 @@ namespace Knot3.Screens
 	/// <summary>
 	/// Der Spielzustand, der den Ladebildschirm für Knoten darstellt.
 	/// </summary>
+	[ExcludeFromCodeCoverageAttribute]
 	public sealed class CreativeLoadScreen : MenuScreen
 	{
 		#region Properties

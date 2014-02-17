@@ -56,6 +56,7 @@ using Knot3.Widgets;
 
 namespace Knot3.Development
 {
+	[ExcludeFromCodeCoverageAttribute]
 	public class JunctionEditorNodeMap : INodeMap
 	{
 		#region Properties

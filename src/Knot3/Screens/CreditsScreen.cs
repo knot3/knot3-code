@@ -57,6 +57,7 @@ namespace Knot3.Screens
 	/// <summary>
 	/// Der Spielzustand, der die Auflistung der Mitwirkenden darstellt.
 	/// </summary>
+	[ExcludeFromCodeCoverageAttribute]
 	public class CreditsScreen : MenuScreen
 	{
 		#region Properties

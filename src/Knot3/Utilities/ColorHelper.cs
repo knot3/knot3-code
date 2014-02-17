@@ -55,6 +55,7 @@ using Knot3.Widgets;
 
 namespace Knot3.Utilities
 {
+	[ExcludeFromCodeCoverageAttribute]
 	public static class ColorHelper
 	{
 		public static Color Mix (this Color a, Color b, float percent = 0.5f)

@@ -55,6 +55,7 @@ using Knot3.Widgets;
 
 namespace Knot3.GameObjects
 {
+	[ExcludeFromCodeCoverageAttribute]
 	public abstract class ModelColoring
 	{
 		public ModelColoring ()
@@ -96,6 +97,7 @@ namespace Knot3.GameObjects
 		public abstract bool IsTransparent { get; }
 	}
 
+	[ExcludeFromCodeCoverageAttribute]
 	public sealed class SingleColor : ModelColoring
 	{
 		public SingleColor (Color color)
@@ -120,6 +122,7 @@ namespace Knot3.GameObjects
 		public override bool IsTransparent { get { return BaseColor == Color.Transparent; } }
 	}
 
+	[ExcludeFromCodeCoverageAttribute]
 	public sealed class GradientColor : ModelColoring
 	{
 		public GradientColor (Color color1, Color color2)

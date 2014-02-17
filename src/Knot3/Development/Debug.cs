@@ -39,6 +39,7 @@ using Knot3.Utilities;
 
 namespace Knot3.Development
 {
+	[ExcludeFromCodeCoverageAttribute]
 	public static class Log
 	{
 		private static string lastDebugStr = "";

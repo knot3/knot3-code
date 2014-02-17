@@ -59,6 +59,7 @@ namespace Knot3.Screens
 	/// <summary>
 	/// Der Startbildschirm.
 	/// </summary>
+	[ExcludeFromCodeCoverageAttribute]
 	public class StartScreen : MenuScreen
 	{
 		#region Properties

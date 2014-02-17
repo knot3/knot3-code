@@ -61,6 +61,7 @@ namespace Knot3.Input
 	/// <summary>
 	/// Ein Inputhandler, der für das Verschieben der Kanten zuständig ist.
 	/// </summary>
+	[ExcludeFromCodeCoverageAttribute]
 	public sealed class EdgeMovement : IGameObject, IEnumerable<IGameObject>
 	{
 		#region Properties

@@ -56,6 +56,7 @@ using Knot3.Widgets;
 
 namespace Knot3.Utilities
 {
+	[ExcludeFromCodeCoverageAttribute]
 	public static class ModelHelper
 	{
 		public static string[] ValidQualities = new string[] {

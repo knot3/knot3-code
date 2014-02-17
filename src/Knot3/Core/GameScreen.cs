@@ -60,6 +60,7 @@ namespace Knot3.Core
 	/// <summary>
 	/// Ein Spielzustand, der zu einem angegebenen Spiel gehört und einen Inputhandler und Rendereffekte enthält.
 	/// </summary>
+	[ExcludeFromCodeCoverageAttribute]
 	public class GameScreen : IGameScreen
 	{
 		#region Properties

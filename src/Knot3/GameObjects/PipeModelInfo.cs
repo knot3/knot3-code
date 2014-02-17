@@ -57,6 +57,7 @@ namespace Knot3.GameObjects
 	/// <summary>
 	/// Enthält Informationen über ein 3D-Modell, das eine Kante darstellt.
 	/// </summary>
+	[ExcludeFromCodeCoverageAttribute]
 	public sealed class PipeModelInfo : GameModelInfo
 	{
 		#region Properties

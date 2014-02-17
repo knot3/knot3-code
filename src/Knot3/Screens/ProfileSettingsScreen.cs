@@ -57,6 +57,7 @@ namespace Knot3.Screens
 	/// <summary>
 	/// Der Spielzustand, der die Profil-Einstellungen darstellt.
 	/// </summary>
+	[ExcludeFromCodeCoverageAttribute]
 	public class ProfileSettingsScreen : SettingsScreen
 	{
 		#region Properties

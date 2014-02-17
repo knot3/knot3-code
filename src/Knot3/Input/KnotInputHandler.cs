@@ -61,6 +61,7 @@ namespace Knot3.Input
 	/// Verarbeitet die Maus- und Tastatureingaben des Spielers und modifiziert die Kamera-Position
 	/// und das Kamera-Ziel.
 	/// </summary>
+	[ExcludeFromCodeCoverageAttribute]
 	public sealed class KnotInputHandler : GameScreenComponent, IKeyEventListener, IMouseMoveEventListener, IMouseScrollEventListener
 	{
 		#region Properties

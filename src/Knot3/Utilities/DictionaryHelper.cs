@@ -55,6 +55,7 @@ using Knot3.Widgets;
 
 namespace Knot3.Utilities
 {
+	[ExcludeFromCodeCoverageAttribute]
 	public static class DictionaryHelper
 	{
 		public static void Add<KeyType, ListType, ValueType> (this Dictionary<KeyType, ListType> dict,

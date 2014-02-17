@@ -58,6 +58,7 @@ namespace Knot3.GameObjects
 	/// Die Klasse GameObjectDistance beschreibt den Abstand zu einem Spielobjekt.
 	/// Dies ist z.B. hilfreich, um Schnittstellen, Verdeckungen, ... zu berechnen.
 	/// </summary>
+	[ExcludeFromCodeCoverageAttribute]
 	public sealed class GameObjectDistance
 	{
 		#region Properties

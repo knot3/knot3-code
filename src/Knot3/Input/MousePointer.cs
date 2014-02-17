@@ -60,6 +60,7 @@ namespace Knot3.Input
 	/// <summary>
 	/// Repräsentiert einen Mauszeiger.
 	/// </summary>
+	[ExcludeFromCodeCoverageAttribute]
 	public sealed class MousePointer : DrawableGameScreenComponent
 	{
 		private SpriteBatch spriteBatch;

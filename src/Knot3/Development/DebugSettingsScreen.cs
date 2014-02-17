@@ -59,6 +59,7 @@ namespace Knot3.Development
 	/// <summary>
 	/// Der Spielzustand, der die Debugging-Einstellungen darstellt.
 	/// </summary>
+	[ExcludeFromCodeCoverageAttribute]
 	public class DebugSettingsScreen : SettingsScreen
 	{
 		#region Properties
