@@ -26,7 +26,6 @@
 #endregion
 
 #region Using
-
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -130,26 +129,11 @@ namespace Knot3.Platform
 					return baseDirectory;
 				}
 				else {
-					string cwd = Directory.GetCurrentDirectory ();
-					string[] binDirectories = new string[] {
-						"Debug",
-						"Release",
-						"x86",
-						"bin"
-					};
-					foreach (string dir in binDirectories) {
-						if (cwd.ToLower ().EndsWith (dir.ToLower ())) {
-							cwd = cwd.Substring (0, cwd.Length - dir.Length - 1);
-						}
-					}
-					// Environment.CurrentDirectory = cwd;
-					Log.Debug (cwd);
-					baseDirectory = cwd;
-					return cwd;
+					findBaseDirectory ();
+					return baseDirectory;
 				}
 			}
 		}
-		private static string baseDirectory = null;
 
 		public static string RelativeBaseDirectory
 		{
@@ -158,27 +142,36 @@ namespace Knot3.Platform
 					return relativeBaseDirectory;
 				}
 				else {
-					string cwd = Directory.GetCurrentDirectory ();
-					string[] binDirectories = new string[] {
-						"Debug",
-						"Release",
-						"x86",
-						"bin"
-					};
-					foreach (string dir in binDirectories) {
-						if (cwd.ToLower ().EndsWith (dir.ToLower ())) {
-							cwd = cwd.Substring (0, cwd.Length - dir.Length - 1);
-						}
-					}
-					// Environment.CurrentDirectory = cwd;
-					Log.Debug (cwd);
-					relativeBaseDirectory = cwd;
-					return cwd;
+					findBaseDirectory ();
+					return relativeBaseDirectory;
 				}
 			}
 		}
 
+		private static void findBaseDirectory ()
+		{
+			string baseDir = Directory.GetCurrentDirectory ();
+			string relBaseDir = "." + PathSeparator;
+			string[] binDirectories = new string[] {
+				"Debug",
+				"Release",
+				"x86",
+				"bin"
+			};
+			foreach (string dir in binDirectories) {
+				if (baseDir.ToLower ().EndsWith (dir.ToLower ())) {
+					baseDir = baseDir.Substring (0, baseDir.Length - dir.Length - 1);
+					relBaseDir += ".." + PathSeparator;
+				}
+			}
+			Log.Debug ("Base directory: ", baseDir);
+			baseDirectory = baseDir;
+			Log.Debug ("Base directory (relative): ", relBaseDir);
+			relativeBaseDirectory = relBaseDir;
+		}
+
 		private static string relativeBaseDirectory = null;
+		private static string baseDirectory = null;
 		public readonly static char PathSeparator = Path.DirectorySeparatorChar;
 
 		#endregion

@@ -54,7 +54,7 @@ namespace Knot3.UnitTests
 		public static string TestResourcesDirectory
 		{
 			get {
-				return SystemInfo.BaseDirectory + SystemInfo.PathSeparator + "Resources" + SystemInfo.PathSeparator;
+				return SystemInfo.RelativeBaseDirectory + "Resources" + SystemInfo.PathSeparator;
 			}
 		}
 
