@@ -43,7 +43,6 @@ using Knot3.Utilities;
 
 namespace Knot3.Widgets
 {
-	[ExcludeFromCodeCoverageAttribute]
 	public class ScreenPoint : IEquatable<ScreenPoint>
 	{
 		#region Properties
