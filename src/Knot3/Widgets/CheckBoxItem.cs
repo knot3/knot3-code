@@ -106,7 +106,8 @@ namespace Knot3.Widgets
 
 		#region Methods
 
-		public override void Draw (GameTime time)
+		[ExcludeFromCodeCoverageAttribute]
+public override void Draw (GameTime time)
 		{
 			base.Draw (time);
 

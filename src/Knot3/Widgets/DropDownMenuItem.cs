@@ -197,7 +197,8 @@ namespace Knot3.Widgets
 			yield return currentValue;
 		}
 
-		public override void Draw (GameTime time)
+		[ExcludeFromCodeCoverageAttribute]
+public override void Draw (GameTime time)
 		{
 			base.Draw (time);
 		}

@@ -206,7 +206,8 @@ namespace Knot3.Core
 		/// <summary>
 		/// Ruft auf allen Spielobjekten die Update ()-Methode auf.
 		/// </summary>
-		public override void Update (GameTime time)
+		[ExcludeFromCodeCoverageAttribute]
+public override void Update (GameTime time)
 		{
 			if (!Options.Default ["video", "selectiveRendering", false]) {
 				Redraw = true;
@@ -254,7 +255,8 @@ namespace Knot3.Core
 		/// <summary>
 		/// Ruft auf allen Spielobjekten die Draw ()-Methode auf.
 		/// </summary>
-		public override void Draw (GameTime time)
+		[ExcludeFromCodeCoverageAttribute]
+public override void Draw (GameTime time)
 		{
 			if (Redraw) {
 				OnRedraw ();

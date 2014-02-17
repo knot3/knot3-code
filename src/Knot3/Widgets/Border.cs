@@ -121,7 +121,8 @@ namespace Knot3.Widgets
 
 		#region Methods
 
-		public override void Update (GameTime time)
+		[ExcludeFromCodeCoverageAttribute]
+public override void Update (GameTime time)
 		{
 			Vector2 position = Bounds.Position.Relative;
 			Vector2 size = Bounds.Size.Relative;

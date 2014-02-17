@@ -157,14 +157,16 @@ namespace Knot3.Core
 		/// <summary>
 		/// Zeichnet die Teile des IGameScreens, die keine Spielkomponenten sind.
 		/// </summary>
-		public virtual void Draw (GameTime time)
+		[ExcludeFromCodeCoverageAttribute]
+public virtual void Draw (GameTime time)
 		{
 		}
 
 		/// <summary>
 		/// Wird für jeden Frame aufgerufen.
 		/// </summary>
-		public virtual void Update (GameTime time)
+		[ExcludeFromCodeCoverageAttribute]
+public virtual void Update (GameTime time)
 		{
 		}
 

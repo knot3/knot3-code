@@ -65,7 +65,8 @@ namespace Knot3.Input
 			ValidKeys.Add (Keys.C);
 		}
 
-		public override void Update (GameTime time)
+		[ExcludeFromCodeCoverageAttribute]
+public override void Update (GameTime time)
 		{
 		}
 

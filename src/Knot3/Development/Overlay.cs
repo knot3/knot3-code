@@ -96,7 +96,8 @@ namespace Knot3.Development
 			}
 		}
 
-		public override void Draw (GameTime time)
+		[ExcludeFromCodeCoverageAttribute]
+public override void Draw (GameTime time)
 		{
 			if (Options.Default ["video", "debug-coordinates", false]) {
 				DrawCoordinates (time);
@@ -113,7 +114,8 @@ namespace Knot3.Development
 			base.Draw (time);
 		}
 
-		public override void Update (GameTime time)
+		[ExcludeFromCodeCoverageAttribute]
+public override void Update (GameTime time)
 		{
 			scale = Math.Max (0.7f, (float)Screen.Device.PresentationParameters.BackBufferWidth / 1366f);
 			lineHeight = (int)(20 * scale);

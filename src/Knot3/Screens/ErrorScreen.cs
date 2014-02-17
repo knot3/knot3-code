@@ -87,7 +87,8 @@ namespace Knot3.Screens
 		/// <summary>
 		/// Wird für jeden Frame aufgerufen.
 		/// </summary>
-		public override void Update (GameTime time)
+		[ExcludeFromCodeCoverageAttribute]
+public override void Update (GameTime time)
 		{
 		}
 

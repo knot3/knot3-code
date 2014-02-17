@@ -152,7 +152,8 @@ namespace Knot3.Screens
 		/// <summary>
 		/// Wird für jeden Frame aufgerufen.
 		/// </summary>
-		public override void Update (GameTime time)
+		[ExcludeFromCodeCoverageAttribute]
+public override void Update (GameTime time)
 		{
 		}
 
@@ -165,7 +166,8 @@ namespace Knot3.Screens
 			AddGameComponents (time, navigationMenu, backButton);
 		}
 
-		public override void Draw (GameTime time)
+		[ExcludeFromCodeCoverageAttribute]
+public override void Draw (GameTime time)
 		{
 			spriteBatch.Begin ();
 			// text

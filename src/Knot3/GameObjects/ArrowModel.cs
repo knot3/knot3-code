@@ -98,7 +98,8 @@ namespace Knot3.GameObjects
 		/// <summary>
 		/// Zeichnet den Pfeil.
 		/// </summary>
-		public override void Draw (GameTime time)
+		[ExcludeFromCodeCoverageAttribute]
+public override void Draw (GameTime time)
 		{
 			Coloring = new SingleColor (Color.Red);
 			if (World.SelectedObject == this) {
@@ -131,7 +132,8 @@ namespace Knot3.GameObjects
 		/// <summary>
 		/// Wird für jeden Frame aufgerufen.
 		/// </summary>
-		public override void Update (GameTime time)
+		[ExcludeFromCodeCoverageAttribute]
+public override void Update (GameTime time)
 		{
 			base.Update (time);
 		}

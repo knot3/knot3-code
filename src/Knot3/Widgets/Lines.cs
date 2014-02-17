@@ -92,7 +92,8 @@ namespace Knot3.Widgets
 		{
 		}
 
-		public override void Draw (GameTime time)
+		[ExcludeFromCodeCoverageAttribute]
+public override void Draw (GameTime time)
 		{
 			if (IsVisible) {
 				int scaledLineWidth = (int)new Vector2 (lineWidth, lineWidth).Scale (Screen.Viewport).X;

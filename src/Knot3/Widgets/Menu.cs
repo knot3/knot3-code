@@ -178,7 +178,8 @@ namespace Knot3.Widgets
 		/// <summary>
 		/// Wird für jeden Frame aufgerufen.
 		/// </summary>
-		public override void Update (GameTime time)
+		[ExcludeFromCodeCoverageAttribute]
+public override void Update (GameTime time)
 		{
 			base.Update (time);
 
@@ -247,7 +248,8 @@ namespace Knot3.Widgets
 		{
 		}
 
-		public override void Draw (GameTime time)
+		[ExcludeFromCodeCoverageAttribute]
+public override void Draw (GameTime time)
 		{
 			base.Draw (time);
 

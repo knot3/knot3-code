@@ -131,7 +131,8 @@ namespace Knot3.Input
 		/// <summary>
 		/// Wird für jeden Frame aufgerufen.
 		/// </summary>
-		public override void Update (GameTime time)
+		[ExcludeFromCodeCoverageAttribute]
+public override void Update (GameTime time)
 		{
 			PreviousKeyboardState = CurrentKeyboardState;
 			PreviousMouseState = CurrentMouseState;

@@ -100,7 +100,8 @@ namespace Knot3.GameObjects
 
 		#region Methods
 
-		public override void Draw (GameTime time)
+		[ExcludeFromCodeCoverageAttribute]
+public override void Draw (GameTime time)
 		{
 			Coloring = new SingleColor (Info.Edge);
 			if (World.SelectedObject == this) {

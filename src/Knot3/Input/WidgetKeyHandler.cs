@@ -68,7 +68,8 @@ namespace Knot3.Input
 		/// <summary>
 		/// Wird für jeden Frame aufgerufen.
 		/// </summary>
-		public override void Update (GameTime time)
+		[ExcludeFromCodeCoverageAttribute]
+public override void Update (GameTime time)
 		{
 			foreach (IKeyEventListener component in Screen.Game.Components.OfType<IKeyEventListener>()
 			         .Where (c => c.IsKeyEventEnabled).OrderByDescending (c => c.Index.Index)) {
