@@ -124,7 +124,7 @@ namespace Knot3.Screens
 			);
 
 			exitButton.AddKey (Keys.Escape);
-			exitButton.SetCoordinates (left: 0.825f, top: 0.615f, right: 0.895f, bottom: 0.705f);
+			exitButton.SetCoordinates (left: 0.815f, top: 0.585f, right: 0.895f, bottom: 0.705f);
 			exitButton.BackgroundTexture = this.LoadTexture ("exit300");
 
 			buttons.Add (creativeButton);
@@ -151,8 +151,8 @@ namespace Knot3.Screens
 			                 0.620f,
 			                 0.785f,
 			                 0.800f,
-			                 0.585f, // Exit oben.
-			                 0.920f, // Exit rechts.
+			                 0.565f, // Exit oben.
+			                 0.910f, // Exit rechts.
 			                 0.730f, // Exit unten.
 			                 0.480f,
 			                 0.950f,
