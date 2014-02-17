@@ -105,13 +105,9 @@ echo.
 ::
 :: Filter für OpenCover hier einstellen:
 ::
-<<<<<<< HEAD
 set FILTER=+[Knot3]* -[Knot3]Knot3.Program -[Knot3]Knot3.Development.* -[Knot3]Knot3.Widgets.* -[Knot3]Knot3.Screens.* -[Knot3]Knot3.RenderEffects.* -[Knot3]Knot3.GameObjects.* -[Knot3]Knot3.Input.* -[Knot3]Knot3.Utilities.ShaderHelper -[Knot3]Knot3.Utilities.ModelHelper -[Knot3]Knot3.Core.Knot3Game -[Knot3]Knot3.Core.GameScreen
-::
+:: -excludebyattribute:"%FILTER_ATTRIBS%"
 set FILTER_ATTRIBS=System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute
-=======
-set FILTER=+[Knot3]* -[Knot3]Knot3.Program -[Knot3]Knot3.Development.* -[Knot3]Knot3.Widgets.* -[Knot3]Knot3.Screens.* -[Knot3]Knot3.RenderEffects.* -[Knot3]Knot3.GameObjects.* -[Knot3]Knot3.Input.* -[Knot3]Knot3.Utilities.ShaderHelper -[Knot3]Knot3.Utilities.ModelHelper -[Knot3]Knot3.Core.Knot3Game -[Knot3]Knot3.Core.GameScreen  -excludebyattribute:System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute
->>>>>>> d0b50ce766c9698e6a7a4fcadbfeaf11ebcdcbc4
 echo.
 echo OpenCover-Component-Filter:
 echo.
@@ -127,7 +123,7 @@ echo.
 ::
 :: Hinweis: Auf einem 64-Bit-System ist nunit-console-x86.exe für 32-Bit-Projekte zu verwenden! (sonst tritt ein Fehler auf)
 ::
-"%PATH_TO_OPENCOVER%\OpenCover.Console.exe" -target:"%PATH_TO_NUNIT%\nunit-console-x86.exe" -targetargs:"/noshadow "%PATH_TO_TESTS%\Knot3.UnitTests.dll"" -register:user -filter:"%FILTER%" -excludebyattribute:"%FILTER_ATTRIBS%" -output:"%PATH_TO_RAW_REPORTDATA%\NUnit_test_coverage.xml">NUL
+"%PATH_TO_OPENCOVER%\OpenCover.Console.exe" -target:"%PATH_TO_NUNIT%\nunit-console-x86.exe" -targetargs:"/noshadow "%PATH_TO_TESTS%\Knot3.UnitTests.dll"" -register:user -filter:"%FILTER%" -excludebyattribute:System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute -output:"%PATH_TO_RAW_REPORTDATA%\NUnit_test_coverage.xml">NUL
 
 echo ... Generating report ...
 echo.
