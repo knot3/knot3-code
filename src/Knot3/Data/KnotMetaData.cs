@@ -50,6 +50,7 @@ using Knot3.RenderEffects;
 using Knot3.Screens;
 using Knot3.Utilities;
 using Knot3.Widgets;
+using System.Diagnostics.CodeAnalysis;
 
 #endregion
 
@@ -163,6 +164,7 @@ namespace Knot3.Data
 			return other != null && Equals (other as KnotMetaData);
 		}
 
+        [ExcludeFromCodeCoverageAttribute]
 		public override int GetHashCode ()
 		{
 			return (countEdges ().ToString () + (name ?? String.Empty)).GetHashCode ();

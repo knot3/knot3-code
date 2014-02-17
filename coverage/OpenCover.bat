@@ -107,6 +107,10 @@ echo.
 ::
 set FILTER=+[Knot3]* -[Knot3]Knot3.Program -[Knot3]Knot3.Development.* -[Knot3]Knot3.Widgets.* -[Knot3]Knot3.Screens.* -[Knot3]Knot3.RenderEffects.* -[Knot3]Knot3.GameObjects.* -[Knot3]Knot3.Input.* -[Knot3]Knot3.Utilities.ShaderHelper -[Knot3]Knot3.Utilities.ModelHelper -[Knot3]Knot3.Core.Knot3Game -[Knot3]Knot3.Core.GameScreen
 :: -excludebyattribute:"%FILTER_ATTRIBS%"
+::
+:: [ExcludeFromCodeCoverageAttribute]
+:: GetHashCode, ToString, Update, Draw
+::
 set FILTER_ATTRIBS=System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute
 echo.
 echo OpenCover-Component-Filter:
