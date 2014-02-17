@@ -20,6 +20,24 @@ simply run:
     make
     sudo make install
 
+To run the unit tests, run:
+
+    make test
+
+You can also open the solution file "Knot3-MonoGame.sln" in MonoDevelop.
+
+###Windows (MonoGame)
+
+Install the latest version of [Xamarin Studio](http://monodevelop.com/download) and download the
+[MonoGame 3.0.1](http://monogame.codeplex.com/downloads/get/632972) plugin.
+
+Then replace the DLL files in the following directory with their
+[newer versions (3.1.2)](https://github.com/pse-knot/MonoGame/releases/download/v3.1.2/MonoGame-Windows-3.1.2.zip):
+
+    C:\Users\[...]\AppData\Local\XamarinStudio-4.0\LocalInstall\Addins\MonoDevelop.MonoGame.3.0.1\assemblies\WindowsGL
+
+Then, open the solution file "Knot3-MonoGame.sln" in Xamarin Studio.
+
 ##Authors
 
 * [Tobias Schulz](https://github.com/tobiasschulz)
