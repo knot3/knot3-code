@@ -172,16 +172,18 @@ namespace Knot3.ExtremeTests
 			string description = null;
 			TimeStatistics timeStatistics = new TimeStatistics ();
 
-			setUp ();
+			// setUp ();
 			PrintTimerProperties ();
 
-			// Erster Test mit Erklärungen:
+            foreach (int length in ExtremeKnots.SquareKnot_TestLengths)
+            {
 
-			description = "Knoten-Laden: Knoten mit 100 Kanten, 100 WH:";
-			test = () => ExtremeKnots.LoadSquareKnot ("Square-Knot_100"); // Delegate (~ zu testende Methode) setzen ...
-			timeStatistics = StopTime (test, 100, timeStatistics);
-			PrintTimeStatistics (timeStatistics, description);
+                description = "Knoten-Laden: Knoten mit 100 Kanten, 100 WH:";
+                test = () => ExtremeKnots.LoadSquareKnot("Square-Knot_" + length);
+                timeStatistics = StopTime(test, 100, timeStatistics);
+                PrintTimeStatistics(timeStatistics, description);
 
+            }
 			// ...
 		}
 	}

@@ -45,12 +45,14 @@ namespace Knot3.ExtremeTests
 	public class ExtremeKnots
 	{
 		private static KnotFileIO knotFileIO;
-		private static List<string> testKnotNames;
+		// public static List<string> testKnotNames;
+        public static int[] SquareKnot_TestLengths = new int[]{100};
+
 
 		static ExtremeKnots ()
 		{
 			knotFileIO = new KnotFileIO ();
-			testKnotNames = new List<string>();
+			//testKnotNames = new List<string>();
 		}
 
 		public static void generateTestKnots ()
@@ -59,15 +61,18 @@ namespace Knot3.ExtremeTests
 			string knotName = null;
 
 			knotName = "Square-Knot_100";
-			testKnotNames.Add (knotName);
+			//testKnotNames.Add (knotName);
 			knot = KnotGenerator.generateSquareKnot (100 / 4, knotName);
 
 			Console.WriteLine ("------->>>> " + knot.MetaData.Filename);
 
+
+            // todo: einstellen, dass die Testknoten nicht bei den Savegames landen.
+
 			//knotFileIO.Save (knot);
 		}
 
-		public static void SaveSquareKnot (string knotPath)
+		public static void SaveSquareKnot (int numberOfEdges, string knotName)
 		{
 			Knot knot = null;
 			KnotFileIO knotFileIO = new KnotFileIO ();
@@ -77,10 +82,10 @@ namespace Knot3.ExtremeTests
 			knotFileIO.Save (knot);
 		}
 
-		public static void LoadSquareKnot (string knotPath)
+		public static void LoadSquareKnot (string knotName)
 		{
 			KnotFileIO knotFileIO = new KnotFileIO ();
-			knotFileIO.Load (knotPath);
+			knotFileIO.Load (knotName);
 		}
 	}
 }
