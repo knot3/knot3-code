@@ -39,7 +39,7 @@ using System.Threading.Tasks;
 namespace Knot3.ExtremeTests
 {
 	public struct TimeStatistics {
-		public string name;
+
 		public long outlier;
 		public long slowest;
 		public long fastest;
@@ -126,41 +126,75 @@ namespace Knot3.ExtremeTests
 			);
 		}
 
+
 		// todo noch in MS und S ...
-		public static void PrintTimeStatistics (TimeStatistics timeStatistics)
+		public static void PrintTimeStatistics (TimeStatistics timeStatistics, string description)
 		{
+            long nanosToMilis = 1000L * 1000L;
+            long milisToSecs = 1000L;
+            
+            // Langsamste Zeit ...
+            long maxNanos = timeStatistics.slowest;
+            long maxMilis = maxNanos / nanosToMilis;
+            long maxSecs = maxMilis / milisToSecs;
+
+            // Schnellste Zeit ...
+            long minNanos = timeStatistics.fastest;
+            long minMilis = minNanos / nanosToMilis;
+            long minSecs = minMilis / milisToSecs;
+
+            // Mittlere Zeit ...
+            long avgNanos = timeStatistics.average;
+            long avgMilis = avgNanos / nanosToMilis;
+            long avgSecs = avgMilis / milisToSecs;
+
+            // Ausreißer ...
+            long outNanos = timeStatistics.outlier;
+            long outMilis = outNanos / nanosToMilis;
+            long outSecs = outMilis / milisToSecs;
+
 			Console.Write (
 			    // "Name: "
-			    timeStatistics.name
-			    + "\n\nmax = "
-			    + timeStatistics.slowest // Langsamste.
-			    + " NS\nmin = "
-			    + timeStatistics.fastest // Schnellste.
-			    + " NS\navg = "
-			    + timeStatistics.average // Durchschnittliche.
-			    + " NS\nout = "
-			    + timeStatistics.outlier // Ausreißende.
-			    + " NS\n\n"
+			    description + "\n"
+              + "max = " + maxNanos + " NS >= " + maxMilis + " MS >= " + maxSecs + "\n"
+              + "min = " + minNanos + " NS >= " + minMilis + " MS >= " + minSecs + "\n"
+              + "avg = " + avgNanos + " NS >= " + avgMilis + " MS >= " + avgSecs + "\n"
+              + "out = " + outNanos + " NS >= " + outMilis + " MS >= " + outSecs + "\n"
 			);
 		}
 
-		static void Main (string[] args)
-		{
-			Action test = null;
-			TimeStatistics timeStatistics = new TimeStatistics ();
 
-			PrintTimerProperties ();
 
-			// Tests ...
+        public static void setUp()
+        {
+            ExtremeKnots.generateTestKnots();
+        }
 
-			timeStatistics.name = "Knoten-Laden: Knoten mit 100 Kanten, 100 WH:"; // todo
-			test = () => ExtremeKnots.LoadSquareKnot ("Square-Knot_100");
-			timeStatistics = StopTime (test, 100, timeStatistics);
-			PrintTimeStatistics (timeStatistics);
 
-			// ...
-			// test = ...
-			// timeStatistics = ...
-		}
+
+        static void Main(string[] args)
+        {
+            Action test = null;
+            string description = null;
+            TimeStatistics timeStatistics = new TimeStatistics();
+
+            setUp();
+            PrintTimerProperties();
+
+
+            // Erster Test mit Erklärungen:
+
+            description = "Knoten-Laden: Knoten mit 100 Kanten, 100 WH:";
+            test = () => ExtremeKnots.LoadSquareKnot("Square-Knot_100"); // Delegate (~ zu testende Methode) setzen ...
+            timeStatistics = StopTime(test, 100, timeStatistics);
+            PrintTimeStatistics(timeStatistics, description);
+
+            // ...
+
+
+
+
+        }
+		
 	}
 }

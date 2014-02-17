@@ -49,7 +49,7 @@ namespace Knot3.UnitTests.Data
 		[Test]
 		public void KnotStringIO_Test ()
 		{
-			KnotStringIO knotStringIO = new KnotStringIO (KnotGenerator.generateSquareKnot (10));
+			KnotStringIO knotStringIO = new KnotStringIO (KnotGenerator.generateSquareKnot (10, KnotGenerator.FakeName));
 			KnotStringIO other = new KnotStringIO (knotStringIO.Content);
 
 			Assert.AreEqual (knotStringIO.Content, other.Content, "Contetnt equal");

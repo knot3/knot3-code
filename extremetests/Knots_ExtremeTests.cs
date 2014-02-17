@@ -42,37 +42,49 @@ using Knot3.MockObjects;
 
 namespace Knot3.ExtremeTests
 {
+
+
 	public class ExtremeKnots
 	{
-		/*
-			// Prüfen, ob Test-Dateien bereits vorhanden:
 
-			// Wenn nicht, neu erstellen:
+        private static KnotFileIO knotFileIO;
+        private static List<string> testKnotNames;
 
-			Knot knot = null;
-			KnotStringIO knotStringIO;
-			String knotString = null;
-			int squareKnot_100 = 25;
+        static ExtremeKnots()
+        {
+           knotFileIO = new KnotFileIO();
+           testKnotNames = new List<string>();
+        }
 
-			knot = KnotGenerator.generateSquareKnot (squareKnot_100);
-			knotStringIO = new KnotStringIO (knot);
-			knotString = knotStringIO.Content;
 
-			Console.Write (knotString);
-		*/
-
-		public static void setUp () // todo
+		public static void generateTestKnots ()
 		{
+            Knot knot = null;
+            string knotName = null;
+
+            knotName = "Square-Knot_100";
+            testKnotNames.Add(knotName);
+            knot = KnotGenerator.generateSquareKnot(100 / 4, knotName);
+
+            Console.WriteLine("------->>>> " + knot.MetaData.Filename);
+
+            //knotFileIO.Save(knot);
 		}
 
-		public static void generateSquareKnot (int numberOfEdges, string saveAtPath)
+		public static void SaveSquareKnot (string knotPath)
 		{
+            Knot knot = null;
+            KnotFileIO knotFileIO = new KnotFileIO();
+
+            // todo
+
+            knotFileIO.Save(knot);
 		}
 
-		public static void LoadSquareKnot (String loadFromPath)
+		public static void LoadSquareKnot (string knotPath)
 		{
-			// todo
-			Thread.Sleep (1);
+            KnotFileIO knotFileIO = new KnotFileIO();
+            knotFileIO.Load(knotPath);
 		}
 	}
 }

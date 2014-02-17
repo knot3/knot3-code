@@ -41,7 +41,14 @@ namespace Knot3.MockObjects
 {
 	public class KnotGenerator
 	{
-		public static Knot generateSquareKnot (int EdgeLength)
+
+
+        public static readonly string FakeName = "FakeKnot";
+
+
+        // TODO(jemand): Wir brauchen hier noch eine bessere Lösung / Überladungen / Umgang mit "FakeKnots"
+
+		public static Knot generateSquareKnot (int EdgeLength, string name)
 		{
 			Edge[] edgeList = new Edge[EdgeLength * 4];
 
@@ -57,7 +64,7 @@ namespace Knot3.MockObjects
 			for (int i = EdgeLength *3; i < EdgeLength*4; i++) {
 				edgeList[i] = Edge.Left;
 			}
-			KnotMetaData metaData = new KnotMetaData ("SquareKnot", edgeList.Count<Edge>, null, null);
+			KnotMetaData metaData = new KnotMetaData (name, edgeList.Count<Edge>, null, null);
 			Knot squareKnot = new Knot (metaData, edgeList);
 
 			return squareKnot;
