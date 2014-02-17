@@ -133,7 +133,8 @@ namespace Knot3.Core
 
 		#region Methods and Operators
 
-		public override string ToString ()
+		[ExcludeFromCodeCoverageAttribute]
+public override string ToString ()
 		{
 			return Description;
 		}
@@ -194,7 +195,8 @@ namespace Knot3.Core
 			return layer.Index;
 		}
 
-		public override int GetHashCode ()
+		[ExcludeFromCodeCoverageAttribute]
+public override int GetHashCode ()
 		{
 			return Description.GetHashCode ();
 		}

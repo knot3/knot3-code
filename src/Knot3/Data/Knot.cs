@@ -614,7 +614,8 @@ namespace Knot3.Data
 			return CharakteristicCache.Value;
 		}
 
-		public override string ToString ()
+		[ExcludeFromCodeCoverageAttribute]
+public override string ToString ()
 		{
 			return "Knot (name=" + Name + ",#edgecount=" + startElement.Count.ToString ()
 			       + ",format=" + (MetaData.Format != null ? MetaData.ToString () : "null")

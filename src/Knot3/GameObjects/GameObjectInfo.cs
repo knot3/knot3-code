@@ -120,7 +120,8 @@ namespace Knot3.GameObjects
 			return Equals (infoObj);
 		}
 
-		public override int GetHashCode ()
+		[ExcludeFromCodeCoverageAttribute]
+public override int GetHashCode ()
 		{
 			return Position.GetHashCode ();
 		}

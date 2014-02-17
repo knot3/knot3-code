@@ -254,7 +254,8 @@ namespace Knot3.Data
 			return color;
 		}
 
-		public override string ToString ()
+		[ExcludeFromCodeCoverageAttribute]
+public override string ToString ()
 		{
 			return "KnotStringIO (length=" + Content.Length + ")";
 		}

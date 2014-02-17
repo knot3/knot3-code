@@ -209,7 +209,8 @@ namespace Knot3.Data
 			return other != null && Equals (other as ChallengeMetaData);
 		}
 
-		public override int GetHashCode ()
+		[ExcludeFromCodeCoverageAttribute]
+public override int GetHashCode ()
 		{
 			return (name ?? String.Empty).GetHashCode ();
 		}

@@ -281,7 +281,8 @@ namespace Knot3.Data
 			return GetEnumerator (); // just return the generic version
 		}
 
-		public override string ToString ()
+		[ExcludeFromCodeCoverageAttribute]
+public override string ToString ()
 		{
 			if (IsEmpty) {
 				return "CircleEntry (" + Value.ToString () + ")";

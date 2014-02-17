@@ -240,7 +240,8 @@ namespace Knot3.GameObjects
 			return LowerLeft + (UpperRight - LowerLeft) / 2;
 		}
 
-		public override string ToString ()
+		[ExcludeFromCodeCoverageAttribute]
+public override string ToString ()
 		{
 			return "TexturedRectangle (" + UpperLeft + "," + UpperRight + "," + LowerRight + "," + LowerLeft + ")";
 		}
@@ -289,7 +290,8 @@ namespace Knot3.GameObjects
 			}
 		}
 
-		public override int GetHashCode ()
+		[ExcludeFromCodeCoverageAttribute]
+public override int GetHashCode ()
 		{
 			return Info.Position.GetHashCode ();
 		}

@@ -76,7 +76,8 @@ namespace Knot3.Utilities
 			return other != null && Equals ((BoundingCylinder)other);
 		}
 
-		public override int GetHashCode ()
+		[ExcludeFromCodeCoverageAttribute]
+public override int GetHashCode ()
 		{
 			// irgendwas möglichst eindeutiges
 			return (Radius * (SideA + SideB)).GetHashCode ();

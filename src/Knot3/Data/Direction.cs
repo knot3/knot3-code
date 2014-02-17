@@ -158,7 +158,8 @@ namespace Knot3.Data
 			return null;
 		}
 
-		public override string ToString ()
+		[ExcludeFromCodeCoverageAttribute]
+public override string ToString ()
 		{
 			return Description;
 		}
@@ -238,7 +239,8 @@ namespace Knot3.Data
 			return direction.Vector;
 		}
 
-		public override int GetHashCode ()
+		[ExcludeFromCodeCoverageAttribute]
+public override int GetHashCode ()
 		{
 			return Description.GetHashCode ();
 		}

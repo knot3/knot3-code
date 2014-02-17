@@ -214,7 +214,8 @@ namespace Knot3.Widgets
 			return bounds.Rectangle;
 		}
 
-		public override string ToString ()
+		[ExcludeFromCodeCoverageAttribute]
+public override string ToString ()
 		{
 			return "("
 			       + Position.Relative.X.ToString ()

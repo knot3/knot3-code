@@ -172,7 +172,8 @@ namespace Knot3.Widgets
 			return !point.IsEmpty;
 		}
 
-		public override string ToString ()
+		[ExcludeFromCodeCoverageAttribute]
+public override string ToString ()
 		{
 			return "(" + Relative.X + "x" + Relative.Y + ")";
 		}
@@ -254,7 +255,8 @@ namespace Knot3.Widgets
 			}
 		}
 
-		public override int GetHashCode ()
+		[ExcludeFromCodeCoverageAttribute]
+public override int GetHashCode ()
 		{
 			return Relative.GetHashCode ();
 		}

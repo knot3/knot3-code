@@ -141,7 +141,8 @@ namespace Knot3.Core
 			return this == other;
 		}
 
-		public override int GetHashCode ()
+		[ExcludeFromCodeCoverageAttribute]
+public override int GetHashCode ()
 		{
 			return (int)(this.X + this.Y + this.Z);
 		}
@@ -204,7 +205,8 @@ namespace Knot3.Core
 			return new Angles3 (value.X * scaleFactor, value.Y * scaleFactor, value.Z * scaleFactor);
 		}
 
-		public override string ToString ()
+		[ExcludeFromCodeCoverageAttribute]
+public override string ToString ()
 		{
 			float x, y, z;
 			ToDegrees (out x, out y, out z);

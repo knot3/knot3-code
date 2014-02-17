@@ -165,7 +165,7 @@ namespace Knot3.Data
 		}
 
 		[ExcludeFromCodeCoverageAttribute]
-		public override int GetHashCode ()
+public override int GetHashCode ()
 		{
 			return (countEdges ().ToString () + (name ?? String.Empty)).GetHashCode ();
 		}
