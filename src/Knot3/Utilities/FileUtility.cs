@@ -107,16 +107,6 @@ namespace Knot3.Utilities
 			}
 		}
 
-		public static string AbsoluteToRelative (string directory)
-		{
-			Console.WriteLine ("Absolute: " + directory);
-			Uri currentUri = new Uri (Directory.GetCurrentDirectory ()+"/");
-			Console.WriteLine ("Current: " + currentUri.ToString ());
-			Uri relativeUri = currentUri.MakeRelativeUri (new Uri (directory+"/"));
-			Console.WriteLine ("Relative: " + relativeUri);
-			return relativeUri.ToString ();
-		}
-
 		public static void SearchFiles (IEnumerable<string> directories, IEnumerable<string> extensions, Action<string> add)
 		{
 			foreach (string directory in directories) {

@@ -62,14 +62,17 @@ namespace Knot3.UnitTests
 		{
 			get {
 				string directory;
+				/*
 				if (SystemInfo.IsRunningOnLinux ()) {
 					directory = "/var/tmp/knot3-tests/";
 				}
 				else {
 					directory = Path.GetTempPath () + "\\Knot3-Tests\\";
 				}
+				*/
+				directory = "tmp" + SystemInfo.PathSeparator;
 				Directory.CreateDirectory (directory);
-				return FileUtility.AbsoluteToRelative (directory);
+				return directory;
 			}
 		}
 	}

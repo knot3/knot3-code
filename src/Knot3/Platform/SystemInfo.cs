@@ -144,14 +144,41 @@ namespace Knot3.Platform
 					}
 					// Environment.CurrentDirectory = cwd;
 					Log.Debug (cwd);
-					cwd = FileUtility.AbsoluteToRelative (cwd);
 					baseDirectory = cwd;
 					return cwd;
 				}
 			}
 		}
-
 		private static string baseDirectory = null;
+
+		public static string RelativeBaseDirectory
+		{
+			get {
+				if (relativeBaseDirectory != null) {
+					return relativeBaseDirectory;
+				}
+				else {
+					string cwd = Directory.GetCurrentDirectory ();
+					string[] binDirectories = new string[] {
+						"Debug",
+						"Release",
+						"x86",
+						"bin"
+					};
+					foreach (string dir in binDirectories) {
+						if (cwd.ToLower ().EndsWith (dir.ToLower ())) {
+							cwd = cwd.Substring (0, cwd.Length - dir.Length - 1);
+						}
+					}
+					// Environment.CurrentDirectory = cwd;
+					Log.Debug (cwd);
+					relativeBaseDirectory = cwd;
+					return cwd;
+				}
+			}
+		}
+
+		private static string relativeBaseDirectory = null;
 		public readonly static char PathSeparator = Path.DirectorySeparatorChar;
 
 		#endregion
