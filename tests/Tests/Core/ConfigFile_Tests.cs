@@ -56,7 +56,11 @@ namespace Knot3.UnitTests.Core
 			int countKeysPerSection = 10;
 			string filename = TestHelper.TempDirectory + "test.ini";
 
-			File.Delete (filename);
+			try {
+				File.Delete (filename);
+			}
+			catch (IOException ex) {
+			}
 			ConfigFile cfg = new ConfigFile (filename);
 			Console.WriteLine (filename);
 
