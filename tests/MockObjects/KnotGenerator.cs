@@ -41,7 +41,6 @@ namespace Knot3.MockObjects
 {
 	public class KnotGenerator
 	{
-
 		public static readonly string FakeName = "FakeKnot";
 
 		// TODO (jemand): Wir brauchen hier noch eine bessere Lösung / Überladungen / Umgang mit "FakeKnots"

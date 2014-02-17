@@ -42,7 +42,6 @@ using Knot3.MockObjects;
 
 namespace Knot3.ExtremeTests
 {
-
 	public class ExtremeKnots
 	{
 		private static KnotFileIO knotFileIO;
