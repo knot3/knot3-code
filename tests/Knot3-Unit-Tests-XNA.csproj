@@ -118,7 +118,6 @@
     <Compile Include="Tests\Core\FloatOptionInfo_Tests.cs" />
     <Compile Include="Tests\Core\KeyOptionInfo_Tests.cs" />
     <Compile Include="Tests\Core\Localizer_Tests.cs" />
-    <Compile Include="Tests\Core\OptionInfo_Tests.cs" />
     <Compile Include="Tests\Core\World_Tests.cs" />
     <Compile Include="Tests\Data\ChallengeFileIO_Tests.cs" />
     <Compile Include="Tests\Data\ChallengeMetaData_Tests.cs" />
