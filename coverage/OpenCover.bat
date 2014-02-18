@@ -1,10 +1,14 @@
 @echo off
+MODE CON COLS=100 LINES=50
+title Code-Coverage Report Build-Script
 
 ::
-:: Stapelverarbeitungs-Skript für den Testabdeckungsbericht unter Windows (V. 1.2)
+:: Stapelverarbeitungs-Skript für den Testabdeckungsbericht unter Windows (V. 1.3)
 ::
 echo.
-echo --- OpenCover.bat ---
+echo.
+echo  --- OpenCover.bat ---
+echo.
 echo.
 
 ::
@@ -37,9 +41,10 @@ echo.
 ::
 
 echo.
-echo Settings:
-echo.
-echo Erstes Argument: "%1"
+echo  Settings:
+:: echo.
+:: echo Erstes Argument: "%1"
+:: echo.
 echo.
 echo.
 
@@ -65,6 +70,8 @@ set PATH_TO_OPENCOVER=%LOCALAPPDATA%\Apps\OpenCover
 set PATH_TO_REPORTGENERATOR=%ProgramFiles(x86)%\ReportGenerator\bin
 
 
+REM OPTIONAL TODO
+goto :SKIP
 ::
 :: Konfigurationsdatei.
 :: Es ist möglich lokal (%USERPROFILE\Documents) eine Konfigurationsdatei anzugeben,
@@ -75,7 +82,7 @@ set PATH_TO_CONFIGURATION_FILE=%USERPROFILE%\Documents\vs-crpc.txt
 
 if exist %PATH_TO_CONFIGURATION_FILE% (
 echo.
-echo Visual Studio coverage report path configuration file found.
+echo  Visual Studio coverage report path configuration file found.
 echo.
 
 for /F "eol=# tokens=1,2* delims==" %%i in (%PATH_TO_CONFIGURATION_FILE%) do (
@@ -84,54 +91,95 @@ echo %%i %%j
 
 ) else (
 echo.
-echo No configuration, using default settings.
+echo  No configuration, using default settings.
 echo.
+)
+:SKIP
+
+echo.
+echo  Paths to ...
+echo.
+for %%p in ("%CD%") do (
+echo    Curr. Location  : %%~sp
 )
 
 echo.
-echo Paths:
+
+for %%p in ("%PATH_TO_NUNIT%") do (
+echo    NUnit           : %%~sp
+)
+for %%p in ("%PATH_TO_OPENCOVER%") do (
+echo    OpenCover       : %%~sp
+)
+for %%p in ("%PATH_TO_REPORTGENERATOR%") do (
+echo    ReportGenerator : %%~sp
+)
+
 echo.
-echo   Current         : %CD%
-echo   NUnit           : %PATH_TO_NUNIT%
-echo   Tests           : %PATH_TO_TESTS%
-echo   OpenCover       : %PATH_TO_OPENCOVER%
-echo   VS-Project      : %PATH_TO_PROJECT%
-echo   ReportGenerator : %PATH_TO_REPORTGENERATOR%
-echo   Raw-Reportdata  : %PATH_TO_RAW_REPORTDATA%
-echo   HTML-Report     : %PATH_TO_HTML_REPORT%
-echo   LaTeX-Report    : %PATH_TO_LATEX_REPORT%
+
+for %%p in ("%PATH_TO_PROJECT%") do (
+echo    VS-Project      : %%~sp
+)
+for %%p in ("%PATH_TO_TESTS%") do (
+echo    Tests           : %%~sp
+)
+for %%p in ("%PATH_TO_RAW_REPORTDATA%") do (
+echo    Rep. Dsrc.      : %%~sp
+)
+for %%p in ("%PATH_TO_HTML_REPORT%") do (
+echo    Rep. Dst. ^(HTM^) : %%~sp
+) 
+for %%p in ("%PATH_TO_LATEX_REPORT%") do (
+echo    Rep. Dst. ^(TEX^) : %%~sp
+)
 echo.
 
 ::
 :: Filter für OpenCover hier einstellen:
 ::
-set FILTER=+[Knot3]*
-:: -excludebyattribute:"%FILTER_ATTRIBS%"
+set COMPONENT_FILTER=+[Knot3]*
 ::
 :: [ExcludeFromCodeCoverageAttribute]
 :: GetHashCode, ToString, Update, Draw
 ::
-set FILTER_ATTRIBS=System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute
+set ATTRIBUTE_FILTER=System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute
 echo.
-echo OpenCover-Component-Filter:
+echo  OpenCover-Filters:
 echo.
-echo %FILTER%
+echo    Components:
 echo.
-echo OpenCover-Attribute-Filter:
+::
+set ECHO=%COMPONENT_FILTER%
+:NEXT_COMPONENT
+for /f "delims=;" %%c in ("%ECHO%") do echo    %%c
+set TMP_ECHO=%ECHO%
+set ECHO=%ECHO:*;=%
+if not "%TMP_ECHO:;=%"=="%TMP_ECHO%" goto :NEXT_COMPONENT
+::
 echo.
-echo %FILTER_ATTRIBS%
+echo    Attributes:
 echo.
-
-echo ... Running tests, checking coverage ...
+::
+set ECHO=%ATTRIBUTE_FILTER%
+:NEXT_ATTRIBUTE
+for /f "delims=;" %%a in ("%ECHO%") do echo    %%a
+set TMP_ECHO=%ECHO%
+set ECHO=%ECHO:*;=%
+if not "%TMP_ECHO:;=%"=="%TMP_ECHO%" goto :NEXT_ATTRIBUTE
+::
+echo.
+echo.
+echo  ... Running tests, checking coverage ...
 echo.
 ::
 :: Hinweis: Auf einem 64-Bit-System ist nunit-console-x86.exe für 32-Bit-Projekte zu verwenden! (sonst tritt ein Fehler auf)
 ::
-"%PATH_TO_OPENCOVER%\OpenCover.Console.exe" -target:"%PATH_TO_NUNIT%\nunit-console-x86.exe" -targetargs:"/noshadow "%PATH_TO_TESTS%\Knot3.UnitTests.dll"" -register:user -filter:"%FILTER%" -excludebyattribute:"%FILTER_ATTRIBS%" -output:"%PATH_TO_RAW_REPORTDATA%\NUnit_test_coverage.xml">NUL
+"%PATH_TO_OPENCOVER%\OpenCover.Console.exe" -target:"%PATH_TO_NUNIT%\nunit-console-x86.exe" -targetargs:"/noshadow "%PATH_TO_TESTS%\Knot3.UnitTests.dll"" -register:user -filter:"%COMPONENT_FILTER%" -excludebyattribute:"%ATTRIBUTE_FILTER%" -output:"%PATH_TO_RAW_REPORTDATA%\NUnit_test_coverage.xml">NUL
 
-echo ... Generating report ...
 echo.
-echo     - HTML
+echo  ... Generating report ...
+echo.
+echo      ... HTML ...
 echo.
 ::
 :: Ausgabe von ReportGenerator auf der Konsole wird durch ">NUL" unterdrückt.
@@ -139,7 +187,7 @@ echo.
 ::
 "%PATH_TO_REPORTGENERATOR%\ReportGenerator.exe" -reporttypes:"Html" -reports:"%PATH_TO_RAW_REPORTDATA%\NUnit_test_coverage.xml" -targetdir:"%PATH_TO_HTML_REPORT%">NUL
 
-echo     - LaTeX
+echo      ... LaTeX ...
 echo.
 ::
 :: Erstellung des Berichts als LaTeX (vollständig):
@@ -158,8 +206,8 @@ del /F %LATEX_SUMM_REPORT%
 "%PATH_TO_REPORTGENERATOR%\ReportGenerator.exe" -reporttypes:"LatexSummary" -reports:"%PATH_TO_RAW_REPORTDATA%\NUnit_test_coverage.xml" -targetdir:"%PATH_TO_LATEX_REPORT%">NUL
 ren "%PATH_TO_LATEX_REPORT%\summary.tex" %LATEX_SUMM_REPORT_NAME%
 
-
-echo ... Showing report.
+echo.
+echo  ... Showing report.
 echo.
 ::
 :: Startet das Standardprogramm für das Betrachten von .htm:
@@ -170,6 +218,7 @@ start "" "%PATH_TO_HTML_REPORT%\index.htm"
 :: 5 Sekunden Pause.
 ::
 ping -n 4 127.0.0.1>NUL
+PAUSE>NUL
 
 REM pause
 exit
