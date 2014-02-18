@@ -57,7 +57,7 @@ namespace Knot3.Data
 	/// <summary>
 	/// Ein Exportformat für 3D-Drucker.
 	/// </summary>
-    [ExcludeFromCodeCoverageAttribute]
+	[ExcludeFromCodeCoverageAttribute]
 	public class PrinterIO : IKnotIO
 	{
 		#region Properties
