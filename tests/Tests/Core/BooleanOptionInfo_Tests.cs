@@ -26,6 +26,7 @@
 #endregion
 
 #region Using
+
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -68,7 +69,6 @@ namespace Knot3.UnitTests.Core
 			Assert.IsTrue (option.Value);
 			option.Value = !option.Value;
 			Assert.IsFalse (option.Value);
-			
 		}
 	}
 }
