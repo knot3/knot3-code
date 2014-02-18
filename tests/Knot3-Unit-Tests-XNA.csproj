@@ -115,7 +115,6 @@
     <Compile Include="Tests\Core\Camera_Tests.cs" />
     <Compile Include="Tests\Core\ConfigFile_Tests.cs" />
     <Compile Include="Tests\Core\DisplayLayer_Tests.cs" />
-    <Compile Include="Tests\Core\DistinctOptionInfo_Tests.cs" />
     <Compile Include="Tests\Core\FloatOptionInfo_Tests.cs" />
     <Compile Include="Tests\Core\KeyOptionInfo_Tests.cs" />
     <Compile Include="Tests\Core\Localizer_Tests.cs" />
