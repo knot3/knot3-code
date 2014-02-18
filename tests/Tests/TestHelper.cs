@@ -26,7 +26,6 @@
 #endregion
 
 #region Using
-
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
@@ -44,6 +43,8 @@ namespace Knot3.UnitTests
 	[TestFixture]
 	public static class TestHelper
 	{
+		private Random random = new Random ();
+
 		[SetUp]
 		public static void TestHelper_SetUp ()
 		{
@@ -76,5 +77,19 @@ namespace Knot3.UnitTests
 				return directory;
 			}
 		}
+
+		public static string RandomFilename (string extension)
+		{
+			string filename = TestHelper.TempDirectory + "test" + (random.Next () % 100) + "." + extension;
+
+			try {
+				File.Delete (filename);
+			}
+			catch (IOException ex) {
+			}
+
+			return filename;
+		}
+
 	}
 }
