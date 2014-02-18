@@ -39,6 +39,7 @@ using Knot3.Development;
 
 namespace Knot3
 {
+	[ExcludeFromCodeCoverageAttribute]
 	static class Program
 	{
 		private static Knot3Game game;
