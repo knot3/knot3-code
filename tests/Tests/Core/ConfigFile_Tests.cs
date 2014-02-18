@@ -55,7 +55,7 @@ namespace Knot3.UnitTests.Core
 		{
 			int countSections = 10;
 			int countKeysPerSection = 10;
-			string filename = TestHelper.RandomFilename("ini");
+			string filename = TestHelper.RandomFilename ("ini");
 			ConfigFile cfg = new ConfigFile (filename);
 			Console.WriteLine (filename);
 

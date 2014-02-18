@@ -61,7 +61,7 @@ namespace Knot3.UnitTests.Core
 			string name = null;
 			string section = null;
 
-			configFile = new ConfigFile (TestHelper.RandomFilename(extension: "ini"));
+			configFile = new ConfigFile (TestHelper.RandomFilename (extension: "ini"));
 
 			BooleanOptionInfo booleanOptionInfo = new BooleanOptionInfo (section, name, defaultValue, configFile);
 		}

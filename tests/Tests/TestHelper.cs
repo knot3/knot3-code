@@ -26,6 +26,7 @@
 #endregion
 
 #region Using
+
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
@@ -90,6 +91,5 @@ namespace Knot3.UnitTests
 
 			return filename;
 		}
-
 	}
 }
