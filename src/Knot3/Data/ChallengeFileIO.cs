@@ -248,6 +248,7 @@ namespace Knot3.Data
 		#endregion
 	}
 
+	[ExcludeFromCodeCoverageAttribute]
 	static class ZipHelper
 	{
 		public static string ReadContent (this ZipEntry entry)
