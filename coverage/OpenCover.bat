@@ -127,7 +127,7 @@ echo.
 ::
 :: Hinweis: Auf einem 64-Bit-System ist nunit-console-x86.exe für 32-Bit-Projekte zu verwenden! (sonst tritt ein Fehler auf)
 ::
-"%PATH_TO_OPENCOVER%\OpenCover.Console.exe" -target:"%PATH_TO_NUNIT%\nunit-console-x86.exe" -targetargs:"/noshadow "%PATH_TO_TESTS%\Knot3.UnitTests.dll"" -register:user -filter:"%FILTER%" -excludebyattribute:System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute -output:"%PATH_TO_RAW_REPORTDATA%\NUnit_test_coverage.xml">NUL
+"%PATH_TO_OPENCOVER%\OpenCover.Console.exe" -target:"%PATH_TO_NUNIT%\nunit-console-x86.exe" -targetargs:"/noshadow "%PATH_TO_TESTS%\Knot3.UnitTests.dll"" -register:user -filter:"%FILTER%" -excludebyattribute:"%FILTER_ATTRIBS%" -output:"%PATH_TO_RAW_REPORTDATA%\NUnit_test_coverage.xml">NUL
 
 echo ... Generating report ...
 echo.
