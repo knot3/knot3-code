@@ -43,33 +43,28 @@ using Knot3.Core;
 namespace Knot3.UnitTests.Core
 {
 	/// <summary>
-	/// 
+	///
 	/// </summary>
 	[TestFixture]
 	public class BooleanOptionInfo_Tests
 	{
-		
 
 		[SetUp]
 		public void Init ()
 		{
-			
 		}
 
 		[Test]
 		public void BooleanOptionInfo_Constructor_Test ()
 		{
-            ConfigFile configFile = null;
-            bool defaultValue = false;
-            string name = null;
-            string section = null;
+			ConfigFile configFile = null;
+			bool defaultValue = false;
+			string name = null;
+			string section = null;
 
-            configFile = new ConfigFile("test.ini");
+			configFile = new ConfigFile ("test.ini");
 
-            BooleanOptionInfo booleanOptionInfo = new BooleanOptionInfo(section, name, defaultValue, configFile);
-			
+			BooleanOptionInfo booleanOptionInfo = new BooleanOptionInfo (section, name, defaultValue, configFile);
 		}
-
-		
 	}
 }

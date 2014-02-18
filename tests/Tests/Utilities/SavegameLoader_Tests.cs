@@ -41,27 +41,20 @@ using NUnit.Framework;
 namespace Knot3.UnitTests.Utilities
 {
 	/// <summary>
-	/// 
+	///
 	/// </summary>
 	[TestFixture]
 	public class SavegameLoader_Tests
 	{
-		
 
 		[SetUp]
 		public void Init ()
 		{
-			
 		}
 
 		[Test]
 		public void Test ()
 		{
-           
-
-
 		}
-
-		
 	}
 }

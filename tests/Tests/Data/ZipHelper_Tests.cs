@@ -41,27 +41,20 @@ using NUnit.Framework;
 namespace Knot3.UnitTests.Data
 {
 	/// <summary>
-	/// 
+	///
 	/// </summary>
 	[TestFixture]
 	public class ZipHelper_Tests
 	{
-		
 
 		[SetUp]
 		public void Init ()
 		{
-			
 		}
 
 		[Test]
 		public void Test ()
 		{
-           
-
-
 		}
-
-		
 	}
 }
