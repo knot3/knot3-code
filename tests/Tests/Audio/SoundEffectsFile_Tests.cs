@@ -46,7 +46,6 @@ namespace Knot3.UnitTests.Audio
 	[TestFixture]
 	public class SoundEffectsFile_Tests
 	{
-
 		[SetUp]
 		public void Init ()
 		{

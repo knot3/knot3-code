@@ -46,7 +46,6 @@ namespace Knot3.UnitTests.Data
 	[TestFixture]
 	public class ChallengeMetaData_Tests
 	{
-
 		[SetUp]
 		public void Init ()
 		{

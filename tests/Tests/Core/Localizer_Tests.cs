@@ -46,7 +46,6 @@ namespace Knot3.UnitTests.Core
 	[TestFixture]
 	public class Localizer_Tests
 	{
-
 		[SetUp]
 		public void Init ()
 		{

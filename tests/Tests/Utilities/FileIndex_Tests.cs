@@ -46,7 +46,6 @@ namespace Knot3.UnitTests.Utilities
 	[TestFixture]
 	public class FileIndex_Tests
 	{
-
 		[SetUp]
 		public void Init ()
 		{

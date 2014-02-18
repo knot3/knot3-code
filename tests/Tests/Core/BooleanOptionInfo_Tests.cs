@@ -48,7 +48,6 @@ namespace Knot3.UnitTests.Core
 	[TestFixture]
 	public class BooleanOptionInfo_Tests
 	{
-
 		[SetUp]
 		public void Init ()
 		{
