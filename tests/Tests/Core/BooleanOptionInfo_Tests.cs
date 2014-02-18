@@ -71,10 +71,10 @@ namespace Knot3.UnitTests.Core
 			string trueStr = option.DisplayValue;
 			option.Value = !option.Value;
 			Assert.IsFalse (option.Value);
-			Assert.AreEqual(falseStr, option.DisplayValue);
+			Assert.AreEqual (falseStr, option.DisplayValue);
 			option.Value = !option.Value;
 			Assert.IsTrue (option.Value);
-			Assert.AreEqual(trueStr, option.DisplayValue);
+			Assert.AreEqual (trueStr, option.DisplayValue);
 		}
 	}
 }
