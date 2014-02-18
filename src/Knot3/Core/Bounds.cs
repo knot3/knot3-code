@@ -41,7 +41,7 @@ using Knot3.Utilities;
 
 #endregion
 
-namespace Knot3.Widgets
+namespace Knot3.Core
 {
 	public class Bounds
 	{
