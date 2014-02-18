@@ -55,7 +55,8 @@ using Knot3.Widgets;
 
 namespace Knot3.RenderEffects
 {
-	class Z_Nebula : RenderEffect
+	[ExcludeFromCodeCoverageAttribute]
+	public class Z_Nebula : RenderEffect
 	{
 		public Z_Nebula (IGameScreen screen)
 		: base (screen)

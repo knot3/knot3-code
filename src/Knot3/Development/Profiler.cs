@@ -72,6 +72,7 @@ namespace Knot3.Development
 		public static HashtableActionWrapper ProfileDelegate = new HashtableActionWrapper ();
 		public static HashtableWrapper Values = new HashtableWrapper ();
 
+		[ExcludeFromCodeCoverageAttribute]
 		public class HashtableWrapper
 		{
 			public double this [string str]
@@ -90,6 +91,7 @@ namespace Knot3.Development
 			}
 		}
 
+		[ExcludeFromCodeCoverageAttribute]
 		public class HashtableActionWrapper
 		{
 			public Action this [string str]

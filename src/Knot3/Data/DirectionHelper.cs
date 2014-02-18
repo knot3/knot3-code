@@ -54,6 +54,7 @@ using Knot3.Widgets;
 
 namespace Knot3.Data
 {
+	[ExcludeFromCodeCoverageAttribute]
 	public static class DirectionHelper
 	{
 		public static Direction ToDirection (this Vector3 vector)

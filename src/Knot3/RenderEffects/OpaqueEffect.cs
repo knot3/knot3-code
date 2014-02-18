@@ -55,7 +55,8 @@ using Knot3.Widgets;
 
 namespace Knot3.RenderEffects
 {
-	class OpaqueEffect : RenderEffect
+	[ExcludeFromCodeCoverageAttribute]
+	public class OpaqueEffect : RenderEffect
 	{
 		public OpaqueEffect (IGameScreen screen)
 		: base (screen)

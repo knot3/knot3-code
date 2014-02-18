@@ -112,6 +112,7 @@ namespace Knot3.RenderEffects
 			return EffectLibrary [0];
 		}
 
+		[ExcludeFromCodeCoverageAttribute]
 		class EffectFactory
 		{
 			public string Name { get; private set; }
