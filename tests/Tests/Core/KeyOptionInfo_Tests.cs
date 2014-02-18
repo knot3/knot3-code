@@ -22,6 +22,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+using Knot3.Core;
+using Microsoft.Xna.Framework.Input;
 
 #endregion
 
@@ -54,6 +56,28 @@ namespace Knot3.UnitTests.Core
 		[Test]
 		public void Test ()
 		{
+			string name = "test-option";
+			string section = "test-section";
+			Keys defaultValue = Keys.Escape;
+
+			ConfigFile configFile = new ConfigFile (TestHelper.RandomFilename (extension: "ini"));
+
+			KeyOptionInfo option = new KeyOptionInfo (section, name, defaultValue, configFile);
+
+			Assert.AreEqual (option.Value, defaultValue);
+			string defaultStr = option.DisplayValue;
+			Assert.IsTrue (option.DisplayValidValues.ContainsKey (defaultStr));
+
+			option.Value = Keys.LeftShift;
+			Assert.AreEqual (option.Value, Keys.LeftShift);
+			string tenStr = option.DisplayValue;
+			Assert.IsTrue (option.DisplayValidValues.ContainsKey (tenStr));
+
+			Assert.AreNotEqual (defaultStr, tenStr);
+
+			(option as DistinctOptionInfo).Value = "invalid!!";
+			Assert.AreEqual (option.Value, defaultValue);
+			Assert.AreEqual (defaultStr, option.DisplayValue);
 		}
 	}
 }

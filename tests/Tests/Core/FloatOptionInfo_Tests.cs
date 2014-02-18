@@ -65,7 +65,7 @@ namespace Knot3.UnitTests.Core
 
 			FloatOptionInfo option = new FloatOptionInfo (section, name, defaultValue, validValues, configFile);
 
-			Assert.AreEqual (option.Value, 5f);
+			Assert.AreEqual (option.Value, defaultValue);
 			string defaultStr = option.DisplayValue;
 			Assert.IsTrue (option.DisplayValidValues.ContainsKey (defaultStr));
 
