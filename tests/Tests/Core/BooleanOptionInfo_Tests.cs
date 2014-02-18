@@ -74,6 +74,8 @@ namespace Knot3.UnitTests.Core
 			string trueStr = option.DisplayValue;
 			Assert.IsTrue (option.DisplayValidValues.ContainsKey (trueStr));
 
+			Assert.AreNotEqual(falseStr, trueStr);
+
 			option.Value = !option.Value;
 			Assert.IsFalse (option.Value);
 			Assert.AreEqual (falseStr, option.DisplayValue);
