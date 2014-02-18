@@ -22,8 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-using Knot3.Core;
-using Microsoft.Xna.Framework.Input;
 
 #endregion
 
@@ -35,8 +33,11 @@ using System.Diagnostics.CodeAnalysis;
 using System.Text;
 
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 
 using NUnit.Framework;
+
+using Knot3.Core;
 
 #endregion
 
