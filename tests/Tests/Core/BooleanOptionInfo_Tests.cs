@@ -26,7 +26,6 @@
 #endregion
 
 #region Using
-
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -58,14 +57,18 @@ namespace Knot3.UnitTests.Core
 		{
 			ConfigFile configFile = null;
 			bool defaultValue = false;
-			string name = null;
-			string section = null;
+			string name = "test-option";
+			string section = "test-section";
 
 			configFile = new ConfigFile (TestHelper.RandomFilename (extension: "ini"));
 
 			BooleanOptionInfo option = new BooleanOptionInfo (section, name, defaultValue, configFile);
+			Assert.IsFalse (option.Value);
 			option.Value = true;
+			Assert.IsTrue (option.Value);
 			option.Value = !option.Value;
+			Assert.IsFalse (option.Value);
+			
 		}
 	}
 }
