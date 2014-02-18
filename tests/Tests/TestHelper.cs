@@ -43,7 +43,7 @@ namespace Knot3.UnitTests
 	[TestFixture]
 	public static class TestHelper
 	{
-		private Random random = new Random ();
+		private static Random random = new Random ();
 
 		[SetUp]
 		public static void TestHelper_SetUp ()
