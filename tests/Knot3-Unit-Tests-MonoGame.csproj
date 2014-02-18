@@ -71,7 +71,6 @@
     <Compile Include="Tests\Data\Node_Tests.cs" />
     <Compile Include="Tests\Data\RectangleMap_Tests.cs" />
     <Compile Include="Tests\Data\ZipHelper_Tests.cs" />
-    <Compile Include="Tests\Screens\Screen_Tests.cs" />
     <Compile Include="Tests\TestHelper.cs" />
     <Compile Include="Tests\Utilities\BoundingCylinder_Tests.cs" />
     <Compile Include="Tests\Utilities\FileIndex_Tests.cs" />
