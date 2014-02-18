@@ -56,12 +56,11 @@ namespace Knot3.UnitTests.Core
 		[Test]
 		public void BooleanOptionInfo_Constructor_Test ()
 		{
-			ConfigFile configFile = null;
-			bool defaultValue = false;
 			string name = "test-option";
 			string section = "test-section";
+			bool defaultValue = false;
 
-			configFile = new ConfigFile (TestHelper.RandomFilename (extension: "ini"));
+			ConfigFile configFile = new ConfigFile (TestHelper.RandomFilename (extension: "ini"));
 
 			BooleanOptionInfo option = new BooleanOptionInfo (section, name, defaultValue, configFile);
 

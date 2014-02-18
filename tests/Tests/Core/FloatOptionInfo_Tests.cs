@@ -22,11 +22,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+using Knot3.Core;
 
 #endregion
 
 #region Using
-
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -54,6 +54,33 @@ namespace Knot3.UnitTests.Core
 		[Test]
 		public void Test ()
 		{
+			string name = "test-option";
+			string section = "test-section";
+			float defaultValue = 5f;
+			float[] validValues = new float[] { 0f, 5f, 10f, 15f, 20f };
+
+			ConfigFile configFile = new ConfigFile (TestHelper.RandomFilename (extension: "ini"));
+
+			FloatOptionInfo option = new FloatOptionInfo (section, name, defaultValue, validValues, configFile);
+
+			Assert.AreEqual (option.Value, 5f);
+			string defaultStr = option.DisplayValue;
+			Assert.IsTrue (option.DisplayValidValues.ContainsKey (defaultStr));
+
+			option.Value = 10f;
+			Assert.AreEqual (option.Value, 10f);
+			string tenStr = option.DisplayValue;
+			Assert.IsTrue (option.DisplayValidValues.ContainsKey (tenStr));
+
+			Assert.AreNotEqual (defaultStr, tenStr);
+
+			option.Value = 99f;
+			Assert.AreEqual (option.Value, defaultValue);
+			Assert.AreEqual (defaultStr, option.DisplayValue);
+
+			(option as DistinctOptionInfo).Value = "invalid!!";
+			Assert.AreEqual (option.Value, defaultValue);
+			Assert.AreEqual (defaultStr, option.DisplayValue);
 		}
 	}
 }
