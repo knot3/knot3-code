@@ -26,6 +26,7 @@
 #endregion
 
 #region Using
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -197,7 +198,7 @@ namespace Knot3.Input
 				Vector3 currentMousePosition = World.Camera.To3D (
 				                                   position: InputManager.CurrentMouseState.ToVector2 (),
 				                                   nearTo: selectedModel.Center ()
-				);
+				                               );
 
 				// Wenn die Maus gedrückt gehalten ist und wir mitten im Ziehen der Kante
 				// an die neue Position sind
