@@ -22,8 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-using Knot3.Game.Data;
-using Knot3.Game.MockObjects;
 
 #endregion
 
@@ -37,6 +35,9 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+
+using Knot3.Game.Data;
+using Knot3.Game.MockObjects;
 
 #endregion
 

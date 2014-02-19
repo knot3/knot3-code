@@ -22,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-using Knot3.Framework.RenderEffects;
 
 #endregion
 
@@ -37,12 +36,14 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
 using Knot3.Framework.Audio;
-using Knot3.Game.Core;
 using Knot3.Framework.Core;
 using Knot3.Framework.Input;
 using Knot3.Framework.Output;
 using Knot3.Framework.Platform;
+using Knot3.Framework.RenderEffects;
 using Knot3.Framework.Utilities;
+
+using Knot3.Game.Core;
 using Knot3.Game.Input;
 using Knot3.Game.RenderEffects;
 using Knot3.Game.Widgets;

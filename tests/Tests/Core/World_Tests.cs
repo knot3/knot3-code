@@ -22,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-using Knot3.Framework.RenderEffects;
 
 #endregion
 
@@ -35,13 +34,15 @@ using System.Linq;
 
 using NUnit.Framework;
 
-using Knot3.Game.Core;
-using Knot3.Game.Data;
 using Knot3.Framework.Core;
 using Knot3.Framework.Input;
 using Knot3.Framework.Output;
 using Knot3.Framework.Platform;
+using Knot3.Framework.RenderEffects;
 using Knot3.Framework.Utilities;
+
+using Knot3.Game.Core;
+using Knot3.Game.Data;
 using Knot3.Game.GameObjects;
 using Knot3.Game.MockObjects;
 using Knot3.Game.RenderEffects;

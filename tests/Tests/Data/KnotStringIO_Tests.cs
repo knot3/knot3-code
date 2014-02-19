@@ -37,12 +37,13 @@ using System.Threading.Tasks;
 
 using NUnit.Framework;
 
-using Knot3.Game.Data;
 using Knot3.Framework.Core;
 using Knot3.Framework.Input;
 using Knot3.Framework.Output;
 using Knot3.Framework.Platform;
 using Knot3.Framework.Utilities;
+
+using Knot3.Game.Data;
 using Knot3.Game.MockObjects;
 
 #endregion
