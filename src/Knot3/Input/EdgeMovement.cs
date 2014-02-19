@@ -371,18 +371,20 @@ namespace Knot3.Input
 				}
 			}
 
-			int distance = (int)Math.Round (count);
-			Knot shadowKnot;
-			if (knotCache.ContainsKey (direction * distance)) {
-				shadowKnot = knotCache [direction * distance];
-			}
-			else {
-				Knot.TryMove (direction, distance, out shadowKnot);
-				knotCache [direction * distance] = shadowKnot;
-			}
+			if (Knot.IsValidDirection (direction)) {
+				int distance = (int)Math.Round (count);
+				Knot shadowKnot;
+				if (knotCache.ContainsKey (direction * distance)) {
+					shadowKnot = knotCache [direction * distance];
+				}
+				else {
+					Knot.TryMove (direction, distance, out shadowKnot);
+					knotCache [direction * distance] = shadowKnot;
+				}
 
-			if (shadowKnot != null) {
-				knotRenderer.VirtualKnot = shadowKnot;
+				if (shadowKnot != null) {
+					knotRenderer.VirtualKnot = shadowKnot;
+				}
 
 				foreach (ShadowGameModel shadowObj in shadowObjects) {
 					shadowObj.ShadowPosition = shadowObj.OriginalPosition + direction * count * Node.Scale;

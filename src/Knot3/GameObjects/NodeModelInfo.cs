@@ -303,6 +303,7 @@ namespace Knot3.GameObjects
 					Rotation += Angles3.FromDegrees (0, 0, bumpRotationZ);
 
 					// debug
+					/*
 					Log.Debug (
 					    "Index="
 					    + Index.ToString ()
@@ -315,6 +316,7 @@ namespace Knot3.GameObjects
 					    + ", ...="
 					    + Angles3.FromDegrees (0, 0, bumpRotationZ)
 					);
+					*/
 				}
 				else {
 					Modelname = Options.Models[NodeConfigKey, "modelname" + JunctionsAtNodeIndex, "pipe-straight"];
