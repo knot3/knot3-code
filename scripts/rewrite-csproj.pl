@@ -48,13 +48,13 @@ sub rewrite_csproj {
 }
 
 my @csproj_files = (
-	{ csproj => 'src/Knot3-MonoGame.csproj', dir => 'src/', exclude => ['-XNA.cs'], linesep => qq[\n] },
-	{ csproj => 'src/Knot3-XNA.csproj', dir => 'src/', exclude => ['-MonoGame.cs'], linesep => qq[\n] },
-	{ csproj => 'tests/Knot3-Unit-Tests-MonoGame.csproj', dir => 'tests/', exclude => [], linesep => qq[\n] },
-	{ csproj => 'tests/Knot3-Unit-Tests-XNA.csproj', dir => 'tests/', exclude => [], linesep => qq[\n] },
-	{ csproj => 'tools/ConfigReset/Knot3-ConfigReset.csproj', dir => 'tools/ConfigReset/', exclude => [], linesep => qq[\n] },
-	{ csproj => 'extremetests/Knot3-Extreme-Tests-MonoGame.csproj', dir => 'extremetests/', exclude => [], linesep => qq[\n] },
-	{ csproj => 'extremetests/Knot3-Extreme-Tests-XNA.csproj', dir => 'extremetests/', exclude => [], linesep => qq[\n] },
+	{ csproj => 'src/Knot3.Game-MonoGame.csproj', dir => 'src/', exclude => ['-XNA.cs'], linesep => qq[\n] },
+	{ csproj => 'src/Knot3.Game-XNA.csproj', dir => 'src/', exclude => ['-MonoGame.cs'], linesep => qq[\n] },
+	{ csproj => 'tests/Knot3.UnitTests-MonoGame.csproj', dir => 'tests/', exclude => [], linesep => qq[\n] },
+	{ csproj => 'tests/Knot3.UnitTests-XNA.csproj', dir => 'tests/', exclude => [], linesep => qq[\n] },
+	{ csproj => 'tools/ConfigReset/Knot3.ConfigReset.csproj', dir => 'tools/ConfigReset/', exclude => [], linesep => qq[\n] },
+	{ csproj => 'extremetests/Knot3.ExtremeTests-MonoGame.csproj', dir => 'extremetests/', exclude => [], linesep => qq[\n] },
+	{ csproj => 'extremetests/Knot3.ExtremeTests-XNA.csproj', dir => 'extremetests/', exclude => [], linesep => qq[\n] },
 );
 
 foreach my $csproj_file (@csproj_files) {
