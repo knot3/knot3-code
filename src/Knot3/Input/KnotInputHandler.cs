@@ -319,10 +319,10 @@ namespace Knot3.Input
 				ScreenPoint currentPosition = InputManager.CurrentMouseState.ToScreenPoint (Screen);
 				Bounds worldBounds = world.Bounds;
 				var bounds = new [] {
-					new { Bounds = worldBounds.FromLeft (0.1f), Side = new Vector2 (-1, 0) },
-					new { Bounds = worldBounds.FromRight (0.1f), Side = new Vector2 (1, 0) },
-					new { Bounds = worldBounds.FromTop (0.1f), Side = new Vector2 (0, 1) },
-					new { Bounds = worldBounds.FromBottom (0.1f), Side = new Vector2 (0, -1) }
+					new { Bounds = worldBounds.FromLeft (0.03f), Side = new Vector2 (-1, 0) },
+					new { Bounds = worldBounds.FromRight (0.03f), Side = new Vector2 (1, 0) },
+					new { Bounds = worldBounds.FromTop (0.03f), Side = new Vector2 (0, 1) },
+					new { Bounds = worldBounds.FromBottom (0.03f), Side = new Vector2 (0, -1) }
 				};
 				Vector2[] sides = bounds.Where (x => x.Bounds.Contains (currentPosition)).Select (x => x.Side).ToArray ();
 				if (sides.Length == 1) {
