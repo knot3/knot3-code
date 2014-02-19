@@ -55,15 +55,28 @@ namespace Knot3.UnitTests.Utilities
 		[SetUp]
 		public void Init ()
 		{
+		}
+
+		[Test]
+		public void SavegameLoader_InvalidIndex_Test ()
+		{
+			// Erstelle einen Parser für das Dateiformat
+			KnotFileIO fileFormat = new KnotFileIO ();
+			// Erstelle einen Spielstand-Loader
+			loader = new SavegameLoader<Knot, KnotMetaData> (fileFormat, "{}''!!^?`´##~%%&&$!");
+
+			// Suche nach Spielständen
+			loader.FindSavegames (AddSavegameToList);
+		}
+
+		[Test]
+		public void SavegameLoader_Load_Test ()
+		{
 			// Erstelle einen Parser für das Dateiformat
 			KnotFileIO fileFormat = new KnotFileIO ();
 			// Erstelle einen Spielstand-Loader
 			loader = new SavegameLoader<Knot, KnotMetaData> (fileFormat, "index-SavegameLoader_Tests");
-		}
 
-		[Test]
-		public void Test ()
-		{
 			// Suche nach Spielständen
 			loader.FindSavegames (AddSavegameToList);
 		}
