@@ -63,7 +63,7 @@ namespace Knot3.UnitTests.Utilities
 			// Erstelle einen Parser für das Dateiformat
 			KnotFileIO fileFormat = new KnotFileIO ();
 			// Erstelle einen Spielstand-Loader
-			loader = new SavegameLoader<Knot, KnotMetaData> (fileFormat, "{}''!!^?`´##~%%&&$!");
+			loader = new SavegameLoader<Knot, KnotMetaData> (fileFormat, "{}''!!^?`´##~%%&&$!\\//\\//");
 
 			// Suche nach Spielständen
 			loader.FindSavegames (AddSavegameToList);
