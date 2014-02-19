@@ -43,16 +43,22 @@ using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
 
-using Knot3.Core;
-using Knot3.Data;
-using Knot3.GameObjects;
-using Knot3.Input;
-using Knot3.RenderEffects;
-using Knot3.Widgets;
+using Knot3.Framework.Core;
+using Knot3.Framework.Input;
+using Knot3.Framework.Output;
+using Knot3.Framework.Platform;
+using Knot3.Framework.Utilities;
+using Knot3.Framework.Widgets;
+using Knot3.Game.Core;
+using Knot3.Game.Data;
+using Knot3.Game.GameObjects;
+using Knot3.Game.Input;
+using Knot3.Game.RenderEffects;
+using Knot3.Game.Widgets;
 
 #endregion
 
-namespace Knot3.Screens
+namespace Knot3.Game.Screens
 {
 	/// <summary>
 	/// Der Spielzustand, der die Profil-Einstellungen darstellt.
@@ -74,7 +80,7 @@ namespace Knot3.Screens
 		/// <summary>
 		/// Erzeugt eine neue Instanz eines ProfileSettingsScreen-Objekts und initialisiert dieses mit einem Knot3Game-Objekt.
 		/// </summary>
-		public ProfileSettingsScreen (Knot3Game game)
+		public ProfileSettingsScreen (GameClass game)
 		: base (game)
 		{
 			MenuName = "Profile";

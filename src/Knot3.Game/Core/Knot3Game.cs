@@ -43,95 +43,32 @@ using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
 
-using Knot3.Data;
-using Knot3.Development;
-using Knot3.GameObjects;
-using Knot3.Platform;
-using Knot3.RenderEffects;
-using Knot3.Screens;
-using Knot3.Utilities;
-using Knot3.Widgets;
+using Knot3.Framework;
+using Knot3.Framework.Core;
+using Knot3.Framework.Development;
+using Knot3.Framework.Input;
+using Knot3.Framework.Output;
+using Knot3.Framework.Platform;
+using Knot3.Framework.RenderEffects;
+using Knot3.Framework.Utilities;
+using Knot3.Game.Data;
+using Knot3.Game.Development;
+using Knot3.Game.GameObjects;
+using Knot3.Game.RenderEffects;
+using Knot3.Game.Screens;
+using Knot3.Game.Utilities;
+using Knot3.Game.Widgets;
 
 #endregion
 
-namespace Knot3.Core
+namespace Knot3.Game.Core
 {
 	/// <summary>
 	/// Die zentrale Spielklasse, die von der \glqq Game\grqq~-Klasse des XNA-Frameworks erbt.
 	/// </summary>
 	[ExcludeFromCodeCoverageAttribute]
-	public class Knot3Game : Game
+	public class Knot3Game : GameClass
 	{
-		#region Properties
-
-		private string lastResolution;
-		private bool isFullscreen;
-		public Action FullScreenChanged = () => {};
-		/// <summary>
-		/// Wird dieses Attribut ausgelesen, dann gibt es einen Wahrheitswert zurück, der angibt,
-		/// ob sich das Spiel im Vollbildmodus befindet. Wird dieses Attribut auf einen Wert gesetzt,
-		/// dann wird der Modus entweder gewechselt oder beibehalten, falls es auf denselben Wert gesetzt wird.
-		/// </summary>
-		public bool IsFullScreen
-		{
-			get {
-				return isFullscreen;
-			}
-			set {
-				if (value != isFullscreen) {
-					Log.Debug ("Fullscreen Toggle");
-					if (value) {
-						Graphics.PreferredBackBufferWidth = Graphics.GraphicsDevice.DisplayMode.Width;
-						Graphics.PreferredBackBufferHeight = Graphics.GraphicsDevice.DisplayMode.Height;
-					}
-					else {
-						string currentResolution = Graphics.GraphicsDevice.DisplayMode.Width.ToString ()
-						                           + "x"
-						                           + Graphics.GraphicsDevice.DisplayMode.Height.ToString ();
-
-						Options.Default ["video", "resolution", currentResolution] = "1280x720";
-					}
-					Graphics.ToggleFullScreen ();
-					Graphics.ApplyChanges ();
-					isFullscreen = value;
-					Graphics.ApplyChanges ();
-					FullScreenChanged ();
-					toDefaultSize (isFullscreen);
-				}
-			}
-		}
-
-		/// <summary>
-		/// Enthält als oberste Element den aktuellen Spielzustand und darunter die zuvor aktiven Spielzustände.
-		/// </summary>
-		public Stack<IGameScreen> Screens { get; set; }
-
-		/// <summary>
-		/// Dieses Attribut dient sowohl zum Setzen des Aktivierungszustandes der vertikalen Synchronisation,
-		/// als auch zum Auslesen dieses Zustandes.
-		/// </summary>
-		public Boolean VSync
-		{
-			get {
-				return Graphics.SynchronizeWithVerticalRetrace;
-			}
-			set {
-				Graphics.SynchronizeWithVerticalRetrace = value;
-				this.IsFixedTimeStep = value;
-				Graphics.ApplyChanges ();
-			}
-		}
-
-		/// <summary>
-		/// Der aktuelle Grafikgeräteverwalter des XNA-Frameworks.
-		/// </summary>
-		public GraphicsDeviceManager Graphics { get; private set; }
-
-		private static readonly Vector2 defaultSize = SystemInfo.IsRunningOnMono ()
-		        ? new Vector2 (1024, 600) : new Vector2 (1280, 720);
-
-		#endregion
-
 		#region Constructors
 
 		/// <summary>
@@ -140,28 +77,8 @@ namespace Knot3.Core
 		/// Bildschirmauflösung und wechselt in den Vollbildmodus.
 		/// </summary>
 		public Knot3Game ()
+		: base ()
 		{
-			Graphics = new GraphicsDeviceManager (this);
-
-			Graphics.PreferredBackBufferWidth = (int)defaultSize.X;
-			Graphics.PreferredBackBufferHeight = (int)defaultSize.Y;
-
-			Graphics.IsFullScreen = false;
-			isFullscreen = false;
-			Graphics.ApplyChanges ();
-
-			if (SystemInfo.IsRunningOnLinux ()) {
-				IsMouseVisible = true;
-			}
-			else if (SystemInfo.IsRunningOnWindows ()) {
-				IsMouseVisible = false;
-				System.Windows.Forms.Cursor.Hide ();
-			}
-			else {
-				throw new Exception ("Unsupported Plattform Exception");
-			}
-
-			Content.RootDirectory = "Content";
 			Window.Title = "Knot3 " + Program.Version;
 		}
 
@@ -183,6 +100,25 @@ namespace Knot3.Core
 
 			// design
 			new HfGDesign ().Apply ();
+
+			RenderEffectLibrary.EffectFactory[] effects = new RenderEffectLibrary.EffectFactory[] {
+				new RenderEffectLibrary.EffectFactory (
+				    name: "celshader",
+				    displayName: "Cel Shading",
+				    createInstance: (screen) => new CelShadingEffect (screen)
+				),
+				new RenderEffectLibrary.EffectFactory (
+				    name: "opaque",
+				    displayName: "opaque",
+				    createInstance: (screen) => new OpaqueEffect (screen)
+				),
+				new RenderEffectLibrary.EffectFactory (
+				    name: "z-nebula",
+				    displayName: "Z-Nebula",
+				    createInstance: (screen) => new Z_Nebula (screen)
+				)
+			};
+			RenderEffectLibrary.EffectLibrary.AddRange (effects);
 
 			// screens
 			Screens = new Stack<IGameScreen> ();
@@ -279,34 +215,6 @@ namespace Knot3.Core
 				// Error Screen
 				ShowError (ex);
 			}
-		}
-
-		private void toDefaultSize (bool fullscreen)
-		{
-			if (!fullscreen) {
-				Graphics.PreferredBackBufferWidth = (int)Knot3Game.defaultSize.X;
-				Graphics.PreferredBackBufferHeight = (int)Knot3Game.defaultSize.Y;
-				Graphics.ApplyChanges ();
-			}
-		}
-
-		private void updateResolution ()
-		{
-			int width;
-			int height;
-			string currentResolution = Graphics.GraphicsDevice.DisplayMode.Width.ToString ()
-			                           + "x"
-			                           + Graphics.GraphicsDevice.DisplayMode.Height.ToString ();
-			if (lastResolution != Options.Default ["video", "resolution", currentResolution] && !isFullscreen) {
-				String strReso = Options.Default ["video", "resolution", currentResolution];
-				string[] reso = strReso.Split ('x');
-				width = int.Parse (reso [0]);
-				height = int.Parse (reso [1]);
-				Graphics.PreferredBackBufferWidth = width;
-				Graphics.PreferredBackBufferHeight = height;
-				Graphics.ApplyChanges ();
-			}
-			lastResolution = Options.Default ["video", "resolution", currentResolution];
 		}
 
 		#endregion

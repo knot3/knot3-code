@@ -28,59 +28,33 @@
 #region Using
 
 using System;
-using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 
-using NUnit.Framework;
-
-using Knot3.Audio;
-using Knot3.Core;
-using Knot3.Data;
 using Knot3.Framework.Core;
 using Knot3.Framework.Input;
 using Knot3.Framework.Output;
 using Knot3.Framework.Platform;
 using Knot3.Framework.Utilities;
-using Knot3.GameObjects;
-using Knot3.MockObjects;
-using Knot3.RenderEffects;
 
 #endregion
 
-namespace Knot3.UnitTests.Audio
+namespace Knot3.Framework.Widgets
 {
-	[TestFixture]
-	public class Audio_Tests
-	{
-		AudioManager audio;
-		FakeScreen screen;
-
-		[SetUp]
-		public void Audio_Setup ()
-		{
-			screen = new FakeScreen ();
-			AudioManager.Reset ();
-			audio = new AudioManager (screen, TestHelper.TestResourcesDirectory);
-		}
-
-		[Test]
-		public void Audio_Volume_Tests ()
-		{
-			AudioManager.SetVolume (Sound.PipeMoveSound, 1f);
-		}
-
-		[Test]
-		public void Audio_Load_Tests ()
-		{
-			string[] filenames = new string[] { "sound1.ogg", "invalid.ogg" };
-			foreach (string filename in filenames) {
-			}
-		}
-
-		[Test]
-		public void Audio_LoopPlaylist_Tests ()
-		{
-		}
+	/// <summary>
+	/// Der Zustand eines Menüeintrags.
+	/// </summary>
+	public enum WidgetState {
+		/// <summary>
+		/// Ausgewählt.
+		/// </summary>
+		Selected=1,
+		/// <summary>
+		/// Die Maus wurde direkt über den Menüeintrag navigiert und verweilt dort.
+		/// </summary>
+		Hovered=2,
+		/// <summary>
+		/// Ein undefinierter Zustand.
+		/// </summary>
+		None=0,
 	}
 }

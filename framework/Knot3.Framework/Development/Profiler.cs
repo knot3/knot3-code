@@ -30,6 +30,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
@@ -43,89 +44,62 @@ using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
 
-using Knot3.Core;
-using Knot3.Data;
-using Knot3.GameObjects;
-using Knot3.Input;
-using Knot3.Screens;
-using Knot3.Widgets;
+using Knot3.Framework.Core;
+using Knot3.Framework.GameObjects;
+using Knot3.Framework.Input;
+using Knot3.Framework.Output;
+using Knot3.Framework.Platform;
+using Knot3.Framework.RenderEffects;
+using Knot3.Framework.Utilities;
+using Knot3.Framework.Widgets;
 
 #endregion
 
-namespace Knot3.RenderEffects
+namespace Knot3.Framework.Development
 {
 	[ExcludeFromCodeCoverageAttribute]
-	public class RenderEffectLibrary
+	public static class Profiler
 	{
-		private static EffectFactory[] EffectLibrary
-		= new EffectFactory[] {
-			new EffectFactory (
-			    name: "default",
-			    displayName: "Default",
-			    createInstance: (screen) => new StandardEffect (screen)
-			),
-			new EffectFactory (
-			    name: "celshader",
-			    displayName: "Cel Shading",
-			    createInstance: (screen) => new CelShadingEffect (screen)
-			),
-			new EffectFactory (
-			    name: "opaque",
-			    displayName: "opaque",
-			    createInstance: (screen) => new OpaqueEffect (screen)
-			),
-			new EffectFactory (
-			    name: "z-nebula",
-			    displayName: "Z-Nebula",
-			    createInstance: (screen) => new Z_Nebula (screen)
-			),
-		};
-
-		public static Action<string, GameTime> RenderEffectChanged = (e, t) => {};
-
-		public static IEnumerable<string> Names
+		public static TimeSpan Time (Action action)
 		{
-			get {
-				foreach (EffectFactory factory in EffectLibrary) {
-					yield return factory.Name;
+			Stopwatch stopwatch = Stopwatch.StartNew ();
+			action ();
+			stopwatch.Stop ();
+			return stopwatch.Elapsed;
+		}
+
+		public static Hashtable ProfilerMap = new Hashtable ();
+
+		public static HashtableActionWrapper ProfileDelegate = new HashtableActionWrapper ();
+		public static HashtableWrapper Values = new HashtableWrapper ();
+
+		[ExcludeFromCodeCoverageAttribute]
+		public class HashtableWrapper
+		{
+			public double this [string str]
+			{
+				get {
+					return (double)ProfilerMap [str];
+				}
+				set {
+					ProfilerMap [str] = value;
 				}
 			}
-		}
 
-		public static string DisplayName (string name)
-		{
-			return Factory (name).DisplayName;
-		}
-
-		public static IRenderEffect CreateEffect (IGameScreen screen, string name)
-		{
-			return Factory (name).CreateInstance (screen);
-		}
-
-		private static EffectFactory Factory (string name)
-		{
-			foreach (EffectFactory factory in EffectLibrary) {
-				if (factory.Name == name) {
-					return factory;
-				}
+			public bool ContainsKey (string str)
+			{
+				return ProfilerMap.ContainsKey (str);
 			}
-			return EffectLibrary [0];
 		}
 
 		[ExcludeFromCodeCoverageAttribute]
-		class EffectFactory
+		public class HashtableActionWrapper
 		{
-			public string Name { get; private set; }
-
-			public string DisplayName { get; private set; }
-
-			public Func<IGameScreen, IRenderEffect> CreateInstance { get; private set; }
-
-			public EffectFactory (string name, string displayName, Func<IGameScreen, IRenderEffect> createInstance)
+			public Action this [string str]
 			{
-				Name = name;
-				DisplayName = displayName;
-				CreateInstance = createInstance;
+				set {
+					ProfilerMap [str] = Time (value).TotalMilliseconds;
+				}
 			}
 		}
 	}

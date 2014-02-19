@@ -46,20 +46,16 @@ using Microsoft.Xna.Framework.Storage;
 
 using OggSharp;
 
-using Knot3.Core;
-
-using Knot3.Development;
-
-using Knot3.Input;
-using Knot3.Platform;
-
-
-using Knot3.Utilities;
-
+using Knot3.Framework.Core;
+using Knot3.Framework.Development;
+using Knot3.Framework.Input;
+using Knot3.Framework.Output;
+using Knot3.Framework.Platform;
+using Knot3.Framework.Utilities;
 
 #endregion
 
-namespace Knot3.Audio
+namespace Knot3.Framework.Audio
 {
 	public class OggVorbisFile : IAudioFile
 	{

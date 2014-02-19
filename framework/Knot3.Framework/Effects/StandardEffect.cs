@@ -30,7 +30,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
@@ -44,62 +43,35 @@ using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
 
-using Knot3.Core;
-using Knot3.Data;
-using Knot3.GameObjects;
-using Knot3.Input;
-using Knot3.RenderEffects;
-using Knot3.Screens;
-using Knot3.Widgets;
+using Knot3.Framework.Core;
+using Knot3.Framework.GameObjects;
+using Knot3.Framework.Input;
+using Knot3.Framework.Output;
+using Knot3.Framework.Platform;
+using Knot3.Framework.Utilities;
+using Knot3.Framework.Widgets;
 
 #endregion
 
-namespace Knot3.Development
+namespace Knot3.Framework.RenderEffects
 {
+	/// <summary>
+	/// Ein Rendereffekt, der 3D-Modelle mit dem von der XNA-Content-Pipeline standardmäßig zugewiesenen
+	/// BasicEffect-Shader zeichnet und keinen Post-Processing-Effekt anwendet.
+	/// </summary>
 	[ExcludeFromCodeCoverageAttribute]
-	public static class Profiler
+	public sealed class StandardEffect : RenderEffect
 	{
-		public static TimeSpan Time (Action action)
+		#region Constructors
+
+		/// <summary>
+		/// Erstellt einen neuen Standardeffekt.
+		/// </summary>
+		public StandardEffect (IGameScreen screen)
+		: base (screen)
 		{
-			Stopwatch stopwatch = Stopwatch.StartNew ();
-			action ();
-			stopwatch.Stop ();
-			return stopwatch.Elapsed;
 		}
 
-		public static Hashtable ProfilerMap = new Hashtable ();
-
-		public static HashtableActionWrapper ProfileDelegate = new HashtableActionWrapper ();
-		public static HashtableWrapper Values = new HashtableWrapper ();
-
-		[ExcludeFromCodeCoverageAttribute]
-		public class HashtableWrapper
-		{
-			public double this [string str]
-			{
-				get {
-					return (double)ProfilerMap [str];
-				}
-				set {
-					ProfilerMap [str] = value;
-				}
-			}
-
-			public bool ContainsKey (string str)
-			{
-				return ProfilerMap.ContainsKey (str);
-			}
-		}
-
-		[ExcludeFromCodeCoverageAttribute]
-		public class HashtableActionWrapper
-		{
-			public Action this [string str]
-			{
-				set {
-					ProfilerMap [str] = Time (value).TotalMilliseconds;
-				}
-			}
-		}
+		#endregion
 	}
 }

@@ -32,8 +32,13 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
-using Knot3.Core;
-using Knot3.Development;
+using Knot3.Framework.Core;
+using Knot3.Framework.Development;
+using Knot3.Framework.Input;
+using Knot3.Framework.Output;
+using Knot3.Framework.Platform;
+using Knot3.Framework.Utilities;
+using Knot3.Game.Core;
 
 #endregion
 

@@ -43,16 +43,21 @@ using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
 
-using Knot3.Core;
-using Knot3.Data;
-using Knot3.GameObjects;
-using Knot3.Input;
-using Knot3.RenderEffects;
-using Knot3.Screens;
+using Knot3.Framework.Core;
+using Knot3.Framework.Input;
+using Knot3.Framework.Output;
+using Knot3.Framework.Platform;
+using Knot3.Framework.Utilities;
+using Knot3.Game.Core;
+using Knot3.Game.Data;
+using Knot3.Game.GameObjects;
+using Knot3.Game.Input;
+using Knot3.Game.RenderEffects;
+using Knot3.Game.Screens;
 
 #endregion
 
-namespace Knot3.Widgets
+namespace Knot3.Game.Widgets
 {
 	/// <summary>
 	/// Ein Menüeintrag, der eine aktuelle Farbe anzeigt und zum Ändern der Farbe per Mausklick einen ColorPicker öffnet.

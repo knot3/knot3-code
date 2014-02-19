@@ -44,18 +44,15 @@ using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
 
-using Knot3.Core;
-
-
-using Knot3.Input;
-
-
-using Knot3.Utilities;
-
+using Knot3.Framework.Core;
+using Knot3.Framework.Input;
+using Knot3.Framework.Output;
+using Knot3.Framework.Platform;
+using Knot3.Framework.Utilities;
 
 #endregion
 
-namespace Knot3.Audio
+namespace Knot3.Framework.Audio
 {
 	public enum Sound {
 		None = 0,

@@ -43,18 +43,23 @@ using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
 
-using Knot3.Audio;
-using Knot3.Core;
-using Knot3.Data;
-using Knot3.GameObjects;
-using Knot3.Input;
-using Knot3.RenderEffects;
-using Knot3.Utilities;
-using Knot3.Widgets;
+using Knot3.Framework.Audio;
+using Knot3.Framework.Core;
+using Knot3.Framework.Input;
+using Knot3.Framework.Output;
+using Knot3.Framework.Platform;
+using Knot3.Framework.Utilities;
+using Knot3.Game.Core;
+using Knot3.Game.Data;
+using Knot3.Game.GameObjects;
+using Knot3.Game.Input;
+using Knot3.Game.RenderEffects;
+using Knot3.Game.Utilities;
+using Knot3.Game.Widgets;
 
 #endregion
 
-namespace Knot3.Screens
+namespace Knot3.Game.Screens
 {
 	/// <summary>
 	/// Eine abstrakte Klasse, von der alle Spielzustände erben, die Menüs darstellen.
@@ -73,7 +78,7 @@ namespace Knot3.Screens
 
 		#region Constructors
 
-		public MenuScreen (Knot3Game game)
+		public MenuScreen (GameClass game)
 		: base (game)
 		{
 			// die Linien

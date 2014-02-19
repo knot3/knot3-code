@@ -31,10 +31,10 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="Ionic.Zip">
-      <HintPath>lib\Ionic.Zip.dll</HintPath>
+      <HintPath>..\lib\Ionic.Zip.dll</HintPath>
     </Reference>
     <Reference Include="OggSharp">
-      <HintPath>lib\OggSharp.dll</HintPath>
+      <HintPath>..\lib\OggSharp.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -62,7 +62,6 @@
     <Compile Include="Knot3.Framework\Core\OptionInfo.cs" />
     <Compile Include="Knot3.Framework\Core\ScreenPoint.cs" />
     <Compile Include="Knot3.Framework\Core\World.cs" />
-    <Compile Include="Knot3.Framework\Development\Debug.cs" />
     <Compile Include="Knot3.Framework\Effects\IRenderEffect.cs" />
     <Compile Include="Knot3.Framework\Effects\IRenderEffectStack.cs" />
     <Compile Include="Knot3.Framework\Effects\RenderEffect.cs" />
@@ -99,10 +98,20 @@
     <Compile Include="Knot3.Framework\Utilities\TextureHelper.cs" />
     <Compile Include="Knot3.Framework\Utilities\VectorHelper.cs" />
     <Compile Include="Knot3.Framework\Widgets\HorizontalAlignment.cs" />
-    <Compile Include="Knot3.Framework\Widgets\State.cs" />
     <Compile Include="Knot3.Framework\Widgets\VerticalAlignment.cs" />
     <Compile Include="Knot3.Framework\Widgets\Widget.cs" />
     <Compile Include="Knot3.Framework\Core\GameScreen.cs" />
+    <Compile Include="Knot3.Framework\Input\InputAction.cs" />
+    <Compile Include="Knot3.Framework\Audio\AudioManager.cs" />
+    <Compile Include="Knot3.Framework\Widgets\Design.cs" />
+    <Compile Include="Knot3.Framework\Core\Options.cs" />
+    <Compile Include="Knot3.Framework\Development\Profiler.cs" />
+    <Compile Include="Knot3.Framework\Effects\RenderEffectLibrary.cs" />
+    <Compile Include="Knot3.Framework\Effects\RenderEffectStack.cs" />
+    <Compile Include="Knot3.Framework\Effects\StandardEffect.cs" />
+    <Compile Include="Knot3.Framework\Output\Log.cs" />
+    <Compile Include="Knot3.Framework\Core\GameClass.cs" />
+    <Compile Include="Knot3.Framework\Widgets\WidgetState.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -123,5 +132,6 @@
     <Folder Include="Knot3.Framework\GameObjects\" />
     <Folder Include="Knot3.Framework\Widgets\" />
     <Folder Include="Knot3.Framework\Effects\" />
+    <Folder Include="Knot3.Framework\Output\" />
   </ItemGroup>
 </Project>

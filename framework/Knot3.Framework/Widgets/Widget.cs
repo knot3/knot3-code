@@ -43,14 +43,17 @@ using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
 
-using Knot3.Core;
-using Knot3.GameObjects;
-using Knot3.Input;
-using Knot3.Utilities;
+using Knot3.Framework.Core;
+using Knot3.Framework.GameObjects;
+using Knot3.Framework.Input;
+using Knot3.Framework.Output;
+using Knot3.Framework.Platform;
+using Knot3.Framework.Utilities;
+using Knot3.Framework.Widgets;
 
 #endregion
 
-namespace Knot3.Widgets
+namespace Knot3.Framework.Widgets
 {
 	/// <summary>
 	/// Eine abstrakte Klasse, von der alle Element der grafischen Benutzeroberfläche erben.
@@ -79,12 +82,12 @@ namespace Knot3.Widgets
 		/// <summary>
 		/// Die Hintergrundfarbe.
 		/// </summary>
-		public Func<State, Color> BackgroundColorFunc { private get; set; }
+		public Func<WidgetState, Color> BackgroundColorFunc { private get; set; }
 
 		/// <summary>
 		/// Die Vordergrundfarbe.
 		/// </summary>
-		public Func<State, Color> ForegroundColorFunc { private get; set; }
+		public Func<WidgetState, Color> ForegroundColorFunc { private get; set; }
 
 		public Color BackgroundColor { get { return BackgroundColorFunc (State); } }
 
@@ -134,7 +137,7 @@ namespace Knot3.Widgets
 
 		private bool _isEnabled;
 
-		public virtual State State { get; set; }
+		public virtual WidgetState State { get; set; }
 
 		public virtual Color SelectedColorBackground { get; set; }
 
@@ -162,7 +165,7 @@ namespace Knot3.Widgets
 			IsVisible = true;
 			_isEnabled = true;
 			IsModal = false;
-			State = State.None;
+			State = WidgetState.None;
 			SelectedColorBackground = Design.WidgetForeground;
 			SelectedColorForeground = Design.WidgetBackground;
 		}

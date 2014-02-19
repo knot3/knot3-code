@@ -43,17 +43,20 @@ using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
 
-using Knot3.Audio;
-using Knot3.Development;
-using Knot3.GameObjects;
-using Knot3.Input;
-using Knot3.RenderEffects;
-using Knot3.Utilities;
-using Knot3.Widgets;
+using Knot3.Framework.Audio;
+using Knot3.Framework.Core;
+using Knot3.Framework.Development;
+using Knot3.Framework.GameObjects;
+using Knot3.Framework.Input;
+using Knot3.Framework.Output;
+using Knot3.Framework.Platform;
+using Knot3.Framework.RenderEffects;
+using Knot3.Framework.Utilities;
+using Knot3.Framework.Widgets;
 
 #endregion
 
-namespace Knot3.Core
+namespace Knot3.Framework.Core
 {
 	/// <summary>
 	/// Ein Spielzustand, der zu einem angegebenen Spiel gehört und einen Inputhandler und Rendereffekte enthält.
@@ -66,7 +69,7 @@ namespace Knot3.Core
 		/// <summary>
 		/// Das Spiel, zu dem der Spielzustand gehört.
 		/// </summary>
-		public Knot3Game Game { get; set; }
+		public GameClass Game { get; set; }
 
 		/// <summary>
 		/// Der Inputhandler des Spielzustands.
@@ -116,7 +119,7 @@ namespace Knot3.Core
 		/// <summary>
 		/// Erzeugt ein neues IGameScreen-Objekt und initialisiert dieses mit einem Knot3Game-Objekt.
 		/// </summary>
-		public GameScreen (Knot3Game game)
+		public GameScreen (GameClass game)
 		{
 			Game = game;
 			NextScreen = this;

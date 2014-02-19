@@ -43,19 +43,25 @@ using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
 
-using Knot3.Core;
-using Knot3.Data;
-using Knot3.Development;
-using Knot3.Input;
-using Knot3.Platform;
-using Knot3.RenderEffects;
-using Knot3.Screens;
-using Knot3.Utilities;
-using Knot3.Widgets;
+using Knot3.Framework.Core;
+using Knot3.Framework.Development;
+using Knot3.Framework.GameObjects;
+using Knot3.Framework.Input;
+using Knot3.Framework.Output;
+using Knot3.Framework.Platform;
+using Knot3.Framework.Utilities;
+using Knot3.Game.Core;
+using Knot3.Game.Data;
+using Knot3.Game.Development;
+using Knot3.Game.Input;
+using Knot3.Game.RenderEffects;
+using Knot3.Game.Screens;
+using Knot3.Game.Utilities;
+using Knot3.Game.Widgets;
 
 #endregion
 
-namespace Knot3.GameObjects
+namespace Knot3.Game.GameObjects
 {
 	/// <summary>
 	/// Erstellt aus einem Knoten-Objekt die zu dem Knoten gehörenden 3D-Modelle sowie die 3D-Modelle der Pfeile,

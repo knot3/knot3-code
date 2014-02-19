@@ -32,12 +32,15 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
-using Knot3.Platform;
-using Knot3.Utilities;
+using Knot3.Framework.Core;
+using Knot3.Framework.Input;
+using Knot3.Framework.Output;
+using Knot3.Framework.Platform;
+using Knot3.Framework.Utilities;
 
 #endregion
 
-namespace Knot3.Development
+namespace Knot3.Framework.Output
 {
 	[ExcludeFromCodeCoverageAttribute]
 	public static class Log

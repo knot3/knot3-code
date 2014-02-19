@@ -22,8 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-using Knot3.GameObjects;
-using Knot3.RenderEffects;
 
 #endregion
 
@@ -45,16 +43,17 @@ using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
 
-
-
-
-
-using Knot3.Utilities;
-
+using Knot3.Framework.Core;
+using Knot3.Framework.GameObjects;
+using Knot3.Framework.Input;
+using Knot3.Framework.Output;
+using Knot3.Framework.Platform;
+using Knot3.Framework.RenderEffects;
+using Knot3.Framework.Utilities;
 
 #endregion
 
-namespace Knot3.Core
+namespace Knot3.Framework.Core
 {
 	/// <summary>
 	/// Repräsentiert eine Spielwelt, in der sich 3D-Modelle befinden und gezeichnet werden können.
@@ -215,7 +214,7 @@ namespace Knot3.Core
 			if (!Options.Default ["video", "selectiveRendering", false]) {
 				Redraw = true;
 			}
-			if (Screen.PostProcessingEffect is FadeEffect) {
+			if (!Screen.PostProcessingEffect.SelectiveRendering) {
 				Redraw = true;
 			}
 

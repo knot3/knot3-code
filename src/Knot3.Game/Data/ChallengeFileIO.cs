@@ -47,17 +47,23 @@ using Microsoft.Xna.Framework.Storage;
 
 using Ionic.Zip;
 
-using Knot3.Core;
-using Knot3.Development;
-using Knot3.GameObjects;
-using Knot3.Input;
-using Knot3.RenderEffects;
-using Knot3.Screens;
-using Knot3.Widgets;
+using Knot3.Framework.Core;
+using Knot3.Framework.Development;
+using Knot3.Framework.Input;
+using Knot3.Framework.Output;
+using Knot3.Framework.Platform;
+using Knot3.Framework.Utilities;
+using Knot3.Game.Core;
+using Knot3.Game.Development;
+using Knot3.Game.GameObjects;
+using Knot3.Game.Input;
+using Knot3.Game.RenderEffects;
+using Knot3.Game.Screens;
+using Knot3.Game.Widgets;
 
 #endregion
 
-namespace Knot3.Data
+namespace Knot3.Game.Data
 {
 	/// <summary>
 	/// Implementiert das Speicherformat für Challenges.

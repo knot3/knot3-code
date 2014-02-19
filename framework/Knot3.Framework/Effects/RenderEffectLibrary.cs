@@ -43,57 +43,77 @@ using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
 
-using Knot3.Data;
-using Knot3.GameObjects;
-using Knot3.Platform;
-using Knot3.RenderEffects;
-using Knot3.Screens;
-using Knot3.Utilities;
-using Knot3.Widgets;
+using Knot3.Framework.Core;
+using Knot3.Framework.GameObjects;
+using Knot3.Framework.Input;
+using Knot3.Framework.Output;
+using Knot3.Framework.Platform;
+using Knot3.Framework.RenderEffects;
+using Knot3.Framework.Utilities;
+using Knot3.Framework.Widgets;
 
 #endregion
 
-namespace Knot3.Core
+namespace Knot3.Framework.RenderEffects
 {
-	/// <summary>
-	/// Eine statische Klasse, die eine Referenz auf die zentrale Einstellungsdatei des Spiels enthält.
-	/// </summary>
-	public static class Options
+	[ExcludeFromCodeCoverageAttribute]
+	public class RenderEffectLibrary
 	{
-		#region Properties
+		public static List<EffectFactory> EffectLibrary = new List<EffectFactory> (new EffectFactory[] {
+			new EffectFactory (
+			    name: "default",
+			    displayName: "Default",
+			    createInstance: (screen) => new StandardEffect (screen)
+			),
+		}
+		                                                                          );
 
-		/// <summary>
-		/// Die zentrale Einstellungsdatei des Spiels.
-		/// </summary>
-		public static ConfigFile Default
+		public static Action<string, GameTime> RenderEffectChanged = (e, t) => {};
+
+		public static IEnumerable<string> Names
 		{
 			get {
-				if (_default == null) {
-					_default = new ConfigFile (SystemInfo.SettingsDirectory + SystemInfo.PathSeparator + "knot3.ini");
+				foreach (EffectFactory factory in EffectLibrary) {
+					yield return factory.Name;
 				}
-				return _default;
-			}
-			set {
-				_default = value;
 			}
 		}
 
-		private static ConfigFile _default;
-
-		public static ConfigFile Models
+		public static string DisplayName (string name)
 		{
-			get {
-				if (_models == null) {
-					String seperatorString = SystemInfo.PathSeparator.ToString ();
-					_models = new ConfigFile (SystemInfo.BaseDirectory + seperatorString
-					                          + "Content" + seperatorString + "models.ini");
-				}
-				return _models;
-			}
+			return Factory (name).DisplayName;
 		}
 
-		private static ConfigFile _models;
+		public static IRenderEffect CreateEffect (IGameScreen screen, string name)
+		{
+			return Factory (name).CreateInstance (screen);
+		}
 
-		#endregion
+		private static EffectFactory Factory (string name)
+		{
+			foreach (EffectFactory factory in EffectLibrary) {
+				if (factory.Name == name) {
+					return factory;
+				}
+			}
+			return EffectLibrary [0];
+		}
+
+		[ExcludeFromCodeCoverageAttribute]
+		public class EffectFactory
+		{
+			public string Name { get; private set; }
+
+			public string DisplayName { get; private set; }
+
+			public Func<IGameScreen, IRenderEffect> CreateInstance { get; private set; }
+
+			public EffectFactory (string name, string displayName, Func<IGameScreen, IRenderEffect> createInstance)
+			{
+				Name = name;
+				DisplayName = displayName;
+				CreateInstance = createInstance;
+			}
+		}
 	}
 }

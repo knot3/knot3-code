@@ -7,8 +7,8 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{0EFA2EF3-DEB0-44E3-BE88-722866A5D511}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>Knot3Content</RootNamespace>
-    <AssemblyName>Knot3-Content</AssemblyName>
+    <RootNamespace>Knot3.Content</RootNamespace>
+    <AssemblyName>Knot3.Content</AssemblyName>
     <BaseDirectory>..</BaseDirectory>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -120,5 +120,8 @@
     <None Include="Textures\exit800.xnb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\AssemblyInfo.cs" />
   </ItemGroup>
 </Project>

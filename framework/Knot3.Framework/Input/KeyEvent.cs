@@ -28,10 +28,17 @@
 #region Using
 
 using System;
+using System.Diagnostics.CodeAnalysis;
+
+using Knot3.Framework.Core;
+using Knot3.Framework.Input;
+using Knot3.Framework.Output;
+using Knot3.Framework.Platform;
+using Knot3.Framework.Utilities;
 
 #endregion
 
-namespace Knot3.Input
+namespace Knot3.Framework.Input
 {
 	public enum KeyEvent {
 		None = 0,

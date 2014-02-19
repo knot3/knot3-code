@@ -43,33 +43,57 @@ using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
 
-using Knot3.Core;
-using Knot3.Data;
-using Knot3.GameObjects;
-using Knot3.Input;
-using Knot3.Screens;
-using Knot3.Widgets;
+using Knot3.Framework.Core;
+using Knot3.Framework.GameObjects;
+using Knot3.Framework.Input;
+using Knot3.Framework.Output;
+using Knot3.Framework.Platform;
+using Knot3.Framework.RenderEffects;
+using Knot3.Framework.Utilities;
+using Knot3.Framework.Widgets;
 
 #endregion
 
-namespace Knot3.RenderEffects
+namespace Knot3.Framework.Core
 {
 	/// <summary>
-	/// Ein Rendereffekt, der 3D-Modelle mit dem von der XNA-Content-Pipeline standardmäßig zugewiesenen
-	/// BasicEffect-Shader zeichnet und keinen Post-Processing-Effekt anwendet.
+	/// Eine statische Klasse, die eine Referenz auf die zentrale Einstellungsdatei des Spiels enthält.
 	/// </summary>
-	[ExcludeFromCodeCoverageAttribute]
-	public sealed class StandardEffect : RenderEffect
+	public static class Options
 	{
-		#region Constructors
+		#region Properties
 
 		/// <summary>
-		/// Erstellt einen neuen Standardeffekt.
+		/// Die zentrale Einstellungsdatei des Spiels.
 		/// </summary>
-		public StandardEffect (IGameScreen screen)
-		: base (screen)
+		public static ConfigFile Default
 		{
+			get {
+				if (_default == null) {
+					_default = new ConfigFile (SystemInfo.SettingsDirectory + SystemInfo.PathSeparator + "knot3.ini");
+				}
+				return _default;
+			}
+			set {
+				_default = value;
+			}
 		}
+
+		private static ConfigFile _default;
+
+		public static ConfigFile Models
+		{
+			get {
+				if (_models == null) {
+					String seperatorString = SystemInfo.PathSeparator.ToString ();
+					_models = new ConfigFile (SystemInfo.BaseDirectory + seperatorString
+					                          + "Content" + seperatorString + "models.ini");
+				}
+				return _models;
+			}
+		}
+
+		private static ConfigFile _models;
 
 		#endregion
 	}

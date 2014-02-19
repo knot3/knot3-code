@@ -43,14 +43,18 @@ using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
 
-using Knot3.GameObjects;
-using Knot3.RenderEffects;
-using Knot3.Utilities;
-using Knot3.Widgets;
+using Knot3.Framework.Core;
+using Knot3.Framework.GameObjects;
+using Knot3.Framework.Input;
+using Knot3.Framework.Output;
+using Knot3.Framework.Platform;
+using Knot3.Framework.RenderEffects;
+using Knot3.Framework.Utilities;
+using Knot3.Framework.Widgets;
 
 #endregion
 
-namespace Knot3.Core
+namespace Knot3.Framework.Core
 {
 	/// <summary>
 	/// Jede Instanz der World-Klasse hält eine für diese Spielwelt verwendete Kamera als Attribut.

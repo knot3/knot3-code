@@ -43,17 +43,18 @@ using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
 
-using Knot3.Core;
-using Knot3.Data;
-using Knot3.GameObjects;
-using Knot3.Input;
-using Knot3.RenderEffects;
-using Knot3.Utilities;
-using Knot3.Widgets;
+using Knot3.Framework.Core;
+using Knot3.Framework.GameObjects;
+using Knot3.Framework.Input;
+using Knot3.Framework.Output;
+using Knot3.Framework.Platform;
+using Knot3.Framework.RenderEffects;
+using Knot3.Framework.Utilities;
+using Knot3.Framework.Widgets;
 
 #endregion
 
-namespace Knot3.Widgets
+namespace Knot3.Framework.Widgets
 {
 	[ExcludeFromCodeCoverageAttribute]
 	public static class Design
@@ -92,9 +93,9 @@ namespace Knot3.Widgets
 		public static Color WidgetBackground;
 		public static Color WidgetForeground;
 		public static Color ScreenBackground;
-		public static Func<State, Color> WidgetBackgroundColorFunc;
-		public static Func<State, Color> WidgetForegroundColorFunc;
-		public static Func<State, Color> MenuItemBackgroundColorFunc;
-		public static Func<State, Color> MenuItemForegroundColorFunc;
+		public static Func<WidgetState, Color> WidgetBackgroundColorFunc;
+		public static Func<WidgetState, Color> WidgetForegroundColorFunc;
+		public static Func<WidgetState, Color> MenuItemBackgroundColorFunc;
+		public static Func<WidgetState, Color> MenuItemForegroundColorFunc;
 	}
 }

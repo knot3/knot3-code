@@ -32,11 +32,17 @@ using System.Diagnostics.CodeAnalysis;
 
 using Microsoft.Xna.Framework;
 
-using Knot3.Widgets;
+using Knot3.Framework.Core;
+using Knot3.Framework.Input;
+using Knot3.Framework.Output;
+using Knot3.Framework.Platform;
+using Knot3.Framework.Utilities;
+using Knot3.Framework.Widgets;
+using Knot3.Game.Widgets;
 
 #endregion
 
-namespace Knot3.Widgets
+namespace Knot3.Game.Widgets
 {
 	[ExcludeFromCodeCoverageAttribute]
 	public sealed class HfGDesign : IDesign
@@ -60,12 +66,12 @@ namespace Knot3.Widgets
 			Design.MenuItemForegroundColorFunc = MenuItemForegroundColor;
 		}
 
-		private static Color WidgetBackgroundColor (State state)
+		private static Color WidgetBackgroundColor (WidgetState state)
 		{
-			if (state == State.None || state == State.Hovered) {
+			if (state == WidgetState.None || state == WidgetState.Hovered) {
 				return Color.Transparent;
 			}
-			else if (state == State.Selected) {
+			else if (state == WidgetState.Selected) {
 				return Color.Black;
 			}
 			else {
@@ -73,15 +79,15 @@ namespace Knot3.Widgets
 			}
 		}
 
-		private static Color WidgetForegroundColor (State state)
+		private static Color WidgetForegroundColor (WidgetState state)
 		{
-			if (state == State.Hovered) {
+			if (state == WidgetState.Hovered) {
 				return Color.White;
 			}
-			else if (state == State.None) {
+			else if (state == WidgetState.None) {
 				return Color.White * 0.7f;
 			}
-			else if (state == State.Selected) {
+			else if (state == WidgetState.Selected) {
 				return Color.White;
 			}
 			else {
@@ -89,14 +95,14 @@ namespace Knot3.Widgets
 			}
 		}
 
-		private Color MenuItemBackgroundColor (State state)
+		private Color MenuItemBackgroundColor (WidgetState state)
 		{
 			return Color.Transparent;
 		}
 
-		private Color MenuItemForegroundColor (State state)
+		private Color MenuItemForegroundColor (WidgetState state)
 		{
-			if (state == State.Hovered) {
+			if (state == WidgetState.Hovered) {
 				return Color.White;
 			}
 			else {

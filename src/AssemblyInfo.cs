@@ -27,27 +27,32 @@
 
 #region Using
 
-using System;
+using System.Diagnostics.CodeAnalysis;
+using System.Reflection;
+using System.Runtime.CompilerServices;
 
 #endregion
 
-namespace Knot3.Widgets
-{
-	/// <summary>
-	/// Der Zustand eines Menüeintrags.
-	/// </summary>
-	public enum State {
-		/// <summary>
-		/// Ausgewählt.
-		/// </summary>
-		Selected=1,
-		/// <summary>
-		/// Die Maus wurde direkt über den Menüeintrag navigiert und verweilt dort.
-		/// </summary>
-		Hovered=2,
-		/// <summary>
-		/// Ein undefinierter Zustand.
-		/// </summary>
-		None=0,
-	}
-}
+// Information about this assembly is defined by the following attributes.
+// Change them to the values specific to your project.
+
+[assembly: AssemblyTitle ("Knot3 Content")]
+[assembly: AssemblyDescription ("")]
+[assembly: AssemblyConfiguration ("")]
+[assembly: AssemblyCompany ("")]
+[assembly: AssemblyProduct ("")]
+[assembly: AssemblyCopyright ("tobias")]
+[assembly: AssemblyTrademark ("")]
+[assembly: AssemblyCulture ("")]
+
+// The assembly version has the format "{Major}.{Minor}.{Build}.{Revision}".
+// The form "{Major}.{Minor}.*" will automatically update the build and revision,
+// and "{Major}.{Minor}.{Build}.*" will update just the revision.
+
+[assembly: AssemblyVersion ("1.0.*")]
+
+// The following attributes are used to specify the signing key for the assembly,
+// if desired. See the Mono documentation for more information about signing.
+
+//[assembly: AssemblyDelaySign (false)]
+//[assembly: AssemblyKeyFile ("")]

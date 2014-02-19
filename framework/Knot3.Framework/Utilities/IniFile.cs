@@ -34,9 +34,15 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 
+using Knot3.Framework.Core;
+using Knot3.Framework.Input;
+using Knot3.Framework.Output;
+using Knot3.Framework.Platform;
+using Knot3.Framework.Utilities;
+
 #endregion
 
-namespace Knot3.Utilities
+namespace Knot3.Framework.Utilities
 {
 	public sealed class IniFile : IDisposable
 	{

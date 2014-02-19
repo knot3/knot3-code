@@ -35,13 +35,15 @@ using System.Linq;
 
 using Microsoft.Xna.Framework;
 
-using Knot3.Core;
-using Knot3.Input;
-using Knot3.Utilities;
+using Knot3.Framework.Core;
+using Knot3.Framework.Input;
+using Knot3.Framework.Output;
+using Knot3.Framework.Platform;
+using Knot3.Framework.Utilities;
 
 #endregion
 
-namespace Knot3.Core
+namespace Knot3.Framework.Core
 {
 	public class ScreenPoint : IEquatable<ScreenPoint>
 	{

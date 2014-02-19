@@ -43,18 +43,18 @@ using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
 
-using Knot3.Core;
-
-using Knot3.Development;
-using Knot3.GameObjects;
-using Knot3.Input;
-
-using Knot3.Utilities;
-using Knot3.Widgets;
+using Knot3.Framework.Core;
+using Knot3.Framework.Development;
+using Knot3.Framework.GameObjects;
+using Knot3.Framework.Input;
+using Knot3.Framework.Output;
+using Knot3.Framework.Platform;
+using Knot3.Framework.Utilities;
+using Knot3.Framework.Widgets;
 
 #endregion
 
-namespace Knot3.RenderEffects
+namespace Knot3.Framework.RenderEffects
 {
 	/// <summary>
 	/// Eine abstrakte Klasse, die eine Implementierung von IRenderEffect darstellt.
@@ -82,6 +82,8 @@ namespace Knot3.RenderEffects
 
 		protected float Supersampling { get { return Options.Default["video","Supersamples",1]; } }
 
+		public bool SelectiveRendering { get; set; }
+
 		#endregion
 
 		#region Constructors
@@ -91,6 +93,7 @@ namespace Knot3.RenderEffects
 			this.screen = screen;
 			spriteBatch = new SpriteBatch (screen.Device);
 			screen.Game.FullScreenChanged += () => renderTargets.Clear ();
+			SelectiveRendering = true;
 		}
 
 		#endregion

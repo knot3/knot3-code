@@ -43,16 +43,15 @@ using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
 
-using Knot3.Core;
-
-
-
-
-
+using Knot3.Framework.Core;
+using Knot3.Framework.Input;
+using Knot3.Framework.Output;
+using Knot3.Framework.Platform;
+using Knot3.Framework.Utilities;
 
 #endregion
 
-namespace Knot3.Input
+namespace Knot3.Framework.Input
 {
 	/// <summary>
 	/// Eine Schnittstelle, die von Klassen implementiert wird, die auf Maus-Klicks reagieren.
