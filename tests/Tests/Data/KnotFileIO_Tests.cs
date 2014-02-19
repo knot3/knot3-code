@@ -37,17 +37,17 @@ using System.Threading.Tasks;
 
 using NUnit.Framework;
 
-using Knot3.Data;
+using Knot3.Game.Data;
 using Knot3.Framework.Core;
 using Knot3.Framework.Input;
 using Knot3.Framework.Output;
 using Knot3.Framework.Platform;
 using Knot3.Framework.Utilities;
-using Knot3.MockObjects;
+using Knot3.Game.MockObjects;
 
 #endregion
 
-namespace Knot3.UnitTests.Data
+namespace Knot3.Game.UnitTests.Data
 {
 	[TestFixture]
 	public class KnotFileIO_Tests

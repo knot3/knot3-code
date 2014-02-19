@@ -68,7 +68,7 @@ namespace Knot3.Framework.RenderEffects
 		/// </summary>
 		RenderTarget2D RenderTarget { get; }
 
-		bool SelectiveRendering { get; set; }
+		bool SelectiveRendering { get; }
 
 		#endregion
 

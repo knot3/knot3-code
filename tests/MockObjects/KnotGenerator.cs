@@ -34,7 +34,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using Knot3.Data;
+using Knot3.Game.Data;
 using Knot3.Framework.Core;
 using Knot3.Framework.Input;
 using Knot3.Framework.Output;
@@ -43,7 +43,7 @@ using Knot3.Framework.Utilities;
 
 #endregion
 
-namespace Knot3.MockObjects
+namespace Knot3.Game.MockObjects
 {
 	public class KnotGenerator
 	{

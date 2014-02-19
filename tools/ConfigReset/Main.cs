@@ -22,6 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+using Knot3.Framework.Platform;
 
 #endregion
 
@@ -30,16 +31,6 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
-
-using Knot3;
-using Knot3.Core;
-using Knot3.Framework.Core;
-using Knot3.Framework.Input;
-using Knot3.Framework.Output;
-using Knot3.Framework.Platform;
-using Knot3.Framework.Utilities;
-using Knot3.Platform;
-using Knot3.Utilities;
 
 #endregion
 

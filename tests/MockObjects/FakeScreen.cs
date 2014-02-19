@@ -22,6 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+using Knot3.Framework.RenderEffects;
 
 #endregion
 
@@ -35,20 +36,20 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
-using Knot3.Audio;
-using Knot3.Core;
+using Knot3.Framework.Audio;
+using Knot3.Game.Core;
 using Knot3.Framework.Core;
 using Knot3.Framework.Input;
 using Knot3.Framework.Output;
 using Knot3.Framework.Platform;
 using Knot3.Framework.Utilities;
-using Knot3.Input;
-using Knot3.RenderEffects;
-using Knot3.Widgets;
+using Knot3.Game.Input;
+using Knot3.Game.RenderEffects;
+using Knot3.Game.Widgets;
 
 #endregion
 
-namespace Knot3.MockObjects
+namespace Knot3.Game.MockObjects
 {
 	public class FakeScreen : IGameScreen
 	{
@@ -57,7 +58,7 @@ namespace Knot3.MockObjects
 		/// <summary>
 		/// Das Spiel, zu dem der Spielzustand gehört.
 		/// </summary>
-		public Knot3Game Game
+		public GameClass Game
 		{
 			get { return null;}
 			set {}

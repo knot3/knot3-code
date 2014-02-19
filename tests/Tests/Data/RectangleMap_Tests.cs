@@ -44,7 +44,7 @@ using Knot3.Framework.Utilities;
 
 #endregion
 
-namespace Knot3.UnitTests.Data
+namespace Knot3.Game.UnitTests.Data
 {
 	/// <summary>
 	///

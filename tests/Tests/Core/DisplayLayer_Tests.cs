@@ -36,20 +36,20 @@ using Microsoft.Xna.Framework;
 
 using NUnit.Framework;
 
-using Knot3.Core;
-using Knot3.Data;
+using Knot3.Game.Core;
+using Knot3.Game.Data;
 using Knot3.Framework.Core;
 using Knot3.Framework.Input;
 using Knot3.Framework.Output;
 using Knot3.Framework.Platform;
 using Knot3.Framework.Utilities;
-using Knot3.GameObjects;
-using Knot3.MockObjects;
-using Knot3.RenderEffects;
+using Knot3.Game.GameObjects;
+using Knot3.Game.MockObjects;
+using Knot3.Game.RenderEffects;
 
 #endregion
 
-namespace Knot3.UnitTests
+namespace Knot3.Game.UnitTests
 {
 	[TestFixture]
 	public class DisplayLayer_Tests

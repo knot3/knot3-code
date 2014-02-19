@@ -38,11 +38,11 @@ using Knot3.Framework.Input;
 using Knot3.Framework.Output;
 using Knot3.Framework.Platform;
 using Knot3.Framework.Utilities;
-using Knot3.Platform;
+using Knot3.Framework.Platform;
 
 #endregion
 
-namespace Knot3.UnitTests
+namespace Knot3.Game.UnitTests
 {
 	[TestFixture]
 	public class SystemInfo_Tests

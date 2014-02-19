@@ -36,17 +36,17 @@ using Microsoft.Xna.Framework;
 
 using NUnit.Framework;
 
-using Knot3.Core;
+using Knot3.Game.Core;
 using Knot3.Framework.Core;
 using Knot3.Framework.Input;
 using Knot3.Framework.Output;
 using Knot3.Framework.Platform;
 using Knot3.Framework.Utilities;
-using Knot3.Utilities;
+using Knot3.Game.Utilities;
 
 #endregion
 
-namespace Knot3.UnitTests.Core
+namespace Knot3.Game.UnitTests.Core
 {
 	/// <summary>
 	/// Zusammenfassungsbeschreibung für Test_Angles3

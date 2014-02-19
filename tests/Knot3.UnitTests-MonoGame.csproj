@@ -84,6 +84,10 @@
       <Project>{A7093300-1D0E-462B-83E2-A5DC7C3D145B}</Project>
       <Name>Knot3.Game-MonoGame</Name>
     </ProjectReference>
+    <ProjectReference Include="..\framework\Knot3.Framework-MonoGame.csproj">
+      <Project>{C2868E88-721C-40EB-863B-E9272F95DAF1}</Project>
+      <Name>Knot3.Framework-MonoGame</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="MockObjects\" />

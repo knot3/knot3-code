@@ -44,7 +44,7 @@ using Knot3.Framework.Utilities;
 
 #endregion
 
-namespace Knot3.UnitTests.Audio
+namespace Knot3.Game.UnitTests.Audio
 {
 	/// <summary>
 	///

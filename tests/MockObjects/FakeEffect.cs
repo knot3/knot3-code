@@ -22,6 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+using Knot3.Framework.GameObjects;
 
 #endregion
 
@@ -43,22 +44,23 @@ using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
 
-using Knot3.Core;
-using Knot3.Data;
+using Knot3.Game.Core;
+using Knot3.Game.Data;
 using Knot3.Framework.Core;
 using Knot3.Framework.Input;
 using Knot3.Framework.Output;
 using Knot3.Framework.Platform;
 using Knot3.Framework.Utilities;
-using Knot3.GameObjects;
-using Knot3.RenderEffects;
-using Knot3.Screens;
-using Knot3.Utilities;
-using Knot3.Widgets;
+using Knot3.Game.GameObjects;
+using Knot3.Game.RenderEffects;
+using Knot3.Game.Screens;
+using Knot3.Game.Utilities;
+using Knot3.Game.Widgets;
+using Knot3.Framework.RenderEffects;
 
 #endregion
 
-namespace Knot3.MockObjects
+namespace Knot3.Game.MockObjects
 {
 	/// <summary>
 	/// Eine abstrakte Klasse, die eine Implementierung von IRenderEffect darstellt.
@@ -77,6 +79,8 @@ namespace Knot3.MockObjects
 		/// Der Spielzustand, in dem der Effekt verwendet wird.
 		/// </summary>
 		protected IGameScreen screen { get; set; }
+
+		public bool SelectiveRendering { get { return true; } }
 
 		#endregion
 

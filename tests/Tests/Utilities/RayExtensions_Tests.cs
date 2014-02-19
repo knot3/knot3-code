@@ -42,7 +42,7 @@ using Knot3.Framework.Utilities;
 
 #endregion
 
-namespace Knot3.UnitTests.Utilities
+namespace Knot3.Game.UnitTests.Utilities
 {
 	/// <summary>
 	/// Zusammenfassungsbeschreibung für Test_RayExtensions
