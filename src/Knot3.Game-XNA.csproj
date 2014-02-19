@@ -116,7 +116,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Knot3.Game\Audio\AudioManager.cs" />
-    <Compile Include="Knot3.Game\Core\Camera.cs" />
     <Compile Include="Knot3.Game\Core\GameScreen.cs" />
     <Compile Include="Knot3.Game\Core\Knot3Game.cs" />
     <Compile Include="Knot3.Game\Core\Options.cs" />
@@ -140,7 +139,6 @@
     <Compile Include="Knot3.Game\Data\NodeMap.cs" />
     <Compile Include="Knot3.Game\Data\PrinterIO.cs" />
     <Compile Include="Knot3.Game\Data\RectangleMap.cs" />
-    <Compile Include="Knot3.Game\Development\Debug.cs" />
     <Compile Include="Knot3.Game\Development\DebugBoundings.cs" />
     <Compile Include="Knot3.Game\Development\DebugModel.cs" />
     <Compile Include="Knot3.Game\Development\DebugModelInfo.cs" />
@@ -150,15 +148,16 @@
     <Compile Include="Knot3.Game\Development\JunctionEditorScreen.cs" />
     <Compile Include="Knot3.Game\Development\Overlay.cs" />
     <Compile Include="Knot3.Game\Development\Profiler.cs" />
+    <Compile Include="Knot3.Game\Effects\CelShadingEffect.cs" />
+    <Compile Include="Knot3.Game\Effects\FadeEffect.cs" />
+    <Compile Include="Knot3.Game\Effects\OpaqueEffect.cs" />
+    <Compile Include="Knot3.Game\Effects\RenderEffectLibrary.cs" />
+    <Compile Include="Knot3.Game\Effects\RenderEffectStack.cs" />
+    <Compile Include="Knot3.Game\Effects\StandardEffect.cs" />
+    <Compile Include="Knot3.Game\Effects\Z_Nebula.cs" />
     <Compile Include="Knot3.Game\GameObjects\ArrowModel.cs" />
     <Compile Include="Knot3.Game\GameObjects\ArrowModelInfo.cs" />
-    <Compile Include="Knot3.Game\GameObjects\GameModel.cs" />
-    <Compile Include="Knot3.Game\GameObjects\GameModelInfo.cs" />
-    <Compile Include="Knot3.Game\GameObjects\GameObjectDistance.cs" />
-    <Compile Include="Knot3.Game\GameObjects\GameObjectInfo.cs" />
-    <Compile Include="Knot3.Game\GameObjects\IGameObject.cs" />
     <Compile Include="Knot3.Game\GameObjects\KnotRenderer.cs" />
-    <Compile Include="Knot3.Game\GameObjects\ModelColoring.cs" />
     <Compile Include="Knot3.Game\GameObjects\ModelFactory.cs" />
     <Compile Include="Knot3.Game\GameObjects\ModelMouseHandler.cs" />
     <Compile Include="Knot3.Game\GameObjects\NodeModel.cs" />
@@ -177,16 +176,6 @@
     <Compile Include="Knot3.Game\Input\KnotInputHandler.cs" />
     <Compile Include="Knot3.Game\Platform\SystemInfo-XNA.cs" />
     <Compile Include="Knot3.Game\Program.cs" />
-    <Compile Include="Knot3.Game\RenderEffects\CelShadingEffect.cs" />
-    <Compile Include="Knot3.Game\RenderEffects\FadeEffect.cs" />
-    <Compile Include="Knot3.Game\RenderEffects\IRenderEffect.cs" />
-    <Compile Include="Knot3.Game\RenderEffects\IRenderEffectStack.cs" />
-    <Compile Include="Knot3.Game\RenderEffects\OpaqueEffect.cs" />
-    <Compile Include="Knot3.Game\RenderEffects\RenderEffect.cs" />
-    <Compile Include="Knot3.Game\RenderEffects\RenderEffectLibrary.cs" />
-    <Compile Include="Knot3.Game\RenderEffects\RenderEffectStack.cs" />
-    <Compile Include="Knot3.Game\RenderEffects\StandardEffect.cs" />
-    <Compile Include="Knot3.Game\RenderEffects\Z_Nebula.cs" />
     <Compile Include="Knot3.Game\Screens\AudioSettingsScreen.cs" />
     <Compile Include="Knot3.Game\Screens\ChallengeCreateScreen.cs" />
     <Compile Include="Knot3.Game\Screens\ChallengeModeScreen.cs" />
@@ -210,7 +199,6 @@
     <Compile Include="Knot3.Game\Widgets\Button.cs" />
     <Compile Include="Knot3.Game\Widgets\ChallengePauseDialog.cs" />
     <Compile Include="Knot3.Game\Widgets\CheckBoxItem.cs" />
-    <Compile Include="Knot3.Game\Widgets\ClickState.cs" />
     <Compile Include="Knot3.Game\Widgets\ColorPickDialog.cs" />
     <Compile Include="Knot3.Game\Widgets\ColorPickItem.cs" />
     <Compile Include="Knot3.Game\Widgets\ColorPicker.cs" />
@@ -224,22 +212,17 @@
     <Compile Include="Knot3.Game\Widgets\ErrorDialog.cs" />
     <Compile Include="Knot3.Game\Widgets\HfGDesign.cs" />
     <Compile Include="Knot3.Game\Widgets\HighscoreDialog.cs" />
-    <Compile Include="Knot3.Game\Widgets\HorizontalAlignment.cs" />
     <Compile Include="Knot3.Game\Widgets\IDesign.cs" />
     <Compile Include="Knot3.Game\Widgets\InputItem.cs" />
-    <Compile Include="Knot3.Game\Widgets\KeyEvent.cs" />
     <Compile Include="Knot3.Game\Widgets\KeyInputItem.cs" />
     <Compile Include="Knot3.Game\Widgets\Lines.cs" />
     <Compile Include="Knot3.Game\Widgets\Menu.cs" />
     <Compile Include="Knot3.Game\Widgets\MenuEntry.cs" />
     <Compile Include="Knot3.Game\Widgets\MenuItem.cs" />
     <Compile Include="Knot3.Game\Widgets\SliderItem.cs" />
-    <Compile Include="Knot3.Game\Widgets\State.cs" />
     <Compile Include="Knot3.Game\Widgets\TextBox.cs" />
     <Compile Include="Knot3.Game\Widgets\TextInputDialog.cs" />
     <Compile Include="Knot3.Game\Widgets\TextItem.cs" />
-    <Compile Include="Knot3.Game\Widgets\VerticalAlignment.cs" />
-    <Compile Include="Knot3.Game\Widgets\Widget.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
