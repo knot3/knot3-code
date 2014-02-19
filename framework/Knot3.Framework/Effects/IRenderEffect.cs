@@ -44,103 +44,59 @@ using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
 
 using Knot3.Core;
-using Knot3.Data;
+
+using Knot3.GameObjects;
 using Knot3.Input;
-using Knot3.RenderEffects;
-using Knot3.Screens;
+
 using Knot3.Widgets;
 
 #endregion
 
-namespace Knot3.GameObjects
+namespace Knot3.RenderEffects
 {
 	/// <summary>
-	/// Enthält Informationen über ein 3D-Objekt wie die Position, Sichtbarkeit, Verschiebbarkeit und Auswählbarkeit.
+	/// Stellt eine Schnittstelle für Klassen bereit, die Rendereffekte ermöglichen.
 	/// </summary>
-	[ExcludeFromCodeCoverageAttribute]
-	public class GameObjectInfo : IEquatable<GameObjectInfo>
+	public interface IRenderEffect
 	{
 		#region Properties
 
 		/// <summary>
-		/// Die Verschiebbarkeit des Spielobjektes.
+		/// Das Rendertarget, in das zwischen dem Aufruf der Begin ()- und der End ()-Methode gezeichnet wird,
+		/// weil es in Begin () als primäres Rendertarget des XNA-Frameworks gesetzt wird.
 		/// </summary>
-		public Boolean IsMovable { get; set; }
-
-		/// <summary>
-		/// Die Auswählbarkeit des Spielobjektes.
-		/// </summary>
-		public Boolean IsSelectable { get; set; }
-
-		/// <summary>
-		/// Die Sichtbarkeit des Spielobjektes.
-		/// </summary>
-		public Boolean IsVisible { get; set; }
-
-		/// <summary>
-		/// Die Position des Spielobjektes.
-		/// </summary>
-		public Vector3 Position { get; set; }
-
-		#endregion
-
-		#region Constructors
-
-		public GameObjectInfo (Vector3 position, bool isVisible = true, bool isSelectable = false, bool isMovable = false)
-		{
-			Position = position;
-			IsVisible = isVisible;
-			IsSelectable = isSelectable;
-			IsMovable = isMovable;
-		}
+		RenderTarget2D RenderTarget { get; }
 
 		#endregion
 
 		#region Methods
 
 		/// <summary>
-		/// Vergleicht zwei Informationsobjekte für Spielobjekte.
-		/// [parameters=GameObjectInfo other]
+		/// In der Methode Begin () wird das aktuell von XNA genutzte Rendertarget auf einem Stapel gesichert
+		/// und das Rendertarget des Effekts wird als aktuelles Rendertarget gesetzt.
 		/// </summary>
-		public virtual bool Equals (GameObjectInfo other)
-		{
-			if (other == null) {
-				return false;
-			}
+		void Begin (GameTime time);
 
-			if (this.Position == other.Position) {
-				return true;
-			}
-			else {
-				return false;
-			}
-		}
+		/// <summary>
+		/// Das auf dem Stapel gesicherte, vorher genutzte Rendertarget wird wiederhergestellt und
+		/// das Rendertarget dieses Rendereffekts wird, unter Umständen in Unterklassen verändert,
+		/// auf dieses ubergeordnete Rendertarget gezeichnet.
+		/// </summary>
+		void End (GameTime time);
 
-		public override bool Equals (Object obj)
-		{
-			GameObjectInfo infoObj = obj as GameObjectInfo;
-			return Equals (infoObj);
-		}
+		/// <summary>
+		/// Zeichnet das Spielmodell model mit diesem Rendereffekt.
+		/// </summary>
+		void DrawModel (GameModel model, GameTime time);
 
-		[ExcludeFromCodeCoverageAttribute]
-		public override int GetHashCode ()
-		{
-			return Position.GetHashCode ();
-		}
+		/// <summary>
+		/// Beim Laden des Modells wird von der XNA-Content-Pipeline jedem ModelMeshPart ein Shader der Klasse
+		/// BasicEffect zugewiesen. Für die Nutzung des Modells in diesem Rendereffekt kann jedem ModelMeshPart
+		/// ein anderer Shader zugewiesen werden.
+		/// </summary>
+		void RemapModel (Model model);
 
-		public static bool operator == (GameObjectInfo o1, GameObjectInfo o2)
-		{
-			if ((object)o1 == null || ((object)o2) == null) {
-				return Object.Equals (o1, o2);
-			}
-
-			return o2.Equals (o2);
-		}
-
-		public static bool operator != (GameObjectInfo o1, GameObjectInfo o2)
-		{
-			return !(o1 == o2);
-		}
+		void DrawLastFrame (GameTime time);
 
 		#endregion
 	}

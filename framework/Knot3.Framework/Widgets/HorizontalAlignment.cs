@@ -28,40 +28,26 @@
 #region Using
 
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.GamerServices;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
-using Microsoft.Xna.Framework.Net;
-using Microsoft.Xna.Framework.Storage;
 
 #endregion
 
 namespace Knot3.Widgets
 {
 	/// <summary>
-	/// Eine Wertesammlung der möglichen Klickzustände einer Maustaste.
+	/// Eine horizontale Ausrichtung.
 	/// </summary>
-	public enum ClickState {
+	public enum HorizontalAlignment {
 		/// <summary>
-		/// Wenn der Klickzustand nicht zugeordnet werden konnte. Undefiniert.
+		/// Links.
 		/// </summary>
-		None=0,
+		Left=0,
 		/// <summary>
-		/// Ein Einzelklick.
+		/// Mittig.
 		/// </summary>
-		SingleClick=1,
+		Center=1,
 		/// <summary>
-		/// Ein Doppelklick.
+		/// Rechts.
 		/// </summary>
-		DoubleClick=2,
+		Right=2,
 	}
 }

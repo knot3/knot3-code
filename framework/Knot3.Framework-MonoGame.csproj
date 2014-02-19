@@ -30,6 +30,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="Ionic.Zip">
+      <HintPath>lib\Ionic.Zip.dll</HintPath>
+    </Reference>
+    <Reference Include="OggSharp">
+      <HintPath>lib\OggSharp.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
@@ -79,13 +85,42 @@
     <Compile Include="Knot3.Framework\Utilities\TextHelper.cs" />
     <Compile Include="Knot3.Framework\Utilities\TextureHelper.cs" />
     <Compile Include="Knot3.Framework\Utilities\VectorHelper.cs" />
+    <Compile Include="Knot3.Framework\Development\Debug.cs" />
+    <Compile Include="Knot3.Framework\GameObjects\GameModel.cs" />
+    <Compile Include="Knot3.Framework\GameObjects\GameModelInfo.cs" />
+    <Compile Include="Knot3.Framework\GameObjects\GameObjectDistance.cs" />
+    <Compile Include="Knot3.Framework\GameObjects\GameObjectInfo.cs" />
+    <Compile Include="Knot3.Framework\GameObjects\IGameObject.cs" />
+    <Compile Include="Knot3.Framework\Widgets\Widget.cs" />
+    <Compile Include="Knot3.Framework\Effects\IRenderEffect.cs" />
+    <Compile Include="Knot3.Framework\Effects\IRenderEffectStack.cs" />
+    <Compile Include="Knot3.Framework\Effects\RenderEffect.cs" />
+    <Compile Include="Knot3.Framework\Input\ClickState.cs" />
+    <Compile Include="Knot3.Framework\Widgets\HorizontalAlignment.cs" />
+    <Compile Include="Knot3.Framework\Widgets\VerticalAlignment.cs" />
+    <Compile Include="Knot3.Framework\Widgets\State.cs" />
+    <Compile Include="Knot3.Framework\GameObjects\ModelColoring.cs" />
+    <Compile Include="Knot3.Framework\Input\KeyEvent.cs" />
+    <Compile Include="Knot3.Framework\Core\Camera.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <Folder Include="Knot3.Framework\" />
-    <Folder Include="Knot3.Framework\Audio\" />
-    <Folder Include="Knot3.Framework\Core\" />
-    <Folder Include="Knot3.Framework\Input\" />
-    <Folder Include="Knot3.Framework\Utilities\" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="OpenTK, Version=1.1.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="MonoGame.Framework, Version=3.1.2.0, Culture=neutral">
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Knot3.Framework\Development\" />
+    <Folder Include="Knot3.Framework\GameObjects\" />
+    <Folder Include="Knot3.Framework\Widgets\" />
+    <Folder Include="Knot3.Framework\Effects\" />
   </ItemGroup>
 </Project>

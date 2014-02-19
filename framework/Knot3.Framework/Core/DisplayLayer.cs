@@ -22,6 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+using Knot3.Widgets;
 
 #endregion
 
@@ -43,11 +44,11 @@ using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
 
-using Knot3.Data;
-using Knot3.GameObjects;
-using Knot3.RenderEffects;
-using Knot3.Screens;
-using Knot3.Widgets;
+
+
+
+
+
 
 #endregion
 
