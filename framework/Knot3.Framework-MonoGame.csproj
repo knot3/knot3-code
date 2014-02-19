@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -92,7 +92,6 @@
     <Compile Include="Knot3.Game\Input\EdgeRectangles.cs" />
     <Compile Include="Knot3.Game\Input\InputAction.cs" />
     <Compile Include="Knot3.Game\Input\KnotInputHandler.cs" />
-    <Compile Include="Knot3.Game\Platform\SystemInfo-XNA.cs" />
     <Compile Include="Knot3.Game\Program.cs" />
     <Compile Include="Knot3.Game\RenderEffects\CelShadingEffect.cs" />
     <Compile Include="Knot3.Game\RenderEffects\FadeEffect.cs" />
@@ -161,6 +160,11 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <Folder Include="Framework\" />
+    <Folder Include="Knot3\" />
+    <Folder Include="Knot3.Framework\" />
+    <Folder Include="Knot3.Framework\Audio\" />
+    <Folder Include="Knot3.Framework\Core\" />
+    <Folder Include="Knot3.Framework\Input\" />
+    <Folder Include="Knot3.Framework\Utilities\" />
   </ItemGroup>
 </Project>

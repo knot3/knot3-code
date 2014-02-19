@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Knot3.ConfigReset", "tools\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Knot3.ExtremeTests-MonoGame", "extremetests\Knot3.ExtremeTests-MonoGame.csproj", "{C19C58CE-8C63-4F7F-A38C-D8B204AA21F3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Knot3.Framework", "framework\Knot3.Framework.csproj", "{C2868E88-721C-40EB-863B-E9272F95DAF1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Knot3.Framework-MonoGame", "framework\Knot3.Framework-MonoGame.csproj", "{C2868E88-721C-40EB-863B-E9272F95DAF1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Knot3.Content-MonoGame", "src\Content\Knot3.Content-MonoGame.csproj", "{0EFA2EF3-DEB0-44E3-BE88-722866A5D511}"
 EndProject
