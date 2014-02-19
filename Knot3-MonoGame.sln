@@ -1,17 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Knot3-MonoGame", "src\Knot3-MonoGame.csproj", "{A7093300-1D0E-462B-83E2-A5DC7C3D145B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Knot3.Game-MonoGame", "src\Knot3.Game-MonoGame.csproj", "{A7093300-1D0E-462B-83E2-A5DC7C3D145B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Knot3-Unit-Tests-MonoGame", "tests\Knot3-Unit-Tests-MonoGame.csproj", "{C19C58CE-8C63-4F7F-A38C-D8B204AA21F2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Knot3.UnitTests-MonoGame", "tests\Knot3.UnitTests-MonoGame.csproj", "{C19C58CE-8C63-4F7F-A38C-D8B204AA21F2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Knot3-ConfigReset", "tools\ConfigReset\Knot3-ConfigReset.csproj", "{A0C2FF20-61A7-4EC7-9406-8F6A79993DAB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Knot3.ConfigReset", "tools\ConfigReset\Knot3.ConfigReset.csproj", "{A0C2FF20-61A7-4EC7-9406-8F6A79993DAB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Knot3-Extreme-Tests-MonoGame", "extremetests\Knot3-Extreme-Tests-MonoGame.csproj", "{C19C58CE-8C63-4F7F-A38C-D8B204AA21F3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Knot3.ExtremeTests-MonoGame", "extremetests\Knot3.ExtremeTests-MonoGame.csproj", "{C19C58CE-8C63-4F7F-A38C-D8B204AA21F3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Knot3-Framework", "framework\Knot3-Framework.csproj", "{C2868E88-721C-40EB-863B-E9272F95DAF1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Knot3.Framework", "framework\Knot3.Framework.csproj", "{C2868E88-721C-40EB-863B-E9272F95DAF1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Knot3-Content", "src\Content\Knot3-Content-MonoGame.csproj", "{0EFA2EF3-DEB0-44E3-BE88-722866A5D511}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Knot3.Content-MonoGame", "src\Content\Knot3.Content-MonoGame.csproj", "{0EFA2EF3-DEB0-44E3-BE88-722866A5D511}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +45,6 @@ Global
 		{C2868E88-721C-40EB-863B-E9272F95DAF1}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = src\Knot3-MonoGame.csproj
+		StartupItem = src\Knot3.Game-MonoGame.csproj
 	EndGlobalSection
 EndGlobal
