@@ -22,11 +22,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+using Knot3.Data;
+using Knot3.Utilities;
+using Knot3.Development;
 
 #endregion
 
 #region Using
-
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -46,14 +48,27 @@ namespace Knot3.UnitTests.Utilities
 	[TestFixture]
 	public class SavegameLoader_Tests
 	{
+		private SavegameLoader<Knot, KnotMetaData> loader;
+
 		[SetUp]
 		public void Init ()
 		{
+			// Erstelle einen Parser für das Dateiformat
+			KnotFileIO fileFormat = new KnotFileIO ();
+			// Erstelle einen Spielstand-Loader
+			loader = new SavegameLoader<Knot, KnotMetaData> (fileFormat, "index-SavegameLoader_Tests");
 		}
 
 		[Test]
 		public void Test ()
 		{
+			// Suche nach Spielständen
+			loader.FindSavegames (AddSavegameToList);
+		}
+
+		private void AddSavegameToList (string filename, KnotMetaData meta)
+		{
+			Log.Debug ("SavegameLoader_Tests: filename: ", filename, ", meta:", meta);
 		}
 	}
 }
