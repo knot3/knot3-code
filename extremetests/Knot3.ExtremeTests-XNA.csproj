@@ -7,8 +7,8 @@
     <ProjectGuid>{A217EEEA-1F78-4483-AE95-6D660B2A989B}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>extremetests</RootNamespace>
-    <AssemblyName>extremetests</AssemblyName>
+    <RootNamespace>Knot3.ExtremeTests</RootNamespace>
+    <AssemblyName>Knot3.ExtremeTests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -54,13 +54,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\src\Knot3-XNA.csproj">
+    <ProjectReference Include="..\src\Knot3.Game-XNA.csproj">
       <Project>{8e6072ce-a35b-455d-93e1-0aa0ebccbccf}</Project>
-      <Name>Knot3-XNA</Name>
+      <Name>Knot3.Game-XNA</Name>
     </ProjectReference>
-    <ProjectReference Include="..\tests\Knot3-Unit-Tests-XNA.csproj">
+    <ProjectReference Include="..\tests\Knot3.UnitTests-XNA.csproj">
       <Project>{8fc6b0be-1fc0-4ac6-8081-7c7cc1d0407d}</Project>
-      <Name>Knot3-Unit-Tests-XNA</Name>
+      <Name>Knot3.UnitTests-XNA</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

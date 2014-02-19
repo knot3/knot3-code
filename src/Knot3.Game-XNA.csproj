@@ -7,7 +7,7 @@
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Knot3</RootNamespace>
+    <RootNamespace>Knot3.Game</RootNamespace>
     <AssemblyName>Knot3</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
@@ -310,9 +310,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="Content\Knot3-Content-XNA.contentproj">
+    <ProjectReference Include="Content\Knot3.Content-XNA.contentproj">
       <Project>{CD33049E-0B5F-42BA-B816-658DEDF50DEA}</Project>
-      <Name>Knot3-Content-XNA</Name>
+      <Name>Knot3.Content-XNA</Name>
       <XnaReferenceType>Content</XnaReferenceType>
     </ProjectReference>
   </ItemGroup>
