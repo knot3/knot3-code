@@ -102,6 +102,7 @@
     <Compile Include="Knot3.Framework\Widgets\State.cs" />
     <Compile Include="Knot3.Framework\Widgets\VerticalAlignment.cs" />
     <Compile Include="Knot3.Framework\Widgets\Widget.cs" />
+    <Compile Include="Knot3.Framework\Core\GameScreen.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
