@@ -18,7 +18,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Knot3.TestCoverage-XNA", "c
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Knot3.ExtremeTests-XNA", "extremetests\Knot3.ExtremeTests-XNA.csproj", "{A217EEEA-1F78-4483-AE95-6D660B2A989B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Knot3.Framework-XNA", "framework\Knot3.Framework-XNA.csproj", "{C2868E88-721C-40EB-863B-E9272F95DAF1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Knot3.Framework-XNA", "framework\Knot3.Framework-XNA.csproj", "{C81CB812-BF24-4DE2-A551-AA4B79CD9490}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -90,18 +90,18 @@ Global
 		{A217EEEA-1F78-4483-AE95-6D660B2A989B}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{A217EEEA-1F78-4483-AE95-6D660B2A989B}.Release|Win32.ActiveCfg = Release|Any CPU
 		{A217EEEA-1F78-4483-AE95-6D660B2A989B}.Release|x86.ActiveCfg = Release|Any CPU
-		{C2868E88-721C-40EB-863B-E9272F95DAF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C2868E88-721C-40EB-863B-E9272F95DAF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C2868E88-721C-40EB-863B-E9272F95DAF1}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{C2868E88-721C-40EB-863B-E9272F95DAF1}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{C2868E88-721C-40EB-863B-E9272F95DAF1}.Debug|Win32.ActiveCfg = Debug|Any CPU
-		{C2868E88-721C-40EB-863B-E9272F95DAF1}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{C2868E88-721C-40EB-863B-E9272F95DAF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C2868E88-721C-40EB-863B-E9272F95DAF1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C2868E88-721C-40EB-863B-E9272F95DAF1}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{C2868E88-721C-40EB-863B-E9272F95DAF1}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{C2868E88-721C-40EB-863B-E9272F95DAF1}.Release|Win32.ActiveCfg = Release|Any CPU
-		{C2868E88-721C-40EB-863B-E9272F95DAF1}.Release|x86.ActiveCfg = Release|Any CPU
+		{C81CB812-BF24-4DE2-A551-AA4B79CD9490}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C81CB812-BF24-4DE2-A551-AA4B79CD9490}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C81CB812-BF24-4DE2-A551-AA4B79CD9490}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{C81CB812-BF24-4DE2-A551-AA4B79CD9490}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{C81CB812-BF24-4DE2-A551-AA4B79CD9490}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{C81CB812-BF24-4DE2-A551-AA4B79CD9490}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C81CB812-BF24-4DE2-A551-AA4B79CD9490}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C81CB812-BF24-4DE2-A551-AA4B79CD9490}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C81CB812-BF24-4DE2-A551-AA4B79CD9490}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{C81CB812-BF24-4DE2-A551-AA4B79CD9490}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{C81CB812-BF24-4DE2-A551-AA4B79CD9490}.Release|Win32.ActiveCfg = Release|Any CPU
+		{C81CB812-BF24-4DE2-A551-AA4B79CD9490}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
