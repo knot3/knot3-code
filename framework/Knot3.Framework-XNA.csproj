@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="Knot3.Framework\Audio\AudioManager.cs" />
     <Compile Include="Knot3.Framework\Audio\IAudioFile.cs" />
     <Compile Include="Knot3.Framework\Audio\IPlaylist.cs" />
     <Compile Include="Knot3.Framework\Audio\LoopPlaylist.cs" />
@@ -55,18 +56,24 @@
     <Compile Include="Knot3.Framework\Core\DistinctOptionInfo.cs" />
     <Compile Include="Knot3.Framework\Core\DrawableGameScreenComponent.cs" />
     <Compile Include="Knot3.Framework\Core\FloatOptionInfo.cs" />
+    <Compile Include="Knot3.Framework\Core\GameClass.cs" />
+    <Compile Include="Knot3.Framework\Core\GameScreen.cs" />
     <Compile Include="Knot3.Framework\Core\GameScreenComponent.cs" />
     <Compile Include="Knot3.Framework\Core\IGameScreen.cs" />
     <Compile Include="Knot3.Framework\Core\IGameScreenComponent.cs" />
     <Compile Include="Knot3.Framework\Core\KeyOptionInfo.cs" />
     <Compile Include="Knot3.Framework\Core\Localizer.cs" />
     <Compile Include="Knot3.Framework\Core\OptionInfo.cs" />
+    <Compile Include="Knot3.Framework\Core\Options.cs" />
     <Compile Include="Knot3.Framework\Core\ScreenPoint.cs" />
     <Compile Include="Knot3.Framework\Core\World.cs" />
-    <Compile Include="Knot3.Framework\Development\Debug.cs" />
+    <Compile Include="Knot3.Framework\Development\Profiler.cs" />
     <Compile Include="Knot3.Framework\Effects\IRenderEffect.cs" />
     <Compile Include="Knot3.Framework\Effects\IRenderEffectStack.cs" />
     <Compile Include="Knot3.Framework\Effects\RenderEffect.cs" />
+    <Compile Include="Knot3.Framework\Effects\RenderEffectLibrary.cs" />
+    <Compile Include="Knot3.Framework\Effects\RenderEffectStack.cs" />
+    <Compile Include="Knot3.Framework\Effects\StandardEffect.cs" />
     <Compile Include="Knot3.Framework\GameObjects\GameModel.cs" />
     <Compile Include="Knot3.Framework\GameObjects\GameModelInfo.cs" />
     <Compile Include="Knot3.Framework\GameObjects\GameObjectDistance.cs" />
@@ -78,12 +85,14 @@
     <Compile Include="Knot3.Framework\Input\IMouseClickEventListener.cs" />
     <Compile Include="Knot3.Framework\Input\IMouseMoveEventListener.cs" />
     <Compile Include="Knot3.Framework\Input\IMouseScrollEventListener.cs" />
+    <Compile Include="Knot3.Framework\Input\InputAction.cs" />
     <Compile Include="Knot3.Framework\Input\InputManager.cs" />
     <Compile Include="Knot3.Framework\Input\KeyEvent.cs" />
     <Compile Include="Knot3.Framework\Input\MousePointer.cs" />
     <Compile Include="Knot3.Framework\Input\PlayerActions.cs" />
     <Compile Include="Knot3.Framework\Input\WidgetKeyHandler.cs" />
     <Compile Include="Knot3.Framework\Input\WidgetMouseHandler.cs" />
+    <Compile Include="Knot3.Framework\Output\Log.cs" />
     <Compile Include="Knot3.Framework\Platform\SystemInfo.cs" />
     <Compile Include="Knot3.Framework\Utilities\BoundingCylinder.cs" />
     <Compile Include="Knot3.Framework\Utilities\ColorHelper.cs" />
@@ -98,10 +107,11 @@
     <Compile Include="Knot3.Framework\Utilities\TextHelper.cs" />
     <Compile Include="Knot3.Framework\Utilities\TextureHelper.cs" />
     <Compile Include="Knot3.Framework\Utilities\VectorHelper.cs" />
+    <Compile Include="Knot3.Framework\Widgets\Design.cs" />
     <Compile Include="Knot3.Framework\Widgets\HorizontalAlignment.cs" />
-    <Compile Include="Knot3.Framework\Widgets\State.cs" />
     <Compile Include="Knot3.Framework\Widgets\VerticalAlignment.cs" />
     <Compile Include="Knot3.Framework\Widgets\Widget.cs" />
+    <Compile Include="Knot3.Framework\Widgets\WidgetState.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

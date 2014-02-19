@@ -115,10 +115,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Knot3.Game\Audio\AudioManager.cs" />
-    <Compile Include="Knot3.Game\Core\GameScreen.cs" />
+    <Compile Include="AssemblyInfo.cs" />
     <Compile Include="Knot3.Game\Core\Knot3Game.cs" />
-    <Compile Include="Knot3.Game\Core\Options.cs" />
     <Compile Include="Knot3.Game\Data\Challenge.cs" />
     <Compile Include="Knot3.Game\Data\ChallengeFileIO.cs" />
     <Compile Include="Knot3.Game\Data\ChallengeMetaData.cs" />
@@ -147,13 +145,9 @@
     <Compile Include="Knot3.Game\Development\JunctionEditorRenderer.cs" />
     <Compile Include="Knot3.Game\Development\JunctionEditorScreen.cs" />
     <Compile Include="Knot3.Game\Development\Overlay.cs" />
-    <Compile Include="Knot3.Game\Development\Profiler.cs" />
     <Compile Include="Knot3.Game\Effects\CelShadingEffect.cs" />
     <Compile Include="Knot3.Game\Effects\FadeEffect.cs" />
     <Compile Include="Knot3.Game\Effects\OpaqueEffect.cs" />
-    <Compile Include="Knot3.Game\Effects\RenderEffectLibrary.cs" />
-    <Compile Include="Knot3.Game\Effects\RenderEffectStack.cs" />
-    <Compile Include="Knot3.Game\Effects\StandardEffect.cs" />
     <Compile Include="Knot3.Game\Effects\Z_Nebula.cs" />
     <Compile Include="Knot3.Game\GameObjects\ArrowModel.cs" />
     <Compile Include="Knot3.Game\GameObjects\ArrowModelInfo.cs" />
@@ -172,7 +166,6 @@
     <Compile Include="Knot3.Game\Input\EdgeColoring.cs" />
     <Compile Include="Knot3.Game\Input\EdgeMovement.cs" />
     <Compile Include="Knot3.Game\Input\EdgeRectangles.cs" />
-    <Compile Include="Knot3.Game\Input\InputAction.cs" />
     <Compile Include="Knot3.Game\Input\KnotInputHandler.cs" />
     <Compile Include="Knot3.Game\Platform\SystemInfo-XNA.cs" />
     <Compile Include="Knot3.Game\Program.cs" />
@@ -205,7 +198,6 @@
     <Compile Include="Knot3.Game\Widgets\ConfirmDialog.cs" />
     <Compile Include="Knot3.Game\Widgets\Container.cs" />
     <Compile Include="Knot3.Game\Widgets\CreativePauseDialog.cs" />
-    <Compile Include="Knot3.Game\Widgets\Design.cs" />
     <Compile Include="Knot3.Game\Widgets\Dialog.cs" />
     <Compile Include="Knot3.Game\Widgets\DropDownEntry.cs" />
     <Compile Include="Knot3.Game\Widgets\DropDownMenuItem.cs" />
