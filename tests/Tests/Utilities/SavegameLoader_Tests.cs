@@ -22,13 +22,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-using Knot3.Data;
-using Knot3.Utilities;
-using Knot3.Development;
 
 #endregion
 
 #region Using
+
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -37,6 +35,10 @@ using System.Text;
 using Microsoft.Xna.Framework;
 
 using NUnit.Framework;
+
+using Knot3.Data;
+using Knot3.Development;
+using Knot3.Utilities;
 
 #endregion
 
