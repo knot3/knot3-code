@@ -102,7 +102,7 @@
     <Compile Include="Knot3.Framework\Input\PlayerActions.cs" />
     <Compile Include="Knot3.Framework\Input\WidgetKeyHandler.cs" />
     <Compile Include="Knot3.Framework\Input\WidgetMouseHandler.cs" />
-    <Compile Include="Knot3.Framework\Output\Log.cs" />
+    <Compile Include="Knot3.Framework\Platform\Log.cs" />
     <Compile Include="Knot3.Framework\Platform\SystemInfo-XNA.cs" />
     <Compile Include="Knot3.Framework\Platform\SystemInfo.cs" />
     <Compile Include="Knot3.Framework\Utilities\BoundingCylinder.cs" />
