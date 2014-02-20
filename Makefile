@@ -34,6 +34,7 @@ install: build
 	$(MKDIR) $(BINDIR)
 	install --mode=755 knot3.sh $(BINDIR)/$(NAME)
 	$(MKDIR) $(GAMEDIR)
+	$(CPR) $(FRAMEWORK_DIR)/bin/Debug/* $(GAMEDIR)/
 	$(CPR) $(CODE_DIR)/bin/Debug/* $(GAMEDIR)/
 	$(CPR) $(CODE_DIR)/Standard_Knots/ $(GAMEDIR)/
 	$(CP) LICENSE $(GAMEDIR)/
