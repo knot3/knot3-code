@@ -141,13 +141,9 @@
     <Compile Include="Knot3.Game\Data\NodeMap.cs" />
     <Compile Include="Knot3.Game\Data\PrinterIO.cs" />
     <Compile Include="Knot3.Game\Data\RectangleMap.cs" />
-    <Compile Include="Knot3.Game\Development\DebugBoundings.cs" />
     <Compile Include="Knot3.Game\Development\DebugModel.cs" />
     <Compile Include="Knot3.Game\Development\DebugModelInfo.cs" />
     <Compile Include="Knot3.Game\Development\DebugSettingsScreen.cs" />
-    <Compile Include="Knot3.Game\Development\JunctionEditorNodeMap.cs" />
-    <Compile Include="Knot3.Game\Development\JunctionEditorRenderer.cs" />
-    <Compile Include="Knot3.Game\Development\JunctionEditorScreen.cs" />
     <Compile Include="Knot3.Game\Development\Overlay.cs" />
     <Compile Include="Knot3.Game\Effects\CelShadingEffect.cs" />
     <Compile Include="Knot3.Game\Effects\FadeEffect.cs" />
@@ -181,7 +177,6 @@
     <Compile Include="Knot3.Game\Screens\CreativeMainScreen.cs" />
     <Compile Include="Knot3.Game\Screens\CreativeModeScreen.cs" />
     <Compile Include="Knot3.Game\Screens\CreditsScreen.cs" />
-    <Compile Include="Knot3.Game\Screens\ErrorScreen.cs" />
     <Compile Include="Knot3.Game\Screens\GraphicsSettingsScreen.cs" />
     <Compile Include="Knot3.Game\Screens\MenuScreen.cs" />
     <Compile Include="Knot3.Game\Screens\ProfileSettingsScreen.cs" />

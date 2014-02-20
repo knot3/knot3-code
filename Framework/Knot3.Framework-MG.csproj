@@ -66,6 +66,7 @@
     <Compile Include="Knot3.Framework\Core\Options.cs" />
     <Compile Include="Knot3.Framework\Core\ScreenPoint.cs" />
     <Compile Include="Knot3.Framework\Core\World.cs" />
+    <Compile Include="Knot3.Framework\Development\DebugBoundings.cs" />
     <Compile Include="Knot3.Framework\Development\Profiler.cs" />
     <Compile Include="Knot3.Framework\Effects\IRenderEffect.cs" />
     <Compile Include="Knot3.Framework\Effects\IRenderEffectStack.cs" />
@@ -94,6 +95,7 @@
     <Compile Include="Knot3.Framework\Platform\Log.cs" />
     <Compile Include="Knot3.Framework\Platform\SystemInfo-MG.cs" />
     <Compile Include="Knot3.Framework\Platform\SystemInfo.cs" />
+    <Compile Include="Knot3.Framework\Screens\ErrorScreen.cs" />
     <Compile Include="Knot3.Framework\Utilities\BoundingCylinder.cs" />
     <Compile Include="Knot3.Framework\Utilities\ColorHelper.cs" />
     <Compile Include="Knot3.Framework\Utilities\DictionaryHelper.cs" />
@@ -130,8 +132,6 @@
     <Compile Include="Knot3.Framework\Widgets\VerticalAlignment.cs" />
     <Compile Include="Knot3.Framework\Widgets\Widget.cs" />
     <Compile Include="Knot3.Framework\Widgets\WidgetState.cs" />
-    <Compile Include="Knot3.Framework\Development\DebugBoundings.cs" />
-    <Compile Include="Knot3.Framework\Screens\ErrorScreen.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
