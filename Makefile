@@ -46,9 +46,32 @@ uninstall:
 
 distclean:
 	$(RMR) $(CODE_DIR)/bin
+	$(RMR) $(CODE_DIR)/obj
 	$(RMR) $(FRAMEWORK_DIR)/bin
+	$(RMR) $(FRAMEWORK_DIR)/obj
+	$(RMR) $(TEST_DIR)/bin
+	$(RMR) $(TEST_DIR)/obj
 	git clean -xdf || true
 
 test: build
 	cd tests
 	nunit-console tests/bin/Debug/Knot3.UnitTests.dll
+
+build-windows: clean
+	$(MKDIR) $(CODE_DIR)/bin/Release/ || true
+	$(UNZIP) -o -d $(CODE_DIR)/bin/Release/ lib/MonoGame-Windows-3.1.2.zip
+	$(MKDIR) $(FRAMEWORK_DIR)/bin/Release/ || true
+	$(UNZIP) -o -d $(FRAMEWORK_DIR)/bin/Release/ lib/MonoGame-Windows-3.1.2.zip
+	$(MKDIR) $(TEST_DIR)/bin/Release/ || true
+	$(UNZIP) -o -d $(TEST_DIR)/bin/Release/ lib/MonoGame-Windows-3.1.2.zip
+	xbuild /p:Configuration=Release $(SOLUTION)
+
+package-windows: build-windows
+	$(MKDIR) $(DESTDIR)
+	$(CPR) tools/ConfigReset/bin/Release/ConfigReset* $(DESTDIR)
+	$(CPR) $(CODE_DIR)/Standard_Knots/ $(CODE_DIR)/Content/ $(DESTDIR)
+	$(CPR) $(FRAMEWORK_DIR)/bin/Release/* $(DESTDIR)/
+	$(CPR) $(CODE_DIR)/bin/Release/* $(DESTDIR)/
+	$(CP) LICENSE $(DESTDIR)/
+	$(CP) debian/changelog $(DESTDIR)/CHANGELOG
+	$(CP) README.md $(DESTDIR)/README
