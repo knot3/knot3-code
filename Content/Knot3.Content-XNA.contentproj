@@ -57,11 +57,6 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Textures\CelMap.bmp">
-      <Name>CelMap</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
     <Compile Include="Shader\CelShader.fx">
       <Name>CelShader</Name>
       <Importer>EffectImporter</Importer>
@@ -158,6 +153,13 @@
   <ItemGroup>
     <Compile Include="Textures\exit300.png">
       <Name>exit300</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Textures\CelMap.png">
+      <Name>CelMap</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
