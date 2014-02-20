@@ -65,14 +65,14 @@ namespace Knot3.Game.GameObjects
 	/// Ein 3D-Modell, das einen Kantenübergang darstellt.
 	/// </summary>
 	[ExcludeFromCodeCoverageAttribute]
-	public sealed class NodeModel : GameModel
+	public sealed class JunctionModel : GameModel
 	{
 		#region Properties
 
 		/// <summary>
 		/// Enthält Informationen über den darzustellende 3D-Modell des Kantenübergangs.
 		/// </summary>
-		public new NodeModelInfo Info { get { return base.Info as NodeModelInfo; } set { base.Info = value; } }
+		public new JunctionModelInfo Info { get { return base.Info as JunctionModelInfo; } set { base.Info = value; } }
 
 		public bool IsVirtual { get; set; }
 
@@ -84,7 +84,7 @@ namespace Knot3.Game.GameObjects
 		/// Erstellt ein neues 3D-Modell mit dem angegebenen Spielzustand und dem angegebenen Informationsobjekt.
 		/// [base=screen, info]
 		/// </summary>
-		public NodeModel (IGameScreen screen, NodeModelInfo info)
+		public JunctionModel (IGameScreen screen, JunctionModelInfo info)
 		: base (screen, info)
 		{
 		}
