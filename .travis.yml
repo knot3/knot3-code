@@ -18,5 +18,4 @@ before_install:
   - mkdir -p tests/bin/Debug/
   - unzip -d tests/bin/Debug/ MonoGame-Linux-20130126.zip
 script:
-  - xbuild Knot3-MonoGame.sln
-  - nunit-console tests/bin/Debug/Knot3.UnitTests.dll
+  - make test
