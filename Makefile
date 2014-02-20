@@ -26,6 +26,8 @@ build: clean
 	$(UNZIP) -o -d $(CODE_DIR)/bin/Debug/ lib/MonoGame-Linux-3.1.2.zip
 	$(MKDIR) $(FRAMEWORK_DIR)/bin/Debug/ || true
 	$(UNZIP) -o -d $(FRAMEWORK_DIR)/bin/Debug/ lib/MonoGame-Linux-3.1.2.zip
+	$(MKDIR) $(TEST_DIR)/bin/Debug/ || true
+	$(UNZIP) -o -d $(TEST_DIR)/bin/Debug/ lib/MonoGame-Linux-3.1.2.zip
 	xbuild $(SOLUTION)
 
 install: build
@@ -47,4 +49,5 @@ distclean:
 	git clean -xdf || true
 
 test:
-	$(MAKE) -C $(TEST_DIR) test
+	cd tests
+	nunit-console tests/bin/Debug/Knot3.UnitTests.dll
