@@ -15,6 +15,8 @@ FRAMEWORK_DIR = Framework
 TEST_DIR = UnitTests
 TOOL_MODELEDITOR_DIR = Tools/ModelEditor
 TOOL_CONFIGRESET_DIR = Tools/ConfigReset
+CONTENT_DIR = Content
+STD_KNOT_DIR = Game/Standard_Knots
 
 LIB_DIR = lib
 LIB_MG_LINUX = $(LIB_DIR)/MonoGame-Linux-3.1.2.zip
@@ -46,7 +48,7 @@ install: build
 	$(CPR) $(FRAMEWORK_DIR)/bin/Debug/* $(GAMEDIR)/
 	$(CPR) $(TOOL_MODELEDITOR_DIR)/bin/Debug/* $(GAMEDIR)/
 	$(CPR) $(CODE_DIR)/bin/Debug/* $(GAMEDIR)/
-	$(CPR) $(CODE_DIR)/Standard_Knots/ $(GAMEDIR)/
+	$(CPR) $(STD_KNOT_DIR) $(GAMEDIR)/
 	$(CP) LICENSE $(GAMEDIR)/
 	$(CP) debian/changelog $(GAMEDIR)/CHANGELOG
 
@@ -83,7 +85,9 @@ build-windows: clean
 package-windows: build-windows
 	$(MKDIR) $(DESTDIR)
 	$(CPR) $(TOOL_CONFIGRESET_DIR)/bin/Release/ConfigReset* $(DESTDIR)
-	$(CPR) $(CODE_DIR)/Standard_Knots/ $(CODE_DIR)/Content/ $(DESTDIR)
+	$(CPR) $(STD_KNOT_DIR) $(DESTDIR)
+	$(MKDIR) $(DESTDIR)/Content
+	$(CPR) $(CONTENT_DIR)/* $(DESTDIR)/Content/
 	$(CPR) $(FRAMEWORK_DIR)/bin/Release/* $(DESTDIR)/
 	$(CPR) $(TOOL_MODELEDITOR_DIR)/bin/Release/* $(DESTDIR)/
 	$(CPR) $(CODE_DIR)/bin/Release/* $(DESTDIR)/
