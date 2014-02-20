@@ -26,6 +26,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
@@ -36,6 +37,12 @@
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Ionic.Zip">
+      <HintPath>..\lib\Ionic.Zip.dll</HintPath>
+    </Reference>
+    <Reference Include="OggSharp">
+      <HintPath>..\lib\OggSharp.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
@@ -115,9 +122,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <Reference Include="Ionic.Zip">
-      <HintPath>lib\Ionic.Zip.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Xna.Framework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86">
       <Private>False</Private>
@@ -148,9 +152,6 @@
     </Reference>
     <Reference Include="mscorlib">
       <Private>False</Private>
-    </Reference>
-    <Reference Include="OggSharp">
-      <HintPath>lib\OggSharp.dll</HintPath>
     </Reference>
     <Reference Include="System">
       <Private>False</Private>
