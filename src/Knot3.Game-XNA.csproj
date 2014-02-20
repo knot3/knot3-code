@@ -155,11 +155,11 @@
     <Compile Include="Knot3.Game\Effects\Z_Nebula.cs" />
     <Compile Include="Knot3.Game\GameObjects\ArrowModel.cs" />
     <Compile Include="Knot3.Game\GameObjects\ArrowModelInfo.cs" />
+    <Compile Include="Knot3.Game\GameObjects\JunctionModel.cs" />
+    <Compile Include="Knot3.Game\GameObjects\JunctionModelInfo.cs" />
     <Compile Include="Knot3.Game\GameObjects\KnotRenderer.cs" />
     <Compile Include="Knot3.Game\GameObjects\ModelFactory.cs" />
     <Compile Include="Knot3.Game\GameObjects\ModelMouseHandler.cs" />
-    <Compile Include="Knot3.Game\GameObjects\NodeModel.cs" />
-    <Compile Include="Knot3.Game\GameObjects\NodeModelInfo.cs" />
     <Compile Include="Knot3.Game\GameObjects\PipeModel.cs" />
     <Compile Include="Knot3.Game\GameObjects\PipeModelInfo.cs" />
     <Compile Include="Knot3.Game\GameObjects\ShadowGameModel.cs" />
