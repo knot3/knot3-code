@@ -1,7 +1,7 @@
 X = xbuild
 CP = cp -v
 CPR = cp -rvf
-RM = rm -v
+RM = rm -vf
 RMR = rm -rvf
 MKDIR = mkdir -p
 UNZIP = unzip
@@ -94,3 +94,4 @@ package-windows: build-windows
 	$(CP) LICENSE $(DESTDIR)/
 	$(CP) debian/changelog $(DESTDIR)/CHANGELOG
 	$(CP) README.md $(DESTDIR)/README
+	$(RM) $(DESTDIR)/*.pdb
