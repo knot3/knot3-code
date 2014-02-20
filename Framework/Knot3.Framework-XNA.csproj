@@ -37,7 +37,7 @@
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>knot3.ico</ApplicationIcon>
+    <ApplicationIcon>..\knot3.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Ionic.Zip">
@@ -195,6 +195,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="knot3.ico" />
+    <Content Include="...\knot3.ico" />
   </ItemGroup>
 </Project>
