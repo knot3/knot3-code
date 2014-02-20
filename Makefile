@@ -38,7 +38,7 @@ install: build
 	$(CPR) $(CODE_DIR)/bin/Debug/* $(GAMEDIR)/
 	$(CPR) $(CODE_DIR)/Standard_Knots/ $(GAMEDIR)/
 	$(CP) LICENSE $(GAMEDIR)/
-	$(CP) $(CODE_DIR)/debian/changelog $(GAMEDIR)/CHANGELOG
+	$(CP) debian/changelog $(GAMEDIR)/CHANGELOG
 
 uninstall:
 	$(RM) $(BINDIR)/$(NAME)

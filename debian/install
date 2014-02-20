@@ -1,0 +1,4 @@
+framework/bin/Debug/* usr/share/knot3
+src/bin/Debug/* usr/share/knot3
+knot3.desktop usr/share/applications
+knot3.png usr/share/icons
