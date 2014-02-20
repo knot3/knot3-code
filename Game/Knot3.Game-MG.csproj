@@ -55,6 +55,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="..\knot3.ico" />
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="Knot3.Game\Core\Knot3Game.cs" />
     <Compile Include="Knot3.Game\Data\Challenge.cs" />
     <Compile Include="Knot3.Game\Data\ChallengeFileIO.cs" />

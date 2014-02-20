@@ -85,6 +85,10 @@ namespace Knot3.Framework.Utilities
 			try {
 				return screen.Content.Load<Texture2D> ("Textures/" + name);
 			}
+			catch (IOException ex) {
+				Log.Debug (ex);
+				return null;
+			}
 			catch (ContentLoadException ex) {
 				Log.Debug (ex);
 				return null;
@@ -98,7 +102,7 @@ namespace Knot3.Framework.Utilities
 				FileStream stream = new FileStream (filename, FileMode.Open);
 				return Texture2D.FromStream (screen.Device, stream);
 			}
-			catch (IOException ex) {
+			catch (Exception ex) { // hier kommen bei indexierten Bitmaps nur "Exception"-Objekte!
 				Log.Debug (ex);
 				return null;
 			}
