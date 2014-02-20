@@ -26,7 +26,6 @@
 #endregion
 
 #region Using
-
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -193,8 +192,10 @@ namespace Knot3.ModelEditor
 				    configFile: Options.Models
 				);
 				itemBumpRotation [i].AddEntries (option);
-				RemoveGameComponents (time, itemBumpRotation [i]);
-				AddGameComponents (time, itemBumpRotation [i]);
+				if (time != null) {
+					RemoveGameComponents (time, itemBumpRotation [i]);
+					AddGameComponents (time, itemBumpRotation [i]);
+				}
 			}
 
 			/*
