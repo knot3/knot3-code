@@ -57,7 +57,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Content\AssemblyInfo.cs" />
     <Compile Include="Knot3.Game\Core\Knot3Game.cs" />
     <Compile Include="Knot3.Game\Data\Challenge.cs" />
     <Compile Include="Knot3.Game\Data\ChallengeFileIO.cs" />
@@ -183,5 +182,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Knot3.Game\Audio\" />
+    <Folder Include="Content\" />
   </ItemGroup>
 </Project>
