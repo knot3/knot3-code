@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Knot3.ExtremeTests-MG", "ex
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Knot3.Framework-MG", "framework\Knot3.Framework-MG.csproj", "{C2868E88-721C-40EB-863B-E9272F95DAF1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Knot3.Content-MG", "src\Content\Knot3.Content-MG.csproj", "{0EFA2EF3-DEB0-44E3-BE88-722866A5D511}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Knot3.Content-MG", "content\Knot3.Content-MG.csproj", "{0EFA2EF3-DEB0-44E3-BE88-722866A5D511}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Knot3.ModelEditor-MG", "tools\ModelEditor\Knot3.ModelEditor-MG.csproj", "{A48CC175-E2A7-4F17-8126-93A8B3C90936}"
 EndProject

@@ -152,7 +152,6 @@
     <Folder Include="Knot3.Framework\GameObjects\" />
     <Folder Include="Knot3.Framework\Widgets\" />
     <Folder Include="Knot3.Framework\Effects\" />
-    <Folder Include="Knot3.Framework\Output\" />
     <Folder Include="Knot3.Framework\Screens\" />
   </ItemGroup>
 </Project>

@@ -5,7 +5,7 @@ VisualStudioVersion = 12.0.30110.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Knot3.Game-XNA", "src\Knot3.Game-XNA.csproj", "{8E6072CE-A35B-455D-93E1-0AA0EBCCBCCF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Knot3.Content-XNA", "src\Content\Knot3.Content-XNA.contentproj", "{CD33049E-0B5F-42BA-B816-658DEDF50DEA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Knot3.Content-XNA", "content\Knot3.Content-XNA.contentproj", "{CD33049E-0B5F-42BA-B816-658DEDF50DEA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Knot3.UnitTests-XNA", "tests\Knot3.UnitTests-XNA.csproj", "{8FC6B0BE-1FC0-4AC6-8081-7C7CC1D0407D}"
 EndProject

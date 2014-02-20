@@ -229,7 +229,7 @@
       <Project>{c81cb812-bf24-4de2-a551-aa4b79cd9490}</Project>
       <Name>Knot3.Framework-XNA</Name>
     </ProjectReference>
-    <ProjectReference Include="Content\Knot3.Content-XNA.contentproj">
+    <ProjectReference Include="..\content\Knot3.Content-XNA.contentproj">
       <Project>{CD33049E-0B5F-42BA-B816-658DEDF50DEA}</Project>
       <Name>Knot3.Content-XNA</Name>
       <XnaReferenceType>Content</XnaReferenceType>

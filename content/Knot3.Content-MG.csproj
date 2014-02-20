@@ -33,12 +33,10 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <Content Include="Textures\cursor.xnb">
-    </Content>
-    <Content Include="Fonts\font-menu.xnb">
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
+    <None Include="Textures\cursor.xnb">
+    </None>
+    <None Include="Fonts\font-menu.xnb">
+    </None>
     <None Include="Textures\logo.xnb">
     </None>
     <None Include="Textures\CelMap.xnb">
@@ -93,17 +91,14 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="..\Properties\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="..\Properties\AssemblyInfo.cs" />
+    <Compile Include="..\src\Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Target Name="AfterBuild">
     <Copy DestinationFolder="$(GameContentDest)\%(None.RelativeDir)" SourceFiles="@(None)" SkipUnchangedFiles="true" />
     <Copy DestinationFolder="$(ModelEditorContentDest)\%(None.RelativeDir)" SourceFiles="@(None)" SkipUnchangedFiles="true" />
   </Target>
   <PropertyGroup>
-    <GameContentDest>..\bin\$(Configuration)\Content</GameContentDest>
-    <ModelEditorContentDest>..\..\tools\ModelEditor\bin\$(Configuration)\Content</ModelEditorContentDest>
+    <GameContentDest>..\src\bin\$(Configuration)\Content</GameContentDest>
+    <ModelEditorContentDest>..\tools\ModelEditor\bin\$(Configuration)\Content</ModelEditorContentDest>
   </PropertyGroup>
 </Project>
