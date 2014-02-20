@@ -22,11 +22,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+using System.IO;
 
 #endregion
 
 #region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -59,12 +59,43 @@ namespace Knot3.Framework.Utilities
 	{
 		#region Real Textures
 
+		private static Dictionary<string, Texture2D> textureCache = new Dictionary<string, Texture2D> ();
+
 		public static Texture2D LoadTexture (this IGameScreen screen, string name)
+		{
+			string key = "Content_" + name;
+			if (textureCache.ContainsKey (key)) {
+				return textureCache [key];
+			}
+			else {
+				Texture2D tex = null;
+				if (tex == null)
+					tex = LoadTextureFromFile (screen, name + ".png");
+				if (tex == null)
+					tex = LoadTextureFromContentPipeline (screen, name);
+				return textureCache [key] = tex;
+			}
+		}
+
+		private static Texture2D LoadTextureFromContentPipeline (IGameScreen screen, string name)
 		{
 			try {
 				return screen.Content.Load<Texture2D> ("Textures/" + name);
 			}
 			catch (ContentLoadException ex) {
+				Log.Debug (ex);
+				return null;
+			}
+		}
+
+		private static Texture2D LoadTextureFromFile (IGameScreen screen, string name)
+		{
+			try {
+				string filename = SystemInfo.RelativeContentDirectory + "Textures" + SystemInfo.PathSeparator + name;
+				FileStream stream = new FileStream (filename, FileMode.Open);
+				return Texture2D.FromStream (screen.Device, stream);
+			}
+			catch (IOException ex) {
 				Log.Debug (ex);
 				return null;
 			}
@@ -89,8 +120,6 @@ namespace Knot3.Framework.Utilities
 		{
 			return Create (graphicsDevice, 1, 1, color);
 		}
-
-		private static Dictionary<string, Texture2D> textureCache = new Dictionary<string, Texture2D> ();
 
 		public static Texture2D Create (GraphicsDevice graphicsDevice, int width, int height, Color color)
 		{
@@ -158,7 +187,7 @@ namespace Knot3.Framework.Utilities
 				                           font: font, text: text, scale: scale,
 				                           position: scaledPosition, size: scaledSize,
 				                           alignX: alignX, alignY: alignY
-				                       );
+				);
 
 				// zeichne die Schrift
 				spriteBatch.DrawString (font, text, textPosition, color, 0, Vector2.Zero, scale, SpriteEffects.None, 0.6f);

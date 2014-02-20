@@ -33,13 +33,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <None Include="Textures\cursor.xnb">
-    </None>
     <None Include="Fonts\font-menu.xnb">
-    </None>
-    <None Include="Textures\logo.xnb">
-    </None>
-    <None Include="Textures\CelMap.xnb">
     </None>
     <None Include="Fonts\font-overlay.xnb">
     </None>
@@ -85,10 +79,11 @@
     </None>
     <None Include="models.ini">
     </None>
-    <None Include="Textures\exit300.xnb">
-    </None>
-    <None Include="Textures\exit800.xnb">
-    </None>
+    <None Include="Textures\CelMap.png" />
+    <None Include="Textures\cursor.png" />
+    <None Include="Textures\exit300.png" />
+    <None Include="Textures\exit800.png" />
+    <None Include="Textures\logo.png" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\Game\Properties\AssemblyInfo.cs" />
@@ -101,4 +96,7 @@
     <GameContentDest>..\Game\bin\$(Configuration)\Content</GameContentDest>
     <ModelEditorContentDest>..\Tools\ModelEditor\bin\$(Configuration)\Content</ModelEditorContentDest>
   </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="Textures\" />
+  </ItemGroup>
 </Project>
