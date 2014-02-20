@@ -48,15 +48,15 @@ sub rewrite_csproj {
 }
 
 my @csproj_files = (
-	{ csproj => 'src/Knot3.Game-MG.csproj', dir => 'src/', exclude => ['-XNA.cs'], linesep => qq[\n] },
-	{ csproj => 'src/Knot3.Game-XNA.csproj', dir => 'src/', exclude => ['-MG.cs'], linesep => qq[\n] },
-	{ csproj => 'framework/Knot3.Framework-MG.csproj', dir => 'framework/', exclude => ['-XNA.cs'], linesep => qq[\n] },
-	{ csproj => 'framework/Knot3.Framework-XNA.csproj', dir => 'framework/', exclude => ['-MG.cs'], linesep => qq[\n] },
-	{ csproj => 'tests/Knot3.UnitTests-MG.csproj', dir => 'tests/', exclude => [], linesep => qq[\n] },
-	{ csproj => 'tests/Knot3.UnitTests-XNA.csproj', dir => 'tests/', exclude => [], linesep => qq[\n] },
-	{ csproj => 'tools/ConfigReset/Knot3.ConfigReset.csproj', dir => 'tools/ConfigReset/', exclude => [], linesep => qq[\n] },
-	{ csproj => 'extremetests/Knot3.ExtremeTests-MG.csproj', dir => 'extremetests/', exclude => [], linesep => qq[\n] },
-	{ csproj => 'extremetests/Knot3.ExtremeTests-XNA.csproj', dir => 'extremetests/', exclude => [], linesep => qq[\n] },
+	{ csproj => 'Game/Knot3.Game-MG.csproj', dir => 'Game/', exclude => ['-XNA.cs'], linesep => qq[\n] },
+	{ csproj => 'Game/Knot3.Game-XNA.csproj', dir => 'Game/', exclude => ['-MG.cs'], linesep => qq[\n] },
+	{ csproj => 'Framework/Knot3.Framework-MG.csproj', dir => 'Framework/', exclude => ['-XNA.cs'], linesep => qq[\n] },
+	{ csproj => 'Framework/Knot3.Framework-XNA.csproj', dir => 'Framework/', exclude => ['-MG.cs'], linesep => qq[\n] },
+	{ csproj => 'UnitTests/Knot3.UnitTests-MG.csproj', dir => 'UnitTests/', exclude => [], linesep => qq[\n] },
+	{ csproj => 'UnitTests/Knot3.UnitTests-XNA.csproj', dir => 'UnitTests/', exclude => [], linesep => qq[\n] },
+	{ csproj => 'Tools/ConfigReset/Knot3.ConfigReset.csproj', dir => 'Tools/ConfigReset/', exclude => [], linesep => qq[\n] },
+	{ csproj => 'ExtremeTests/Knot3.ExtremeTests-MG.csproj', dir => 'ExtremeTests/', exclude => [], linesep => qq[\n] },
+	{ csproj => 'ExtremeTests/Knot3.ExtremeTests-XNA.csproj', dir => 'ExtremeTests/', exclude => [], linesep => qq[\n] },
 );
 
 foreach my $csproj_file (@csproj_files) {
