@@ -91,7 +91,6 @@
     <Compile Include="Knot3.Framework\Input\PlayerActions.cs" />
     <Compile Include="Knot3.Framework\Input\WidgetKeyHandler.cs" />
     <Compile Include="Knot3.Framework\Input\WidgetMouseHandler.cs" />
-    <Compile Include="Knot3.Framework\Output\Log.cs" />
     <Compile Include="Knot3.Framework\Platform\SystemInfo-MG.cs" />
     <Compile Include="Knot3.Framework\Platform\SystemInfo.cs" />
     <Compile Include="Knot3.Framework\Utilities\BoundingCylinder.cs" />
@@ -112,6 +111,7 @@
     <Compile Include="Knot3.Framework\Widgets\VerticalAlignment.cs" />
     <Compile Include="Knot3.Framework\Widgets\Widget.cs" />
     <Compile Include="Knot3.Framework\Widgets\WidgetState.cs" />
+    <Compile Include="Knot3.Framework\Platform\Log.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

@@ -32,7 +32,6 @@ using System.Diagnostics.CodeAnalysis;
 
 using Knot3.Framework.Core;
 using Knot3.Framework.Input;
-using Knot3.Framework.Output;
 using Knot3.Framework.Platform;
 using Knot3.Framework.Utilities;
 
