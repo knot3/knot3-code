@@ -124,7 +124,7 @@ namespace Knot3.Framework.Audio
 		}
 
 		public AudioManager (IGameScreen screen)
-			: this (screen, SystemInfo.RelativeContentDirectory)
+		: this (screen, SystemInfo.RelativeContentDirectory)
 		{
 		}
 

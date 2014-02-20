@@ -22,8 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-using Knot3.Game.Widgets;
-using Knot3.Framework.Screens;
 
 #endregion
 
@@ -51,7 +49,10 @@ using Knot3.Framework.Development;
 using Knot3.Framework.Input;
 using Knot3.Framework.Platform;
 using Knot3.Framework.RenderEffects;
+using Knot3.Framework.Screens;
 using Knot3.Framework.Utilities;
+
+using Knot3.Game.Widgets;
 
 #endregion
 
