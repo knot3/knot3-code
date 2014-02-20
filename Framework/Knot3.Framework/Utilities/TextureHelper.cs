@@ -22,15 +22,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-using System.IO;
 
 #endregion
 
 #region Using
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.IO;
 using System.Linq;
 
 using Microsoft.Xna.Framework;
@@ -69,10 +70,12 @@ namespace Knot3.Framework.Utilities
 			}
 			else {
 				Texture2D tex = null;
-				if (tex == null)
+				if (tex == null) {
 					tex = LoadTextureFromFile (screen, name + ".png");
-				if (tex == null)
+				}
+				if (tex == null) {
 					tex = LoadTextureFromContentPipeline (screen, name);
+				}
 				return textureCache [key] = tex;
 			}
 		}
@@ -187,7 +190,7 @@ namespace Knot3.Framework.Utilities
 				                           font: font, text: text, scale: scale,
 				                           position: scaledPosition, size: scaledSize,
 				                           alignX: alignX, alignY: alignY
-				);
+				                       );
 
 				// zeichne die Schrift
 				spriteBatch.DrawString (font, text, textPosition, color, 0, Vector2.Zero, scale, SpriteEffects.None, 0.6f);
