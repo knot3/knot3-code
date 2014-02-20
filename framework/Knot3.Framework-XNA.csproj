@@ -36,6 +36,9 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>knot3.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Ionic.Zip">
       <HintPath>..\lib\Ionic.Zip.dll</HintPath>
@@ -170,5 +173,8 @@
     <Reference Include="System.Net">
       <Private>False</Private>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="knot3.ico" />
   </ItemGroup>
 </Project>
