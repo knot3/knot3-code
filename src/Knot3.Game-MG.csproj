@@ -180,8 +180,4 @@
       <Name>Knot3.Content-MG</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Knot3.Game\Audio\" />
-    <Folder Include="Content\" />
-  </ItemGroup>
 </Project>
