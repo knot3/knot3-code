@@ -44,29 +44,23 @@ using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
 
 using Knot3.Framework.Core;
+using Knot3.Framework.Development;
+using Knot3.Framework.GameObjects;
 using Knot3.Framework.Input;
 using Knot3.Framework.Platform;
+using Knot3.Framework.RenderEffects;
 using Knot3.Framework.Utilities;
 using Knot3.Framework.Widgets;
 
-using Knot3.Game.Core;
-using Knot3.Game.Data;
-using Knot3.Game.Development;
-using Knot3.Game.GameObjects;
-using Knot3.Game.Input;
-using Knot3.Game.RenderEffects;
-using Knot3.Game.Screens;
-using Knot3.Game.Utilities;
-
 #endregion
 
-namespace Knot3.Game.Widgets
+namespace Knot3.Framework.Widgets
 {
 	/// <summary>
 	/// Eine Schaltfläche, der eine Zeichenkette anzeigt und auf einen Linksklick reagiert.
 	/// </summary>
 	[ExcludeFromCodeCoverageAttribute]
-	public sealed class Button : Widget, IKeyEventListener, IMouseClickEventListener
+	public class MenuEntry : MenuItem
 	{
 		#region Properties
 
@@ -75,14 +69,29 @@ namespace Knot3.Game.Widgets
 		/// </summary>
 		public Action<GameTime> OnClick { get; set; }
 
-		private string name;
-		private SpriteBatch spriteBatch;
+		/// <summary>
+		/// Wie viel Prozent der Name des Eintrags (auf der linken Seite) von der Breite des Eintrags einnehmen darf.
+		/// </summary>
+		public override float NameWidth
+		{
+			get { return 1.00f; }
+			set { throw new ArgumentException ("You can't change the NameWidth of a MenuButton!"); }
+		}
 
-		public Bounds MouseClickBounds { get { return Bounds; } }
+		/// <summary>
+		/// Wie viel Prozent der Wert des Eintrags (auf der rechten Seite) von der Breite des Eintrags einnehmen darf.
+		/// </summary>
+		public override float ValueWidth
+		{
+			get { return 0.00f; }
+			set { throw new ArgumentException ("You can't change the ValueWidth of a MenuButton!"); }
+		}
 
-		public Action<bool, GameTime> Hovered = (isHovered, time) => {};
-
-		public Texture2D BackgroundTexture { get; set; }
+		public bool Selectable
+		{
+			get;
+			set;
+		}
 
 		#endregion
 
@@ -93,12 +102,11 @@ namespace Knot3.Game.Widgets
 		/// Zudem sind Angabe der Zeichenreihenfolge, einer Zeichenkette für den Namen der Schaltfläche
 		/// und der Aktion, welche bei einem Klick ausgeführt wird Pflicht.
 		/// </summary>
-		public Button (IGameScreen screen, DisplayLayer drawOrder, string name, Action<GameTime> onClick)
-		: base (screen, drawOrder)
+		public MenuEntry (IGameScreen screen, DisplayLayer drawOrder, string name, Action<GameTime> onClick)
+		: base (screen, drawOrder, name)
 		{
-			this.name = name;
+			Selectable = true;
 			OnClick = onClick;
-			spriteBatch = new SpriteBatch (screen.Device);
 		}
 
 		#endregion
@@ -108,29 +116,40 @@ namespace Knot3.Game.Widgets
 		/// <summary>
 		/// Reaktionen auf einen Linksklick.
 		/// </summary>
-		public void OnLeftClick (Vector2 position, ClickState state, GameTime time)
+		public override void OnLeftClick (Vector2 position, ClickState state, GameTime time)
 		{
+			base.OnLeftClick (position, state, time);
+			if (Selectable) {
+				State = WidgetState.Selected;
+
+				if (Menu != null) {
+					foreach (MenuItem item in Menu) {
+						Log.Debug ("State: ", item.State);
+						if (item is MenuEntry && item !=this) {
+							item.State = WidgetState.None;
+						}
+					}
+				}
+			}
+
 			OnClick (time);
-		}
-
-		public void OnRightClick (Vector2 position, ClickState state, GameTime time)
-		{
-		}
-
-		public void SetHovered (bool isHovered, GameTime time)
-		{
-			State = isHovered ? WidgetState.Hovered : WidgetState.None;
-			Hovered (isHovered, time);
 		}
 
 		/// <summary>
 		/// Reaktionen auf Tasteneingaben.
 		/// </summary>
-		public void OnKeyEvent (List<Keys> key, KeyEvent keyEvent, GameTime time)
+		public override void OnKeyEvent (List<Keys> key, KeyEvent keyEvent, GameTime time)
 		{
-			Log.Debug ("OnKeyEvent: ", key [0]);
+			// Log.Debug ("OnKeyEvent: ", key[0]);
 			if (keyEvent == KeyEvent.KeyDown) {
 				OnClick (time);
+			}
+		}
+
+		public override void SetHovered (bool isHovered, GameTime time)
+		{
+			if (State != WidgetState.Selected && Enabled) {
+				base.SetHovered (isHovered, time);
 			}
 		}
 
@@ -138,32 +157,6 @@ namespace Knot3.Game.Widgets
 		{
 			if (!ValidKeys.Contains (key)) {
 				ValidKeys.Add (key);
-			}
-		}
-
-		[ExcludeFromCodeCoverageAttribute]
-		public override void Draw (GameTime time)
-		{
-			base.Draw (time);
-
-			if (IsVisible) {
-				spriteBatch.Begin ();
-
-				// zeichne den Hintergrund
-				spriteBatch.DrawColoredRectangle (BackgroundColor, Bounds);
-
-				if (BackgroundTexture != null) {
-					spriteBatch.Draw (BackgroundTexture, Bounds, Color.White);
-				}
-
-				// lade die Schrift
-				SpriteFont font = Design.MenuFont (Screen);
-
-				// zeichne die Schrift
-				Color foreground = ForegroundColor * (IsEnabled ? 1f : 0.5f);
-				spriteBatch.DrawStringInRectangle (font, name, foreground, Bounds, AlignX, AlignY);
-
-				spriteBatch.End ();
 			}
 		}
 

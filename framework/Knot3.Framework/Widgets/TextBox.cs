@@ -44,47 +44,29 @@ using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
 
 using Knot3.Framework.Core;
+using Knot3.Framework.GameObjects;
 using Knot3.Framework.Input;
 using Knot3.Framework.Platform;
+using Knot3.Framework.RenderEffects;
 using Knot3.Framework.Utilities;
 using Knot3.Framework.Widgets;
 
-using Knot3.Game.Core;
-using Knot3.Game.Data;
-using Knot3.Game.GameObjects;
-using Knot3.Game.Input;
-using Knot3.Game.RenderEffects;
-using Knot3.Game.Screens;
-
 #endregion
 
-namespace Knot3.Game.Widgets
+namespace Knot3.Framework.Widgets
 {
 	/// <summary>
 	/// Ein Widget, der eine Zeichenkette anzeigt.
 	/// </summary>
 	[ExcludeFromCodeCoverageAttribute]
-	public class TextItem : MenuItem
+	public class TextBox : Widget
 	{
 		#region Properties
 
-		/// <summary>
-		/// Wie viel Prozent der Name des Eintrags (auf der linken Seite) von der Breite des Eintrags einnehmen darf.
-		/// </summary>
-		public override float NameWidth
-		{
-			get { return 1.00f; }
-			set { throw new ArgumentException ("You can't change the NameWidth of a TextItem!"); }
-		}
+		// ein Spritebatch
+		protected SpriteBatch spriteBatch;
 
-		/// <summary>
-		/// Wie viel Prozent der Wert des Eintrags (auf der rechten Seite) von der Breite des Eintrags einnehmen darf.
-		/// </summary>
-		public override float ValueWidth
-		{
-			get { return 0.00f; }
-			set { throw new ArgumentException ("You can't change the ValueWidth of a TextItem!"); }
-		}
+		public string Text { get; set; }
 
 		#endregion
 
@@ -94,19 +76,61 @@ namespace Knot3.Game.Widgets
 		/// Erzeugt ein neues TextItem-Objekt und initialisiert dieses mit dem zugehörigen IGameScreen-Objekt.
 		/// Zudem sind Angabe der Zeichenreihenfolge und der Zeichenkette, die angezeigt wird, für Pflicht.
 		/// </summary>
-		public TextItem (IGameScreen screen, DisplayLayer drawOrder, string text)
-		: base (screen, drawOrder, text)
+		public TextBox (IGameScreen screen, DisplayLayer drawOrder, string text)
+		: base (screen, drawOrder)
 		{
+			Text = text;
+			State = WidgetState.None;
+			spriteBatch = new SpriteBatch (screen.Device);
 		}
 
 		#endregion
 
 		#region Methods
 
-		//Da TextItems werden nicht unterlegt um sie von Buttons abzugrenzen
-		public override void SetHovered (bool hovered, GameTime time)
+		[ExcludeFromCodeCoverageAttribute]
+		public override void Draw (GameTime time)
 		{
-			State = WidgetState.None;
+			base.Draw (time);
+
+			if (IsVisible) {
+				spriteBatch.Begin ();
+
+				// zeichne den Hintergrund
+				spriteBatch.DrawColoredRectangle (BackgroundColor, Bounds);
+
+				// lade die Schrift
+				SpriteFont font = Design.MenuFont (Screen);
+
+				// zeichne die Schrift
+				Color foreground = ForegroundColor * (IsEnabled ? 1f : 0.5f);
+				spriteBatch.DrawStringInRectangle (font, parseText (Text), foreground, Bounds, AlignX, AlignY);
+
+				spriteBatch.End ();
+			}
+		}
+
+		private String parseText (String text)
+		{
+			// lade die Schrift
+			SpriteFont font = Design.MenuFont (Screen);
+			// berechne die Skalierung der schrift
+			//spriteBatch.DrawStringInRectangle (font, parseText (Text), foreground, Bounds, AlignX, AlignY);
+
+			String line = String.Empty;
+			String returnString = String.Empty;
+			String[] wordArray = text.Split (' ');
+
+			foreach (String word in wordArray) {
+				if (font.MeasureString (line + word).Length () * 0.05f > Bounds.Rectangle.Width) {
+					returnString = returnString + line + '\n';
+					line = String.Empty;
+				}
+
+				line = line + word + ' ';
+			}
+
+			return returnString + line;
 		}
 
 		#endregion

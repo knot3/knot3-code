@@ -44,94 +44,64 @@ using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
 
 using Knot3.Framework.Core;
+using Knot3.Framework.GameObjects;
 using Knot3.Framework.Input;
 using Knot3.Framework.Platform;
+using Knot3.Framework.RenderEffects;
 using Knot3.Framework.Utilities;
 using Knot3.Framework.Widgets;
 
-using Knot3.Game.Core;
-using Knot3.Game.Data;
-using Knot3.Game.GameObjects;
-using Knot3.Game.Input;
-using Knot3.Game.RenderEffects;
-using Knot3.Game.Screens;
-
 #endregion
 
-namespace Knot3.Game.Widgets
+namespace Knot3.Framework.Widgets
 {
 	/// <summary>
-	/// Ein Dialog, der Schaltflächen zum Bestätigen einer Aktion anzeigt.
+	/// Ein Widget, der eine Zeichenkette anzeigt.
 	/// </summary>
 	[ExcludeFromCodeCoverageAttribute]
-	public abstract class ConfirmDialog : Dialog
+	public class TextItem : MenuItem
 	{
 		#region Properties
 
 		/// <summary>
-		/// Das Menü, das Schaltflächen enthält.
+		/// Wie viel Prozent der Name des Eintrags (auf der linken Seite) von der Breite des Eintrags einnehmen darf.
 		/// </summary>
-		private Container buttons { get; set; }
+		public override float NameWidth
+		{
+			get { return 1.00f; }
+			set { throw new ArgumentException ("You can't change the NameWidth of a TextItem!"); }
+		}
 
-		protected Menu menu;
+		/// <summary>
+		/// Wie viel Prozent der Wert des Eintrags (auf der rechten Seite) von der Breite des Eintrags einnehmen darf.
+		/// </summary>
+		public override float ValueWidth
+		{
+			get { return 0.00f; }
+			set { throw new ArgumentException ("You can't change the ValueWidth of a TextItem!"); }
+		}
 
 		#endregion
 
 		#region Constructors
 
 		/// <summary>
-		/// Erzeugt ein neues ConfirmDialog-Objekt und initialisiert dieses mit dem zugehörigen IGameScreen-Objekt.
-		/// Zudem sind Angaben zur Zeichenreihenfolge, einer Zeichenkette für den Titel und für den eingeblendeten Text Pflicht.
-		/// [base=screen, drawOrder, title, text]
+		/// Erzeugt ein neues TextItem-Objekt und initialisiert dieses mit dem zugehörigen IGameScreen-Objekt.
+		/// Zudem sind Angabe der Zeichenreihenfolge und der Zeichenkette, die angezeigt wird, für Pflicht.
 		/// </summary>
-		public ConfirmDialog (IGameScreen screen, DisplayLayer drawOrder, string title)
-		: base (screen, drawOrder, title)
+		public TextItem (IGameScreen screen, DisplayLayer drawOrder, string text)
+		: base (screen, drawOrder, text)
 		{
-			// Der Titel-Text ist mittig ausgerichtet
-			AlignX = HorizontalAlignment.Center;
-
-			// Menü, in dem die Textanzeige angezeigt wird
-			menu = new Menu (Screen, Index + DisplayLayer.Menu);
-			menu.Bounds = ContentBounds;
-			menu.ItemForegroundColor = (s) => Color.White;
-			menu.ItemBackgroundColor = (s) => Color.Transparent;
-			menu.ItemAlignX = HorizontalAlignment.Left;
-			menu.ItemAlignY = VerticalAlignment.Center;
-
-			ValidKeys.AddRange (new Keys[] { Keys.Enter, Keys.Escape });
-		}
-
-		public ConfirmDialog (IGameScreen screen, DisplayLayer drawOrder, string title, string text)
-		: this (screen, drawOrder, title)
-		{
-			// Die Textanzeige
-			TextItem textInput = new TextItem (Screen, Index + DisplayLayer.MenuItem, text);
-			menu.Add (textInput);
 		}
 
 		#endregion
 
 		#region Methods
 
-		/// <summary>
-		///
-		/// </summary>
-		public override void OnKeyEvent (List<Keys> key, KeyEvent keyEvent, GameTime time)
+		//Da TextItems werden nicht unterlegt um sie von Buttons abzugrenzen
+		public override void SetHovered (bool hovered, GameTime time)
 		{
-			if (keyEvent == KeyEvent.KeyDown) {
-				if (key.Contains (Keys.Enter) || key.Contains (Keys.Escape)) {
-					Close (time);
-				}
-			}
-			base.OnKeyEvent (key, keyEvent, time);
-		}
-
-		public override IEnumerable<IGameScreenComponent> SubComponents (GameTime time)
-		{
-			foreach (DrawableGameScreenComponent component in base.SubComponents (time)) {
-				yield return component;
-			}
-			yield return menu;
+			State = WidgetState.None;
 		}
 
 		#endregion

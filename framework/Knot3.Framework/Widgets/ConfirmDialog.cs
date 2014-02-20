@@ -49,94 +49,82 @@ using Knot3.Framework.Platform;
 using Knot3.Framework.Utilities;
 using Knot3.Framework.Widgets;
 
-using Knot3.Game.Core;
-using Knot3.Game.Data;
-using Knot3.Game.GameObjects;
-using Knot3.Game.Input;
-using Knot3.Game.RenderEffects;
-using Knot3.Game.Screens;
-using Knot3.Game.Utilities;
-
 #endregion
 
-namespace Knot3.Game.Widgets
+namespace Knot3.Framework.Widgets
 {
 	/// <summary>
-	/// Ein Widget, der eine Zeichenkette anzeigt.
+	/// Ein Dialog, der Schaltflächen zum Bestätigen einer Aktion anzeigt.
 	/// </summary>
 	[ExcludeFromCodeCoverageAttribute]
-	public class TextBox : Widget
+	public abstract class ConfirmDialog : Dialog
 	{
 		#region Properties
 
-		// ein Spritebatch
-		protected SpriteBatch spriteBatch;
+		/// <summary>
+		/// Das Menü, das Schaltflächen enthält.
+		/// </summary>
+		private Container buttons { get; set; }
 
-		public string Text { get; set; }
+		protected Menu menu;
 
 		#endregion
 
 		#region Constructors
 
 		/// <summary>
-		/// Erzeugt ein neues TextItem-Objekt und initialisiert dieses mit dem zugehörigen IGameScreen-Objekt.
-		/// Zudem sind Angabe der Zeichenreihenfolge und der Zeichenkette, die angezeigt wird, für Pflicht.
+		/// Erzeugt ein neues ConfirmDialog-Objekt und initialisiert dieses mit dem zugehörigen IGameScreen-Objekt.
+		/// Zudem sind Angaben zur Zeichenreihenfolge, einer Zeichenkette für den Titel und für den eingeblendeten Text Pflicht.
+		/// [base=screen, drawOrder, title, text]
 		/// </summary>
-		public TextBox (IGameScreen screen, DisplayLayer drawOrder, string text)
-		: base (screen, drawOrder)
+		public ConfirmDialog (IGameScreen screen, DisplayLayer drawOrder, string title)
+		: base (screen, drawOrder, title)
 		{
-			Text = text;
-			State = WidgetState.None;
-			spriteBatch = new SpriteBatch (screen.Device);
+			// Der Titel-Text ist mittig ausgerichtet
+			AlignX = HorizontalAlignment.Center;
+
+			// Menü, in dem die Textanzeige angezeigt wird
+			menu = new Menu (Screen, Index + DisplayLayer.Menu);
+			menu.Bounds = ContentBounds;
+			menu.ItemForegroundColor = (s) => Color.White;
+			menu.ItemBackgroundColor = (s) => Color.Transparent;
+			menu.ItemAlignX = HorizontalAlignment.Left;
+			menu.ItemAlignY = VerticalAlignment.Center;
+
+			ValidKeys.AddRange (new Keys[] { Keys.Enter, Keys.Escape });
+		}
+
+		public ConfirmDialog (IGameScreen screen, DisplayLayer drawOrder, string title, string text)
+		: this (screen, drawOrder, title)
+		{
+			// Die Textanzeige
+			TextItem textInput = new TextItem (Screen, Index + DisplayLayer.MenuItem, text);
+			menu.Add (textInput);
 		}
 
 		#endregion
 
 		#region Methods
 
-		[ExcludeFromCodeCoverageAttribute]
-		public override void Draw (GameTime time)
+		/// <summary>
+		///
+		/// </summary>
+		public override void OnKeyEvent (List<Keys> key, KeyEvent keyEvent, GameTime time)
 		{
-			base.Draw (time);
-
-			if (IsVisible) {
-				spriteBatch.Begin ();
-
-				// zeichne den Hintergrund
-				spriteBatch.DrawColoredRectangle (BackgroundColor, Bounds);
-
-				// lade die Schrift
-				SpriteFont font = Design.MenuFont (Screen);
-
-				// zeichne die Schrift
-				Color foreground = ForegroundColor * (IsEnabled ? 1f : 0.5f);
-				spriteBatch.DrawStringInRectangle (font, parseText (Text), foreground, Bounds, AlignX, AlignY);
-
-				spriteBatch.End ();
+			if (keyEvent == KeyEvent.KeyDown) {
+				if (key.Contains (Keys.Enter) || key.Contains (Keys.Escape)) {
+					Close (time);
+				}
 			}
+			base.OnKeyEvent (key, keyEvent, time);
 		}
 
-		private String parseText (String text)
+		public override IEnumerable<IGameScreenComponent> SubComponents (GameTime time)
 		{
-			// lade die Schrift
-			SpriteFont font = Design.MenuFont (Screen);
-			// berechne die Skalierung der schrift
-			//spriteBatch.DrawStringInRectangle (font, parseText (Text), foreground, Bounds, AlignX, AlignY);
-
-			String line = String.Empty;
-			String returnString = String.Empty;
-			String[] wordArray = text.Split (' ');
-
-			foreach (String word in wordArray) {
-				if (font.MeasureString (line + word).Length () * 0.05f > Bounds.Rectangle.Width) {
-					returnString = returnString + line + '\n';
-					line = String.Empty;
-				}
-
-				line = line + word + ' ';
+			foreach (DrawableGameScreenComponent component in base.SubComponents (time)) {
+				yield return component;
 			}
-
-			return returnString + line;
+			yield return menu;
 		}
 
 		#endregion

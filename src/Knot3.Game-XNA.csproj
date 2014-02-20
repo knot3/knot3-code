@@ -191,33 +191,15 @@
     <Compile Include="Knot3.Game\Utilities\FileIndex.cs" />
     <Compile Include="Knot3.Game\Utilities\RayExtensions.cs" />
     <Compile Include="Knot3.Game\Utilities\SavegameLoader.cs" />
-    <Compile Include="Knot3.Game\Widgets\Border.cs" />
-    <Compile Include="Knot3.Game\Widgets\Button.cs" />
     <Compile Include="Knot3.Game\Widgets\ChallengePauseDialog.cs" />
-    <Compile Include="Knot3.Game\Widgets\CheckBoxItem.cs" />
     <Compile Include="Knot3.Game\Widgets\ColorPickDialog.cs" />
     <Compile Include="Knot3.Game\Widgets\ColorPickItem.cs" />
     <Compile Include="Knot3.Game\Widgets\ColorPicker.cs" />
-    <Compile Include="Knot3.Game\Widgets\ConfirmDialog.cs" />
-    <Compile Include="Knot3.Game\Widgets\Container.cs" />
     <Compile Include="Knot3.Game\Widgets\CreativePauseDialog.cs" />
-    <Compile Include="Knot3.Game\Widgets\Dialog.cs" />
-    <Compile Include="Knot3.Game\Widgets\DropDownEntry.cs" />
-    <Compile Include="Knot3.Game\Widgets\DropDownMenuItem.cs" />
-    <Compile Include="Knot3.Game\Widgets\ErrorDialog.cs" />
     <Compile Include="Knot3.Game\Widgets\HfGDesign.cs" />
     <Compile Include="Knot3.Game\Widgets\HighscoreDialog.cs" />
-    <Compile Include="Knot3.Game\Widgets\IDesign.cs" />
-    <Compile Include="Knot3.Game\Widgets\InputItem.cs" />
     <Compile Include="Knot3.Game\Widgets\KeyInputItem.cs" />
-    <Compile Include="Knot3.Game\Widgets\Lines.cs" />
-    <Compile Include="Knot3.Game\Widgets\Menu.cs" />
-    <Compile Include="Knot3.Game\Widgets\MenuEntry.cs" />
-    <Compile Include="Knot3.Game\Widgets\MenuItem.cs" />
-    <Compile Include="Knot3.Game\Widgets\SliderItem.cs" />
-    <Compile Include="Knot3.Game\Widgets\TextBox.cs" />
     <Compile Include="Knot3.Game\Widgets\TextInputDialog.cs" />
-    <Compile Include="Knot3.Game\Widgets\TextItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

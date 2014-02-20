@@ -37,7 +37,7 @@ using Knot3.Framework.Utilities;
 
 #endregion
 
-namespace Knot3.Game.Widgets
+namespace Knot3.Framework.Widgets
 {
 	public interface IDesign
 	{
