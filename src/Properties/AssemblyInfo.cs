@@ -32,6 +32,12 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
+using Knot3.Framework.Core;
+using Knot3.Framework.Input;
+using Knot3.Framework.Output;
+using Knot3.Framework.Platform;
+using Knot3.Framework.Utilities;
+
 #endregion
 
 // Allgemeine Informationen über eine Assembly werden über die folgenden
@@ -67,5 +73,5 @@ using System.Runtime.InteropServices;
 // übernehmen, indem Sie "*" eingeben:
 // [assembly: AssemblyVersion ("1.0.*")]
 
-[assembly: AssemblyVersion ("2.0.395.0")]
-[assembly: AssemblyFileVersion ("2.0.395.0")]
+[assembly: AssemblyVersion ("2.0.428.0")]
+[assembly: AssemblyFileVersion ("2.0.428.0")]

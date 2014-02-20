@@ -51,7 +51,6 @@ using Knot3.Framework.Output;
 using Knot3.Framework.Platform;
 using Knot3.Framework.RenderEffects;
 using Knot3.Framework.Utilities;
-
 using Knot3.Game.Data;
 using Knot3.Game.Development;
 using Knot3.Game.GameObjects;
