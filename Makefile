@@ -48,6 +48,6 @@ distclean:
 	$(RMR) $(FRAMEWORK_DIR)/bin
 	git clean -xdf || true
 
-test:
+test: build
 	cd tests
 	nunit-console tests/bin/Debug/Knot3.UnitTests.dll
