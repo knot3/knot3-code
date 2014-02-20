@@ -169,7 +169,7 @@ namespace Knot3.Game.Data
 				Edge edgeA = Edges.At (n);
 				Edge edgeB = Edges.At (n + 1);
 				Node node = NodeAfterEdge (edgeA);
-				IJunction junction = new NodeModelInfo (nodeMap: this, from: edgeA, to: edgeB, node: node, index: n);
+				IJunction junction = new JunctionModelInfo (nodeMap: this, from: edgeA, to: edgeB, node: node, index: n);
 				junctionMap.Add (node, junction);
 			}
 

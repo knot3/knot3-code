@@ -94,7 +94,7 @@ namespace Knot3.Game.GameObjects
 		/// <summary>
 		/// Die Liste der 3D-Modelle der Kantenübergänge.
 		/// </summary>
-		private List<NodeModel> nodes;
+		private List<JunctionModel> nodes;
 
 		/// <summary>
 		/// Die Liste der 3D-Modelle der Kanten.
@@ -176,12 +176,12 @@ namespace Knot3.Game.GameObjects
 			this.screen = screen;
 			Info = new GameObjectInfo (position: position);
 			pipes = new List<PipeModel> ();
-			nodes = new List<NodeModel> ();
+			nodes = new List<JunctionModel> ();
 			arrows = new List<ArrowModel> ();
 			rectangles = new HashSet<TexturedRectangle> ();
 			debugModels = new List<GameModel> ();
 			pipeFactory = new ModelFactory ((s, i) => new PipeModel (s, i as PipeModelInfo));
-			nodeFactory = new ModelFactory ((s, i) => new NodeModel (s, i as NodeModelInfo));
+			nodeFactory = new ModelFactory ((s, i) => new JunctionModel (s, i as JunctionModelInfo));
 			arrowFactory = new ModelFactory ((s, i) => new ArrowModel (s, i as ArrowModelInfo));
 			nodeMap = new NodeMap ();
 		}
@@ -310,8 +310,8 @@ namespace Knot3.Game.GameObjects
 					continue;
 				}
 
-				foreach (NodeModelInfo junction in junctions.OfType<NodeModelInfo>()) {
-					NodeModel model = nodeFactory [screen, junction] as NodeModel;
+				foreach (JunctionModelInfo junction in junctions.OfType<JunctionModelInfo>()) {
+					JunctionModel model = nodeFactory [screen, junction] as JunctionModel;
 					model.IsVirtual = !knot.Contains (junction.EdgeFrom) || !knot.Contains (junction.EdgeTo);
 					model.World = World;
 					nodes.Add (model);
@@ -475,7 +475,7 @@ namespace Knot3.Game.GameObjects
 			foreach (PipeModel pipe in pipes) {
 				pipe.Update (time);
 			}
-			foreach (NodeModel node in nodes) {
+			foreach (JunctionModel node in nodes) {
 				node.Update (time);
 			}
 			foreach (ArrowModel arrow in arrows) {
@@ -501,7 +501,7 @@ namespace Knot3.Game.GameObjects
 					}
 				};
 				Profiler.ProfileDelegate ["Nodes"] = () => {
-					foreach (NodeModel node in nodes) {
+					foreach (JunctionModel node in nodes) {
 						node.Draw (time);
 					}
 				};
@@ -532,7 +532,7 @@ namespace Knot3.Game.GameObjects
 			foreach (PipeModel pipe in pipes) {
 				yield return pipe;
 			}
-			foreach (NodeModel node in nodes) {
+			foreach (JunctionModel node in nodes) {
 				yield return node;
 			}
 			foreach (ArrowModel arrow in arrows) {

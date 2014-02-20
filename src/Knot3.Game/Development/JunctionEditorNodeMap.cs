@@ -176,7 +176,7 @@ namespace Knot3.Game.Development
 				toMap [edge2] = zero + edge2.Direction;
 
 				Node node = NodeAfterEdge (edge1);
-				IJunction junction = new NodeModelInfo (nodeMap: this, from: edge1, to: edge2, node: node, index: i * 2);
+				IJunction junction = new JunctionModelInfo (nodeMap: this, from: edge1, to: edge2, node: node, index: i * 2);
 				junctionMap.Add (node, junction);
 			}
 

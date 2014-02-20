@@ -66,7 +66,7 @@ namespace Knot3.Game.GameObjects
 	/// Enthält Informationen über ein 3D-Modell, das einen Kantenübergang darstellt.
 	/// </summary>
 	[ExcludeFromCodeCoverageAttribute]
-	public sealed class NodeModelInfo : GameModelInfo, IJunction
+	public sealed class JunctionModelInfo : GameModelInfo, IJunction
 	{
 		#region Properties
 
@@ -239,7 +239,7 @@ namespace Knot3.Game.GameObjects
 		/// Erstellt ein neues Informationsobjekt für ein 3D-Modell, das einen Kantenübergang darstellt.
 		/// [base="node1", Angles3.Zero, new Vector3 (1,1,1)]
 		/// </summary>
-		public NodeModelInfo (INodeMap nodeMap, Edge from, Edge to, Node node, int index)
+		public JunctionModelInfo (INodeMap nodeMap, Edge from, Edge to, Node node, int index)
 		: base ("pipe-straight", Angles3.Zero, Vector3.One * 25f)
 		{
 			EdgeFrom = from;
@@ -354,9 +354,9 @@ namespace Knot3.Game.GameObjects
 				return false;
 			}
 
-			if (other is NodeModelInfo) {
-				if (this.EdgeFrom == (other as NodeModelInfo).EdgeFrom
-				        && this.EdgeTo == (other as NodeModelInfo).EdgeTo
+			if (other is JunctionModelInfo) {
+				if (this.EdgeFrom == (other as JunctionModelInfo).EdgeFrom
+				        && this.EdgeTo == (other as JunctionModelInfo).EdgeTo
 				        && base.Equals (other)) {
 					return true;
 				}
