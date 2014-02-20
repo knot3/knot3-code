@@ -146,11 +146,11 @@
     </MonoDevelop>
   </ProjectExtensions>
   <ItemGroup>
-    <ProjectReference Include="..\framework\Knot3.Framework-MG.csproj">
+    <ProjectReference Include="..\Framework\Knot3.Framework-MG.csproj">
       <Project>{C2868E88-721C-40EB-863B-E9272F95DAF1}</Project>
       <Name>Knot3.Framework-MG</Name>
     </ProjectReference>
-    <ProjectReference Include="..\content\Knot3.Content-MG.csproj">
+    <ProjectReference Include="..\Content\Knot3.Content-MG.csproj">
       <Project>{0EFA2EF3-DEB0-44E3-BE88-722866A5D511}</Project>
       <Name>Knot3.Content-MG</Name>
     </ProjectReference>

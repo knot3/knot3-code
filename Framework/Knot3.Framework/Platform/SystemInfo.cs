@@ -157,9 +157,9 @@ namespace Knot3.Framework.Platform
 				"Release",
 				"x86",
 				"bin",
-				"src",
+				"Game",
 				"ModelEditor",
-				"tools",
+				"Tools",
 			};
 			foreach (string dir in binDirectories) {
 				if (baseDir.ToLower ().EndsWith (dir.ToLower ())) {
