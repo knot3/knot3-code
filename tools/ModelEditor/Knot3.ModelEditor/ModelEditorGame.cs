@@ -22,6 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+using Knot3.Game.Widgets;
 using Knot3.Framework.Screens;
 
 #endregion
@@ -52,23 +53,15 @@ using Knot3.Framework.Platform;
 using Knot3.Framework.RenderEffects;
 using Knot3.Framework.Utilities;
 
-using Knot3.Game.Data;
-using Knot3.Game.Development;
-using Knot3.Game.GameObjects;
-using Knot3.Game.RenderEffects;
-using Knot3.Game.Screens;
-using Knot3.Game.Utilities;
-using Knot3.Game.Widgets;
-
 #endregion
 
-namespace Knot3.Game.Core
+namespace Knot3.ModelEditor
 {
 	/// <summary>
 	/// Die zentrale Spielklasse, die von der \glqq Game\grqq~-Klasse des XNA-Frameworks erbt.
 	/// </summary>
 	[ExcludeFromCodeCoverageAttribute]
-	public class Knot3Game : GameClass
+	public class ModelEditorGame : GameClass
 	{
 		#region Constructors
 
@@ -77,10 +70,10 @@ namespace Knot3.Game.Core
 		/// die in der Einstellungsdatei gespeicherte Auflösung oder falls nicht vorhanden auf die aktuelle
 		/// Bildschirmauflösung und wechselt in den Vollbildmodus.
 		/// </summary>
-		public Knot3Game ()
+		public ModelEditorGame ()
 		: base ()
 		{
-			Window.Title = "Knot3 " + Program.Version;
+			Window.Title = "Knot3 Model Editor " + Program.Version;
 		}
 
 		#endregion
@@ -102,28 +95,9 @@ namespace Knot3.Game.Core
 			// design
 			new HfGDesign ().Apply ();
 
-			RenderEffectLibrary.EffectFactory[] effects = new RenderEffectLibrary.EffectFactory[] {
-				new RenderEffectLibrary.EffectFactory (
-				    name: "celshader",
-				    displayName: "Cel Shading",
-				    createInstance: (screen) => new CelShadingEffect (screen)
-				),
-				new RenderEffectLibrary.EffectFactory (
-				    name: "opaque",
-				    displayName: "opaque",
-				    createInstance: (screen) => new OpaqueEffect (screen)
-				),
-				new RenderEffectLibrary.EffectFactory (
-				    name: "z-nebula",
-				    displayName: "Z-Nebula",
-				    createInstance: (screen) => new Z_Nebula (screen)
-				)
-			};
-			RenderEffectLibrary.EffectLibrary.AddRange (effects);
-
 			// screens
 			Screens = new Stack<IGameScreen> ();
-			Screens.Push (new StartScreen (this));
+			Screens.Push (new JunctionEditorScreen (this));
 			Screens.Peek ().Entered (null, null);
 
 			// base method
@@ -189,16 +163,11 @@ namespace Knot3.Game.Core
 				IGameScreen current = Screens.Peek ();
 				IGameScreen next = current.NextScreen;
 				if (current != next) {
-					next.PostProcessingEffect = new FadeEffect (next, current);
 					current.BeforeExit (next, time);
 					current.NextScreen = current;
 					next.NextScreen = next;
 					Screens.Push (next);
 					next.Entered (current, time);
-				}
-
-				if (current.PostProcessingEffect is FadeEffect && (current.PostProcessingEffect as FadeEffect).IsFinished) {
-					current.PostProcessingEffect = new StandardEffect (current);
 				}
 
 				if (Keys.F8.IsDown ()) {

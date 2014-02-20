@@ -130,6 +130,8 @@
     <Compile Include="Knot3.Framework\Widgets\VerticalAlignment.cs" />
     <Compile Include="Knot3.Framework\Widgets\Widget.cs" />
     <Compile Include="Knot3.Framework\Widgets\WidgetState.cs" />
+    <Compile Include="Knot3.Framework\Development\DebugBoundings.cs" />
+    <Compile Include="Knot3.Framework\Screens\ErrorScreen.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -151,5 +153,6 @@
     <Folder Include="Knot3.Framework\Widgets\" />
     <Folder Include="Knot3.Framework\Effects\" />
     <Folder Include="Knot3.Framework\Output\" />
+    <Folder Include="Knot3.Framework\Screens\" />
   </ItemGroup>
 </Project>

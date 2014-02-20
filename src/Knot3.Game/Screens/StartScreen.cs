@@ -182,6 +182,7 @@ namespace Knot3.Game.Screens
 		public override void Update (GameTime time)
 		{
 			// Versteckte Funktionen
+			/*
 			if (Keys.F1.IsDown ()) {
 				Button debugButton = new Button (
 				    screen: this,
@@ -199,6 +200,7 @@ namespace Knot3.Game.Screens
 				Border border = new Border (this, DisplayLayer.ScreenUI, debugButton);
 				AddGameComponents (time, border);
 			}
+			*/
 		}
 
 		/// <summary>

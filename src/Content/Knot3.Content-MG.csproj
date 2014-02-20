@@ -99,9 +99,11 @@
     <Compile Include="..\Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Target Name="AfterBuild">
-    <Copy DestinationFolder="$(ContentDest)\%(None.RelativeDir)" SourceFiles="@(None)" SkipUnchangedFiles="true" />
+    <Copy DestinationFolder="$(GameContentDest)\%(None.RelativeDir)" SourceFiles="@(None)" SkipUnchangedFiles="true" />
+    <Copy DestinationFolder="$(ModelEditorContentDest)\%(None.RelativeDir)" SourceFiles="@(None)" SkipUnchangedFiles="true" />
   </Target>
   <PropertyGroup>
-    <ContentDest>..\bin\$(Configuration)\Content</ContentDest>
+    <GameContentDest>..\bin\$(Configuration)\Content</GameContentDest>
+    <ModelEditorContentDest>..\..\tools\ModelEditor\bin\$(Configuration)\Content</ModelEditorContentDest>
   </PropertyGroup>
 </Project>

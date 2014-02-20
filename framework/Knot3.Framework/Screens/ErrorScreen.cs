@@ -49,17 +49,9 @@ using Knot3.Framework.Platform;
 using Knot3.Framework.Utilities;
 using Knot3.Framework.Widgets;
 
-using Knot3.Game.Core;
-using Knot3.Game.Data;
-using Knot3.Game.Development;
-using Knot3.Game.GameObjects;
-using Knot3.Game.Input;
-using Knot3.Game.RenderEffects;
-using Knot3.Game.Widgets;
-
 #endregion
 
-namespace Knot3.Game.Screens
+namespace Knot3.Framework.Screens
 {
 	/// <summary>
 	/// Der Spielzustand, der die Auflistung der Mitwirkenden darstellt.
@@ -74,7 +66,7 @@ namespace Knot3.Game.Screens
 		/// <summary>
 		/// Erzeugt ein neues CreditsScreen-Objekt und initialisiert dieses mit einem Knot3Game-Objekt.
 		/// </summary>
-		public ErrorScreen (Knot3Game game, Exception ex)
+		public ErrorScreen (GameClass game, Exception ex)
 		: base (game)
 		{
 			string msg = CreateMessage (ex);

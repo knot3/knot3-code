@@ -62,7 +62,7 @@ using Knot3.Game.Widgets;
 
 #endregion
 
-namespace Knot3.Game.Development
+namespace Knot3.ModelEditor
 {
 	[ExcludeFromCodeCoverageAttribute]
 	public class JunctionEditorScreen : GameScreen
@@ -81,7 +81,6 @@ namespace Knot3.Game.Development
 		private KnotInputHandler knotInput;
 		private ModelMouseHandler modelMouseHandler;
 		private MousePointer pointer;
-		private Overlay overlay;
 		private DebugBoundings debugBoundings;
 		private MenuEntry backButton;
 		private Menu settingsMenu;
@@ -101,8 +100,6 @@ namespace Knot3.Game.Development
 			world = new World (screen: this, drawIndex: DisplayLayer.GameWorld, bounds: Bounds.FromLeft (0.60f));
 			// der Input-Handler
 			knotInput = new KnotInputHandler (screen: this, world: world);
-			// das Overlay zum Debuggen
-			overlay = new Overlay (screen: this, world: world);
 			// der Mauszeiger
 			pointer = new MousePointer (screen: this);
 			// der Maus-Handler für die 3D-Modelle
@@ -252,7 +249,7 @@ namespace Knot3.Game.Development
 		public override void Entered (IGameScreen previousScreen, GameTime time)
 		{
 			base.Entered (previousScreen, time);
-			AddGameComponents (time, knotInput, overlay, pointer, world, modelMouseHandler, settingsMenu);
+			AddGameComponents (time, knotInput, pointer, world, modelMouseHandler, settingsMenu);
 			Audio.BackgroundMusic = Sound.CreativeMusic;
 
 			// Einstellungen anwenden

@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Knot3.Framework-MG", "frame
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Knot3.Content-MG", "src\Content\Knot3.Content-MG.csproj", "{0EFA2EF3-DEB0-44E3-BE88-722866A5D511}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Knot3.ModelEditor-MG", "tools\ModelEditor\Knot3.ModelEditor-MG.csproj", "{A48CC175-E2A7-4F17-8126-93A8B3C90936}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -27,6 +29,10 @@ Global
 		{A0C2FF20-61A7-4EC7-9406-8F6A79993DAB}.Debug|x86.Build.0 = Debug|x86
 		{A0C2FF20-61A7-4EC7-9406-8F6A79993DAB}.Release|x86.ActiveCfg = Release|x86
 		{A0C2FF20-61A7-4EC7-9406-8F6A79993DAB}.Release|x86.Build.0 = Release|x86
+		{A48CC175-E2A7-4F17-8126-93A8B3C90936}.Debug|x86.ActiveCfg = Debug|x86
+		{A48CC175-E2A7-4F17-8126-93A8B3C90936}.Debug|x86.Build.0 = Debug|x86
+		{A48CC175-E2A7-4F17-8126-93A8B3C90936}.Release|x86.ActiveCfg = Release|x86
+		{A48CC175-E2A7-4F17-8126-93A8B3C90936}.Release|x86.Build.0 = Release|x86
 		{A7093300-1D0E-462B-83E2-A5DC7C3D145B}.Debug|x86.ActiveCfg = Debug|x86
 		{A7093300-1D0E-462B-83E2-A5DC7C3D145B}.Debug|x86.Build.0 = Debug|x86
 		{A7093300-1D0E-462B-83E2-A5DC7C3D145B}.Release|x86.ActiveCfg = Release|x86
@@ -45,6 +51,6 @@ Global
 		{C2868E88-721C-40EB-863B-E9272F95DAF1}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = src\Knot3.Game-MG.csproj
+		StartupItem = tools\ModelEditor\Knot3.ModelEditor-MG.csproj
 	EndGlobalSection
 EndGlobal

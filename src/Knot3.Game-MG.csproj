@@ -8,10 +8,10 @@
     <ProjectGuid>{A7093300-1D0E-462B-83E2-A5DC7C3D145B}</ProjectGuid>
     <ProjectTypeGuids>{9B831FEF-F496-498F-9FE8-180DA5CB4258};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Knot3</RootNamespace>
+    <RootNamespace>Knot3.Game</RootNamespace>
     <MonoGamePlatform>Linux</MonoGamePlatform>
     <AssemblyName>Knot3</AssemblyName>
-    <StartupObject>Knot3.Program</StartupObject>
+    <StartupObject>Knot3.Game.Program</StartupObject>
     <ApplicationIcon>..\knot3.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
@@ -76,13 +76,9 @@
     <Compile Include="Knot3.Game\Data\NodeMap.cs" />
     <Compile Include="Knot3.Game\Data\PrinterIO.cs" />
     <Compile Include="Knot3.Game\Data\RectangleMap.cs" />
-    <Compile Include="Knot3.Game\Development\DebugBoundings.cs" />
     <Compile Include="Knot3.Game\Development\DebugModel.cs" />
     <Compile Include="Knot3.Game\Development\DebugModelInfo.cs" />
     <Compile Include="Knot3.Game\Development\DebugSettingsScreen.cs" />
-    <Compile Include="Knot3.Game\Development\JunctionEditorNodeMap.cs" />
-    <Compile Include="Knot3.Game\Development\JunctionEditorRenderer.cs" />
-    <Compile Include="Knot3.Game\Development\JunctionEditorScreen.cs" />
     <Compile Include="Knot3.Game\Development\Overlay.cs" />
     <Compile Include="Knot3.Game\Effects\CelShadingEffect.cs" />
     <Compile Include="Knot3.Game\Effects\FadeEffect.cs" />
@@ -116,7 +112,6 @@
     <Compile Include="Knot3.Game\Screens\CreativeMainScreen.cs" />
     <Compile Include="Knot3.Game\Screens\CreativeModeScreen.cs" />
     <Compile Include="Knot3.Game\Screens\CreditsScreen.cs" />
-    <Compile Include="Knot3.Game\Screens\ErrorScreen.cs" />
     <Compile Include="Knot3.Game\Screens\GraphicsSettingsScreen.cs" />
     <Compile Include="Knot3.Game\Screens\MenuScreen.cs" />
     <Compile Include="Knot3.Game\Screens\ProfileSettingsScreen.cs" />

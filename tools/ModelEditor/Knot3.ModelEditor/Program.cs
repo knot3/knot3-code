@@ -38,16 +38,14 @@ using Knot3.Framework.Input;
 using Knot3.Framework.Platform;
 using Knot3.Framework.Utilities;
 
-using Knot3.Game.Core;
-
 #endregion
 
-namespace Knot3.Game
+namespace Knot3.ModelEditor
 {
 	[ExcludeFromCodeCoverageAttribute]
 	static class Program
 	{
-		private static Knot3Game game;
+		private static ModelEditorGame game;
 
 		/// <summary>
 		/// The main entry point for the application.
@@ -58,11 +56,9 @@ namespace Knot3.Game
 		static void Main ()
 		{
 			Log.Message ("Knot" + Char.ConvertFromUtf32 ('\u00B3').ToString () + " " + Version);
-			Log.Message ("Copyright (C) 2013-2014 Tobias Schulz, Maximilian Reuter,\n" +
-			             "Pascal Knodel, Gerd Augsburg, Christina Erler, Daniel Warzel,\n" +
-			             "M. Retzlaff, F. Kalka, G. Hoffmann, T. Schmidt, G. Mückl, Torsten Pelzer");
+			Log.Message ("Model Editor");
 
-			game = new Knot3Game ();
+			game = new ModelEditorGame ();
 			game.Run ();
 		}
 

@@ -61,7 +61,7 @@ using Knot3.Game.Widgets;
 
 #endregion
 
-namespace Knot3.Game.Development
+namespace Knot3.ModelEditor
 {
 	[ExcludeFromCodeCoverageAttribute]
 	public class JunctionEditorRenderer : IGameObject, IEnumerable<IGameObject>
