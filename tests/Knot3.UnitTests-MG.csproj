@@ -80,13 +80,13 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\src\Knot3.Game-MonoGame.csproj">
+    <ProjectReference Include="..\src\Knot3.Game-MG.csproj">
       <Project>{A7093300-1D0E-462B-83E2-A5DC7C3D145B}</Project>
-      <Name>Knot3.Game-MonoGame</Name>
+      <Name>Knot3.Game-MG</Name>
     </ProjectReference>
-    <ProjectReference Include="..\framework\Knot3.Framework-MonoGame.csproj">
+    <ProjectReference Include="..\framework\Knot3.Framework-MG.csproj">
       <Project>{C2868E88-721C-40EB-863B-E9272F95DAF1}</Project>
-      <Name>Knot3.Framework-MonoGame</Name>
+      <Name>Knot3.Framework-MG</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
