@@ -48,11 +48,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\src\Knot3.Game-MG.csproj">
+    <ProjectReference Include="..\Game\Knot3.Game-MG.csproj">
       <Project>{A7093300-1D0E-462B-83E2-A5DC7C3D145B}</Project>
       <Name>Knot3.Game-MG</Name>
     </ProjectReference>
-    <ProjectReference Include="..\tests\Knot3.UnitTests-MG.csproj">
+    <ProjectReference Include="..\UnitTests\Knot3.UnitTests-MG.csproj">
       <Project>{C19C58CE-8C63-4F7F-A38C-D8B204AA21F2}</Project>
       <Name>Knot3.UnitTests-MG</Name>
     </ProjectReference>

@@ -54,15 +54,15 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\framework\Knot3.Framework-XNA.csproj">
+    <ProjectReference Include="..\Framework\Knot3.Framework-XNA.csproj">
       <Project>{c81cb812-bf24-4de2-a551-aa4b79cd9490}</Project>
       <Name>Knot3.Framework-XNA</Name>
     </ProjectReference>
-    <ProjectReference Include="..\src\Knot3.Game-XNA.csproj">
+    <ProjectReference Include="..\Game\Knot3.Game-XNA.csproj">
       <Project>{8e6072ce-a35b-455d-93e1-0aa0ebccbccf}</Project>
       <Name>Knot3.Game-XNA</Name>
     </ProjectReference>
-    <ProjectReference Include="..\tests\Knot3.UnitTests-XNA.csproj">
+    <ProjectReference Include="..\UnitTests\Knot3.UnitTests-XNA.csproj">
       <Project>{8fc6b0be-1fc0-4ac6-8081-7c7cc1d0407d}</Project>
       <Name>Knot3.UnitTests-XNA</Name>
     </ProjectReference>

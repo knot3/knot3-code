@@ -51,10 +51,10 @@ echo.
 ::
 :: Projekt-Pfade, relativ zum Speicherort dieser Stapelverarbeitungsdatei.
 ::
-set PATH_TO_PROJECT=%~dp0..
-set PATH_TO_TESTS=%PATH_TO_PROJECT%\tests\bin\Debug
-set PATH_TO_RAW_REPORTDATA=%PATH_TO_PROJECT%\coverage\bin\Debug
-set PATH_TO_HTML_REPORT=%PATH_TO_PROJECT%\coverage\bin\Debug
+set PATH_TO_PROJECT=%~dp0..\..
+set PATH_TO_TESTS=%PATH_TO_PROJECT%\UnitTests\bin\Debug
+set PATH_TO_RAW_REPORTDATA=%PATH_TO_PROJECT%\Tools\Coverage\bin\Debug
+set PATH_TO_HTML_REPORT=%PATH_TO_PROJECT%\Tools\Coverage\bin\Debug
 set PATH_TO_LATEX_REPORT=%PATH_TO_PROJECT%\..\knot-qualitaetssicherung\Bericht\Inhalt\Tests\Abdeckung
 
 set LATEX_FULL_REPORT_NAME=OpenCover_Bericht_komplett.tex

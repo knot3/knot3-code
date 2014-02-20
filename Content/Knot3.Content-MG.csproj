@@ -91,14 +91,14 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\src\Properties\AssemblyInfo.cs" />
+    <Compile Include="..\Game\Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Target Name="AfterBuild">
     <Copy DestinationFolder="$(GameContentDest)\%(None.RelativeDir)" SourceFiles="@(None)" SkipUnchangedFiles="true" />
     <Copy DestinationFolder="$(ModelEditorContentDest)\%(None.RelativeDir)" SourceFiles="@(None)" SkipUnchangedFiles="true" />
   </Target>
   <PropertyGroup>
-    <GameContentDest>..\src\bin\$(Configuration)\Content</GameContentDest>
-    <ModelEditorContentDest>..\tools\ModelEditor\bin\$(Configuration)\Content</ModelEditorContentDest>
+    <GameContentDest>..\Game\bin\$(Configuration)\Content</GameContentDest>
+    <ModelEditorContentDest>..\Tools\ModelEditor\bin\$(Configuration)\Content</ModelEditorContentDest>
   </PropertyGroup>
 </Project>

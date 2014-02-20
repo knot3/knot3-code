@@ -142,14 +142,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Tests\Debug\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\framework\Knot3.Framework-XNA.csproj">
+    <ProjectReference Include="..\Framework\Knot3.Framework-XNA.csproj">
       <Project>{c81cb812-bf24-4de2-a551-aa4b79cd9490}</Project>
       <Name>Knot3.Framework-XNA</Name>
     </ProjectReference>
-    <ProjectReference Include="..\src\Knot3.Game-XNA.csproj">
+    <ProjectReference Include="..\Game\Knot3.Game-XNA.csproj">
       <Project>{8e6072ce-a35b-455d-93e1-0aa0ebccbccf}</Project>
       <Name>Knot3.Game-XNA</Name>
     </ProjectReference>
