@@ -168,7 +168,6 @@
     <Compile Include="Knot3.Game\Input\EdgeMovement.cs" />
     <Compile Include="Knot3.Game\Input\EdgeRectangles.cs" />
     <Compile Include="Knot3.Game\Input\KnotInputHandler.cs" />
-    <Compile Include="Knot3.Game\Platform\SystemInfo-XNA.cs" />
     <Compile Include="Knot3.Game\Program.cs" />
     <Compile Include="Knot3.Game\Screens\AudioSettingsScreen.cs" />
     <Compile Include="Knot3.Game\Screens\ChallengeCreateScreen.cs" />
