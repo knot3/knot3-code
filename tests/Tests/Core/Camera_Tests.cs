@@ -42,6 +42,7 @@ using Knot3.Framework.Output;
 using Knot3.Framework.Platform;
 using Knot3.Framework.RenderEffects;
 using Knot3.Framework.Utilities;
+
 using Knot3.Game.Core;
 using Knot3.Game.MockObjects;
 using Knot3.Game.RenderEffects;
