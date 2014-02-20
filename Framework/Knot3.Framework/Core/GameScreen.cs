@@ -177,7 +177,6 @@ namespace Knot3.Framework.Core
 		/// </summary>
 		public virtual void AddGameComponents (GameTime time, params IGameScreenComponent[] components)
 		{
-				Log.Debug ("AddGameComponents...");
 			foreach (IGameScreenComponent component in components) {
 				Log.Debug ("AddGameComponents: ", component);
 				Game.Components.Add (component);
