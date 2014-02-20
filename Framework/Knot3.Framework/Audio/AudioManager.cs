@@ -105,7 +105,7 @@ namespace Knot3.Framework.Audio
 		/// <summary>
 		/// Erstellt einen neuen AudioManager für den angegebenen Spielzustand.
 		/// </summary>
-		public AudioManager (IGameScreen screen, string directory = ".")
+		public AudioManager (IGameScreen screen, string directory)
 		: base (screen, DisplayLayer.None)
 		{
 			if (AudioFiles.Count == 0) {
@@ -121,6 +121,11 @@ namespace Knot3.Framework.Audio
 				// Suche nach OGG-Dateien
 				FileUtility.SearchFiles (directory, new string[] {".ogg"}, AddOggAudioFile);
 			}
+		}
+
+		public AudioManager (IGameScreen screen)
+			: this (screen, SystemInfo.RelativeContentDirectory)
+		{
 		}
 
 		public static void Reset ()

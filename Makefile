@@ -10,10 +10,10 @@ GAMEDIR = $(DESTDIR)/usr/share/knot3
 NAME = knot3
 SOLUTION=Knot3-MG.sln
 
-CODE_DIR = src
-FRAMEWORK_DIR = framework
-TEST_DIR = tests
-TOOL_MODELEDITOR_DIR = tools/ModelEditor
+CODE_DIR = Game
+FRAMEWORK_DIR = Framework
+TEST_DIR = UnitTests
+TOOL_MODELEDITOR_DIR = Tools/ModelEditor
 
 LIB_DIR = lib
 LIB_MG_LINUX = $(LIB_DIR)/MonoGame-Linux-3.1.2.zip
@@ -65,8 +65,8 @@ distclean:
 	git clean -xdf || true
 
 test: build
-	cd tests
-	nunit-console tests/bin/Debug/Knot3.UnitTests.dll
+	cd $(TEST_DIR)
+	nunit-console $(TEST_DIR)/bin/Debug/Knot3.UnitTests.dll
 
 build-windows: clean
 	$(MKDIR) $(CODE_DIR)/bin/Release/ || true

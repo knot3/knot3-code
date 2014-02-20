@@ -26,7 +26,6 @@
 #endregion
 
 #region Using
-
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -176,6 +175,13 @@ namespace Knot3.Framework.Platform
 		private static string relativeBaseDirectory = null;
 		private static string baseDirectory = null;
 		public readonly static char PathSeparator = Path.DirectorySeparatorChar;
+		
+		public static string RelativeContentDirectory
+		{
+			get {
+				return SystemInfo.RelativeBaseDirectory + "Content" + PathSeparator;
+			}
+		}
 
 		#endregion
 	}

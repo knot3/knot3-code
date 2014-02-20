@@ -26,7 +26,6 @@
 #endregion
 
 #region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -83,8 +82,8 @@ namespace Knot3.Framework.Core
 					}
 					else {
 						string currentResolution = Graphics.GraphicsDevice.DisplayMode.Width.ToString ()
-						                           + "x"
-						                           + Graphics.GraphicsDevice.DisplayMode.Height.ToString ();
+							+ "x"
+							+ Graphics.GraphicsDevice.DisplayMode.Height.ToString ();
 
 						Options.Default ["video", "resolution", currentResolution] = "1280x720";
 					}
@@ -155,7 +154,7 @@ namespace Knot3.Framework.Core
 				throw new Exception ("Unsupported Plattform Exception");
 			}
 
-			Content.RootDirectory = "Content";
+			Content.RootDirectory = SystemInfo.RelativeContentDirectory;
 			Window.Title = "";
 
 			FullScreenChanged = () => {};
@@ -179,8 +178,8 @@ namespace Knot3.Framework.Core
 			int width;
 			int height;
 			string currentResolution = Graphics.GraphicsDevice.DisplayMode.Width.ToString ()
-			                           + "x"
-			                           + Graphics.GraphicsDevice.DisplayMode.Height.ToString ();
+				+ "x"
+				+ Graphics.GraphicsDevice.DisplayMode.Height.ToString ();
 			if (lastResolution != Options.Default ["video", "resolution", currentResolution] && !isFullscreen) {
 				String strReso = Options.Default ["video", "resolution", currentResolution];
 				string[] reso = strReso.Split ('x');

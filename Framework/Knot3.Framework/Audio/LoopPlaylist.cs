@@ -122,7 +122,9 @@ namespace Knot3.Framework.Audio
 					Sounds.At (index).Play ();
 				}
 			}
-			Sounds.At (index).Update (time);
+			if (index >= 0 && index < Sounds.Count) {
+				Sounds.At (index).Update (time);
+			}
 		}
 	}
 }

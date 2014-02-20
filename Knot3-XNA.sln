@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Knot3.Game-XNA", "Game\Knot
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Knot3.Content-XNA", "Content\Knot3.Content-XNA.contentproj", "{CD33049E-0B5F-42BA-B816-658DEDF50DEA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Knot3.UnitTests-XNA", "Tests\Knot3.UnitTests-XNA.csproj", "{8FC6B0BE-1FC0-4AC6-8081-7C7CC1D0407D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Knot3.UnitTests-XNA", "UnitTests\Knot3.UnitTests-XNA.csproj", "{8FC6B0BE-1FC0-4AC6-8081-7C7CC1D0407D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{96CD65DD-B1F6-4888-88E4-8617105D72C8}"
 	ProjectSection(SolutionItems) = preProject
