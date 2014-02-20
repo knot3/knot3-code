@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>10.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{A7093300-1D0E-462B-83E2-A5DC7C3D145B}</ProjectGuid>
+    <ProjectTypeGuids>{9B831FEF-F496-498F-9FE8-180DA5CB4258};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Knot3</RootNamespace>
+    <MonoGamePlatform>Linux</MonoGamePlatform>
+    <AssemblyName>Knot3</AssemblyName>
+    <StartupObject>Knot3.Program</StartupObject>
+    <ApplicationIcon>knot3.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+    <ConsolePause>false</ConsolePause>
+    <ApplicationIcon>Game.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+    <ConsolePause>false</ConsolePause>
+    <ApplicationIcon>Game.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="OpenTK, Version=1.1.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="MonoGame.Framework, Version=3.1.2.0, Culture=neutral">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Ionic.Zip">
+      <HintPath>..\lib\Ionic.Zip.dll</HintPath>
+    </Reference>
+    <Reference Include="OggSharp">
+      <HintPath>..\lib\OggSharp.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Knot3.Game\Core\Knot3Game.cs" />
+    <Compile Include="Knot3.Game\Data\Challenge.cs" />
+    <Compile Include="Knot3.Game\Data\ChallengeFileIO.cs" />
+    <Compile Include="Knot3.Game\Data\ChallengeMetaData.cs" />
+    <Compile Include="Knot3.Game\Data\CircleEntry.cs" />
+    <Compile Include="Knot3.Game\Data\Direction.cs" />
+    <Compile Include="Knot3.Game\Data\DirectionHelper.cs" />
+    <Compile Include="Knot3.Game\Data\Edge.cs" />
+    <Compile Include="Knot3.Game\Data\IChallengeIO.cs" />
+    <Compile Include="Knot3.Game\Data\IJunction.cs" />
+    <Compile Include="Knot3.Game\Data\IKnotIO.cs" />
+    <Compile Include="Knot3.Game\Data\INodeMap.cs" />
+    <Compile Include="Knot3.Game\Data\ISavegameIO.cs" />
+    <Compile Include="Knot3.Game\Data\Knot.cs" />
+    <Compile Include="Knot3.Game\Data\KnotFileIO.cs" />
+    <Compile Include="Knot3.Game\Data\KnotMetaData.cs" />
+    <Compile Include="Knot3.Game\Data\KnotStringIO.cs" />
+    <Compile Include="Knot3.Game\Data\Node.cs" />
+    <Compile Include="Knot3.Game\Data\NodeMap.cs" />
+    <Compile Include="Knot3.Game\Data\PrinterIO.cs" />
+    <Compile Include="Knot3.Game\Data\RectangleMap.cs" />
+    <Compile Include="Knot3.Game\Development\DebugBoundings.cs" />
+    <Compile Include="Knot3.Game\Development\DebugModel.cs" />
+    <Compile Include="Knot3.Game\Development\DebugModelInfo.cs" />
+    <Compile Include="Knot3.Game\Development\DebugSettingsScreen.cs" />
+    <Compile Include="Knot3.Game\Development\JunctionEditorNodeMap.cs" />
+    <Compile Include="Knot3.Game\Development\JunctionEditorRenderer.cs" />
+    <Compile Include="Knot3.Game\Development\JunctionEditorScreen.cs" />
+    <Compile Include="Knot3.Game\Development\Overlay.cs" />
+    <Compile Include="Knot3.Game\Effects\CelShadingEffect.cs" />
+    <Compile Include="Knot3.Game\Effects\FadeEffect.cs" />
+    <Compile Include="Knot3.Game\Effects\OpaqueEffect.cs" />
+    <Compile Include="Knot3.Game\Effects\Z_Nebula.cs" />
+    <Compile Include="Knot3.Game\GameObjects\ArrowModel.cs" />
+    <Compile Include="Knot3.Game\GameObjects\ArrowModelInfo.cs" />
+    <Compile Include="Knot3.Game\GameObjects\KnotRenderer.cs" />
+    <Compile Include="Knot3.Game\GameObjects\ModelFactory.cs" />
+    <Compile Include="Knot3.Game\GameObjects\ModelMouseHandler.cs" />
+    <Compile Include="Knot3.Game\GameObjects\NodeModel.cs" />
+    <Compile Include="Knot3.Game\GameObjects\NodeModelInfo.cs" />
+    <Compile Include="Knot3.Game\GameObjects\PipeModel.cs" />
+    <Compile Include="Knot3.Game\GameObjects\PipeModelInfo.cs" />
+    <Compile Include="Knot3.Game\GameObjects\ShadowGameModel.cs" />
+    <Compile Include="Knot3.Game\GameObjects\ShadowGameObject.cs" />
+    <Compile Include="Knot3.Game\GameObjects\SkyCube.cs" />
+    <Compile Include="Knot3.Game\GameObjects\TexturedRectangle.cs" />
+    <Compile Include="Knot3.Game\GameObjects\TexturedRectangleInfo.cs" />
+    <Compile Include="Knot3.Game\Input\EdgeColoring.cs" />
+    <Compile Include="Knot3.Game\Input\EdgeMovement.cs" />
+    <Compile Include="Knot3.Game\Input\EdgeRectangles.cs" />
+    <Compile Include="Knot3.Game\Input\KnotInputHandler.cs" />
+    <Compile Include="Knot3.Game\Program.cs" />
+    <Compile Include="Knot3.Game\Screens\AudioSettingsScreen.cs" />
+    <Compile Include="Knot3.Game\Screens\ChallengeCreateScreen.cs" />
+    <Compile Include="Knot3.Game\Screens\ChallengeModeScreen.cs" />
+    <Compile Include="Knot3.Game\Screens\ChallengeStartScreen.cs" />
+    <Compile Include="Knot3.Game\Screens\ControlSettingsScreen.cs" />
+    <Compile Include="Knot3.Game\Screens\CreativeLoadScreen.cs" />
+    <Compile Include="Knot3.Game\Screens\CreativeMainScreen.cs" />
+    <Compile Include="Knot3.Game\Screens\CreativeModeScreen.cs" />
+    <Compile Include="Knot3.Game\Screens\CreditsScreen.cs" />
+    <Compile Include="Knot3.Game\Screens\ErrorScreen.cs" />
+    <Compile Include="Knot3.Game\Screens\GraphicsSettingsScreen.cs" />
+    <Compile Include="Knot3.Game\Screens\MenuScreen.cs" />
+    <Compile Include="Knot3.Game\Screens\ProfileSettingsScreen.cs" />
+    <Compile Include="Knot3.Game\Screens\SettingsScreen.cs" />
+    <Compile Include="Knot3.Game\Screens\StartScreen.cs" />
+    <Compile Include="Knot3.Game\Screens\TutorialChallengeModeScreen.cs" />
+    <Compile Include="Knot3.Game\Utilities\FileIndex.cs" />
+    <Compile Include="Knot3.Game\Utilities\RayExtensions.cs" />
+    <Compile Include="Knot3.Game\Utilities\SavegameLoader.cs" />
+    <Compile Include="Knot3.Game\Widgets\Border.cs" />
+    <Compile Include="Knot3.Game\Widgets\Button.cs" />
+    <Compile Include="Knot3.Game\Widgets\ChallengePauseDialog.cs" />
+    <Compile Include="Knot3.Game\Widgets\CheckBoxItem.cs" />
+    <Compile Include="Knot3.Game\Widgets\ColorPickDialog.cs" />
+    <Compile Include="Knot3.Game\Widgets\ColorPickItem.cs" />
+    <Compile Include="Knot3.Game\Widgets\ColorPicker.cs" />
+    <Compile Include="Knot3.Game\Widgets\ConfirmDialog.cs" />
+    <Compile Include="Knot3.Game\Widgets\Container.cs" />
+    <Compile Include="Knot3.Game\Widgets\CreativePauseDialog.cs" />
+    <Compile Include="Knot3.Game\Widgets\Dialog.cs" />
+    <Compile Include="Knot3.Game\Widgets\DropDownEntry.cs" />
+    <Compile Include="Knot3.Game\Widgets\DropDownMenuItem.cs" />
+    <Compile Include="Knot3.Game\Widgets\ErrorDialog.cs" />
+    <Compile Include="Knot3.Game\Widgets\HfGDesign.cs" />
+    <Compile Include="Knot3.Game\Widgets\HighscoreDialog.cs" />
+    <Compile Include="Knot3.Game\Widgets\IDesign.cs" />
+    <Compile Include="Knot3.Game\Widgets\InputItem.cs" />
+    <Compile Include="Knot3.Game\Widgets\KeyInputItem.cs" />
+    <Compile Include="Knot3.Game\Widgets\Lines.cs" />
+    <Compile Include="Knot3.Game\Widgets\Menu.cs" />
+    <Compile Include="Knot3.Game\Widgets\MenuEntry.cs" />
+    <Compile Include="Knot3.Game\Widgets\MenuItem.cs" />
+    <Compile Include="Knot3.Game\Widgets\SliderItem.cs" />
+    <Compile Include="Knot3.Game\Widgets\TextBox.cs" />
+    <Compile Include="Knot3.Game\Widgets\TextInputDialog.cs" />
+    <Compile Include="Knot3.Game\Widgets\TextItem.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ProjectExtensions>
+    <MonoDevelop>
+      <Properties>
+        <Policies>
+          <DotNetNamingPolicy DirectoryNamespaceAssociation="Hierarchical" ResourceNamePolicy="FileFormatDefault" />
+          <TextStylePolicy inheritsSet="null" scope="text/x-csharp" />
+          <CSharpFormattingPolicy PropertyBraceStyle="NextLine" ElseNewLinePlacement="NewLine" CatchNewLinePlacement="NewLine" FinallyNewLinePlacement="NewLine" WhileNewLinePlacement="NewLine" inheritsSet="Mono" inheritsScope="text/x-csharp" scope="text/x-csharp" />
+          <TextStylePolicy FileWidth="120" TabsToSpaces="False" inheritsSet="VisualStudio" inheritsScope="text/plain" scope="text/plain" />
+        </Policies>
+      </Properties>
+    </MonoDevelop>
+  </ProjectExtensions>
+  <ItemGroup>
+    <ProjectReference Include="..\framework\Knot3.Framework-MG.csproj">
+      <Project>{C2868E88-721C-40EB-863B-E9272F95DAF1}</Project>
+      <Name>Knot3.Framework-MG</Name>
+    </ProjectReference>
+    <ProjectReference Include="Content\Knot3.Content-MG.csproj">
+      <Project>{0EFA2EF3-DEB0-44E3-BE88-722866A5D511}</Project>
+      <Name>Knot3.Content-MG</Name>
+    </ProjectReference>
+  </ItemGroup>
+</Project>

@@ -34,16 +34,22 @@ using System.Linq;
 
 using NUnit.Framework;
 
-using Knot3.Audio;
-using Knot3.Core;
-using Knot3.Data;
-using Knot3.GameObjects;
-using Knot3.MockObjects;
-using Knot3.RenderEffects;
+using Knot3.Framework.Audio;
+using Knot3.Framework.Core;
+using Knot3.Framework.Input;
+using Knot3.Framework.Output;
+using Knot3.Framework.Platform;
+using Knot3.Framework.Utilities;
+
+using Knot3.Game.Core;
+using Knot3.Game.Data;
+using Knot3.Game.GameObjects;
+using Knot3.Game.MockObjects;
+using Knot3.Game.RenderEffects;
 
 #endregion
 
-namespace Knot3.UnitTests.Audio
+namespace Knot3.Game.UnitTests.Audio
 {
 	[TestFixture]
 	public class Audio_Tests

@@ -36,8 +36,8 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-using Knot3.Data;
-using Knot3.MockObjects;
+using Knot3.Game.Data;
+using Knot3.Game.MockObjects;
 
 #endregion
 

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C2868E88-721C-40EB-863B-E9272F95DAF1}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Knot3.Framework</RootNamespace>
+    <AssemblyName>Knot3.Framework</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="Ionic.Zip">
+      <HintPath>..\lib\Ionic.Zip.dll</HintPath>
+    </Reference>
+    <Reference Include="OggSharp">
+      <HintPath>..\lib\OggSharp.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="Knot3.Framework\Audio\AudioManager.cs" />
+    <Compile Include="Knot3.Framework\Audio\IAudioFile.cs" />
+    <Compile Include="Knot3.Framework\Audio\IPlaylist.cs" />
+    <Compile Include="Knot3.Framework\Audio\LoopPlaylist.cs" />
+    <Compile Include="Knot3.Framework\Audio\OggVorbisFile.cs" />
+    <Compile Include="Knot3.Framework\Audio\Sound.cs" />
+    <Compile Include="Knot3.Framework\Audio\SoundEffectFile.cs" />
+    <Compile Include="Knot3.Framework\Core\Angles3.cs" />
+    <Compile Include="Knot3.Framework\Core\BooleanOptionInfo.cs" />
+    <Compile Include="Knot3.Framework\Core\Bounds.cs" />
+    <Compile Include="Knot3.Framework\Core\Camera.cs" />
+    <Compile Include="Knot3.Framework\Core\ConfigFile.cs" />
+    <Compile Include="Knot3.Framework\Core\DisplayLayer.cs" />
+    <Compile Include="Knot3.Framework\Core\DistinctOptionInfo.cs" />
+    <Compile Include="Knot3.Framework\Core\DrawableGameScreenComponent.cs" />
+    <Compile Include="Knot3.Framework\Core\FloatOptionInfo.cs" />
+    <Compile Include="Knot3.Framework\Core\GameClass.cs" />
+    <Compile Include="Knot3.Framework\Core\GameScreen.cs" />
+    <Compile Include="Knot3.Framework\Core\GameScreenComponent.cs" />
+    <Compile Include="Knot3.Framework\Core\IGameScreen.cs" />
+    <Compile Include="Knot3.Framework\Core\IGameScreenComponent.cs" />
+    <Compile Include="Knot3.Framework\Core\KeyOptionInfo.cs" />
+    <Compile Include="Knot3.Framework\Core\Localizer.cs" />
+    <Compile Include="Knot3.Framework\Core\OptionInfo.cs" />
+    <Compile Include="Knot3.Framework\Core\Options.cs" />
+    <Compile Include="Knot3.Framework\Core\ScreenPoint.cs" />
+    <Compile Include="Knot3.Framework\Core\World.cs" />
+    <Compile Include="Knot3.Framework\Development\Profiler.cs" />
+    <Compile Include="Knot3.Framework\Effects\IRenderEffect.cs" />
+    <Compile Include="Knot3.Framework\Effects\IRenderEffectStack.cs" />
+    <Compile Include="Knot3.Framework\Effects\RenderEffect.cs" />
+    <Compile Include="Knot3.Framework\Effects\RenderEffectLibrary.cs" />
+    <Compile Include="Knot3.Framework\Effects\RenderEffectStack.cs" />
+    <Compile Include="Knot3.Framework\Effects\StandardEffect.cs" />
+    <Compile Include="Knot3.Framework\GameObjects\GameModel.cs" />
+    <Compile Include="Knot3.Framework\GameObjects\GameModelInfo.cs" />
+    <Compile Include="Knot3.Framework\GameObjects\GameObjectDistance.cs" />
+    <Compile Include="Knot3.Framework\GameObjects\GameObjectInfo.cs" />
+    <Compile Include="Knot3.Framework\GameObjects\IGameObject.cs" />
+    <Compile Include="Knot3.Framework\GameObjects\ModelColoring.cs" />
+    <Compile Include="Knot3.Framework\Input\ClickState.cs" />
+    <Compile Include="Knot3.Framework\Input\IKeyEventListener.cs" />
+    <Compile Include="Knot3.Framework\Input\IMouseClickEventListener.cs" />
+    <Compile Include="Knot3.Framework\Input\IMouseMoveEventListener.cs" />
+    <Compile Include="Knot3.Framework\Input\IMouseScrollEventListener.cs" />
+    <Compile Include="Knot3.Framework\Input\InputAction.cs" />
+    <Compile Include="Knot3.Framework\Input\InputManager.cs" />
+    <Compile Include="Knot3.Framework\Input\KeyEvent.cs" />
+    <Compile Include="Knot3.Framework\Input\MousePointer.cs" />
+    <Compile Include="Knot3.Framework\Input\PlayerActions.cs" />
+    <Compile Include="Knot3.Framework\Input\WidgetKeyHandler.cs" />
+    <Compile Include="Knot3.Framework\Input\WidgetMouseHandler.cs" />
+    <Compile Include="Knot3.Framework\Output\Log.cs" />
+    <Compile Include="Knot3.Framework\Platform\SystemInfo-MG.cs" />
+    <Compile Include="Knot3.Framework\Platform\SystemInfo.cs" />
+    <Compile Include="Knot3.Framework\Utilities\BoundingCylinder.cs" />
+    <Compile Include="Knot3.Framework\Utilities\ColorHelper.cs" />
+    <Compile Include="Knot3.Framework\Utilities\DictionaryHelper.cs" />
+    <Compile Include="Knot3.Framework\Utilities\EnumHelper.cs" />
+    <Compile Include="Knot3.Framework\Utilities\FileUtility.cs" />
+    <Compile Include="Knot3.Framework\Utilities\FrustumHelper.cs" />
+    <Compile Include="Knot3.Framework\Utilities\IniFile.cs" />
+    <Compile Include="Knot3.Framework\Utilities\InputHelper.cs" />
+    <Compile Include="Knot3.Framework\Utilities\ModelHelper.cs" />
+    <Compile Include="Knot3.Framework\Utilities\ShaderHelper.cs" />
+    <Compile Include="Knot3.Framework\Utilities\TextHelper.cs" />
+    <Compile Include="Knot3.Framework\Utilities\TextureHelper.cs" />
+    <Compile Include="Knot3.Framework\Utilities\VectorHelper.cs" />
+    <Compile Include="Knot3.Framework\Widgets\Design.cs" />
+    <Compile Include="Knot3.Framework\Widgets\HorizontalAlignment.cs" />
+    <Compile Include="Knot3.Framework\Widgets\VerticalAlignment.cs" />
+    <Compile Include="Knot3.Framework\Widgets\Widget.cs" />
+    <Compile Include="Knot3.Framework\Widgets\WidgetState.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="OpenTK, Version=1.1.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="MonoGame.Framework, Version=3.1.2.0, Culture=neutral">
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Knot3.Framework\Development\" />
+    <Folder Include="Knot3.Framework\GameObjects\" />
+    <Folder Include="Knot3.Framework\Widgets\" />
+    <Folder Include="Knot3.Framework\Effects\" />
+    <Folder Include="Knot3.Framework\Output\" />
+  </ItemGroup>
+</Project>
