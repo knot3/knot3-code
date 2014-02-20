@@ -128,7 +128,7 @@
     <Compile Include="..\Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Target Name="AfterBuild">
-    <Copy DestinationFiles="@(None->'$(ContentDest)\%(RecursiveDir)\%(Filename)%(Extension)')" SourceFiles="@(None)" SkipUnchangedFiles="true" />
+    <Copy DestinationFolder="$(ContentDest)\%(None.RelativeDir)" SourceFiles="@(None)" SkipUnchangedFiles="true" />
   </Target>
   <PropertyGroup>
     <ContentDest>..\bin\$(Configuration)\test123</ContentDest>
