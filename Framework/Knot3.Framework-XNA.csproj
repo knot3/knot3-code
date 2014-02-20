@@ -195,6 +195,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="...\knot3.ico" />
+    <Content Include="..\knot3.ico" />
   </ItemGroup>
 </Project>
