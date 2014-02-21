@@ -171,7 +171,7 @@ namespace Knot3.Framework.Input
 
 				if (notify) {
 					if (InputManager.CurrentMouseState.LeftButton == ButtonState.Pressed
-					    && InputManager.PreviousMouseState.LeftButton != InputManager.CurrentMouseState.LeftButton) {
+					        && InputManager.PreviousMouseState.LeftButton != InputManager.CurrentMouseState.LeftButton) {
 						component.OnLeftMove (
 						    previousPosition: relativePositionPrevious,
 						    currentPosition: relativePositionCurrent,
