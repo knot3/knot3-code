@@ -83,7 +83,7 @@ namespace Knot3.Game.GameObjects
 		: base (screen, DisplayLayer.None)
 		{
 			World = world;
-			lastMousePosition = ScreenPoint.Zero(screen);
+			lastMousePosition = ScreenPoint.Zero (screen);
 		}
 
 		#endregion

@@ -26,6 +26,7 @@
 #endregion
 
 #region Using
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -106,17 +107,17 @@ namespace Knot3.Game.Core
 				    name: "celshader",
 				    displayName: "Cel Shading",
 				    createInstance: (screen) => new CelShadingEffect (screen)
-			),
+				),
 				new RenderEffectLibrary.EffectFactory (
 				    name: "opaque",
 				    displayName: "opaque",
 				    createInstance: (screen) => new OpaqueEffect (screen)
-			),
+				),
 				new RenderEffectLibrary.EffectFactory (
 				    name: "z-nebula",
 				    displayName: "Z-Nebula",
 				    createInstance: (screen) => new Z_Nebula (screen)
-			)
+				)
 			};
 			RenderEffectLibrary.EffectLibrary.AddRange (effects);
 

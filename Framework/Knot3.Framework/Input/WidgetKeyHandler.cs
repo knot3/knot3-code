@@ -78,7 +78,7 @@ namespace Knot3.Framework.Input
 				foreach (Keys key in component.ValidKeys) {
 					// Log.Debug ("receiver=",receiver,",validkeys=",key,", receiver.IsKeyEventEnabled=",((dynamic)receiver).IsVisible);
 
-					if (Screen.InputManager.IsDown(key)) {
+					if (Screen.InputManager.IsDown (key)) {
 						keysInvolved.Add (key);
 						keyEvent = KeyEvent.KeyDown;
 					}

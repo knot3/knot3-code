@@ -340,7 +340,7 @@ namespace Knot3.Game.Screens
 			if (state == ChallengeModeState.Running || state == ChallengeModeState.Start) {
 				ChallengeModeState oldState = state;
 				// wenn zur Zeit kein Dialog vorhanden ist, und Escape gedrückt wurde...
-				if (InputManager.IsDown(Keys.Escape) && !returnFromPause) {
+				if (InputManager.IsDown (Keys.Escape) && !returnFromPause) {
 					// erstelle einen neuen Pausedialog
 					playerKnotInput.IsEnabled = false;
 					challengeKnotInput.IsEnabled = false;

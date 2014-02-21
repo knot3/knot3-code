@@ -80,7 +80,7 @@ namespace Knot3.Game.Input
 		public void OnKeyEvent (List<Keys> key, KeyEvent keyEvent, GameTime time)
 		{
 			// Soll sich die Farbe geändert wurde?
-			if (Knot.SelectedEdges.Any () && Screen.InputManager.IsDown(Keys.C)) {
+			if (Knot.SelectedEdges.Any () && Screen.InputManager.IsDown (Keys.C)) {
 				Color currentColor = Knot.SelectedEdges.ElementAt (0);
 				ColorPickDialog picker = new ColorPickDialog (
 				    screen: Screen,

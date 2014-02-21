@@ -26,6 +26,7 @@
 #endregion
 
 #region Using
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -112,7 +113,7 @@ namespace Knot3.Framework.Utilities
 			}
 
 			switch (keyPressed) {
-			//Decimal keys
+				//Decimal keys
 			case Keys.D0:
 				if (shift) {
 					key = ')';
@@ -194,7 +195,7 @@ namespace Knot3.Framework.Utilities
 				}
 				return true;
 
-			//Decimal numpad keys
+				//Decimal numpad keys
 			case Keys.NumPad0:
 				key = '0';
 				return true;
@@ -226,7 +227,7 @@ namespace Knot3.Framework.Utilities
 				key = '9';
 				return true;
 
-			//Special keys
+				//Special keys
 			case Keys.OemTilde:
 				if (shift) {
 					key = '~';
@@ -336,6 +337,6 @@ namespace Knot3.Framework.Utilities
 			Keys.OemPipe, Keys.OemPeriod, Keys.OemOpenBrackets, Keys.OemCloseBrackets, Keys.OemMinus,
 			Keys.OemComma, Keys.Space, Keys.Back
 		}
-			);
+		);
 	}
 }

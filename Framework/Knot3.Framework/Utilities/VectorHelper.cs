@@ -273,7 +273,6 @@ namespace Knot3.Framework.Utilities
 			return new ScreenPoint (screen, (float)mouse.X / (float)screen.Viewport.Width, (float)mouse.Y / (float)screen.Viewport.Height);
 		}
 
-
 		public static ScreenPoint Center (this Viewport viewport, IGameScreen screen)
 		{
 			Vector2 center = new Vector2 (viewport.X + viewport.Width / 2, viewport.Y + viewport.Height / 2);

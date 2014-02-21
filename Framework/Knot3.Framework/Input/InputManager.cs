@@ -152,7 +152,7 @@ namespace Knot3.Framework.Input
 				bool mouseMoved;
 				if (CurrentMouseState != PreviousMouseState) {
 					// mouse movements
-					Vector2 mouseMove = (CurrentMousePosition - PreviousClickMouseState.ToScreenPoint(Screen)).AbsoluteVector;
+					Vector2 mouseMove = (CurrentMousePosition - PreviousClickMouseState.ToScreenPoint (Screen)).AbsoluteVector;
 					mouseMoved = mouseMove.Length () > 3;
 				}
 				else {

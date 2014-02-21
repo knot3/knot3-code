@@ -26,6 +26,7 @@
 #endregion
 
 #region Using
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -91,9 +92,9 @@ namespace Knot3.Framework.Input
 				spriteBatch.Begin ();
 
 				if (Screen.InputManager.GrabMouseMovement || Screen.InputManager.CurrentInputAction == InputAction.CameraTargetMove
-					|| (Screen.InputManager.CurrentInputAction == InputAction.ArcballMove
-					&& (Screen.InputManager.CurrentMouseState.LeftButton == ButtonState.Pressed
-					|| Screen.InputManager.CurrentMouseState.RightButton == ButtonState.Pressed))) {
+				        || (Screen.InputManager.CurrentInputAction == InputAction.ArcballMove
+				            && (Screen.InputManager.CurrentMouseState.LeftButton == ButtonState.Pressed
+				                || Screen.InputManager.CurrentMouseState.RightButton == ButtonState.Pressed))) {
 					//spriteBatch.Draw (cursorTex, Screen.Device.Viewport.Center (), Color.White);
 				}
 				else {
