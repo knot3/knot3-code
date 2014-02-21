@@ -259,6 +259,10 @@ namespace Knot3.Framework.Widgets
 		{
 		}
 
+		public void OnNoMove (ScreenPoint currentPosition, GameTime time)
+		{
+		}
+
 		#endregion
 	}
 }

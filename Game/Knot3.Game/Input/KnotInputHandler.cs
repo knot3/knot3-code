@@ -26,7 +26,6 @@
 #endregion
 
 #region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -242,6 +241,10 @@ namespace Knot3.Game.Input
 			ResetMousePosition ();
 		}
 
+		public void OnNoMove (ScreenPoint currentPosition, GameTime time)
+		{
+		}
+
 		private void UpdateMouse (ScreenPoint previousPosition, ScreenPoint currentPosition, ScreenPoint _mouseMove, GameTime time)
 		{
 			// wurde im letzten Frame in den oder aus dem Vollbildmodus gewechselt?
@@ -341,28 +344,40 @@ namespace Knot3.Game.Input
 			}
 		}
 
-		public void OnScroll (int scrollWheelValue,GameTime time)
+		public void OnScroll (int scrollWheelValue, GameTime time)
 		{
 			// scroll wheel zoom
 			if (InputManager.CurrentMouseState.ScrollWheelValue < InputManager.PreviousMouseState.ScrollWheelValue) {
 				// camera.FoV += 1;
-				zoom (8,time);
+				zoom (8, time);
 			}
 			else if (InputManager.CurrentMouseState.ScrollWheelValue > InputManager.PreviousMouseState.ScrollWheelValue) {
 				// camera.FoV -= 1
 
-				zoom (-8,time);
+				zoom (-8, time);
 			}
 			world.Redraw = true;
 		}
 
 		private void ResetMousePosition ()
 		{
-			if (InputManager.CurrentMouseState != InputManager.PreviousMouseState) {
-				if (Screen.Input.GrabMouseMovement || (Screen.Input.CurrentInputAction == InputAction.ArcballMove)) {
-					Mouse.SetPosition (world.Viewport.X + world.Viewport.Width / 2,
-					                   world.Viewport.Y + world.Viewport.Height / 2);
-					InputManager.CurrentMouseState = Mouse.GetState ();
+			if (Screen.Input.GrabMouseMovement || (Screen.Input.CurrentInputAction == InputAction.ArcballMove)) {
+				Point center = new Point (world.Viewport.X + world.Viewport.Width / 2,
+				                         world.Viewport.Y + world.Viewport.Height / 2);
+				if (InputManager.CurrentMouseState.ToPoint () != center) {
+					Mouse.SetPosition (center.X, center.Y);
+					MouseState state = InputManager.CurrentMouseState;
+					state = new MouseState (
+						center.X,
+						center.Y,
+						state.ScrollWheelValue,
+						state.LeftButton,
+						state.MiddleButton,
+						state.RightButton,
+						state.XButton1,
+						state.XButton2
+					);
+					InputManager.CurrentMouseState = state;
 				}
 			}
 		}
@@ -454,7 +469,7 @@ namespace Knot3.Game.Input
 				Vector3 targetDirection = camera.PositionToTargetDirection;
 				Vector3 up = camera.UpVector;
 				camera.Position = camera.Target
-				                  + (camera.Position - camera.Target).ArcBallMove (move, up, targetDirection);
+					+ (camera.Position - camera.Target).ArcBallMove (move, up, targetDirection);
 				camera.Position = camera.Position.SetDistanceTo (camera.Target, oldDistance);
 			}
 		}
@@ -466,7 +481,7 @@ namespace Knot3.Game.Input
 				// selektiere das Objekt, das der Mausposition am nächsten ist!
 				world.SelectedObject = world.FindNearestObjects (
 				                           nearTo: InputManager.CurrentMouseState.ToVector2 ()
-				                       ).ElementAt (0);
+				).ElementAt (0);
 			}
 
 			if (move.Length () > 0) {
@@ -479,9 +494,9 @@ namespace Knot3.Game.Input
 				Vector3 targetDirection = Vector3.Normalize (camera.ArcballTarget - camera.Position);
 				Vector3 up = camera.UpVector;
 				camera.Position = camera.ArcballTarget
-				                  + (camera.Position - camera.ArcballTarget).ArcBallMove (move, up, targetDirection);
+					+ (camera.Position - camera.ArcballTarget).ArcBallMove (move, up, targetDirection);
 				camera.Target = camera.ArcballTarget
-				                + (camera.Target - camera.ArcballTarget).ArcBallMove (move, up, targetDirection);
+					+ (camera.Target - camera.ArcballTarget).ArcBallMove (move, up, targetDirection);
 				camera.Position = camera.Position.SetDistanceTo (camera.ArcballTarget, oldPositionDistance);
 				camera.Target = camera.Target.SetDistanceTo (camera.Position, oldTargetDistance);
 			}
@@ -492,7 +507,7 @@ namespace Knot3.Game.Input
 		/// </summary>
 		private void zoom (int value, GameTime time)
 		{
-			if (camera.PositionToTargetDistance <= 80 && value<0) {
+			if (camera.PositionToTargetDistance <= 80 && value < 0) {
 				camera.PositionToTargetDistance = 40;
 			}
 			else {

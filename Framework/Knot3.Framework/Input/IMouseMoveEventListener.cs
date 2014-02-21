@@ -84,6 +84,8 @@ namespace Knot3.Framework.Input
 
 		void OnMove (ScreenPoint previousPosition, ScreenPoint currentPosition, ScreenPoint move, GameTime time);
 
+		void OnNoMove (ScreenPoint currentPosition, GameTime time);
+
 		#endregion
 	}
 }

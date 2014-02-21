@@ -169,10 +169,9 @@ namespace Knot3.Framework.Input
 
 				//Log.Debug ("notify=",notify,", component=",component,", cntains=",(lastLeftClickPosition != null ? bounds.Contains (lastLeftClickPosition),"" : ""),",bounds=",bounds,",precious=",previous);
 
-				if (notify && (relativePositionMove
-				               || InputManager.PreviousMouseState.LeftButton != InputManager.CurrentMouseState.LeftButton
-				               || InputManager.PreviousMouseState.RightButton != InputManager.CurrentMouseState.RightButton)) {
-					if (InputManager.CurrentMouseState.LeftButton == ButtonState.Pressed) {
+				if (notify) {
+					if (InputManager.CurrentMouseState.LeftButton == ButtonState.Pressed
+					    && InputManager.PreviousMouseState.LeftButton != InputManager.CurrentMouseState.LeftButton) {
 						component.OnLeftMove (
 						    previousPosition: relativePositionPrevious,
 						    currentPosition: relativePositionCurrent,
@@ -180,7 +179,8 @@ namespace Knot3.Framework.Input
 						    time: time
 						);
 					}
-					else if (InputManager.CurrentMouseState.RightButton == ButtonState.Pressed) {
+					else if (InputManager.CurrentMouseState.RightButton == ButtonState.Pressed
+					         && InputManager.PreviousMouseState.RightButton != InputManager.CurrentMouseState.RightButton) {
 						component.OnRightMove (
 						    previousPosition: relativePositionPrevious,
 						    currentPosition: relativePositionCurrent,
@@ -188,11 +188,17 @@ namespace Knot3.Framework.Input
 						    time: time
 						);
 					}
-					else {
+					else if (relativePositionMove) {
 						component.OnMove (
 						    previousPosition: relativePositionPrevious,
 						    currentPosition: relativePositionCurrent,
 						    move: relativePositionMove,
+						    time: time
+						);
+					}
+					else {
+						component.OnNoMove (
+						    currentPosition: relativePositionCurrent,
 						    time: time
 						);
 					}
