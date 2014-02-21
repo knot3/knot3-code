@@ -9,13 +9,10 @@ notifications:
     on_success: change
     on_failure: always
 language: c
-install:
-  - sudo apt-get install mono-devel mono-dmcs nunit-console libopenal1 libsdl2-2.0-0 libsdl2-mixer-2.0-0 libsdl2-image-2.0-0
-before_install:
-  - wget https://github.com/pse-knot/MonoGame/releases/download/v3.1.2/MonoGame-Linux-20130126.zip
-  - mkdir -p src/bin/Debug/
-  - unzip -d src/bin/Debug/ MonoGame-Linux-20130126.zip
-  - mkdir -p tests/bin/Debug/
-  - unzip -d tests/bin/Debug/ MonoGame-Linux-20130126.zip
+  - make dep || true
+  - wget http://de.archive.ubuntu.com/ubuntu/pool/universe/libs/libsdl2/libsdl2-2.0-0_2.0.0+dfsg1-2_amd64.deb
+  - wget http://de.archive.ubuntu.com/ubuntu/pool/universe/libs/libsdl2-mixer/libsdl2-mixer-2.0-0_2.0.0+dfsg1-2_amd64.deb
+  - wget http://de.archive.ubuntu.com/ubuntu/pool/universe/libs/libsdl2-image/libsdl2-image-2.0-0_2.0.0+dfsg1-2_amd64.deb
+  - dpkg -i libsdl*.deb
 script:
   - make test
