@@ -147,7 +147,7 @@ namespace Knot3.Framework.Widgets
 				spriteBatch.DrawColoredRectangle (BackgroundColor, Bounds);
 
 				if (BackgroundTexture != null) {
-					spriteBatch.Draw (BackgroundTexture, Bounds, Color.White);
+                    spriteBatch.Draw(BackgroundTexture, Bounds, ForegroundColor * (IsEnabled ? 1f : 0.5f));
 				}
 
 				// lade die Schrift
