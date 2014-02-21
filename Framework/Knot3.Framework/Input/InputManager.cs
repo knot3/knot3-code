@@ -190,20 +190,20 @@ namespace Knot3.Framework.Input
 			}
 		}
 
-		public void ResetMouse (ScreenPoint point)
+		public void ResetMouse (ScreenPoint position)
 		{
-			Point absolute = point.Absolute;
-			Mouse.SetPosition (absolute.X, absolute.Y);
-			MouseState state = CurrentMouseState;
-			state = new MouseState (
-			    absolute.X,
-			    absolute.Y,
-			    state.ScrollWheelValue,
-			    state.LeftButton,
-			    state.MiddleButton,
-			    state.RightButton,
-			    state.XButton1,
-			    state.XButton2
+			Point absolutePosition = position.Absolute;
+			MouseState oldstate = CurrentMouseState;
+			Mouse.SetPosition (absolutePosition.X, absolutePosition.Y);
+			MouseState state = new MouseState (
+			    absolutePosition.X,
+			    absolutePosition.Y,
+			    oldstate.ScrollWheelValue,
+			    oldstate.LeftButton,
+			    oldstate.MiddleButton,
+			    oldstate.RightButton,
+			    oldstate.XButton1,
+			    oldstate.XButton2
 			);
 			CurrentMouseState = state;
 		}
