@@ -10,9 +10,5 @@ notifications:
     on_failure: always
 language: c
 script:
-  - make dep || true
-  - wget http://de.archive.ubuntu.com/ubuntu/pool/universe/libs/libsdl2/libsdl2-2.0-0_2.0.0+dfsg1-2_amd64.deb
-  - wget http://de.archive.ubuntu.com/ubuntu/pool/universe/libs/libsdl2-mixer/libsdl2-mixer-2.0-0_2.0.0+dfsg1-2_amd64.deb
-  - wget http://de.archive.ubuntu.com/ubuntu/pool/universe/libs/libsdl2-image/libsdl2-image-2.0-0_2.0.0+dfsg1-2_amd64.deb
-  - ldconfig -p | grep -i libsdl2 || sudo dpkg -i libsdl*.deb
+  - make dep-ubuntu-precise
   - make test

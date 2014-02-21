@@ -97,5 +97,16 @@ package-windows: build-windows
 	$(CP) README.md $(DESTDIR)/README
 	$(RM) $(DESTDIR)/*.pdb
 
-dep:
-	sudo apt-get install mono-devel mono-dmcs nunit-console libopenal1 libsdl2-2.0-0 libsdl2-mixer-2.0-0 libsdl2-image-2.0-0
+dep-ubuntu-saucy:
+	sudo apt-get -q -y install mono-devel mono-dmcs nunit-console libopenal1
+	sudo apt-get -q -y install libsdl2-2.0-0 libsdl2-mixer-2.0-0 libsdl2-image-2.0-0
+
+dep-ubuntu-precise:
+	sudo apt-get -q -y install mono-devel mono-dmcs nunit-console libopenal1
+	wget `curl http://de.archive.ubuntu.com/ubuntu/dists/saucy/universe/binary-amd64/Packages.gz 2>/dev/null | zcat | grep Filename | grep libsdl2 | grep -v -- -dbg | grep -v -- -dev | sed 's@Filename: @http://de.archive.ubuntu.com/ubuntu/@gm'` ; \
+	sudo dpkg -i *.deb ; \
+	sudo apt-get -q -y -f install
+
+dep-ubuntu: dep-ubuntu-saucy
+
+dep: dep-ubuntu
