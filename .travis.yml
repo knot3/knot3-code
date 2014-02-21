@@ -10,7 +10,7 @@ notifications:
     on_failure: always
 language: c
 install:
-  - sudo apt-get install mono-devel mono-dmcs nunit-console libopenal1
+  - sudo apt-get install mono-devel mono-dmcs nunit-console libopenal1 libsdl2-2.0-0 libsdl2-mixer-2.0-0 libsdl2-image-2.0-0
 before_install:
   - wget https://github.com/pse-knot/MonoGame/releases/download/v3.1.2/MonoGame-Linux-20130126.zip
   - mkdir -p src/bin/Debug/
