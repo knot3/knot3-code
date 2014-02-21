@@ -26,7 +26,6 @@
 #endregion
 
 #region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -150,7 +149,7 @@ namespace Knot3.Framework.Utilities
 			           MathHelper.Clamp (v.X, lower.X, higher.X),
 			           MathHelper.Clamp (v.Y, lower.Y, higher.Y),
 			           MathHelper.Clamp (v.Z, lower.Z, higher.Z)
-			       );
+			);
 		}
 
 		public static Vector3 Clamp (this Vector3 v, int minLength, int maxLength)
@@ -290,24 +289,16 @@ namespace Knot3.Framework.Utilities
 			return new ScreenPoint (screen, vector);
 		}
 
-		public static Point ToPoint (this MouseState mouse)
-		{
-			return new Point (mouse.X, mouse.Y);
-		}
-
 		public static Vector2 ToVector2 (this Viewport viewport)
 		{
 			return new Vector2 (viewport.Width, viewport.Height);
 		}
 
-		public static Vector2 Center (this Viewport viewport)
+		public static ScreenPoint Center (this Viewport viewport, IGameScreen screen)
 		{
-			return new Vector2 (viewport.Width, viewport.Height) / 2;
-		}
-
-		public static float Length (this Point p)
-		{
-			return p.ToVector2 ().Length ();
+			Vector2 center = new Vector2 (viewport.X + viewport.Width / 2,
+			            viewport.Y + viewport.Height / 2);
+			return new ScreenPoint (screen, center / screen.Viewport.ToVector2 ());
 		}
 
 		public static Vector2 ToVector2 (this Point p)
@@ -406,12 +397,12 @@ namespace Knot3.Framework.Utilities
 		public static string Print (this Vector3 v)
 		{
 			return   "("
-			         + v.X.ToString ()
-			         + ","
-			         + v.Y.ToString ()
-			         + ","
-			         + v.Z.ToString ()
-			         + ")";
+				+ v.X.ToString ()
+				+ ","
+				+ v.Y.ToString ()
+				+ ","
+				+ v.Z.ToString ()
+				+ ")";
 		}
 
 		public static BoundingSphere[] CylinderBounds (float length, float radius, Vector3 direction, Vector3 position)

@@ -26,7 +26,6 @@
 #endregion
 
 #region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -132,6 +131,16 @@ namespace Knot3.Framework.Core
 		{
 			Screen = other.Screen;
 			RelativeFunc = other.RelativeFunc;
+		}
+
+		public static ScreenPoint FromAbsolute (float x, float y, IGameScreen screen)
+		{
+			return new ScreenPoint (screen, x / screen.Viewport.Height, x / screen.Viewport.Width);
+		}
+
+		public static ScreenPoint FromAbsolute (Point point, IGameScreen screen)
+		{
+			return FromAbsolute ((float)point.X, (float)point.Y, screen);
 		}
 
 		public static ScreenPoint Zero (IGameScreen screen)

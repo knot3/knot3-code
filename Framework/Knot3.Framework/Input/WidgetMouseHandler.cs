@@ -79,11 +79,11 @@ namespace Knot3.Framework.Input
 			// Mausklicks
 			foreach (IMouseClickEventListener component in Screen.Game.Components.OfType<IMouseClickEventListener>()
 			         .Where (c => c.IsMouseClickEventEnabled).OrderByDescending (c => c.Index.Index)) {
-				Rectangle bounds = component.MouseClickBounds;
-				bool hovered = bounds.Contains (InputManager.CurrentMouseState.ToPoint ());
+				Bounds bounds = component.MouseClickBounds;
+				bool hovered = bounds.Contains (InputManager.CurrentMouseState.ToScreenPoint (Screen));
 				component.SetHovered (hovered, time);
 				if (hovered) {
-					Vector2 relativePosition = InputManager.CurrentMouseState.ToVector2 () - bounds.Location.ToVector2 ();
+					ScreenPoint relativePosition = InputManager.CurrentMouseState.ToScreenPoint(Screen) - bounds.Position;
 					if (InputManager.LeftMouseButton != ClickState.None) {
 						component.OnLeftClick (relativePosition, InputManager.LeftMouseButton, time);
 						break;
@@ -100,8 +100,8 @@ namespace Knot3.Framework.Input
 		{
 			foreach (IMouseScrollEventListener component in Screen.Game.Components.OfType<IMouseScrollEventListener>()
 			         .Where (c => c.IsMouseScrollEventEnabled).OrderByDescending (c => c.Index.Index)) {
-				Rectangle bounds = component.MouseScrollBounds;
-				bool hovered = bounds.Contains (InputManager.CurrentMouseState.ToPoint ());
+				Bounds bounds = component.MouseScrollBounds;
+				bool hovered = bounds.Contains (InputManager.CurrentMouseState.ToScreenPoint (Screen));
 
 				if (hovered) {
 					if (InputManager.CurrentMouseState.ScrollWheelValue > InputManager.PreviousMouseState.ScrollWheelValue) {

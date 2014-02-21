@@ -72,7 +72,7 @@ namespace Knot3.Framework.Widgets
 		/// </summary>
 		public virtual bool IsVisible
 		{
-			get { return _isVisible && Bounds.Size.Absolute.Length () > 0; }
+			get { return _isVisible && !Bounds.Size.IsEmpty; }
 			set { _isVisible = value; }
 		}
 

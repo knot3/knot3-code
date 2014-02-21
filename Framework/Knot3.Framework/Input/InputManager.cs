@@ -26,7 +26,6 @@
 #endregion
 
 #region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -72,22 +71,32 @@ namespace Knot3.Framework.Input
 		public static ClickState LeftMouseButton { get; private set; }
 
 		/// <summary>
-		/// Enthält den Mauszustand von XNA zum aktuellen Frames.
+		/// Enthält den Mauszustand von XNA zum aktuellen Frame.
 		/// </summary>
 		public static MouseState CurrentMouseState { get; set; }
 
 		/// <summary>
-		/// Enthält den Tastaturzustand von XNA zum aktuellen Frames.
+		/// Enthält die Mausposition von XNA zum aktuellen Frame.
+		/// </summary>
+		public ScreenPoint CurrentMousePosition { get { return CurrentMouseState.ToScreenPoint(Screen); } }
+
+		/// <summary>
+		/// Enthält den Tastaturzustand von XNA zum aktuellen Frame.
 		/// </summary>
 		public static KeyboardState CurrentKeyboardState { get; private set; }
 
 		/// <summary>
-		/// Enthält den Mauszustand von XNA zum vorherigen Frames.
+		/// Enthält den Mauszustand von XNA zum vorherigen Frame.
 		/// </summary>
 		public static MouseState PreviousMouseState { get; private set; }
 
 		/// <summary>
-		/// Enthält den Tastaturzustand von XNA zum vorherigen Frames.
+		/// Enthält die Mausposition von XNA zum vorherigen Frame.
+		/// </summary>
+		public ScreenPoint PreviousMousePosition { get { return PreviousMouseState.ToScreenPoint(Screen); } }
+
+		/// <summary>
+		/// Enthält den Tastaturzustand von XNA zum vorherigen Frame.
 		/// </summary>
 		public static KeyboardState PreviousKeyboardState { get; private set; }
 
@@ -178,6 +187,24 @@ namespace Knot3.Framework.Input
 				Screen.Game.IsFullScreen = !Screen.Game.IsFullScreen;
 				FullscreenToggled = true;
 			}
+		}
+
+		public static void ResetMouse (ScreenPoint point)
+		{
+			Point absolute = point.Absolute;
+			Mouse.SetPosition (absolute.X, absolute.Y);
+			MouseState state = InputManager.CurrentMouseState;
+			state = new MouseState (
+			    absolute.X,
+			    absolute.Y,
+			    state.ScrollWheelValue,
+			    state.LeftButton,
+			    state.MiddleButton,
+			    state.RightButton,
+			    state.XButton1,
+			    state.XButton2
+			);
+			InputManager.CurrentMouseState = state;
 		}
 
 		#endregion
