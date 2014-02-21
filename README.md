@@ -14,7 +14,8 @@ A debian repository is available. You need to include it in your sources.list fi
 
 ###Debian / Ubuntu / SteamOS (source)
 
-If you are using Ubuntu 13.10 (saucy) or later or your debian derivate has packages for SDL2, run the following command to install all build and runtime dependencies:
+If you are using Ubuntu 13.10 (saucy) or later or Debian testing/unstable or if your debian derivate has packages for SDL2 (`libsdl2-2.0-0`),
+run the following command to install all build and runtime dependencies:
 
     make dep-ubuntu
 

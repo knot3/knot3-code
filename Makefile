@@ -103,7 +103,7 @@ dep-ubuntu-saucy:
 
 dep-ubuntu-precise:
 	sudo apt-get -q -y install mono-devel mono-dmcs nunit-console libopenal1
-	wget `curl http://de.archive.ubuntu.com/ubuntu/dists/saucy/universe/binary-amd64/Packages.gz 2>/dev/null | zcat | grep Filename | egrep 'libsdl2|libflac8|libfluidsynth1|libmad0|libmodplug1' | grep -v -- -dbg | grep -v -- -dev | sed 's@Filename: @http://de.archive.ubuntu.com/ubuntu/@gm'` ; \
+	wget `curl http://de.archive.ubuntu.com/ubuntu/dists/saucy/main/binary-amd64/Packages.gz http://de.archive.ubuntu.com/ubuntu/dists/saucy/universe/binary-amd64/Packages.gz 2>/dev/null | zcat | grep Filename | egrep 'libsdl2|libflac8|libfluidsynth1|libmad0|libmodplug1|libtiff5|libwebp4|libjack-jackd2-0' | grep -v -- -dbg | grep -v -- -dev | sed 's@Filename: @http://de.archive.ubuntu.com/ubuntu/@gm'` ; \
 	sudo dpkg -i *.deb ; \
 	sudo apt-get -q -y -f install libsdl2-image-2.0-0 libsdl2-mixer-2.0-0
 
