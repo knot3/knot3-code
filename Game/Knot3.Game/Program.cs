@@ -22,11 +22,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+using System.Windows.Forms;
 
 #endregion
 
 #region Using
-
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -47,8 +47,6 @@ namespace Knot3.Game
 	[ExcludeFromCodeCoverageAttribute]
 	static class Program
 	{
-		private static Knot3Game game;
-
 		/// <summary>
 		/// The main entry point for the application.
 		///
@@ -59,11 +57,36 @@ namespace Knot3.Game
 		{
 			Log.Message ("Knot" + Char.ConvertFromUtf32 ('\u00B3').ToString () + " " + Version);
 			Log.Message ("Copyright (C) 2013-2014 Tobias Schulz, Maximilian Reuter,\n" +
-			             "Pascal Knodel, Gerd Augsburg, Christina Erler, Daniel Warzel,\n" +
-			             "M. Retzlaff, F. Kalka, G. Hoffmann, T. Schmidt, G. Mückl, Torsten Pelzer");
+				"Pascal Knodel, Gerd Augsburg, Christina Erler, Daniel Warzel,\n" +
+				"M. Retzlaff, F. Kalka, G. Hoffmann, T. Schmidt, G. Mückl, Torsten Pelzer"
+			);
+			Log.Message ();
 
-			game = new Knot3Game ();
-			game.Run ();
+			try {
+				GameLoop ();
+			}
+			catch (DllNotFoundException ex) {
+				Log.Message ();
+				Log.Error (ex);
+				Log.Message ();
+				if (ex.ToString ().ToLower ().Contains ("sdl2.dll")) {
+					Log.ShowMessageBox ("This game requires SDL2. It will be downloaded now.", "Dependency missing");
+					if (Dependencies.DownloadSDL2 ()) {
+						System.Diagnostics.Process.Start (Application.ExecutablePath); // to start new instance of application
+						Application.Exit ();
+					}
+					else {
+						Log.ShowMessageBox ("SDL2 could not be downloaded.", "Dependency missing");
+					}
+				}
+			}
+		}
+
+		private static void GameLoop ()
+		{
+			using (Knot3Game game = new Knot3Game ()) {
+				game.Run ();
+			}
 		}
 
 		/// <summary>

@@ -22,11 +22,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+using System.Windows.Forms;
 
 #endregion
 
 #region Using
-
 using System;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
@@ -81,6 +81,11 @@ namespace Knot3.Framework.Platform
 		public static void Error (Exception ex)
 		{
 			Console.WriteLine (ex.ToString ());
+		}
+
+		public static void ShowMessageBox (string text, string title)
+		{
+			MessageBox.Show (text, title);
 		}
 	}
 }
