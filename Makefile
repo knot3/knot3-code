@@ -96,3 +96,6 @@ package-windows: build-windows
 	$(CP) debian/changelog $(DESTDIR)/CHANGELOG
 	$(CP) README.md $(DESTDIR)/README
 	$(RM) $(DESTDIR)/*.pdb
+
+dep:
+	sudo apt-get install mono-devel mono-dmcs nunit-console libopenal1 libsdl2-2.0-0 libsdl2-mixer-2.0-0 libsdl2-image-2.0-0
