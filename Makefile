@@ -21,7 +21,7 @@ STD_KNOT_DIR = Game/Standard_Knots
 LIB_DIR = lib
 #LIB_MG_LINUX = $(LIB_DIR)/MonoGame-Linux-3.1.2.zip
 #LIB_MG_LINUX = $(LIB_DIR)/MonoGame-Linux-SDL2.zip
-LIB_MG_WINDOWS = $(LIB_DIR)/MonoGame-Windows-3.1.2.zip
+LIB_MG_WINDOWS = $(LIB_DIR)/Dependencies-Windows.zip
 
 .PHONY: project_code
 
