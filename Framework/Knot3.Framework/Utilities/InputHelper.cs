@@ -55,27 +55,5 @@ namespace Knot3.Framework.Utilities
 	[ExcludeFromCodeCoverageAttribute]
 	public static class InputHelper
 	{
-		/// <summary>
-		/// Wurde die aktuelle Taste gedrückt und war sie im letzten Frame nicht gedrückt?
-		/// </summary>
-		public static bool IsDown (this Keys key)
-		{
-			// Is the key down?
-			if (InputManager.CurrentKeyboardState.IsKeyDown (key)) {
-				// If not down last update, key has just been pressed.
-				if (!InputManager.PreviousKeyboardState.IsKeyDown (key)) {
-					return true;
-				}
-			}
-			return false;
-		}
-
-		/// <summary>
-		/// Wird die aktuelle Taste gedrückt gehalten?
-		/// </summary>
-		public static bool IsHeldDown (this Keys key)
-		{
-			return InputManager.CurrentKeyboardState.IsKeyDown (key);
-		}
 	}
 }

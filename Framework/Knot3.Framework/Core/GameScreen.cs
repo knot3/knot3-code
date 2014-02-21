@@ -73,7 +73,7 @@ namespace Knot3.Framework.Core
 		/// <summary>
 		/// Der Inputhandler des Spielzustands.
 		/// </summary>
-		public InputManager Input { get; set; }
+		public InputManager InputManager { get; set; }
 
 		public AudioManager Audio { get; private set; }
 
@@ -127,7 +127,7 @@ namespace Knot3.Framework.Core
 			    defaultEffect: new StandardEffect (this)
 			);
 			PostProcessingEffect = new StandardEffect (this);
-			Input = new InputManager (this);
+			InputManager = new InputManager (this);
 			Audio = new AudioManager (this);
 			BackgroundColor = Design.ScreenBackground;
 		}
@@ -144,7 +144,7 @@ namespace Knot3.Framework.Core
 		public virtual void Entered (IGameScreen previousScreen, GameTime time)
 		{
 			Log.Debug ("Entered: ", this);
-			AddGameComponents (time, Input, Audio, new WidgetKeyHandler (this), new WidgetMouseHandler (this));
+			AddGameComponents (time, InputManager, Audio, new WidgetKeyHandler (this), new WidgetMouseHandler (this));
 		}
 
 		/// <summary>

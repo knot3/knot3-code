@@ -80,16 +80,16 @@ namespace Knot3.Framework.Input
 			foreach (IMouseClickEventListener component in Screen.Game.Components.OfType<IMouseClickEventListener>()
 			         .Where (c => c.IsMouseClickEventEnabled).OrderByDescending (c => c.Index.Index)) {
 				Bounds bounds = component.MouseClickBounds;
-				bool hovered = bounds.Contains (InputManager.CurrentMouseState.ToScreenPoint (Screen));
+				bool hovered = bounds.Contains (Screen.InputManager.CurrentMousePosition);
 				component.SetHovered (hovered, time);
 				if (hovered) {
-					ScreenPoint relativePosition = InputManager.CurrentMouseState.ToScreenPoint (Screen) - bounds.Position;
-					if (InputManager.LeftMouseButton != ClickState.None) {
-						component.OnLeftClick (relativePosition, InputManager.LeftMouseButton, time);
+					ScreenPoint relativePosition = Screen.InputManager.CurrentMousePosition - bounds.Position;
+					if (Screen.InputManager.LeftMouseButton != ClickState.None) {
+						component.OnLeftClick (relativePosition, Screen.InputManager.LeftMouseButton, time);
 						break;
 					}
-					else if (InputManager.RightMouseButton != ClickState.None) {
-						component.OnRightClick (relativePosition, InputManager.RightMouseButton, time);
+					else if (Screen.InputManager.RightMouseButton != ClickState.None) {
+						component.OnRightClick (relativePosition, Screen.InputManager.RightMouseButton, time);
 						break;
 					}
 				}
@@ -101,13 +101,13 @@ namespace Knot3.Framework.Input
 			foreach (IMouseScrollEventListener component in Screen.Game.Components.OfType<IMouseScrollEventListener>()
 			         .Where (c => c.IsMouseScrollEventEnabled).OrderByDescending (c => c.Index.Index)) {
 				Bounds bounds = component.MouseScrollBounds;
-				bool hovered = bounds.Contains (InputManager.CurrentMouseState.ToScreenPoint (Screen));
+				bool hovered = bounds.Contains (Screen.InputManager.CurrentMousePosition);
 
 				if (hovered) {
-					if (InputManager.CurrentMouseState.ScrollWheelValue > InputManager.PreviousMouseState.ScrollWheelValue) {
+					if (Screen.InputManager.CurrentMouseState.ScrollWheelValue > Screen.InputManager.PreviousMouseState.ScrollWheelValue) {
 						component.OnScroll (-1, time);
 					}
-					else if (InputManager.CurrentMouseState.ScrollWheelValue < InputManager.PreviousMouseState.ScrollWheelValue) {
+					else if (Screen.InputManager.CurrentMouseState.ScrollWheelValue < Screen.InputManager.PreviousMouseState.ScrollWheelValue) {
 						component.OnScroll (+1, time);
 					}
 					break;
@@ -121,20 +121,20 @@ namespace Knot3.Framework.Input
 		private void UpdateMouseMove (GameTime time)
 		{
 			// aktuelle Position und die des letzten Frames
-			ScreenPoint current = InputManager.CurrentMouseState.ToScreenPoint (Screen);
-			ScreenPoint previous = InputManager.PreviousMouseState.ToScreenPoint (Screen);
+			ScreenPoint current = Screen.InputManager.CurrentMousePosition;
+			ScreenPoint previous = Screen.InputManager.PreviousMousePosition;
 
 			// zuweisen der Positionen beim Drücken der Maus
-			if (InputManager.PreviousMouseState.LeftButton == ButtonState.Released && InputManager.CurrentMouseState.LeftButton == ButtonState.Pressed) {
+			if (Screen.InputManager.PreviousMouseState.LeftButton == ButtonState.Released && Screen.InputManager.CurrentMouseState.LeftButton == ButtonState.Pressed) {
 				lastLeftClickPosition = current;
 			}
-			else if (InputManager.CurrentMouseState.LeftButton == ButtonState.Released) {
+			else if (Screen.InputManager.CurrentMouseState.LeftButton == ButtonState.Released) {
 				lastLeftClickPosition = null;
 			}
-			if (InputManager.PreviousMouseState.RightButton == ButtonState.Released && InputManager.CurrentMouseState.RightButton == ButtonState.Pressed) {
+			if (Screen.InputManager.PreviousMouseState.RightButton == ButtonState.Released && Screen.InputManager.CurrentMouseState.RightButton == ButtonState.Pressed) {
 				lastRightClickPosition = current;
 			}
-			else if (InputManager.CurrentMouseState.RightButton == ButtonState.Released) {
+			else if (Screen.InputManager.CurrentMouseState.RightButton == ButtonState.Released) {
 				lastRightClickPosition = null;
 			}
 			//Log.Debug ("left=",(lastLeftClickPosition ?? ScreenPoint.Zero (Screen)),"right=",(lastRightClickPosition ?? ScreenPoint.Zero (Screen)));
@@ -151,14 +151,14 @@ namespace Knot3.Framework.Input
 				// wenn die Komponente die Position beim Drücken der linken Maustaste enthält
 				if (lastLeftClickPosition != null && bounds.Contains (lastLeftClickPosition)) {
 					notify = true;
-					if (bounds.Contains (current) && InputManager.CurrentMouseState.LeftButton == ButtonState.Pressed) {
+					if (bounds.Contains (current) && Screen.InputManager.CurrentMouseState.LeftButton == ButtonState.Pressed) {
 						lastLeftClickPosition = current;
 					}
 				}
 				// wenn die Komponente die Position beim Drücken der rechten Maustaste enthält
 				else if (lastRightClickPosition != null && bounds.Contains (lastRightClickPosition)) {
 					notify = true;
-					if (bounds.Contains (current) && InputManager.CurrentMouseState.RightButton == ButtonState.Pressed) {
+					if (bounds.Contains (current) && Screen.InputManager.CurrentMouseState.RightButton == ButtonState.Pressed) {
 						lastRightClickPosition = current;
 					}
 				}
@@ -171,9 +171,9 @@ namespace Knot3.Framework.Input
 
 				if (notify) {
 					if (relativePositionMove
-					        || InputManager.PreviousMouseState.LeftButton != InputManager.CurrentMouseState.LeftButton
-					        || InputManager.PreviousMouseState.RightButton != InputManager.CurrentMouseState.RightButton) {
-						if (InputManager.CurrentMouseState.LeftButton == ButtonState.Pressed) {
+					        || Screen.InputManager.PreviousMouseState.LeftButton != Screen.InputManager.CurrentMouseState.LeftButton
+					        || Screen.InputManager.PreviousMouseState.RightButton != Screen.InputManager.CurrentMouseState.RightButton) {
+						if (Screen.InputManager.CurrentMouseState.LeftButton == ButtonState.Pressed) {
 							component.OnLeftMove (
 							    previousPosition: relativePositionPrevious,
 							    currentPosition: relativePositionCurrent,
@@ -181,7 +181,7 @@ namespace Knot3.Framework.Input
 							    time: time
 							);
 						}
-						else if (InputManager.CurrentMouseState.RightButton == ButtonState.Pressed) {
+						else if (Screen.InputManager.CurrentMouseState.RightButton == ButtonState.Pressed) {
 							component.OnRightMove (
 							    previousPosition: relativePositionPrevious,
 							    currentPosition: relativePositionCurrent,

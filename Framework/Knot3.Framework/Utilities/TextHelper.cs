@@ -26,7 +26,6 @@
 #endregion
 
 #region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -58,18 +57,18 @@ namespace Knot3.Framework.Utilities
 		private static Keys lastKey = Keys.None;
 		private static double lastMillis = 0;
 
-		public static bool TryTextInput (ref string str, GameTime time)
+		public static bool TryTextInput (ref string str, IGameScreen screen, GameTime time)
 		{
 			bool catched = false;
 			if (lastKey != Keys.None) {
-				if (InputManager.CurrentKeyboardState.IsKeyUp (lastKey)) {
+				if (screen.InputManager.CurrentKeyboardState.IsKeyUp (lastKey)) {
 					lastKey = Keys.None;
 				}
 				else if ((time.TotalGameTime.TotalMilliseconds - lastMillis) > 100) {
 					lastKey = Keys.None;
 				}
 			}
-			Keys[] keys = InputManager.CurrentKeyboardState.GetPressedKeys ();
+			Keys[] keys = screen.InputManager.CurrentKeyboardState.GetPressedKeys ();
 			if (lastKey == Keys.None) {
 				for (int i = 0; i < keys.Length; ++i) {
 					if (keys [i] != Keys.LeftShift && keys [i] != Keys.RightShift) {
@@ -85,7 +84,7 @@ namespace Knot3.Framework.Utilities
 					}
 					else if (str.Length < 100) {
 						char c;
-						if (TryConvertKey (lastKey, out c)) {
+						if (TryConvertKey (lastKey, screen, out c)) {
 							str += c.ToString ();
 						}
 						catched = true;
@@ -97,9 +96,9 @@ namespace Knot3.Framework.Utilities
 			return catched;
 		}
 
-		private static bool TryConvertKey (Keys keyPressed, out char key)
+		private static bool TryConvertKey (Keys keyPressed, IGameScreen screen, out char key)
 		{
-			bool shift = Keys.LeftShift.IsHeldDown () || Keys.RightShift.IsHeldDown ();
+			bool shift = screen.InputManager.IsHeldDown (Keys.LeftShift) || screen.InputManager.IsHeldDown (Keys.RightShift);
 
 			char c = (char)keyPressed.GetHashCode ();
 			if (c >= 'A' && c <= 'Z') {
@@ -113,7 +112,7 @@ namespace Knot3.Framework.Utilities
 			}
 
 			switch (keyPressed) {
-				//Decimal keys
+			//Decimal keys
 			case Keys.D0:
 				if (shift) {
 					key = ')';
@@ -195,7 +194,7 @@ namespace Knot3.Framework.Utilities
 				}
 				return true;
 
-				//Decimal numpad keys
+			//Decimal numpad keys
 			case Keys.NumPad0:
 				key = '0';
 				return true;
@@ -227,7 +226,7 @@ namespace Knot3.Framework.Utilities
 				key = '9';
 				return true;
 
-				//Special keys
+			//Special keys
 			case Keys.OemTilde:
 				if (shift) {
 					key = '~';
@@ -337,6 +336,6 @@ namespace Knot3.Framework.Utilities
 			Keys.OemPipe, Keys.OemPeriod, Keys.OemOpenBrackets, Keys.OemCloseBrackets, Keys.OemMinus,
 			Keys.OemComma, Keys.Space, Keys.Back
 		}
-		);
+			);
 	}
 }

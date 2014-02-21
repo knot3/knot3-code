@@ -26,7 +26,6 @@
 #endregion
 
 #region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -84,8 +83,8 @@ namespace Knot3.Game.Input
 		public void OnKeyEvent (List<Keys> key, KeyEvent keyEvent, GameTime time)
 		{
 			// Soll die Farbe geändert wurde?
-			if (   Knot.SelectedEdges.Any ()
-			        && Keys.N.IsDown ()) {
+			if (Knot.SelectedEdges.Any ()
+				&& Screen.InputManager.IsDown (Keys.N)) {
 				int rectId = random.Next ();
 				foreach (Edge edge in Knot.SelectedEdges) {
 					edge.Rectangles.Add (rectId);

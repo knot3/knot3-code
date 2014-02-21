@@ -326,7 +326,7 @@ namespace Knot3.Framework.Core
 		/// Spielobjekte, die der angegebenen 2D-Position am nächsten sind, am Anfang stehen.
 		/// Dazu wird die 2D-Position in eine 3D-Position konvertiert.
 		/// </summary>
-		public IEnumerable<IGameObject> FindNearestObjects (Vector2 nearTo)
+		public IEnumerable<IGameObject> FindNearestObjects (ScreenPoint nearTo)
 		{
 			Dictionary<float, IGameObject> distances = new Dictionary<float, IGameObject> ();
 			foreach (IGameObject obj in this) {

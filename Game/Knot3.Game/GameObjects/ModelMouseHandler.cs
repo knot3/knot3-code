@@ -71,7 +71,7 @@ namespace Knot3.Game.GameObjects
 	{
 		private World World;
 		private double lastRayCheck = 0;
-		private Vector2 lastMousePosition = Vector2.Zero;
+		private ScreenPoint lastMousePosition;
 
 		#region Constructors
 
@@ -83,6 +83,7 @@ namespace Knot3.Game.GameObjects
 		: base (screen, DisplayLayer.None)
 		{
 			World = world;
+			lastMousePosition = ScreenPoint.Zero(screen);
 		}
 
 		#endregion
@@ -102,12 +103,12 @@ namespace Knot3.Game.GameObjects
 		{
 			double millis = time.TotalGameTime.TotalMilliseconds;
 			if (millis > lastRayCheck + 10
-			        && (Screen.Input.CurrentInputAction == InputAction.CameraTargetMove
-			            || Screen.Input.CurrentInputAction == InputAction.FreeMouse)
-			        && InputManager.CurrentMouseState.ToVector2 () != lastMousePosition) {
+			        && (Screen.InputManager.CurrentInputAction == InputAction.CameraTargetMove
+			            || Screen.InputManager.CurrentInputAction == InputAction.FreeMouse)
+			        && Screen.InputManager.CurrentMousePosition != lastMousePosition) {
 				//Log.Debug (Screen.Input.CurrentInputAction);
 				lastRayCheck = millis;
-				lastMousePosition = InputManager.CurrentMouseState.ToVector2 ();
+				lastMousePosition = Screen.InputManager.CurrentMousePosition;
 
 				Profiler.ProfileDelegate ["Ray"] = () => {
 					UpdateMouseRay (time);
@@ -117,7 +118,7 @@ namespace Knot3.Game.GameObjects
 
 		private void UpdateMouseRay (GameTime time)
 		{
-			Ray ray = World.Camera.GetMouseRay (InputManager.CurrentMouseState.ToVector2 ());
+			Ray ray = World.Camera.GetMouseRay (Screen.InputManager.CurrentMousePosition);
 
 			GameObjectDistance nearest = null;
 			foreach (IGameObject obj in World.Objects) {

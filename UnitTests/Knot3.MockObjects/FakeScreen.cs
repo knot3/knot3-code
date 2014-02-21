@@ -67,7 +67,7 @@ namespace Knot3.MockObjects
 		/// <summary>
 		/// Der Inputhandler des Spielzustands.
 		/// </summary>
-		public InputManager Input { get; private set; }
+		public InputManager InputManager { get; private set; }
 
 		public AudioManager Audio { get; private set; }
 

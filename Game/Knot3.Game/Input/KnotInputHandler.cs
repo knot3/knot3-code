@@ -158,7 +158,7 @@ namespace Knot3.Game.Input
 			this.world = world;
 
 			// Setze die Standardwerte für die Mausposition
-			screen.Input.GrabMouseMovement = false;
+			screen.InputManager.GrabMouseMovement = false;
 			ResetMousePosition ();
 
 			// Tasten
@@ -207,18 +207,18 @@ namespace Knot3.Game.Input
 		public override void Update (GameTime time)
 		{
 			// und die linke Maustaste gedrückt gehalten wird
-			if (InputManager.CurrentMouseState.MiddleButton == ButtonState.Pressed && InputManager.PreviousMouseState.MiddleButton == ButtonState.Released) {
-				Screen.Input.GrabMouseMovement = true;
+			if (Screen.InputManager.CurrentMouseState.MiddleButton == ButtonState.Pressed && Screen.InputManager.PreviousMouseState.MiddleButton == ButtonState.Released) {
+				Screen.InputManager.GrabMouseMovement = true;
 			}
-			else if (InputManager.CurrentMouseState.MiddleButton == ButtonState.Released && InputManager.PreviousMouseState.MiddleButton == ButtonState.Pressed) {
-				Screen.Input.GrabMouseMovement = false;
+			else if (Screen.InputManager.CurrentMouseState.MiddleButton == ButtonState.Released && Screen.InputManager.PreviousMouseState.MiddleButton == ButtonState.Pressed) {
+				Screen.InputManager.GrabMouseMovement = false;
 			}
 
 			if (!IsEnabled) {
-				Screen.Input.CurrentInputAction = InputAction.FreeMouse;
+				Screen.InputManager.CurrentInputAction = InputAction.FreeMouse;
 			}
 
-			if (Screen.Input.CurrentInputAction == InputAction.FreeMouse) {
+			if (Screen.InputManager.CurrentInputAction == InputAction.FreeMouse) {
 				// automatische Kameraführung
 				AutoCamera (time);
 			}
@@ -256,7 +256,7 @@ namespace Knot3.Game.Input
 			}
 
 			// ist der MouseState gleich geblieben?
-			if (InputManager.CurrentMouseState == InputManager.PreviousMouseState) {
+			if (Screen.InputManager.CurrentMouseState == Screen.InputManager.PreviousMouseState) {
 				return;
 			}
 
@@ -265,13 +265,13 @@ namespace Knot3.Game.Input
 
 			InputAction action;
 			// wenn die Maus in der Mitte des Bildschirms gelockt ist
-			if (Screen.Input.GrabMouseMovement) {
+			if (Screen.InputManager.GrabMouseMovement) {
 				// und die linke Maustaste gedrückt gehalten wird
-				if (InputManager.CurrentMouseState.LeftButton == ButtonState.Pressed) {
+				if (Screen.InputManager.CurrentMouseState.LeftButton == ButtonState.Pressed) {
 					action = InputAction.ArcballMove;
 				}
 				// und die rechte Maustaste gedrückt gehalten wird
-				else if (InputManager.CurrentMouseState.RightButton == ButtonState.Pressed) {
+				else if (Screen.InputManager.CurrentMouseState.RightButton == ButtonState.Pressed) {
 					action = InputAction.ArcballMove;
 				}
 				// und alle Maustasten losgelassen sind
@@ -282,7 +282,7 @@ namespace Knot3.Game.Input
 			// wenn die Maus frei bewegbar ist
 			else {
 				// und die linke Maustaste gedrückt gehalten wird
-				if (InputManager.CurrentMouseState.LeftButton == ButtonState.Pressed) {
+				if (Screen.InputManager.CurrentMouseState.LeftButton == ButtonState.Pressed) {
 					if (world.SelectedObject != null && world.SelectedObject.Info.IsMovable) {
 						action = InputAction.SelectedObjectShadowMove;
 					}
@@ -291,7 +291,7 @@ namespace Knot3.Game.Input
 					}
 				}
 				// und die linke Maustaste gerade losgelassen wurde
-				else if (InputManager.CurrentMouseState.LeftButton == ButtonState.Released && InputManager.PreviousMouseState.LeftButton == ButtonState.Pressed) {
+				else if (Screen.InputManager.CurrentMouseState.LeftButton == ButtonState.Released && Screen.InputManager.PreviousMouseState.LeftButton == ButtonState.Pressed) {
 					if (world.SelectedObject != null && world.SelectedObject.Info.IsMovable) {
 						action = InputAction.SelectedObjectMove;
 					}
@@ -300,7 +300,7 @@ namespace Knot3.Game.Input
 					}
 				}
 				// und die rechte Maustaste gedrückt gehalten wird
-				else if (InputManager.CurrentMouseState.RightButton == ButtonState.Pressed) {
+				else if (Screen.InputManager.CurrentMouseState.RightButton == ButtonState.Pressed) {
 					action = InputAction.ArcballMove;
 				}
 				// und alle Maustasten losgelassen sind
@@ -308,7 +308,7 @@ namespace Knot3.Game.Input
 					action = InputAction.FreeMouse;
 				}
 			}
-			Screen.Input.CurrentInputAction = action;
+			Screen.InputManager.CurrentInputAction = action;
 
 			//Log.Debug ("action=",action);
 
@@ -327,7 +327,7 @@ namespace Knot3.Game.Input
 		private void AutoCamera (GameTime time)
 		{
 			if (Options.Default ["video", "auto-camera-nomove", false]) {
-				ScreenPoint currentPosition = InputManager.CurrentMouseState.ToScreenPoint (Screen);
+				ScreenPoint currentPosition = Screen.InputManager.CurrentMouseState.ToScreenPoint (Screen);
 				Bounds worldBounds = world.Bounds;
 				var bounds = new [] {
 					new { Bounds = worldBounds.FromLeft (0.03f), Side = new Vector2 (-1, 0) },
@@ -340,7 +340,7 @@ namespace Knot3.Game.Input
 					//InputAction action = Screen.Input.CurrentInputAction;
 					MoveTarget (new Vector3 (sides [0].X, sides [0].Y, 0) * 0.5f, time);
 					world.Redraw = true;
-					Screen.Input.CurrentInputAction = InputAction.FreeMouse;
+					Screen.InputManager.CurrentInputAction = InputAction.FreeMouse;
 				}
 			}
 		}
@@ -348,11 +348,11 @@ namespace Knot3.Game.Input
 		public void OnScroll (int scrollWheelValue, GameTime time)
 		{
 			// scroll wheel zoom
-			if (InputManager.CurrentMouseState.ScrollWheelValue < InputManager.PreviousMouseState.ScrollWheelValue) {
+			if (Screen.InputManager.CurrentMouseState.ScrollWheelValue < Screen.InputManager.PreviousMouseState.ScrollWheelValue) {
 				// camera.FoV += 1;
 				zoom (8, time);
 			}
-			else if (InputManager.CurrentMouseState.ScrollWheelValue > InputManager.PreviousMouseState.ScrollWheelValue) {
+			else if (Screen.InputManager.CurrentMouseState.ScrollWheelValue > Screen.InputManager.PreviousMouseState.ScrollWheelValue) {
 				// camera.FoV -= 1
 
 				zoom (-8, time);
@@ -362,10 +362,10 @@ namespace Knot3.Game.Input
 
 		private void ResetMousePosition ()
 		{
-			if (Screen.Input.GrabMouseMovement || (Screen.Input.CurrentInputAction == InputAction.ArcballMove)) {
+			if (Screen.InputManager.GrabMouseMovement || (Screen.InputManager.CurrentInputAction == InputAction.ArcballMove)) {
 				ScreenPoint center = world.Viewport.Center (Screen);
-				if (Screen.Input.CurrentMousePosition != center) {
-					InputManager.ResetMouse (world.Viewport.Center (Screen));
+				if (Screen.InputManager.CurrentMousePosition != center) {
+					Screen.InputManager.ResetMouse (world.Viewport.Center (Screen));
 				}
 			}
 		}
@@ -383,7 +383,7 @@ namespace Knot3.Game.Input
 					// Führe die lineare Verschiebung durch
 					camera.Target = camera.Target.MoveLinear (move, up, targetDirection);
 					camera.Position = camera.Position.MoveLinear (move, up, targetDirection);
-					Screen.Input.CurrentInputAction = InputAction.FirstPersonCameraMove;
+					Screen.InputManager.CurrentInputAction = InputAction.FirstPersonCameraMove;
 					world.Redraw = true;
 				}
 			};
@@ -401,7 +401,7 @@ namespace Knot3.Game.Input
 					Vector3 up = camera.UpVector;
 					// Führe die lineare Verschiebung durch
 					camera.Target = camera.Target.MoveLinear (move, up, targetDirection);
-					Screen.Input.CurrentInputAction = InputAction.FirstPersonCameraMove;
+					Screen.InputManager.CurrentInputAction = InputAction.FirstPersonCameraMove;
 					world.Redraw = true;
 				}
 			};
@@ -412,12 +412,12 @@ namespace Knot3.Game.Input
 		/// </summary>
 		private void rotate (Vector2 move, GameTime time)
 		{
-			Screen.Input.CurrentInputAction = InputAction.ArcballMove;
+			Screen.InputManager.CurrentInputAction = InputAction.ArcballMove;
 			if (Options.Default ["video", "arcball-around-center", true]) {
 				rotateCenter (move, time);
 			}
 			else {
-				rotateEverywhere (move, time);
+				//rotateEverywhere (move, time);
 			}
 		}
 
@@ -427,7 +427,7 @@ namespace Knot3.Game.Input
 			if (world.SelectedObject == null && world.Any ()) {
 				// selektiere das Objekt, das der Mausposition am nächsten ist!
 				IGameObject[] nearestObjects
-				    = world.FindNearestObjects (nearTo: InputManager.CurrentMouseState.ToVector2 ()).ToArray ();
+				    = world.FindNearestObjects (nearTo: Screen.InputManager.CurrentMousePosition).ToArray ();
 				if (nearestObjects.Length > 0) {
 					world.SelectedObject = nearestObjects [0];
 				}
@@ -444,11 +444,11 @@ namespace Knot3.Game.Input
 				if (!camera.InSmoothMove) {
 					camera.StartSmoothMove (target: camera.ArcballTarget, time: time);
 				}
-				Screen.Input.CurrentInputAction = InputAction.ArcballMove;
+				Screen.InputManager.CurrentInputAction = InputAction.ArcballMove;
 			}
 			// Ist es weiter als 5 Pixel weg?
 			else if (move.Length () > 0) {
-				Screen.Input.CurrentInputAction = InputAction.ArcballMove;
+				Screen.InputManager.CurrentInputAction = InputAction.ArcballMove;
 				world.Redraw = true;
 
 				// Berechne die Rotation
@@ -459,34 +459,6 @@ namespace Knot3.Game.Input
 				camera.Position = camera.Target
 				                  + (camera.Position - camera.Target).ArcBallMove (move, up, targetDirection);
 				camera.Position = camera.Position.SetDistanceTo (camera.Target, oldDistance);
-			}
-		}
-
-		private void rotateEverywhere (Vector2 move, GameTime time)
-		{
-			// Wenn kein 3D-Objekt selektiert ist...
-			if (world.SelectedObject == null && world.Any ()) {
-				// selektiere das Objekt, das der Mausposition am nächsten ist!
-				world.SelectedObject = world.FindNearestObjects (
-				                           nearTo: InputManager.CurrentMouseState.ToVector2 ()
-				                       ).ElementAt (0);
-			}
-
-			if (move.Length () > 0) {
-				Screen.Input.CurrentInputAction = InputAction.ArcballMove;
-				world.Redraw = true;
-
-				// Berechne die Rotation
-				float oldPositionDistance = camera.Position.DistanceTo (camera.ArcballTarget);
-				float oldTargetDistance = camera.Target.DistanceTo (camera.Position);
-				Vector3 targetDirection = Vector3.Normalize (camera.ArcballTarget - camera.Position);
-				Vector3 up = camera.UpVector;
-				camera.Position = camera.ArcballTarget
-				                  + (camera.Position - camera.ArcballTarget).ArcBallMove (move, up, targetDirection);
-				camera.Target = camera.ArcballTarget
-				                + (camera.Target - camera.ArcballTarget).ArcBallMove (move, up, targetDirection);
-				camera.Position = camera.Position.SetDistanceTo (camera.ArcballTarget, oldPositionDistance);
-				camera.Target = camera.Target.SetDistanceTo (camera.Position, oldTargetDistance);
 			}
 		}
 
@@ -515,7 +487,7 @@ namespace Knot3.Game.Input
 						// Ist der Taste eine Aktion zugeordnet?
 						if (CurrentKeyAssignment.ContainsKey (key)) {
 							// Während die Taste gedrückt gehalten ist...
-							if (key.IsHeldDown ()) {
+							if (Screen.InputManager.IsHeldDown (key)) {
 								// führe die entsprechende Aktion aus!
 								PlayerActions action = CurrentKeyAssignment [key];
 								Action<GameTime> binding = ActionBindings [action];
@@ -575,19 +547,19 @@ namespace Knot3.Game.Input
 			Log.Debug ("OnStartEdgeChanged: ", direction);
 			camera.Position -= direction * Node.Scale;
 			camera.Target -= direction * Node.Scale;
-			Screen.Input.CurrentInputAction = InputAction.FreeMouse;
+			Screen.InputManager.CurrentInputAction = InputAction.FreeMouse;
 		}
 
 		private void toggleMouseLock (GameTime time)
 		{
-			if (CurrentKeyAssignmentReversed [PlayerActions.ToggleMouseLock].IsDown ()) {
-				Screen.Input.GrabMouseMovement = !Screen.Input.GrabMouseMovement;
+			if (Screen.InputManager.IsDown (CurrentKeyAssignmentReversed [PlayerActions.ToggleMouseLock])) {
+				Screen.InputManager.GrabMouseMovement = !Screen.InputManager.GrabMouseMovement;
 			}
 		}
 
 		private void resetCamera (GameTime time)
 		{
-			if (CurrentKeyAssignmentReversed [PlayerActions.ResetCamera].IsDown ()) {
+			if (Screen.InputManager.IsDown (CurrentKeyAssignmentReversed [PlayerActions.ResetCamera])) {
 				camera.ResetCamera ();
 			}
 		}

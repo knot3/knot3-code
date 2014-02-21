@@ -26,7 +26,6 @@
 #endregion
 
 #region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -91,21 +90,21 @@ namespace Knot3.Framework.Input
 			if (!SystemInfo.IsRunningOnLinux ()) {
 				spriteBatch.Begin ();
 
-				if (Screen.Input.GrabMouseMovement || Screen.Input.CurrentInputAction == InputAction.CameraTargetMove
-				        || (Screen.Input.CurrentInputAction == InputAction.ArcballMove
-				            && (InputManager.CurrentMouseState.LeftButton == ButtonState.Pressed
-				                || InputManager.CurrentMouseState.RightButton == ButtonState.Pressed))) {
+				if (Screen.InputManager.GrabMouseMovement || Screen.InputManager.CurrentInputAction == InputAction.CameraTargetMove
+					|| (Screen.InputManager.CurrentInputAction == InputAction.ArcballMove
+					&& (Screen.InputManager.CurrentMouseState.LeftButton == ButtonState.Pressed
+					|| Screen.InputManager.CurrentMouseState.RightButton == ButtonState.Pressed))) {
 					//spriteBatch.Draw (cursorTex, Screen.Device.Viewport.Center (), Color.White);
 				}
 				else {
 					spriteBatch.Draw (
 					    cursorTex,
-					    new Vector2 (InputManager.CurrentMouseState.X, InputManager.CurrentMouseState.Y)* Options.Default["video","Supersamples",1],
+					    Screen.InputManager.CurrentMousePosition.Absolute.ToVector2 () * Options.Default ["video", "Supersamples", 1],
 					    null,
 					    Color.White,
 					    0f,
 					    Vector2.Zero,
-					    Vector2.One *Options.Default["video","Supersamples",1],
+					    Vector2.One * Options.Default ["video", "Supersamples", 1],
 					    SpriteEffects.None,
 					    1f
 					);

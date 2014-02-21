@@ -66,7 +66,7 @@ namespace Knot3.Framework.Core
 		/// <summary>
 		/// Der Inputhandler des Spielzustands.
 		/// </summary>
-		InputManager Input { get; }
+		InputManager InputManager { get; }
 
 		AudioManager Audio { get; }
 

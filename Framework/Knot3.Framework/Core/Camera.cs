@@ -250,12 +250,12 @@ namespace Knot3.Framework.Core
 		/// <summary>
 		/// Berechnet einen Strahl für die angegebenene 2D-Mausposition.
 		/// </summary>
-		public Ray GetMouseRay (Vector2 mousePosition)
+		public Ray GetMouseRay (ScreenPoint mousePosition)
 		{
 			Viewport viewport = World.Viewport;
 
-			Vector3 nearPoint = new Vector3 (mousePosition, 0);
-			Vector3 farPoint = new Vector3 (mousePosition, 1);
+			Vector3 nearPoint = new Vector3 (mousePosition.AbsoluteVector, 0);
+			Vector3 farPoint = new Vector3 (mousePosition.AbsoluteVector, 1);
 
 			nearPoint = viewport.Unproject (nearPoint, ProjectionMatrix, ViewMatrix, Matrix.Identity);
 			farPoint = viewport.Unproject (farPoint, ProjectionMatrix, ViewMatrix, Matrix.Identity);
@@ -325,11 +325,11 @@ namespace Knot3.Framework.Core
 		/// Für die fehlende dritte Koordinate wird eine Angabe einer weiteren 3D-Position benötigt,
 		/// mit der die 3D-(Maus-)Position auf der selben Ebene liegen soll.
 		/// </summary>
-		public Vector3 To3D (Vector2 position, Vector3 nearTo)
+		public Vector3 To3D (ScreenPoint position, Vector3 nearTo)
 		{
 			if (Options.Default ["debug", "unproject", "SelectedObject"] == "NearFarAverage") {
-				Vector3 nearScreenPoint = new Vector3 (position.X, position.Y, 0);
-				Vector3 farScreenPoint = new Vector3 (position.X, position.Y, 1);
+				Vector3 nearScreenPoint = new Vector3 (position.AbsoluteVector, 0);
+				Vector3 farScreenPoint = new Vector3 (position.AbsoluteVector, 1);
 				Vector3 nearWorldPoint = World.Viewport.Unproject (
 				                             source: nearScreenPoint,
 				                             projection: World.Camera.ProjectionMatrix,

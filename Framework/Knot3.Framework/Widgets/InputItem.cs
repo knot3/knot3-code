@@ -112,7 +112,7 @@ namespace Knot3.Framework.Widgets
 		public override void OnKeyEvent (List<Keys> key, KeyEvent keyEvent, GameTime time)
 		{
 			string temp = InputText;
-			TextHelper.TryTextInput (ref temp, time);
+			TextHelper.TryTextInput (ref temp, Screen, time);
 			InputText = temp;
 			OnValueChanged ();
 			if (key.Contains (Keys.Enter)) {

@@ -143,7 +143,7 @@ namespace Knot3.Game.GameObjects
 
 				basicEffect.LightingEnabled = false;
 				string effectName = Options.Default ["video", "knot-shader", "default"];
-				if (Keys.Tab.IsHeldDown () || effectName == "celshader") {
+				if (Screen.InputManager.IsHeldDown(Keys.Tab) || effectName == "celshader") {
 					basicEffect.EnableDefaultLighting ();  // Beleuchtung aktivieren
 				}
 

@@ -154,7 +154,7 @@ namespace Knot3.Game.Input
 				PipeModel pipe = World.SelectedObject as PipeModel;
 
 				// Bei einem Linksklick...
-				if (InputManager.LeftMouseButton == ClickState.SingleClick) {
+				if (Screen.InputManager.LeftMouseButton == ClickState.SingleClick) {
 					// Zeichne im nächsten Frame auf jeden Fall neu
 					World.Redraw = true;
 
@@ -163,11 +163,11 @@ namespace Knot3.Game.Input
 						Log.Debug ("knot.Count () = ", Knot.Count ());
 
 						// Ctrl gedrückt
-						if (KnotInputHandler.CurrentKeyAssignmentReversed [PlayerActions.AddToEdgeSelection].IsHeldDown ()) {
+						if (Screen.InputManager.IsHeldDown(KnotInputHandler.CurrentKeyAssignmentReversed [PlayerActions.AddToEdgeSelection])) {
 							Knot.AddToSelection (selectedEdge);
 						}
 						// Shift gedrückt
-						else if (KnotInputHandler.CurrentKeyAssignmentReversed [PlayerActions.AddRangeToEdgeSelection].IsHeldDown ()) {
+						else if (Screen.InputManager.IsHeldDown(KnotInputHandler.CurrentKeyAssignmentReversed [PlayerActions.AddRangeToEdgeSelection])) {
 							Knot.AddRangeToSelection (selectedEdge);
 						}
 						// keine Taste gedrückt
@@ -185,7 +185,7 @@ namespace Knot3.Game.Input
 			// Wenn das selektierte Objekt weder Kante noch Pfeil ist...
 			else if (!(World.SelectedObject is ArrowModel)) {
 				// dann leert ein Linksklick die Selektion
-				if (InputManager.LeftMouseButton == ClickState.SingleClick) {
+				if (Screen.InputManager.LeftMouseButton == ClickState.SingleClick) {
 					Knot.ClearSelection ();
 				}
 			}
@@ -202,13 +202,13 @@ namespace Knot3.Game.Input
 
 				// Berechne die Mausposition in 3D
 				Vector3 currentMousePosition = World.Camera.To3D (
-				                                   position: InputManager.CurrentMouseState.ToVector2 (),
+				                                   position: Screen.InputManager.CurrentMousePosition,
 				                                   nearTo: selectedModel.Center ()
 				                               );
 
 				// Wenn die Maus gedrückt gehalten ist und wir mitten im Ziehen der Kante
 				// an die neue Position sind
-				if (Screen.Input.CurrentInputAction == InputAction.SelectedObjectShadowMove) {
+				if (Screen.InputManager.CurrentInputAction == InputAction.SelectedObjectShadowMove) {
 					// Wenn dies der erste Frame ist...
 					if (previousMousePosition == Vector3.Zero) {
 						previousMousePosition = currentMousePosition;
@@ -232,7 +232,7 @@ namespace Knot3.Game.Input
 				}
 
 				// Wenn die Verschiebe-Aktion beendet ist (wenn die Maus losgelassen wurde)
-				else if (Screen.Input.CurrentInputAction == InputAction.SelectedObjectMove) {
+				else if (Screen.InputManager.CurrentInputAction == InputAction.SelectedObjectMove) {
 					// Führe die finale Verschiebung durch
 					if (selectedModel is ArrowModel) {
 						// Wenn ein Pfeil selektiert wurde, ist die Verschiebe-Richtung eindeutig festgelegt
@@ -357,7 +357,7 @@ namespace Knot3.Game.Input
 		private void UpdateShadowPipes (Vector3 currentMousePosition, Direction direction, float count, GameTime time)
 		{
 			if (Options.Default ["video", "auto-camera-move", true]) {
-				ScreenPoint currentPosition = InputManager.CurrentMouseState.ToScreenPoint (Screen);
+				ScreenPoint currentPosition = Screen.InputManager.CurrentMousePosition;
 				Bounds worldBounds = World.Bounds;
 				var bounds = new [] {
 					new { Bounds = worldBounds.FromLeft (0.1f), Side = new Vector2 (-1, 0) },
@@ -368,11 +368,11 @@ namespace Knot3.Game.Input
 				Vector2[] sides = bounds.Where (x => x.Bounds.Contains (currentPosition)).Select (x => x.Side).ToArray ();
 
 				if (sides.Length == 1) {
-					InputAction action = Screen.Input.CurrentInputAction;
+					InputAction action = Screen.InputManager.CurrentInputAction;
 					World.Camera.Position += direction * 2.5f;
 					World.Camera.Target += direction * 2.5f;
 					//KnotInput.MoveCameraAndTarget (new Vector3 (sides [0].X, sides [0].Y, 0) * 0.5f, time);
-					Screen.Input.CurrentInputAction = action;
+					Screen.InputManager.CurrentInputAction = action;
 					World.Redraw = true;
 				}
 			}

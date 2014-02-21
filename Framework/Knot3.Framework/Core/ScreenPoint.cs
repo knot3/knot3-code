@@ -73,6 +73,13 @@ namespace Knot3.Framework.Core
 			}
 		}
 
+		public Vector2 AbsoluteVector
+		{
+			get {
+				return Relative.Scale (Screen.Viewport);
+			}
+		}
+
 		public ScreenPoint OnlyX
 		{
 			get {

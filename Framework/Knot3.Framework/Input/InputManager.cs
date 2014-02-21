@@ -64,17 +64,17 @@ namespace Knot3.Framework.Input
 		/// <summary>
 		/// Enthält den Klickzustand der rechten Maustaste.
 		/// </summary>
-		public static ClickState RightMouseButton { get; private set; }
+		public ClickState RightMouseButton { get; private set; }
 
 		/// <summary>
 		/// Enthält den Klickzustand der linken Maustaste.
 		/// </summary>
-		public static ClickState LeftMouseButton { get; private set; }
+		public ClickState LeftMouseButton { get; private set; }
 
 		/// <summary>
 		/// Enthält den Mauszustand von XNA zum aktuellen Frame.
 		/// </summary>
-		public static MouseState CurrentMouseState { get; set; }
+		public MouseState CurrentMouseState { get; set; }
 
 		/// <summary>
 		/// Enthält die Mausposition von XNA zum aktuellen Frame.
@@ -84,12 +84,12 @@ namespace Knot3.Framework.Input
 		/// <summary>
 		/// Enthält den Tastaturzustand von XNA zum aktuellen Frame.
 		/// </summary>
-		public static KeyboardState CurrentKeyboardState { get; private set; }
+		public KeyboardState CurrentKeyboardState { get; private set; }
 
 		/// <summary>
 		/// Enthält den Mauszustand von XNA zum vorherigen Frame.
 		/// </summary>
-		public static MouseState PreviousMouseState { get; private set; }
+		public MouseState PreviousMouseState { get; private set; }
 
 		/// <summary>
 		/// Enthält die Mausposition von XNA zum vorherigen Frame.
@@ -99,7 +99,7 @@ namespace Knot3.Framework.Input
 		/// <summary>
 		/// Enthält den Tastaturzustand von XNA zum vorherigen Frame.
 		/// </summary>
-		public static KeyboardState PreviousKeyboardState { get; private set; }
+		public KeyboardState PreviousKeyboardState { get; private set; }
 
 		/// <summary>
 		/// Gibt an, ob die Mausbewegung für Kameradrehungen verwendet werden soll.
@@ -184,17 +184,17 @@ namespace Knot3.Framework.Input
 			}
 
 			// fullscreen
-			if (Keys.F11.IsDown ()) {
+			if (Screen.InputManager.IsDown (Keys.F11)) {
 				Screen.Game.IsFullScreen = !Screen.Game.IsFullScreen;
 				FullscreenToggled = true;
 			}
 		}
 
-		public static void ResetMouse (ScreenPoint point)
+		public void ResetMouse (ScreenPoint point)
 		{
 			Point absolute = point.Absolute;
 			Mouse.SetPosition (absolute.X, absolute.Y);
-			MouseState state = InputManager.CurrentMouseState;
+			MouseState state = CurrentMouseState;
 			state = new MouseState (
 			    absolute.X,
 			    absolute.Y,
@@ -205,7 +205,30 @@ namespace Knot3.Framework.Input
 			    state.XButton1,
 			    state.XButton2
 			);
-			InputManager.CurrentMouseState = state;
+			CurrentMouseState = state;
+		}
+
+		/// <summary>
+		/// Wurde die aktuelle Taste gedrückt und war sie im letzten Frame nicht gedrückt?
+		/// </summary>
+		public bool IsDown (Keys key)
+		{
+			// Is the key down?
+			if (CurrentKeyboardState.IsKeyDown (key)) {
+				// If not down last update, key has just been pressed.
+				if (!PreviousKeyboardState.IsKeyDown (key)) {
+					return true;
+				}
+			}
+			return false;
+		}
+
+		/// <summary>
+		/// Wird die aktuelle Taste gedrückt gehalten?
+		/// </summary>
+		public bool IsHeldDown (Keys key)
+		{
+			return CurrentKeyboardState.IsKeyDown (key);
 		}
 
 		#endregion
