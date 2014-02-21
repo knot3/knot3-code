@@ -6,10 +6,8 @@
     <ProductVersion>10.0.0</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{A7093300-1D0E-462B-83E2-A5DC7C3D145B}</ProjectGuid>
-    <ProjectTypeGuids>{9B831FEF-F496-498F-9FE8-180DA5CB4258};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Exe</OutputType>
     <RootNamespace>Knot3.Game</RootNamespace>
-    <MonoGamePlatform>Linux</MonoGamePlatform>
     <AssemblyName>Knot3</AssemblyName>
     <StartupObject>Knot3.Game.Program</StartupObject>
     <ApplicationIcon>..\knot3.ico</ApplicationIcon>
