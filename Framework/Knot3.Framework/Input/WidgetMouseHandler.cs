@@ -26,6 +26,7 @@
 #endregion
 
 #region Using
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -170,9 +171,8 @@ namespace Knot3.Framework.Input
 
 				if (notify) {
 					if (relativePositionMove
-						|| InputManager.PreviousMouseState.LeftButton != InputManager.CurrentMouseState.LeftButton
-						|| InputManager.PreviousMouseState.RightButton != InputManager.CurrentMouseState.RightButton) {
-
+					        || InputManager.PreviousMouseState.LeftButton != InputManager.CurrentMouseState.LeftButton
+					        || InputManager.PreviousMouseState.RightButton != InputManager.CurrentMouseState.RightButton) {
 						if (InputManager.CurrentMouseState.LeftButton == ButtonState.Pressed) {
 							component.OnLeftMove (
 							    previousPosition: relativePositionPrevious,
