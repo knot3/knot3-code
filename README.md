@@ -14,16 +14,21 @@ A debian repository is available. You need to include it in your sources.list fi
 
 ###Debian / Ubuntu / SteamOS (source)
 
-If you are using Ubuntu 13.10 (saucy) or later or Debian testing/unstable or if your debian derivate has packages for SDL2 (`libsdl2-2.0-0`),
-run the following command to install all build and runtime dependencies:
+If you are using
+
+  * Ubuntu 13.10 (saucy) or later, or
+  * Debian testing/unstable, or
+  * a debian derivate that has packages for SDL2 (`libsdl2-2.0-0`, `libsdl2-mixer-2.0-0`),
+
+then run the following command to install all build and runtime dependencies:
 
     make dep-ubuntu
 
-Otherwise, for example if you are using Ubuntu 12.04 LTS, run this to install backported SDL2 packages:
+Otherwise, for example if you are using Ubuntu 12.04 LTS, run this to install the backported SDL2 packages:
 
     make dep-ubuntu-precise
 
-To build and install the game:
+To build and install the game, run:
 
     make
     sudo make install
