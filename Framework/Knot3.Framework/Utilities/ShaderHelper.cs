@@ -68,9 +68,9 @@ namespace Knot3.Framework.Utilities
 		private static Effect LoadEffectMono (IGameScreen screen, string name)
 		{
 			string[] filenames = {
-				"Content/Shader/" + name + ".mgfx",
-				"Content/Shader/" + name + "_3.0.mgfx",
-				"Content/Shader/" + name + "_3.1.mgfx"
+				SystemInfo.RelativeContentDirectory + "Shader/" + name + ".mgfx",
+				SystemInfo.RelativeContentDirectory + "Shader/" + name + "_3.0.mgfx",
+				SystemInfo.RelativeContentDirectory + "Shader/" + name + "_3.1.mgfx"
 			};
 			Exception lastException = new Exception ("Could not find shader: " + name);
 			foreach (string filename in filenames) {
