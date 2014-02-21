@@ -22,15 +22,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-using System.Windows.Forms;
 
 #endregion
 
 #region Using
+
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Windows.Forms;
 
 using Knot3.Framework.Core;
 using Knot3.Framework.Development;
@@ -57,9 +58,9 @@ namespace Knot3.Game
 		{
 			Log.Message ("Knot" + Char.ConvertFromUtf32 ('\u00B3').ToString () + " " + Version);
 			Log.Message ("Copyright (C) 2013-2014 Tobias Schulz, Maximilian Reuter,\n" +
-				"Pascal Knodel, Gerd Augsburg, Christina Erler, Daniel Warzel,\n" +
-				"M. Retzlaff, F. Kalka, G. Hoffmann, T. Schmidt, G. Mückl, Torsten Pelzer"
-			);
+			             "Pascal Knodel, Gerd Augsburg, Christina Erler, Daniel Warzel,\n" +
+			             "M. Retzlaff, F. Kalka, G. Hoffmann, T. Schmidt, G. Mückl, Torsten Pelzer"
+			            );
 			Log.Message ();
 
 			try {
