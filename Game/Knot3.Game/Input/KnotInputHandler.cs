@@ -26,6 +26,7 @@
 #endregion
 
 #region Using
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -362,7 +363,7 @@ namespace Knot3.Game.Input
 		private void ResetMousePosition ()
 		{
 			if (Screen.Input.GrabMouseMovement || (Screen.Input.CurrentInputAction == InputAction.ArcballMove)) {
-				ScreenPoint center = world.Viewport.Center(Screen);
+				ScreenPoint center = world.Viewport.Center (Screen);
 				if (Screen.Input.CurrentMousePosition != center) {
 					InputManager.ResetMouse (world.Viewport.Center (Screen));
 				}
@@ -456,7 +457,7 @@ namespace Knot3.Game.Input
 				Vector3 targetDirection = camera.PositionToTargetDirection;
 				Vector3 up = camera.UpVector;
 				camera.Position = camera.Target
-					+ (camera.Position - camera.Target).ArcBallMove (move, up, targetDirection);
+				                  + (camera.Position - camera.Target).ArcBallMove (move, up, targetDirection);
 				camera.Position = camera.Position.SetDistanceTo (camera.Target, oldDistance);
 			}
 		}
@@ -468,7 +469,7 @@ namespace Knot3.Game.Input
 				// selektiere das Objekt, das der Mausposition am nächsten ist!
 				world.SelectedObject = world.FindNearestObjects (
 				                           nearTo: InputManager.CurrentMouseState.ToVector2 ()
-				).ElementAt (0);
+				                       ).ElementAt (0);
 			}
 
 			if (move.Length () > 0) {
@@ -481,9 +482,9 @@ namespace Knot3.Game.Input
 				Vector3 targetDirection = Vector3.Normalize (camera.ArcballTarget - camera.Position);
 				Vector3 up = camera.UpVector;
 				camera.Position = camera.ArcballTarget
-					+ (camera.Position - camera.ArcballTarget).ArcBallMove (move, up, targetDirection);
+				                  + (camera.Position - camera.ArcballTarget).ArcBallMove (move, up, targetDirection);
 				camera.Target = camera.ArcballTarget
-					+ (camera.Target - camera.ArcballTarget).ArcBallMove (move, up, targetDirection);
+				                + (camera.Target - camera.ArcballTarget).ArcBallMove (move, up, targetDirection);
 				camera.Position = camera.Position.SetDistanceTo (camera.ArcballTarget, oldPositionDistance);
 				camera.Target = camera.Target.SetDistanceTo (camera.Position, oldTargetDistance);
 			}

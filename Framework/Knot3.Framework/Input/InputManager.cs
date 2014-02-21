@@ -26,6 +26,7 @@
 #endregion
 
 #region Using
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -78,7 +79,7 @@ namespace Knot3.Framework.Input
 		/// <summary>
 		/// Enthält die Mausposition von XNA zum aktuellen Frame.
 		/// </summary>
-		public ScreenPoint CurrentMousePosition { get { return CurrentMouseState.ToScreenPoint(Screen); } }
+		public ScreenPoint CurrentMousePosition { get { return CurrentMouseState.ToScreenPoint (Screen); } }
 
 		/// <summary>
 		/// Enthält den Tastaturzustand von XNA zum aktuellen Frame.
@@ -93,7 +94,7 @@ namespace Knot3.Framework.Input
 		/// <summary>
 		/// Enthält die Mausposition von XNA zum vorherigen Frame.
 		/// </summary>
-		public ScreenPoint PreviousMousePosition { get { return PreviousMouseState.ToScreenPoint(Screen); } }
+		public ScreenPoint PreviousMousePosition { get { return PreviousMouseState.ToScreenPoint (Screen); } }
 
 		/// <summary>
 		/// Enthält den Tastaturzustand von XNA zum vorherigen Frame.

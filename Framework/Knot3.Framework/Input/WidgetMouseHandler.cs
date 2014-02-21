@@ -83,7 +83,7 @@ namespace Knot3.Framework.Input
 				bool hovered = bounds.Contains (InputManager.CurrentMouseState.ToScreenPoint (Screen));
 				component.SetHovered (hovered, time);
 				if (hovered) {
-					ScreenPoint relativePosition = InputManager.CurrentMouseState.ToScreenPoint(Screen) - bounds.Position;
+					ScreenPoint relativePosition = InputManager.CurrentMouseState.ToScreenPoint (Screen) - bounds.Position;
 					if (InputManager.LeftMouseButton != ClickState.None) {
 						component.OnLeftClick (relativePosition, InputManager.LeftMouseButton, time);
 						break;
