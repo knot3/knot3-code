@@ -69,7 +69,8 @@ namespace Knot3.Framework.Core
 		public Point Absolute
 		{
 			get {
-				return Relative.Scale (Screen.Viewport).ToPoint ();
+				Vector2 scaled = Relative.Scale (Screen.Viewport);
+				return new Point ((int)scaled.X, (int)scaled.Y);
 			}
 		}
 

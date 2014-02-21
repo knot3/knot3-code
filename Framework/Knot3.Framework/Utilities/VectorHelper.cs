@@ -232,17 +232,6 @@ namespace Knot3.Framework.Utilities
 			return MathHelper.Clamp (v, min, max);
 		}
 
-		public static BoundingSphere[] Bounds (this Model model)
-		{
-			//Log.Debug (model);
-			BoundingSphere[] bounds = new BoundingSphere[model.Meshes.Count];
-			int i = 0;
-			foreach (ModelMesh mesh in model.Meshes) {
-				bounds [i++] = mesh.BoundingSphere;
-			}
-			return bounds;
-		}
-
 		public static BoundingBox Bounds (this Vector3 a, Vector3 diff)
 		{
 			return new BoundingBox (a, a + diff);
@@ -296,21 +285,6 @@ namespace Knot3.Framework.Utilities
 			return new Vector2 (viewport.Width, viewport.Height);
 		}
 
-		public static Vector2 ToVector2 (this Point p)
-		{
-			return new Vector2 (p.X, p.Y);
-		}
-
-		public static Point ToPoint (this Vector2 v)
-		{
-			return new Point ((int)v.X, (int)v.Y);
-		}
-
-		public static Point Plus (this Point a, Point b)
-		{
-			return new Point (a.X + b.X, a.Y + b.Y);
-		}
-
 		public static string Join (this string delimiter, List<int> list)
 		{
 			StringBuilder builder = new StringBuilder ();
@@ -319,18 +293,6 @@ namespace Knot3.Framework.Utilities
 				builder.Append (elem).Append (delimiter);
 			}
 			return builder.ToString ();
-		}
-
-		public static Vector2 ScaleFactor (this Viewport viewport)
-		{
-			Vector2 max = viewport.Size ();
-			return max / 1000f;
-		}
-
-		public static Vector2 RelativeTo (this Vector2 v, Viewport viewport)
-		{
-			Vector2 max = viewport.Size ();
-			return v / max;
 		}
 
 		public static Vector2 Scale (this Vector2 v, Viewport viewport)
@@ -372,25 +334,6 @@ namespace Knot3.Framework.Utilities
 		public static Rectangle Resize (this Rectangle rect, int w, int h)
 		{
 			return new Rectangle (rect.X, rect.Y, rect.Width + w, rect.Height + h);
-		}
-
-		public static void Swap<T> (ref T lhs, ref T rhs)
-		{
-			T temp;
-			temp = lhs;
-			lhs = rhs;
-			rhs = temp;
-		}
-
-		public static string Print (this Vector3 v)
-		{
-			return   "("
-			         + v.X.ToString ()
-			         + ","
-			         + v.Y.ToString ()
-			         + ","
-			         + v.Z.ToString ()
-			         + ")";
 		}
 
 		public static BoundingSphere[] CylinderBounds (float length, float radius, Vector3 direction, Vector3 position)

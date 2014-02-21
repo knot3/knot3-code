@@ -164,7 +164,7 @@ namespace Knot3.Game.Widgets
 		/// </summary>
 		public void OnLeftClick (Vector2 position, ClickState state, GameTime time)
 		{
-			position = position.RelativeTo (Screen.Viewport);
+			position = position / Screen.Viewport.Size ();
 			Log.Debug ("ColorPicker.OnLeftClick: positon=", position);
 			int i = 0;
 			foreach (ScreenPoint tile in tiles) {

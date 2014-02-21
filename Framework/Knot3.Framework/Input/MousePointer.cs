@@ -99,7 +99,7 @@ namespace Knot3.Framework.Input
 				else {
 					spriteBatch.Draw (
 					    cursorTex,
-					    Screen.InputManager.CurrentMousePosition.Absolute.ToVector2 () * Options.Default ["video", "Supersamples", 1],
+					    Screen.InputManager.CurrentMousePosition.AbsoluteVector * Options.Default ["video", "Supersamples", 1],
 					    null,
 					    Color.White,
 					    0f,

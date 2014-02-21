@@ -26,7 +26,6 @@
 #endregion
 
 #region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -105,6 +104,17 @@ namespace Knot3.Framework.Utilities
 					return null;
 				}
 			}
+		}
+
+		public static BoundingSphere[] Bounds (this Model model)
+		{
+			//Log.Debug (model);
+			BoundingSphere[] bounds = new BoundingSphere[model.Meshes.Count];
+			int i = 0;
+			foreach (ModelMesh mesh in model.Meshes) {
+				bounds [i++] = mesh.BoundingSphere;
+			}
+			return bounds;
 		}
 	}
 }
