@@ -6,7 +6,13 @@ Bei Knot3 handelt es sich um ein innovatives Spiel bei dem man Knoten im dreidim
 
 ###Debian / Ubuntu / SteamOS (binary)
 
-A debian repository is available. You need to include it in your sources.list file to install Knot3:
+The official debian repository of Knot3 is compatible with the following distributions:
+
+  * Debian 8.0 (jessie) or later
+  * Ubuntu 13.10 (saucy) or later
+  * any other debian derivate that has packages for SDL2 (`libsdl2-2.0-0`, `libsdl2-mixer-2.0-0`, `libsdl2-image-2.0-0`),
+
+You need to include it in your sources.list file to install Knot3:
 
     echo deb http://www.knot3.de debian/ | sudo tee /etc/apt/sources.list.d/knot3
     sudo apt-get update
@@ -16,9 +22,9 @@ A debian repository is available. You need to include it in your sources.list fi
 
 If you are using one of the following distributions:
 
-  * Debian Jessie or later
+  * Debian 8.0 (jessie) or later
   * Ubuntu 13.10 (saucy) or later
-  * or any other debian derivate that has packages for SDL2 (`libsdl2-2.0-0`, `libsdl2-mixer-2.0-0`, `libsdl2-image-2.0-0`),
+  * any other debian derivate that has packages for SDL2 (`libsdl2-2.0-0`, `libsdl2-mixer-2.0-0`, `libsdl2-image-2.0-0`),
 
 then run the following command to install all build and runtime dependencies:
 
