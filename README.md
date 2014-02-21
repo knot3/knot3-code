@@ -55,13 +55,7 @@ You can also open the solution file "Knot3-MonoGame.sln" in MonoDevelop.
 
 ###Windows (MonoGame)
 
-Install the latest version of [Xamarin Studio](http://monodevelop.com/download) and download the
-[MonoGame 3.0.1](http://monogame.codeplex.com/downloads/get/632972) plugin.
-
-Then replace the DLL files in the following directory with their newer versions (MonoGame 3.1.2), which can be found in the `lib/MonoGame-Windows-3.1.2.zip` file in the repository.
-
-    C:\Users\[...]\AppData\Local\XamarinStudio-4.0\LocalInstall\Addins\MonoDevelop.MonoGame.3.0.1\assemblies\WindowsGL
-
+Install the latest version of [Xamarin Studio](http://monodevelop.com/download). You don't need the MonoGame plugin.
 Then, open the solution file "Knot3-MonoGame.sln" in Xamarin Studio to build the game.
 
 ##Authors
