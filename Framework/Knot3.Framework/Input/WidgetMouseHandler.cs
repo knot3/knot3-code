@@ -26,7 +26,6 @@
 #endregion
 
 #region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -105,10 +104,10 @@ namespace Knot3.Framework.Input
 
 				if (hovered) {
 					if (InputManager.CurrentMouseState.ScrollWheelValue > InputManager.PreviousMouseState.ScrollWheelValue) {
-						component.OnScroll (-1,time);
+						component.OnScroll (-1, time);
 					}
 					else if (InputManager.CurrentMouseState.ScrollWheelValue < InputManager.PreviousMouseState.ScrollWheelValue) {
-						component.OnScroll (+1,time);
+						component.OnScroll (+1, time);
 					}
 					break;
 				}
@@ -170,39 +169,43 @@ namespace Knot3.Framework.Input
 				//Log.Debug ("notify=",notify,", component=",component,", cntains=",(lastLeftClickPosition != null ? bounds.Contains (lastLeftClickPosition),"" : ""),",bounds=",bounds,",precious=",previous);
 
 				if (notify) {
-					if (InputManager.CurrentMouseState.LeftButton == ButtonState.Pressed
-					        && InputManager.PreviousMouseState.LeftButton != InputManager.CurrentMouseState.LeftButton) {
-						component.OnLeftMove (
-						    previousPosition: relativePositionPrevious,
-						    currentPosition: relativePositionCurrent,
-						    move: relativePositionMove,
-						    time: time
-						);
-					}
-					else if (InputManager.CurrentMouseState.RightButton == ButtonState.Pressed
-					         && InputManager.PreviousMouseState.RightButton != InputManager.CurrentMouseState.RightButton) {
-						component.OnRightMove (
-						    previousPosition: relativePositionPrevious,
-						    currentPosition: relativePositionCurrent,
-						    move: relativePositionMove,
-						    time: time
-						);
-					}
-					else if (relativePositionMove) {
-						component.OnMove (
-						    previousPosition: relativePositionPrevious,
-						    currentPosition: relativePositionCurrent,
-						    move: relativePositionMove,
-						    time: time
-						);
+					if (relativePositionMove
+						|| InputManager.PreviousMouseState.LeftButton != InputManager.CurrentMouseState.LeftButton
+						|| InputManager.PreviousMouseState.RightButton != InputManager.CurrentMouseState.RightButton) {
+
+						if (InputManager.CurrentMouseState.LeftButton == ButtonState.Pressed) {
+							component.OnLeftMove (
+							    previousPosition: relativePositionPrevious,
+							    currentPosition: relativePositionCurrent,
+							    move: relativePositionMove,
+							    time: time
+							);
+						}
+						else if (InputManager.CurrentMouseState.RightButton == ButtonState.Pressed) {
+							component.OnRightMove (
+							    previousPosition: relativePositionPrevious,
+							    currentPosition: relativePositionCurrent,
+							    move: relativePositionMove,
+							    time: time
+							);
+						}
+						else {
+							component.OnMove (
+							    previousPosition: relativePositionPrevious,
+							    currentPosition: relativePositionCurrent,
+							    move: relativePositionMove,
+							    time: time
+							);
+						}
+						break;
 					}
 					else {
 						component.OnNoMove (
 						    currentPosition: relativePositionCurrent,
 						    time: time
 						);
+						break;
 					}
-					break;
 				}
 			}
 		}
