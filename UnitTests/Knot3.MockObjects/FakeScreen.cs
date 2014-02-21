@@ -113,7 +113,7 @@ namespace Knot3.MockObjects
 			    defaultEffect: new FakeEffect (this)
 			);
 			PostProcessingEffect = new FakeEffect (this);
-			Input = new InputManager (this);
+			//Input = new InputManager (this);
 			//Audio = new AudioManager (this);
 			BackgroundColor = Color.Black;
 			//Content = new ContentManager (Content.ServiceProvider, Content.RootDirectory);

@@ -14,11 +14,11 @@ A debian repository is available. You need to include it in your sources.list fi
 
 ###Debian / Ubuntu / SteamOS (source)
 
-If you are using
+If you are using one of the following distributions:
 
-  * Ubuntu 13.10 (saucy) or later, or
-  * Debian testing/unstable, or
-  * a debian derivate that has packages for SDL2 (`libsdl2-2.0-0`, `libsdl2-mixer-2.0-0`),
+  * Debian Jessie or later
+  * Ubuntu 13.10 (saucy) or later
+  * or any other debian derivate that has packages for SDL2 (`libsdl2-2.0-0`, `libsdl2-mixer-2.0-0`, `libsdl2-image-2.0-0`),
 
 then run the following command to install all build and runtime dependencies:
 
