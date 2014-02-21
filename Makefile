@@ -105,7 +105,7 @@ dep-ubuntu-precise:
 	sudo apt-get -q -y install mono-devel mono-dmcs nunit-console libopenal1
 	wget `curl http://de.archive.ubuntu.com/ubuntu/dists/saucy/universe/binary-amd64/Packages.gz 2>/dev/null | zcat | grep Filename | grep libsdl2 | grep -v -- -dbg | grep -v -- -dev | sed 's@Filename: @http://de.archive.ubuntu.com/ubuntu/@gm'` ; \
 	sudo dpkg -i *.deb ; \
-	sudo apt-get -q -y -f install
+	sudo apt-get -q -y -f install libsdl2-image-2.0-0 libsdl2-mixer-2.0-0
 
 dep-ubuntu: dep-ubuntu-saucy
 
