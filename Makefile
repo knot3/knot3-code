@@ -20,7 +20,7 @@ STD_KNOT_DIR = Game/Standard_Knots
 
 LIB_DIR = lib
 #LIB_MG_LINUX = $(LIB_DIR)/MonoGame-Linux-3.1.2.zip
-LIB_MG_LINUX = $(LIB_DIR)/MonoGame-Linux-SDL2.zip
+#LIB_MG_LINUX = $(LIB_DIR)/MonoGame-Linux-SDL2.zip
 LIB_MG_WINDOWS = $(LIB_DIR)/MonoGame-Windows-3.1.2.zip
 
 .PHONY: project_code
@@ -32,14 +32,6 @@ clean: distclean
 all: build
 
 build: clean
-	$(MKDIR) $(CODE_DIR)/bin/Debug/ || true
-	$(UNZIP) -o -d $(CODE_DIR)/bin/Debug/ $(LIB_MG_LINUX)
-	$(MKDIR) $(FRAMEWORK_DIR)/bin/Debug/ || true
-	$(UNZIP) -o -d $(FRAMEWORK_DIR)/bin/Debug/ $(LIB_MG_LINUX)
-	$(MKDIR) $(TEST_DIR)/bin/Debug/ || true
-	$(UNZIP) -o -d $(TEST_DIR)/bin/Debug/ $(LIB_MG_LINUX)
-	$(MKDIR) $(TOOL_MODELEDITOR_DIR)/bin/Debug/ || true
-	$(UNZIP) -o -d $(TOOL_MODELEDITOR_DIR)/bin/Debug/ $(LIB_MG_LINUX)
 	xbuild $(SOLUTION)
 
 install: build
