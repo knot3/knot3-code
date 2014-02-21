@@ -219,7 +219,7 @@ namespace Knot3.Game.Screens
 
 			// Zeichne das Logo
 			spriteBatch.Begin ();
-			spriteBatch.Draw (logo, new Rectangle (50, 360, 500, 300).Scale (Viewport), Color.White);
+			spriteBatch.Draw (logo, new Bounds (this, 0.050f, 0.360f, 0.500f, 0.300f), Color.White);
 			spriteBatch.End ();
 		}
 

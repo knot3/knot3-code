@@ -357,7 +357,7 @@ namespace Knot3.Framework.Core
 				                             world: World.Camera.WorldMatrix
 				                         );
 				Vector3 currentMousePosition = World.Viewport.Unproject (
-				                                   source: new Vector3 (position, screenLocation.Z),
+				                                   source: new Vector3 (position.AbsoluteVector, screenLocation.Z),
 				                                   projection: World.Camera.ProjectionMatrix,
 				                                   view: World.Camera.ViewMatrix,
 				                                   world: Matrix.Identity

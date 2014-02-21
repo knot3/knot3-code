@@ -279,27 +279,21 @@ namespace Knot3.Framework.Utilities
 			return new BoundingBox (Vector3.Transform (box.Min, translation), Vector3.Transform (box.Max, translation));
 		}
 
-		public static Vector2 ToVector2 (this MouseState mouse)
-		{
-			return new Vector2 (mouse.X, mouse.Y);
-		}
-
 		public static ScreenPoint ToScreenPoint (this MouseState mouse, IGameScreen screen)
 		{
-			Vector2 vector = mouse.ToVector2 () / screen.Viewport.ToVector2 ();
-			return new ScreenPoint (screen, vector);
+			return new ScreenPoint (screen, (float)mouse.X / (float)screen.Viewport.Width, (float)mouse.Y / (float)screen.Viewport.Height);
 		}
 
-		public static Vector2 ToVector2 (this Viewport viewport)
-		{
-			return new Vector2 (viewport.Width, viewport.Height);
-		}
 
 		public static ScreenPoint Center (this Viewport viewport, IGameScreen screen)
 		{
-			Vector2 center = new Vector2 (viewport.X + viewport.Width / 2,
-			                              viewport.Y + viewport.Height / 2);
-			return new ScreenPoint (screen, center / screen.Viewport.ToVector2 ());
+			Vector2 center = new Vector2 (viewport.X + viewport.Width / 2, viewport.Y + viewport.Height / 2);
+			return new ScreenPoint (screen, center / screen.Viewport.Size ());
+		}
+
+		public static Vector2 Size (this Viewport viewport)
+		{
+			return new Vector2 (viewport.Width, viewport.Height);
 		}
 
 		public static Vector2 ToVector2 (this Point p)
@@ -329,32 +323,25 @@ namespace Knot3.Framework.Utilities
 
 		public static Vector2 ScaleFactor (this Viewport viewport)
 		{
-			Vector2 max = viewport.ToVector2 ();
+			Vector2 max = viewport.Size ();
 			return max / 1000f;
 		}
 
 		public static Vector2 RelativeTo (this Vector2 v, Viewport viewport)
 		{
-			Vector2 max = viewport.ToVector2 ();
+			Vector2 max = viewport.Size ();
 			return v / max;
 		}
 
 		public static Vector2 Scale (this Vector2 v, Viewport viewport)
 		{
-			Vector2 max = viewport.ToVector2 ();
+			Vector2 max = viewport.Size ();
 			if (v.X > 1 || v.Y > 1) {
 				return v / 1000f * max;
 			}
 			else {
 				return v * max;
 			}
-		}
-
-		public static Rectangle Scale (this Rectangle rect, Viewport viewport)
-		{
-			Point max = viewport.ToVector2 ().ToPoint ();
-
-			return new Rectangle (rect.X * max.X / 1000, rect.Y * max.Y / 1000, rect.Width * max.X / 1000, rect.Height * max.Y / 1000);
 		}
 
 		public static Rectangle Grow (this Rectangle rect, int x, int y)

@@ -183,7 +183,7 @@ namespace Knot3.Game.Screens
 			    font: Design.MenuFont (this),
 			    text: MenuName,
 			    color: Color.White,
-			    bounds: new Rectangle (50, 50, 900, 50).Scale (Viewport),
+			    bounds: new Bounds (this, 0.050f, 0.050f, 0.900f, 0.050f),
 			    alignX: HorizontalAlignment.Left,
 			    alignY: VerticalAlignment.Center
 			);
