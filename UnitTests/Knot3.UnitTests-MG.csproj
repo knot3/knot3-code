@@ -36,8 +36,14 @@
     </Reference>
     <Reference Include="System.Core" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="MonoGame.Framework, Version=3.1.2.0, Culture=neutral">
-      <Private>False</Private>
+    <Reference Include="Lidgren.Network">
+      <HintPath>..\lib\Lidgren.Network.dll</HintPath>
+    </Reference>
+    <Reference Include="MonoGame.Framework">
+      <HintPath>..\lib\MonoGame.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="SDL2-CS">
+      <HintPath>..\lib\SDL2-CS.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
