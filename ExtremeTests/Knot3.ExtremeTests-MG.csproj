@@ -35,7 +35,6 @@
       <Package>mono-nunit</Package>
     </Reference>
     <Reference Include="System.Core" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="Lidgren.Network">
       <HintPath>..\lib\Lidgren.Network.dll</HintPath>
     </Reference>
