@@ -4,7 +4,7 @@ Bei Knot3 handelt es sich um ein innovatives Spiel bei dem man Knoten im dreidim
 
 ##Installation
 
-###Debian / Ubuntu / SteamOS
+###Debian / Ubuntu / SteamOS (binary)
 
 A debian repository is available. You need to include it in your sources.list file to install Knot3:
 
@@ -12,9 +12,24 @@ A debian repository is available. You need to include it in your sources.list fi
     sudo apt-get update
     sudo apt-get install knot3
 
+###Debian / Ubuntu / SteamOS (source)
+
+If you are using Ubuntu 13.10 (saucy) or later or your debian derivate has packages for SDL2, run the following command to install all build and runtime dependencies:
+
+    make dep-ubuntu
+
+Otherwise, for example if you are using Ubuntu 12.04 LTS, run this to install backported SDL2 packages:
+
+    make dep-ubuntu-precise
+
+To build and install the game:
+
+    make
+    sudo make install
+
 ###Other Linux
 
-You need to have Mono (3.0+), MonoGame (3.1.X+) and xbuild installed. Once installed,
+You need to have Mono (3.0+) and SDL (2.0+) and xbuild installed. Once installed,
 simply run:
 
     make
