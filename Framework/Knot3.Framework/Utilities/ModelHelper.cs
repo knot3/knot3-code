@@ -57,17 +57,6 @@ namespace Knot3.Framework.Utilities
 	[ExcludeFromCodeCoverageAttribute]
 	public static class ModelHelper
 	{
-		public static string[] ValidQualities = new string[] {
-			"low",
-			"medium",
-			"high"
-		};
-
-		public static string Quality
-		{
-			get { return Options.Default ["video", "model-quality", "medium"]; }
-		}
-
 		private static Dictionary<string, ContentManager> contentManagers = new Dictionary<string, ContentManager> ();
 		private static HashSet<string> invalidModels = new HashSet<string> ();
 
@@ -81,10 +70,7 @@ namespace Knot3.Framework.Utilities
 				contentManagers [screen.CurrentRenderEffects.CurrentEffect.ToString ()] = content = new ContentManager (screen.Content.ServiceProvider, screen.Content.RootDirectory);
 			}
 
-			Model model = LoadModel (content, screen.CurrentRenderEffects.CurrentEffect, name + "-" + Quality);
-			if (model == null) {
-				model = LoadModel (content, screen.CurrentRenderEffects.CurrentEffect, name);
-			}
+			Model model = LoadModel (content, screen.CurrentRenderEffects.CurrentEffect, name);
 			return model;
 		}
 

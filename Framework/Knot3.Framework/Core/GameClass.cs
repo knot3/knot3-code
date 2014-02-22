@@ -52,11 +52,12 @@ using Knot3.Framework.Utilities;
 
 namespace Knot3.Framework.Core
 {
-	public abstract class GameClass : Microsoft.Xna.Framework.Game
+	[ExcludeFromCodeCoverageAttribute]
+	public abstract class GameClass : Game
 	{
 		#region Properties
 
-		private static readonly Vector2 defaultSize = SystemInfo.IsRunningOnMono ()
+		private static readonly Vector2 defaultSize = SystemInfo.IsRunningOnLinux ()
 		        ? new Vector2 (1024, 600) : new Vector2 (1280, 720);
 
 		public Action FullScreenChanged { get; set; }
