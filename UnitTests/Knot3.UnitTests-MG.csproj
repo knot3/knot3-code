@@ -41,7 +41,6 @@
       <HintPath>..\lib\SDL2-CS.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
-      <HintPath>..\lib\nunit\nunit.framework.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
