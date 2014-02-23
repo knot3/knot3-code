@@ -48,7 +48,7 @@ using Knot3.Framework.Widgets;
 
 #endregion
 
-namespace Knot3.Framework.RenderEffects
+namespace Knot3.Framework.Effects
 {
 	/// <summary>
 	/// Stellt eine Schnittstelle für Klassen bereit, die Rendereffekte ermöglichen.

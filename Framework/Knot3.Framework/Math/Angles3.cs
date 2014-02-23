@@ -46,7 +46,7 @@ using Knot3.Framework.Utilities;
 
 #endregion
 
-namespace Knot3.Framework.Core
+namespace Knot3.Framework.Math
 {
 	/// <summary>
 	/// Diese Klasse repräsentiert die Rollwinkel der drei Achsen X, Y und Z.

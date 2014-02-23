@@ -48,7 +48,7 @@ using Knot3.Framework.Widgets;
 
 #endregion
 
-namespace Knot3.Framework.RenderEffects
+namespace Knot3.Framework.Effects
 {
 	/// <summary>
 	/// Ein Rendereffekt, der 3D-Modelle mit dem von der XNA-Content-Pipeline standardmäßig zugewiesenen

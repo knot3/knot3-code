@@ -43,7 +43,7 @@ using Knot3.Framework.Utilities;
 
 #endregion
 
-namespace Knot3.Framework.Core
+namespace Knot3.Framework.Math
 {
 	public class Bounds
 	{

@@ -50,7 +50,7 @@ using Knot3.Framework.Widgets;
 
 #endregion
 
-namespace Knot3.Framework.RenderEffects
+namespace Knot3.Framework.Effects
 {
 	/// <summary>
 	/// Eine abstrakte Klasse, die eine Implementierung von IRenderEffect darstellt.

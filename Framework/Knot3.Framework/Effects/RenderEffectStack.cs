@@ -48,7 +48,7 @@ using Knot3.Framework.Widgets;
 
 #endregion
 
-namespace Knot3.Framework.RenderEffects
+namespace Knot3.Framework.Effects
 {
 	/// <summary>
 	/// Ein Stapel, der während der Draw-Aufrufe die Hierarchie der aktuell verwendeten Rendereffekte verwaltet

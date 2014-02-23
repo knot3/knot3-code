@@ -41,9 +41,9 @@ using Microsoft.Xna.Framework.Input;
 
 using Knot3.Framework.Core;
 using Knot3.Framework.Development;
+using Knot3.Framework.Effects;
 using Knot3.Framework.Input;
 using Knot3.Framework.Platform;
-using Knot3.Framework.RenderEffects;
 using Knot3.Framework.Utilities;
 
 #endregion

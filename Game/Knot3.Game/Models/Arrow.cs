@@ -41,14 +41,15 @@ using Microsoft.Xna.Framework.Input;
 
 using Knot3.Framework.Core;
 using Knot3.Framework.Input;
+using Knot3.Framework.Math;
 using Knot3.Framework.Models;
 using Knot3.Framework.Platform;
 using Knot3.Framework.Utilities;
 
 using Knot3.Game.Core;
 using Knot3.Game.Data;
+using Knot3.Game.Effects;
 using Knot3.Game.Input;
-using Knot3.Game.RenderEffects;
 using Knot3.Game.Screens;
 using Knot3.Game.Utilities;
 using Knot3.Game.Widgets;

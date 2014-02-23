@@ -40,16 +40,16 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 using Knot3.Framework.Core;
+using Knot3.Framework.Effects;
 using Knot3.Framework.Input;
 using Knot3.Framework.Models;
 using Knot3.Framework.Platform;
-using Knot3.Framework.RenderEffects;
 using Knot3.Framework.Utilities;
 using Knot3.Framework.Widgets;
 
 #endregion
 
-namespace Knot3.Framework.RenderEffects
+namespace Knot3.Framework.Effects
 {
 	[ExcludeFromCodeCoverageAttribute]
 	public class RenderEffectLibrary

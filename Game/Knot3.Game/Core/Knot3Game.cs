@@ -42,16 +42,16 @@ using Microsoft.Xna.Framework.Input;
 using Knot3.Framework;
 using Knot3.Framework.Core;
 using Knot3.Framework.Development;
+using Knot3.Framework.Effects;
 using Knot3.Framework.Input;
 using Knot3.Framework.Platform;
-using Knot3.Framework.RenderEffects;
 using Knot3.Framework.Screens;
 using Knot3.Framework.Utilities;
 
 using Knot3.Game.Data;
 using Knot3.Game.Development;
+using Knot3.Game.Effects;
 using Knot3.Game.Models;
-using Knot3.Game.RenderEffects;
 using Knot3.Game.Screens;
 using Knot3.Game.Utilities;
 using Knot3.Game.Widgets;
