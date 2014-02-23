@@ -73,12 +73,6 @@
     <Compile Include="Knot3.Framework\Effects\RenderEffectLibrary.cs" />
     <Compile Include="Knot3.Framework\Effects\RenderEffectStack.cs" />
     <Compile Include="Knot3.Framework\Effects\StandardEffect.cs" />
-    <Compile Include="Knot3.Framework\GameObjects\GameModel.cs" />
-    <Compile Include="Knot3.Framework\GameObjects\GameModelInfo.cs" />
-    <Compile Include="Knot3.Framework\GameObjects\GameObjectDistance.cs" />
-    <Compile Include="Knot3.Framework\GameObjects\GameObjectInfo.cs" />
-    <Compile Include="Knot3.Framework\GameObjects\IGameObject.cs" />
-    <Compile Include="Knot3.Framework\GameObjects\ModelColoring.cs" />
     <Compile Include="Knot3.Framework\Input\ClickState.cs" />
     <Compile Include="Knot3.Framework\Input\IKeyEventListener.cs" />
     <Compile Include="Knot3.Framework\Input\IMouseClickEventListener.cs" />
@@ -98,6 +92,12 @@
     <Compile Include="Knot3.Framework\Math\ModelExtensions.cs" />
     <Compile Include="Knot3.Framework\Math\RayExtensions.cs" />
     <Compile Include="Knot3.Framework\Math\ScreenPoint.cs" />
+    <Compile Include="Knot3.Framework\Models\GameModel.cs" />
+    <Compile Include="Knot3.Framework\Models\GameModelInfo.cs" />
+    <Compile Include="Knot3.Framework\Models\GameObjectDistance.cs" />
+    <Compile Include="Knot3.Framework\Models\GameObjectInfo.cs" />
+    <Compile Include="Knot3.Framework\Models\IGameObject.cs" />
+    <Compile Include="Knot3.Framework\Models\ModelColoring.cs" />
     <Compile Include="Knot3.Framework\Platform\ContentLoader.cs" />
     <Compile Include="Knot3.Framework\Platform\Dependencies.cs" />
     <Compile Include="Knot3.Framework\Platform\Log.cs" />
@@ -147,14 +147,5 @@
   <ItemGroup>
     <Reference Include="System.Core" />
     <Reference Include="Microsoft.CSharp" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Knot3.Framework\Development\" />
-    <Folder Include="Knot3.Framework\GameObjects\" />
-    <Folder Include="Knot3.Framework\Widgets\" />
-    <Folder Include="Knot3.Framework\Effects\" />
-    <Folder Include="Knot3.Framework\Screens\" />
-    <Folder Include="Knot3.Framework\Math\" />
-    <Folder Include="Knot3.Framework\Storage\" />
   </ItemGroup>
 </Project>

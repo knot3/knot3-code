@@ -36,21 +36,20 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
-using Microsoft.Xna.Framework.Net;
-using Microsoft.Xna.Framework.Storage;
 
 using Knot3.Framework.Core;
-using Knot3.Framework.GameObjects;
+using Knot3.Framework.Development;
 using Knot3.Framework.Input;
+using Knot3.Framework.Math;
+using Knot3.Framework.Models;
 using Knot3.Framework.Platform;
 using Knot3.Framework.Utilities;
 
 using Knot3.Game.Core;
 using Knot3.Game.Data;
+using Knot3.Game.Development;
 using Knot3.Game.Input;
 using Knot3.Game.RenderEffects;
 using Knot3.Game.Screens;
@@ -59,34 +58,29 @@ using Knot3.Game.Widgets;
 
 #endregion
 
-namespace Knot3.Game.GameObjects
+namespace Knot3.Game.Models
 {
 	/// <summary>
-	/// Ein 3D-Modell, das einen Kantenübergang darstellt.
+	/// Ein Inputhandler, der Mauseingaben auf 3D-Modellen verarbeitet.
 	/// </summary>
 	[ExcludeFromCodeCoverageAttribute]
-	public sealed class JunctionModel : GameModel
+	public sealed class ModelMouseHandler : GameScreenComponent
 	{
-		#region Properties
-
-		/// <summary>
-		/// Enthält Informationen über den darzustellende 3D-Modell des Kantenübergangs.
-		/// </summary>
-		public new Junction Info { get { return base.Info as Junction; } set { base.Info = value; } }
-
-		public bool IsVirtual { get; set; }
-
-		#endregion
+		private World World;
+		private double lastRayCheck = 0;
+		private ScreenPoint lastMousePosition;
 
 		#region Constructors
 
 		/// <summary>
-		/// Erstellt ein neues 3D-Modell mit dem angegebenen Spielzustand und dem angegebenen Informationsobjekt.
-		/// [base=screen, info]
+		/// Erzeugt eine neue Instanz eines ModelMouseHandler-Objekts und ordnet dieser ein IGameScreen-Objekt screen zu,
+		/// sowie eine Spielwelt world.
 		/// </summary>
-		public JunctionModel (IGameScreen screen, Junction info)
-		: base (screen, info)
+		public ModelMouseHandler (IGameScreen screen, World world)
+		: base (screen, DisplayLayer.None)
 		{
+			World = world;
+			lastMousePosition = ScreenPoint.Zero (screen);
 		}
 
 		#endregion
@@ -94,28 +88,52 @@ namespace Knot3.Game.GameObjects
 		#region Methods
 
 		/// <summary>
-		/// Zeichnet das 3D-Modell mit dem aktuellen Rendereffekt.
-		/// </summary>
-		[ExcludeFromCodeCoverageAttribute]
-		public override void Draw (GameTime time)
-		{
-			Coloring = new GradientColor (Info.EdgeFrom, Info.EdgeTo);
-			if (IsVirtual) {
-				Coloring.Highlight (intensity: 0.5f, color: Color.White);
-			}
-			else {
-				Coloring.Unhighlight ();
-			}
-			base.Draw (time);
-		}
-
-		/// <summary>
 		/// Wird für jeden Frame aufgerufen.
 		/// </summary>
 		[ExcludeFromCodeCoverageAttribute]
 		public override void Update (GameTime time)
 		{
-			base.Update (time);
+			CheckMouseRay (time);
+		}
+
+		private void CheckMouseRay (GameTime time)
+		{
+			double millis = time.TotalGameTime.TotalMilliseconds;
+			if (millis > lastRayCheck + 10
+			        && (Screen.InputManager.CurrentInputAction == InputAction.CameraTargetMove
+			            || Screen.InputManager.CurrentInputAction == InputAction.FreeMouse)
+			        && Screen.InputManager.CurrentMousePosition != lastMousePosition) {
+				//Log.Debug (Screen.Input.CurrentInputAction);
+				lastRayCheck = millis;
+				lastMousePosition = Screen.InputManager.CurrentMousePosition;
+
+				Profiler.ProfileDelegate ["Ray"] = () => {
+					UpdateMouseRay (time);
+				};
+			}
+		}
+
+		private void UpdateMouseRay (GameTime time)
+		{
+			Ray ray = World.Camera.GetMouseRay (Screen.InputManager.CurrentMousePosition);
+
+			GameObjectDistance nearest = null;
+			foreach (IGameObject obj in World.Objects) {
+				if (obj.Info.IsVisible) {
+					GameObjectDistance intersection = obj.Intersects (ray);
+					if (intersection != null) {
+						if (intersection.Distance > 0 && (nearest == null || intersection.Distance < nearest.Distance)) {
+							nearest = intersection;
+						}
+					}
+				}
+			}
+			if (nearest != null) {
+				World.SelectedObject = nearest.Object;
+			}
+			else {
+				World.SelectedObject = null;
+			}
 		}
 
 		#endregion

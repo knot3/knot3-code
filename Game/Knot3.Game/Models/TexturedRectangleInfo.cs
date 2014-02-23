@@ -28,59 +28,84 @@
 #region Using
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
-using NUnit.Framework;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
-using Knot3.Framework.Audio;
 using Knot3.Framework.Core;
 using Knot3.Framework.Input;
+using Knot3.Framework.Models;
 using Knot3.Framework.Platform;
 using Knot3.Framework.Utilities;
 
 using Knot3.Game.Core;
 using Knot3.Game.Data;
-using Knot3.Game.Models;
+using Knot3.Game.Input;
 using Knot3.Game.RenderEffects;
-
-using Knot3.MockObjects;
+using Knot3.Game.Screens;
+using Knot3.Game.Utilities;
+using Knot3.Game.Widgets;
 
 #endregion
 
-namespace Knot3.UnitTests.Audio
+namespace Knot3.Game.Models
 {
-	[TestFixture]
-	public class Audio_Tests
+	[ExcludeFromCodeCoverageAttribute]
+	public class TexturedRectangleInfo : GameObjectInfo
 	{
-		FakeScreen screen;
+		public string Texturename;
+		public Texture2D Texture;
+		public Vector3 Up;
+		public Vector3 Left;
+		public float Width;
+		public float Height;
 
-		[SetUp]
-		public void Audio_Setup ()
+		public TexturedRectangleInfo (string texturename, Vector3 origin, Vector3 left, float width, Vector3 up, float height)
+		: base (position: origin, isVisible: true, isSelectable: false, isMovable: false)
 		{
-			screen = new FakeScreen ();
-			AudioManager.Reset ();
-			new AudioManager (screen, TestHelper.TestResourcesDirectory);
+			Texturename = texturename;
+			Left = left;
+			Width = width;
+			Up = up;
+			Height = height;
+			Position = origin;
 		}
 
-		[Test]
-		public void Audio_Volume_Tests ()
+		public TexturedRectangleInfo (Texture2D texture, Vector3 origin, Vector3 left, float width, Vector3 up, float height)
+		: base (position: origin, isVisible: true, isSelectable: false, isMovable: false)
 		{
-			AudioManager.SetVolume (Sound.PipeMoveSound, 1f);
+			Texture = texture;
+			Left = left;
+			Width = width;
+			Up = up;
+			Height = height;
+			Position = origin;
 		}
 
-		[Test]
-		public void Audio_Load_Tests ()
+		public override bool Equals (GameObjectInfo other)
 		{
-			string[] filenames = new string[] { "sound1.ogg", "invalid.ogg" };
-			foreach (string filename in filenames) {
+			if (other == null) {
+				return false;
 			}
-		}
 
-		[Test]
-		public void Audio_LoopPlaylist_Tests ()
-		{
+			if (other is GameModelInfo) {
+				if (this.Texturename == (other as GameModelInfo).Modelname && base.Equals (other)) {
+					return true;
+				}
+				else {
+					return false;
+				}
+			}
+			else {
+				return base.Equals (other);
+			}
 		}
 	}
 }

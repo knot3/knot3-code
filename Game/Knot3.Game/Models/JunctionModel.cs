@@ -36,16 +36,12 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
-using Microsoft.Xna.Framework.Net;
-using Microsoft.Xna.Framework.Storage;
 
 using Knot3.Framework.Core;
-using Knot3.Framework.GameObjects;
 using Knot3.Framework.Input;
+using Knot3.Framework.Models;
 using Knot3.Framework.Platform;
 using Knot3.Framework.Utilities;
 
@@ -59,27 +55,20 @@ using Knot3.Game.Widgets;
 
 #endregion
 
-namespace Knot3.Game.GameObjects
+namespace Knot3.Game.Models
 {
 	/// <summary>
-	/// Ein 3D-Modell, das eine Kante darstellt.
+	/// Ein 3D-Modell, das einen Kantenübergang darstellt.
 	/// </summary>
 	[ExcludeFromCodeCoverageAttribute]
-	public sealed class PipeModel : GameModel
+	public sealed class JunctionModel : GameModel
 	{
 		#region Properties
 
 		/// <summary>
-		/// Enthält Informationen über die darzustellende Kante.
+		/// Enthält Informationen über den darzustellende 3D-Modell des Kantenübergangs.
 		/// </summary>
-		public new Pipe Info { get { return base.Info as Pipe; } set { base.Info = value; } }
-
-		private BoundingSphere[] _bounds;
-
-		public override BoundingSphere[] Bounds
-		{
-			get { return _bounds; }
-		}
+		public new Junction Info { get { return base.Info as Junction; } set { base.Info = value; } }
 
 		public bool IsVirtual { get; set; }
 
@@ -88,61 +77,41 @@ namespace Knot3.Game.GameObjects
 		#region Constructors
 
 		/// <summary>
-		/// Erstellt ein neues 3D-Modell mit dem angegebenen Spielzustand und den angegebenen Spielinformationen.
+		/// Erstellt ein neues 3D-Modell mit dem angegebenen Spielzustand und dem angegebenen Informationsobjekt.
 		/// [base=screen, info]
 		/// </summary>
-		public PipeModel (IGameScreen screen, Pipe info)
+		public JunctionModel (IGameScreen screen, Junction info)
 		: base (screen, info)
 		{
-			float length = (info.PositionTo - info.PositionFrom).Length ();
-			float radius = 5.1f;
-			_bounds = VectorHelper.CylinderBounds (
-			              length: length,
-			              radius: radius,
-			              direction: Info.Edge.Direction.Vector,
-			              position: info.PositionFrom
-			          );
 		}
 
 		#endregion
 
 		#region Methods
 
+		/// <summary>
+		/// Zeichnet das 3D-Modell mit dem aktuellen Rendereffekt.
+		/// </summary>
 		[ExcludeFromCodeCoverageAttribute]
 		public override void Draw (GameTime time)
 		{
-			Coloring = new SingleColor (Info.Edge);
-			if (World.SelectedObject == this) {
-				Coloring.Highlight (intensity: 0.40f, color: Color.White);
-			}
-			else if (IsVirtual) {
+			Coloring = new GradientColor (Info.EdgeFrom, Info.EdgeTo);
+			if (IsVirtual) {
 				Coloring.Highlight (intensity: 0.5f, color: Color.White);
-			}
-			else if (Info.Knot != null && Info.Knot.SelectedEdges.Contains (Info.Edge)) {
-				Coloring.Highlight (intensity: 0.80f, color: Color.White);
 			}
 			else {
 				Coloring.Unhighlight ();
 			}
-
 			base.Draw (time);
 		}
 
 		/// <summary>
-		/// Prüft, ob der angegebene Mausstrahl das 3D-Modell schneidet.
+		/// Wird für jeden Frame aufgerufen.
 		/// </summary>
-		public override GameObjectDistance Intersects (Ray ray)
+		[ExcludeFromCodeCoverageAttribute]
+		public override void Update (GameTime time)
 		{
-			foreach (BoundingSphere sphere in Bounds) {
-				float? distance = ray.Intersects (sphere);
-				if (distance != null) {
-					GameObjectDistance intersection = new GameObjectDistance () {
-						Object=this, Distance=distance.Value
-					};
-					return intersection;
-				}
-			}
-			return null;
+			base.Update (time);
 		}
 
 		#endregion

@@ -36,12 +36,8 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
-using Microsoft.Xna.Framework.Net;
-using Microsoft.Xna.Framework.Storage;
 
 using Knot3.Framework;
 using Knot3.Framework.Core;
@@ -54,7 +50,7 @@ using Knot3.Framework.Utilities;
 
 using Knot3.Game.Data;
 using Knot3.Game.Development;
-using Knot3.Game.GameObjects;
+using Knot3.Game.Models;
 using Knot3.Game.RenderEffects;
 using Knot3.Game.Screens;
 using Knot3.Game.Utilities;

@@ -36,80 +36,69 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
-using Microsoft.Xna.Framework.Net;
-using Microsoft.Xna.Framework.Storage;
 
 using Knot3.Framework.Core;
-using Knot3.Framework.GameObjects;
 using Knot3.Framework.Input;
 using Knot3.Framework.Platform;
 using Knot3.Framework.Utilities;
 
-using Knot3.Game.Core;
-using Knot3.Game.Data;
-using Knot3.Game.Input;
-using Knot3.Game.RenderEffects;
-using Knot3.Game.Screens;
-using Knot3.Game.Utilities;
-using Knot3.Game.Widgets;
-
 #endregion
 
-namespace Knot3.Game.GameObjects
+namespace Knot3.Framework.Models
 {
+	/// <summary>
+	/// Enthält Informationen über ein 3D-Modell wie den Dateinamen, die Rotation und die Skalierung.
+	/// </summary>
 	[ExcludeFromCodeCoverageAttribute]
-	public class TexturedRectangleInfo : GameObjectInfo
+	public abstract class GameModelInfo : GameObjectInfo
 	{
-		public string Texturename;
-		public Texture2D Texture;
-		public Vector3 Up;
-		public Vector3 Left;
-		public float Width;
-		public float Height;
+		#region Properties
 
-		public TexturedRectangleInfo (string texturename, Vector3 origin, Vector3 left, float width, Vector3 up, float height)
-		: base (position: origin, isVisible: true, isSelectable: false, isMovable: false)
+		/// <summary>
+		/// Der Dateiname des Modells.
+		/// </summary>
+		public string Modelname { get; set; }
+
+		/// <summary>
+		/// Die Rotation des Modells.
+		/// </summary>
+		public Angles3 Rotation { get; set; }
+
+		/// <summary>
+		/// Die Skalierung des Modells.
+		/// </summary>
+		public Vector3 Scale { get; set; }
+
+		#endregion
+
+		#region Constructors
+
+		/// <summary>
+		/// Erstellt ein neues Informations-Objekt eines 3D-Modells mit den angegebenen Informationen zu
+		/// Dateiname, Rotation und Skalierung.
+		/// </summary>
+		public GameModelInfo (string modelname, Angles3 rotation, Vector3 scale)
+		: base (position: Vector3.Zero)
 		{
-			Texturename = texturename;
-			Left = left;
-			Width = width;
-			Up = up;
-			Height = height;
-			Position = origin;
+			Modelname = modelname;
+			Rotation = rotation;
+			Scale = scale;
 		}
 
-		public TexturedRectangleInfo (Texture2D texture, Vector3 origin, Vector3 left, float width, Vector3 up, float height)
-		: base (position: origin, isVisible: true, isSelectable: false, isMovable: false)
+		/// <summary>
+		/// Erzeugt eine neue Instanz eines GameModelInfo-Objekts.
+		/// In modelname wird der Name der Datei angegeben, welche das Model repräsentiert.
+		/// </summary>
+		public GameModelInfo (string modelname)
+		: base (position: Vector3.Zero)
 		{
-			Texture = texture;
-			Left = left;
-			Width = width;
-			Up = up;
-			Height = height;
-			Position = origin;
+			Modelname = modelname;
+			Rotation = Angles3.Zero;
+			Scale = Vector3.One;
 		}
 
-		public override bool Equals (GameObjectInfo other)
-		{
-			if (other == null) {
-				return false;
-			}
-
-			if (other is GameModelInfo) {
-				if (this.Texturename == (other as GameModelInfo).Modelname && base.Equals (other)) {
-					return true;
-				}
-				else {
-					return false;
-				}
-			}
-			else {
-				return base.Equals (other);
-			}
-		}
+		#endregion
 	}
 }

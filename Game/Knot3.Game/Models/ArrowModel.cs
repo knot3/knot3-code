@@ -36,16 +36,12 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
-using Microsoft.Xna.Framework.Net;
-using Microsoft.Xna.Framework.Storage;
 
 using Knot3.Framework.Core;
-using Knot3.Framework.GameObjects;
 using Knot3.Framework.Input;
+using Knot3.Framework.Models;
 using Knot3.Framework.Platform;
 using Knot3.Framework.Utilities;
 
@@ -59,52 +55,91 @@ using Knot3.Game.Widgets;
 
 #endregion
 
-namespace Knot3.Game.GameObjects
+namespace Knot3.Game.Models
 {
 	/// <summary>
-	/// Ein Objekt der Klasse ArrowModelInfo hält alle Informationen, die zur Erstellung eines Pfeil-3D-Modelles (s. ArrowModel) notwendig sind.
+	/// Diese Klasse ArrowModel repräsentiert ein 3D-Modell für einen Pfeil, zum Einblenden an selektierten Kanten (s. Edge).
 	/// </summary>
 	[ExcludeFromCodeCoverageAttribute]
-	public sealed class Arrow : GameModelInfo
+	public sealed class ArrowModel : GameModel
 	{
 		#region Properties
 
 		/// <summary>
-		/// Gibt die Richtung, in die der Pfeil zeigen soll an.
+		/// Das Info-Objekt, das die Position und Richtung des ArrowModel\grq s enthält.
 		/// </summary>
-		public Direction Direction { get; private set; }
+		public new Arrow Info { get { return base.Info as Arrow; } set { base.Info = value; } }
 
-		public float Length { get { return 40f; } }
+		private BoundingSphere[] _bounds;
 
-		public float Diameter { get { return 8f; } }
-
-		private Dictionary<Direction, Angles3> RotationMap = new Dictionary<Direction, Angles3> ()
+		public override BoundingSphere[] Bounds
 		{
-			{ Direction.Up, 		Angles3.FromDegrees (90, 0, 00) },
-			{ Direction.Down, 		Angles3.FromDegrees (270, 0, 0) },
-			{ Direction.Right, 		Angles3.FromDegrees (0, 270, 0) },
-			{ Direction.Left, 		Angles3.FromDegrees (0, 90, 0) },
-			{ Direction.Forward, 	Angles3.FromDegrees (0, 0, 0) },
-			{ Direction.Backward, 	Angles3.FromDegrees (180, 0, 0) },
-		};
+			get { return _bounds; }
+		}
 
 		#endregion
 
 		#region Constructors
 
 		/// <summary>
-		/// Erstellt ein neues ArrowModelInfo-Objekt an einer bestimmten Position position im 3D-Raum. Dieses zeigt in eine durch direction bestimmte Richtung.
+		/// Erstellt ein neues Pfeilmodell in dem angegebenen IGameScreen mit einem bestimmten Info-Objekt, das Position und Richtung des Pfeils festlegt.
 		/// </summary>
-		public Arrow (Vector3 position, Direction direction)
-		: base ("arrow")
+		public ArrowModel (IGameScreen screen, Arrow info)
+		: base (screen, info)
 		{
-			Direction = direction;
-			Position = position + Direction.Vector * Node.Scale / 3;
-			Scale = new Vector3 (7,7,20);
-			IsMovable = true;
+			_bounds = VectorHelper.CylinderBounds (
+			              length: Info.Length,
+			              radius: Info.Diameter / 2,
+			              direction: Info.Direction.Vector,
+			              position: info.Position - info.Direction.Vector * Info.Length / 2
+			          );
+		}
 
-			// Berechne die Drehung
-			Rotation += RotationMap [direction];
+		#endregion
+
+		#region Methods
+
+		/// <summary>
+		/// Zeichnet den Pfeil.
+		/// </summary>
+		[ExcludeFromCodeCoverageAttribute]
+		public override void Draw (GameTime time)
+		{
+			Coloring = new SingleColor (Color.Red);
+			if (World.SelectedObject == this) {
+				Coloring.Highlight (intensity: 1f, color: Color.Orange);
+			}
+			else {
+				Coloring.Unhighlight ();
+			}
+
+			base.Draw (time);
+		}
+
+		/// <summary>
+		/// Überprüft, ob der Mausstrahl den Pfeil schneidet.
+		/// </summary>
+		public override GameObjectDistance Intersects (Ray ray)
+		{
+			foreach (BoundingSphere sphere in Bounds) {
+				float? distance = ray.Intersects (sphere);
+				if (distance != null) {
+					GameObjectDistance intersection = new GameObjectDistance () {
+						Object=this, Distance=distance.Value
+					};
+					return intersection;
+				}
+			}
+			return null;
+		}
+
+		/// <summary>
+		/// Wird für jeden Frame aufgerufen.
+		/// </summary>
+		[ExcludeFromCodeCoverageAttribute]
+		public override void Update (GameTime time)
+		{
+			base.Update (time);
 		}
 
 		#endregion

@@ -30,7 +30,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
@@ -44,58 +43,66 @@ using Knot3.Framework.Core;
 using Knot3.Framework.Input;
 using Knot3.Framework.Models;
 using Knot3.Framework.Platform;
-using Knot3.Framework.RenderEffects;
 using Knot3.Framework.Utilities;
-using Knot3.Framework.Widgets;
+
+using Knot3.Game.Core;
+using Knot3.Game.Data;
+using Knot3.Game.Input;
+using Knot3.Game.RenderEffects;
+using Knot3.Game.Screens;
+using Knot3.Game.Utilities;
+using Knot3.Game.Widgets;
 
 #endregion
 
-namespace Knot3.Framework.Development
+namespace Knot3.Game.Models
 {
+	/// <summary>
+	/// Ein Objekt der Klasse ArrowModelInfo hält alle Informationen, die zur Erstellung eines Pfeil-3D-Modelles (s. ArrowModel) notwendig sind.
+	/// </summary>
 	[ExcludeFromCodeCoverageAttribute]
-	public static class Profiler
+	public sealed class Arrow : GameModelInfo
 	{
-		public static TimeSpan Time (Action action)
+		#region Properties
+
+		/// <summary>
+		/// Gibt die Richtung, in die der Pfeil zeigen soll an.
+		/// </summary>
+		public Direction Direction { get; private set; }
+
+		public float Length { get { return 40f; } }
+
+		public float Diameter { get { return 8f; } }
+
+		private Dictionary<Direction, Angles3> RotationMap = new Dictionary<Direction, Angles3> ()
 		{
-			Stopwatch stopwatch = Stopwatch.StartNew ();
-			action ();
-			stopwatch.Stop ();
-			return stopwatch.Elapsed;
+			{ Direction.Up, 		Angles3.FromDegrees (90, 0, 00) },
+			{ Direction.Down, 		Angles3.FromDegrees (270, 0, 0) },
+			{ Direction.Right, 		Angles3.FromDegrees (0, 270, 0) },
+			{ Direction.Left, 		Angles3.FromDegrees (0, 90, 0) },
+			{ Direction.Forward, 	Angles3.FromDegrees (0, 0, 0) },
+			{ Direction.Backward, 	Angles3.FromDegrees (180, 0, 0) },
+		};
+
+		#endregion
+
+		#region Constructors
+
+		/// <summary>
+		/// Erstellt ein neues ArrowModelInfo-Objekt an einer bestimmten Position position im 3D-Raum. Dieses zeigt in eine durch direction bestimmte Richtung.
+		/// </summary>
+		public Arrow (Vector3 position, Direction direction)
+		: base ("arrow")
+		{
+			Direction = direction;
+			Position = position + Direction.Vector * Node.Scale / 3;
+			Scale = new Vector3 (7,7,20);
+			IsMovable = true;
+
+			// Berechne die Drehung
+			Rotation += RotationMap [direction];
 		}
 
-		public static Hashtable ProfilerMap = new Hashtable ();
-
-		public static HashtableActionWrapper ProfileDelegate = new HashtableActionWrapper ();
-		public static HashtableWrapper Values = new HashtableWrapper ();
-
-		[ExcludeFromCodeCoverageAttribute]
-		public class HashtableWrapper
-		{
-			public double this [string str]
-			{
-				get {
-					return (double)ProfilerMap [str];
-				}
-				set {
-					ProfilerMap [str] = value;
-				}
-			}
-
-			public bool ContainsKey (string str)
-			{
-				return ProfilerMap.ContainsKey (str);
-			}
-		}
-
-		[ExcludeFromCodeCoverageAttribute]
-		public class HashtableActionWrapper
-		{
-			public Action this [string str]
-			{
-				set {
-					ProfilerMap [str] = Time (value).TotalMilliseconds;
-				}
-			}
-		}
+		#endregion
 	}
 }

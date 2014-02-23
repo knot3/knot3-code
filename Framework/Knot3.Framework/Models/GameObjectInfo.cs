@@ -36,12 +36,8 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
-using Microsoft.Xna.Framework.Net;
-using Microsoft.Xna.Framework.Storage;
 
 using Knot3.Framework.Core;
 using Knot3.Framework.Input;
@@ -50,49 +46,95 @@ using Knot3.Framework.Utilities;
 
 #endregion
 
-namespace Knot3.Framework.GameObjects
+namespace Knot3.Framework.Models
 {
 	/// <summary>
-	/// Diese Schnittstelle repräsentiert ein Spielobjekt und enthält eine Referenz auf die Spielwelt, in der sich dieses
-	/// Game befindet, sowie Informationen zu dem Game.
+	/// Enthält Informationen über ein 3D-Objekt wie die Position, Sichtbarkeit, Verschiebbarkeit und Auswählbarkeit.
 	/// </summary>
-	public interface IGameObject
+	[ExcludeFromCodeCoverageAttribute]
+	public class GameObjectInfo : IEquatable<GameObjectInfo>
 	{
 		#region Properties
 
 		/// <summary>
-		/// Informationen über das Spielobjekt, wie z.B. die Position.
+		/// Die Verschiebbarkeit des Spielobjektes.
 		/// </summary>
-		GameObjectInfo Info { get; }
+		public Boolean IsMovable { get; set; }
 
 		/// <summary>
-		/// Eine Referenz auf die Spielwelt, in der sich das Spielobjekt befindet.
+		/// Die Auswählbarkeit des Spielobjektes.
 		/// </summary>
-		World World { get; set; }
+		public Boolean IsSelectable { get; set; }
+
+		/// <summary>
+		/// Die Sichtbarkeit des Spielobjektes.
+		/// </summary>
+		public Boolean IsVisible { get; set; }
+
+		/// <summary>
+		/// Die Position des Spielobjektes.
+		/// </summary>
+		public Vector3 Position { get; set; }
+
+		#endregion
+
+		#region Constructors
+
+		public GameObjectInfo (Vector3 position, bool isVisible = true, bool isSelectable = false, bool isMovable = false)
+		{
+			Position = position;
+			IsVisible = isVisible;
+			IsSelectable = isSelectable;
+			IsMovable = isMovable;
+		}
 
 		#endregion
 
 		#region Methods
 
 		/// <summary>
-		/// Die Mitte des Spielobjektes im 3D-Raum.
+		/// Vergleicht zwei Informationsobjekte für Spielobjekte.
+		/// [parameters=GameObjectInfo other]
 		/// </summary>
-		Vector3 Center ();
+		public virtual bool Equals (GameObjectInfo other)
+		{
+			if (other == null) {
+				return false;
+			}
 
-		/// <summary>
-		/// Wird für jeden Frame aufgerufen.
-		/// </summary>
-		void Update (GameTime time);
+			if (this.Position == other.Position) {
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
 
-		/// <summary>
-		/// Zeichnet das Spielobjekt.
-		/// </summary>
-		void Draw (GameTime time);
+		public override bool Equals (Object obj)
+		{
+			GameObjectInfo infoObj = obj as GameObjectInfo;
+			return Equals (infoObj);
+		}
 
-		/// <summary>
-		/// Überprüft, ob der Mausstrahl das Spielobjekt schneidet.
-		/// </summary>
-		GameObjectDistance Intersects (Ray ray);
+		[ExcludeFromCodeCoverageAttribute]
+		public override int GetHashCode ()
+		{
+			return Position.GetHashCode ();
+		}
+
+		public static bool operator == (GameObjectInfo o1, GameObjectInfo o2)
+		{
+			if ((object)o1 == null || ((object)o2) == null) {
+				return Object.Equals (o1, o2);
+			}
+
+			return o2.Equals (o2);
+		}
+
+		public static bool operator != (GameObjectInfo o1, GameObjectInfo o2)
+		{
+			return !(o1 == o2);
+		}
 
 		#endregion
 	}

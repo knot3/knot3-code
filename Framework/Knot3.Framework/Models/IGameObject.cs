@@ -36,12 +36,8 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
-using Microsoft.Xna.Framework.Net;
-using Microsoft.Xna.Framework.Storage;
 
 using Knot3.Framework.Core;
 using Knot3.Framework.Input;
@@ -50,58 +46,49 @@ using Knot3.Framework.Utilities;
 
 #endregion
 
-namespace Knot3.Framework.GameObjects
+namespace Knot3.Framework.Models
 {
 	/// <summary>
-	/// Enthält Informationen über ein 3D-Modell wie den Dateinamen, die Rotation und die Skalierung.
+	/// Diese Schnittstelle repräsentiert ein Spielobjekt und enthält eine Referenz auf die Spielwelt, in der sich dieses
+	/// Game befindet, sowie Informationen zu dem Game.
 	/// </summary>
-	[ExcludeFromCodeCoverageAttribute]
-	public abstract class GameModelInfo : GameObjectInfo
+	public interface IGameObject
 	{
 		#region Properties
 
 		/// <summary>
-		/// Der Dateiname des Modells.
+		/// Informationen über das Spielobjekt, wie z.B. die Position.
 		/// </summary>
-		public string Modelname { get; set; }
+		GameObjectInfo Info { get; }
 
 		/// <summary>
-		/// Die Rotation des Modells.
+		/// Eine Referenz auf die Spielwelt, in der sich das Spielobjekt befindet.
 		/// </summary>
-		public Angles3 Rotation { get; set; }
-
-		/// <summary>
-		/// Die Skalierung des Modells.
-		/// </summary>
-		public Vector3 Scale { get; set; }
+		World World { get; set; }
 
 		#endregion
 
-		#region Constructors
+		#region Methods
 
 		/// <summary>
-		/// Erstellt ein neues Informations-Objekt eines 3D-Modells mit den angegebenen Informationen zu
-		/// Dateiname, Rotation und Skalierung.
+		/// Die Mitte des Spielobjektes im 3D-Raum.
 		/// </summary>
-		public GameModelInfo (string modelname, Angles3 rotation, Vector3 scale)
-		: base (position: Vector3.Zero)
-		{
-			Modelname = modelname;
-			Rotation = rotation;
-			Scale = scale;
-		}
+		Vector3 Center ();
 
 		/// <summary>
-		/// Erzeugt eine neue Instanz eines GameModelInfo-Objekts.
-		/// In modelname wird der Name der Datei angegeben, welche das Model repräsentiert.
+		/// Wird für jeden Frame aufgerufen.
 		/// </summary>
-		public GameModelInfo (string modelname)
-		: base (position: Vector3.Zero)
-		{
-			Modelname = modelname;
-			Rotation = Angles3.Zero;
-			Scale = Vector3.One;
-		}
+		void Update (GameTime time);
+
+		/// <summary>
+		/// Zeichnet das Spielobjekt.
+		/// </summary>
+		void Draw (GameTime time);
+
+		/// <summary>
+		/// Überprüft, ob der Mausstrahl das Spielobjekt schneidet.
+		/// </summary>
+		GameObjectDistance Intersects (Ray ray);
 
 		#endregion
 	}

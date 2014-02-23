@@ -36,16 +36,12 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
-using Microsoft.Xna.Framework.Net;
-using Microsoft.Xna.Framework.Storage;
 
 using Knot3.Framework.Core;
-using Knot3.Framework.GameObjects;
 using Knot3.Framework.Input;
+using Knot3.Framework.Models;
 using Knot3.Framework.Platform;
 using Knot3.Framework.Utilities;
 
@@ -54,61 +50,95 @@ using Knot3.Game.Data;
 using Knot3.Game.Input;
 using Knot3.Game.RenderEffects;
 using Knot3.Game.Screens;
+using Knot3.Game.Utilities;
 using Knot3.Game.Widgets;
 
 #endregion
 
-namespace Knot3.Game.GameObjects
+namespace Knot3.Game.Models
 {
 	/// <summary>
-	/// Ein Zwischenspeicher für 3D-Modelle.
+	/// Ein 3D-Modell, das eine Kante darstellt.
 	/// </summary>
 	[ExcludeFromCodeCoverageAttribute]
-	public sealed class ModelFactory
+	public sealed class PipeModel : GameModel
 	{
 		#region Properties
 
 		/// <summary>
-		/// Die Zuordnung zwischen den Modellinformationen zu den 3D-Modellen.
+		/// Enthält Informationen über die darzustellende Kante.
 		/// </summary>
-		private Dictionary<GameModelInfo, GameModel> cache { get; set; }
+		public new Pipe Info { get { return base.Info as Pipe; } set { base.Info = value; } }
 
-		/// <summary>
-		/// Ein Delegate, das beim Erstellen eines Zwischenspeichers zugewiesen wird und aus den
-		/// angegebenen Modellinformationen und dem angegebenen Spielzustand ein 3D-Modell erstellt.
-		/// </summary>
-		private Func<IGameScreen, GameModelInfo, GameModel> createModel { get; set; }
+		private BoundingSphere[] _bounds;
+
+		public override BoundingSphere[] Bounds
+		{
+			get { return _bounds; }
+		}
+
+		public bool IsVirtual { get; set; }
 
 		#endregion
 
 		#region Constructors
 
 		/// <summary>
-		/// Erstellt einen neuen Zwischenspeicher.
+		/// Erstellt ein neues 3D-Modell mit dem angegebenen Spielzustand und den angegebenen Spielinformationen.
+		/// [base=screen, info]
 		/// </summary>
-		public ModelFactory (Func<IGameScreen, GameModelInfo, GameModel> createModel)
+		public PipeModel (IGameScreen screen, Pipe info)
+		: base (screen, info)
 		{
-			this.createModel = createModel;
-			cache = new Dictionary<GameModelInfo, GameModel> ();
+			float length = (info.PositionTo - info.PositionFrom).Length ();
+			float radius = 5.1f;
+			_bounds = VectorHelper.CylinderBounds (
+			              length: length,
+			              radius: radius,
+			              direction: Info.Edge.Direction.Vector,
+			              position: info.PositionFrom
+			          );
 		}
 
 		#endregion
 
 		#region Methods
 
-		/// <summary>
-		/// Falls das 3D-Modell zwischengespeichert ist, wird es zurückgegeben, sonst mit createModel () erstellt.
-		/// </summary>
-		public GameModel this [IGameScreen screen, GameModelInfo info]
+		[ExcludeFromCodeCoverageAttribute]
+		public override void Draw (GameTime time)
 		{
-			get {
-				if (cache.ContainsKey (info)) {
-					return cache [info];
-				}
-				else {
-					return cache [info] = createModel (screen, info);
+			Coloring = new SingleColor (Info.Edge);
+			if (World.SelectedObject == this) {
+				Coloring.Highlight (intensity: 0.40f, color: Color.White);
+			}
+			else if (IsVirtual) {
+				Coloring.Highlight (intensity: 0.5f, color: Color.White);
+			}
+			else if (Info.Knot != null && Info.Knot.SelectedEdges.Contains (Info.Edge)) {
+				Coloring.Highlight (intensity: 0.80f, color: Color.White);
+			}
+			else {
+				Coloring.Unhighlight ();
+			}
+
+			base.Draw (time);
+		}
+
+		/// <summary>
+		/// Prüft, ob der angegebene Mausstrahl das 3D-Modell schneidet.
+		/// </summary>
+		public override GameObjectDistance Intersects (Ray ray)
+		{
+			foreach (BoundingSphere sphere in Bounds) {
+				float? distance = ray.Intersects (sphere);
+				if (distance != null) {
+					GameObjectDistance intersection = new GameObjectDistance () {
+						Object=this, Distance=distance.Value
+					};
+					return intersection;
 				}
 			}
+			return null;
 		}
 
 		#endregion

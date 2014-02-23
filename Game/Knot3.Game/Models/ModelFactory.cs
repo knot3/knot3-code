@@ -36,16 +36,12 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
-using Microsoft.Xna.Framework.Net;
-using Microsoft.Xna.Framework.Storage;
 
 using Knot3.Framework.Core;
-using Knot3.Framework.GameObjects;
 using Knot3.Framework.Input;
+using Knot3.Framework.Models;
 using Knot3.Framework.Platform;
 using Knot3.Framework.Utilities;
 
@@ -54,49 +50,42 @@ using Knot3.Game.Data;
 using Knot3.Game.Input;
 using Knot3.Game.RenderEffects;
 using Knot3.Game.Screens;
-using Knot3.Game.Utilities;
 using Knot3.Game.Widgets;
 
 #endregion
 
-namespace Knot3.Game.GameObjects
+namespace Knot3.Game.Models
 {
 	/// <summary>
-	/// Diese Klasse ArrowModel repräsentiert ein 3D-Modell für einen Pfeil, zum Einblenden an selektierten Kanten (s. Edge).
+	/// Ein Zwischenspeicher für 3D-Modelle.
 	/// </summary>
 	[ExcludeFromCodeCoverageAttribute]
-	public sealed class ArrowModel : GameModel
+	public sealed class ModelFactory
 	{
 		#region Properties
 
 		/// <summary>
-		/// Das Info-Objekt, das die Position und Richtung des ArrowModel\grq s enthält.
+		/// Die Zuordnung zwischen den Modellinformationen zu den 3D-Modellen.
 		/// </summary>
-		public new Arrow Info { get { return base.Info as Arrow; } set { base.Info = value; } }
+		private Dictionary<GameModelInfo, GameModel> cache { get; set; }
 
-		private BoundingSphere[] _bounds;
-
-		public override BoundingSphere[] Bounds
-		{
-			get { return _bounds; }
-		}
+		/// <summary>
+		/// Ein Delegate, das beim Erstellen eines Zwischenspeichers zugewiesen wird und aus den
+		/// angegebenen Modellinformationen und dem angegebenen Spielzustand ein 3D-Modell erstellt.
+		/// </summary>
+		private Func<IGameScreen, GameModelInfo, GameModel> createModel { get; set; }
 
 		#endregion
 
 		#region Constructors
 
 		/// <summary>
-		/// Erstellt ein neues Pfeilmodell in dem angegebenen IGameScreen mit einem bestimmten Info-Objekt, das Position und Richtung des Pfeils festlegt.
+		/// Erstellt einen neuen Zwischenspeicher.
 		/// </summary>
-		public ArrowModel (IGameScreen screen, Arrow info)
-		: base (screen, info)
+		public ModelFactory (Func<IGameScreen, GameModelInfo, GameModel> createModel)
 		{
-			_bounds = VectorHelper.CylinderBounds (
-			              length: Info.Length,
-			              radius: Info.Diameter / 2,
-			              direction: Info.Direction.Vector,
-			              position: info.Position - info.Direction.Vector * Info.Length / 2
-			          );
+			this.createModel = createModel;
+			cache = new Dictionary<GameModelInfo, GameModel> ();
 		}
 
 		#endregion
@@ -104,46 +93,18 @@ namespace Knot3.Game.GameObjects
 		#region Methods
 
 		/// <summary>
-		/// Zeichnet den Pfeil.
+		/// Falls das 3D-Modell zwischengespeichert ist, wird es zurückgegeben, sonst mit createModel () erstellt.
 		/// </summary>
-		[ExcludeFromCodeCoverageAttribute]
-		public override void Draw (GameTime time)
+		public GameModel this [IGameScreen screen, GameModelInfo info]
 		{
-			Coloring = new SingleColor (Color.Red);
-			if (World.SelectedObject == this) {
-				Coloring.Highlight (intensity: 1f, color: Color.Orange);
-			}
-			else {
-				Coloring.Unhighlight ();
-			}
-
-			base.Draw (time);
-		}
-
-		/// <summary>
-		/// Überprüft, ob der Mausstrahl den Pfeil schneidet.
-		/// </summary>
-		public override GameObjectDistance Intersects (Ray ray)
-		{
-			foreach (BoundingSphere sphere in Bounds) {
-				float? distance = ray.Intersects (sphere);
-				if (distance != null) {
-					GameObjectDistance intersection = new GameObjectDistance () {
-						Object=this, Distance=distance.Value
-					};
-					return intersection;
+			get {
+				if (cache.ContainsKey (info)) {
+					return cache [info];
+				}
+				else {
+					return cache [info] = createModel (screen, info);
 				}
 			}
-			return null;
-		}
-
-		/// <summary>
-		/// Wird für jeden Frame aufgerufen.
-		/// </summary>
-		[ExcludeFromCodeCoverageAttribute]
-		public override void Update (GameTime time)
-		{
-			base.Update (time);
 		}
 
 		#endregion
