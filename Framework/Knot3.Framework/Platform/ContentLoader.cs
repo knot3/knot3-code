@@ -22,9 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-using Knot3.Framework.RenderEffects;
-using System.IO;
-using Knot3.Framework.Widgets;
 
 #endregion
 
@@ -34,6 +31,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.IO;
 using System.Linq;
 
 using Microsoft.Xna.Framework;
@@ -49,7 +47,9 @@ using Microsoft.Xna.Framework.Storage;
 using Knot3.Framework.Core;
 using Knot3.Framework.Input;
 using Knot3.Framework.Platform;
+using Knot3.Framework.RenderEffects;
 using Knot3.Framework.Utilities;
+using Knot3.Framework.Widgets;
 
 #endregion
 
@@ -99,7 +99,6 @@ namespace Knot3.Framework.Platform
 
 		#region Models
 
-		
 		private static Dictionary<string, ContentManager> contentManagers = new Dictionary<string, ContentManager> ();
 		private static HashSet<string> invalidModels = new HashSet<string> ();
 
@@ -138,7 +137,6 @@ namespace Knot3.Framework.Platform
 
 		#endregion
 
-		
 		#region Real Textures
 
 		private static Dictionary<string, Texture2D> textureCache = new Dictionary<string, Texture2D> ();

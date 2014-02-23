@@ -26,6 +26,7 @@
 #endregion
 
 #region Using
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -79,7 +80,7 @@ namespace Knot3.Game.GameObjects
 		/// Die Transparenz der Vorschaumodelle.
 		/// </summary>
 		public float ShadowAlpha { get; set; }
-		
+
 		/// <summary>
 		/// Eine Referenz auf die Spielwelt, in der sich das Spielobjekt befindet.
 		/// </summary>
@@ -146,7 +147,7 @@ namespace Knot3.Game.GameObjects
 			DecoratedModel.Info.Position = originalPositon;
 			DecoratedModel.Coloring = originalColoring;
 		}
-		
+
 		/// <summary>
 		/// Die Position, an der das Vorschau-Spielobjekt gezeichnet werden soll.
 		/// </summary>
@@ -162,7 +163,6 @@ namespace Knot3.Game.GameObjects
 		{
 			Info.IsVisible = Math.Abs ((ShadowPosition - OriginalPosition).Length ()) > 50;
 		}
-		
 
 		/// <summary>
 		/// Prüft, ob der angegebene Mausstrahl das Vorschau-Spielobjekt schneidet.

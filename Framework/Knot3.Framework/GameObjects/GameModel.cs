@@ -76,7 +76,7 @@ namespace Knot3.Framework.GameObjects
 		/// <summary>
 		/// Die Klasse des XNA-Frameworks, die ein 3D-Modell repräsentiert.
 		/// </summary>
-		public virtual Model Model { get { return screen.LoadModel(Info.Modelname); } }
+		public virtual Model Model { get { return screen.LoadModel (Info.Modelname); } }
 
 		/// <summary>
 		/// Die Spielwelt, in der sich das 3D-Modell befindet.

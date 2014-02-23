@@ -22,11 +22,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-using Knot3.Framework.Math;
 
 #endregion
 
 #region Using
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -45,6 +45,7 @@ using Microsoft.Xna.Framework.Storage;
 
 using Knot3.Framework.Core;
 using Knot3.Framework.Input;
+using Knot3.Framework.Math;
 using Knot3.Framework.Platform;
 using Knot3.Framework.Utilities;
 using Knot3.Framework.Widgets;
@@ -117,7 +118,7 @@ namespace Knot3.Game.Widgets
 			);
 			restartButton.Bounds.Size = new ScreenPoint (screen, ContentBounds.Size.Relative.X / 2, 0.05f);
 			restartButton.Bounds.Position = ContentBounds.Position + ContentBounds.Size.OnlyY
-				- restartButton.Bounds.Size.OnlyY;
+			                                - restartButton.Bounds.Size.OnlyY;
 			restartButton.AlignX = HorizontalAlignment.Center;
 			buttons.Add (restartButton);
 
@@ -134,7 +135,7 @@ namespace Knot3.Game.Widgets
 			);
 			returnButton.Bounds.Size = new ScreenPoint (screen, ContentBounds.Size.Relative.X / 2, 0.05f);
 			returnButton.Bounds.Position = ContentBounds.Position + ContentBounds.Size.OnlyY
-				- returnButton.Bounds.Size.OnlyY + ContentBounds.Size.OnlyX / 2;
+			                               - returnButton.Bounds.Size.OnlyY + ContentBounds.Size.OnlyX / 2;
 			returnButton.AlignX = HorizontalAlignment.Center;
 			buttons.Add (returnButton);
 		}
