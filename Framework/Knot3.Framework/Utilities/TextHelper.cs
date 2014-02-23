@@ -99,7 +99,7 @@ namespace Knot3.Framework.Utilities
 
 		private static bool TryConvertKey (Keys keyPressed, IGameScreen screen, out char key)
 		{
-			bool shift = screen.InputManager.IsHeldDown (Keys.LeftShift) || screen.InputManager.IsHeldDown (Keys.RightShift);
+			bool shift = screen.InputManager.KeyHeldDown (Keys.LeftShift) || screen.InputManager.KeyHeldDown (Keys.RightShift);
 
 			char c = (char)keyPressed.GetHashCode ();
 			if (c >= 'A' && c <= 'Z') {

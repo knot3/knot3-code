@@ -168,7 +168,7 @@ namespace Knot3.Framework.RenderEffects
 		protected void ModifyBasicEffect (BasicEffect effect, GameModel model)
 		{
 			// lighting
-			if (screen.InputManager.IsHeldDown (Keys.L)) {
+			if (screen.InputManager.KeyHeldDown (Keys.L)) {
 				effect.LightingEnabled = false;
 			}
 			else {

@@ -171,7 +171,7 @@ namespace Knot3.ModelEditor
 					next.Entered (current, time);
 				}
 
-				if (current.InputManager.IsDown (Keys.F8)) {
+				if (current.InputManager.KeyPressed (Keys.F8)) {
 					this.Exit ();
 					return;
 				}

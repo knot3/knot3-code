@@ -201,7 +201,7 @@ namespace Knot3.Game.Core
 					current.PostProcessingEffect = new StandardEffect (current);
 				}
 
-				if (current.InputManager.IsDown (Keys.F8)) {
+				if (current.InputManager.KeyPressed (Keys.F8)) {
 					this.Exit ();
 					return;
 				}

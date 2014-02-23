@@ -184,7 +184,7 @@ namespace Knot3.Framework.Input
 			}
 
 			// fullscreen
-			if (Screen.InputManager.IsDown (Keys.F11)) {
+			if (Screen.InputManager.KeyPressed (Keys.F11)) {
 				Screen.Game.IsFullScreen = !Screen.Game.IsFullScreen;
 				FullscreenToggled = true;
 			}
@@ -211,7 +211,7 @@ namespace Knot3.Framework.Input
 		/// <summary>
 		/// Wurde die aktuelle Taste gedrückt und war sie im letzten Frame nicht gedrückt?
 		/// </summary>
-		public bool IsDown (Keys key)
+		public bool KeyPressed (Keys key)
 		{
 			// Is the key down?
 			if (CurrentKeyboardState.IsKeyDown (key)) {
@@ -224,9 +224,24 @@ namespace Knot3.Framework.Input
 		}
 
 		/// <summary>
+		/// Wurde die aktuelle Taste losgelassen und war sie im letzten Frame noch gedrückt?
+		/// </summary>
+		public bool KeyReleased (Keys key)
+		{
+			// Is the key up?
+			if (!CurrentKeyboardState.IsKeyDown (key)) {
+				// If down last update, key has just been released.
+				if (PreviousKeyboardState.IsKeyDown (key)) {
+					return true;
+				}
+			}
+			return false;
+		}
+
+		/// <summary>
 		/// Wird die aktuelle Taste gedrückt gehalten?
 		/// </summary>
-		public bool IsHeldDown (Keys key)
+		public bool KeyHeldDown (Keys key)
 		{
 			return CurrentKeyboardState.IsKeyDown (key);
 		}

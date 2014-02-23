@@ -487,7 +487,7 @@ namespace Knot3.Game.Input
 						// Ist der Taste eine Aktion zugeordnet?
 						if (CurrentKeyAssignment.ContainsKey (key)) {
 							// Während die Taste gedrückt gehalten ist...
-							if (Screen.InputManager.IsHeldDown (key)) {
+							if (Screen.InputManager.KeyHeldDown (key)) {
 								// führe die entsprechende Aktion aus!
 								PlayerActions action = CurrentKeyAssignment [key];
 								Action<GameTime> binding = ActionBindings [action];
@@ -552,14 +552,14 @@ namespace Knot3.Game.Input
 
 		private void toggleMouseLock (GameTime time)
 		{
-			if (Screen.InputManager.IsDown (CurrentKeyAssignmentReversed [PlayerActions.ToggleMouseLock])) {
+			if (Screen.InputManager.KeyPressed (CurrentKeyAssignmentReversed [PlayerActions.ToggleMouseLock])) {
 				Screen.InputManager.GrabMouseMovement = !Screen.InputManager.GrabMouseMovement;
 			}
 		}
 
 		private void resetCamera (GameTime time)
 		{
-			if (Screen.InputManager.IsDown (CurrentKeyAssignmentReversed [PlayerActions.ResetCamera])) {
+			if (Screen.InputManager.KeyPressed (CurrentKeyAssignmentReversed [PlayerActions.ResetCamera])) {
 				camera.ResetCamera ();
 			}
 		}

@@ -85,7 +85,7 @@ namespace Knot3.Game.Input
 		{
 			// Soll die Farbe geändert wurde?
 			if (Knot.SelectedEdges.Any ()
-			        && Screen.InputManager.IsDown (Keys.N)) {
+			        && Screen.InputManager.KeyPressed (Keys.N)) {
 				int rectId = random.Next ();
 				foreach (Edge edge in Knot.SelectedEdges) {
 					edge.Rectangles.Add (rectId);
