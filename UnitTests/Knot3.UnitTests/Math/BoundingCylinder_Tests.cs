@@ -22,11 +22,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+using Knot3.Framework.Math;
 
 #endregion
 
 #region Using
-
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -59,6 +59,32 @@ namespace Knot3.UnitTests.Math
 		[Test]
 		public void Test ()
 		{
+			BoundingCylinder cyl = new BoundingCylinder (sideA: Vector3.Zero, sideB: Vector3.Up * 100, radius: 100f);
+			Ray ray;
+			ray = new Ray (position: new Vector3 (0, 0, 0), direction: Vector3.Up);
+			Assert.IsNotNull (ray.Intersects (cyl));
+			ray = new Ray (position: new Vector3 (0, 0, 0), direction: Vector3.Down);
+			Assert.IsNotNull (ray.Intersects (cyl));	
+
+			ray = new Ray (position: new Vector3 (0, 0, 0), direction: Vector3.Forward);
+			Assert.IsNotNull (ray.Intersects (cyl));
+			ray = new Ray (position: new Vector3 (0, 0, 0), direction: Vector3.Left);
+			Assert.IsNotNull (ray.Intersects (cyl));
+			ray = new Ray (position: new Vector3 (0, -1, 0), direction: Vector3.Forward);
+			Assert.IsNull (ray.Intersects (cyl));
+			ray = new Ray (position: new Vector3 (0, -1, 0), direction: Vector3.Left);
+			Assert.IsNull (ray.Intersects (cyl));
+
+			// hier sollte eigentlich (0,100,0) auch noch drin sein, nicht nur (0,99,0),
+			// also wie bei SideA!
+			ray = new Ray (position: new Vector3 (0, 99, 0), direction: Vector3.Forward);
+			Assert.IsNotNull (ray.Intersects (cyl));
+			ray = new Ray (position: new Vector3 (0, 99, 0), direction: Vector3.Left);
+			Assert.IsNotNull (ray.Intersects (cyl));
+			ray = new Ray (position: new Vector3 (0, 101, 0), direction: Vector3.Forward);
+			Assert.IsNull (ray.Intersects (cyl));
+			ray = new Ray (position: new Vector3 (0, 101, 0), direction: Vector3.Left);
+			Assert.IsNull (ray.Intersects (cyl));
 		}
 	}
 }
