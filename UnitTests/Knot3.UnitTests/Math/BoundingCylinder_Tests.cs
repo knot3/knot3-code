@@ -26,7 +26,6 @@
 #endregion
 
 #region Using
-
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -58,7 +57,29 @@ namespace Knot3.UnitTests.Math
 		}
 
 		[Test]
-		public void Test ()
+		public void BoundingCylinder_Equals_Test ()
+		{
+			BoundingCylinder cyl1 = new BoundingCylinder (sideA: Vector3.Zero, sideB: Vector3.Up * 100, radius: 100f);
+			BoundingCylinder cyl2 = new BoundingCylinder (sideA: Vector3.Up * 100, sideB: Vector3.Zero, radius: 100f);
+			Assert.AreEqual (cyl1, cyl1);
+			Assert.AreEqual (cyl1, cyl2);
+			Assert.AreEqual (cyl2, cyl1);
+
+			BoundingCylinder cyl3 = new BoundingCylinder (sideA: Vector3.Up * 100, sideB: Vector3.Zero, radius: 200f);
+			Assert.AreNotEqual (cyl1, cyl3);
+			Assert.AreNotEqual (cyl2, cyl3);
+			Assert.AreNotEqual (cyl3, cyl1);
+			Assert.AreNotEqual (cyl3, cyl2);
+
+			BoundingCylinder cyl4 = new BoundingCylinder (sideA: Vector3.Up * 50, sideB: Vector3.Down * 50, radius: 100f);
+			Assert.AreNotEqual (cyl1, cyl4);
+			Assert.AreNotEqual (cyl2, cyl4);
+			Assert.AreNotEqual (cyl4, cyl1);
+			Assert.AreNotEqual (cyl4, cyl2);
+		}
+
+		[Test]
+		public void BoundingCylinder_Ray_Test ()
 		{
 			BoundingCylinder cyl = new BoundingCylinder (sideA: Vector3.Zero, sideB: Vector3.Up * 100, radius: 100f);
 			Ray ray;
