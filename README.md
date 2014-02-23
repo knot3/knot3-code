@@ -4,13 +4,17 @@ Bei Knot3 handelt es sich um ein innovatives Spiel bei dem man Knoten im dreidim
 
 ##Installation
 
-###Debian / Ubuntu / SteamOS (binary)
+###Debian 8.0+ / Ubuntu 13.10+ / SteamOS
 
-The official debian repository of Knot3 is compatible with the following distributions:
+Recent versions of Debian and its derivates contain packages for SDL 2.0. If you are using one of the following distributions, you'll probably have SDL2:
 
   * Debian 8.0 (jessie) or later
   * Ubuntu 13.10 (saucy) or later
-  * any other debian derivate that has packages for SDL2 (`libsdl2-2.0-0`, `libsdl2-mixer-2.0-0`, `libsdl2-image-2.0-0`),
+  * Linux Mint 16 (petra) or later
+  * SteamOS
+  * or any other debian derivate that has packages for SDL2 (`libsdl2-2.0-0`, `libsdl2-mixer-2.0-0`, `libsdl2-image-2.0-0`),
+
+####Binary packages
 
 You need to include it in your sources.list file to install Knot3:
 
@@ -18,23 +22,24 @@ You need to include it in your sources.list file to install Knot3:
     sudo apt-get update
     sudo apt-get install knot3
 
-###Debian / Ubuntu / SteamOS (source)
+####Build from source
 
-If you are using one of the following distributions:
-
-  * Debian 8.0 (jessie) or later
-  * Ubuntu 13.10 (saucy) or later
-  * any other debian derivate that has packages for SDL2 (`libsdl2-2.0-0`, `libsdl2-mixer-2.0-0`, `libsdl2-image-2.0-0`),
-
-then run the following command to install all build and runtime dependencies:
+Run the following command to install all build and runtime dependencies:
 
     make dep-ubuntu
 
-Otherwise, for example if you are using Ubuntu 12.04 LTS, run this to install the backported SDL2 packages:
+To build and install the game, run:
+
+    make
+    sudo make install
+
+###Debian 7.0 / Ubuntu 12.04
+
+If your distribution doesn't have recent packages of SDL2, for example if you are using Ubuntu 12.04 LTS (precise), run this to install the backported SDL2 packages:
 
     make dep-ubuntu-precise
 
-To build and install the game, run:
+Then build and install the game:
 
     make
     sudo make install
