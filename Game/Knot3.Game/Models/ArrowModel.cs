@@ -133,14 +133,6 @@ namespace Knot3.Game.Models
 			return null;
 		}
 
-		/// <summary>
-		/// Wird für jeden Frame aufgerufen.
-		/// </summary>
-		[ExcludeFromCodeCoverageAttribute]
-		public override void Update (GameTime time)
-		{
-			base.Update (time);
-		}
 
 		#endregion
 	}
