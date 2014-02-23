@@ -26,7 +26,6 @@
 #endregion
 
 #region Using
-
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -62,21 +61,21 @@ namespace Knot3.UnitTests.Math
 		{
 			BoundingCylinder cyl1 = new BoundingCylinder (sideA: Vector3.Zero, sideB: Vector3.Up * 100, radius: 100f);
 			BoundingCylinder cyl2 = new BoundingCylinder (sideA: Vector3.Up * 100, sideB: Vector3.Zero, radius: 100f);
-			Assert.AreEqual (cyl1, cyl1);
-			Assert.AreEqual (cyl1, cyl2);
-			Assert.AreEqual (cyl2, cyl1);
+			IsEqual (cyl1, cyl1);
+			IsEqual (cyl1, cyl2);
+			IsEqual (cyl2, cyl1);
 
 			BoundingCylinder cyl3 = new BoundingCylinder (sideA: Vector3.Up * 100, sideB: Vector3.Zero, radius: 200f);
-			Assert.AreNotEqual (cyl1, cyl3);
-			Assert.AreNotEqual (cyl2, cyl3);
-			Assert.AreNotEqual (cyl3, cyl1);
-			Assert.AreNotEqual (cyl3, cyl2);
+			IsNotEqual (cyl1, cyl3);
+			IsNotEqual (cyl2, cyl3);
+			IsNotEqual (cyl3, cyl1);
+			IsNotEqual (cyl3, cyl2);
 
 			BoundingCylinder cyl4 = new BoundingCylinder (sideA: Vector3.Up * 50, sideB: Vector3.Down * 50, radius: 100f);
-			Assert.AreNotEqual (cyl1, cyl4);
-			Assert.AreNotEqual (cyl2, cyl4);
-			Assert.AreNotEqual (cyl4, cyl1);
-			Assert.AreNotEqual (cyl4, cyl2);
+			IsNotEqual (cyl1, cyl4);
+			IsNotEqual (cyl2, cyl4);
+			IsNotEqual (cyl4, cyl1);
+			IsNotEqual (cyl4, cyl2);
 		}
 
 		[Test]
@@ -108,6 +107,18 @@ namespace Knot3.UnitTests.Math
 			Assert.IsNull (ray.Intersects (cyl));
 			ray = new Ray (position: new Vector3 (0, 101, 0), direction: Vector3.Left);
 			Assert.IsNull (ray.Intersects (cyl));
+		}
+
+		private void IsEqual (BoundingCylinder a, BoundingCylinder b)
+		{
+			Assert.IsTrue (a.Equals (b));
+			Assert.IsTrue (a == b);
+		}
+
+		private void IsNotEqual (BoundingCylinder a, BoundingCylinder b)
+		{
+			Assert.IsTrue (!a.Equals (b));
+			Assert.IsTrue (a != b);
 		}
 	}
 }
