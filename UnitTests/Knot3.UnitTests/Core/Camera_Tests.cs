@@ -22,6 +22,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+using Knot3.Framework.Math;
+using Knot3.Framework.Storage;
 
 #endregion
 
@@ -105,15 +107,15 @@ namespace Knot3.UnitTests.Core
 		[Test]
 		public void MouseTest ()
 		{
-			string orig = Options.Default ["debug", "unproject", "SelectedObject"];
+			string orig = Config.Default ["debug", "unproject", "SelectedObject"];
 			foreach (string optionValue in new string[] { "SelectedObject", "NearFarAverage" }) {
-				Options.Default ["debug", "unproject", "SelectedObject"] = optionValue;
+				Config.Default ["debug", "unproject", "SelectedObject"] = optionValue;
 				ScreenPoint mouse = screen.Bounds.FromTop (0.5f).FromLeft (0.5f).Position;
 				Vector3 mouse3D = cam1.To3D (position: mouse, nearTo: cam1.Target);
 				Vector2 mouse2D = cam1.To2D (position: mouse3D);
 				Assert.True (Equals (mouse.AbsoluteVector, mouse2D));
 			}
-			Options.Default ["debug", "unproject", "SelectedObject"] = orig;
+			Config.Default ["debug", "unproject", "SelectedObject"] = orig;
 		}
 
 		[Test]

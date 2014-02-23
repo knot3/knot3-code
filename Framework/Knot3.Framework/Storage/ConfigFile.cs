@@ -51,7 +51,7 @@ using Knot3.Framework.Utilities;
 
 #endregion
 
-namespace Knot3.Framework.Core
+namespace Knot3.Framework.Storage
 {
 	/// <summary>
 	/// Repräsentiert eine Einstellungsdatei.

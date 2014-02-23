@@ -72,7 +72,7 @@ namespace Knot3.Game.GameObjects
 		/// <summary>
 		/// Enthält Informationen über die darzustellende Kante.
 		/// </summary>
-		public new PipeModelInfo Info { get { return base.Info as PipeModelInfo; } set { base.Info = value; } }
+		public new Pipe Info { get { return base.Info as Pipe; } set { base.Info = value; } }
 
 		private BoundingSphere[] _bounds;
 
@@ -91,7 +91,7 @@ namespace Knot3.Game.GameObjects
 		/// Erstellt ein neues 3D-Modell mit dem angegebenen Spielzustand und den angegebenen Spielinformationen.
 		/// [base=screen, info]
 		/// </summary>
-		public PipeModel (IGameScreen screen, PipeModelInfo info)
+		public PipeModel (IGameScreen screen, Pipe info)
 		: base (screen, info)
 		{
 			float length = (info.PositionTo - info.PositionFrom).Length ();

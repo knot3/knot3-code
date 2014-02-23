@@ -22,6 +22,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+using Knot3.Framework.Math;
+using Knot3.Framework.Storage;
 
 #endregion
 
@@ -92,7 +94,7 @@ namespace Knot3.Game.Input
 		public World World { get; set; }
 
 		private Vector3 previousMousePosition = Vector3.Zero;
-		private List<ShadowGameObject> shadowObjects;
+		private List<ShadowModel> shadowModels;
 		private KnotRenderer knotRenderer;
 		private Dictionary<Vector3, Knot> knotCache = new Dictionary<Vector3, Knot> ();
 
@@ -111,7 +113,7 @@ namespace Knot3.Game.Input
 			World = world;
 			this.knotRenderer = knotRenderer;
 			Info = new GameObjectInfo (position: position);
-			shadowObjects = new List<ShadowGameObject> ();
+			shadowModels = new List<ShadowModel> ();
 		}
 
 		#endregion
@@ -253,7 +255,7 @@ namespace Knot3.Game.Input
 					previousMousePosition = Vector3.Zero;
 
 					// Wenn die Shadowobjekt-Liste nicht leer ist...
-					if (shadowObjects.Count > 0) {
+					if (shadowModels.Count > 0) {
 						// dann leere die Liste
 						DestroyShadowModels ();
 						// Zeichne im nächsten Frame auf jeden Fall neu
@@ -327,12 +329,12 @@ namespace Knot3.Game.Input
 			foreach (PipeModel pipe in World.OfType<PipeModel>()) {
 				if (Knot.SelectedEdges.Contains (pipe.Info.Edge)) {
 					pipe.Info.IsVisible = false;
-					shadowObjects.Add (new ShadowGameModel (Screen, pipe));
+					shadowModels.Add (new ShadowModel (Screen, pipe));
 				}
 			}
 			foreach (ArrowModel arrow in World.OfType<ArrowModel>()) {
 				arrow.Info.IsVisible = false;
-				shadowObjects.Add (new ShadowGameModel (Screen, arrow));
+				shadowModels.Add (new ShadowModel (Screen, arrow));
 			}
 		}
 
@@ -341,7 +343,7 @@ namespace Knot3.Game.Input
 		/// </summary>
 		private void DestroyShadowModels ()
 		{
-			shadowObjects.Clear ();
+			shadowModels.Clear ();
 			foreach (PipeModel pipe in World.OfType<PipeModel>()) {
 				pipe.Info.IsVisible = true;
 			}
@@ -356,7 +358,7 @@ namespace Knot3.Game.Input
 		/// </summary>
 		private void UpdateShadowPipes (Vector3 currentMousePosition, Direction direction, float count, GameTime time)
 		{
-			if (Options.Default ["video", "auto-camera-move", true]) {
+			if (Config.Default ["video", "auto-camera-move", true]) {
 				ScreenPoint currentPosition = Screen.InputManager.CurrentMousePosition;
 				Bounds worldBounds = World.Bounds;
 				var bounds = new [] {
@@ -392,7 +394,7 @@ namespace Knot3.Game.Input
 					knotRenderer.VirtualKnot = shadowKnot;
 				}
 
-				foreach (ShadowGameModel shadowObj in shadowObjects) {
+				foreach (ShadowModel shadowObj in shadowModels) {
 					shadowObj.ShadowPosition = shadowObj.OriginalPosition + direction * count * Node.Scale;
 					shadowObj.ShadowAlpha = 1f;
 					shadowObj.ShadowColor = Color.White;
@@ -420,7 +422,7 @@ namespace Knot3.Game.Input
 		/// </summary>
 		public IEnumerator<IGameObject> GetEnumerator ()
 		{
-			foreach (IGameObject shadowObj in shadowObjects) {
+			foreach (IGameObject shadowObj in shadowModels) {
 				yield return shadowObj;
 			}
 		}
@@ -437,7 +439,7 @@ namespace Knot3.Game.Input
 		[ExcludeFromCodeCoverageAttribute]
 		public void Draw (GameTime time)
 		{
-			foreach (IGameObject shadowObj in shadowObjects) {
+			foreach (IGameObject shadowObj in shadowModels) {
 				shadowObj.Draw (time);
 			}
 		}

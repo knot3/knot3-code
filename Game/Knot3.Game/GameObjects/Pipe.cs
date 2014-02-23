@@ -64,7 +64,7 @@ namespace Knot3.Game.GameObjects
 	/// Enthält Informationen über ein 3D-Modell, das eine Kante darstellt.
 	/// </summary>
 	[ExcludeFromCodeCoverageAttribute]
-	public sealed class PipeModelInfo : GameModelInfo
+	public sealed class Pipe : GameModelInfo
 	{
 		#region Properties
 
@@ -106,7 +106,7 @@ namespace Knot3.Game.GameObjects
 		/// Erstellt ein neues Informationsobjekt für ein 3D-Modell, das eine Kante darstellt.
 		/// [base="pipe1", Angles3.Zero, new Vector3 (10,10,10)]
 		/// </summary>
-		public PipeModelInfo (INodeMap nodeMap, Knot knot, Edge edge)
+		public Pipe (INodeMap nodeMap, Knot knot, Edge edge)
 		: base ("pipe-straight", Angles3.Zero, new Vector3 (25f, 25f, 25f))
 		{
 			// Weise Knoten und Kante zu
@@ -164,8 +164,8 @@ namespace Knot3.Game.GameObjects
 				return false;
 			}
 
-			if (other is PipeModelInfo) {
-				if (this.Edge == (other as PipeModelInfo).Edge && this.Scale == (other as PipeModelInfo).Scale && base.Equals (other)) {
+			if (other is Pipe) {
+				if (this.Edge == (other as Pipe).Edge && this.Scale == (other as Pipe).Scale && base.Equals (other)) {
 					return true;
 				}
 				else {

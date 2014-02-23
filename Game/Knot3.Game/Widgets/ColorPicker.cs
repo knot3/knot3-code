@@ -22,6 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+using Knot3.Framework.Math;
 
 #endregion
 
@@ -142,7 +143,7 @@ namespace Knot3.Game.Widgets
 				foreach (ScreenPoint tile in tiles) {
 					Bounds tileBounds = new Bounds (Bounds.Position + tile, tileSize);
 					Rectangle rect = tileBounds.Rectangle.Shrink (1);
-					Texture2D dummyTexture = TextureHelper.Create (Screen.Device, colors [i]);
+					Texture2D dummyTexture = ContentLoader.CreateTexture (Screen.Device, colors [i]);
 					spriteBatch.Draw (dummyTexture, rect, Color.White);
 
 					++i;

@@ -22,6 +22,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+using Knot3.Framework.Math;
+using Knot3.Framework.Storage;
 
 #endregion
 
@@ -383,7 +385,7 @@ namespace Knot3.Game.Screens
 			// erstelle einen Dialog zum Eingeben des Spielernamens
 			TextInputDialog nameDialog = new TextInputDialog (screen: this, drawOrder: DisplayLayer.Dialog,
 			        title: "Challenge", text: "Your name:",
-			        inputText: Options.Default["profile", "name", String.Empty]);
+			        inputText: Config.Default["profile", "name", String.Empty]);
 			// füge ihn zur Spielkomponentenliste hinzu
 			nameDialog.NoCloseEmpty = true;
 			nameDialog.NoWhiteSpace = true;
@@ -424,7 +426,7 @@ namespace Knot3.Game.Screens
 			Audio.BackgroundMusic = Sound.ChallengeMusic;
 
 			// Einstellungen anwenden
-			debugBoundings.Info.IsVisible = Options.Default ["debug", "show-boundings", false];
+			debugBoundings.Info.IsVisible = Config.Default ["debug", "show-boundings", false];
 		}
 
 		#endregion

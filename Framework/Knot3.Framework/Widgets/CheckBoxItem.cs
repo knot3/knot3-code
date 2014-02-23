@@ -22,6 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+using Knot3.Framework.Storage;
 
 #endregion
 
@@ -67,14 +68,14 @@ namespace Knot3.Framework.Widgets
 		/// <summary>
 		/// Die Option, die mit dem Auswahlkasten verknüpft ist.
 		/// </summary>
-		private BooleanOptionInfo option { get; set; }
+		private BooleanOption option { get; set; }
 
 		/// <summary>
 		/// Wie viel Prozent der Name des Eintrags (auf der linken Seite) von der Breite des Eintrags einnehmen darf.
 		/// </summary>
 		public override float NameWidth
 		{
-			get { return Math.Min (0.90f, 1.0f - ValueWidth); }
+			get { return System.Math.Min (0.90f, 1.0f - ValueWidth); }
 			set { throw new ArgumentException ("You can't change the NameWidth of a CheckBoxItem!"); }
 		}
 
@@ -97,7 +98,7 @@ namespace Knot3.Framework.Widgets
 		/// Erzeugt ein neues CheckBoxItem-Objekt und initialisiert dieses mit dem zugehörigen IGameScreen-Objekt.
 		/// Zudem sind Angaben zur Zeichenreihenfolge und der Auswahloption Pflicht.
 		/// </summary>
-		public CheckBoxItem (IGameScreen screen, DisplayLayer drawOrder, string text, BooleanOptionInfo option)
+		public CheckBoxItem (IGameScreen screen, DisplayLayer drawOrder, string text, BooleanOption option)
 		: base (screen, drawOrder, text)
 		{
 			this.option = option;

@@ -44,64 +44,69 @@ using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
 
 using Knot3.Framework.Core;
-using Knot3.Framework.Development;
+using Knot3.Framework.GameObjects;
 using Knot3.Framework.Input;
 using Knot3.Framework.Platform;
-using Knot3.Framework.RenderEffects;
 using Knot3.Framework.Utilities;
+
+using Knot3.Game.Core;
+using Knot3.Game.Data;
+using Knot3.Game.Input;
+using Knot3.Game.RenderEffects;
+using Knot3.Game.Screens;
+using Knot3.Game.Utilities;
+using Knot3.Game.Widgets;
 
 #endregion
 
-namespace Knot3.Framework.Utilities
+namespace Knot3.Game.GameObjects
 {
+	/// <summary>
+	/// Ein Objekt der Klasse ArrowModelInfo hält alle Informationen, die zur Erstellung eines Pfeil-3D-Modelles (s. ArrowModel) notwendig sind.
+	/// </summary>
 	[ExcludeFromCodeCoverageAttribute]
-	public static class ModelHelper
+	public sealed class Arrow : GameModelInfo
 	{
-		private static Dictionary<string, ContentManager> contentManagers = new Dictionary<string, ContentManager> ();
-		private static HashSet<string> invalidModels = new HashSet<string> ();
+		#region Properties
 
-		public static Model LoadModel (this IGameScreen screen, string name)
+		/// <summary>
+		/// Gibt die Richtung, in die der Pfeil zeigen soll an.
+		/// </summary>
+		public Direction Direction { get; private set; }
+
+		public float Length { get { return 40f; } }
+
+		public float Diameter { get { return 8f; } }
+
+		private Dictionary<Direction, Angles3> RotationMap = new Dictionary<Direction, Angles3> ()
 		{
-			ContentManager content;
-			if (contentManagers.ContainsKey (screen.CurrentRenderEffects.CurrentEffect.ToString ())) {
-				content = contentManagers [screen.CurrentRenderEffects.CurrentEffect.ToString ()];
-			}
-			else {
-				contentManagers [screen.CurrentRenderEffects.CurrentEffect.ToString ()] = content = new ContentManager (screen.Content.ServiceProvider, screen.Content.RootDirectory);
-			}
+			{ Direction.Up, 		Angles3.FromDegrees (90, 0, 00) },
+			{ Direction.Down, 		Angles3.FromDegrees (270, 0, 0) },
+			{ Direction.Right, 		Angles3.FromDegrees (0, 270, 0) },
+			{ Direction.Left, 		Angles3.FromDegrees (0, 90, 0) },
+			{ Direction.Forward, 	Angles3.FromDegrees (0, 0, 0) },
+			{ Direction.Backward, 	Angles3.FromDegrees (180, 0, 0) },
+		};
 
-			Model model = LoadModel (content, screen.CurrentRenderEffects.CurrentEffect, name);
-			return model;
+		#endregion
+
+		#region Constructors
+
+		/// <summary>
+		/// Erstellt ein neues ArrowModelInfo-Objekt an einer bestimmten Position position im 3D-Raum. Dieses zeigt in eine durch direction bestimmte Richtung.
+		/// </summary>
+		public Arrow (Vector3 position, Direction direction)
+		: base ("arrow")
+		{
+			Direction = direction;
+			Position = position + Direction.Vector * Node.Scale / 3;
+			Scale = new Vector3 (7,7,20);
+			IsMovable = true;
+
+			// Berechne die Drehung
+			Rotation += RotationMap [direction];
 		}
 
-		private static Model LoadModel (ContentManager content, IRenderEffect pp, string name)
-		{
-			if (invalidModels.Contains (name)) {
-				return null;
-			}
-			else {
-				try {
-					Model model = content.Load<Model> ("Models/" + name);
-					pp.RemapModel (model);
-					return model;
-				}
-				catch (ContentLoadException) {
-					Log.Debug ("Warning: Model ", name, " does not exist!");
-					invalidModels.Add (name);
-					return null;
-				}
-			}
-		}
-
-		public static BoundingSphere[] Bounds (this Model model)
-		{
-			//Log.Debug (model);
-			BoundingSphere[] bounds = new BoundingSphere[model.Meshes.Count];
-			int i = 0;
-			foreach (ModelMesh mesh in model.Meshes) {
-				bounds [i++] = mesh.BoundingSphere;
-			}
-			return bounds;
-		}
+		#endregion
 	}
 }

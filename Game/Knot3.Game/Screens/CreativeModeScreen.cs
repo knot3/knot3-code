@@ -22,6 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+using Knot3.Framework.Storage;
 
 #endregion
 
@@ -321,7 +322,7 @@ namespace Knot3.Game.Screens
 			Audio.BackgroundMusic = Sound.CreativeMusic;
 
 			// Einstellungen anwenden
-			debugBoundings.Info.IsVisible = Options.Default ["debug", "show-boundings", false];
+			debugBoundings.Info.IsVisible = Config.Default ["debug", "show-boundings", false];
 		}
 
 		#endregion

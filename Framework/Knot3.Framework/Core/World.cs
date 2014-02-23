@@ -22,6 +22,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+using Knot3.Framework.Math;
+using Knot3.Framework.Storage;
 
 #endregion
 
@@ -178,7 +180,7 @@ namespace Knot3.Framework.Core
 		private static IRenderEffect DefaultEffect (IGameScreen screen)
 		{
 			// suche den eingestellten Standardeffekt heraus
-			string effectName = Options.Default ["video", "knot-shader", "default"];
+			string effectName = Config.Default ["video", "knot-shader", "default"];
 			IRenderEffect effect = RenderEffectLibrary.CreateEffect (screen: screen, name: effectName);
 			return effect;
 		}
@@ -210,7 +212,7 @@ namespace Knot3.Framework.Core
 		[ExcludeFromCodeCoverageAttribute]
 		public override void Update (GameTime time)
 		{
-			if (!Options.Default ["video", "selectiveRendering", false]) {
+			if (!Config.Default ["video", "selectiveRendering", false]) {
 				Redraw = true;
 			}
 			if (!Screen.PostProcessingEffect.SelectiveRendering) {
@@ -337,7 +339,7 @@ namespace Knot3.Framework.Core
 					                         nearTo: obj.Center ()
 					                     );
 					// Berechne die Distanz zwischen 3D-Mausposition und dem Spielobjekt
-					float distance = Math.Abs ((position3D - obj.Center ()).Length ());
+					float distance = System.Math.Abs ((position3D - obj.Center ()).Length ());
 					distances [distance] = obj;
 				}
 			}
@@ -363,7 +365,7 @@ namespace Knot3.Framework.Core
 			foreach (IGameObject obj in this) {
 				if (obj.Info.IsSelectable) {
 					// Berechne die Distanz zwischen 3D-Mausposition und dem Spielobjekt
-					float distance = Math.Abs ((nearTo - obj.Center ()).Length ());
+					float distance = System.Math.Abs ((nearTo - obj.Center ()).Length ());
 					distances [distance] = obj;
 				}
 			}

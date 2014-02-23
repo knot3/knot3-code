@@ -22,6 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+using Knot3.Framework.Storage;
 
 #endregion
 
@@ -54,8 +55,8 @@ namespace Knot3.UnitTests
 		public static void TestHelper_SetUp ()
 		{
 			// Vorrang beim statischen Initialisieren!
-			var bullshit = Options.Default;
-			Options.Default = new ConfigFile (TempDirectory + "knot3.ini");
+			var bullshit = Config.Default;
+			Config.Default = new ConfigFile (TempDirectory + "knot3.ini");
 		}
 
 		public static string TestResourcesDirectory

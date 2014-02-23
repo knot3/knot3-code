@@ -22,6 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+using Knot3.Framework.Storage;
 
 #endregion
 
@@ -112,7 +113,7 @@ namespace Knot3.Framework.Audio
 				// Erstelle für alle Enum-Werte von Sound ein HashSet
 				foreach (Sound soundType in typeof (Sound).ToEnumValues<Sound>()) {
 					AudioFiles [soundType] = new HashSet<IAudioFile> ();
-					VolumeMap [soundType] = ValidVolume (Options.Default ["volume", soundType.ToString (), 1]);
+					VolumeMap [soundType] = ValidVolume (Config.Default ["volume", soundType.ToString (), 1]);
 				}
 
 				// Suche nach XNA-Audio-Dateien
@@ -239,7 +240,7 @@ namespace Knot3.Framework.Audio
 		{
 			volume = ValidVolume (volume);
 			VolumeMap [soundType] = volume;
-			Options.Default ["volume", soundType.ToString (), 1] = volume;
+			Config.Default ["volume", soundType.ToString (), 1] = volume;
 			Log.Debug ("Set Volume (", soundType, "): ", volume);
 		}
 

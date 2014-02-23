@@ -28,65 +28,44 @@
 #region Using
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using System.Text;
 
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.GamerServices;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
+using Microsoft.Xna.Framework.Net;
+using Microsoft.Xna.Framework.Storage;
 
 using Knot3.Framework.Core;
+using Knot3.Framework.Development;
 using Knot3.Framework.Input;
 using Knot3.Framework.Platform;
+using Knot3.Framework.RenderEffects;
 using Knot3.Framework.Utilities;
 
 #endregion
 
-namespace Knot3.Framework.Utilities
+namespace Knot3.Framework.Math
 {
-	public struct BoundingCylinder : IEquatable<BoundingCylinder> {
-		public Vector3 SideA;
-		public Vector3 SideB;
-		public float Radius;
-
-		public BoundingCylinder (Vector3 sideA, Vector3 sideB, float radius)
+	[ExcludeFromCodeCoverageAttribute]
+	public static class ModelExtensions
+	{
+		public static BoundingSphere[] Bounds (this Model model)
 		{
-			this.SideA = sideA;
-			this.SideB = sideB;
-			this.Radius = radius;
-		}
-
-		public static bool operator == (BoundingCylinder a, BoundingCylinder b)
-		{
-			if (System.Object.ReferenceEquals (a, b)) {
-				return true;
+			//Log.Debug (model);
+			BoundingSphere[] bounds = new BoundingSphere[model.Meshes.Count];
+			int i = 0;
+			foreach (ModelMesh mesh in model.Meshes) {
+				bounds [i++] = mesh.BoundingSphere;
 			}
-			if (((object)a == null) || ((object)b == null)) {
-				return false;
-			}
-			return a.Equals (b);
-		}
-
-		public static bool operator != (BoundingCylinder a, BoundingCylinder b)
-		{
-			return !(a == b);
-		}
-
-		public bool Equals (BoundingCylinder other)
-		{
-			return SideA == other.SideA && SideB == other.SideB && Radius == other.Radius;
-		}
-
-		public override bool Equals (object other)
-		{
-			return other != null && Equals ((BoundingCylinder)other);
-		}
-
-		[ExcludeFromCodeCoverageAttribute]
-		public override int GetHashCode ()
-		{
-			// irgendwas möglichst eindeutiges
-			return (Radius * (SideA + SideB)).GetHashCode ();
+			return bounds;
 		}
 	}
 }

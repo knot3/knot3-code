@@ -72,7 +72,7 @@ namespace Knot3.Game.GameObjects
 		/// <summary>
 		/// Enthält Informationen über den darzustellende 3D-Modell des Kantenübergangs.
 		/// </summary>
-		public new JunctionModelInfo Info { get { return base.Info as JunctionModelInfo; } set { base.Info = value; } }
+		public new Junction Info { get { return base.Info as Junction; } set { base.Info = value; } }
 
 		public bool IsVirtual { get; set; }
 
@@ -84,7 +84,7 @@ namespace Knot3.Game.GameObjects
 		/// Erstellt ein neues 3D-Modell mit dem angegebenen Spielzustand und dem angegebenen Informationsobjekt.
 		/// [base=screen, info]
 		/// </summary>
-		public JunctionModel (IGameScreen screen, JunctionModelInfo info)
+		public JunctionModel (IGameScreen screen, Junction info)
 		: base (screen, info)
 		{
 		}

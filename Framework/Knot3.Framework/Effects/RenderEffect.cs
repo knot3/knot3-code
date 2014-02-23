@@ -22,11 +22,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+using Knot3.Framework.Storage;
 
 #endregion
 
 #region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -79,7 +79,7 @@ namespace Knot3.Framework.RenderEffects
 		/// </summary>
 		protected SpriteBatch spriteBatch { get; set; }
 
-		protected float Supersampling { get { return Options.Default["video","Supersamples",1]; } }
+		protected float Supersampling { get { return Config.Default ["video", "Supersamples", 1]; } }
 
 		public bool SelectiveRendering { get; set; }
 
@@ -243,8 +243,8 @@ namespace Knot3.Framework.RenderEffects
 				if (!renderTargets.ContainsKey (resolution)) {
 					renderTargets [resolution] = new Dictionary<Rectangle, Dictionary<float, RenderTarget2D>> ();
 				}
-				if (!renderTargets[resolution].ContainsKey (viewport)) {
-					renderTargets [resolution][viewport] = new Dictionary<float, RenderTarget2D> ();
+				if (!renderTargets [resolution].ContainsKey (viewport)) {
+					renderTargets [resolution] [viewport] = new Dictionary<float, RenderTarget2D> ();
 				}
 				while (!renderTargets [resolution][viewport].ContainsKey (Supersampling)) {
 					try {
@@ -257,14 +257,16 @@ namespace Knot3.Framework.RenderEffects
 					}
 					catch (NotSupportedException ex) {
 						Log.Debug (ex);
-						if (Options.Default ["video", "Supersamples", 1] > 1) {
-							Options.Default ["video", "Supersamples", 1] *= 0.8f;
+						if (Config.Default ["video", "Supersamples", 1] > 1) {
+							Config.Default ["video", "Supersamples", 1] *= 0.8f;
 						}
-						else {throw;}
+						else {
+							throw;
+						}
 						continue;
 					}
 				}
-				return renderTargets [resolution] [viewport][Supersampling];
+				return renderTargets [resolution] [viewport] [Supersampling];
 			}
 		}
 

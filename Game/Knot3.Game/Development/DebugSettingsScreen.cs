@@ -22,6 +22,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+using Knot3.Framework.Math;
+using Knot3.Framework.Storage;
 
 #endregion
 
@@ -98,7 +100,7 @@ namespace Knot3.Game.Development
 			    screen: this,
 			    drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
 			    text: "Show Overlay",
-			    option: new BooleanOptionInfo ("video", "camera-overlay", false, Options.Default)
+			    option: new BooleanOption ("video", "camera-overlay", false, Config.Default)
 			);
 			settingsMenu.Add (showOverlay);
 
@@ -106,7 +108,7 @@ namespace Knot3.Game.Development
 			    screen: this,
 			    drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
 			    text: "Show FPS",
-			    option: new BooleanOptionInfo ("video", "fps-overlay", true, Options.Default)
+			    option: new BooleanOption ("video", "fps-overlay", true, Config.Default)
 			);
 			settingsMenu.Add (showFps);
 
@@ -114,7 +116,7 @@ namespace Knot3.Game.Development
 			    screen: this,
 			    drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
 			    text: "Show Profiler",
-			    option: new BooleanOptionInfo ("video", "profiler-overlay", true, Options.Default)
+			    option: new BooleanOption ("video", "profiler-overlay", true, Config.Default)
 			);
 			settingsMenu.Add (showProfiler);
 
@@ -122,7 +124,7 @@ namespace Knot3.Game.Development
 			    screen: this,
 			    drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
 			    text: "Show Bounding Boxes",
-			    option: new BooleanOptionInfo ("debug", "show-boundings", false, Options.Default)
+			    option: new BooleanOption ("debug", "show-boundings", false, Config.Default)
 			);
 			settingsMenu.Add (showBoundings);
 
@@ -130,12 +132,12 @@ namespace Knot3.Game.Development
 			    screen: this,
 			    drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
 			    text: "Show Start Edge Direction",
-			    option: new BooleanOptionInfo ("debug", "show-startedge-direction", false, Options.Default)
+			    option: new BooleanOption ("debug", "show-startedge-direction", false, Config.Default)
 			);
 			settingsMenu.Add (showStartEdgeArrow);
 
 			string[] unprojectMethods = { "SelectedObject", "NearFarAverage" };
-			DistinctOptionInfo unprojectOption = new DistinctOptionInfo ("debug", "unproject", unprojectMethods[0], unprojectMethods, Options.Default);
+			DistinctOption unprojectOption = new DistinctOption ("debug", "unproject", unprojectMethods[0], unprojectMethods, Config.Default);
 			DropDownMenuItem unprojectItem = new DropDownMenuItem (
 			    screen: this,
 			    drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,

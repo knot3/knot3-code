@@ -22,6 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+using Knot3.Framework.Storage;
 
 #endregion
 
@@ -100,12 +101,12 @@ namespace Knot3.Framework.Input
 				else {
 					spriteBatch.Draw (
 					    cursorTex,
-					    Screen.InputManager.CurrentMousePosition.AbsoluteVector * Options.Default ["video", "Supersamples", 1],
+					    Screen.InputManager.CurrentMousePosition.AbsoluteVector * Config.Default ["video", "Supersamples", 1],
 					    null,
 					    Color.White,
 					    0f,
 					    Vector2.Zero,
-					    Vector2.One * Options.Default ["video", "Supersamples", 1],
+					    Vector2.One * Config.Default ["video", "Supersamples", 1],
 					    SpriteEffects.None,
 					    1f
 					);

@@ -51,12 +51,12 @@ using Knot3.Framework.Utilities;
 
 #endregion
 
-namespace Knot3.Framework.Core
+namespace Knot3.Framework.Storage
 {
 	/// <summary>
 	/// Enthält Informationen über einen Eintrag in einer Einstellungsdatei.
 	/// </summary>
-	public class OptionInfo
+	public class Option
 	{
 		#region Properties
 
@@ -102,12 +102,12 @@ namespace Knot3.Framework.Core
 		/// <summary>
 		/// Erstellt ein neues OptionsInfo-Objekt aus den übergegebenen Werten.
 		/// </summary>
-		public OptionInfo (string section, string name, string defaultValue, ConfigFile configFile)
+		public Option (string section, string name, string defaultValue, ConfigFile configFile)
 		{
 			Section = section;
 			Name = name;
 			DefaultValue = defaultValue;
-			this.configFile = configFile != null ? configFile : Options.Default;
+			this.configFile = configFile != null ? configFile : Config.Default;
 		}
 
 		#endregion

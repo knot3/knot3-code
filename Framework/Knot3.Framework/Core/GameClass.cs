@@ -22,6 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+using Knot3.Framework.Storage;
 
 #endregion
 
@@ -53,7 +54,7 @@ using Knot3.Framework.Utilities;
 namespace Knot3.Framework.Core
 {
 	[ExcludeFromCodeCoverageAttribute]
-	public abstract class GameClass : Game
+	public abstract class GameClass : Microsoft.Xna.Framework.Game
 	{
 		#region Properties
 
@@ -87,7 +88,7 @@ namespace Knot3.Framework.Core
 						                           + "x"
 						                           + Graphics.GraphicsDevice.DisplayMode.Height.ToString ();
 
-						Options.Default ["video", "resolution", currentResolution] = "1280x720";
+						Config.Default ["video", "resolution", currentResolution] = "1280x720";
 					}
 					Graphics.ToggleFullScreen ();
 					Graphics.ApplyChanges ();
@@ -182,8 +183,8 @@ namespace Knot3.Framework.Core
 			string currentResolution = Graphics.GraphicsDevice.DisplayMode.Width.ToString ()
 			                           + "x"
 			                           + Graphics.GraphicsDevice.DisplayMode.Height.ToString ();
-			if (lastResolution != Options.Default ["video", "resolution", currentResolution] && !isFullscreen) {
-				String strReso = Options.Default ["video", "resolution", currentResolution];
+			if (lastResolution != Config.Default ["video", "resolution", currentResolution] && !isFullscreen) {
+				String strReso = Config.Default ["video", "resolution", currentResolution];
 				string[] reso = strReso.Split ('x');
 				width = int.Parse (reso [0]);
 				height = int.Parse (reso [1]);
@@ -191,7 +192,7 @@ namespace Knot3.Framework.Core
 				Graphics.PreferredBackBufferHeight = height;
 				Graphics.ApplyChanges ();
 			}
-			lastResolution = Options.Default ["video", "resolution", currentResolution];
+			lastResolution = Config.Default ["video", "resolution", currentResolution];
 		}
 
 		#endregion

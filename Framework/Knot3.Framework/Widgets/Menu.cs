@@ -22,6 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+using Knot3.Framework.Math;
 
 #endregion
 
@@ -198,7 +199,7 @@ namespace Knot3.Framework.Widgets
 
 		private void performScroll ()
 		{
-			if (Math.Abs (tempScrollValue) > 0) {
+			if (System.Math.Abs (tempScrollValue) > 0) {
 				currentScrollPosition += tempScrollValue;
 				tempScrollValue = 0;
 			}
@@ -223,7 +224,7 @@ namespace Knot3.Framework.Widgets
 		private float pageScrollPosition
 		{
 			get {
-				return (int)Math.Ceiling (Bounds.Size.Relative.Y / (RelativeItemHeight + Bounds.Padding.Relative.Y));
+				return (int)System.Math.Ceiling (Bounds.Size.Relative.Y / (RelativeItemHeight + Bounds.Padding.Relative.Y));
 			}
 		}
 
@@ -257,7 +258,7 @@ namespace Knot3.Framework.Widgets
 
 			if (IsVisible && IsEnabled && HasScrollbar) {
 				spriteBatch.Begin ();
-				Texture2D rectangleTexture = TextureHelper.Create (Screen.Device, Color.White);
+				Texture2D rectangleTexture = ContentLoader.CreateTexture (Screen.Device, Color.White);
 				Bounds sliderBounds = ScrollSliderInBarBounds.In (ScrollBarBounds);
 				spriteBatch.Draw (rectangleTexture, sliderBounds.Rectangle.Grow (1), Design.DefaultOutlineColor);
 				spriteBatch.Draw (rectangleTexture, sliderBounds.Rectangle, Design.DefaultLineColor);

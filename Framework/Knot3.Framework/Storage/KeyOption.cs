@@ -50,44 +50,36 @@ using Knot3.Framework.Utilities;
 
 #endregion
 
-namespace Knot3.Framework.Utilities
+namespace Knot3.Framework.Storage
 {
-	[ExcludeFromCodeCoverageAttribute]
-	public static class ShaderHelper
+	public class KeyOption : DistinctOption
 	{
-		public static Effect LoadEffect (this IGameScreen screen, string name)
+		#region Properties
+
+		/// <summary>
+		/// Eine Eigenschaft, die den aktuell abgespeicherten Wert zurückgibt.
+		/// </summary>
+		public new Keys Value
 		{
-			if (SystemInfo.IsRunningOnMono () || SystemInfo.IsRunningOnMonogame ()) {
-				return LoadEffectMono (screen, name);
+			get {
+				return base.Value.ToEnumValue<Keys> ();
 			}
-			else {
-				return LoadEffectDotnet (screen, name);
+			set {
+				base.Value = value.ToEnumDescription<Keys> ();
 			}
 		}
 
-		private static Effect LoadEffectMono (IGameScreen screen, string name)
+		public new static IEnumerable<string> ValidValues = typeof (Keys).ToEnumValues<Keys> ().ToEnumDescriptions<Keys> ();
+
+		#endregion
+
+		#region Constructors
+
+		public KeyOption (string section, string name, Keys defaultValue, ConfigFile configFile)
+		: base (section, name, defaultValue.ToEnumDescription<Keys> (), ValidValues, configFile)
 		{
-			string[] filenames = {
-				SystemInfo.RelativeContentDirectory + "Shader/" + name + ".mgfx",
-				SystemInfo.RelativeContentDirectory + "Shader/" + name + "_3.0.mgfx",
-				SystemInfo.RelativeContentDirectory + "Shader/" + name + "_3.1.mgfx"
-			};
-			Exception lastException = new Exception ("Could not find shader: " + name);
-			foreach (string filename in filenames) {
-				try {
-					Effect effect = new Effect (screen.Device, System.IO.File.ReadAllBytes (filename));
-					return effect;
-				}
-				catch (Exception ex) {
-					lastException = ex;
-				}
-			}
-			throw lastException;
 		}
 
-		private static Effect LoadEffectDotnet (IGameScreen screen, string name)
-		{
-			return screen.Content.Load<Effect> ("Shader/" + name);
-		}
+		#endregion
 	}
 }

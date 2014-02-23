@@ -44,81 +44,37 @@ using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
 
 using Knot3.Framework.Core;
-using Knot3.Framework.GameObjects;
 using Knot3.Framework.Input;
 using Knot3.Framework.Platform;
 using Knot3.Framework.Utilities;
 
-using Knot3.Game.Core;
-using Knot3.Game.Data;
-using Knot3.Game.Input;
-using Knot3.Game.RenderEffects;
-using Knot3.Game.Screens;
-using Knot3.Game.Widgets;
-
 #endregion
 
-namespace Knot3.Game.GameObjects
+namespace Knot3.Framework.Storage
 {
 	/// <summary>
-	/// Die 3D-Modelle, die während einer Verschiebung von Kanten die Vorschaumodelle repräsentieren.
+	/// Eine statische Klasse, die Bezeichner in lokalisierten Text umsetzen kann.
 	/// </summary>
-	[ExcludeFromCodeCoverageAttribute]
-	public sealed class ShadowGameModel : ShadowGameObject
+	public static class Localizer
 	{
 		#region Properties
 
-		private GameModel decoratedModel
-		{
-			get {
-				return decoratedObject as GameModel;
-			}
-		}
-
 		/// <summary>
-		/// Die Farbe der Vorschaumodelle.
+		/// Die Datei, welche Informationen für die Lokalisierung enthält.
 		/// </summary>
-		public Color ShadowColor { get; set; }
-
-		/// <summary>
-		/// Die Transparenz der Vorschaumodelle.
-		/// </summary>
-		public float ShadowAlpha { get; set; }
-
-		#endregion
-
-		#region Constructors
-
-		/// <summary>
-		/// Erstellt ein neues Vorschaumodell in dem angegebenen Spielzustand für das angegebene zu dekorierende Modell.
-		/// </summary>
-		public ShadowGameModel (IGameScreen screen, GameModel decoratedModel)
-		: base (screen, decoratedModel)
-		{
-		}
+		private static ConfigFile localization { get; set; }
 
 		#endregion
 
 		#region Methods
 
 		/// <summary>
-		/// Zeichnet das Vorschaumodell.
+		/// Liefert zu dem übergebenen Bezeichner den zugehörigen Text aus der Lokalisierungsdatei der
+		/// aktuellen Sprache zurück, die dabei aus der Einstellungsdatei des Spiels gelesen wird.
 		/// </summary>
-		[ExcludeFromCodeCoverageAttribute]
-		public override void Draw (GameTime time)
+		public static string Localize (string text)
 		{
-			// swap position, colors, alpha
-			Vector3 originalPositon = decoratedModel.Info.Position;
-			ModelColoring originalColoring = decoratedModel.Coloring;
-			decoratedModel.Info.Position = ShadowPosition;
-			decoratedModel.Coloring = new SingleColor (originalColoring.MixedColor, alpha: ShadowAlpha);
-
-			// draw
-			screen.CurrentRenderEffects.CurrentEffect.DrawModel (decoratedModel, time);
-
-			// swap everything back
-			decoratedModel.Info.Position = originalPositon;
-			decoratedModel.Coloring = originalColoring;
+			throw new System.NotImplementedException ();
 		}
 
 		#endregion

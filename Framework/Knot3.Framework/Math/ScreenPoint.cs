@@ -42,7 +42,7 @@ using Knot3.Framework.Utilities;
 
 #endregion
 
-namespace Knot3.Framework.Core
+namespace Knot3.Framework.Math
 {
 	public class ScreenPoint : IEquatable<ScreenPoint>
 	{
@@ -253,7 +253,7 @@ namespace Knot3.Framework.Core
 		{
 			float epsilon = 0.000001f;
 
-			return other != null && Math.Abs (Relative.X - other.Relative.X) < epsilon && Math.Abs (Relative.Y - other.Relative.Y) < epsilon;
+			return other != null && System.Math.Abs (Relative.X - other.Relative.X) < epsilon && System.Math.Abs (Relative.Y - other.Relative.Y) < epsilon;
 		}
 
 		public override bool Equals (object other)

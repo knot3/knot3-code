@@ -44,52 +44,55 @@ using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
 
 using Knot3.Framework.Core;
+using Knot3.Framework.GameObjects;
 using Knot3.Framework.Input;
 using Knot3.Framework.Platform;
+using Knot3.Framework.RenderEffects;
 using Knot3.Framework.Utilities;
+using Knot3.Framework.Widgets;
 
 #endregion
 
-namespace Knot3.Framework.Core
+namespace Knot3.Framework.Storage
 {
 	/// <summary>
-	/// Diese Klasse repräsentiert eine Option, welche die Werte \glqq Wahr\grqq~oder \glqq Falsch\grqq~annehmen kann.
+	/// Eine statische Klasse, die eine Referenz auf die zentrale Einstellungsdatei des Spiels enthält.
 	/// </summary>
-	public sealed class BooleanOptionInfo : DistinctOptionInfo
+	public static class Config
 	{
 		#region Properties
 
 		/// <summary>
-		/// Eine Eigenschaft, die den aktuell abgespeicherten Wert zurückgibt.
+		/// Die zentrale Einstellungsdatei des Spiels.
 		/// </summary>
-		public new bool Value
+		public static ConfigFile Default
 		{
 			get {
-				return base.Value == ConfigFile.True ? true : false;
+				if (_default == null) {
+					_default = new ConfigFile (SystemInfo.SettingsDirectory + SystemInfo.PathSeparator + "knot3.ini");
+				}
+				return _default;
 			}
 			set {
-				base.Value = value ? ConfigFile.True : ConfigFile.False;
+				_default = value;
 			}
 		}
 
-		public new static string[] ValidValues = new string[] {
-			ConfigFile.True,
-			ConfigFile.False
-		};
+		private static ConfigFile _default;
 
-		#endregion
-
-		#region Constructors
-
-		/// <summary>
-		/// Erstellt eine neue Option, welche die Werte \glqq Wahr\grqq~oder \glqq Falsch\grqq~annehmen kann. Mit dem angegebenen Namen, in dem
-		/// angegebenen Abschnitt der angegebenen Einstellungsdatei.
-		/// [base=section, name, defaultValue?ConfigFile.True:ConfigFile.False, ValidValues, configFile]
-		/// </summary>
-		public BooleanOptionInfo (string section, string name, bool defaultValue, ConfigFile configFile)
-		: base (section, name, defaultValue?ConfigFile.True:ConfigFile.False, ValidValues, configFile)
+		public static ConfigFile Models
 		{
+			get {
+				if (_models == null) {
+					String seperatorString = SystemInfo.PathSeparator.ToString ();
+					_models = new ConfigFile (SystemInfo.BaseDirectory + seperatorString
+					                          + "Content" + seperatorString + "models.ini");
+				}
+				return _models;
+			}
 		}
+
+		private static ConfigFile _models;
 
 		#endregion
 	}

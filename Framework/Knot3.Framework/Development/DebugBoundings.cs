@@ -87,19 +87,19 @@ namespace Knot3.Framework.Development
 			float step = MathHelper.TwoPi / (float)sphereResolution;
 			for (float a = 0f; a <= MathHelper.TwoPi; a += step) {
 				verts [index++] = new VertexPositionColor (
-				    position: new Vector3 ((float)Math.Cos (a), (float)Math.Sin (a), 0f),
+				    position: new Vector3 ((float)System.Math.Cos (a), (float)System.Math.Sin (a), 0f),
 				    color: Color.White
 				);
 			}
 			for (float a = 0f; a <= MathHelper.TwoPi; a += step) {
 				verts [index++] = new VertexPositionColor (
-				    position: new Vector3 ((float)Math.Cos (a), 0f, (float)Math.Sin (a)),
+				    position: new Vector3 ((float)System.Math.Cos (a), 0f, (float)System.Math.Sin (a)),
 				    color: Color.White
 				);
 			}
 			for (float a = 0f; a <= MathHelper.TwoPi; a += step) {
 				verts [index++] = new VertexPositionColor (
-				    position: new Vector3 (0f, (float)Math.Cos (a), (float)Math.Sin (a)),
+				    position: new Vector3 (0f, (float)System.Math.Cos (a), (float)System.Math.Sin (a)),
 				    color: Color.White
 				);
 			}

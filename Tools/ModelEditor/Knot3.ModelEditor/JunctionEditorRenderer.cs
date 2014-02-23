@@ -119,8 +119,8 @@ namespace Knot3.ModelEditor
 			Info = new GameObjectInfo (position: position);
 			pipes = new List<PipeModel> ();
 			nodes = new List<JunctionModel> ();
-			pipeFactory = new ModelFactory ((s, i) => new PipeModel (s, i as PipeModelInfo));
-			nodeFactory = new ModelFactory ((s, i) => new JunctionModel (s, i as JunctionModelInfo));
+			pipeFactory = new ModelFactory ((s, i) => new PipeModel (s, i as Pipe));
+			nodeFactory = new ModelFactory ((s, i) => new JunctionModel (s, i as Junction));
 			nodeMap = new JunctionEditorNodeMap ();
 		}
 
@@ -179,7 +179,7 @@ namespace Knot3.ModelEditor
 		{
 			pipes.Clear ();
 			foreach (Edge edge in nodeMap.Edges) {
-				PipeModelInfo info = new PipeModelInfo (nodeMap: nodeMap, knot: null, edge: edge);
+				Pipe info = new Pipe (nodeMap: nodeMap, knot: null, edge: edge);
 				PipeModel pipe = pipeFactory [screen, info] as PipeModel;
 				pipe.Info.IsVisible = true;
 				pipe.World = World;
@@ -199,7 +199,7 @@ namespace Knot3.ModelEditor
 					continue;
 				}
 
-				foreach (JunctionModelInfo junction in junctions.OfType<JunctionModelInfo>()) {
+				foreach (Junction junction in junctions.OfType<Junction>()) {
 					JunctionModel model = nodeFactory [screen, junction] as JunctionModel;
 					model.World = World;
 					nodes.Add (model);

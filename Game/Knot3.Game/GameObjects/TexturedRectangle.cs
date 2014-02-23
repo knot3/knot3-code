@@ -22,6 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+using Knot3.Framework.Storage;
 
 #endregion
 
@@ -142,7 +143,7 @@ namespace Knot3.Game.GameObjects
 				basicEffect.Texture = texture;
 
 				basicEffect.LightingEnabled = false;
-				string effectName = Options.Default ["video", "knot-shader", "default"];
+				string effectName = Config.Default ["video", "knot-shader", "default"];
 				if (Screen.InputManager.KeyHeldDown (Keys.Tab) || effectName == "celshader") {
 					basicEffect.EnableDefaultLighting ();  // Beleuchtung aktivieren
 				}

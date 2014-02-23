@@ -22,11 +22,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+using Knot3.Framework.Math;
 
 #endregion
 
 #region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -115,9 +115,9 @@ namespace Knot3.Game.Widgets
 			    name: "Restart challenge",
 			    onClick: restartAction
 			);
-			restartButton.Bounds.Size = new ScreenPoint (screen, ContentBounds.Size.Relative.X/2, 0.05f);
+			restartButton.Bounds.Size = new ScreenPoint (screen, ContentBounds.Size.Relative.X / 2, 0.05f);
 			restartButton.Bounds.Position = ContentBounds.Position + ContentBounds.Size.OnlyY
-			                                - restartButton.Bounds.Size.OnlyY;
+				- restartButton.Bounds.Size.OnlyY;
 			restartButton.AlignX = HorizontalAlignment.Center;
 			buttons.Add (restartButton);
 
@@ -132,9 +132,9 @@ namespace Knot3.Game.Widgets
 			    name: "Return to menu",
 			    onClick: returnAction
 			);
-			returnButton.Bounds.Size = new ScreenPoint (screen, ContentBounds.Size.Relative.X/2, 0.05f);
+			returnButton.Bounds.Size = new ScreenPoint (screen, ContentBounds.Size.Relative.X / 2, 0.05f);
 			returnButton.Bounds.Position = ContentBounds.Position + ContentBounds.Size.OnlyY
-			                               - returnButton.Bounds.Size.OnlyY + ContentBounds.Size.OnlyX / 2;
+				- returnButton.Bounds.Size.OnlyY + ContentBounds.Size.OnlyX / 2;
 			returnButton.AlignX = HorizontalAlignment.Center;
 			buttons.Add (returnButton);
 		}

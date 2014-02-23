@@ -22,6 +22,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+using Knot3.Framework.Math;
+using Knot3.Framework.Storage;
 
 #endregion
 
@@ -138,12 +140,12 @@ namespace Knot3.ModelEditor
 
 			Direction[] validDirections = Direction.Values;
 			for (int i = 0; i < 3; ++i) {
-				DistinctOptionInfo option = new DistinctOptionInfo (
+				DistinctOption option = new DistinctOption (
 				    section: "debug",
 				    name: "debug_junction_direction" + i.ToString (),
 				    defaultValue: validDirections [i * 2],
 				    validValues: validDirections.Select (d => d.Description),
-				    configFile: Options.Default
+				    configFile: Config.Default
 				);
 				DropDownMenuItem item = new DropDownMenuItem (
 				    screen: this,
@@ -185,12 +187,12 @@ namespace Knot3.ModelEditor
 				0, 45, 90, 135, 180, 225, 270, 315
 			};
 			for (int i = 0; i < 3; ++i) {
-				FloatOptionInfo option = new FloatOptionInfo (
+				FloatOption option = new FloatOption (
 				    section: NodeConfigKey (directions.ToEnumerable ()),
 				    name: "bump" + i.ToString (),
 				    defaultValue: 0,
 				    validValues: validAngles,
-				    configFile: Options.Models
+				    configFile: Config.Models
 				);
 				itemBumpRotation [i].AddEntries (option);
 				if (time != null) {
@@ -223,9 +225,9 @@ namespace Knot3.ModelEditor
 		{
 			get {
 				Direction[] validDirections = Direction.Values;
-				Direction d1 = Direction.FromString (Options.Default ["debug", "debug_junction_direction0" /* + 0 */, validDirections [0]]);
-				Direction d2 = Direction.FromString (Options.Default ["debug", "debug_junction_direction1" /* + 1 */, validDirections [2]]);
-				Direction d3 = Direction.FromString (Options.Default ["debug", "debug_junction_direction2" /* + 2 */, validDirections [4]]);
+				Direction d1 = Direction.FromString (Config.Default ["debug", "debug_junction_direction0" /* + 0 */, validDirections [0]]);
+				Direction d2 = Direction.FromString (Config.Default ["debug", "debug_junction_direction1" /* + 1 */, validDirections [2]]);
+				Direction d3 = Direction.FromString (Config.Default ["debug", "debug_junction_direction2" /* + 2 */, validDirections [4]]);
 				return Tuple.Create (d1, d2, d3);
 			}
 		}
@@ -255,7 +257,7 @@ namespace Knot3.ModelEditor
 			Audio.BackgroundMusic = Sound.CreativeMusic;
 
 			// Einstellungen anwenden
-			debugBoundings.Info.IsVisible = Options.Default ["debug", "show-boundings", false];
+			debugBoundings.Info.IsVisible = Config.Default ["debug", "show-boundings", false];
 		}
 
 		#endregion

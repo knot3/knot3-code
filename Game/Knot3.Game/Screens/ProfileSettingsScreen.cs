@@ -22,6 +22,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+using Knot3.Framework.Math;
+using Knot3.Framework.Storage;
 
 #endregion
 
@@ -96,10 +98,10 @@ namespace Knot3.Game.Screens
 			    screen: this,
 			    drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
 			    text: "Player Name:",
-			    inputText: Options.Default["profile", "name", "Player"]
+			    inputText: Config.Default["profile", "name", "Player"]
 			);
 			playerNameInput.OnValueSubmitted += () => {
-				Options.Default["profile", "name", String.Empty] = playerNameInput.InputText;
+				Config.Default["profile", "name", String.Empty] = playerNameInput.InputText;
 			};
 
 			settingsMenu.Add (playerNameInput);

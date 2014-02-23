@@ -22,6 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+using Knot3.Framework.Math;
 
 #endregion
 
@@ -203,14 +204,7 @@ namespace Knot3.Framework.Widgets
 			float min = SliderRectangleMinX-ValueBounds.Rectangle.X;
 			float max = SliderRectangleMaxX-ValueBounds.Rectangle.X;
 
-			Log.Debug (
-			    "position="
-			    + position.ToString ()
-			    + ", min="
-			    + min.ToString ()
-			    + ", max="
-			    + max.ToString ()
-			);
+			Log.Debug ("position=" + position + ", min=" + min + ", max=" + max);
 
 			float mousePositionX = ((float)(position.Absolute.X)).Clamp (min, max);
 			float percent = (mousePositionX - min)/(max-min);

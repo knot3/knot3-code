@@ -22,6 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+using Knot3.Framework.Storage;
 
 #endregion
 
@@ -96,7 +97,7 @@ namespace Knot3.Game.Data
 					else {
 						throw new ArgumentException ("Every implementation of IKnotIO must have at least one file extension.");
 					}
-					Filename = SystemInfo.SavegameDirectory + SystemInfo.PathSeparator.ToString () + FileUtility.ConvertToFileName (name) + extension;
+					Filename = SystemInfo.SavegameDirectory + SystemInfo.PathSeparator + FileUtility.ConvertToFileName (name) + extension;
 				}
 			}
 		}

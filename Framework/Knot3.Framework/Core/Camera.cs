@@ -22,6 +22,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+using Knot3.Framework.Math;
+using Knot3.Framework.Storage;
 
 #endregion
 
@@ -297,7 +299,7 @@ namespace Knot3.Framework.Core
 		{
 			if (!InSmoothMove) {
 				smoothTarget = target;
-				smoothDistance = Math.Abs (Target.DistanceTo (target));
+				smoothDistance = System.Math.Abs (Target.DistanceTo (target));
 				smoothProgress = 0f;
 			}
 		}
@@ -312,10 +314,7 @@ namespace Knot3.Framework.Core
 				smoothProgress += 0.05f;
 
 				//Log.Debug ("distance = ", distance);
-				Target = Target.SetDistanceTo (
-				             target: smoothTarget.Value,
-				             distance: Math.Max (0, smoothDistance - distance)
-				         );
+				Target = Target.SetDistanceTo (target: smoothTarget.Value, distance: System.Math.Max (0, smoothDistance - distance));
 				World.Redraw = true;
 			}
 		}
@@ -327,7 +326,7 @@ namespace Knot3.Framework.Core
 		/// </summary>
 		public Vector3 To3D (ScreenPoint position, Vector3 nearTo)
 		{
-			if (Options.Default ["debug", "unproject", "SelectedObject"] == "NearFarAverage") {
+			if (Config.Default ["debug", "unproject", "SelectedObject"] == "NearFarAverage") {
 				Vector3 nearScreenPoint = new Vector3 (position.AbsoluteVector, 0);
 				Vector3 farScreenPoint = new Vector3 (position.AbsoluteVector, 1);
 				Vector3 nearWorldPoint = World.Viewport.Unproject (

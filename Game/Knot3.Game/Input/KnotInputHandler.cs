@@ -22,6 +22,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+using Knot3.Framework.Math;
+using Knot3.Framework.Storage;
 
 #endregion
 
@@ -326,7 +328,7 @@ namespace Knot3.Game.Input
 
 		private void AutoCamera (GameTime time)
 		{
-			if (Options.Default ["video", "auto-camera-nomove", false]) {
+			if (Config.Default ["video", "auto-camera-nomove", false]) {
 				ScreenPoint currentPosition = Screen.InputManager.CurrentMouseState.ToScreenPoint (Screen);
 				Bounds worldBounds = world.Bounds;
 				var bounds = new [] {
@@ -413,7 +415,7 @@ namespace Knot3.Game.Input
 		private void rotate (Vector2 move, GameTime time)
 		{
 			Screen.InputManager.CurrentInputAction = InputAction.ArcballMove;
-			if (Options.Default ["video", "arcball-around-center", true]) {
+			if (Config.Default ["video", "arcball-around-center", true]) {
 				rotateCenter (move, time);
 			}
 			else {
@@ -517,11 +519,11 @@ namespace Knot3.Game.Input
 				string actionName = action.ToEnumDescription ();
 
 				// Erstelle eine Option...
-				KeyOptionInfo option = new KeyOptionInfo (
+				KeyOption option = new KeyOption (
 				    section: "controls",
 				    name: actionName,
 				    defaultValue: defaultReversed [action],
-				    configFile: Options.Default
+				    configFile: Config.Default
 				);
 				// und lese den Wert aus und speichere ihn in der Zuordnung.
 				CurrentKeyAssignment [option.Value] = action;

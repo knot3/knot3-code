@@ -22,6 +22,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+using Knot3.Framework.Math;
+using Knot3.Framework.Storage;
 
 #endregion
 
@@ -129,7 +131,7 @@ namespace Knot3.Framework.Widgets
 		/// <summary>
 		/// Fügt Einträge in das Dropdown-Menü ein, die auf Einstellungsoptionen basieren.
 		/// </summary>
-		public void AddEntries (DistinctOptionInfo option)
+		public void AddEntries (DistinctOption option)
 		{
 			dropdown.Clear ();
 			foreach (string _value in option.DisplayValidValues.Keys) {

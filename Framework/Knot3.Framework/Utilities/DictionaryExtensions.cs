@@ -50,71 +50,19 @@ using Knot3.Framework.Utilities;
 
 #endregion
 
-namespace Knot3.Framework.Core
+namespace Knot3.Framework.Utilities
 {
-	/// <summary>
-	/// Diese Klasse repräsentiert eine Option, welche die Werte \glqq Wahr\grqq~oder \glqq Falsch\grqq~annehmen kann.
-	/// </summary>
-	public sealed class FloatOptionInfo : DistinctOptionInfo
+	[ExcludeFromCodeCoverageAttribute]
+	public static class DictionaryExtensions
 	{
-		#region Properties
-
-		/// <summary>
-		/// Eine Eigenschaft, die den aktuell abgespeicherten Wert zurückgibt.
-		/// </summary>
-		public new float Value
+		public static void Add<KeyType, ListType, ValueType> (this Dictionary<KeyType, ListType> dict,
+		        KeyType key, ValueType value)
+		where ListType : IList<ValueType>, new ()
 		{
-			get {
-				return stringToFloat (base.Value);
+			if (!dict.ContainsKey (key)) {
+				dict.Add (key, new ListType ());
 			}
-			set {
-				base.Value = convertToString (value);
-			}
+			dict [key].Add (value);
 		}
-
-		public override string DisplayValue
-		{
-			get {
-				return String.Empty + stringToFloat (base.Value);
-			}
-		}
-
-		public override Dictionary<string,string> DisplayValidValues
-		{
-			get {
-				return new Dictionary<string, string>(base.ValidValues.ToDictionary (s => String.Empty + stringToFloat (s), s => s));
-			}
-		}
-
-		#endregion
-
-		#region Constructors
-
-		/// <summary>
-		/// Erstellt eine neue Option, welche die Werte \glqq Wahr\grqq~oder \glqq Falsch\grqq~annehmen kann. Mit dem angegebenen Namen, in dem
-		/// angegebenen Abschnitt der angegebenen Einstellungsdatei.
-		/// [base=section, name, defaultValue?ConfigFile.True:ConfigFile.False, ValidValues, configFile]
-		/// </summary>
-		public FloatOptionInfo (string section, string name, float defaultValue, IEnumerable<float> validValues, ConfigFile configFile)
-		: base (section, name, convertToString ( defaultValue),validValues.Select (convertToString), configFile)
-		{
-		}
-
-		private static string convertToString (float f)
-		{
-			return (String.Empty + (int)(f * 1000f));
-		}
-		private static float stringToFloat (string s)
-		{
-			int i;
-			bool result = Int32.TryParse (s, out i);
-			if (true == result) {
-				return ((float)i) / 1000f;
-			}
-			else {
-				return 0;
-			}
-		}
-		#endregion
 	}
 }

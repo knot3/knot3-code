@@ -22,6 +22,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+using Knot3.Framework.Math;
+using Knot3.Framework.Storage;
 
 #endregion
 
@@ -98,7 +100,7 @@ namespace Knot3.Game.Screens
 			    screen: this,
 			    drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
 			    text: "Move Rotation Targets to Center",
-			    option: new BooleanOptionInfo ("video", "arcball-around-center", true, Options.Default)
+			    option: new BooleanOption ("video", "arcball-around-center", true, Config.Default)
 			);
 			settingsMenu.Add (moveToCenter);
 
@@ -110,11 +112,11 @@ namespace Knot3.Game.Screens
 				string actionName = action.ToEnumDescription ();
 
 				// Erstelle das dazugehörige Options-Objekt...
-				KeyOptionInfo option = new KeyOptionInfo (
+				KeyOption option = new KeyOption (
 				    section: "controls",
 				    name: actionName,
 				    defaultValue: defaultReversed [action],
-				    configFile: Options.Default
+				    configFile: Config.Default
 				);
 
 				// Erstelle ein KeyInputItem zum Festlegen der Tastenbelegung

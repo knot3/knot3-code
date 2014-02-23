@@ -50,12 +50,12 @@ using Knot3.Framework.Utilities;
 
 #endregion
 
-namespace Knot3.Framework.Utilities
+namespace Knot3.Framework.Math
 {
 	[ExcludeFromCodeCoverageAttribute]
-	public static class FrustumHelper
+	public static class FrustumExtensions
 	{
-		public static Vector3 GetNegativeVertex (this BoundingBox aabb, ref Vector3 normal)
+		private static Vector3 GetNegativeVertex (this BoundingBox aabb, ref Vector3 normal)
 		{
 			Vector3 p = aabb.Max;
 			if (normal.X >= 0) {
@@ -71,7 +71,7 @@ namespace Knot3.Framework.Utilities
 			return p;
 		}
 
-		public static Vector3 GetPositiveVertex (this BoundingBox aabb, ref Vector3 normal)
+		private static Vector3 GetPositiveVertex (this BoundingBox aabb, ref Vector3 normal)
 		{
 			Vector3 p = aabb.Min;
 			if (normal.X >= 0) {

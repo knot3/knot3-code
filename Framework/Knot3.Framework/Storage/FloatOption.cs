@@ -50,36 +50,71 @@ using Knot3.Framework.Utilities;
 
 #endregion
 
-namespace Knot3.Framework.Core
+namespace Knot3.Framework.Storage
 {
-	public class KeyOptionInfo : DistinctOptionInfo
+	/// <summary>
+	/// Diese Klasse repräsentiert eine Option, welche die Werte \glqq Wahr\grqq~oder \glqq Falsch\grqq~annehmen kann.
+	/// </summary>
+	public sealed class FloatOption : DistinctOption
 	{
 		#region Properties
 
 		/// <summary>
 		/// Eine Eigenschaft, die den aktuell abgespeicherten Wert zurückgibt.
 		/// </summary>
-		public new Keys Value
+		public new float Value
 		{
 			get {
-				return base.Value.ToEnumValue<Keys> ();
+				return stringToFloat (base.Value);
 			}
 			set {
-				base.Value = value.ToEnumDescription<Keys> ();
+				base.Value = convertToString (value);
 			}
 		}
 
-		public new static IEnumerable<string> ValidValues = typeof (Keys).ToEnumValues<Keys> ().ToEnumDescriptions<Keys> ();
+		public override string DisplayValue
+		{
+			get {
+				return String.Empty + stringToFloat (base.Value);
+			}
+		}
+
+		public override Dictionary<string,string> DisplayValidValues
+		{
+			get {
+				return new Dictionary<string, string>(base.ValidValues.ToDictionary (s => String.Empty + stringToFloat (s), s => s));
+			}
+		}
 
 		#endregion
 
 		#region Constructors
 
-		public KeyOptionInfo (string section, string name, Keys defaultValue, ConfigFile configFile)
-		: base (section, name, defaultValue.ToEnumDescription<Keys> (), ValidValues, configFile)
+		/// <summary>
+		/// Erstellt eine neue Option, welche die Werte \glqq Wahr\grqq~oder \glqq Falsch\grqq~annehmen kann. Mit dem angegebenen Namen, in dem
+		/// angegebenen Abschnitt der angegebenen Einstellungsdatei.
+		/// [base=section, name, defaultValue?ConfigFile.True:ConfigFile.False, ValidValues, configFile]
+		/// </summary>
+		public FloatOption (string section, string name, float defaultValue, IEnumerable<float> validValues, ConfigFile configFile)
+		: base (section, name, convertToString ( defaultValue),validValues.Select (convertToString), configFile)
 		{
 		}
 
+		private static string convertToString (float f)
+		{
+			return (String.Empty + (int)(f * 1000f));
+		}
+		private static float stringToFloat (string s)
+		{
+			int i;
+			bool result = Int32.TryParse (s, out i);
+			if (true == result) {
+				return ((float)i) / 1000f;
+			}
+			else {
+				return 0;
+			}
+		}
 		#endregion
 	}
 }

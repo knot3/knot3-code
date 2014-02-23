@@ -22,6 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+using Knot3.Framework.Storage;
 
 #endregion
 
@@ -177,9 +178,9 @@ namespace Knot3.Game.GameObjects
 
 		private Texture2D CreateSkyTexture ()
 		{
-			string effectName = Options.Default ["video", "knot-shader", "default"];
+			string effectName = Config.Default ["video", "knot-shader", "default"];
 			if (effectName == "celshader") {
-				return TextureHelper.Create (Screen.Device, Color.CornflowerBlue);
+				return ContentLoader.CreateTexture (Screen.Device, Color.CornflowerBlue);
 			}
 			else {
 				return CreateSpaceTexture ();

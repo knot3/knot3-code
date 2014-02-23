@@ -54,7 +54,7 @@ using Knot3.Framework.Utilities;
 
 #endregion
 
-namespace Knot3.Framework.Utilities
+namespace Knot3.Framework.Storage
 {
 	/// <summary>
 	/// Eine Hilfsklasse für Dateioperationen.

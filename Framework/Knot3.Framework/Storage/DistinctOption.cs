@@ -50,10 +50,62 @@ using Knot3.Framework.Utilities;
 
 #endregion
 
-namespace Knot3.Framework.Utilities
+namespace Knot3.Framework.Storage
 {
-	[ExcludeFromCodeCoverageAttribute]
-	public static class InputHelper
+	/// <summary>
+	/// Diese Klasse repräsentiert eine Option, die einen Wert aus einer distinkten Werteliste annehmen kann.
+	/// </summary>
+	public class DistinctOption : Option
 	{
+		#region Properties
+
+		/// <summary>
+		/// Eine Menge von Texten, welche die für die Option gültigen Werte beschreiben.
+		/// </summary>
+		public HashSet<string> ValidValues { get; private set; }
+
+		public virtual Dictionary<string,string> DisplayValidValues { get; private set; }
+		/// <summary>
+		/// Eine Eigenschaft, die den aktuell abgespeicherten Wert zurück gibt.
+		/// </summary>
+		public override string Value
+		{
+			get {
+				return base.Value;
+			}
+			set {
+				if (ValidValues.Contains (value)) {
+					base.Value = value;
+				}
+				else {
+					base.Value = DefaultValue;
+				}
+			}
+		}
+		public virtual string DisplayValue
+		{
+			get {
+				return Value;
+			}
+		}
+
+		#endregion
+
+		#region Constructors
+
+		/// <summary>
+		/// Erstellt eine neue Option, die einen der angegebenen Werte aus validValues annehmen kann, mit dem angegebenen Namen in dem
+		/// angegebenen Abschnitt der angegebenen Einstellungsdatei.
+		/// [base=section, name, defaultValue, configFile]
+		/// </summary>
+		public DistinctOption (string section, string name, string defaultValue, IEnumerable<string> validValues, ConfigFile configFile)
+		: base (section, name, defaultValue, configFile)
+		{
+			ValidValues = new HashSet<string> (validValues);
+			ValidValues.Add (defaultValue);
+			DisplayValidValues = new Dictionary<string,string> (ValidValues.ToDictionary (x=>x,x=>x));
+		}
+
+		#endregion
 	}
 }

@@ -22,11 +22,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+using Knot3.Framework.Math;
 
 #endregion
 
 #region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -81,6 +81,7 @@ namespace Knot3.Game.Widgets
 				textInput.InputText = value;
 			}
 		}
+
 		public bool NoCloseEmpty
 		{
 			get;
@@ -125,12 +126,12 @@ namespace Knot3.Game.Widgets
 		{
 			textItem = new TextItem (screen, drawOrder, String.Empty);
 
-			Bounds.Size = new ScreenPoint (screen,0.5f,0.3f);
+			Bounds.Size = new ScreenPoint (screen, 0.5f, 0.3f);
 			// Der Titel-Text ist mittig ausgerichtet
 			AlignX = HorizontalAlignment.Center;
 			menu = new Menu (Screen, Index + DisplayLayer.Menu);
 			menu.Bounds = ContentBounds;
-			menu.Bounds.Padding = new ScreenPoint (screen,0.010f,0.019f);
+			menu.Bounds.Padding = new ScreenPoint (screen, 0.010f, 0.019f);
 			menu.ItemAlignX = HorizontalAlignment.Left;
 			menu.ItemAlignY = VerticalAlignment.Center;
 

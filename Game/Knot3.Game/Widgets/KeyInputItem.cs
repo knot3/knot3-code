@@ -22,6 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+using Knot3.Framework.Storage;
 
 #endregion
 
@@ -73,7 +74,7 @@ namespace Knot3.Game.Widgets
 		/// <summary>
 		/// Die Option in einer Einstellungsdatei.
 		/// </summary>
-		private KeyOptionInfo option { get; set; }
+		private KeyOption option { get; set; }
 
 		/// <summary>
 		/// Wie viel Prozent der Name des Eintrags (auf der linken Seite) von der Breite des Eintrags einnehmen darf.
@@ -101,8 +102,8 @@ namespace Knot3.Game.Widgets
 		/// Erzeugt ein neues CheckBoxItem-Objekt und initialisiert dieses mit dem zugehörigen IGameScreen-Objekt.
 		/// Zudem sind Angaben zur Zeichenreihenfolge und der Eingabeoption Pflicht.
 		/// </summary>
-		public KeyInputItem (IGameScreen screen, DisplayLayer drawOrder, string text, KeyOptionInfo option)
-		: base (screen, drawOrder, text, (option as DistinctOptionInfo).Value)
+		public KeyInputItem (IGameScreen screen, DisplayLayer drawOrder, string text, KeyOption option)
+		: base (screen, drawOrder, text, (option as DistinctOption).Value)
 		{
 			this.option = option;
 		}
@@ -128,7 +129,7 @@ namespace Knot3.Game.Widgets
 				else {
 					Log.Debug ("Key ", key, " => ", option.Name);
 					option.Value = key;
-					InputText = (option as DistinctOptionInfo).Value;
+					InputText = (option as DistinctOption).Value;
 					IsInputEnabled = false;
 					OnValueChanged ();
 					OnValueSubmitted ();

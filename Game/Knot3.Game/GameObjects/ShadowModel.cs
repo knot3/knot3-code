@@ -26,7 +26,6 @@
 #endregion
 
 #region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -61,24 +60,32 @@ using Knot3.Game.Widgets;
 namespace Knot3.Game.GameObjects
 {
 	/// <summary>
-	/// Eine abstrakte Klasse, die ein Vorschau-Spielobjekt darstellt.
+	/// Die 3D-Modelle, die während einer Verschiebung von Kanten die Vorschaumodelle repräsentieren.
 	/// </summary>
 	[ExcludeFromCodeCoverageAttribute]
-	public abstract class ShadowGameObject : IGameObject
+	public sealed class ShadowModel : IGameObject
 	{
 		#region Properties
 
-		/// <summary>
-		/// Enthält Informationen über das Vorschau-Spielobjekt.
-		/// </summary>
-		public GameObjectInfo Info { get; private set; }
+		private IGameScreen Screen;
+		private GameModel DecoratedModel;
 
+		/// <summary>
+		/// Die Farbe der Vorschaumodelle.
+		/// </summary>
+		public Color ShadowColor { get; set; }
+
+		/// <summary>
+		/// Die Transparenz der Vorschaumodelle.
+		/// </summary>
+		public float ShadowAlpha { get; set; }
+		
 		/// <summary>
 		/// Eine Referenz auf die Spielwelt, in der sich das Spielobjekt befindet.
 		/// </summary>
 		public World World
 		{
-			get { return decoratedObject.World; }
+			get { return DecoratedModel.World; }
 			set {}
 		}
 
@@ -92,25 +99,27 @@ namespace Knot3.Game.GameObjects
 		/// </summary>
 		public Vector3 OriginalPosition
 		{
-			get { return decoratedObject.Info.Position; }
+			get { return DecoratedModel.Info.Position; }
 		}
 
-		protected IGameObject decoratedObject { get; private set; }
+		GameObjectInfo IGameObject.Info { get { return Info; } }
 
-		protected IGameScreen screen;
+		/// <summary>
+		/// Die Modellinformationen wie Position, Skalierung und der Dateiname des 3D-Modells.
+		/// </summary>
+		public GameObjectInfo Info { get; private set; }
 
 		#endregion
 
 		#region Constructors
 
 		/// <summary>
-		/// Erstellt ein neues Vorschauobjekt in dem angegebenen Spielzustand für das angegebene zu dekorierende Objekt.
+		/// Erstellt ein neues Vorschaumodell in dem angegebenen Spielzustand für das angegebene zu dekorierende Modell.
 		/// </summary>
-		public ShadowGameObject (IGameScreen screen, IGameObject decoratedObj)
+		public ShadowModel (IGameScreen screen, GameModel decoratedModel)
 		{
-			this.screen = screen;
-			this.decoratedObject = decoratedObj;
-
+			Screen = screen;
+			DecoratedModel = decoratedModel;
 			Info = new GameObjectInfo (position: Vector3.Zero, isVisible: true, isSelectable: false, isMovable: false);
 		}
 
@@ -119,9 +128,29 @@ namespace Knot3.Game.GameObjects
 		#region Methods
 
 		/// <summary>
+		/// Zeichnet das Vorschaumodell.
+		/// </summary>
+		[ExcludeFromCodeCoverageAttribute]
+		public void Draw (GameTime time)
+		{
+			// swap position and colors
+			Vector3 originalPositon = DecoratedModel.Info.Position;
+			ModelColoring originalColoring = DecoratedModel.Coloring;
+			DecoratedModel.Info.Position = ShadowPosition;
+			DecoratedModel.Coloring = new SingleColor (originalColoring.MixedColor, alpha: ShadowAlpha);
+
+			// draw
+			Screen.CurrentRenderEffects.CurrentEffect.DrawModel (DecoratedModel, time);
+
+			// swap everything back
+			DecoratedModel.Info.Position = originalPositon;
+			DecoratedModel.Coloring = originalColoring;
+		}
+		
+		/// <summary>
 		/// Die Position, an der das Vorschau-Spielobjekt gezeichnet werden soll.
 		/// </summary>
-		public virtual Vector3 Center ()
+		public Vector3 Center ()
 		{
 			return ShadowPosition;
 		}
@@ -129,27 +158,16 @@ namespace Knot3.Game.GameObjects
 		/// <summary>
 		/// Wird für jeden Frame aufgerufen.
 		/// </summary>
-		public virtual void Update (GameTime GameTime)
+		public void Update (GameTime GameTime)
 		{
 			Info.IsVisible = Math.Abs ((ShadowPosition - OriginalPosition).Length ()) > 50;
 		}
-
-		/// <summary>
-		/// Zeichnet das Vorschau-Spielobjekt.
-		/// </summary>
-		[ExcludeFromCodeCoverageAttribute]
-		public virtual void Draw (GameTime time)
-		{
-			Vector3 originalPositon = decoratedObject.Info.Position;
-			decoratedObject.Info.Position = ShadowPosition;
-			decoratedObject.Draw (time);
-			decoratedObject.Info.Position = originalPositon;
-		}
+		
 
 		/// <summary>
 		/// Prüft, ob der angegebene Mausstrahl das Vorschau-Spielobjekt schneidet.
 		/// </summary>
-		public virtual GameObjectDistance Intersects (Ray Ray)
+		public GameObjectDistance Intersects (Ray Ray)
 		{
 			return null;
 		}

@@ -22,6 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+using Knot3.Framework.Math;
 
 #endregion
 
@@ -115,13 +116,13 @@ namespace Knot3.Framework.Utilities
 
 		public static float AngleBetween (this Vector2 a, Vector2 b)
 		{
-			return ((b.X - a.X) > 0 ? 1 : -1) * (float)Math.Acos ((double)Vector2.Dot (Vector2.Normalize (a), Vector2.Normalize (b)));
+			return ((b.X - a.X) > 0 ? 1 : -1) * (float)System.Math.Acos ((double)Vector2.Dot (Vector2.Normalize (a), Vector2.Normalize (b)));
 		}
 
 		public static float AngleBetween (this Vector3 a, Vector3 b)
 		{
 			return //((b.X - a.X) > 0 ? 1 : -1) *
-			    (float)Math.Acos ((double)Vector3.Dot (Vector3.Normalize (a), Vector3.Normalize (b)));
+			    (float)System.Math.Acos ((double)Vector3.Dot (Vector3.Normalize (a), Vector3.Normalize (b)));
 		}
 
 		public static Vector3 RotateX (this Vector3 vectorToRotate, float angleRadians)
@@ -198,13 +199,13 @@ namespace Knot3.Framework.Utilities
 		public static Vector2 PrimaryDirection (this Vector2 v)
 		{
 			Vector2 vector = v.PrimaryVector ();
-			return new Vector2 (Math.Sign (vector.X), Math.Sign (vector.Y));
+			return new Vector2 (System.Math.Sign (vector.X), System.Math.Sign (vector.Y));
 		}
 
 		public static Vector3 PrimaryDirection (this Vector3 v)
 		{
 			Vector3 vector = v.PrimaryVector ();
-			return new Vector3 (Math.Sign (vector.X), Math.Sign (vector.Y), Math.Sign (vector.Z));
+			return new Vector3 (System.Math.Sign (vector.X), System.Math.Sign (vector.Y), System.Math.Sign (vector.Z));
 		}
 
 		public static Vector3 PrimaryDirectionExcept (this Vector3 v, Vector3 wrongDirection)
@@ -224,7 +225,7 @@ namespace Knot3.Framework.Utilities
 
 		public static float Abs (this float v)
 		{
-			return Math.Abs (v);
+			return System.Math.Abs (v);
 		}
 
 		public static float Clamp (this float v, float min, float max)
@@ -460,7 +461,7 @@ namespace Knot3.Framework.Utilities
 			Vector3 to = origin - target;
 			float oldDistance = to.Length ();
 			double scale = (double)distance / (double)to.Length ();
-			if (Math.Abs (oldDistance) > 1 && Math.Abs (oldDistance - distance) > 1 && Math.Abs (distance) > 1) {
+			if (System.Math.Abs (oldDistance) > 1 && System.Math.Abs (oldDistance - distance) > 1 && System.Math.Abs (distance) > 1) {
 				return target + to * (float)scale;
 			}
 			else {

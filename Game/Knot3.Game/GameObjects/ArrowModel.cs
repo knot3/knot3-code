@@ -72,7 +72,7 @@ namespace Knot3.Game.GameObjects
 		/// <summary>
 		/// Das Info-Objekt, das die Position und Richtung des ArrowModel\grq s enthält.
 		/// </summary>
-		public new ArrowModelInfo Info { get { return base.Info as ArrowModelInfo; } set { base.Info = value; } }
+		public new Arrow Info { get { return base.Info as Arrow; } set { base.Info = value; } }
 
 		private BoundingSphere[] _bounds;
 
@@ -88,7 +88,7 @@ namespace Knot3.Game.GameObjects
 		/// <summary>
 		/// Erstellt ein neues Pfeilmodell in dem angegebenen IGameScreen mit einem bestimmten Info-Objekt, das Position und Richtung des Pfeils festlegt.
 		/// </summary>
-		public ArrowModel (IGameScreen screen, ArrowModelInfo info)
+		public ArrowModel (IGameScreen screen, Arrow info)
 		: base (screen, info)
 		{
 			_bounds = VectorHelper.CylinderBounds (

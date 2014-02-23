@@ -22,6 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+using Knot3.Framework.Storage;
 
 #endregion
 
@@ -161,7 +162,7 @@ namespace Knot3.Game.GameObjects
 		/// <summary>
 		/// Gibt an, ob Pfeile anzuzeigen sind. Wird aus der Einstellungsdatei gelesen.
 		/// </summary>
-		private bool showArrows { get { return Options.Default ["video", "arrows", false]; } }
+		private bool showArrows { get { return Config.Default ["video", "arrows", false]; } }
 
 		#endregion
 
@@ -180,9 +181,9 @@ namespace Knot3.Game.GameObjects
 			arrows = new List<ArrowModel> ();
 			rectangles = new HashSet<TexturedRectangle> ();
 			debugModels = new List<GameModel> ();
-			pipeFactory = new ModelFactory ((s, i) => new PipeModel (s, i as PipeModelInfo));
-			nodeFactory = new ModelFactory ((s, i) => new JunctionModel (s, i as JunctionModelInfo));
-			arrowFactory = new ModelFactory ((s, i) => new ArrowModel (s, i as ArrowModelInfo));
+			pipeFactory = new ModelFactory ((s, i) => new PipeModel (s, i as Pipe));
+			nodeFactory = new ModelFactory ((s, i) => new JunctionModel (s, i as Junction));
+			arrowFactory = new ModelFactory ((s, i) => new ArrowModel (s, i as Arrow));
 			nodeMap = new NodeMap ();
 		}
 
@@ -237,7 +238,7 @@ namespace Knot3.Game.GameObjects
 			Log.Debug ("=> render Knot #", knot.Count (), " = ", string.Join (", ", from c in knot select c.Direction));
 
 			CreatePipes (knot);
-			if (Options.Default ["debug", "show-startedge-direction", false]) {
+			if (Config.Default ["debug", "show-startedge-direction", false]) {
 				CreateStartArrow ();
 			}
 			CreateNodes ();
@@ -275,7 +276,7 @@ namespace Knot3.Game.GameObjects
 		{
 			pipes.Clear ();
 			foreach (Edge edge in edges) {
-				PipeModelInfo info = new PipeModelInfo (nodeMap, knot, edge);
+				Pipe info = new Pipe (nodeMap, knot, edge);
 				PipeModel pipe = pipeFactory [screen, info] as PipeModel;
 				pipe.Info.IsVisible = true;
 				pipe.IsVirtual = !knot.Contains (edge);
@@ -288,7 +289,7 @@ namespace Knot3.Game.GameObjects
 		{
 			Edge edge = knot.ElementAt (0);
 			Vector3 towardsCamera = World.Camera.PositionToTargetDirection;
-			ArrowModelInfo info = new ArrowModelInfo (
+			Arrow info = new Arrow (
 			    position: Vector3.Zero - 10 * towardsCamera - 10 * towardsCamera.PrimaryDirection (),
 			    direction: edge
 			);
@@ -310,7 +311,7 @@ namespace Knot3.Game.GameObjects
 					continue;
 				}
 
-				foreach (JunctionModelInfo junction in junctions.OfType<JunctionModelInfo>()) {
+				foreach (Junction junction in junctions.OfType<Junction>()) {
 					JunctionModel model = nodeFactory [screen, junction] as JunctionModel;
 					model.IsVirtual = !knot.Contains (junction.EdgeFrom) || !knot.Contains (junction.EdgeTo);
 					model.World = World;
@@ -336,7 +337,7 @@ namespace Knot3.Game.GameObjects
 				foreach (Direction direction in Direction.Values) {
 					if (knot.IsValidDirection (direction)) {
 						Vector3 towardsCamera = World.Camera.PositionToTargetDirection;
-						ArrowModelInfo info = new ArrowModelInfo (
+						Arrow info = new Arrow (
 						    position: node1.CenterBetween (node2) - 25 * towardsCamera - 25 * towardsCamera.PrimaryDirection (),
 						    direction: direction
 						);

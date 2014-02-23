@@ -22,6 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+using Knot3.Framework.Storage;
 
 #endregion
 
@@ -67,7 +68,7 @@ namespace Knot3.UnitTests.Core
 
 			ConfigFile configFile = new ConfigFile (TestHelper.RandomFilename (extension: "ini"));
 
-			BooleanOptionInfo option = new BooleanOptionInfo (section, name, defaultValue, configFile);
+			BooleanOption option = new BooleanOption (section, name, defaultValue, configFile);
 
 			Assert.IsFalse (option.Value);
 			string falseStr = option.DisplayValue;
@@ -88,7 +89,7 @@ namespace Knot3.UnitTests.Core
 			Assert.IsTrue (option.Value);
 			Assert.AreEqual (trueStr, option.DisplayValue);
 
-			(option as DistinctOptionInfo).Value = "invalid!!";
+			(option as DistinctOption).Value = "invalid!!";
 			Assert.AreEqual (option.Value, defaultValue);
 		}
 	}

@@ -41,7 +41,7 @@ using Knot3.Framework.Utilities;
 
 #endregion
 
-namespace Knot3.Framework.Utilities
+namespace Knot3.Framework.Storage
 {
 	public sealed class IniFile : IDisposable
 	{

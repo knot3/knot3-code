@@ -56,25 +56,14 @@
     <Compile Include="Knot3.Framework\Audio\OggVorbisFile.cs" />
     <Compile Include="Knot3.Framework\Audio\Sound.cs" />
     <Compile Include="Knot3.Framework\Audio\SoundEffectFile.cs" />
-    <Compile Include="Knot3.Framework\Core\Angles3.cs" />
-    <Compile Include="Knot3.Framework\Core\BooleanOptionInfo.cs" />
-    <Compile Include="Knot3.Framework\Core\Bounds.cs" />
     <Compile Include="Knot3.Framework\Core\Camera.cs" />
-    <Compile Include="Knot3.Framework\Core\ConfigFile.cs" />
     <Compile Include="Knot3.Framework\Core\DisplayLayer.cs" />
-    <Compile Include="Knot3.Framework\Core\DistinctOptionInfo.cs" />
     <Compile Include="Knot3.Framework\Core\DrawableGameScreenComponent.cs" />
-    <Compile Include="Knot3.Framework\Core\FloatOptionInfo.cs" />
     <Compile Include="Knot3.Framework\Core\GameClass.cs" />
     <Compile Include="Knot3.Framework\Core\GameScreen.cs" />
     <Compile Include="Knot3.Framework\Core\GameScreenComponent.cs" />
     <Compile Include="Knot3.Framework\Core\IGameScreen.cs" />
     <Compile Include="Knot3.Framework\Core\IGameScreenComponent.cs" />
-    <Compile Include="Knot3.Framework\Core\KeyOptionInfo.cs" />
-    <Compile Include="Knot3.Framework\Core\Localizer.cs" />
-    <Compile Include="Knot3.Framework\Core\OptionInfo.cs" />
-    <Compile Include="Knot3.Framework\Core\Options.cs" />
-    <Compile Include="Knot3.Framework\Core\ScreenPoint.cs" />
     <Compile Include="Knot3.Framework\Core\World.cs" />
     <Compile Include="Knot3.Framework\Development\DebugBoundings.cs" />
     <Compile Include="Knot3.Framework\Development\Profiler.cs" />
@@ -107,18 +96,9 @@
     <Compile Include="Knot3.Framework\Platform\SystemInfo-MG.cs" />
     <Compile Include="Knot3.Framework\Platform\SystemInfo.cs" />
     <Compile Include="Knot3.Framework\Screens\ErrorScreen.cs" />
-    <Compile Include="Knot3.Framework\Utilities\BoundingCylinder.cs" />
     <Compile Include="Knot3.Framework\Utilities\ColorHelper.cs" />
-    <Compile Include="Knot3.Framework\Utilities\DictionaryHelper.cs" />
     <Compile Include="Knot3.Framework\Utilities\EnumHelper.cs" />
-    <Compile Include="Knot3.Framework\Utilities\FileUtility.cs" />
-    <Compile Include="Knot3.Framework\Utilities\FrustumHelper.cs" />
-    <Compile Include="Knot3.Framework\Utilities\IniFile.cs" />
-    <Compile Include="Knot3.Framework\Utilities\InputHelper.cs" />
-    <Compile Include="Knot3.Framework\Utilities\ModelHelper.cs" />
-    <Compile Include="Knot3.Framework\Utilities\ShaderHelper.cs" />
     <Compile Include="Knot3.Framework\Utilities\TextHelper.cs" />
-    <Compile Include="Knot3.Framework\Utilities\TextureHelper.cs" />
     <Compile Include="Knot3.Framework\Utilities\VectorHelper.cs" />
     <Compile Include="Knot3.Framework\Widgets\Border.cs" />
     <Compile Include="Knot3.Framework\Widgets\Button.cs" />
@@ -143,6 +123,25 @@
     <Compile Include="Knot3.Framework\Widgets\VerticalAlignment.cs" />
     <Compile Include="Knot3.Framework\Widgets\Widget.cs" />
     <Compile Include="Knot3.Framework\Widgets\WidgetState.cs" />
+    <Compile Include="Knot3.Framework\Math\Angles3.cs" />
+    <Compile Include="Knot3.Framework\Math\Bounds.cs" />
+    <Compile Include="Knot3.Framework\Math\ScreenPoint.cs" />
+    <Compile Include="Knot3.Framework\Math\BoundingCylinder.cs" />
+    <Compile Include="Knot3.Framework\Math\RayExtensions.cs" />
+    <Compile Include="Knot3.Framework\Platform\ContentLoader.cs" />
+    <Compile Include="Knot3.Framework\Math\ModelExtensions.cs" />
+    <Compile Include="Knot3.Framework\Utilities\DictionaryExtensions.cs" />
+    <Compile Include="Knot3.Framework\Math\FrustumExtensions.cs" />
+    <Compile Include="Knot3.Framework\Storage\FileUtility.cs" />
+    <Compile Include="Knot3.Framework\Storage\IniFile.cs" />
+    <Compile Include="Knot3.Framework\Storage\Config.cs" />
+    <Compile Include="Knot3.Framework\Storage\ConfigFile.cs" />
+    <Compile Include="Knot3.Framework\Storage\Localizer.cs" />
+    <Compile Include="Knot3.Framework\Storage\Option.cs" />
+    <Compile Include="Knot3.Framework\Storage\KeyOption.cs" />
+    <Compile Include="Knot3.Framework\Storage\FloatOption.cs" />
+    <Compile Include="Knot3.Framework\Storage\DistinctOption.cs" />
+    <Compile Include="Knot3.Framework\Storage\BooleanOption.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -155,5 +154,7 @@
     <Folder Include="Knot3.Framework\Widgets\" />
     <Folder Include="Knot3.Framework\Effects\" />
     <Folder Include="Knot3.Framework\Screens\" />
+    <Folder Include="Knot3.Framework\Math\" />
+    <Folder Include="Knot3.Framework\Storage\" />
   </ItemGroup>
 </Project>

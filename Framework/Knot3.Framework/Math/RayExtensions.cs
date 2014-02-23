@@ -42,7 +42,7 @@ using Knot3.Framework.Utilities;
 
 #endregion
 
-namespace Knot3.Game.Utilities
+namespace Knot3.Framework.Math
 {
 	public static class RayExtensions
 	{
@@ -76,11 +76,11 @@ namespace Knot3.Game.Utilities
 					perpendicular2 = -perpendicular2;
 				}
 				perpendicular2.Normalize ();
-				float minDist = Math.Abs (Vector3.Dot (cylinder.SideA - ray.Position, perpendicular));
+				float minDist = System.Math.Abs (Vector3.Dot (cylinder.SideA - ray.Position, perpendicular));
 				if (minDist > cylinder.Radius) {
 					return null;
 				}
-				Vector3 plainNorm = perpendicular * minDist + (float)Math.Sqrt (cylinder.Radius * cylinder.Radius - minDist * minDist) * perpendicular2;
+				Vector3 plainNorm = perpendicular * minDist + (float)System.Math.Sqrt (cylinder.Radius * cylinder.Radius - minDist * minDist) * perpendicular2;
 				plainNorm.Normalize ();
 				float? other_result = ray.Intersects (new Plane (plainNorm, Vector3.Dot (plainNorm, cylinder.SideA + plainNorm * cylinder.Radius)));
 				if (other_result == null) {

@@ -22,6 +22,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+using Knot3.Framework.RenderEffects;
+using System.IO;
+using Knot3.Framework.Widgets;
 
 #endregion
 
@@ -31,7 +34,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.IO;
 using System.Linq;
 
 using Microsoft.Xna.Framework;
@@ -45,19 +47,98 @@ using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
 
 using Knot3.Framework.Core;
-using Knot3.Framework.Development;
 using Knot3.Framework.Input;
 using Knot3.Framework.Platform;
 using Knot3.Framework.Utilities;
-using Knot3.Framework.Widgets;
 
 #endregion
 
-namespace Knot3.Framework.Utilities
+namespace Knot3.Framework.Platform
 {
 	[ExcludeFromCodeCoverageAttribute]
-	public static class TextureHelper
+	public static class ContentLoader
 	{
+		#region Shaders
+
+		public static Effect LoadEffect (this IGameScreen screen, string name)
+		{
+			if (SystemInfo.IsRunningOnMono () || SystemInfo.IsRunningOnMonogame ()) {
+				return LoadEffectMono (screen, name);
+			}
+			else {
+				return LoadEffectDotnet (screen, name);
+			}
+		}
+
+		private static Effect LoadEffectMono (IGameScreen screen, string name)
+		{
+			string[] filenames = {
+				SystemInfo.RelativeContentDirectory + "Shader/" + name + ".mgfx",
+				SystemInfo.RelativeContentDirectory + "Shader/" + name + "_3.0.mgfx",
+				SystemInfo.RelativeContentDirectory + "Shader/" + name + "_3.1.mgfx"
+			};
+			Exception lastException = new Exception ("Could not find shader: " + name);
+			foreach (string filename in filenames) {
+				try {
+					Effect effect = new Effect (screen.Device, System.IO.File.ReadAllBytes (filename));
+					return effect;
+				}
+				catch (Exception ex) {
+					lastException = ex;
+				}
+			}
+			throw lastException;
+		}
+
+		private static Effect LoadEffectDotnet (IGameScreen screen, string name)
+		{
+			return screen.Content.Load<Effect> ("Shader/" + name);
+		}
+
+		#endregion
+
+		#region Models
+
+		
+		private static Dictionary<string, ContentManager> contentManagers = new Dictionary<string, ContentManager> ();
+		private static HashSet<string> invalidModels = new HashSet<string> ();
+
+		public static Model LoadModel (this IGameScreen screen, string name)
+		{
+			ContentManager content;
+			if (contentManagers.ContainsKey (screen.CurrentRenderEffects.CurrentEffect.ToString ())) {
+				content = contentManagers [screen.CurrentRenderEffects.CurrentEffect.ToString ()];
+			}
+			else {
+				contentManagers [screen.CurrentRenderEffects.CurrentEffect.ToString ()] = content = new ContentManager (screen.Content.ServiceProvider, screen.Content.RootDirectory);
+			}
+
+			Model model = LoadModel (content, screen.CurrentRenderEffects.CurrentEffect, name);
+			return model;
+		}
+
+		private static Model LoadModel (ContentManager content, IRenderEffect pp, string name)
+		{
+			if (invalidModels.Contains (name)) {
+				return null;
+			}
+			else {
+				try {
+					Model model = content.Load<Model> ("Models/" + name);
+					pp.RemapModel (model);
+					return model;
+				}
+				catch (ContentLoadException) {
+					Log.Debug ("Warning: Model ", name, " does not exist!");
+					invalidModels.Add (name);
+					return null;
+				}
+			}
+		}
+
+		#endregion
+
+		
 		#region Real Textures
 
 		private static Dictionary<string, Texture2D> textureCache = new Dictionary<string, Texture2D> ();
@@ -125,12 +206,12 @@ namespace Knot3.Framework.Utilities
 
 		#region Dummy Textures
 
-		public static Texture2D Create (GraphicsDevice graphicsDevice, Color color)
+		public static Texture2D CreateTexture (GraphicsDevice graphicsDevice, Color color)
 		{
-			return Create (graphicsDevice, 1, 1, color);
+			return CreateTexture (graphicsDevice, 1, 1, color);
 		}
 
-		public static Texture2D Create (GraphicsDevice graphicsDevice, int width, int height, Color color)
+		public static Texture2D CreateTexture (GraphicsDevice graphicsDevice, int width, int height, Color color)
 		{
 			string key = color.ToString () + width.ToString () + "x" + height.ToString ();
 			if (textureCache.ContainsKey (key)) {
@@ -175,7 +256,7 @@ namespace Knot3.Framework.Utilities
 
 		public static void DrawColoredRectangle (this SpriteBatch spriteBatch, Color color, Rectangle bounds)
 		{
-			Texture2D texture = TextureHelper.Create (spriteBatch.GraphicsDevice, Color.White);
+			Texture2D texture = ContentLoader.CreateTexture (spriteBatch.GraphicsDevice, Color.White);
 			spriteBatch.Draw (
 			    texture, bounds, null, color, 0f, Vector2.Zero, SpriteEffects.None, 0.1f
 			);

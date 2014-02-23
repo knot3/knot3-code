@@ -73,7 +73,7 @@ namespace Knot3.UnitTests.Core
 
 			// Erstelle ein paar Pipes
 			foreach (Edge edge in knot) {
-				PipeModelInfo pipeInfo = new PipeModelInfo (nodeMap: nodeMap, knot: knot, edge: edge);
+				Pipe pipeInfo = new Pipe (nodeMap: nodeMap, knot: knot, edge: edge);
 				PipeModel pipe = new PipeModel (screen: screen, info: pipeInfo);
 				models.Add (pipe);
 			}

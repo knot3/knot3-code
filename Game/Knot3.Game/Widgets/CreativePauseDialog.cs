@@ -22,11 +22,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+using Knot3.Framework.Math;
 
 #endregion
 
 #region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -90,7 +90,7 @@ namespace Knot3.Game.Widgets
 
 			// Der Titel-Text ist mittig ausgerichtet
 			AlignX = HorizontalAlignment.Center;
-			Bounds.Size = new ScreenPoint (screen,0.3f,0.31f);
+			Bounds.Size = new ScreenPoint (screen, 0.3f, 0.31f);
 			// Erstelle das Pause-Menü
 			pauseMenu = new Menu (Screen, Index + DisplayLayer.Menu);
 			pauseMenu.Bounds = ContentBounds;

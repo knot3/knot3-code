@@ -22,6 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+using Knot3.Framework.Storage;
 
 #endregion
 
@@ -88,7 +89,7 @@ namespace Knot3.Game.Development
 			spriteBatch = new SpriteBatch (screen.Device);
 			effect.VertexColorEnabled = true;
 			effect.World = Matrix.CreateFromYawPitchRoll (0, 0, 0);
-			if (Options.Default ["video", "camera-overlay", true]) {
+			if (Config.Default ["video", "camera-overlay", true]) {
 				DebugModelInfo info = new DebugModelInfo ("sphere");
 				debugModel = new DebugModel (screen, info);
 				world.Add (debugModel);
@@ -107,16 +108,16 @@ namespace Knot3.Game.Development
 		[ExcludeFromCodeCoverageAttribute]
 		public override void Draw (GameTime time)
 		{
-			if (Options.Default ["video", "debug-coordinates", false]) {
+			if (Config.Default ["video", "debug-coordinates", false]) {
 				DrawCoordinates (time);
 			}
-			if (Options.Default ["video", "camera-overlay", true]) {
+			if (Config.Default ["video", "camera-overlay", true]) {
 				DrawOverlay (time);
 			}
-			if (Options.Default ["video", "fps-overlay", true]) {
+			if (Config.Default ["video", "fps-overlay", true]) {
 				DrawFPS (time);
 			}
-			if (Options.Default ["video", "profiler-overlay", true]) {
+			if (Config.Default ["video", "profiler-overlay", true]) {
 				DrawProfiler (time);
 			}
 			base.Draw (time);
@@ -128,7 +129,7 @@ namespace Knot3.Game.Development
 			scale = Math.Max (0.7f, (float)Screen.Device.PresentationParameters.BackBufferWidth / 1366f);
 			lineHeight = (int)(20 * scale);
 
-			if (Options.Default ["video", "camera-overlay", true]) {
+			if (Config.Default ["video", "camera-overlay", true]) {
 				if (!debugModelAdded) {
 					World.Add (debugModel);
 					debugModelAdded = true;
@@ -232,7 +233,7 @@ namespace Knot3.Game.Development
 		{
 			if (font != null) {
 				try {
-					spriteBatch.DrawString (font, str, new Vector2 (width, height) * Options.Default ["video", "Supersamples", 1], color, 0f, Vector2.Zero, scale * Options.Default ["video", "Supersamples", 1], SpriteEffects.None, 0f);
+					spriteBatch.DrawString (font, str, new Vector2 (width, height) * Config.Default ["video", "Supersamples", 1], color, 0f, Vector2.Zero, scale * Config.Default ["video", "Supersamples", 1], SpriteEffects.None, 0f);
 				}
 				catch (ArgumentException exp) {
 					Log.Debug (exp);
@@ -267,7 +268,7 @@ namespace Knot3.Game.Development
 		{
 			_total_frames++;
 			spriteBatch.Begin ();
-			DrawString ("FPS: " + _fps.ToString (), (int)(Screen.Viewport.Width / Options.Default ["video", "Supersamples", 1]) - (int)(170 * scale), (int)(50 * scale), Color.White);
+			DrawString ("FPS: " + _fps.ToString (), (int)(Screen.Viewport.Width / Config.Default ["video", "Supersamples", 1]) - (int)(170 * scale), (int)(50 * scale), Color.White);
 			spriteBatch.End ();
 		}
 
@@ -276,7 +277,7 @@ namespace Knot3.Game.Development
 			spriteBatch.Begin ();
 			int height = (int)(90 * scale);
 			foreach (string name in Profiler.ProfilerMap.Keys) {
-				DrawString (name + ": " + Profiler.ProfilerMap [name], (int)(Screen.Viewport.Width / Options.Default ["video", "Supersamples", 1]) - (int)(170 * scale), height, Color.White);
+				DrawString (name + ": " + Profiler.ProfilerMap [name], (int)(Screen.Viewport.Width / Config.Default ["video", "Supersamples", 1]) - (int)(170 * scale), height, Color.White);
 				height += lineHeight;
 			}
 			spriteBatch.End ();

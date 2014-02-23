@@ -22,6 +22,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+using Knot3.Framework.Math;
+using Knot3.Framework.Storage;
 
 #endregion
 
@@ -97,7 +99,7 @@ namespace Knot3.Game.Screens
 			    screen: this,
 			    drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
 			    text: "Show Arrows",
-			    option: new BooleanOptionInfo ("video", "arrows", false, Options.Default)
+			    option: new BooleanOption ("video", "arrows", false, Config.Default)
 			);
 			settingsMenu.Add (showArrows);
 
@@ -105,7 +107,7 @@ namespace Knot3.Game.Screens
 			    screen: this,
 			    drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
 			    text: "Selective Rendering",
-			    option: new BooleanOptionInfo ("video", "selectiveRendering", false, Options.Default)
+			    option: new BooleanOption ("video", "selectiveRendering", false, Config.Default)
 			);
 			settingsMenu.Add (selectiveRender);
 
@@ -113,7 +115,7 @@ namespace Knot3.Game.Screens
 			    screen: this,
 			    drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
 			    text: "Auto Camera (edge move)",
-			    option: new BooleanOptionInfo ("video", "auto-camera-move", true, Options.Default)
+			    option: new BooleanOption ("video", "auto-camera-move", true, Config.Default)
 			);
 			settingsMenu.Add (autoCameraMove);
 
@@ -121,7 +123,7 @@ namespace Knot3.Game.Screens
 			    screen: this,
 			    drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
 			    text: "Auto Camera",
-			    option: new BooleanOptionInfo ("video", "auto-camera-nomove", false, Options.Default)
+			    option: new BooleanOption ("video", "auto-camera-nomove", false, Config.Default)
 			);
 			settingsMenu.Add (autoCamera);
 
@@ -138,12 +140,12 @@ namespace Knot3.Game.Screens
 
 			string[] validResolutions = reso.ToArray ();
 			validResolutions = validResolutions.OrderBy (x => Decimal.Parse (x.Split ('x') [0], System.Globalization.NumberStyles.Any)).ToArray ();
-			DistinctOptionInfo resolutionOption = new DistinctOptionInfo (
+			DistinctOption resolutionOption = new DistinctOption (
 			    section: "video",
 			    name: "resolution",
 			    defaultValue: currentResolution,
 			    validValues: validResolutions,
-			    configFile: Options.Default
+			    configFile: Config.Default
 			);
 			DropDownMenuItem resolutionItem = new DropDownMenuItem (
 			    screen: this,
@@ -156,12 +158,12 @@ namespace Knot3.Game.Screens
 			float[] validSupersamples = {
 				1f, 1.25f, 1.5f, 1.75f, 2f
 			};
-			FloatOptionInfo supersamplesOption = new FloatOptionInfo (
+			FloatOption supersamplesOption = new FloatOption (
 			    section: "video",
 			    name: "Supersamples",
 			    defaultValue: 1f,
 			    validValues: validSupersamples,
-			    configFile: Options.Default
+			    configFile: Config.Default
 			);
 			DropDownMenuItem supersamplesItem = new DropDownMenuItem (
 			    screen: this,
@@ -172,12 +174,12 @@ namespace Knot3.Game.Screens
 			settingsMenu.Add (supersamplesItem);
 
 			string[] validRenderEffects = RenderEffectLibrary.Names.ToArray ();
-			DistinctOptionInfo renderEffectOption = new DistinctOptionInfo (
+			DistinctOption renderEffectOption = new DistinctOption (
 			    section: "video",
 			    name: "knot-shader",
 			    defaultValue: "default",
 			    validValues: validRenderEffects,
-			    configFile: Options.Default
+			    configFile: Config.Default
 			);
 			DropDownMenuItem renderEffectItem = new DropDownMenuItem (
 			    screen: this,
@@ -185,7 +187,7 @@ namespace Knot3.Game.Screens
 			    text: "Render Effect"
 			);
 			renderEffectItem.ValueChanged += (time) => {
-				RenderEffectLibrary.RenderEffectChanged (Options.Default ["video", "knot-shader", "default"], time);
+				RenderEffectLibrary.RenderEffectChanged (Config.Default ["video", "knot-shader", "default"], time);
 			};
 			renderEffectItem.AddEntries (renderEffectOption);
 			settingsMenu.Add (renderEffectItem);

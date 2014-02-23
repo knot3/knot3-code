@@ -28,20 +28,12 @@
 #region Using
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Text;
 
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.GamerServices;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
-using Microsoft.Xna.Framework.Net;
-using Microsoft.Xna.Framework.Storage;
 
 using Knot3.Framework.Core;
 using Knot3.Framework.Input;
@@ -50,33 +42,51 @@ using Knot3.Framework.Utilities;
 
 #endregion
 
-namespace Knot3.Framework.Core
+namespace Knot3.Framework.Math
 {
-	/// <summary>
-	/// Eine statische Klasse, die Bezeichner in lokalisierten Text umsetzen kann.
-	/// </summary>
-	public static class Localizer
-	{
-		#region Properties
+	public struct BoundingCylinder : IEquatable<BoundingCylinder> {
+		public Vector3 SideA;
+		public Vector3 SideB;
+		public float Radius;
 
-		/// <summary>
-		/// Die Datei, welche Informationen für die Lokalisierung enthält.
-		/// </summary>
-		private static ConfigFile localization { get; set; }
-
-		#endregion
-
-		#region Methods
-
-		/// <summary>
-		/// Liefert zu dem übergebenen Bezeichner den zugehörigen Text aus der Lokalisierungsdatei der
-		/// aktuellen Sprache zurück, die dabei aus der Einstellungsdatei des Spiels gelesen wird.
-		/// </summary>
-		public static string Localize (string text)
+		public BoundingCylinder (Vector3 sideA, Vector3 sideB, float radius)
 		{
-			throw new System.NotImplementedException ();
+			this.SideA = sideA;
+			this.SideB = sideB;
+			this.Radius = radius;
 		}
 
-		#endregion
+		public static bool operator == (BoundingCylinder a, BoundingCylinder b)
+		{
+			if (System.Object.ReferenceEquals (a, b)) {
+				return true;
+			}
+			if (((object)a == null) || ((object)b == null)) {
+				return false;
+			}
+			return a.Equals (b);
+		}
+
+		public static bool operator != (BoundingCylinder a, BoundingCylinder b)
+		{
+			return !(a == b);
+		}
+
+		public bool Equals (BoundingCylinder other)
+		{
+			return SideA == other.SideA && SideB == other.SideB && Radius == other.Radius;
+		}
+
+		public override bool Equals (object other)
+		{
+			return other != null && Equals ((BoundingCylinder)other);
+		}
+
+		[ExcludeFromCodeCoverageAttribute]
+		public override int GetHashCode ()
+		{
+			// irgendwas möglichst eindeutiges
+			return (Radius * (SideA + SideB)).GetHashCode ();
+		}
 	}
 }
