@@ -22,11 +22,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-using Knot3.Framework.Math;
 
 #endregion
 
 #region Using
+
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -38,6 +38,7 @@ using NUnit.Framework;
 
 using Knot3.Framework.Core;
 using Knot3.Framework.Input;
+using Knot3.Framework.Math;
 using Knot3.Framework.Platform;
 using Knot3.Framework.Utilities;
 
@@ -64,7 +65,7 @@ namespace Knot3.UnitTests.Math
 			ray = new Ray (position: new Vector3 (0, 0, 0), direction: Vector3.Up);
 			Assert.IsNotNull (ray.Intersects (cyl));
 			ray = new Ray (position: new Vector3 (0, 0, 0), direction: Vector3.Down);
-			Assert.IsNotNull (ray.Intersects (cyl));	
+			Assert.IsNotNull (ray.Intersects (cyl));
 
 			ray = new Ray (position: new Vector3 (0, 0, 0), direction: Vector3.Forward);
 			Assert.IsNotNull (ray.Intersects (cyl));

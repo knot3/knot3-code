@@ -125,7 +125,6 @@
     <Compile Include="Knot3.UnitTests\Math\Angles3_Tests.cs" />
     <Compile Include="Knot3.UnitTests\Math\BoundingCylinder_Tests.cs" />
     <Compile Include="Knot3.UnitTests\Math\Bounds_Tests.cs" />
-    <Compile Include="Knot3.UnitTests\Math\RayExtensions_Tests.cs" />
     <Compile Include="Knot3.UnitTests\Platform\SystemInfo_Tests.cs" />
     <Compile Include="Knot3.UnitTests\Storage\BooleanOptionInfo_Tests.cs" />
     <Compile Include="Knot3.UnitTests\Storage\ConfigFile_Tests.cs" />
