@@ -28,69 +28,57 @@
 #region Using
 
 using System;
-using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Text;
-
-using Microsoft.Xna.Framework;
+using System.Linq;
 
 using NUnit.Framework;
 
 using Knot3.Framework.Core;
 using Knot3.Framework.Input;
 using Knot3.Framework.Platform;
-using Knot3.Framework.Storage;
 using Knot3.Framework.Utilities;
-
-using Knot3.Game.Core;
 
 #endregion
 
-namespace Knot3.UnitTests.Core
+namespace Knot3.UnitTests.Platform
 {
-	/// <summary>
-	///
-	/// </summary>
 	[TestFixture]
-	public class BooleanOptionInfo_Tests
+	public class SystemInfo_Tests
 	{
-		[SetUp]
-		public void Init ()
+		[Test]
+		public void SystemInfo_Platform_Test ()
 		{
+			bool linux = SystemInfo.IsRunningOnLinux ();
+			bool windows = SystemInfo.IsRunningOnWindows ();
+			bool mono = SystemInfo.IsRunningOnMono ();
+			bool monogame = SystemInfo.IsRunningOnMonogame ();
+
+			Assert.False (linux && windows);
+			Assert.False (mono && !monogame);
+			Assert.False (linux && !mono);
 		}
 
 		[Test]
-		public void BooleanOptionInfo_Constructor_Test ()
+		public void SystemInfo_PathSep_Test ()
 		{
-			string name = "test-option";
-			string section = "test-section";
-			bool defaultValue = false;
+			Console.WriteLine ("Environment.OSVersion.Platform=" + Environment.OSVersion.Platform);
+			Console.WriteLine ("PlatformID.Unix=" + PlatformID.Unix);
+			Assert.IsNotEmpty (SystemInfo.PathSeparator + "");
+		}
 
-			ConfigFile configFile = new ConfigFile (TestHelper.RandomFilename (extension: "ini"));
-
-			BooleanOption option = new BooleanOption (section, name, defaultValue, configFile);
-
-			Assert.IsFalse (option.Value);
-			string falseStr = option.DisplayValue;
-			Assert.IsTrue (option.DisplayValidValues.ContainsKey (falseStr));
-
-			option.Value = true;
-			Assert.IsTrue (option.Value);
-			string trueStr = option.DisplayValue;
-			Assert.IsTrue (option.DisplayValidValues.ContainsKey (trueStr));
-
-			Assert.AreNotEqual (falseStr, trueStr);
-
-			option.Value = !option.Value;
-			Assert.IsFalse (option.Value);
-			Assert.AreEqual (falseStr, option.DisplayValue);
-
-			option.Value = !option.Value;
-			Assert.IsTrue (option.Value);
-			Assert.AreEqual (trueStr, option.DisplayValue);
-
-			(option as DistinctOption).Value = "invalid!!";
-			Assert.AreEqual (option.Value, defaultValue);
+		[Test]
+		public void SystemInfo_Directory_Test ()
+		{
+			string[] directories = new string[] {
+				SystemInfo.BaseDirectory,
+				SystemInfo.DecodedMusicCache,
+				SystemInfo.SavegameDirectory,
+				SystemInfo.ScreenshotDirectory,
+				SystemInfo.SettingsDirectory,
+			};
+			foreach (string directory in directories) {
+				Assert.IsNotEmpty (directory);
+			}
 		}
 	}
 }

@@ -33,7 +33,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.Text;
 
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Input;
 
 using NUnit.Framework;
 
@@ -47,13 +46,13 @@ using Knot3.Game.Core;
 
 #endregion
 
-namespace Knot3.UnitTests.Core
+namespace Knot3.UnitTests.Storage
 {
 	/// <summary>
 	///
 	/// </summary>
 	[TestFixture]
-	public class KeyOptionInfo_Tests
+	public class BooleanOptionInfo_Tests
 	{
 		[SetUp]
 		public void Init ()
@@ -61,30 +60,37 @@ namespace Knot3.UnitTests.Core
 		}
 
 		[Test]
-		public void Test ()
+		public void BooleanOptionInfo_Constructor_Test ()
 		{
 			string name = "test-option";
 			string section = "test-section";
-			Keys defaultValue = Keys.Escape;
+			bool defaultValue = false;
 
 			ConfigFile configFile = new ConfigFile (TestHelper.RandomFilename (extension: "ini"));
 
-			KeyOption option = new KeyOption (section, name, defaultValue, configFile);
+			BooleanOption option = new BooleanOption (section, name, defaultValue, configFile);
 
-			Assert.AreEqual (option.Value, defaultValue);
-			string defaultStr = option.DisplayValue;
-			Assert.IsTrue (option.DisplayValidValues.ContainsKey (defaultStr));
+			Assert.IsFalse (option.Value);
+			string falseStr = option.DisplayValue;
+			Assert.IsTrue (option.DisplayValidValues.ContainsKey (falseStr));
 
-			option.Value = Keys.LeftShift;
-			Assert.AreEqual (option.Value, Keys.LeftShift);
-			string tenStr = option.DisplayValue;
-			Assert.IsTrue (option.DisplayValidValues.ContainsKey (tenStr));
+			option.Value = true;
+			Assert.IsTrue (option.Value);
+			string trueStr = option.DisplayValue;
+			Assert.IsTrue (option.DisplayValidValues.ContainsKey (trueStr));
 
-			Assert.AreNotEqual (defaultStr, tenStr);
+			Assert.AreNotEqual (falseStr, trueStr);
+
+			option.Value = !option.Value;
+			Assert.IsFalse (option.Value);
+			Assert.AreEqual (falseStr, option.DisplayValue);
+
+			option.Value = !option.Value;
+			Assert.IsTrue (option.Value);
+			Assert.AreEqual (trueStr, option.DisplayValue);
 
 			(option as DistinctOption).Value = "invalid!!";
 			Assert.AreEqual (option.Value, defaultValue);
-			Assert.AreEqual (defaultStr, option.DisplayValue);
 		}
 	}
 }

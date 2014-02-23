@@ -33,23 +33,27 @@ using System.Diagnostics.CodeAnalysis;
 using System.Text;
 
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 
 using NUnit.Framework;
 
 using Knot3.Framework.Core;
 using Knot3.Framework.Input;
 using Knot3.Framework.Platform;
+using Knot3.Framework.Storage;
 using Knot3.Framework.Utilities;
+
+using Knot3.Game.Core;
 
 #endregion
 
-namespace Knot3.UnitTests.Core
+namespace Knot3.UnitTests.Storage
 {
 	/// <summary>
 	///
 	/// </summary>
 	[TestFixture]
-	public class Localizer_Tests
+	public class KeyOptionInfo_Tests
 	{
 		[SetUp]
 		public void Init ()
@@ -59,6 +63,28 @@ namespace Knot3.UnitTests.Core
 		[Test]
 		public void Test ()
 		{
+			string name = "test-option";
+			string section = "test-section";
+			Keys defaultValue = Keys.Escape;
+
+			ConfigFile configFile = new ConfigFile (TestHelper.RandomFilename (extension: "ini"));
+
+			KeyOption option = new KeyOption (section, name, defaultValue, configFile);
+
+			Assert.AreEqual (option.Value, defaultValue);
+			string defaultStr = option.DisplayValue;
+			Assert.IsTrue (option.DisplayValidValues.ContainsKey (defaultStr));
+
+			option.Value = Keys.LeftShift;
+			Assert.AreEqual (option.Value, Keys.LeftShift);
+			string tenStr = option.DisplayValue;
+			Assert.IsTrue (option.DisplayValidValues.ContainsKey (tenStr));
+
+			Assert.AreNotEqual (defaultStr, tenStr);
+
+			(option as DistinctOption).Value = "invalid!!";
+			Assert.AreEqual (option.Value, defaultValue);
+			Assert.AreEqual (defaultStr, option.DisplayValue);
 		}
 	}
 }

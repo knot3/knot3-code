@@ -32,63 +32,29 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text;
 
-using Microsoft.Xna.Framework;
-
 using NUnit.Framework;
 
 using Knot3.Framework.Core;
 using Knot3.Framework.Input;
 using Knot3.Framework.Platform;
-using Knot3.Framework.Storage;
 using Knot3.Framework.Utilities;
-
-using Knot3.Game.Core;
 
 #endregion
 
-namespace Knot3.UnitTests.Core
+namespace Knot3.UnitTests.Math
 {
 	/// <summary>
-	///
+	/// Zusammenfassungsbeschreibung für Test_RayExtensions
 	/// </summary>
 	[TestFixture]
-	public class FloatOptionInfo_Tests
+	public class RayExtensions_Tests
 	{
-		[SetUp]
-		public void Init ()
-		{
-		}
-
 		[Test]
-		public void Test ()
+		public void TestMethod1 ()
 		{
-			string name = "test-option";
-			string section = "test-section";
-			float defaultValue = 5f;
-			float[] validValues = new float[] { 0f, 5f, 10f, 15f, 20f };
-
-			ConfigFile configFile = new ConfigFile (TestHelper.RandomFilename (extension: "ini"));
-
-			FloatOption option = new FloatOption (section, name, defaultValue, validValues, configFile);
-
-			Assert.AreEqual (option.Value, defaultValue);
-			string defaultStr = option.DisplayValue;
-			Assert.IsTrue (option.DisplayValidValues.ContainsKey (defaultStr));
-
-			option.Value = 10f;
-			Assert.AreEqual (option.Value, 10f);
-			string tenStr = option.DisplayValue;
-			Assert.IsTrue (option.DisplayValidValues.ContainsKey (tenStr));
-
-			Assert.AreNotEqual (defaultStr, tenStr);
-
-			option.Value = 99f;
-			Assert.AreEqual (option.Value, defaultValue);
-			Assert.AreEqual (defaultStr, option.DisplayValue);
-
-			(option as DistinctOption).Value = "invalid!!";
-			Assert.AreEqual (option.Value, defaultValue);
-			Assert.AreEqual (defaultStr, option.DisplayValue);
+			//
+			// TODO: Testlogik hier hinzufügen
+			//
 		}
 	}
 }

@@ -49,7 +49,7 @@ using Knot3.MockObjects;
 
 #endregion
 
-namespace Knot3.UnitTests.Core
+namespace Knot3.UnitTests.Math
 {
 	/// <summary>
 	/// Zusammenfassungsbeschreibung für Test_Bounds

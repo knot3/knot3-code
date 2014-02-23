@@ -28,57 +28,67 @@
 #region Using
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
+using System.Text;
+
+using Microsoft.Xna.Framework;
 
 using NUnit.Framework;
 
 using Knot3.Framework.Core;
 using Knot3.Framework.Input;
 using Knot3.Framework.Platform;
+using Knot3.Framework.Storage;
 using Knot3.Framework.Utilities;
+
+using Knot3.Game.Core;
 
 #endregion
 
-namespace Knot3.UnitTests.Utilities
+namespace Knot3.UnitTests.Storage
 {
+	/// <summary>
+	///
+	/// </summary>
 	[TestFixture]
-	public class SystemInfo_Tests
+	public class FloatOptionInfo_Tests
 	{
-		[Test]
-		public void SystemInfo_Platform_Test ()
+		[SetUp]
+		public void Init ()
 		{
-			bool linux = SystemInfo.IsRunningOnLinux ();
-			bool windows = SystemInfo.IsRunningOnWindows ();
-			bool mono = SystemInfo.IsRunningOnMono ();
-			bool monogame = SystemInfo.IsRunningOnMonogame ();
-
-			Assert.False (linux && windows);
-			Assert.False (mono && !monogame);
-			Assert.False (linux && !mono);
 		}
 
 		[Test]
-		public void SystemInfo_PathSep_Test ()
+		public void Test ()
 		{
-			Console.WriteLine ("Environment.OSVersion.Platform=" + Environment.OSVersion.Platform);
-			Console.WriteLine ("PlatformID.Unix=" + PlatformID.Unix);
-			Assert.IsNotEmpty (SystemInfo.PathSeparator + "");
-		}
+			string name = "test-option";
+			string section = "test-section";
+			float defaultValue = 5f;
+			float[] validValues = new float[] { 0f, 5f, 10f, 15f, 20f };
 
-		[Test]
-		public void SystemInfo_Directory_Test ()
-		{
-			string[] directories = new string[] {
-				SystemInfo.BaseDirectory,
-				SystemInfo.DecodedMusicCache,
-				SystemInfo.SavegameDirectory,
-				SystemInfo.ScreenshotDirectory,
-				SystemInfo.SettingsDirectory,
-			};
-			foreach (string directory in directories) {
-				Assert.IsNotEmpty (directory);
-			}
+			ConfigFile configFile = new ConfigFile (TestHelper.RandomFilename (extension: "ini"));
+
+			FloatOption option = new FloatOption (section, name, defaultValue, validValues, configFile);
+
+			Assert.AreEqual (option.Value, defaultValue);
+			string defaultStr = option.DisplayValue;
+			Assert.IsTrue (option.DisplayValidValues.ContainsKey (defaultStr));
+
+			option.Value = 10f;
+			Assert.AreEqual (option.Value, 10f);
+			string tenStr = option.DisplayValue;
+			Assert.IsTrue (option.DisplayValidValues.ContainsKey (tenStr));
+
+			Assert.AreNotEqual (defaultStr, tenStr);
+
+			option.Value = 99f;
+			Assert.AreEqual (option.Value, defaultValue);
+			Assert.AreEqual (defaultStr, option.DisplayValue);
+
+			(option as DistinctOption).Value = "invalid!!";
+			Assert.AreEqual (option.Value, defaultValue);
+			Assert.AreEqual (defaultStr, option.DisplayValue);
 		}
 	}
 }

@@ -40,8 +40,7 @@
     <Reference Include="SDL2-CS">
       <HintPath>..\lib\SDL2-CS.dll</HintPath>
     </Reference>
-    <Reference Include="nunit.framework">
-    </Reference>
+    <Reference Include="nunit.framework" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Knot3.MockObjects\FakeEffect.cs" />
@@ -51,15 +50,8 @@
     <Compile Include="Knot3.MockObjects\KnotGenerator.cs" />
     <Compile Include="Knot3.UnitTests\Audio\Audio_Tests.cs" />
     <Compile Include="Knot3.UnitTests\Audio\SoundEffectsFile_Tests.cs" />
-    <Compile Include="Knot3.UnitTests\Core\Angles3_Tests.cs" />
-    <Compile Include="Knot3.UnitTests\Core\BooleanOptionInfo_Tests.cs" />
-    <Compile Include="Knot3.UnitTests\Core\Bounds_Tests.cs" />
     <Compile Include="Knot3.UnitTests\Core\Camera_Tests.cs" />
-    <Compile Include="Knot3.UnitTests\Core\ConfigFile_Tests.cs" />
     <Compile Include="Knot3.UnitTests\Core\DisplayLayer_Tests.cs" />
-    <Compile Include="Knot3.UnitTests\Core\FloatOptionInfo_Tests.cs" />
-    <Compile Include="Knot3.UnitTests\Core\KeyOptionInfo_Tests.cs" />
-    <Compile Include="Knot3.UnitTests\Core\Localizer_Tests.cs" />
     <Compile Include="Knot3.UnitTests\Core\World_Tests.cs" />
     <Compile Include="Knot3.UnitTests\Data\ChallengeFileIO_Tests.cs" />
     <Compile Include="Knot3.UnitTests\Data\ChallengeMetaData_Tests.cs" />
@@ -72,12 +64,19 @@
     <Compile Include="Knot3.UnitTests\Data\Node_Tests.cs" />
     <Compile Include="Knot3.UnitTests\Data\RectangleMap_Tests.cs" />
     <Compile Include="Knot3.UnitTests\Data\ZipHelper_Tests.cs" />
+    <Compile Include="Knot3.UnitTests\Math\Angles3_Tests.cs" />
+    <Compile Include="Knot3.UnitTests\Math\BoundingCylinder_Tests.cs" />
+    <Compile Include="Knot3.UnitTests\Math\Bounds_Tests.cs" />
+    <Compile Include="Knot3.UnitTests\Math\RayExtensions_Tests.cs" />
+    <Compile Include="Knot3.UnitTests\Platform\SystemInfo_Tests.cs" />
+    <Compile Include="Knot3.UnitTests\Storage\BooleanOptionInfo_Tests.cs" />
+    <Compile Include="Knot3.UnitTests\Storage\ConfigFile_Tests.cs" />
+    <Compile Include="Knot3.UnitTests\Storage\FloatOptionInfo_Tests.cs" />
+    <Compile Include="Knot3.UnitTests\Storage\KeyOptionInfo_Tests.cs" />
+    <Compile Include="Knot3.UnitTests\Storage\Localizer_Tests.cs" />
     <Compile Include="Knot3.UnitTests\TestHelper.cs" />
-    <Compile Include="Knot3.UnitTests\Utilities\BoundingCylinder_Tests.cs" />
     <Compile Include="Knot3.UnitTests\Utilities\FileIndex_Tests.cs" />
-    <Compile Include="Knot3.UnitTests\Utilities\RayExtensions_Tests.cs" />
     <Compile Include="Knot3.UnitTests\Utilities\SavegameLoader_Tests.cs" />
-    <Compile Include="Knot3.UnitTests\Utilities\SystemInfo_Tests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

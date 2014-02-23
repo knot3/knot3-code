@@ -32,6 +32,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text;
 
+using Microsoft.Xna.Framework;
+
 using NUnit.Framework;
 
 using Knot3.Framework.Core;
@@ -41,20 +43,22 @@ using Knot3.Framework.Utilities;
 
 #endregion
 
-namespace Knot3.UnitTests.Utilities
+namespace Knot3.UnitTests.Storage
 {
 	/// <summary>
-	/// Zusammenfassungsbeschreibung für Test_RayExtensions
+	///
 	/// </summary>
 	[TestFixture]
-	public class RayExtensions_Tests
+	public class Localizer_Tests
 	{
-		[Test]
-		public void TestMethod1 ()
+		[SetUp]
+		public void Init ()
 		{
-			//
-			// TODO: Testlogik hier hinzufügen
-			//
+		}
+
+		[Test]
+		public void Test ()
+		{
 		}
 	}
 }

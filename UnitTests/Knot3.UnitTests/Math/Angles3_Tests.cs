@@ -47,7 +47,7 @@ using Knot3.Game.Utilities;
 
 #endregion
 
-namespace Knot3.UnitTests.Core
+namespace Knot3.UnitTests.Math
 {
 	/// <summary>
 	/// Zusammenfassungsbeschreibung für Test_Angles3
@@ -79,9 +79,9 @@ namespace Knot3.UnitTests.Core
 			rY = 0.8726646259971648f;
 			rZ = 4.886921905584122f;
 
-			redianX = X * ((float)Math.PI / 180);
-			redianY = Y * ((float)Math.PI / 180);
-			redianZ = Z * ((float)Math.PI / 180);
+			redianX = X * ((float)System.Math.PI / 180);
+			redianY = Y * ((float)System.Math.PI / 180);
+			redianZ = Z * ((float)System.Math.PI / 180);
 
 			redian = new Vector3 (redianX, redianY, redianZ);
 			angle1 = new Angles3 (redian);

@@ -49,7 +49,7 @@ using Knot3.Game.Utilities;
 
 #endregion
 
-namespace Knot3.UnitTests.Core
+namespace Knot3.UnitTests.Storage
 {
 	[TestFixture]
 	public class ConfigFile_Tests
@@ -90,9 +90,9 @@ namespace Knot3.UnitTests.Core
 				string[] keys = keyMap [section];
 				float[] values = floatValueMap [section];
 
-				keys.Length.Repeat (i => Assert.Greater (Math.Abs (values [i] - cfg [section, keys [i], floatDefaultValue]), 0.00001f));
+				keys.Length.Repeat (i => Assert.Greater ((values [i] - cfg [section, keys [i], floatDefaultValue]).Abs (), 0.00001f));
 				keys.Length.Repeat (i => cfg [section, keys [i], floatDefaultValue] = values [i]);
-				keys.Length.Repeat (i => Assert.Less (Math.Abs (values [i] - cfg [section, keys [i], floatDefaultValue]), 0.001f));
+				keys.Length.Repeat (i => Assert.Less ((values [i] - cfg [section, keys [i], floatDefaultValue]).Abs (), 0.001f));
 			}
 
 			Dictionary<string, bool[]> boolValueMap = new Dictionary<string, bool[]> ();

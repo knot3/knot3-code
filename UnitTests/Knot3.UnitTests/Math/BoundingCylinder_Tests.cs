@@ -43,7 +43,7 @@ using Knot3.Framework.Utilities;
 
 #endregion
 
-namespace Knot3.UnitTests.Utilities
+namespace Knot3.UnitTests.Math
 {
 	/// <summary>
 	///
