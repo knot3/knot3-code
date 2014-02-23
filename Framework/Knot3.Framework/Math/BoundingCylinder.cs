@@ -26,6 +26,7 @@
 #endregion
 
 #region Using
+
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -43,8 +44,7 @@ using Knot3.Framework.Utilities;
 
 namespace Knot3.Framework.Math
 {
-	public struct BoundingCylinder : IEquatable<BoundingCylinder>
-	{
+	public struct BoundingCylinder : IEquatable<BoundingCylinder> {
 		public Vector3 SideA;
 		public Vector3 SideB;
 		public float Radius;
@@ -75,8 +75,8 @@ namespace Knot3.Framework.Math
 		public bool Equals (BoundingCylinder other)
 		{
 			return ((SideA == other.SideA && SideB == other.SideB)
-				|| (SideA == other.SideB && SideB == other.SideA))
-				&& Radius == other.Radius;
+			        || (SideA == other.SideB && SideB == other.SideA))
+			       && Radius == other.Radius;
 		}
 
 		public override bool Equals (object other)
