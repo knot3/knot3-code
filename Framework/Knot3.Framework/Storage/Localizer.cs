@@ -56,6 +56,8 @@ namespace Knot3.Framework.Storage
 	{
 		#region Properties
 
+		public static readonly string DefaultLanguageCode = "en";
+
 		/// <summary>
 		/// Gibt die zur Zeit in der zentralen Konfigurationsdatei eingestellte Sprache zurück.
 		/// </summary>
@@ -63,7 +65,8 @@ namespace Knot3.Framework.Storage
 		{
 			get {
 				if (_currentLanguageCode == null) {
-					_currentLanguageCode = new Option ("language", "current", "en", Config.Default) { Verbose = false };
+					_currentLanguageCode = new Option ("language", "current", DefaultLanguageCode, Config.Default)
+					{ Verbose = false };
 				}
 				return _currentLanguageCode;
 			}

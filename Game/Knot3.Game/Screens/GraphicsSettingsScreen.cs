@@ -123,6 +123,7 @@ namespace Knot3.Game.Screens
 			);
 			settingsMenu.Add (autoCamera);
 
+			// Resolutions
 			string currentResolution = Graphics.GraphicsDevice.DisplayMode.Width.ToString ()
 			                           + "x"
 			                           + Graphics.GraphicsDevice.DisplayMode.Height.ToString ();
@@ -133,7 +134,6 @@ namespace Knot3.Game.Screens
 				reso.Add (mode.Width + "x" + mode.Height);
 			}
 			reso.Add ("1024x600");
-
 			string[] validResolutions = reso.ToArray ();
 			validResolutions = validResolutions.OrderBy (x => Decimal.Parse (x.Split ('x') [0], System.Globalization.NumberStyles.Any)).ToArray ();
 			DistinctOption resolutionOption = new DistinctOption (
@@ -151,6 +151,7 @@ namespace Knot3.Game.Screens
 			resolutionItem.AddEntries (resolutionOption);
 			settingsMenu.Add (resolutionItem);
 
+			// Supersampling
 			float[] validSupersamples = {
 				1f, 1.25f, 1.5f, 1.75f, 2f
 			};
@@ -169,6 +170,7 @@ namespace Knot3.Game.Screens
 			supersamplesItem.AddEntries (supersamplesOption);
 			settingsMenu.Add (supersamplesItem);
 
+			// Rendereffects
 			string[] validRenderEffects = RenderEffectLibrary.Names.ToArray ();
 			DistinctOption renderEffectOption = new DistinctOption (
 			    section: "video",
@@ -187,6 +189,20 @@ namespace Knot3.Game.Screens
 			};
 			renderEffectItem.AddEntries (renderEffectOption);
 			settingsMenu.Add (renderEffectItem);
+
+			// Languages
+			LanguageOption languageOption = new LanguageOption (
+			    section: "language",
+			    name: "current",
+			    configFile: Config.Default
+			);
+			DropDownMenuItem languageItem = new DropDownMenuItem (
+			    screen: this,
+			    drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
+			    text: "Language"
+			);
+			languageItem.AddEntries (languageOption);
+			settingsMenu.Add (languageItem);
 		}
 
 		#endregion

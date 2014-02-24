@@ -63,6 +63,11 @@ namespace Knot3.Framework.Storage
 			DisplayName = Localization ["language", "displayname", Code];
 		}
 
+		public static bool operator != (Language a, Language b)
+		{
+			return !(a == b);
+		}
+
 		public static bool operator == (Language a, Language b)
 		{
 			// If both are null, or both are same instance, return true.

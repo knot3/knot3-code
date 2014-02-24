@@ -28,83 +28,71 @@
 #region Using
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
-using Knot3.Framework.Core;
-using Knot3.Framework.Input;
-using Knot3.Framework.Platform;
-using Knot3.Framework.Utilities;
+using Knot3.Framework.Storage;
 
 #endregion
 
 namespace Knot3.Framework.Storage
 {
-	/// <summary>
-	/// Diese Klasse repräsentiert eine Option, welche die Werte \glqq Wahr\grqq~oder \glqq Falsch\grqq~annehmen kann.
-	/// </summary>
-	public sealed class FloatOption : DistinctOption
+	public class LanguageOption: DistinctOption
 	{
-		#region Properties
-
-		/// <summary>
-		/// Eine Eigenschaft, die den aktuell abgespeicherten Wert zurückgibt.
-		/// </summary>
-		public new float Value
+		public new Language Value
 		{
 			get {
-				return stringToFloat (base.Value);
+				string code = base.Value;
+				foreach (Language lang in Localizer.ValidLanguages) {
+					if (lang.Code == code) {
+						return lang;
+					}
+				}
+				return Localizer.CurrentLanguage;
 			}
 			set {
-				base.Value = convertToString (value);
+				base.Value = value.Code;
 			}
 		}
 
 		public override string DisplayValue
 		{
 			get {
-				return String.Empty + stringToFloat (base.Value);
+				return toDisplayName (Value);
 			}
 		}
 
 		public override Dictionary<string,string> DisplayValidValues
 		{
 			get {
-				return new Dictionary<string, string>(base.ValidValues.ToDictionary (s => String.Empty + stringToFloat (s), s => s));
+				return new Dictionary<string, string> (base.ValidValues.ToDictionary (s => toDisplayName (s), s => s));
 			}
 		}
 
-		#endregion
-
-		#region Constructors
-
-		/// <summary>
-		/// Erstellt eine neue Option, welche die Werte \glqq Wahr\grqq~oder \glqq Falsch\grqq~annehmen kann. Mit dem angegebenen Namen, in dem
-		/// angegebenen Abschnitt der angegebenen Einstellungsdatei.
-		/// [base=section, name, defaultValue?ConfigFile.True:ConfigFile.False, ValidValues, configFile]
-		/// </summary>
-		public FloatOption (string section, string name, float defaultValue, IEnumerable<float> validValues, ConfigFile configFile)
-		: base (section, name, convertToString ( defaultValue),validValues.Select (convertToString), configFile)
+		public LanguageOption (string section, string name, ConfigFile configFile)
+		: base (section, name, Localizer.DefaultLanguageCode, from lang in Localizer.ValidLanguages select lang.Code, configFile)
 		{
 		}
 
-		private static string convertToString (float f)
+		private string toDisplayName (string code)
 		{
-			return (String.Empty + (int)(f * 1000f));
-		}
-		private static float stringToFloat (string s)
-		{
-			int i;
-			bool result = Int32.TryParse (s, out i);
-			if (true == result) {
-				return ((float)i) / 1000f;
+			foreach (Language lang in Localizer.ValidLanguages) {
+				if (lang.DisplayName == code) {
+					return lang.DisplayName;
+				}
 			}
-			else {
-				return 0;
-			}
+			return Localizer.CurrentLanguage.DisplayName;
 		}
-		#endregion
+
+		private string fromDisplayName (string displayName)
+		{
+			foreach (Language lang in Localizer.ValidLanguages) {
+				if (lang.DisplayName == displayName) {
+					return lang.Code;
+				}
+			}
+			return Localizer.CurrentLanguage.Code;
+		}
 	}
 }
