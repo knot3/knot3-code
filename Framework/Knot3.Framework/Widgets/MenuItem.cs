@@ -175,7 +175,7 @@ namespace Knot3.Framework.Widgets
 				if (IsLocalized)
 					spriteBatch.DrawStringInRectangle (font, Text.Localize (), foreground, Bounds, AlignX, AlignY);
 				else
-					spriteBatch.DrawStringInRectangle (font, Text.Localize (), foreground, Bounds, AlignX, AlignY);
+					spriteBatch.DrawStringInRectangle (font, Text, foreground, Bounds, AlignX, AlignY);
 
 				spriteBatch.End ();
 			}
