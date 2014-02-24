@@ -26,7 +26,6 @@
 #endregion
 
 #region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -153,7 +152,10 @@ namespace Knot3.Framework.Widgets
 
 				// zeichne die Schrift
 				Color foreground = ForegroundColor * (IsEnabled ? 1f : 0.5f);
-				spriteBatch.DrawStringInRectangle (font, name.Localize (), foreground, Bounds, AlignX, AlignY);
+				if (IsLocalized)
+					spriteBatch.DrawStringInRectangle (font, name.Localize (), foreground, Bounds, AlignX, AlignY);
+				else
+					spriteBatch.DrawStringInRectangle (font, name, foreground, Bounds, AlignX, AlignY);
 
 				spriteBatch.End ();
 			}

@@ -141,6 +141,8 @@ namespace Knot3.Framework.Widgets
 
 		public bool IsModal { get; set; }
 
+		public bool IsLocalized { get; set; }
+
 		#endregion
 
 		#region Constructors
@@ -161,6 +163,7 @@ namespace Knot3.Framework.Widgets
 			IsVisible = true;
 			_isEnabled = true;
 			IsModal = false;
+			IsLocalized = true;
 			State = WidgetState.None;
 			SelectedColorBackground = Design.WidgetForeground;
 			SelectedColorForeground = Design.WidgetBackground;
