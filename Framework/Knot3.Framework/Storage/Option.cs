@@ -59,7 +59,7 @@ namespace Knot3.Framework.Storage
 		/// <summary>
 		/// Die Einstellungsdatei.
 		/// </summary>
-		private ConfigFile configFile;
+		private ConfigFile ConfigFile;
 
 		/// <summary>
 		/// Der Abschnitt der Einstellungsdatei.
@@ -76,18 +76,22 @@ namespace Knot3.Framework.Storage
 		/// </summary>
 		public string DefaultValue { get; private set; }
 
+		public bool Verbose { get; set; }
+
 		/// <summary>
 		/// Der Wert der Option.
 		/// </summary>
 		public virtual string Value
 		{
 			get {
-				Log.Debug ("OptionInfo: ", Section, ".", Name, " => ", configFile [Section, Name, DefaultValue]);
-				return configFile [Section, Name, DefaultValue];
+				if (Verbose) {
+					Log.Debug ("Option: ", Section, ".", Name, " => ", ConfigFile [Section, Name, DefaultValue]);
+				}
+				return ConfigFile [Section, Name, DefaultValue];
 			}
 			set {
-				Log.Debug ("OptionInfo: ", Section, ".", Name, " <= ", value);
-				configFile [Section, Name, DefaultValue] = value;
+				Log.Debug ("Option: ", Section, ".", Name, " <= ", value);
+				ConfigFile [Section, Name, DefaultValue] = value;
 			}
 		}
 
@@ -103,7 +107,8 @@ namespace Knot3.Framework.Storage
 			Section = section;
 			Name = name;
 			DefaultValue = defaultValue;
-			this.configFile = configFile != null ? configFile : Config.Default;
+			ConfigFile = configFile != null ? configFile : Config.Default;
+			Verbose = true;
 		}
 
 		#endregion

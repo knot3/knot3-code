@@ -63,7 +63,7 @@ namespace Knot3.Framework.Storage
 		{
 			get {
 				if (_currentLanguageCode == null) {
-					_currentLanguageCode = new Option ("language", "current", "en", Config.Default);
+					_currentLanguageCode = new Option ("language", "current", "en", Config.Default) { Verbose = false };
 				}
 				return _currentLanguageCode;
 			}
@@ -104,6 +104,9 @@ namespace Knot3.Framework.Storage
 							Log.Error (ex);
 						}
 					}
+					if (languages.Count == 0) {
+						languages.Add (new Language (file: LanguageDirectory + "en.ini"));
+					}
 					return _validLanguages = languages.ToArray ();
 				}
 			}
@@ -126,7 +129,7 @@ namespace Knot3.Framework.Storage
 				return text;
 			}
 			else {
-				if (CurrentLanguage.Code != CurrentLanguageCode.Value) {
+				if (CurrentLanguage == null || CurrentLanguage.Code != CurrentLanguageCode.Value) {
 					_validLanguages = null;
 					foreach (Language lang in ValidLanguages) {
 						if (lang.Code == CurrentLanguageCode.Value) {

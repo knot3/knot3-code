@@ -66,7 +66,7 @@ namespace Knot3.Framework.Storage
 						else if (line.Contains ("=")) {
 							string[] parts = line.Split ('=');
 							if (section != null) {
-								Data [section] [parts [0].Trim ()] = parts [1].Trim ();
+								Data [section] [Decode (parts [0].Trim ())] = Decode (parts [1].Trim ());
 							}
 						}
 					}
@@ -93,7 +93,7 @@ namespace Knot3.Framework.Storage
 				foreach (string section in Data.Keys.OrderBy (x => x)) {
 					writer.WriteLine ("[" + section + "]");
 					foreach (string key  in Data[section].Keys.OrderBy (x => x)) {
-						writer.WriteLine (key + "=" + Data [section] [key]);
+						writer.WriteLine (Encode (key) + "=" + Encode (Data [section] [key]));
 					}
 				}
 			}
@@ -130,6 +130,16 @@ namespace Knot3.Framework.Storage
 				Data [section] [key] = value;
 				Save ();
 			}
+		}
+
+		private string Encode (string text)
+		{
+			return text.Replace ("\r", "").Replace ("\n", "\\n");
+		}
+
+		private string Decode (string text)
+		{
+			return text.Replace ("\\n", "\n");
 		}
 	}
 }
