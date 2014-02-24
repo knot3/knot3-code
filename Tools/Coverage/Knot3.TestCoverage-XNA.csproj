@@ -7,8 +7,8 @@
     <ProjectGuid>{EB24B7C0-0BD7-4E86-85B3-52B905A5965E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>NUnit_Test_Coverage_Windows</RootNamespace>
-    <AssemblyName>NUnit-Test-Coverage-Windows</AssemblyName>
+    <RootNamespace>Knot3.Coverage</RootNamespace>
+    <AssemblyName>Knot3.Coverage</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -47,7 +47,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>call "$(SolutionDir)coverage\OpenCover.bat"</PostBuildEvent>
+    <PostBuildEvent>call "$(SolutionDir)Tools\Coverage\OpenCover.bat"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
