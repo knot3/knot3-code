@@ -102,6 +102,14 @@
       <Importer>EffectImporter</Importer>
       <Processor>EffectProcessor</Processor>
     </Compile>
+    <None Include="Languages\de.ini">
+      <Name>de</Name>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Languages\en.ini">
+      <Name>en</Name>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="models.ini">
       <Name>models</Name>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
