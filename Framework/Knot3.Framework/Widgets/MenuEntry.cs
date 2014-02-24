@@ -83,11 +83,7 @@ namespace Knot3.Framework.Widgets
 			set { throw new ArgumentException ("You can't change the ValueWidth of a MenuButton!"); }
 		}
 
-		public bool Selectable
-		{
-			get;
-			set;
-		}
+		public bool IsSelectable { get; set; }
 
 		#endregion
 
@@ -101,7 +97,7 @@ namespace Knot3.Framework.Widgets
 		public MenuEntry (IGameScreen screen, DisplayLayer drawOrder, string name, Action<GameTime> onClick)
 		: base (screen, drawOrder, name)
 		{
-			Selectable = true;
+			IsSelectable = true;
 			OnClick = onClick;
 		}
 
@@ -115,7 +111,7 @@ namespace Knot3.Framework.Widgets
 		public override void OnLeftClick (Vector2 position, ClickState state, GameTime time)
 		{
 			base.OnLeftClick (position, state, time);
-			if (Selectable) {
+			if (IsSelectable) {
 				State = WidgetState.Selected;
 
 				if (Menu != null) {

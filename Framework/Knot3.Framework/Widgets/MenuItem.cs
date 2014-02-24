@@ -46,6 +46,7 @@ using Knot3.Framework.Input;
 using Knot3.Framework.Math;
 using Knot3.Framework.Models;
 using Knot3.Framework.Platform;
+using Knot3.Framework.Storage;
 using Knot3.Framework.Utilities;
 using Knot3.Framework.Widgets;
 
@@ -146,7 +147,7 @@ namespace Knot3.Framework.Widgets
 		/// <summary>
 		/// Die Reaktion auf eine Bewegung des Mausrads.
 		/// </summary>
-		public void OnScroll (int scrollValue,GameTime time)
+		public void OnScroll (int scrollValue, GameTime time)
 		{
 			if (Menu != null) {
 				Menu.OnScroll (scrollValue);
@@ -172,7 +173,7 @@ namespace Knot3.Framework.Widgets
 
 				// zeichne die Schrift
 				Color foreground = ForegroundColor * (IsEnabled ? 1f : 0.5f);
-				spriteBatch.DrawStringInRectangle (font, Text, foreground, Bounds, AlignX, AlignY);
+				spriteBatch.DrawStringInRectangle (font, Text.Localize (), foreground, Bounds, AlignX, AlignY);
 
 				spriteBatch.End ();
 			}

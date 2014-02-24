@@ -145,18 +145,10 @@ namespace Knot3.Framework.Widgets
 				    name: value,
 				    onClick: onSelected
 				);
-				button.Selectable = false;
+				button.IsSelectable = false;
 				dropdown.Add (button);
 			}
 			currentValue.InputText = option.DisplayValue;
-		}
-
-		/// <summary>
-		/// Fügt Einträge in das Dropdown-Menü ein, die nicht auf Einstellungsoptionen basieren.
-		/// </summary>
-		public void AddEntries (DropDownEntry enties)
-		{
-			throw new System.NotImplementedException ();
 		}
 
 		public override void OnKeyEvent (List<Keys> key, KeyEvent keyEvent, GameTime time)
@@ -195,12 +187,6 @@ namespace Knot3.Framework.Widgets
 			yield return dropdown;
 			yield return dropdownBorder;
 			yield return currentValue;
-		}
-
-		[ExcludeFromCodeCoverageAttribute]
-		public override void Draw (GameTime time)
-		{
-			base.Draw (time);
 		}
 
 		#endregion

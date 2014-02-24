@@ -211,7 +211,7 @@ namespace Knot3.Game.Screens
 					    onClick: nullAction
 					);
 
-					count.Selectable = false;
+					count.IsSelectable = false;
 					count.Enabled = false;
 					knotInfo.Add (count);
 					AddGameComponents (time, knotInfo);

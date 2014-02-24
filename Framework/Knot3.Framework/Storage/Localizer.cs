@@ -31,6 +31,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.IO;
 using System.Linq;
 
 using Microsoft.Xna.Framework;
@@ -56,9 +57,57 @@ namespace Knot3.Framework.Storage
 		#region Properties
 
 		/// <summary>
-		/// Die Datei, welche Informationen für die Lokalisierung enthält.
+		/// Gibt die zur Zeit in der zentralen Konfigurationsdatei eingestellte Sprache zurück.
 		/// </summary>
-		private static ConfigFile localization { get; set; }
+		private static Option CurrentLanguageCode
+		{
+			get {
+				if (_currentLanguageCode == null) {
+					_currentLanguageCode = new Option ("language", "current", "en", Config.Default);
+				}
+				return _currentLanguageCode;
+			}
+		}
+
+		private static Option _currentLanguageCode;
+
+		/// <summary>
+		/// Die aktuell geladene Sprache.
+		/// </summary>
+		public static Language CurrentLanguage { get; private set; }
+
+		public static string LanguageDirectory
+		{
+			get {
+				string directory = SystemInfo.RelativeContentDirectory + "Languages" + SystemInfo.PathSeparator;
+				Directory.CreateDirectory (directory);
+				return directory;
+			}
+		}
+
+		private static Language[] _validLanguages;
+
+		public static Language[] ValidLanguages
+		{
+			get {
+				if (_validLanguages != null) {
+					return _validLanguages;
+				}
+				else {
+					string[] files = Directory.GetFiles (LanguageDirectory);
+					List<Language> languages = new List<Language> ();
+					foreach (string file in files) {
+						try {
+							languages.Add (new Language (file: file));
+						}
+						catch (Exception ex) {
+							Log.Error (ex);
+						}
+					}
+					return _validLanguages = languages.ToArray ();
+				}
+			}
+		}
 
 		#endregion
 
@@ -68,9 +117,26 @@ namespace Knot3.Framework.Storage
 		/// Liefert zu dem übergebenen Bezeichner den zugehörigen Text aus der Lokalisierungsdatei der
 		/// aktuellen Sprache zurück, die dabei aus der Einstellungsdatei des Spiels gelesen wird.
 		/// </summary>
-		public static string Localize (string text)
+		public static string Localize (this string text)
 		{
-			throw new System.NotImplementedException ();
+			if (text == null) {
+				return "";
+			}
+			else if (text == string.Empty || text.Contains ("Exception")) {
+				return text;
+			}
+			else {
+				if (CurrentLanguage.Code != CurrentLanguageCode.Value) {
+					_validLanguages = null;
+					foreach (Language lang in ValidLanguages) {
+						if (lang.Code == CurrentLanguageCode.Value) {
+							CurrentLanguage = lang;
+						}
+					}
+					CurrentLanguageCode.Value = CurrentLanguage.Code;
+				}
+				return CurrentLanguage.Localization ["text", text, text];
+			}
 		}
 
 		#endregion

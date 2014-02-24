@@ -46,6 +46,7 @@ using Knot3.Framework.Input;
 using Knot3.Framework.Math;
 using Knot3.Framework.Models;
 using Knot3.Framework.Platform;
+using Knot3.Framework.Storage;
 using Knot3.Framework.Utilities;
 using Knot3.Framework.Widgets;
 
@@ -152,7 +153,7 @@ namespace Knot3.Framework.Widgets
 
 				// zeichne die Schrift
 				Color foreground = ForegroundColor * (IsEnabled ? 1f : 0.5f);
-				spriteBatch.DrawStringInRectangle (font, name, foreground, Bounds, AlignX, AlignY);
+				spriteBatch.DrawStringInRectangle (font, name.Localize (), foreground, Bounds, AlignX, AlignY);
 
 				spriteBatch.End ();
 			}

@@ -223,7 +223,7 @@ namespace Knot3.Game.Screens
 					    name: "Knot Count: " + meta.Target.CountEdges,
 					    onClick: nullAction
 					);
-					count.Selectable = false;
+					count.IsSelectable = false;
 					count.Enabled = false;
 					challengeInfo.Add (count);
 					MenuEntry avgtime = new MenuEntry (
@@ -232,7 +232,7 @@ namespace Knot3.Game.Screens
 					    name: "Avg Time: " + meta.FormatedAvgTime,
 					    onClick: nullAction
 					);
-					avgtime.Selectable = false;
+					avgtime.IsSelectable = false;
 					avgtime.Enabled = false;
 					challengeInfo.Add (avgtime);
 					AddGameComponents (time, challengeInfo);
