@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/pse-knot/knot3-code.png?label=ready)](https://waffle.io/pse-knot/knot3-code)
 #Knot3 [![Build Status](https://travis-ci.org/pse-knot/knot3-code.png?branch=master)](https://travis-ci.org/pse-knot/knot3-code)
 
 Bei Knot3 handelt es sich um ein innovatives Spiel bei dem man Knoten im dreidimensionalem Raum entweder frei modifizieren oder nach Vorgabe auf Zeit ineinander überführen kann.
