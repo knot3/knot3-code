@@ -128,7 +128,7 @@ namespace Knot3.Framework.Storage
 			if (text == null) {
 				return "";
 			}
-			else if (text == string.Empty || text.Contains ("Exception") || text.Any(char.IsDigit)) {
+			else if (text == string.Empty || text.Contains ("Exception") || text.Any (char.IsDigit)) {
 				return text;
 			}
 			else {
