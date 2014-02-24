@@ -84,6 +84,8 @@
     <None Include="Textures\exit300.png" />
     <None Include="Textures\exit800.png" />
     <None Include="Textures\logo.png" />
+    <None Include="Languages\de.ini" />
+    <None Include="Languages\en.ini" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\Game\Properties\AssemblyInfo.cs" />
