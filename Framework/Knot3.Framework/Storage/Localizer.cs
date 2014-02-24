@@ -26,7 +26,6 @@
 #endregion
 
 #region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -101,6 +100,7 @@ namespace Knot3.Framework.Storage
 					List<Language> languages = new List<Language> ();
 					foreach (string file in files) {
 						try {
+							Log.Debug("Language file: " + file);
 							languages.Add (new Language (file: file));
 						}
 						catch (Exception ex) {
@@ -110,6 +110,7 @@ namespace Knot3.Framework.Storage
 					if (languages.Count == 0) {
 						languages.Add (new Language (file: LanguageDirectory + "en.ini"));
 					}
+					Log.Message ("Valid Languages: " + string.Join (", ", from lang in languages select "(" + lang.Code + "," + lang.DisplayName + ")"));
 					return _validLanguages = languages.ToArray ();
 				}
 			}

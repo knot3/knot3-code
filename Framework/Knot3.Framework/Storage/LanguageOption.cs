@@ -82,7 +82,7 @@ namespace Knot3.Framework.Storage
 		private string toDisplayName (string code)
 		{
 			foreach (Language lang in Localizer.ValidLanguages) {
-				if (lang.DisplayName == code) {
+				if (lang.Code == code) {
 					return lang.DisplayName;
 				}
 			}
