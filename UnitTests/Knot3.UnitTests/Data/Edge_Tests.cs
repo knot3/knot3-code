@@ -76,6 +76,14 @@ namespace Knot3.UnitTests.Data
 		{
 			Assert.False (Edge.Zero.Equals (null));
 			Assert.False (Edge.Zero.Equals (0f));
+			Assert.False (Edge.Zero.Equals ((object)null));
+			Assert.False (Edge.Zero.Equals ((object)0f));
+			Assert.False (Edge.Zero.Equals ((object)new Quaternion (0, 0, 0, 0)));
+			Assert.False (Edge.Zero.Equals ((object)Color.LemonChiffon));
+			Assert.False (Edge.Zero.Equals ((object)Direction.Down));
+			Assert.False (Edge.Zero.Equals ((object)Direction.Down.Vector));
+			Assert.False (Edge.Zero.Equals ((object)Direction.Down.Description));
+
 			Assert.False (Direction.Zero.Equals ((object)null));
 			Assert.False (Direction.Zero.Equals ((object)0f));
 			Assert.False (Direction.Zero.Equals ((object)new Quaternion (0, 0, 0, 0)));
@@ -101,6 +109,7 @@ namespace Knot3.UnitTests.Data
 			Assert.AreEqual (Direction.FromString ("Up"), Edge.Up.Direction);
 			Assert.AreEqual (Direction.FromString ("Forward"), Edge.Forward.Direction);
 			Assert.AreEqual (Direction.FromString ("Backward"), Edge.Backward.Direction);
+			Assert.IsNull (Direction.FromString ("fdsrfrdsf!!"));
 		}
 
 		[Test]
