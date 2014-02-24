@@ -77,6 +77,10 @@ namespace Knot3.UnitTests.Math
 			IsNotEqual (cyl2, cyl4);
 			IsNotEqual (cyl4, cyl1);
 			IsNotEqual (cyl4, cyl2);
+			
+			Assert.IsTrue (cyl1.Equals ((object)cyl1));
+			Assert.IsFalse (cyl1.Equals ((object)cyl4));
+			Assert.IsFalse (cyl1.Equals ((object)null));
 		}
 
 		[Test]
