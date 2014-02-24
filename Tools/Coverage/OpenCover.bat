@@ -137,7 +137,7 @@ echo.
 ::
 :: Filter für OpenCover hier einstellen:
 ::
-set COMPONENT_FILTER=+[Knot3]*
+set COMPONENT_FILTER=+[Knot3]* +[Knot3.Framework]*
 ::
 :: [ExcludeFromCodeCoverageAttribute]
 :: GetHashCode, ToString, Update, Draw
