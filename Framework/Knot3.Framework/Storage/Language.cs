@@ -84,11 +84,6 @@ namespace Knot3.Framework.Storage
 			return a.Code == b.Code;
 		}
 
-		public static bool operator != (Language d1, Language d2)
-		{
-			return !(d1 == d2);
-		}
-
 		public bool Equals (Language other)
 		{
 			return other != null && Code == other.Code;

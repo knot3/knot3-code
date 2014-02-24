@@ -26,7 +26,6 @@
 #endregion
 
 #region Using
-
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -66,7 +65,11 @@ namespace Knot3.Framework.Storage
 		public override Dictionary<string,string> DisplayValidValues
 		{
 			get {
-				return new Dictionary<string, string> (base.ValidValues.ToDictionary (s => toDisplayName (s), s => s));
+				Dictionary<string, string> dict = new Dictionary<string, string> ();
+				foreach (string value in base.ValidValues) {
+					dict [toDisplayName (value)] = value;
+				}
+				return dict;
 			}
 		}
 
