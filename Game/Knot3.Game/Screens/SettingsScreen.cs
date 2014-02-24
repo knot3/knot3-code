@@ -22,11 +22,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-using Knot3.Framework.Storage;
 
 #endregion
 
 #region Using
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -43,6 +43,7 @@ using Knot3.Framework.Core;
 using Knot3.Framework.Input;
 using Knot3.Framework.Math;
 using Knot3.Framework.Platform;
+using Knot3.Framework.Storage;
 using Knot3.Framework.Utilities;
 using Knot3.Framework.Widgets;
 
@@ -148,7 +149,7 @@ namespace Knot3.Game.Screens
 			                 0.870f, 0.970f,
 			                 0.970f, 0.050f,
 			                 1.000f
-			);
+			                );
 
 			backButton = new MenuEntry (
 			    screen: this,
