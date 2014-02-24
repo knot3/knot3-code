@@ -69,15 +69,15 @@
     <Compile Include="Knot3.UnitTests\Math\BoundingCylinder_Tests.cs" />
     <Compile Include="Knot3.UnitTests\Math\Bounds_Tests.cs" />
     <Compile Include="Knot3.UnitTests\Platform\SystemInfo_Tests.cs" />
+    <Compile Include="Knot3.UnitTests\Storage\BooleanOption_Tests.cs" />
     <Compile Include="Knot3.UnitTests\Storage\ConfigFile_Tests.cs" />
+    <Compile Include="Knot3.UnitTests\Storage\FloatOption_Tests.cs" />
+    <Compile Include="Knot3.UnitTests\Storage\KeyOption_Tests.cs" />
     <Compile Include="Knot3.UnitTests\Storage\Localizer_Tests.cs" />
     <Compile Include="Knot3.UnitTests\TestHelper.cs" />
     <Compile Include="Knot3.UnitTests\Utilities\FileIndex_Tests.cs" />
     <Compile Include="Knot3.UnitTests\Utilities\SavegameLoader_Tests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Knot3.UnitTests\Storage\KeyOption_Tests.cs" />
-    <Compile Include="Knot3.UnitTests\Storage\FloatOption_Tests.cs" />
-    <Compile Include="Knot3.UnitTests\Storage\BooleanOption_Tests.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
