@@ -53,7 +53,7 @@ namespace Knot3.UnitTests.Storage
 	///
 	/// </summary>
 	[TestFixture]
-	public class KeyOptionInfo_Tests
+	public class KeyOption_Tests
 	{
 		[SetUp]
 		public void Init ()

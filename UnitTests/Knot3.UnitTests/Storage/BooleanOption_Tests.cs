@@ -52,7 +52,7 @@ namespace Knot3.UnitTests.Storage
 	///
 	/// </summary>
 	[TestFixture]
-	public class BooleanOptionInfo_Tests
+	public class BooleanOption_Tests
 	{
 		[SetUp]
 		public void Init ()

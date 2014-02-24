@@ -52,7 +52,7 @@ namespace Knot3.UnitTests.Storage
 	///
 	/// </summary>
 	[TestFixture]
-	public class FloatOptionInfo_Tests
+	public class FloatOption_Tests
 	{
 		[SetUp]
 		public void Init ()
