@@ -229,7 +229,7 @@ namespace Knot3.Game.Development
 		{
 			if (font != null) {
 				try {
-					spriteBatch.DrawString (font, str, new Vector2 (width, height) * Config.Default ["video", "Supersamples", 1], color, 0f, Vector2.Zero, scale * Config.Default ["video", "Supersamples", 1], SpriteEffects.None, 0f);
+					spriteBatch.DrawString (font, str.Localize (), new Vector2 (width, height) * Config.Default ["video", "Supersamples", 1], color, 0f, Vector2.Zero, scale * Config.Default ["video", "Supersamples", 1], SpriteEffects.None, 0f);
 				}
 				catch (ArgumentException exp) {
 					Log.Debug (exp);

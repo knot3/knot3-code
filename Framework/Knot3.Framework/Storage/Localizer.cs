@@ -143,7 +143,10 @@ namespace Knot3.Framework.Storage
 					}
 					CurrentLanguageCode.Value = CurrentLanguage.Code;
 				}
-				return CurrentLanguage.Localization ["text", text, text];
+
+				string trimmed = text.Trim ('\r', '\n', ' ', '\t', ':');
+				string localized = CurrentLanguage.Localization ["text", trimmed, trimmed];
+				return text.Replace (trimmed, localized);
 			}
 		}
 

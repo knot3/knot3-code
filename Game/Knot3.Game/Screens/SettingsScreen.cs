@@ -22,11 +22,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+using Knot3.Framework.Storage;
 
 #endregion
 
 #region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -67,13 +67,24 @@ namespace Knot3.Game.Screens
 	{
 		#region Properties
 
+		/// <summary>
+		/// Der Name des Menüs.
+		/// </summary>
 		protected string MenuName;
+
+		/// <summary>
+		/// Der Spritebatch.
+		/// </summary>
 		private SpriteBatch spriteBatch;
+
 		/// <summary>
 		/// Das Menu, in dem man die Einstellungs-Kategorie auswählen kann.
 		/// </summary>
 		private Menu navigationMenu;
-		// Zurück-Button.
+
+		/// <summary>
+		/// Zurück-Button.
+		/// </summary>
 		private MenuEntry backButton;
 
 		#endregion
@@ -137,7 +148,7 @@ namespace Knot3.Game.Screens
 			                 0.870f, 0.970f,
 			                 0.970f, 0.050f,
 			                 1.000f
-			                );
+			);
 
 			backButton = new MenuEntry (
 			    screen: this,
@@ -155,14 +166,6 @@ namespace Knot3.Game.Screens
 		#region Methods
 
 		/// <summary>
-		/// Wird für jeden Frame aufgerufen.
-		/// </summary>
-		[ExcludeFromCodeCoverageAttribute]
-		public override void Update (GameTime time)
-		{
-		}
-
-		/// <summary>
 		/// Fügt das Haupt-Einstellungsmenü in die Spielkomponentenliste ein.
 		/// </summary>
 		public override void Entered (IGameScreen previousScreen, GameTime time)
@@ -178,7 +181,7 @@ namespace Knot3.Game.Screens
 			// text
 			spriteBatch.DrawStringInRectangle (
 			    font: Design.MenuFont (this),
-			    text: MenuName,
+			    text: MenuName.Localize (),
 			    color: Color.White,
 			    bounds: new Bounds (this, 0.050f, 0.050f, 0.900f, 0.050f),
 			    alignX: HorizontalAlignment.Left,

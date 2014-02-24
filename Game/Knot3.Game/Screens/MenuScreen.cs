@@ -90,14 +90,6 @@ namespace Knot3.Game.Screens
 		#region Methods
 
 		/// <summary>
-		/// Wird für jeden Frame aufgerufen.
-		/// </summary>
-		[ExcludeFromCodeCoverageAttribute]
-		public override void Update (GameTime time)
-		{
-		}
-
-		/// <summary>
 		/// Wird aufgerufen, wenn in diesen Spielzustand gewechselt wird.
 		/// </summary>
 		public override void Entered (IGameScreen previousScreen, GameTime time)
@@ -105,13 +97,6 @@ namespace Knot3.Game.Screens
 			base.Entered (previousScreen, time);
 			AddGameComponents (time, pointer, lines);
 			Audio.BackgroundMusic = Sound.MenuMusic;
-
-			//test:
-			//MediaPlayer.IsRepeating = true;
-			//var song = Content.Load<Song>("Music-Challenge/Frame_-_13_-_Spiral_Beams");
-			//MediaPlayer.Play (song);
-			//System.Media.SoundPlayer player = new System.Media.SoundPlayer ("Music-Challenge/Frame_-_13_-_Spiral_Beams.mp3");
-			//player.PlayLooping ();
 		}
 
 		#endregion
