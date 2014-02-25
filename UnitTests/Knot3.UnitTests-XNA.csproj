@@ -121,6 +121,7 @@
     <Compile Include="Knot3.UnitTests\Data\Node_Tests.cs" />
     <Compile Include="Knot3.UnitTests\Data\RectangleMap_Tests.cs" />
     <Compile Include="Knot3.UnitTests\Data\ZipHelper_Tests.cs" />
+    <Compile Include="Knot3.UnitTests\GlobalSetup.cs" />
     <Compile Include="Knot3.UnitTests\Math\Angles3_Tests.cs" />
     <Compile Include="Knot3.UnitTests\Math\BoundingCylinder_Tests.cs" />
     <Compile Include="Knot3.UnitTests\Math\Bounds_Tests.cs" />

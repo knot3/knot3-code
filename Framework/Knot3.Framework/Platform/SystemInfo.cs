@@ -26,6 +26,7 @@
 #endregion
 
 #region Using
+
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -60,8 +61,9 @@ namespace Knot3.Framework.Platform
 		public static string SettingsDirectory
 		{
 			get {
-				if (settingsDirectory != null)
+				if (settingsDirectory != null) {
 					return settingsDirectory;
+				}
 				else {
 					string directory;
 					if (SystemInfo.IsRunningOnLinux ()) {
