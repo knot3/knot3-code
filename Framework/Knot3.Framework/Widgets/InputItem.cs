@@ -22,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-using Knot3.Framework.Math;
 
 #endregion
 
@@ -43,6 +42,7 @@ using Microsoft.Xna.Framework.Input;
 using Knot3.Framework.Core;
 using Knot3.Framework.Effects;
 using Knot3.Framework.Input;
+using Knot3.Framework.Math;
 using Knot3.Framework.Models;
 using Knot3.Framework.Platform;
 using Knot3.Framework.Utilities;

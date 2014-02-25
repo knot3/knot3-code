@@ -22,16 +22,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-using System.Text.RegularExpressions;
 
 #endregion
 
 #region Using
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
@@ -101,9 +102,9 @@ namespace Knot3.Framework.Widgets
 				// zeichne die Schrift
 				Color foreground = ForegroundColor * (IsEnabled ? 1f : 0.5f);
 				Vector2 scale
-						= new Vector2 (0.1f, 0.1f) // Standard-Skalierung ist 10%
-						/ new Vector2 (800, 600) // bei 800x600
-						* Screen.Bounds.Size.AbsoluteVector; // Auf aktuelle Auflösung hochrechnen
+				    = new Vector2 (0.1f, 0.1f) // Standard-Skalierung ist 10%
+				/ new Vector2 (800, 600) // bei 800x600
+				* Screen.Bounds.Size.AbsoluteVector; // Auf aktuelle Auflösung hochrechnen
 				string wrappedText = parseText (Text, scale);
 				spriteBatch.DrawScaledString (font, wrappedText, foreground, Bounds.Position, scale);
 
