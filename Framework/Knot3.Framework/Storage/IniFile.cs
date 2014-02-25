@@ -102,8 +102,8 @@ namespace Knot3.Framework.Storage
 		private static string StripComments (string line)
 		{
 			if (line != null) {
-				if (line.IndexOf (';') != -1) {
-					return line.Remove (line.IndexOf (';')).Trim ();
+				if (line.Contains ("//")) {
+					return line.Remove (line.IndexOf ("//")).Trim ();
 				}
 				return line.Trim ();
 			}

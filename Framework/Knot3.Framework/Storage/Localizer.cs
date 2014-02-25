@@ -146,9 +146,15 @@ namespace Knot3.Framework.Storage
 
 				string trimmed = text.Trim ('\r', '\n', ' ', '\t', ':');
 				string localized = CurrentLanguage.Localization ["text", trimmed, trimmed];
-				return text.Replace (trimmed, localized);
+				return ToUnicode(text.Replace (trimmed, localized));
 			}
 		}
+
+        public static string ToUnicode(string text)
+        {
+            return text.Replace("&auml;", "\u00E4").Replace("&ouml;", "\u00F6").Replace("&uuml;", "\u00FC")
+                .Replace("&Auml;", "\u00C4").Replace("&Ouml;", "\u00D6").Replace("&Uuml;", "\u00DC");
+        }
 
 		#endregion
 	}
