@@ -76,17 +76,23 @@ namespace Knot3.Framework.Widgets
 		private bool _isVisible;
 
 		/// <summary>
-		/// Die Hintergrundfarbe.
+		/// Eine Funktion, die die Hintergrundfarbe für einen bestimmten Status zurückgibt.
 		/// </summary>
 		public Func<WidgetState, Color> BackgroundColorFunc { private get; set; }
 
 		/// <summary>
-		/// Die Vordergrundfarbe.
+		/// Eine Funktion, die die Vordergrundfarbe für einen bestimmten Status zurückgibt.
 		/// </summary>
 		public Func<WidgetState, Color> ForegroundColorFunc { private get; set; }
 
+		/// <summary>
+		/// Ruft BackgroundColorFunc mit dem aktuellen Status auf und gibt die aktuelle Hintergrundfarbe zurück.
+		/// </summary>
 		public Color BackgroundColor { get { return BackgroundColorFunc (State); } }
 
+		/// <summary>
+		/// Ruft ForegroundColorFunc mit dem aktuellen Status auf und gibt die aktuelle Vordergrundfarbe zurück.
+		/// </summary>
 		public Color ForegroundColor { get { return ForegroundColorFunc (State); } }
 
 		/// <summary>
@@ -99,6 +105,9 @@ namespace Knot3.Framework.Widgets
 		/// </summary>
 		public VerticalAlignment AlignY { get; set; }
 
+		/// <summary>
+		/// Die Tasten, auf die dieses Widget reagiert.
+		/// </summary>
 		public List<Keys> ValidKeys { get; protected set; }
 
 		public virtual bool IsKeyEventEnabled

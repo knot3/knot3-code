@@ -26,7 +26,6 @@
 #endregion
 
 #region Using
-
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -73,13 +72,15 @@ namespace Knot3.Framework.Storage
 				}
 			}
 		}
-
+		
+		[ExcludeFromCodeCoverageAttribute]
 		public void Dispose ()
 		{
 			Dispose (true);
 			GC.SuppressFinalize (this);
 		}
 
+		[ExcludeFromCodeCoverageAttribute]
 		private void Dispose (bool disposing)
 		{
 			if (disposing) {
