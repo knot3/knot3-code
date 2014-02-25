@@ -22,6 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+using Knot3.Framework.Math;
 
 #endregion
 
@@ -256,12 +257,27 @@ namespace Knot3.Framework.Platform
 			);
 		}
 
+		public static void DrawScaledString (this SpriteBatch spriteBatch, SpriteFont font,
+		        string text, Color color, ScreenPoint position, Vector2 scale)
+		{
+			try {
+				// zeichne die Schrift
+				spriteBatch.DrawString (font, text, position.AbsoluteVector, color, 0, Vector2.Zero, scale, SpriteEffects.None, 0.6f);
+			}
+			catch (ArgumentException exp) {
+				Log.Debug (exp);
+			}
+			catch (InvalidOperationException exp) {
+				Log.Debug (exp);
+			}
+		}
+
 		public static void DrawStringInRectangle (this SpriteBatch spriteBatch, SpriteFont font,
-		        string text, Color color, Rectangle bounds,
+		        string text, Color color, Bounds bounds,
 		        HorizontalAlignment alignX, VerticalAlignment alignY)
 		{
-			Vector2 scaledPosition = new Vector2 (bounds.X, bounds.Y);
-			Vector2 scaledSize = new Vector2 (bounds.Width, bounds.Height);
+			Vector2 scaledPosition = bounds.Position.AbsoluteVector;
+			Vector2 scaledSize = bounds.Size.AbsoluteVector;
 			try {
 				// finde die richtige Skalierung
 				Vector2 scale = spriteBatch.ScaleStringInRectangle (font, text, color, bounds, alignX, alignY);

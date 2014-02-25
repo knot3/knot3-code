@@ -22,11 +22,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+using System.Text.RegularExpressions;
 
 #endregion
 
 #region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -100,13 +100,18 @@ namespace Knot3.Framework.Widgets
 
 				// zeichne die Schrift
 				Color foreground = ForegroundColor * (IsEnabled ? 1f : 0.5f);
-				spriteBatch.DrawStringInRectangle (font, parseText (Text), foreground, Bounds, AlignX, AlignY);
+				Vector2 scale
+						= new Vector2 (0.1f, 0.1f) // Standard-Skalierung ist 10%
+						/ new Vector2 (800, 600) // bei 800x600
+						* Screen.Bounds.Size.AbsoluteVector; // Auf aktuelle Auflösung hochrechnen
+				string wrappedText = parseText (Text, scale);
+				spriteBatch.DrawScaledString (font, wrappedText, foreground, Bounds.Position, scale);
 
 				spriteBatch.End ();
 			}
 		}
 
-		private String parseText (String text)
+		private String parseText (String text, Vector2 scale)
 		{
 			// lade die Schrift
 			SpriteFont font = Design.MenuFont (Screen);
@@ -115,15 +120,15 @@ namespace Knot3.Framework.Widgets
 
 			String line = String.Empty;
 			String returnString = String.Empty;
-			String[] wordArray = text.Split (' ');
+			String[] wordArray = Regex.Split (text, @"(?<=[.,; !])");
 
 			foreach (String word in wordArray) {
-				if (font.MeasureString (line + word).Length () * 0.05f > Bounds.Rectangle.Width) {
+				if ((font.MeasureString (line + word) * scale).X > Bounds.Rectangle.Width) {
 					returnString = returnString + line + '\n';
 					line = String.Empty;
 				}
 
-				line = line + word + ' ';
+				line = line + word;
 			}
 
 			return returnString + line;

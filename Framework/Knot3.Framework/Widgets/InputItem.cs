@@ -22,6 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+using Knot3.Framework.Math;
 
 #endregion
 
@@ -135,7 +136,7 @@ namespace Knot3.Framework.Widgets
 			spriteBatch.Begin ();
 
 			// berechne die Ausmaße des Eingabefelds
-			Rectangle bounds = ValueBounds;
+			Bounds bounds = ValueBounds;
 
 			// zeichne den Hintergrund des Eingabefelds
 			spriteBatch.DrawColoredRectangle (ForegroundColor, bounds);
