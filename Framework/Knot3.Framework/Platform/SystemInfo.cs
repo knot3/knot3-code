@@ -26,7 +26,6 @@
 #endregion
 
 #region Using
-
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -61,17 +60,26 @@ namespace Knot3.Framework.Platform
 		public static string SettingsDirectory
 		{
 			get {
-				string directory;
-				if (SystemInfo.IsRunningOnLinux ()) {
-					directory = Environment.GetEnvironmentVariable ("HOME") + "/.knot3/";
-				}
+				if (settingsDirectory != null)
+					return settingsDirectory;
 				else {
-					directory = Environment.GetFolderPath (System.Environment.SpecialFolder.Personal) + "\\Knot3\\";
+					string directory;
+					if (SystemInfo.IsRunningOnLinux ()) {
+						directory = Environment.GetEnvironmentVariable ("HOME") + "/.knot3/";
+					}
+					else {
+						directory = Environment.GetFolderPath (System.Environment.SpecialFolder.Personal) + "\\Knot3\\";
+					}
+					Directory.CreateDirectory (directory);
+					return settingsDirectory = directory;
 				}
-				Directory.CreateDirectory (directory);
-				return directory;
+			}
+			set {
+				settingsDirectory = value;
 			}
 		}
+
+		private static string settingsDirectory = null;
 
 		/// <summary>
 		/// Das Spielstandverzeichnis.
@@ -141,6 +149,12 @@ namespace Knot3.Framework.Platform
 					findBaseDirectory ();
 					return relativeBaseDirectory;
 				}
+			}
+			set {
+				Log.Debug ("Set Base directory: ", value);
+				baseDirectory = value;
+				Log.Debug ("Set Base directory (relative): ", value);
+				relativeBaseDirectory = value;
 			}
 		}
 

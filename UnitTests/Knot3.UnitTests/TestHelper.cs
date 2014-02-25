@@ -46,18 +46,9 @@ using Knot3.Game.Utilities;
 
 namespace Knot3.UnitTests
 {
-	[TestFixture]
 	public static class TestHelper
 	{
 		private static Random random = new Random ();
-
-		[SetUp]
-		public static void TestHelper_SetUp ()
-		{
-			// Vorrang beim statischen Initialisieren!
-			var bullshit = Config.Default;
-			Config.Default = new ConfigFile (TempDirectory + "knot3.ini");
-		}
 
 		public static string TestResourcesDirectory
 		{

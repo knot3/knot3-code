@@ -78,6 +78,7 @@
     <Compile Include="Knot3.UnitTests\Utilities\FileIndex_Tests.cs" />
     <Compile Include="Knot3.UnitTests\Utilities\SavegameLoader_Tests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Knot3.UnitTests\GlobalSetup.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
