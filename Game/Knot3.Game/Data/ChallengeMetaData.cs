@@ -60,7 +60,6 @@ namespace Knot3.Game.Data
     /// </summary>
     public class ChallengeMetaData
     {
-
         /// <summary>
         /// Der Name der Challenge.
         /// </summary>
@@ -145,8 +144,6 @@ namespace Knot3.Game.Data
             }
         }
 
-
-
         /// <summary>
         /// Erstellt ein Challenge-Metadaten-Objekt mit einem gegebenen Namen und den Metadaten des Ausgangs- und Referenzknotens.
         /// </summary>
@@ -167,8 +164,6 @@ namespace Knot3.Game.Data
                 }
             }
         }
-
-
 
         /// <summary>
         /// Fügt eine neue Bestzeit eines bestimmten Spielers in die Bestenliste ein.
@@ -229,6 +224,5 @@ namespace Knot3.Game.Data
         {
             return !(a == b);
         }
-
     }
 }

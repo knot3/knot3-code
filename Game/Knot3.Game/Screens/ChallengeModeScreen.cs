@@ -64,7 +64,6 @@ namespace Knot3.Game.Screens
     [ExcludeFromCodeCoverageAttribute]
     public class ChallengeModeScreen : GameScreen
     {
-
         /// <summary>
         /// Die Spielwelt in der die 3D-Modelle des dargestellten Referenzknotens enthalten sind.
         /// </summary>
@@ -158,8 +157,6 @@ namespace Knot3.Game.Screens
         // Der Status, z.b. ist die Challenge beendet?
         private ChallengeModeState state;
 
-
-
         /// <summary>
         /// Erzeugt eine neue Instanz eines ChallengeModeScreen-Objekts und initialisiert diese mit einem Knot3Game-Objekt, einem Spielerknoten playerKnot und dem Knoten challengeKnot, den der Spieler nachbauen soll.
         /// </summary>
@@ -250,8 +247,6 @@ namespace Knot3.Game.Screens
             // Status
             state = ChallengeModeState.Start;
         }
-
-
 
         private void OnKnotMoved (Knot newKnot)
         {
@@ -415,7 +410,6 @@ namespace Knot3.Game.Screens
             // Einstellungen anwenden
             debugBoundings.Info.IsVisible = Config.Default ["debug", "show-boundings", false];
         }
-
 
         enum ChallengeModeState {
             Start,

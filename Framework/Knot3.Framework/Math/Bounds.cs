@@ -43,7 +43,6 @@ namespace Knot3.Framework.Math
 {
     public class Bounds
     {
-
         /// <summary>
         /// Die von der Auflösung unabhängige Position in Prozent.
         /// </summary>
@@ -98,8 +97,6 @@ namespace Knot3.Framework.Math
             }
         }
 
-
-
         public Bounds (ScreenPoint position, ScreenPoint size, ScreenPoint padding)
         {
             _position = position;
@@ -120,8 +117,6 @@ namespace Knot3.Framework.Math
             _size = new ScreenPoint (screen, relWidth, relHeight);
             _padding = new ScreenPoint (screen, Vector2.Zero);
         }
-
-
 
         public bool Contains (Point point)
         {
@@ -234,6 +229,5 @@ namespace Knot3.Framework.Math
         {
             return "(" + Position.Relative.X + "x" + Position.Relative.Y + "," + Size.Relative.X + "x" + Size.Relative.Y + ")";
         }
-
     }
 }

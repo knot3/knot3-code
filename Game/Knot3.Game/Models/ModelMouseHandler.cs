@@ -66,7 +66,6 @@ namespace Knot3.Game.Models
         private double lastRayCheck = 0;
         private ScreenPoint lastMousePosition;
 
-
         /// <summary>
         /// Erzeugt eine neue Instanz eines ModelMouseHandler-Objekts und ordnet dieser ein IGameScreen-Objekt screen zu,
         /// sowie eine Spielwelt world.
@@ -77,8 +76,6 @@ namespace Knot3.Game.Models
             World = world;
             lastMousePosition = ScreenPoint.Zero (screen);
         }
-
-
 
         /// <summary>
         /// Wird für jeden Frame aufgerufen.
@@ -128,6 +125,5 @@ namespace Knot3.Game.Models
                 World.SelectedObject = null;
             }
         }
-
     }
 }

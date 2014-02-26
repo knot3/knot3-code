@@ -60,7 +60,6 @@ namespace Knot3.Game.Screens
     [ExcludeFromCodeCoverageAttribute]
     public sealed class CreativeLoadScreen : MenuScreen
     {
-
         /// <summary>
         /// Das Menü, das die Spielstände enthält.
         /// </summary>
@@ -81,8 +80,6 @@ namespace Knot3.Game.Screens
         private KnotInputHandler previewInput;
         private ModelMouseHandler previewMouseHandler;
         private Menu knotInfo;
-
-
 
         /// <summary>
         /// Erzeugt ein neues CreativeLoadScreen-Objekt und initialisiert dieses mit einem Knot3Game-Objekt.
@@ -162,8 +159,6 @@ namespace Knot3.Game.Screens
             startButton.AlignX = HorizontalAlignment.Center;
         }
 
-
-
         private void UpdateFiles ()
         {
             // Leere das Spielstand-Menü
@@ -233,6 +228,5 @@ namespace Knot3.Game.Screens
             base.Entered (previousScreen, time);
             AddGameComponents (time, title, savegameMenu, previewBorder, previewWorld, previewInput, previewMouseHandler, backButton, startButton, infoTitle);
         }
-
     }
 }

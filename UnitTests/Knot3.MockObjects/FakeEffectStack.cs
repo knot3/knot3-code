@@ -59,7 +59,6 @@ namespace Knot3.MockObjects
     /// </summary>
     public sealed class FakeEffectStack : IRenderEffectStack
     {
-
         private static Stack<IRenderEffect> stack = new Stack<IRenderEffect> ();
 
         /// <summary>
@@ -82,8 +81,6 @@ namespace Knot3.MockObjects
         /// </summary>
         private IRenderEffect defaultEffect { get; set; }
 
-
-
         /// <summary>
         /// Erstellt einen neuen Rendereffekt-Stapel.
         /// </summary>
@@ -92,8 +89,6 @@ namespace Knot3.MockObjects
             this.defaultEffect = defaultEffect;
             stack = new Stack<IRenderEffect> ();
         }
-
-
 
         /// <summary>
         /// Entfernt den obersten Rendereffekt vom Stapel.
@@ -110,6 +105,5 @@ namespace Knot3.MockObjects
         {
             stack.Push (effect);
         }
-
     }
 }

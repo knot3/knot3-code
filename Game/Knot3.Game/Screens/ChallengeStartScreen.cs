@@ -60,7 +60,6 @@ namespace Knot3.Game.Screens
     [ExcludeFromCodeCoverageAttribute]
     public sealed class ChallengeStartScreen : MenuScreen
     {
-
         /// <summary>
         /// Das Menü, das die Spielstände enthält.
         /// </summary>
@@ -80,8 +79,6 @@ namespace Knot3.Game.Screens
         private KnotInputHandler previewInput;
         private ModelMouseHandler previewMouseHandler;
         private Button startButton;
-
-
 
         /// <summary>
         /// Erstellt eine neue Instanz eines ChallengeStartScreen-Objekts und
@@ -179,8 +176,6 @@ namespace Knot3.Game.Screens
             startButton.AlignX = HorizontalAlignment.Center;
         }
 
-
-
         private void UpdateFiles ()
         {
             // Leere das Spielstand-Menü
@@ -255,6 +250,5 @@ namespace Knot3.Game.Screens
             base.Entered (previousScreen, time);
             AddGameComponents (time, savegameMenu, title, previewWorld, previewBorder, previewInput, previewMouseHandler, backButton, startButton, infoTitle);
         }
-
     }
 }

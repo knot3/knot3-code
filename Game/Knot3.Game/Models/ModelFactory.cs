@@ -58,7 +58,6 @@ namespace Knot3.Game.Models
     [ExcludeFromCodeCoverageAttribute]
     public sealed class ModelFactory
     {
-
         /// <summary>
         /// Die Zuordnung zwischen den Modellinformationen zu den 3D-Modellen.
         /// </summary>
@@ -70,8 +69,6 @@ namespace Knot3.Game.Models
         /// </summary>
         private Func<IGameScreen, GameModelInfo, GameModel> createModel { get; set; }
 
-
-
         /// <summary>
         /// Erstellt einen neuen Zwischenspeicher.
         /// </summary>
@@ -80,8 +77,6 @@ namespace Knot3.Game.Models
             this.createModel = createModel;
             cache = new Dictionary<GameModelInfo, GameModel> ();
         }
-
-
 
         /// <summary>
         /// Falls das 3D-Modell zwischengespeichert ist, wird es zurückgegeben, sonst mit createModel () erstellt.
@@ -97,6 +92,5 @@ namespace Knot3.Game.Models
                 }
             }
         }
-
     }
 }

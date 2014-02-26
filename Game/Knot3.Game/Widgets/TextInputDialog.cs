@@ -60,7 +60,6 @@ namespace Knot3.Game.Widgets
     [ExcludeFromCodeCoverageAttribute]
     public class TextInputDialog : Dialog, IKeyEventListener
     {
-
         /// <summary>
         /// Der Text, der durch den Spieler eingegeben wurde.
         /// </summary>
@@ -106,8 +105,6 @@ namespace Knot3.Game.Widgets
         private InputItem textInput;
         private TextItem textItem;
 
-
-
         /// <summary>
         ///
         /// </summary>
@@ -135,8 +132,6 @@ namespace Knot3.Game.Widgets
 
             ValidKeys.AddRange (new Keys[] { Keys.Enter, Keys.Escape });
         }
-
-
 
         /// <summary>
         ///
@@ -178,6 +173,5 @@ namespace Knot3.Game.Widgets
             }
             yield return menu;
         }
-
     }
 }

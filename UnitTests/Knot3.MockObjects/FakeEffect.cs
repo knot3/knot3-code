@@ -59,7 +59,6 @@ namespace Knot3.MockObjects
     /// </summary>
     public class FakeEffect : IRenderEffect
     {
-
         /// <summary>
         /// Das Rendertarget, in das zwischen dem Aufruf der Begin ()- und der End ()-Methode gezeichnet wird,
         /// weil es in Begin () als primäres Rendertarget des XNA-Frameworks gesetzt wird.
@@ -73,14 +72,10 @@ namespace Knot3.MockObjects
 
         public bool SelectiveRendering { get { return true; } }
 
-
-
         public FakeEffect (IGameScreen screen)
         {
             this.screen = screen;
         }
-
-
 
         /// <summary>
         /// In der Methode Begin () wird das aktuell von XNA genutzte Rendertarget auf einem Stack gesichert
@@ -139,6 +134,5 @@ namespace Knot3.MockObjects
         public void DrawLastFrame (GameTime time)
         {
         }
-
     }
 }

@@ -64,7 +64,6 @@ namespace Knot3.Game.Input
     [ExcludeFromCodeCoverageAttribute]
     public sealed class EdgeMovement : IGameObject, IEnumerable<IGameObject>
     {
-
         private IGameScreen Screen;
 
         /// <summary>
@@ -89,8 +88,6 @@ namespace Knot3.Game.Input
         private KnotRenderer knotRenderer;
         private Dictionary<Vector3, Knot> knotCache = new Dictionary<Vector3, Knot> ();
 
-
-
         /// <summary>
         /// Erzeugt eine neue Instanz eines EdgeMovement-Objekts und initialisiert diese
         /// mit ihrem zugehörigen IGameScreen-Objekt screen, der Spielwelt world und
@@ -104,8 +101,6 @@ namespace Knot3.Game.Input
             Info = new GameObjectInfo (position: position);
             shadowModels = new List<ShadowModel> ();
         }
-
-
 
         /// <summary>
         /// Gibt den Ursprung des Knotens zurück.
@@ -430,6 +425,5 @@ namespace Knot3.Game.Input
                 shadowObj.Draw (time);
             }
         }
-
     }
 }

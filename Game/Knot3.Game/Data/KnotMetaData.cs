@@ -61,7 +61,6 @@ namespace Knot3.Game.Data
     /// </summary>
     public class KnotMetaData : IEquatable<KnotMetaData>
     {
-
         /// <summary>
         /// Der Anzeigename des Knotens, welcher auch leer sein kann.
         /// Beim Speichern muss der Spieler in diesem Fall zwingend
@@ -117,8 +116,6 @@ namespace Knot3.Game.Data
         /// </summary>
         public string Filename { get; private set; }
 
-
-
         /// <summary>
         /// Erstellt ein neues Knoten-Metadaten-Objekt mit einem angegebenen Knotennamen
         /// und einer angegebenen Funktion, welche eine Kantenanzahl zurück gibt.
@@ -143,8 +140,6 @@ namespace Knot3.Game.Data
             Format = null;
             Filename = null;
         }
-
-
 
         public bool Equals (KnotMetaData other)
         {
@@ -182,6 +177,5 @@ namespace Knot3.Game.Data
         {
             return !(a == b);
         }
-
     }
 }

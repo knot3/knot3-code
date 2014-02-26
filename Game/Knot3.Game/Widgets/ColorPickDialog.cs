@@ -55,15 +55,12 @@ namespace Knot3.Game.Widgets
     [ExcludeFromCodeCoverageAttribute]
     public class ColorPickDialog : Dialog
     {
-
         /// <summary>
         /// Die ausgewählte Farbe.
         /// </summary>
         public Color SelectedColor { get; private set; }
 
         private ColorPicker colorPicker;
-
-
 
         /// <summary>
         /// Erzeugt ein neues ConfirmDialog-Objekt und initialisiert dieses mit dem zugehörigen IGameScreen-Objekt.
@@ -89,8 +86,6 @@ namespace Knot3.Game.Widgets
             // Diese Tasten werden akzeptiert
             ValidKeys.AddRange (new Keys[] { Keys.Escape });
         }
-
-
 
         /// <summary>
         ///
@@ -118,6 +113,5 @@ namespace Knot3.Game.Widgets
             }
             yield return colorPicker;
         }
-
     }
 }

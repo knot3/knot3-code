@@ -57,13 +57,10 @@ namespace Knot3.Game.Data
     [ExcludeFromCodeCoverageAttribute]
     public class PrinterIO : IKnotIO
     {
-
         /// <summary>
         /// Die gültigen Dateiendungen für das 3D-Drucker-Format.
         /// </summary>
         public IEnumerable<string> FileExtensions { get; set; }
-
-
 
         /// <summary>
         /// Erstellt ein neues PrinterIO-Objekt.
@@ -72,8 +69,6 @@ namespace Knot3.Game.Data
         {
             throw new System.NotImplementedException ();
         }
-
-
 
         /// <summary>
         /// Exportiert den Knoten in einem gültigen 3D-Drucker-Format.
@@ -98,6 +93,5 @@ namespace Knot3.Game.Data
         {
             throw new System.NotImplementedException ();
         }
-
     }
 }

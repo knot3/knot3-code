@@ -54,7 +54,6 @@ namespace Knot3.Framework.Effects
     [ExcludeFromCodeCoverageAttribute]
     public sealed class RenderEffectStack : IRenderEffectStack
     {
-
         private IGameScreen screen;
         private static Stack<IRenderEffect> stack = new Stack<IRenderEffect> ();
 
@@ -78,8 +77,6 @@ namespace Knot3.Framework.Effects
         /// </summary>
         private IRenderEffect defaultEffect { get; set; }
 
-
-
         /// <summary>
         /// Erstellt einen neuen Rendereffekt-Stapel.
         /// </summary>
@@ -89,8 +86,6 @@ namespace Knot3.Framework.Effects
             this.defaultEffect = defaultEffect;
             stack = new Stack<IRenderEffect> ();
         }
-
-
 
         /// <summary>
         /// Entfernt den obersten Rendereffekt vom Stapel.
@@ -120,6 +115,5 @@ namespace Knot3.Framework.Effects
             stack.Push (effect);
             screen.Device.SetRenderTarget (effect.RenderTarget);
         }
-
     }
 }

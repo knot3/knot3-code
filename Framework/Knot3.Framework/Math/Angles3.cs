@@ -51,7 +51,6 @@ namespace Knot3.Framework.Math
     /// </summary>
     public sealed class Angles3 : IEquatable<Angles3>
     {
-
         /// <summary>
         /// Der Winkel im Bogenmaß für das Rollen um die X-Achse. Siehe statische Methode Matrix.CreateRotationX (float) des XNA-Frameworks.
         /// </summary>
@@ -75,8 +74,6 @@ namespace Knot3.Framework.Math
             get { return new Angles3 (0f, 0f, 0f); }
         }
 
-
-
         /// <summary>
         /// Konstruiert ein neues Angles3-Objekt mit drei gegebenen Winkeln im Bogenmaß.
         /// </summary>
@@ -93,8 +90,6 @@ namespace Knot3.Framework.Math
             Y = v.Y;
             Z = v.Z;
         }
-
-
 
         /// <summary>
         /// Eine statische Methode, die Grad in Bogenmaß konvertiert.
@@ -133,8 +128,6 @@ namespace Knot3.Framework.Math
         {
             return (int)(this.X + this.Y + this.Z);
         }
-
-
 
         public static bool operator == (Angles3 value1, Angles3 value2)
         {
@@ -204,6 +197,5 @@ namespace Knot3.Framework.Math
                      + z.ToString ()
                      + ")";
         }
-
     }
 }

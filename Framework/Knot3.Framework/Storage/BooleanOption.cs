@@ -49,7 +49,6 @@ namespace Knot3.Framework.Storage
     /// </summary>
     public sealed class BooleanOption : DistinctOption
     {
-
         /// <summary>
         /// Eine Eigenschaft, die den aktuell abgespeicherten Wert zurückgibt.
         /// </summary>
@@ -68,8 +67,6 @@ namespace Knot3.Framework.Storage
             ConfigFile.False
         };
 
-
-
         /// <summary>
         /// Erstellt eine neue Option, welche die Werte \glqq Wahr\grqq~oder \glqq Falsch\grqq~annehmen kann. Mit dem angegebenen Namen, in dem
         /// angegebenen Abschnitt der angegebenen Einstellungsdatei.
@@ -79,6 +76,5 @@ namespace Knot3.Framework.Storage
         : base (section, name, defaultValue?ConfigFile.True:ConfigFile.False, ValidValues, configFile)
         {
         }
-
     }
 }

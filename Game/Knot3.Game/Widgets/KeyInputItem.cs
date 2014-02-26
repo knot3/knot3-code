@@ -61,7 +61,6 @@ namespace Knot3.Game.Widgets
     [ExcludeFromCodeCoverageAttribute]
     public sealed class KeyInputItem : InputItem
     {
-
         /// <summary>
         /// Die Option in einer Einstellungsdatei.
         /// </summary>
@@ -85,8 +84,6 @@ namespace Knot3.Game.Widgets
             set { throw new ArgumentException ("You can't change the ValueWidth of a KeyInputItem!"); }
         }
 
-
-
         /// <summary>
         /// Erzeugt ein neues CheckBoxItem-Objekt und initialisiert dieses mit dem zugehörigen IGameScreen-Objekt.
         /// Zudem sind Angaben zur Zeichenreihenfolge und der Eingabeoption Pflicht.
@@ -96,8 +93,6 @@ namespace Knot3.Game.Widgets
         {
             this.option = option;
         }
-
-
 
         /// <summary>
         /// Speichert die aktuell gedrückte Taste in der Option.
@@ -140,6 +135,5 @@ namespace Knot3.Game.Widgets
                 InputText = String.Empty;
             }
         }
-
     }
 }

@@ -56,7 +56,6 @@ namespace Knot3.Framework.Core
     [ExcludeFromCodeCoverageAttribute]
     public class GameScreen : IGameScreen
     {
-
         /// <summary>
         /// Das Spiel, zu dem der Spielzustand gehört.
         /// </summary>
@@ -103,8 +102,6 @@ namespace Knot3.Framework.Core
             get { return new Bounds (screen: this, relX: 0f, relY: 0f, relWidth: 1f, relHeight: 1f); }
         }
 
-
-
         /// <summary>
         /// Erzeugt ein neues IGameScreen-Objekt und initialisiert dieses mit einem Knot3Game-Objekt.
         /// </summary>
@@ -121,8 +118,6 @@ namespace Knot3.Framework.Core
             Audio = new AudioManager (this);
             BackgroundColor = Design.ScreenBackground;
         }
-
-
 
         /// <summary>
         /// Beginnt mit dem Füllen der Spielkomponentenliste des XNA-Frameworks und fügt sowohl für Tastatur- als auch für
@@ -185,6 +180,5 @@ namespace Knot3.Framework.Core
                 Game.Components.Remove (component);
             }
         }
-
     }
 }

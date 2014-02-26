@@ -50,7 +50,6 @@ namespace Knot3.Framework.Models
     [ExcludeFromCodeCoverageAttribute]
     public class GameObjectInfo : IEquatable<GameObjectInfo>
     {
-
         /// <summary>
         /// Die Verschiebbarkeit des Spielobjektes.
         /// </summary>
@@ -71,8 +70,6 @@ namespace Knot3.Framework.Models
         /// </summary>
         public Vector3 Position { get; set; }
 
-
-
         public GameObjectInfo (Vector3 position, bool isVisible = true, bool isSelectable = false, bool isMovable = false)
         {
             Position = position;
@@ -80,8 +77,6 @@ namespace Knot3.Framework.Models
             IsSelectable = isSelectable;
             IsMovable = isMovable;
         }
-
-
 
         /// <summary>
         /// Vergleicht zwei Informationsobjekte für Spielobjekte.
@@ -126,6 +121,5 @@ namespace Knot3.Framework.Models
         {
             return !(o1 == o2);
         }
-
     }
 }

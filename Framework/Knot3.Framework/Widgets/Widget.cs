@@ -53,7 +53,6 @@ namespace Knot3.Framework.Widgets
     [ExcludeFromCodeCoverageAttribute]
     public abstract class Widget : DrawableGameScreenComponent
     {
-
         /// <summary>
         /// Die Ausmaße des Widgets.
         /// </summary>
@@ -147,8 +146,6 @@ namespace Knot3.Framework.Widgets
 
         public bool IsLocalized { get; set; }
 
-
-
         /// <summary>
         /// Erstellt ein neues grafisches Benutzerschnittstellenelement in dem angegebenen Spielzustand
         /// mit der angegebenen Zeichenreihenfolge.
@@ -170,6 +167,5 @@ namespace Knot3.Framework.Widgets
             SelectedColorBackground = Design.WidgetForeground;
             SelectedColorForeground = Design.WidgetBackground;
         }
-
     }
 }

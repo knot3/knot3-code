@@ -62,7 +62,6 @@ namespace Knot3.Game.Models
     [ExcludeFromCodeCoverageAttribute]
     public sealed class Junction : GameModelInfo, IJunction
     {
-
         /// <summary>
         /// Die Kante vor dem Übergang.
         /// </summary>
@@ -224,8 +223,6 @@ namespace Knot3.Game.Models
             { Tuple.Create (Direction.Backward, Direction.Down), 	Tuple.Create (0f, 0f) }, // works
         };
 
-
-
         /// <summary>
         /// Erstellt ein neues Informationsobjekt für ein 3D-Modell, das einen Kantenübergang darstellt.
         /// [base="node1", Angles3.Zero, new Vector3 (1,1,1)]
@@ -255,8 +252,6 @@ namespace Knot3.Game.Models
                 }
             };
         }
-
-
 
         private void chooseModel ()
         {
@@ -357,7 +352,6 @@ namespace Knot3.Game.Models
                 return base.Equals (other);
             }
         }
-
     }
 
     enum JunctionDirection {

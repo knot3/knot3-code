@@ -65,7 +65,6 @@ namespace Knot3.Game.Input
     [ExcludeFromCodeCoverageAttribute]
     public sealed class KnotInputHandler : GameScreenComponent, IKeyEventListener, IMouseMoveEventListener, IMouseScrollEventListener
     {
-
         /// <summary>
         /// Die Spielwelt.
         /// </summary>
@@ -133,8 +132,6 @@ namespace Knot3.Game.Input
 
         public bool IsModal { get { return false; } }
 
-
-
         /// <summary>
         /// Erstellt einen neuen KnotInputHandler für den angegebenen Spielzustand und die angegebene Spielwelt.
         /// [base=screen]
@@ -186,8 +183,6 @@ namespace Knot3.Game.Input
                 },
             };
         }
-
-
 
         /// <summary>
         /// Wird für jeden Frame aufgerufen.
@@ -556,6 +551,5 @@ namespace Knot3.Game.Input
         public Bounds MouseMoveBounds { get { return world.Bounds; } }
 
         public Bounds MouseScrollBounds { get { return world.Bounds; } }
-
     }
 }

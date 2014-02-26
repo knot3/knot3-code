@@ -61,7 +61,6 @@ namespace Knot3.Game.Widgets
     [ExcludeFromCodeCoverageAttribute]
     public sealed class ColorPicker : Widget, IKeyEventListener, IMouseClickEventListener
     {
-
         /// <summary>
         /// Die ausgewählte Farbe.
         /// </summary>
@@ -78,8 +77,6 @@ namespace Knot3.Game.Widgets
         private SpriteBatch spriteBatch;
 
         public Bounds MouseClickBounds { get { return Bounds; } }
-
-
 
         /// <summary>
         /// Erzeugt eine neue Instanz eines ColorPicker-Objekts und initialisiert diese
@@ -116,8 +113,6 @@ namespace Knot3.Game.Widgets
                 SelectedColor = color;
             };
         }
-
-
 
         [ExcludeFromCodeCoverageAttribute]
         public override void Draw (GameTime time)
@@ -211,6 +206,5 @@ namespace Knot3.Game.Widgets
                 }
             }
         }
-
     }
 }

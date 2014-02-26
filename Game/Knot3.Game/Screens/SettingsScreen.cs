@@ -62,7 +62,6 @@ namespace Knot3.Game.Screens
     [ExcludeFromCodeCoverageAttribute]
     public class SettingsScreen : MenuScreen
     {
-
         /// <summary>
         /// Der Name des Menüs.
         /// </summary>
@@ -82,8 +81,6 @@ namespace Knot3.Game.Screens
         /// Zurück-Button.
         /// </summary>
         private MenuEntry backButton;
-
-
 
         public SettingsScreen (GameClass game)
         : base (game)
@@ -155,8 +152,6 @@ namespace Knot3.Game.Screens
             backButton.AlignX = HorizontalAlignment.Center;
         }
 
-
-
         /// <summary>
         /// Fügt das Haupt-Einstellungsmenü in die Spielkomponentenliste ein.
         /// </summary>
@@ -181,6 +176,5 @@ namespace Knot3.Game.Screens
             );
             spriteBatch.End ();
         }
-
     }
 }

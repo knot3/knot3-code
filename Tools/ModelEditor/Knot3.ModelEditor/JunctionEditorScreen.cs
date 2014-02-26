@@ -61,7 +61,6 @@ namespace Knot3.ModelEditor
     [ExcludeFromCodeCoverageAttribute]
     public class JunctionEditorScreen : GameScreen
     {
-
         /// <summary>
         /// Die Spielwelt in der die 3D-Objekte des dargestellten Knotens enthalten sind.
         /// </summary>
@@ -78,8 +77,6 @@ namespace Knot3.ModelEditor
         private MenuEntry backButton;
         private Menu settingsMenu;
         private DropDownMenuItem[] itemBumpRotation;
-
-
 
         /// <summary>
         /// Erzeugt eine neue Instanz eines CreativeModeScreen-Objekts und initialisiert diese mit einem Knot3Game-Objekt game, sowie einem Knoten knot.
@@ -165,8 +162,6 @@ namespace Knot3.ModelEditor
             world.Camera.PositionToTargetDistance = 180;
         }
 
-
-
         private void OnDirectionsChanged (GameTime time)
         {
             var directions = Directions;
@@ -246,6 +241,5 @@ namespace Knot3.ModelEditor
             // Einstellungen anwenden
             debugBoundings.Info.IsVisible = Config.Default ["debug", "show-boundings", false];
         }
-
     }
 }

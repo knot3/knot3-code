@@ -53,7 +53,6 @@ namespace Knot3.Framework.Widgets
     [ExcludeFromCodeCoverageAttribute]
     public class TextItem : MenuItem
     {
-
         /// <summary>
         /// Wie viel Prozent der Name des Eintrags (auf der linken Seite) von der Breite des Eintrags einnehmen darf.
         /// </summary>
@@ -72,8 +71,6 @@ namespace Knot3.Framework.Widgets
             set { throw new ArgumentException ("You can't change the ValueWidth of a TextItem!"); }
         }
 
-
-
         /// <summary>
         /// Erzeugt ein neues TextItem-Objekt und initialisiert dieses mit dem zugehörigen IGameScreen-Objekt.
         /// Zudem sind Angabe der Zeichenreihenfolge und der Zeichenkette, die angezeigt wird, für Pflicht.
@@ -83,13 +80,10 @@ namespace Knot3.Framework.Widgets
         {
         }
 
-
-
         //Da TextItems werden nicht unterlegt um sie von Buttons abzugrenzen
         public override void SetHovered (bool hovered, GameTime time)
         {
             State = WidgetState.None;
         }
-
     }
 }

@@ -60,7 +60,6 @@ namespace Knot3.Game.Models
     [ExcludeFromCodeCoverageAttribute]
     public sealed class TexturedRectangle : IGameObject, IDisposable, IEquatable<TexturedRectangle>
     {
-
         private IGameScreen Screen;
 
         GameObjectInfo IGameObject.Info { get { return Info; } }
@@ -78,8 +77,6 @@ namespace Knot3.Game.Models
         private short[] Indexes;
         private BasicEffect basicEffect;
         private Texture2D texture;
-
-
 
         public TexturedRectangle (IGameScreen screen, TexturedRectangleInfo info)
         {
@@ -99,14 +96,10 @@ namespace Knot3.Game.Models
             }
         }
 
-
-
         [ExcludeFromCodeCoverageAttribute]
         public void Update (GameTime time)
         {
         }
-
-
 
         [ExcludeFromCodeCoverageAttribute]
         public void Draw (GameTime time)
@@ -145,7 +138,6 @@ namespace Knot3.Game.Models
                 Screen.Viewport = original;
             }
         }
-
 
         private void FillVertices ()
         {

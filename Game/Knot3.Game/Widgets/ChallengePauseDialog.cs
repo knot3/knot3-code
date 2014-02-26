@@ -61,13 +61,10 @@ namespace Knot3.Game.Widgets
     [ExcludeFromCodeCoverageAttribute]
     public sealed class ChallengePauseDialog : Dialog
     {
-
         /// <summary>
         /// Das Menü, das verschiedene Schaltflächen enthält.
         /// </summary>
         private Menu pauseMenu;
-
-
 
         /// <summary>
         ///
@@ -121,8 +118,6 @@ namespace Knot3.Game.Widgets
             pauseMenu.Add (discardExitButton);
         }
 
-
-
         [ExcludeFromCodeCoverageAttribute]
         public override void Draw (GameTime time)
         {
@@ -140,6 +135,5 @@ namespace Knot3.Game.Widgets
             }
             yield return pauseMenu;
         }
-
     }
 }

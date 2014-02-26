@@ -43,7 +43,6 @@ namespace Knot3.Framework.Storage
     /// </summary>
     public sealed class FloatOption : DistinctOption
     {
-
         /// <summary>
         /// Eine Eigenschaft, die den aktuell abgespeicherten Wert zurückgibt.
         /// </summary>
@@ -70,8 +69,6 @@ namespace Knot3.Framework.Storage
                 return new Dictionary<string, string>(base.ValidValues.ToDictionary (s => String.Empty + stringToFloat (s), s => s));
             }
         }
-
-
 
         /// <summary>
         /// Erstellt eine neue Option, welche die Werte \glqq Wahr\grqq~oder \glqq Falsch\grqq~annehmen kann. Mit dem angegebenen Namen, in dem

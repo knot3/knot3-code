@@ -50,7 +50,6 @@ namespace Knot3.Framework.Input
     /// </summary>
     public interface IMouseClickEventListener
     {
-
         /// <summary>
         /// Die Eingabepriorität.
         /// </summary>
@@ -60,8 +59,6 @@ namespace Knot3.Framework.Input
         /// Ob die Klasse zur Zeit auf Mausklicks reagiert.
         /// </summary>
         bool IsMouseClickEventEnabled { get; }
-
-
 
         /// <summary>
         /// Die Ausmaße des von der Klasse repräsentierten Objektes.
@@ -79,6 +76,5 @@ namespace Knot3.Framework.Input
         void OnRightClick (Vector2 position, ClickState state, GameTime time);
 
         void SetHovered (bool hovered, GameTime time);
-
     }
 }

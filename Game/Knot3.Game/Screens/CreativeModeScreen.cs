@@ -63,7 +63,6 @@ namespace Knot3.Game.Screens
     [ExcludeFromCodeCoverageAttribute]
     public class CreativeModeScreen : GameScreen
     {
-
         /// <summary>
         /// Die Spielwelt in der die 3D-Objekte des dargestellten Knotens enthalten sind.
         /// </summary>
@@ -121,8 +120,6 @@ namespace Knot3.Game.Screens
         // Redo-Button
         private Button redoButton;
         private Border redoButtonBorder;
-
-
 
         /// <summary>
         /// Erzeugt eine neue Instanz eines CreativeModeScreen-Objekts und initialisiert diese mit einem Knot3Game-Objekt game, sowie einem Knoten knot.
@@ -220,8 +217,6 @@ namespace Knot3.Game.Screens
         }
         */
 
-
-
         private void OnKnotMoved (Knot newKnot)
         {
             OnEdgesChanged ();
@@ -311,6 +306,5 @@ namespace Knot3.Game.Screens
             // Einstellungen anwenden
             debugBoundings.Info.IsVisible = Config.Default ["debug", "show-boundings", false];
         }
-
     }
 }

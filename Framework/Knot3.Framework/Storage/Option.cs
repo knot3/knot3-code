@@ -50,7 +50,6 @@ namespace Knot3.Framework.Storage
     /// </summary>
     public class Option
     {
-
         /// <summary>
         /// Die Einstellungsdatei.
         /// </summary>
@@ -90,8 +89,6 @@ namespace Knot3.Framework.Storage
             }
         }
 
-
-
         /// <summary>
         /// Erstellt ein neues OptionsInfo-Objekt aus den übergegebenen Werten.
         /// </summary>
@@ -103,6 +100,5 @@ namespace Knot3.Framework.Storage
             ConfigFile = configFile != null ? configFile : Config.Default;
             Verbose = true;
         }
-
     }
 }

@@ -62,13 +62,10 @@ namespace Knot3.Game.Development
     [ExcludeFromCodeCoverageAttribute]
     public class DebugSettingsScreen : SettingsScreen
     {
-
         /// <summary>
         /// Das Menü, das die Einstellungen enthält.
         /// </summary>
         private Menu settingsMenu;
-
-
 
         /// <summary>
         /// Erzeugt ein neues DebugSettingsScreen-Objekt und initialisiert dieses mit einem Knot3Game-Objekt.
@@ -154,8 +151,6 @@ namespace Knot3.Game.Development
             */
         }
 
-
-
         /// <summary>
         /// Wird für jeden Frame aufgerufen.
         /// </summary>
@@ -172,6 +167,5 @@ namespace Knot3.Game.Development
             base.Entered (previousScreen, time);
             AddGameComponents (time, settingsMenu);
         }
-
     }
 }

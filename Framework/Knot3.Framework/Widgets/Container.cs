@@ -55,7 +55,6 @@ namespace Knot3.Framework.Widgets
     [ExcludeFromCodeCoverageAttribute]
     public class Container : Widget, IEnumerable<Widget>
     {
-
         /// <summary>
         /// Die vom Zustand des Menüeintrags abhängige Vordergrundfarbe des Menüeintrags.
         /// </summary>
@@ -94,8 +93,6 @@ namespace Knot3.Framework.Widgets
             }
         }
 
-
-
         /// <summary>
         /// Erzeugt ein neues Menu-Objekt und initialisiert dieses mit dem zugehörigen IGameScreen-Objekt.
         /// Zudem ist die Angabe der Zeichenreihenfolge Pflicht.
@@ -107,8 +104,6 @@ namespace Knot3.Framework.Widgets
             ItemAlignX = HorizontalAlignment.Left;
             ItemAlignY = VerticalAlignment.Center;
         }
-
-
 
         /// <summary>
         /// Fügt einen Eintrag in das Menü ein. Falls der Menüeintrag \glqq null\grqq~oder leere Werte für
@@ -232,6 +227,5 @@ namespace Knot3.Framework.Widgets
                 item.Collapse ();
             }
         }
-
     }
 }

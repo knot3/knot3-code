@@ -60,13 +60,10 @@ namespace Knot3.Game.Screens
     [ExcludeFromCodeCoverageAttribute]
     public class ProfileSettingsScreen : SettingsScreen
     {
-
         /// <summary>
         /// Das vertikale Menü wo die Einstellungen anzeigt. Hier nimmt der Spieler Einstellungen vor.
         /// </summary>
         private Menu settingsMenu { get; set; }
-
-
 
         /// <summary>
         /// Erzeugt eine neue Instanz eines ProfileSettingsScreen-Objekts und initialisiert dieses mit einem Knot3Game-Objekt.
@@ -96,8 +93,6 @@ namespace Knot3.Game.Screens
             settingsMenu.Add (playerNameInput);
         }
 
-
-
         /// <summary>
         /// Wird für jeden Frame aufgerufen.
         /// </summary>
@@ -114,6 +109,5 @@ namespace Knot3.Game.Screens
             base.Entered (previousScreen, time);
             AddGameComponents (time, settingsMenu);
         }
-
     }
 }

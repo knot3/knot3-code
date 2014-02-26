@@ -56,7 +56,6 @@ namespace Knot3.Framework.Widgets
     [ExcludeFromCodeCoverageAttribute]
     public abstract class MenuItem : Widget, IKeyEventListener, IMouseClickEventListener, IMouseScrollEventListener
     {
-
         /// <summary>
         /// Die Zeichenreihenfolge.
         /// </summary>
@@ -94,7 +93,6 @@ namespace Knot3.Framework.Widgets
 
         public Action<bool, GameTime> Hovered = (isHovered, time) => {};
 
-
         public MenuItem (IGameScreen screen, DisplayLayer drawOrder, string text)
         : base (screen, drawOrder)
         {
@@ -105,8 +103,6 @@ namespace Knot3.Framework.Widgets
             SelectedColorBackground = Color.Transparent;
             SelectedColorForeground = Color.White;
         }
-
-
 
         /// <summary>
         /// Reaktionen auf einen Linksklick.
@@ -198,6 +194,5 @@ namespace Knot3.Framework.Widgets
         public virtual void Collapse ()
         {
         }
-
     }
 }

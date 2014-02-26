@@ -50,7 +50,6 @@ namespace Knot3.Framework.Core
     /// </summary>
     public class DisplayLayer : IEquatable<DisplayLayer>
     {
-
         /// <summary>
         /// Steht für die hinterste Ebene bei der Zeichenreihenfolge.
         /// </summary>
@@ -93,15 +92,9 @@ namespace Knot3.Framework.Core
             None, Background, GameWorld, ScreenUI, Dialog, Menu, MenuItem, Overlay, Cursor
         };
 
-
-
-
-
         public int Index { get; private set; }
 
         public string Description { get; private set; }
-
-
 
         private DisplayLayer (int index, string desciption)
         {
@@ -114,8 +107,6 @@ namespace Knot3.Framework.Core
             Index = layer1.Index + layer2.Index;
             Description = layer1.Description + "+" + layer2.Description;
         }
-
-
 
         [ExcludeFromCodeCoverageAttribute]
         public override string ToString ()
@@ -184,6 +175,5 @@ namespace Knot3.Framework.Core
         {
             return Description.GetHashCode ();
         }
-
     }
 }

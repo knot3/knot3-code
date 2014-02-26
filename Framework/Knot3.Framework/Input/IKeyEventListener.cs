@@ -49,7 +49,6 @@ namespace Knot3.Framework.Input
     /// </summary>
     public interface IKeyEventListener
     {
-
         /// <summary>
         /// Die Eingabepriorität.
         /// </summary>
@@ -67,12 +66,9 @@ namespace Knot3.Framework.Input
         /// </summary>
         List<Keys> ValidKeys { get; }
 
-
-
         /// <summary>
         /// Die Reaktion auf eine Tasteneingabe.
         /// </summary>
         void OnKeyEvent (List<Keys> key, KeyEvent keyEvent, GameTime time);
-
     }
 }

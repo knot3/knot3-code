@@ -49,7 +49,6 @@ namespace Knot3.Framework.Core
 {
     public interface IGameScreen
     {
-
         /// <summary>
         /// Das Spiel, zu dem der Spielzustand gehört.
         /// </summary>
@@ -89,8 +88,6 @@ namespace Knot3.Framework.Core
 
         Bounds Bounds { get; }
 
-
-
         /// <summary>
         /// Beginnt mit dem Füllen der Spielkomponentenliste des XNA-Frameworks und fügt sowohl für Tastatur- als auch für
         /// Mauseingaben einen Inputhandler für Widgets hinzu. Wird in Unterklassen von IGameScreen reimplementiert und fügt zusätzlich weitere
@@ -122,6 +119,5 @@ namespace Knot3.Framework.Core
         /// Entfernt die angegebenen GameComponents aus der Components-Liste des Games.
         /// </summary>
         void RemoveGameComponents (GameTime time, params IGameScreenComponent[] components);
-
     }
 }

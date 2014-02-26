@@ -51,7 +51,6 @@ namespace Knot3.Framework.Models
     [ExcludeFromCodeCoverageAttribute]
     public sealed class GameObjectDistance
     {
-
         /// <summary>
         /// Ein Spielobjekt.
         /// </summary>
@@ -61,6 +60,5 @@ namespace Knot3.Framework.Models
         /// Distance hält den Abstand als Gleitkommawert.
         /// </summary>
         public float Distance { get; set; }
-
     }
 }

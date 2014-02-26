@@ -57,10 +57,7 @@ namespace Knot3.Game.Screens
     [ExcludeFromCodeCoverageAttribute]
     public class CreditsScreen : MenuScreen
     {
-
         private String text;
-
-
 
         /// <summary>
         /// Erzeugt ein neues CreditsScreen-Objekt und initialisiert dieses mit einem Knot3Game-Objekt.
@@ -70,8 +67,6 @@ namespace Knot3.Game.Screens
         {
             text = "...";
         }
-
-
 
         /// <summary>
         /// Wird für jeden Frame aufgerufen.
@@ -90,6 +85,5 @@ namespace Knot3.Game.Screens
         public override void Entered (IGameScreen previousScreen, GameTime GameTime)
         {
         }
-
     }
 }

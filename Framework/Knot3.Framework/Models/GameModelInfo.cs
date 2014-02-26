@@ -51,7 +51,6 @@ namespace Knot3.Framework.Models
     [ExcludeFromCodeCoverageAttribute]
     public abstract class GameModelInfo : GameObjectInfo
     {
-
         /// <summary>
         /// Der Dateiname des Modells.
         /// </summary>
@@ -66,8 +65,6 @@ namespace Knot3.Framework.Models
         /// Die Skalierung des Modells.
         /// </summary>
         public Vector3 Scale { get; set; }
-
-
 
         /// <summary>
         /// Erstellt ein neues Informations-Objekt eines 3D-Modells mit den angegebenen Informationen zu
@@ -92,6 +89,5 @@ namespace Knot3.Framework.Models
             Rotation = Angles3.Zero;
             Scale = Vector3.One;
         }
-
     }
 }

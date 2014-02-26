@@ -60,7 +60,6 @@ namespace Knot3.Game.Screens
     [ExcludeFromCodeCoverageAttribute]
     public class AudioSettingsScreen : SettingsScreen
     {
-
         /// <summary>
         /// Das Menü, das die Einstellungen enthält.
         /// </summary>
@@ -85,8 +84,6 @@ namespace Knot3.Game.Screens
         };
 
         private Action UpdateSliders = () => {};
-
-
 
         /// <summary>
         /// Erzeugt ein neues AudioSettingsScreen-Objekt und initialisiert dieses mit einem Knot3Game-Objekt.
@@ -135,8 +132,6 @@ namespace Knot3.Game.Screens
             UpdateSliders ();
         }
 
-
-
         /// <summary>
         /// Fügt das Menü mit den Einstellungen in die Spielkomponentenliste ein.
         /// </summary>
@@ -146,6 +141,5 @@ namespace Knot3.Game.Screens
             AddGameComponents (GameTime, settingsMenu);
             UpdateSliders ();
         }
-
     }
 }

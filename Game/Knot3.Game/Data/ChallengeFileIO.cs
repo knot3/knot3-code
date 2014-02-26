@@ -62,7 +62,6 @@ namespace Knot3.Game.Data
     /// </summary>
     public sealed class ChallengeFileIO : IChallengeIO
     {
-
         /// <summary>
         /// Die für eine Knoten-Datei gültigen Dateiendungen.
         /// </summary>
@@ -77,16 +76,12 @@ namespace Knot3.Game.Data
             }
         }
 
-
-
         /// <summary>
         /// Erstellt ein ChallengeFileIO-Objekt.
         /// </summary>
         public ChallengeFileIO ()
         {
         }
-
-
 
         /// <summary>
         /// Speichert eine Challenge in dem Dateinamen, der in dem Challenge-Objekt enthalten ist.
@@ -237,7 +232,6 @@ namespace Knot3.Game.Data
                 }
             }
         }
-
     }
 
     [ExcludeFromCodeCoverageAttribute]

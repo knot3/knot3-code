@@ -54,7 +54,6 @@ namespace Knot3.Framework.Effects
     [ExcludeFromCodeCoverageAttribute]
     public abstract class RenderEffect : IRenderEffect
     {
-
         /// <summary>
         /// Das Rendertarget, in das zwischen dem Aufruf der Begin ()- und der End ()-Methode gezeichnet wird,
         /// weil es in Begin () als primäres Rendertarget des XNA-Frameworks gesetzt wird.
@@ -75,8 +74,6 @@ namespace Knot3.Framework.Effects
 
         public bool SelectiveRendering { get; set; }
 
-
-
         public RenderEffect (IGameScreen screen)
         {
             this.screen = screen;
@@ -84,8 +81,6 @@ namespace Knot3.Framework.Effects
             screen.Game.FullScreenChanged += () => renderTargets.Clear ();
             SelectiveRendering = true;
         }
-
-
 
         /// <summary>
         /// In der Methode Begin () wird das aktuell von XNA genutzte Rendertarget auf einem Stack gesichert
@@ -214,8 +209,6 @@ namespace Knot3.Framework.Effects
             spriteBatch.End ();
         }
 
-
-
         private Dictionary<Point,Dictionary<Rectangle,Dictionary<float, RenderTarget2D>>> renderTargets
             = new Dictionary<Point,Dictionary<Rectangle,Dictionary<float, RenderTarget2D>>> ();
 
@@ -255,6 +248,5 @@ namespace Knot3.Framework.Effects
                 return renderTargets [resolution] [viewport] [Supersampling];
             }
         }
-
     }
 }

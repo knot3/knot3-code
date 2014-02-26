@@ -52,7 +52,6 @@ namespace Knot3.Framework.Input
     [ExcludeFromCodeCoverageAttribute]
     public sealed class InputManager : GameScreenComponent
     {
-
         /// <summary>
         /// Enthält den Klickzustand der rechten Maustaste.
         /// </summary>
@@ -109,8 +108,6 @@ namespace Knot3.Framework.Input
 
         public static bool FullscreenToggled { get; set; }
 
-
-
         /// <summary>
         /// Erstellt ein neues InputManager-Objekt, das an den übergebenen Spielzustand gebunden ist.
         /// </summary>
@@ -122,8 +119,6 @@ namespace Knot3.Framework.Input
             PreviousKeyboardState = CurrentKeyboardState = Keyboard.GetState ();
             PreviousMouseState = CurrentMouseState = Mouse.GetState ();
         }
-
-
 
         /// <summary>
         /// Wird für jeden Frame aufgerufen.
@@ -233,6 +228,5 @@ namespace Knot3.Framework.Input
         {
             return CurrentKeyboardState.IsKeyDown (key);
         }
-
     }
 }

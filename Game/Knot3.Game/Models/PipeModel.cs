@@ -59,7 +59,6 @@ namespace Knot3.Game.Models
     [ExcludeFromCodeCoverageAttribute]
     public sealed class PipeModel : GameModel
     {
-
         /// <summary>
         /// Enthält Informationen über die darzustellende Kante.
         /// </summary>
@@ -73,8 +72,6 @@ namespace Knot3.Game.Models
         }
 
         public bool IsVirtual { get; set; }
-
-
 
         /// <summary>
         /// Erstellt ein neues 3D-Modell mit dem angegebenen Spielzustand und den angegebenen Spielinformationen.
@@ -92,8 +89,6 @@ namespace Knot3.Game.Models
                           position: info.PositionFrom
                       );
         }
-
-
 
         [ExcludeFromCodeCoverageAttribute]
         public override void Draw (GameTime time)
@@ -131,6 +126,5 @@ namespace Knot3.Game.Models
             }
             return null;
         }
-
     }
 }

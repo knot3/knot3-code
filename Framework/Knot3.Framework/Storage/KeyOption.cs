@@ -46,7 +46,6 @@ namespace Knot3.Framework.Storage
 {
     public class KeyOption : DistinctOption
     {
-
         /// <summary>
         /// Eine Eigenschaft, die den aktuell abgespeicherten Wert zurückgibt.
         /// </summary>
@@ -62,12 +61,9 @@ namespace Knot3.Framework.Storage
 
         public new static IEnumerable<string> ValidValues = typeof (Keys).ToEnumValues<Keys> ().ToEnumDescriptions<Keys> ();
 
-
-
         public KeyOption (string section, string name, Keys defaultValue, ConfigFile configFile)
         : base (section, name, defaultValue.ToEnumDescription<Keys> (), ValidValues, configFile)
         {
         }
-
     }
 }

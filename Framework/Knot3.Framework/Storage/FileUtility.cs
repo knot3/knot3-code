@@ -53,7 +53,6 @@ namespace Knot3.Framework.Storage
     /// </summary>
     public static class FileUtility
     {
-
         /// <summary>
         /// Konvertiert einen Namen eines Knotens oder einer Challenge in einen gültigen Dateinamen durch Weglassen ungültiger Zeichen.
         /// </summary>
@@ -114,6 +113,5 @@ namespace Knot3.Framework.Storage
                 add (file);
             }
         }
-
     }
 }

@@ -56,7 +56,6 @@ namespace Knot3.Game.Data
     /// </summary>
     public sealed class Edge : IEquatable<Edge>, ICloneable
     {
-
         /// <summary>
         /// Die Farbe der Kante.
         /// </summary>
@@ -74,8 +73,6 @@ namespace Knot3.Game.Data
 
         private int id;
         private static int previousId = 0;
-
-
 
         /// <summary>
         /// Erstellt eine neue Kante mit der angegebenen Richtung.
@@ -98,8 +95,6 @@ namespace Knot3.Game.Data
             id = ++previousId;
             Rectangles = new HashSet<int>();
         }
-
-
 
         public static bool operator == (Edge a, Edge b)
         {
@@ -176,8 +171,6 @@ namespace Knot3.Game.Data
             return edge.Color;
         }
 
-
-
         private static Random r = new Random ();
 
         public static Color RandomColor ()
@@ -200,8 +193,6 @@ namespace Knot3.Game.Data
         {
             return new Edge (Direction, Color);
         }
-
-
 
         public static List<Color> Colors = new List<Color> ()
         {
@@ -228,6 +219,5 @@ namespace Knot3.Game.Data
         public static Edge Forward { get { return new Edge (Direction.Forward); } }
 
         public static Edge Backward { get { return new Edge (Direction.Backward); } }
-
     }
 }

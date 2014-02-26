@@ -42,7 +42,6 @@ namespace Knot3.Framework.Math
 {
     public class ScreenPoint : IEquatable<ScreenPoint>
     {
-
         public IGameScreen Screen { get; private set; }
 
         public Vector2 Relative
@@ -99,8 +98,6 @@ namespace Knot3.Framework.Math
 
         public bool IsEmpty { get { return Relative.Length () == 0; } }
 
-
-
         public ScreenPoint (IGameScreen screen, Func<Vector2> func)
         {
             Screen = screen;
@@ -124,8 +121,6 @@ namespace Knot3.Framework.Math
             Screen = screen;
             RelativeFunc = () => new Vector2 (x (), y ());
         }
-
-
 
         public void Assign (ScreenPoint other)
         {
@@ -271,6 +266,5 @@ namespace Knot3.Framework.Math
         {
             return Relative.GetHashCode ();
         }
-
     }
 }

@@ -58,7 +58,6 @@ namespace Knot3.Framework.Core
     /// </summary>
     public sealed class Camera : GameScreenComponent
     {
-
         private Vector3 _position;
 
         /// <summary>
@@ -145,8 +144,6 @@ namespace Knot3.Framework.Core
         private float farPlane;
         private Vector3 defaultPosition = new Vector3 (400, 400, 700);
 
-
-
         /// <summary>
         /// Erstellt eine neue Kamera in einem bestimmten IGameScreen für eine bestimmte Spielwelt.
         /// </summary>
@@ -166,8 +163,6 @@ namespace Knot3.Framework.Core
 
             UpdateMatrices (null);
         }
-
-
 
         /// <summary>
         /// Die Blickrichtung.
@@ -362,6 +357,5 @@ namespace Knot3.Framework.Core
                                      );
             return new Vector2 (screenLocation.X, screenLocation.Y);
         }
-
     }
 }

@@ -50,7 +50,6 @@ namespace Knot3.Framework.Models
     /// </summary>
     public interface IGameObject
     {
-
         /// <summary>
         /// Informationen über das Spielobjekt, wie z.B. die Position.
         /// </summary>
@@ -60,8 +59,6 @@ namespace Knot3.Framework.Models
         /// Eine Referenz auf die Spielwelt, in der sich das Spielobjekt befindet.
         /// </summary>
         World World { get; set; }
-
-
 
         /// <summary>
         /// Die Mitte des Spielobjektes im 3D-Raum.
@@ -82,6 +79,5 @@ namespace Knot3.Framework.Models
         /// Überprüft, ob der Mausstrahl das Spielobjekt schneidet.
         /// </summary>
         GameObjectDistance Intersects (Ray ray);
-
     }
 }

@@ -61,7 +61,6 @@ namespace Knot3.Game.Data
     /// </summary>
     public sealed class KnotFileIO : IKnotIO
     {
-
         /// <summary>
         /// Die für eine Knoten-Datei gültigen Dateiendungen.
         /// </summary>
@@ -76,16 +75,12 @@ namespace Knot3.Game.Data
         private Dictionary<string, Knot> KnotCache = new Dictionary<string, Knot> ();
         private Dictionary<string, KnotMetaData> KnotMetaDataCache = new Dictionary<string, KnotMetaData> ();
 
-
-
         /// <summary>
         /// Erstellt ein KnotFileIO-Objekt.
         /// </summary>
         public KnotFileIO ()
         {
         }
-
-
 
         /// <summary>
         /// Speichert einen Knoten in dem Dateinamen, der in dem Knot-Objekt enthalten ist.
@@ -144,6 +139,5 @@ namespace Knot3.Game.Data
         {
             return "KnotFileIO";
         }
-
     }
 }

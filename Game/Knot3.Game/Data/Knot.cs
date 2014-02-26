@@ -60,7 +60,6 @@ namespace Knot3.Game.Data
     /// </summary>
     public sealed class Knot : ICloneable, IEnumerable<Edge>, IEquatable<Knot>
     {
-
         /// <summary>
         /// Der Name des Knotens, welcher auch leer sein kann.
         /// Beim Speichern muss der Nutzer in diesem Fall zwingend einen nichtleeren Namen wählen.
@@ -126,8 +125,6 @@ namespace Knot3.Game.Data
 
         public Vector3 OffSet { get; private set;}
 
-
-
         /// <summary>
         /// Erstellt einen minimalen Standardknoten. Das Metadaten-Objekt enthält in den Eigenschaften,
         /// die das Speicherformat und den Dateinamen beinhalten, den Wert \glqq null\grqq.
@@ -185,8 +182,6 @@ namespace Knot3.Game.Data
             selectedEdges = selected;
             OffSet = offset;
         }
-
-
 
         /// <summary>
         /// Prüft ob die gegeben Struktur einen gültigen Knoten darstellt.
@@ -616,8 +611,6 @@ namespace Knot3.Game.Data
                    + ")";
         }
 
-
-
         private struct KnotCharakteristic {
             public CircleEntry<Edge> CharacteristicalEdge { get; private set; }
 
@@ -630,6 +623,5 @@ namespace Knot3.Game.Data
                 CountEdges = countEdges;
             }
         }
-
     }
 }

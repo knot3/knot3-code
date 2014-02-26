@@ -58,14 +58,11 @@ namespace Knot3.Game.Screens
     [ExcludeFromCodeCoverageAttribute]
     public class TutorialChallengeModeScreen : ChallengeModeScreen
     {
-
         public TutorialChallengeModeScreen (Knot3Game game, Challenge challenge)
         : base (game, challenge)
         {
             throw new System.NotImplementedException ();
         }
-
-
 
         /// <summary>
         /// Fügt die Tutoriellanzeige in die Spielkomponentenliste ein.
@@ -74,6 +71,5 @@ namespace Knot3.Game.Screens
         {
             throw new System.NotImplementedException ();
         }
-
     }
 }

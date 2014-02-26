@@ -57,7 +57,6 @@ namespace Knot3.Game.Data
     /// </summary>
     public sealed class NodeMap : INodeMap
     {
-
         private Hashtable fromMap = new Hashtable ();
         private Hashtable toMap = new Hashtable ();
         private Dictionary<Node, List<IJunction>> junctionMap = new Dictionary<Node, List<IJunction>> ();
@@ -73,8 +72,6 @@ namespace Knot3.Game.Data
 
         public Action IndexRebuilt { get; set; }
 
-
-
         public NodeMap ()
         {
             IndexRebuilt = () => {};
@@ -86,8 +83,6 @@ namespace Knot3.Game.Data
             Edges = edges;
             BuildIndex ();
         }
-
-
 
         /// <summary>
         /// Gibt die Rasterposition des Übergangs am Anfang der Kante zurück.
@@ -162,6 +157,5 @@ namespace Knot3.Game.Data
 
             IndexRebuilt ();
         }
-
     }
 }

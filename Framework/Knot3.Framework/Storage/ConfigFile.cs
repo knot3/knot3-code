@@ -50,7 +50,6 @@ namespace Knot3.Framework.Storage
     /// </summary>
     public sealed class ConfigFile
     {
-
         /// <summary>
         /// Die Repräsentation des Wahrheitswerts "wahr" als String in einer Einstellungsdatei.
         /// </summary>
@@ -64,8 +63,6 @@ namespace Knot3.Framework.Storage
         private string Filename;
         private IniFile ini;
 
-
-
         public ConfigFile (string filename)
         {
             // load ini file
@@ -76,8 +73,6 @@ namespace Knot3.Framework.Storage
             }
             ini = new IniFile (Filename);
         }
-
-
 
         /// <summary>
         /// Setzt den Wert der Option mit dem angegebenen Namen in den angegebenen Abschnitt auf den angegebenen Wert.
@@ -167,6 +162,5 @@ namespace Knot3.Framework.Storage
                 SetOption (section, option, value);
             }
         }
-
     }
 }

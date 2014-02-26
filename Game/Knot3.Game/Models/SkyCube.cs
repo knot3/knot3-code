@@ -57,7 +57,6 @@ namespace Knot3.Game.Models
     [ExcludeFromCodeCoverageAttribute]
     public class SkyCube : IGameObject, IEnumerable<IGameObject>
     {
-
         /// <summary>
         /// Der dazugehörige Screen.
         /// </summary>
@@ -111,8 +110,6 @@ namespace Knot3.Game.Models
         /// </summary>
         private Dictionary<Direction, Texture2D> textureCache = new Dictionary<Direction, Texture2D>();
 
-
-
         /// <summary>
         /// Erstellt ein neues KnotRenderer-Objekt für den angegebenen Spielzustand mit den angegebenen
         /// Spielobjekt-Informationen, die unter Anderem die Position des Knotenursprungs enthalten.
@@ -130,8 +127,6 @@ namespace Knot3.Game.Models
             Distance = distance;
             ConstructRectangles ();
         }
-
-
 
         private void ConstructRectangles ()
         {
@@ -261,6 +256,5 @@ namespace Knot3.Game.Models
         {
             return GetEnumerator (); // Just return the generic version
         }
-
     }
 }

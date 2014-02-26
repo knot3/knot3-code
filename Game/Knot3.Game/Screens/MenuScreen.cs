@@ -60,13 +60,10 @@ namespace Knot3.Game.Screens
     [ExcludeFromCodeCoverageAttribute]
     public abstract class MenuScreen : GameScreen
     {
-
         private MousePointer pointer;
 
         // die Linien
         protected Lines lines;
-
-
 
         public MenuScreen (GameClass game)
         : base (game)
@@ -78,8 +75,6 @@ namespace Knot3.Game.Screens
             pointer = new MousePointer (this);
         }
 
-
-
         /// <summary>
         /// Wird aufgerufen, wenn in diesen Spielzustand gewechselt wird.
         /// </summary>
@@ -89,6 +84,5 @@ namespace Knot3.Game.Screens
             AddGameComponents (time, pointer, lines);
             Audio.BackgroundMusic = Sound.MenuMusic;
         }
-
     }
 }

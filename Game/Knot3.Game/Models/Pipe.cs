@@ -59,7 +59,6 @@ namespace Knot3.Game.Models
     [ExcludeFromCodeCoverageAttribute]
     public sealed class Pipe : GameModelInfo
     {
-
         /// <summary>
         /// Die Kante, die durch das 3D-Modell dargestellt wird.
         /// </summary>
@@ -89,8 +88,6 @@ namespace Knot3.Game.Models
             { Direction.Forward, 	Angles3.FromDegrees (0, 0, 0) },
             { Direction.Backward, 	Angles3.FromDegrees (0, 0, 0) },
         };
-
-
 
         /// <summary>
         /// Erstellt ein neues Informationsobjekt für ein 3D-Modell, das eine Kante darstellt.
@@ -144,8 +141,6 @@ namespace Knot3.Game.Models
             }
         }
 
-
-
         public override bool Equals (GameObjectInfo other)
         {
             if (other == null) {
@@ -164,6 +159,5 @@ namespace Knot3.Game.Models
                 return base.Equals (other);
             }
         }
-
     }
 }

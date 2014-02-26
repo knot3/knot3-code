@@ -62,7 +62,6 @@ namespace Knot3.Game.Core
     [ExcludeFromCodeCoverageAttribute]
     public class Knot3Game : GameClass
     {
-
         /// <summary>
         /// Erstellt ein neues zentrales Spielobjekt und setzt die Auflösung des BackBuffers auf
         /// die in der Einstellungsdatei gespeicherte Auflösung oder falls nicht vorhanden auf die aktuelle
@@ -73,8 +72,6 @@ namespace Knot3.Game.Core
         {
             Window.Title = "Knot3 " + Program.Version;
         }
-
-
 
         /// <summary>
         /// Initialisiert die Attribute dieser Klasse.
@@ -206,6 +203,5 @@ namespace Knot3.Game.Core
                 ShowError (ex);
             }
         }
-
     }
 }

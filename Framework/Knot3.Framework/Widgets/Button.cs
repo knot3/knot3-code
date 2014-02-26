@@ -56,7 +56,6 @@ namespace Knot3.Framework.Widgets
     [ExcludeFromCodeCoverageAttribute]
     public sealed class Button : Widget, IKeyEventListener, IMouseClickEventListener
     {
-
         /// <summary>
         /// Die Aktion, die ausgeführt wird, wenn der Spieler auf die Schaltfläche klickt.
         /// </summary>
@@ -71,8 +70,6 @@ namespace Knot3.Framework.Widgets
 
         public Texture2D BackgroundTexture { get; set; }
 
-
-
         /// <summary>
         /// Erzeugt ein neues MenuButton-Objekt und initialisiert dieses mit dem zugehörigen IGameScreen-Objekt.
         /// Zudem sind Angabe der Zeichenreihenfolge, einer Zeichenkette für den Namen der Schaltfläche
@@ -85,8 +82,6 @@ namespace Knot3.Framework.Widgets
             OnClick = onClick;
             spriteBatch = new SpriteBatch (screen.Device);
         }
-
-
 
         /// <summary>
         /// Reaktionen auf einen Linksklick.
@@ -154,6 +149,5 @@ namespace Knot3.Framework.Widgets
                 spriteBatch.End ();
             }
         }
-
     }
 }

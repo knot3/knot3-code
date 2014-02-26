@@ -64,7 +64,6 @@ namespace Knot3.Game.Models
     [ExcludeFromCodeCoverageAttribute]
     public sealed class KnotRenderer : IGameObject, IEnumerable<IGameObject>
     {
-
         private IGameScreen screen;
 
         /// <summary>
@@ -155,8 +154,6 @@ namespace Knot3.Game.Models
         /// </summary>
         private bool showArrows { get { return Config.Default ["video", "arrows", false]; } }
 
-
-
         /// <summary>
         /// Erstellt ein neues KnotRenderer-Objekt für den angegebenen Spielzustand mit den angegebenen
         /// Spielobjekt-Informationen, die unter Anderem die Position des Knotenursprungs enthalten.
@@ -175,8 +172,6 @@ namespace Knot3.Game.Models
             arrowFactory = new ModelFactory ((s, i) => new ArrowModel (s, i as Arrow));
             nodeMap = new NodeMap ();
         }
-
-
 
         /// <summary>
         /// Gibt den Ursprung des Knotens zurück.
@@ -536,6 +531,5 @@ namespace Knot3.Game.Models
         {
             return GetEnumerator (); // Just return the generic version
         }
-
     }
 }

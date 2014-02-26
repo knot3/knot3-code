@@ -47,7 +47,6 @@ namespace Knot3.Framework.Input
 {
     public interface IMouseScrollEventListener
     {
-
         /// <summary>
         /// Die Eingabepriorität.
         /// </summary>
@@ -58,8 +57,6 @@ namespace Knot3.Framework.Input
         /// </summary>
         bool IsMouseScrollEventEnabled { get; }
 
-
-
         /// <summary>
         /// Die Ausmaße des von der Klasse repräsentierten Objektes.
         /// </summary>
@@ -69,6 +66,5 @@ namespace Knot3.Framework.Input
         /// Die Reaktion auf ein Scrollen. Der Wert ist relativ zum letzten Frame.
         /// </summary>
         void OnScroll (int scrollWheelValue,GameTime time);
-
     }
 }

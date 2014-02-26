@@ -51,15 +51,12 @@ namespace Knot3.Framework.Widgets
     [ExcludeFromCodeCoverageAttribute]
     public abstract class ConfirmDialog : Dialog
     {
-
         /// <summary>
         /// Das Menü, das Schaltflächen enthält.
         /// </summary>
         private Container buttons { get; set; }
 
         protected Menu menu;
-
-
 
         /// <summary>
         /// Erzeugt ein neues ConfirmDialog-Objekt und initialisiert dieses mit dem zugehörigen IGameScreen-Objekt.
@@ -91,8 +88,6 @@ namespace Knot3.Framework.Widgets
             menu.Add (textInput);
         }
 
-
-
         /// <summary>
         ///
         /// </summary>
@@ -113,6 +108,5 @@ namespace Knot3.Framework.Widgets
             }
             yield return menu;
         }
-
     }
 }

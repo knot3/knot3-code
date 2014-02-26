@@ -49,7 +49,6 @@ namespace Knot3.Framework.Core
     /// </summary>
     public interface IGameScreenComponent : IGameComponent
     {
-
         /// <summary>
         /// Die Zeichen- und Eingabepriorität.
         /// </summary>
@@ -60,13 +59,10 @@ namespace Knot3.Framework.Core
         /// </summary>
         IGameScreen Screen { get; set; }
 
-
-
         /// <summary>
         /// Gibt Spielkomponenten zurück, die in dieser Spielkomponente enthalten sind.
         /// [returntype=IEnumerable<IGameScreenComponent>]
         /// </summary>
         IEnumerable<IGameScreenComponent> SubComponents (GameTime time);
-
     }
 }

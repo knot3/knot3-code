@@ -54,19 +54,14 @@ namespace Knot3.Game.Data
 {
     public sealed class RectangleMap
     {
-
         private INodeMap NodeMap;
         private Dictionary<Vector3, List<PossibleRectanglePosition>> positions
             = new Dictionary<Vector3, List<PossibleRectanglePosition>> ();
-
-
 
         public RectangleMap (INodeMap nodeMap)
         {
             NodeMap = nodeMap;
         }
-
-
 
         public void AddEdge (Edge edge, bool isVirtual)
         {
@@ -140,7 +135,6 @@ namespace Knot3.Game.Data
                 }
             }
         }
-
     }
 
     public struct PossibleRectanglePosition {

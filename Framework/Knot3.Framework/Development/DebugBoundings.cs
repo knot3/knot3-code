@@ -48,7 +48,6 @@ namespace Knot3.Framework.Development
     [ExcludeFromCodeCoverageAttribute]
     public class DebugBoundings : IGameObject
     {
-
         private IGameScreen screen;
 
         public GameObjectInfo Info { get; private set; }
@@ -58,8 +57,6 @@ namespace Knot3.Framework.Development
         private VertexBuffer vertBuffer;
         private BasicEffect effect;
         private int sphereResolution;
-
-
 
         public DebugBoundings (IGameScreen screen, Vector3 position)
         {
@@ -95,8 +92,6 @@ namespace Knot3.Framework.Development
             vertBuffer = new VertexBuffer (screen.Device, typeof (VertexPositionColor), verts.Length, BufferUsage.None);
             vertBuffer.SetData (verts);
         }
-
-
 
         /// <summary>
         /// Gibt den Ursprung des Knotens zurück.
@@ -151,6 +146,5 @@ namespace Knot3.Framework.Development
         {
             return null;
         }
-
     }
 }

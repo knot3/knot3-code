@@ -51,7 +51,6 @@ namespace Knot3.Framework.Models
     [ExcludeFromCodeCoverageAttribute]
     public abstract class GameModel : IGameObject
     {
-
         GameObjectInfo IGameObject.Info { get { return Info; } }
 
         /// <summary>
@@ -98,8 +97,6 @@ namespace Knot3.Framework.Models
 
         protected IGameScreen screen;
 
-
-
         /// <summary>
         /// Erstellt ein neues 3D-Modell in dem angegebenen Spielzustand mit den angegebenen Modellinformationen.
         /// </summary>
@@ -111,8 +108,6 @@ namespace Knot3.Framework.Models
             // default values
             Coloring = new SingleColor (Color.Transparent);
         }
-
-
 
         /// <summary>
         /// Gibt die Mitte des 3D-Modells zurück.
@@ -167,8 +162,6 @@ namespace Knot3.Framework.Models
             }
             return null;
         }
-
-
 
         private Vector3 _scale;
         private Angles3 _rotation;
@@ -226,6 +219,5 @@ namespace Knot3.Framework.Models
                 }
             }
         }
-
     }
 }

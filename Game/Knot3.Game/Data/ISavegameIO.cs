@@ -53,13 +53,10 @@ namespace Knot3.Game.Data
 {
     public interface ISavegameIO<Savegame, SavegameMetaData>
     {
-
         /// <summary>
         /// Aufzählung der Dateierweiterungen.
         /// </summary>
         IEnumerable<string> FileExtensions { get; }
-
-
 
         /// <summary>
         /// Speichert einen Spielstand.
@@ -75,6 +72,5 @@ namespace Knot3.Game.Data
         /// Lädt die Metadaten eines Spielstands.
         /// </summary>
         SavegameMetaData LoadMetaData (string filename);
-
     }
 }

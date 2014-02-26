@@ -51,7 +51,6 @@ namespace Knot3.Framework.Widgets
     [ExcludeFromCodeCoverageAttribute]
     public class Border : Widget
     {
-
         public int LineWidth { get; set; }
 
         public int Padding { get; set; }
@@ -72,8 +71,6 @@ namespace Knot3.Framework.Widgets
         }
 
         private Action<GameTime> OnUpdate = (time) => {};
-
-
 
         public Border (IGameScreen screen, DisplayLayer drawOrder, Bounds bounds,
                        int lineWidth, int padding, Color lineColor, Color outlineColor)
@@ -109,8 +106,6 @@ namespace Knot3.Framework.Widgets
         {
         }
 
-
-
         [ExcludeFromCodeCoverageAttribute]
         public override void Update (GameTime time)
         {
@@ -144,6 +139,5 @@ namespace Knot3.Framework.Widgets
             }
             yield return lines;
         }
-
     }
 }

@@ -54,13 +54,10 @@ namespace Knot3.Framework.Widgets
     [ExcludeFromCodeCoverageAttribute]
     public class TextBox : Widget
     {
-
         // ein Spritebatch
         protected SpriteBatch spriteBatch;
 
         public string Text { get; set; }
-
-
 
         /// <summary>
         /// Erzeugt ein neues TextItem-Objekt und initialisiert dieses mit dem zugehörigen IGameScreen-Objekt.
@@ -73,8 +70,6 @@ namespace Knot3.Framework.Widgets
             State = WidgetState.None;
             spriteBatch = new SpriteBatch (screen.Device);
         }
-
-
 
         [ExcludeFromCodeCoverageAttribute]
         public override void Draw (GameTime time)
@@ -124,6 +119,5 @@ namespace Knot3.Framework.Widgets
 
             return returnString + line;
         }
-
     }
 }

@@ -51,7 +51,6 @@ namespace Knot3.Framework.Effects
     /// </summary>
     public interface IRenderEffect
     {
-
         /// <summary>
         /// Das Rendertarget, in das zwischen dem Aufruf der Begin ()- und der End ()-Methode gezeichnet wird,
         /// weil es in Begin () als primäres Rendertarget des XNA-Frameworks gesetzt wird.
@@ -59,8 +58,6 @@ namespace Knot3.Framework.Effects
         RenderTarget2D RenderTarget { get; }
 
         bool SelectiveRendering { get; }
-
-
 
         /// <summary>
         /// In der Methode Begin () wird das aktuell von XNA genutzte Rendertarget auf einem Stapel gesichert
@@ -88,6 +85,5 @@ namespace Knot3.Framework.Effects
         void RemapModel (Model model);
 
         void DrawLastFrame (GameTime time);
-
     }
 }

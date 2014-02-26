@@ -61,7 +61,6 @@ namespace Knot3.Game.Screens
     [ExcludeFromCodeCoverageAttribute]
     public class ChallengeCreateScreen : MenuScreen
     {
-
         /// <summary>
         /// Das Menü, das die Spielstände enthält, die als Startknoten ausgewählt werden.
         /// </summary>
@@ -81,8 +80,6 @@ namespace Knot3.Game.Screens
         private Knot selectedStartKnot;
         private Knot selectedTargetKnot;
         private Challenge selectedChallenge;
-
-
 
         /// <summary>
         /// Erzeugt eine neue Instanz eines ChallengeCreateScreen-Objekts und initialisiert diese mit einem Knot3Game-Objekt game.
@@ -150,8 +147,6 @@ namespace Knot3.Game.Screens
 
             backButton.AlignX = HorizontalAlignment.Center;
         }
-
-
 
         private void UpdateFiles ()
         {
@@ -279,6 +274,5 @@ namespace Knot3.Game.Screens
                                createButtonBorder, title, backButton);
             TryConstructChallenge ();
         }
-
     }
 }

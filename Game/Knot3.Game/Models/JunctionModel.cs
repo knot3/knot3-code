@@ -59,15 +59,12 @@ namespace Knot3.Game.Models
     [ExcludeFromCodeCoverageAttribute]
     public sealed class JunctionModel : GameModel
     {
-
         /// <summary>
         /// Enthält Informationen über den darzustellende 3D-Modell des Kantenübergangs.
         /// </summary>
         public new Junction Info { get { return base.Info as Junction; } set { base.Info = value; } }
 
         public bool IsVirtual { get; set; }
-
-
 
         /// <summary>
         /// Erstellt ein neues 3D-Modell mit dem angegebenen Spielzustand und dem angegebenen Informationsobjekt.
@@ -77,8 +74,6 @@ namespace Knot3.Game.Models
         : base (screen, info)
         {
         }
-
-
 
         /// <summary>
         /// Zeichnet das 3D-Modell mit dem aktuellen Rendereffekt.
@@ -95,6 +90,5 @@ namespace Knot3.Game.Models
             }
             base.Draw (time);
         }
-
     }
 }

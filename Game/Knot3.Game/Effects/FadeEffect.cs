@@ -58,7 +58,6 @@ namespace Knot3.Game.Effects
     [ExcludeFromCodeCoverageAttribute]
     public class FadeEffect : RenderEffect
     {
-
         private float alpha;
 
         /// <summary>
@@ -70,8 +69,6 @@ namespace Knot3.Game.Effects
         /// Der zuletzt gerenderte Frame im bisherigen Spielzustand.
         /// </summary>
         private RenderTarget2D PreviousRenderTarget { get; set; }
-
-
 
         /// <summary>
         /// Erstellt einen Überblende-Effekt zwischen den angegebenen Spielzuständen.
@@ -88,8 +85,6 @@ namespace Knot3.Game.Effects
             }
             SelectiveRendering = false;
         }
-
-
 
         /// <summary>
         /// Zeichnet das Rendertarget.
@@ -128,6 +123,5 @@ namespace Knot3.Game.Effects
                 1f
             );
         }
-
     }
 }

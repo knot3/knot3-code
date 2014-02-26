@@ -54,7 +54,6 @@ namespace Knot3.Framework.Input
         private SpriteBatch spriteBatch;
         private Texture2D cursorTex;
 
-
         /// <summary>
         /// Erstellt einen neuen Mauszeiger für den angegebenen Spielzustand.
         /// </summary>
@@ -64,8 +63,6 @@ namespace Knot3.Framework.Input
             cursorTex = Screen.LoadTexture ("cursor");
             spriteBatch = new SpriteBatch (screen.Device);
         }
-
-
 
         /// <summary>
         /// Zeichnet den Mauszeiger.
@@ -104,6 +101,5 @@ namespace Knot3.Framework.Input
                 spriteBatch.End ();
             }
         }
-
     }
 }

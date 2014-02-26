@@ -56,7 +56,6 @@ namespace Knot3.Game.Data
     /// </summary>
     public interface IJunction
     {
-
         /// <summary>
         /// Die Kante vor dem Übergang.
         /// </summary>
@@ -72,7 +71,6 @@ namespace Knot3.Game.Data
         int Index { get; }
 
         JunctionType Type { get; }
-
     }
 
     public enum JunctionType {

@@ -55,7 +55,6 @@ namespace Knot3.Framework.Widgets
     [ExcludeFromCodeCoverageAttribute]
     public abstract class Dialog : Widget, IKeyEventListener, IMouseClickEventListener, IMouseMoveEventListener
     {
-
         /// <summary>
         /// Der Fenstertitel.
         /// </summary>
@@ -79,8 +78,6 @@ namespace Knot3.Framework.Widgets
         public Bounds MouseClickBounds { get { return Bounds; } }
 
         public Bounds MouseMoveBounds { get { return TitleBounds; } }
-
-
 
         /// <summary>
         /// Erzeugt ein neues Dialog-Objekt und initialisiert dieses mit dem zugehörigen IGameScreen-Objekt.
@@ -140,8 +137,6 @@ namespace Knot3.Framework.Widgets
             // Tasten, auf die wir reagieren
             ValidKeys = new List<Keys> ();
         }
-
-
 
         [ExcludeFromCodeCoverageAttribute]
         public override void Draw (GameTime time)
@@ -250,6 +245,5 @@ namespace Knot3.Framework.Widgets
         public void OnNoMove (ScreenPoint currentPosition, GameTime time)
         {
         }
-
     }
 }

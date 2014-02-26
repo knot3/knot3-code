@@ -54,7 +54,6 @@ namespace Knot3.Framework.Widgets
     [ExcludeFromCodeCoverageAttribute]
     public class InputItem : MenuItem
     {
-
         /// <summary>
         /// Beinhaltet den vom Spieler eingegebenen Text.
         /// </summary>
@@ -83,8 +82,6 @@ namespace Knot3.Framework.Widgets
         }
 
         private bool? isMouseClickEventEnabled = null;
-
-
 
         /// <summary>
         /// Erzeugt ein neues InputItem-Objekt und initialisiert dieses mit dem zugehörigen IGameScreen-Objekt.
@@ -151,6 +148,5 @@ namespace Knot3.Framework.Widgets
 
             spriteBatch.End ();
         }
-
     }
 }

@@ -61,13 +61,10 @@ namespace Knot3.Game.Screens
     [ExcludeFromCodeCoverageAttribute]
     public class GraphicsSettingsScreen : SettingsScreen
     {
-
         /// <summary>
         /// Das Menü, das die Einstellungen enthält.
         /// </summary>
         private Menu settingsMenu;
-
-
 
         /// <summary>
         /// Erzeugt ein neues GraphicsSettingsScreen-Objekt und initialisiert dieses mit einem Knot3Game-Objekt.
@@ -198,8 +195,6 @@ namespace Knot3.Game.Screens
             settingsMenu.Add (languageItem);
         }
 
-
-
         /// <summary>
         /// Wird für jeden Frame aufgerufen.
         /// </summary>
@@ -216,6 +211,5 @@ namespace Knot3.Game.Screens
             base.Entered (previousScreen, time);
             AddGameComponents (time, settingsMenu);
         }
-
     }
 }

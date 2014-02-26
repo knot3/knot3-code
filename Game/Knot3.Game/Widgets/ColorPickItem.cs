@@ -58,7 +58,6 @@ namespace Knot3.Game.Widgets
     [ExcludeFromCodeCoverageAttribute]
     public sealed class ColorPickItem : MenuItem
     {
-
         /// <summary>
         /// Die aktuelle Farbe.
         /// </summary>
@@ -69,8 +68,6 @@ namespace Knot3.Game.Widgets
         /// </summary>
         private ColorPicker picker { get; set; }
 
-
-
         /// <summary>
         /// Erzeugt ein neues ColorPickItem-Objekt und initialisiert dieses mit dem zugehörigen IGameScreen-Objekt.
         /// Zudem sind Angaben zur Zeichenreihenfolge und der Auswahloption Pflicht.
@@ -79,6 +76,5 @@ namespace Knot3.Game.Widgets
         : base (screen, drawOrder, text)
         {
         }
-
     }
 }

@@ -68,7 +68,6 @@ namespace Knot3.Game.Effects
         float outlineThickness = 1.0f;  // current outline thickness
         float outlineThreshold = 0.2f;  // current edge detection threshold
 
-
         /// <summary>
         /// Erstellt einen neuen Cel-Shading-Effekt für den angegebenen IGameScreen.
         /// </summary>
@@ -98,8 +97,6 @@ namespace Knot3.Game.Effects
             outlineShader.Parameters ["ScreenSize"].SetValue (
                 new Vector2 (screen.Viewport.Bounds.Width, screen.Viewport.Bounds.Height));
         }
-
-
 
         /// <summary>
         /// Zeichnet das Rendertarget.
@@ -174,6 +171,5 @@ namespace Knot3.Game.Effects
                 celShader.Parameters ["Color"].SetValue (value.ToVector4 ());
             }
         }
-
     }
 }

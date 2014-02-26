@@ -55,7 +55,6 @@ namespace Knot3.Framework.Widgets
     [ExcludeFromCodeCoverageAttribute]
     public sealed class Menu : Container, IMouseClickEventListener, IMouseMoveEventListener
     {
-
         /// <summary>
         /// Die von der Auflösung unabhängige Höhe der Menüeinträge in Prozent.
         /// </summary>
@@ -101,8 +100,6 @@ namespace Knot3.Framework.Widgets
             }
         }
 
-
-
         /// <summary>
         /// Erzeugt eine neue Instanz eines VerticalMenu-Objekts und initialisiert diese mit dem zugehörigen IGameScreen-Objekt.
         /// Zudem ist die Angaben der Zeichenreihenfolge Pflicht.
@@ -116,8 +113,6 @@ namespace Knot3.Framework.Widgets
             ItemBackgroundColor = Design.MenuItemBackgroundColorFunc;
             ItemForegroundColor = Design.MenuItemForegroundColorFunc;
         }
-
-
 
         protected override void assignMenuItemInformation (MenuItem item)
         {
@@ -294,6 +289,5 @@ namespace Knot3.Framework.Widgets
         public void OnNoMove (ScreenPoint currentPosition, GameTime time)
         {
         }
-
     }
 }

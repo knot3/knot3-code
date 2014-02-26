@@ -49,7 +49,6 @@ namespace Knot3.Framework.Storage
     /// </summary>
     public class DistinctOption : Option
     {
-
         /// <summary>
         /// Eine Menge von Texten, welche die für die Option gültigen Werte beschreiben.
         /// </summary>
@@ -80,8 +79,6 @@ namespace Knot3.Framework.Storage
             }
         }
 
-
-
         /// <summary>
         /// Erstellt eine neue Option, die einen der angegebenen Werte aus validValues annehmen kann, mit dem angegebenen Namen in dem
         /// angegebenen Abschnitt der angegebenen Einstellungsdatei.
@@ -94,6 +91,5 @@ namespace Knot3.Framework.Storage
             ValidValues.Add (defaultValue);
             DisplayValidValues = new Dictionary<string,string> (ValidValues.ToDictionary (x=>x,x=>x));
         }
-
     }
 }

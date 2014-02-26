@@ -53,7 +53,6 @@ namespace Knot3.Framework.Effects
     [ExcludeFromCodeCoverageAttribute]
     public sealed class StandardEffect : RenderEffect
     {
-
         /// <summary>
         /// Erstellt einen neuen Standardeffekt.
         /// </summary>
@@ -61,6 +60,5 @@ namespace Knot3.Framework.Effects
         : base (screen)
         {
         }
-
     }
 }

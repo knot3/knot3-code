@@ -60,7 +60,6 @@ namespace Knot3.Game.Data
     /// </summary>
     public sealed class KnotStringIO
     {
-
         /// <summary>
         /// Der Name der eingelesenen Knotendatei oder des zugewiesenen Knotenobjektes.
         /// </summary>
@@ -138,8 +137,6 @@ namespace Knot3.Game.Data
             }
         }
 
-
-
         /// <summary>
         /// Liest das in der angegebenen Zeichenkette enthaltene Dateiformat ein. Enthält es einen gültigen Knoten,
         /// so werden die \glqq Name\grqq~- und \glqq Edges\grqq~-Eigenschaften auf die eingelesenen Werte gesetzt.
@@ -164,8 +161,6 @@ namespace Knot3.Game.Data
                 Log.Debug (ex);
             }
         }
-
-
 
         private static IEnumerable<string> ToLines (IEnumerable<Edge> edges)
         {
@@ -253,6 +248,5 @@ namespace Knot3.Game.Data
         {
             return "KnotStringIO (length=" + Content.Length + ")";
         }
-
     }
 }

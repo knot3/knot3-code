@@ -60,11 +60,8 @@ namespace Knot3.Game.Widgets
     [ExcludeFromCodeCoverageAttribute]
     public sealed class HighscoreDialog : Dialog
     {
-
         private Menu highscoreList;
         private Container buttons;
-
-
 
         /// <summary>
         ///
@@ -129,8 +126,6 @@ namespace Knot3.Game.Widgets
             buttons.Add (returnButton);
         }
 
-
-
         public override IEnumerable<IGameScreenComponent> SubComponents (GameTime time)
         {
             foreach (DrawableGameScreenComponent component in base.SubComponents (time)) {
@@ -139,6 +134,5 @@ namespace Knot3.Game.Widgets
             yield return highscoreList;
             yield return buttons;
         }
-
     }
 }

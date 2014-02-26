@@ -56,7 +56,6 @@ namespace Knot3.ModelEditor
     [ExcludeFromCodeCoverageAttribute]
     public class ModelEditorGame : GameClass
     {
-
         /// <summary>
         /// Erstellt ein neues zentrales Spielobjekt und setzt die Auflösung des BackBuffers auf
         /// die in der Einstellungsdatei gespeicherte Auflösung oder falls nicht vorhanden auf die aktuelle
@@ -67,8 +66,6 @@ namespace Knot3.ModelEditor
         {
             Window.Title = "Knot3 Model Editor " + Program.Version;
         }
-
-
 
         /// <summary>
         /// Initialisiert die Attribute dieser Klasse.
@@ -176,6 +173,5 @@ namespace Knot3.ModelEditor
                 ShowError (ex);
             }
         }
-
     }
 }

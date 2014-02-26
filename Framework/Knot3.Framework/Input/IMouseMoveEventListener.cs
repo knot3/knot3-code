@@ -50,7 +50,6 @@ namespace Knot3.Framework.Input
     /// </summary>
     public interface IMouseMoveEventListener
     {
-
         /// <summary>
         /// Die Eingabepriorität.
         /// </summary>
@@ -60,8 +59,6 @@ namespace Knot3.Framework.Input
         /// Ob die Klasse zur Zeit auf Mausbewegungen reagiert.
         /// </summary>
         bool IsMouseMoveEventEnabled { get; }
-
-
 
         /// <summary>
         /// Die Ausmaße des von der Klasse repräsentierten Objektes.
@@ -75,6 +72,5 @@ namespace Knot3.Framework.Input
         void OnMove (ScreenPoint previousPosition, ScreenPoint currentPosition, ScreenPoint move, GameTime time);
 
         void OnNoMove (ScreenPoint currentPosition, GameTime time);
-
     }
 }

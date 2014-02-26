@@ -57,7 +57,6 @@ namespace Knot3.Game.Data
     /// </summary>
     public sealed class Node : IEquatable<Node>, ICloneable
     {
-
         /// <summary>
         /// X steht für eine x-Koordinate im dreidimensionalen Raster.
         /// </summary>
@@ -78,8 +77,6 @@ namespace Knot3.Game.Data
         /// </summary>
         public static readonly int Scale = 100;
 
-
-
         /// <summary>
         /// Erzeugt eine neue Instanz eines Node-Objekts und initialisiert diese mit Werten
         /// für die x-, y- und z-Koordinate.
@@ -90,8 +87,6 @@ namespace Knot3.Game.Data
             Y = y;
             Z = z;
         }
-
-
 
         /// <summary>
         /// Liefert die x-, y- und z-Koordinaten im 3D-Raum als ein Vektor3 der Form (x, y, z).
@@ -197,6 +192,5 @@ namespace Knot3.Game.Data
                 return false;
             }
         }
-
     }
 }

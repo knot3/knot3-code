@@ -51,7 +51,6 @@ namespace Knot3.Framework.Platform
     [ExcludeFromCodeCoverageAttribute]
     public static class ContentLoader
     {
-
         public static Effect LoadEffect (this IGameScreen screen, string name)
         {
             if (SystemInfo.IsRunningOnMono () || SystemInfo.IsRunningOnMonogame ()) {
@@ -86,8 +85,6 @@ namespace Knot3.Framework.Platform
         {
             return screen.Content.Load<Effect> ("Shader/" + name);
         }
-
-
 
         private static Dictionary<string, ContentManager> contentManagers = new Dictionary<string, ContentManager> ();
         private static HashSet<string> invalidModels = new HashSet<string> ();
@@ -124,8 +121,6 @@ namespace Knot3.Framework.Platform
                 }
             }
         }
-
-
 
         private static Dictionary<string, Texture2D> textureCache = new Dictionary<string, Texture2D> ();
 
@@ -187,8 +182,6 @@ namespace Knot3.Framework.Platform
                 return null;
             }
         }
-
-
 
         public static Texture2D CreateTexture (GraphicsDevice graphicsDevice, Color color)
         {
@@ -327,6 +320,5 @@ namespace Knot3.Framework.Platform
             }
             return textPosition;
         }
-
     }
 }

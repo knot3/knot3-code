@@ -59,7 +59,6 @@ namespace Knot3.Game.Data
     /// </summary>
     public sealed class Direction : IEquatable<Direction>
     {
-
         /// <summary>
         /// Links.
         /// </summary>
@@ -89,8 +88,6 @@ namespace Knot3.Game.Data
         /// </summary>
         public static readonly Direction Zero = new Direction (Vector3.Zero, "Zero");
 
-
-
         public static readonly Direction[] Values = {
             Left, Right, Up, Down, Forward,	Backward
         };
@@ -112,8 +109,6 @@ namespace Knot3.Game.Data
             { Zero, Axis.Zero }
         };
 
-
-
         public Vector3 Vector { get; private set; }
 
         public string Description { get; private set; }
@@ -122,15 +117,11 @@ namespace Knot3.Game.Data
 
         public Axis Axis { get { return AxisMap[this]; } }
 
-
-
         private Direction (Vector3 vector, string desciption)
         {
             Vector = vector;
             Description = desciption;
         }
-
-
 
         public static Direction FromAxis (Axis axis)
         {
@@ -233,7 +224,6 @@ namespace Knot3.Game.Data
         {
             return Description.GetHashCode ();
         }
-
     }
 
     public enum Axis {

@@ -54,7 +54,6 @@ namespace Knot3.Game.Data
 {
     public interface INodeMap
     {
-
         /// <summary>
         /// Die Skalierung, die bei einer Konvertierung in einen Vector3 des XNA-Frameworks durch die ToVector ()-Methode der Node-Objekte verwendet wird.
         /// </summary>
@@ -65,8 +64,6 @@ namespace Knot3.Game.Data
         Vector3 Offset { get; set; }
 
         Action IndexRebuilt { get; set; }
-
-
 
         /// <summary>
         /// Gibt die Rasterposition des Übergangs am Anfang der Kante zurück.
@@ -90,6 +87,5 @@ namespace Knot3.Game.Data
         /// Aktualisiert die Zuordnung, wenn sich die Kanten geändert haben.
         /// </summary>
         void OnEdgesChanged ();
-
     }
 }

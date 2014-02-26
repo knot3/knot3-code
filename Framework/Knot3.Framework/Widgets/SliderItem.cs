@@ -56,7 +56,6 @@ namespace Knot3.Framework.Widgets
     [ExcludeFromCodeCoverageAttribute]
     public sealed class SliderItem : MenuItem, IMouseClickEventListener, IMouseMoveEventListener
     {
-
         /// <summary>
         /// Der aktuelle Wert.
         /// </summary>
@@ -135,8 +134,6 @@ namespace Knot3.Framework.Widgets
         public override Bounds MouseClickBounds { get { return ValueBounds; } }
         public Bounds MouseMoveBounds { get { return ValueBounds; } }
 
-
-
         /// <summary>
         /// Erzeugt eine neue Instanz eines SliderItem-Objekts und initialisiert diese
         /// mit dem zugehörigen IGameScreen-Objekt. Zudem ist die Angabe der Zeichenreihenfolge,
@@ -150,8 +147,6 @@ namespace Knot3.Framework.Widgets
             //Step = step;
             _value = value;
         }
-
-
 
         [ExcludeFromCodeCoverageAttribute]
         public override void Draw (GameTime time)
@@ -220,6 +215,5 @@ namespace Knot3.Framework.Widgets
         public void OnNoMove (ScreenPoint currentPosition, GameTime time)
         {
         }
-
     }
 }

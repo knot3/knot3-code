@@ -53,7 +53,6 @@ namespace Knot3.Framework.Core
     /// </summary>
     public sealed class World : DrawableGameScreenComponent, IEnumerable<IGameObject>
     {
-
         /// <summary>
         /// Die Kamera dieser Spielwelt.
         /// </summary>
@@ -134,8 +133,6 @@ namespace Knot3.Framework.Core
         /// </summary>
         public Bounds Bounds { get; private set; }
 
-
-
         /// <summary>
         /// Erstellt eine neue Spielwelt im angegebenen Spielzustand.
         /// </summary>
@@ -173,8 +170,6 @@ namespace Knot3.Framework.Core
             IRenderEffect effect = RenderEffectLibrary.CreateEffect (screen: screen, name: effectName);
             return effect;
         }
-
-
 
         public void Add (IGameObject obj)
         {
@@ -366,6 +361,5 @@ namespace Knot3.Framework.Core
                 yield break;
             }
         }
-
     }
 }

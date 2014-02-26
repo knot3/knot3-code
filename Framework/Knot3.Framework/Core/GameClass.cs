@@ -48,7 +48,6 @@ namespace Knot3.Framework.Core
     [ExcludeFromCodeCoverageAttribute]
     public abstract class GameClass : Microsoft.Xna.Framework.Game
     {
-
         private static readonly Vector2 defaultSize = SystemInfo.IsRunningOnLinux ()
                 ? new Vector2 (1024, 600) : new Vector2 (1280, 720);
 
@@ -117,8 +116,6 @@ namespace Knot3.Framework.Core
         /// </summary>
         public GraphicsDeviceManager Graphics { get; private set; }
 
-
-
         /// <summary>
         /// Erstellt ein neues zentrales Spielobjekt und setzt die Auflösung des BackBuffers auf
         /// die in der Einstellungsdatei gespeicherte Auflösung oder falls nicht vorhanden auf die aktuelle
@@ -152,8 +149,6 @@ namespace Knot3.Framework.Core
             FullScreenChanged = () => {};
         }
 
-
-
         private void toDefaultSize (bool fullscreen)
         {
             if (!fullscreen) {
@@ -181,6 +176,5 @@ namespace Knot3.Framework.Core
             }
             lastResolution = Config.Default ["video", "resolution", currentResolution];
         }
-
     }
 }

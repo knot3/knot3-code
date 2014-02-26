@@ -49,7 +49,6 @@ namespace Knot3.MockObjects
 {
     public class FakeScreen : IGameScreen
     {
-
         /// <summary>
         /// Das Spiel, zu dem der Spielzustand gehört.
         /// </summary>
@@ -96,8 +95,6 @@ namespace Knot3.MockObjects
             get { return new Bounds (screen: this, relX: 0f, relY: 0f, relWidth: 1f, relHeight: 1f); }
         }
 
-
-
         public FakeScreen ()
         {
             NextScreen = this;
@@ -111,8 +108,6 @@ namespace Knot3.MockObjects
             BackgroundColor = Color.Black;
             //Content = new ContentManager (Content.ServiceProvider, Content.RootDirectory);
         }
-
-
 
         /// <summary>
         /// Beginnt mit dem Füllen der Spielkomponentenliste des XNA-Frameworks und fügt sowohl für Tastatur- als auch für
@@ -157,6 +152,5 @@ namespace Knot3.MockObjects
         public void RemoveGameComponents (GameTime time, params IGameScreenComponent[] components)
         {
         }
-
     }
 }

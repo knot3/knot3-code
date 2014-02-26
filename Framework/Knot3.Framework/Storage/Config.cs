@@ -52,7 +52,6 @@ namespace Knot3.Framework.Storage
     /// </summary>
     public static class Config
     {
-
         /// <summary>
         /// Die zentrale Einstellungsdatei des Spiels.
         /// </summary>
@@ -82,6 +81,5 @@ namespace Knot3.Framework.Storage
         }
 
         private static ConfigFile _models;
-
     }
 }

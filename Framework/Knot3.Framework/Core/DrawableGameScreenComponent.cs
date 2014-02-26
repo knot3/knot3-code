@@ -50,7 +50,6 @@ namespace Knot3.Framework.Core
     [ExcludeFromCodeCoverageAttribute]
     public abstract class DrawableGameScreenComponent : DrawableGameComponent, IGameScreenComponent
     {
-
         /// <summary>
         /// Der zugewiesene Spielzustand.
         /// </summary>
@@ -70,8 +69,6 @@ namespace Knot3.Framework.Core
             }
         }
 
-
-
         /// <summary>
         /// Erzeugt eine neue Instanz eines DrawableGameScreenComponent-Objekts und ordnet dieser ein IGameScreen-Objekt zu.
         /// index bezeichnet die Zeichenebene, auf welche die Komponente zu zeichnen ist.
@@ -83,8 +80,6 @@ namespace Knot3.Framework.Core
             this.Index = index;
         }
 
-
-
         /// <summary>
         /// Gibt Spielkomponenten zurück, die in dieser Spielkomponente enthalten sind.
         /// [returntype=IEnumerable<IGameScreenComponent>]
@@ -93,6 +88,5 @@ namespace Knot3.Framework.Core
         {
             yield break;
         }
-
     }
 }

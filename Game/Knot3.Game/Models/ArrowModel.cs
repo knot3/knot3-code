@@ -59,7 +59,6 @@ namespace Knot3.Game.Models
     [ExcludeFromCodeCoverageAttribute]
     public sealed class ArrowModel : GameModel
     {
-
         /// <summary>
         /// Das Info-Objekt, das die Position und Richtung des ArrowModel\grq s enthält.
         /// </summary>
@@ -71,8 +70,6 @@ namespace Knot3.Game.Models
         {
             get { return _bounds; }
         }
-
-
 
         /// <summary>
         /// Erstellt ein neues Pfeilmodell in dem angegebenen IGameScreen mit einem bestimmten Info-Objekt, das Position und Richtung des Pfeils festlegt.
@@ -87,8 +84,6 @@ namespace Knot3.Game.Models
                           position: info.Position - info.Direction.Vector * Info.Length / 2
                       );
         }
-
-
 
         /// <summary>
         /// Zeichnet den Pfeil.
@@ -123,6 +118,5 @@ namespace Knot3.Game.Models
             }
             return null;
         }
-
     }
 }

@@ -50,7 +50,6 @@ namespace Knot3.Framework.Storage
     /// </summary>
     public static class Localizer
     {
-
         public static readonly string DefaultLanguageCode = "en";
 
         /// <summary>
@@ -112,8 +111,6 @@ namespace Knot3.Framework.Storage
             }
         }
 
-
-
         /// <summary>
         /// Liefert zu dem übergebenen Bezeichner den zugehörigen Text aus der Lokalisierungsdatei der
         /// aktuellen Sprache zurück, die dabei aus der Einstellungsdatei des Spiels gelesen wird.
@@ -148,6 +145,5 @@ namespace Knot3.Framework.Storage
             return text.Replace ("&auml;", "\u00E4").Replace ("&ouml;", "\u00F6").Replace ("&uuml;", "\u00FC")
                    .Replace ("&Auml;", "\u00C4").Replace ("&Ouml;", "\u00D6").Replace ("&Uuml;", "\u00DC");
         }
-
     }
 }

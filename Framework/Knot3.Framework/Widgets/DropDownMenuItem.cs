@@ -56,7 +56,6 @@ namespace Knot3.Framework.Widgets
     [ExcludeFromCodeCoverageAttribute]
     public sealed class DropDownMenuItem : MenuItem
     {
-
         /// <summary>
         /// Das Dropdown-Menü, das ein- und ausgeblendet werden kann.
         /// </summary>
@@ -76,8 +75,6 @@ namespace Knot3.Framework.Widgets
         }
 
         public Action<GameTime> ValueChanged = (time) => {};
-
-
 
         /// <summary>
         /// Erzeugt ein neues ConfirmDialog-Objekt und initialisiert dieses mit dem zugehörigen IGameScreen-Objekt.
@@ -112,8 +109,6 @@ namespace Knot3.Framework.Widgets
 
             ValidKeys.Add (Keys.Escape);
         }
-
-
 
         /// <summary>
         /// Fügt Einträge in das Dropdown-Menü ein, die auf Einstellungsoptionen basieren.
@@ -179,6 +174,5 @@ namespace Knot3.Framework.Widgets
             yield return dropdownBorder;
             yield return currentValue;
         }
-
     }
 }

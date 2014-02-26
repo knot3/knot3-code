@@ -60,7 +60,6 @@ namespace Knot3.Game.Models
     [ExcludeFromCodeCoverageAttribute]
     public sealed class Arrow : GameModelInfo
     {
-
         /// <summary>
         /// Gibt die Richtung, in die der Pfeil zeigen soll an.
         /// </summary>
@@ -80,8 +79,6 @@ namespace Knot3.Game.Models
             { Direction.Backward, 	Angles3.FromDegrees (180, 0, 0) },
         };
 
-
-
         /// <summary>
         /// Erstellt ein neues ArrowModelInfo-Objekt an einer bestimmten Position position im 3D-Raum. Dieses zeigt in eine durch direction bestimmte Richtung.
         /// </summary>
@@ -96,6 +93,5 @@ namespace Knot3.Game.Models
             // Berechne die Drehung
             Rotation += RotationMap [direction];
         }
-
     }
 }

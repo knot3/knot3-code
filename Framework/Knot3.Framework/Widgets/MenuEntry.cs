@@ -54,7 +54,6 @@ namespace Knot3.Framework.Widgets
     [ExcludeFromCodeCoverageAttribute]
     public class MenuEntry : MenuItem
     {
-
         /// <summary>
         /// Die Aktion, die ausgeführt wird, wenn der Spieler auf die Schaltfläche klickt.
         /// </summary>
@@ -80,8 +79,6 @@ namespace Knot3.Framework.Widgets
 
         public bool IsSelectable { get; set; }
 
-
-
         /// <summary>
         /// Erzeugt ein neues MenuButton-Objekt und initialisiert dieses mit dem zugehörigen IGameScreen-Objekt.
         /// Zudem sind Angabe der Zeichenreihenfolge, einer Zeichenkette für den Namen der Schaltfläche
@@ -93,8 +90,6 @@ namespace Knot3.Framework.Widgets
             IsSelectable = true;
             OnClick = onClick;
         }
-
-
 
         /// <summary>
         /// Reaktionen auf einen Linksklick.
@@ -142,6 +137,5 @@ namespace Knot3.Framework.Widgets
                 ValidKeys.Add (key);
             }
         }
-
     }
 }

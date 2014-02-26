@@ -60,13 +60,10 @@ namespace Knot3.Game.Screens
     [ExcludeFromCodeCoverageAttribute]
     public class CreativeMainScreen : MenuScreen
     {
-
         /// <summary>
         /// Ein Menü aus Schaltflächen, welche den Spielwunsch des Spielers weiterleiten.
         /// </summary>
         private Container buttons;
-
-
 
         /// <summary>
         /// Erzeugt ein neues CreativeMainScreen-Objekt und initialisiert dieses mit einem Knot3Game-Objekt.
@@ -130,8 +127,6 @@ namespace Knot3.Game.Screens
             lines.AddPoints (0.975f, 0.850f, 0.825f, 0.950f, 0.975f, 0.850f);
         }
 
-
-
         /// <summary>
         ///
         /// </summary>
@@ -148,6 +143,5 @@ namespace Knot3.Game.Screens
         public override void Update (GameTime time)
         {
         }
-
     }
 }

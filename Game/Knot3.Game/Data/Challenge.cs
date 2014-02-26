@@ -56,7 +56,6 @@ namespace Knot3.Game.Data
     /// </summary>
     public sealed class Challenge
     {
-
         /// <summary>
         /// Der Ausgangsknoten, den der Spieler in den Referenzknoten transformiert.
         /// </summary>
@@ -91,8 +90,6 @@ namespace Knot3.Game.Data
             set { MetaData.Name = value; }
         }
 
-
-
         /// <summary>
         /// Erstellt ein Challenge-Objekt aus einem gegebenen Challenge-Metadaten-Objekt.
         /// Erstellt ein Challenge-Objekt aus einer gegebenen Challenge-Datei.
@@ -103,8 +100,6 @@ namespace Knot3.Game.Data
             Start = start;
             Target = target;
         }
-
-
 
         /// <summary>
         /// Fügt eine neue Bestzeit eines bestimmten Spielers in die Bestenliste ein.
@@ -122,6 +117,5 @@ namespace Knot3.Game.Data
         {
             MetaData.Format.Save (this);
         }
-
     }
 }

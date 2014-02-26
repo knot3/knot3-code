@@ -55,7 +55,6 @@ namespace Knot3.Framework.Widgets
     [ExcludeFromCodeCoverageAttribute]
     public sealed class CheckBoxItem : MenuItem
     {
-
         /// <summary>
         /// Die Option, die mit dem Auswahlkasten verknüpft ist.
         /// </summary>
@@ -81,8 +80,6 @@ namespace Knot3.Framework.Widgets
 
         private bool currentValue;
 
-
-
         /// <summary>
         /// Erzeugt ein neues CheckBoxItem-Objekt und initialisiert dieses mit dem zugehörigen IGameScreen-Objekt.
         /// Zudem sind Angaben zur Zeichenreihenfolge und der Auswahloption Pflicht.
@@ -93,8 +90,6 @@ namespace Knot3.Framework.Widgets
             this.option = option;
             currentValue = option.Value;
         }
-
-
 
         [ExcludeFromCodeCoverageAttribute]
         public override void Draw (GameTime time)
@@ -148,6 +143,5 @@ namespace Knot3.Framework.Widgets
                 ValidKeys.Add (key);
             }
         }
-
     }
 }

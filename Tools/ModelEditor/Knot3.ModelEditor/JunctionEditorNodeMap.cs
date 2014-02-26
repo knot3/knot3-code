@@ -56,7 +56,6 @@ namespace Knot3.ModelEditor
     [ExcludeFromCodeCoverageAttribute]
     public class JunctionEditorNodeMap : INodeMap
     {
-
         private Hashtable fromMap = new Hashtable ();
         private Hashtable toMap = new Hashtable ();
         private Dictionary<Node, List<IJunction>> junctionMap = new Dictionary<Node, List<IJunction>> ();
@@ -78,14 +77,10 @@ namespace Knot3.ModelEditor
 
         public Action IndexRebuilt { get; set; }
 
-
-
         public JunctionEditorNodeMap ()
         {
             IndexRebuilt = () => {};
         }
-
-
 
         public void Render (Tuple<Direction, Direction, Direction> direction)
         {
@@ -169,6 +164,5 @@ namespace Knot3.ModelEditor
 
             IndexRebuilt ();
         }
-
     }
 }

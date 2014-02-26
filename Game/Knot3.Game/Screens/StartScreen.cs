@@ -61,7 +61,6 @@ namespace Knot3.Game.Screens
     [ExcludeFromCodeCoverageAttribute]
     public class StartScreen : MenuScreen
     {
-
         /// <summary>
         /// Die Schaltflächen des Startbildschirms.
         /// </summary>
@@ -69,8 +68,6 @@ namespace Knot3.Game.Screens
         // das Logo
         private Texture2D logo;
         private SpriteBatch spriteBatch;
-
-
 
         /// <summary>
         /// Erzeugt eine neue Instanz eines StartScreen-Objekts und initialisiert diese mit einem Knot3Game-Objekt.
@@ -161,8 +158,6 @@ namespace Knot3.Game.Screens
                             );
         }
 
-
-
         /// <summary>
         /// Wird für jeden Frame aufgerufen.
         /// </summary>
@@ -210,6 +205,5 @@ namespace Knot3.Game.Screens
             spriteBatch.Draw (logo, new Bounds (this, 0.050f, 0.360f, 0.500f, 0.300f), Color.White);
             spriteBatch.End ();
         }
-
     }
 }

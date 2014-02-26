@@ -49,7 +49,6 @@ namespace Knot3.Framework.Platform
 {
     public static partial class SystemInfo
     {
-
         /// <summary>
         /// Das Einstellungsverzeichnis.
         /// </summary>
@@ -198,6 +197,5 @@ namespace Knot3.Framework.Platform
                 return SystemInfo.RelativeBaseDirectory + "Content" + PathSeparator;
             }
         }
-
     }
 }

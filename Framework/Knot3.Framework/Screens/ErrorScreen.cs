@@ -54,7 +54,6 @@ namespace Knot3.Framework.Screens
     {
         ErrorDialog dialog;
 
-
         /// <summary>
         /// Erzeugt ein neues CreditsScreen-Objekt und initialisiert dieses mit einem Knot3Game-Objekt.
         /// </summary>
@@ -66,8 +65,6 @@ namespace Knot3.Framework.Screens
             dialog = new ErrorDialog (screen: this, drawOrder: DisplayLayer.Dialog, message: msg);
             dialog.Bounds.Size = new ScreenPoint (screen: this, x: 0.750f, y: 0.750f);
         }
-
-
 
         private string CreateMessage (Exception ex)
         {
@@ -90,6 +87,5 @@ namespace Knot3.Framework.Screens
             base.Entered (previousScreen, time);
             AddGameComponents (time, dialog);
         }
-
     }
 }

@@ -58,7 +58,6 @@ namespace Knot3.Game.Models
     [ExcludeFromCodeCoverageAttribute]
     public sealed class ShadowModel : IGameObject
     {
-
         private IGameScreen Screen;
         private GameModel DecoratedModel;
 
@@ -101,8 +100,6 @@ namespace Knot3.Game.Models
         /// </summary>
         public GameObjectInfo Info { get; private set; }
 
-
-
         /// <summary>
         /// Erstellt ein neues Vorschaumodell in dem angegebenen Spielzustand für das angegebene zu dekorierende Modell.
         /// </summary>
@@ -112,8 +109,6 @@ namespace Knot3.Game.Models
             DecoratedModel = decoratedModel;
             Info = new GameObjectInfo (position: Vector3.Zero, isVisible: true, isSelectable: false, isMovable: false);
         }
-
-
 
         /// <summary>
         /// Zeichnet das Vorschaumodell.
@@ -158,6 +153,5 @@ namespace Knot3.Game.Models
         {
             return null;
         }
-
     }
 }

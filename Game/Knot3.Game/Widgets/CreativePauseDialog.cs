@@ -61,14 +61,11 @@ namespace Knot3.Game.Widgets
     [ExcludeFromCodeCoverageAttribute]
     public sealed class CreativePauseDialog : Dialog
     {
-
         /// <summary>
         /// Das Menü, das verschiedene Schaltflächen enthält.
         /// </summary>
         private Menu pauseMenu;
         private Knot knot;
-
-
 
         /// <summary>
         ///
@@ -197,6 +194,5 @@ namespace Knot3.Game.Widgets
                 }
             };
         }
-
     }
 }

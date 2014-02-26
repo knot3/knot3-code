@@ -58,7 +58,6 @@ namespace Knot3.ModelEditor
     [ExcludeFromCodeCoverageAttribute]
     public class JunctionEditorRenderer : IGameObject, IEnumerable<IGameObject>
     {
-
         private IGameScreen screen;
 
         /// <summary>
@@ -96,8 +95,6 @@ namespace Knot3.ModelEditor
         /// </summary>
         private JunctionEditorNodeMap nodeMap;
 
-
-
         /// <summary>
         /// Erstellt ein neues KnotRenderer-Objekt für den angegebenen Spielzustand mit den angegebenen
         /// Spielobjekt-Informationen, die unter Anderem die Position des Knotenursprungs enthalten.
@@ -112,8 +109,6 @@ namespace Knot3.ModelEditor
             nodeFactory = new ModelFactory ((s, i) => new JunctionModel (s, i as Junction));
             nodeMap = new JunctionEditorNodeMap ();
         }
-
-
 
         /// <summary>
         /// Gibt den Ursprung des Knotens zurück.
@@ -251,6 +246,5 @@ namespace Knot3.ModelEditor
         {
             return GetEnumerator (); // Just return the generic version
         }
-
     }
 }
