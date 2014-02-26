@@ -26,6 +26,7 @@
 #endregion
 
 #region Using
+
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -114,7 +115,7 @@ namespace Knot3.Framework.Platform
 				return directory;
 			}
 		}
-		
+
 		[ExcludeFromCodeCoverageAttribute]
 		public static string DecodedMusicCache
 		{
@@ -164,7 +165,7 @@ namespace Knot3.Framework.Platform
 				relativeBaseDirectory = value;
 			}
 		}
-		
+
 		[ExcludeFromCodeCoverageAttribute]
 		private static void findBaseDirectory ()
 		{
@@ -194,7 +195,7 @@ namespace Knot3.Framework.Platform
 		private static string relativeBaseDirectory = null;
 		private static string baseDirectory = null;
 		public readonly static char PathSeparator = Path.DirectorySeparatorChar;
-		
+
 		[ExcludeFromCodeCoverageAttribute]
 		public static string RelativeContentDirectory
 		{

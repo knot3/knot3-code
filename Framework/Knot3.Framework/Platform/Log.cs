@@ -22,12 +22,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-using System.Collections.Generic;
 
 #endregion
 
 #region Using
+
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
@@ -111,11 +112,11 @@ namespace Knot3.Framework.Platform
 		private static void List (object id, object before, object after, object begin, object end)
 		{
 			ListDefinition def = new ListDefinition {
-				Id = id.ToString(),
-				Before = before.ToString(),
-				After = after.ToString(),
-				Begin = begin.ToString(),
-				End = end.ToString()
+				Id = id.ToString (),
+				Before = before.ToString (),
+				After = after.ToString (),
+				Begin = begin.ToString (),
+				End = end.ToString ()
 			};
 			lists [def.Id] = def;
 		}
@@ -157,7 +158,7 @@ namespace Knot3.Framework.Platform
 				lastListId = id.ToString ();
 			}
 			else {
-				Message ("Error! Invalid list ID in ListElement(", id, ", ", element, ")");
+				Message ("Error! Invalid list ID in ListElement (", id, ", ", element, ")");
 			}
 		}
 
@@ -166,8 +167,7 @@ namespace Knot3.Framework.Platform
 			ListElement (id, string.Join ("", element));
 		}
 
-		private struct ListDefinition
-		{
+		private struct ListDefinition {
 			public string Id;
 			public string Before;
 			public string After;
