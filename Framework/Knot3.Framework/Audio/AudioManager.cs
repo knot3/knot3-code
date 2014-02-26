@@ -177,14 +177,13 @@ namespace Knot3.Framework.Audio
 		private void LoadOggAudioFile (string filepath, string name, Sound soundType)
 		{
 			try {
-				// erstelle ein AudioFile-Objekt
-				Log.Debug ("Load ogg audio file (", soundType, "): ", filepath);
+				// erstelle ein OggVorbisFile-Objekt
 				AudioFiles [soundType].Add (new OggVorbisFile (name, filepath, soundType));
 			}
 			catch (Exception ex) {
 				// egal, warum das laden nicht klappt; mehr als die Fehlermeldung anzeigen
 				// macht wegen einer fehlenden Musikdatei keinen Sinn
-				Log.Debug ("Failed to load ffmpeg audio file (", soundType, "): ", filepath);
+				Log.Debug ("Failed to load ogg audio file (", soundType, "): ", filepath);
 				Log.Debug (ex);
 			}
 		}

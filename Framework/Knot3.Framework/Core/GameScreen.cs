@@ -26,7 +26,6 @@
 #endregion
 
 #region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -174,8 +173,9 @@ namespace Knot3.Framework.Core
 		/// </summary>
 		public virtual void AddGameComponents (GameTime time, params IGameScreenComponent[] components)
 		{
+			Log.BlockList (id: 27, before: "  - ", after: "", begin: "Add components: ", end: "");
 			foreach (IGameScreenComponent component in components) {
-				Log.Debug ("AddGameComponents: ", component);
+				Log.ListElement (id: 27, element: component);
 				Game.Components.Add (component);
 				AddGameComponents (time, component.SubComponents (time).ToArray ());
 			}
@@ -186,9 +186,10 @@ namespace Knot3.Framework.Core
 		/// </summary>
 		public virtual void RemoveGameComponents (GameTime time, params IGameScreenComponent[] components)
 		{
+			Log.BlockList (id: 28, before: "  - ", after: "", begin: "Remove component: ", end: "");
 			foreach (IGameScreenComponent component in components) {
-				Log.Debug ("RemoveGameComponents: ", component);
 				RemoveGameComponents (time, component.SubComponents (time).ToArray ());
+				Log.ListElement (id: 28, element: component);
 				Game.Components.Remove (component);
 			}
 		}

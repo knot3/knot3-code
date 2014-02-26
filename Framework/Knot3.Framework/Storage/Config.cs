@@ -65,7 +65,7 @@ namespace Knot3.Framework.Storage
 		{
 			get {
 				if (_default == null) {
-					_default = new ConfigFile (SystemInfo.SettingsDirectory + SystemInfo.PathSeparator + "knot3.ini");
+					_default = new ConfigFile (SystemInfo.SettingsDirectory + "knot3.ini");
 				}
 				return _default;
 			}
@@ -80,9 +80,7 @@ namespace Knot3.Framework.Storage
 		{
 			get {
 				if (_models == null) {
-					String seperatorString = SystemInfo.PathSeparator.ToString ();
-					_models = new ConfigFile (SystemInfo.BaseDirectory + seperatorString
-					                          + "Content" + seperatorString + "models.ini");
+					_models = new ConfigFile (SystemInfo.RelativeContentDirectory + "models.ini");
 				}
 				return _models;
 			}

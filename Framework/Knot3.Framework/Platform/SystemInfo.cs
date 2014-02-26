@@ -26,7 +26,6 @@
 #endregion
 
 #region Using
-
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -58,6 +57,7 @@ namespace Knot3.Framework.Platform
 		/// <summary>
 		/// Das Einstellungsverzeichnis.
 		/// </summary>
+		[ExcludeFromCodeCoverageAttribute]
 		public static string SettingsDirectory
 		{
 			get {
@@ -86,6 +86,7 @@ namespace Knot3.Framework.Platform
 		/// <summary>
 		/// Das Spielstandverzeichnis.
 		/// </summary>
+		[ExcludeFromCodeCoverageAttribute]
 		public static string SavegameDirectory
 		{
 			get {
@@ -98,6 +99,7 @@ namespace Knot3.Framework.Platform
 		/// <summary>
 		/// Das Bildschirmfotoverzeichnis.
 		/// </summary>
+		[ExcludeFromCodeCoverageAttribute]
 		public static string ScreenshotDirectory
 		{
 			get {
@@ -112,7 +114,8 @@ namespace Knot3.Framework.Platform
 				return directory;
 			}
 		}
-
+		
+		[ExcludeFromCodeCoverageAttribute]
 		public static string DecodedMusicCache
 		{
 			get {
@@ -128,6 +131,7 @@ namespace Knot3.Framework.Platform
 			}
 		}
 
+		[ExcludeFromCodeCoverageAttribute]
 		public static string BaseDirectory
 		{
 			get {
@@ -141,6 +145,7 @@ namespace Knot3.Framework.Platform
 			}
 		}
 
+		[ExcludeFromCodeCoverageAttribute]
 		public static string RelativeBaseDirectory
 		{
 			get {
@@ -159,7 +164,8 @@ namespace Knot3.Framework.Platform
 				relativeBaseDirectory = value;
 			}
 		}
-
+		
+		[ExcludeFromCodeCoverageAttribute]
 		private static void findBaseDirectory ()
 		{
 			string baseDir = Directory.GetCurrentDirectory ();
@@ -188,7 +194,8 @@ namespace Knot3.Framework.Platform
 		private static string relativeBaseDirectory = null;
 		private static string baseDirectory = null;
 		public readonly static char PathSeparator = Path.DirectorySeparatorChar;
-
+		
+		[ExcludeFromCodeCoverageAttribute]
 		public static string RelativeContentDirectory
 		{
 			get {
