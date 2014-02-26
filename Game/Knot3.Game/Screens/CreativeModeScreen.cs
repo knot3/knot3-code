@@ -301,7 +301,7 @@ namespace Knot3.Game.Screens
             AddGameComponents (time, knotInput, overlay, pointer, world, modelMouseHandler,
                                edgeColoring, edgeRectangles, undoButton, undoButtonBorder,
                                redoButton, redoButtonBorder, invisible);
-            Audio.BackgroundMusic = Sound.CreativeMusic;
+            AudioManager.BackgroundMusic = Sound.CreativeMusic;
 
             // Einstellungen anwenden
             debugBoundings.Info.IsVisible = Config.Default ["debug", "show-boundings", false];

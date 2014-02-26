@@ -55,11 +55,14 @@ namespace Knot3.Framework.Core
         GameClass Game { get; set; }
 
         /// <summary>
-        /// Der Inputhandler des Spielzustands.
+        /// Der InputManager des Spielzustands.
         /// </summary>
         InputManager InputManager { get; }
-
-        AudioManager Audio { get; }
+        
+        /// <summary>
+        /// Der AudioManager des Spielzustands.
+        /// </summary>
+        AudioManager AudioManager { get; }
 
         /// <summary>
         /// Der aktuelle Postprocessing-Effekt des Spielzustands
@@ -76,16 +79,29 @@ namespace Knot3.Framework.Core
         /// </summary>
         IGameScreen NextScreen { get; set; }
 
-        GraphicsDeviceManager Graphics { get; }
+        /// <summary>
+        /// Der GraphicsDeviceManager von XNA.
+        /// </summary>
+        GraphicsDeviceManager GraphicsManager { get; }
 
+        /// <summary>
+        /// Das GraphicsDevice von XNA.
+        /// </summary>
         GraphicsDevice Device { get; }
 
+        /// <summary>
+        /// Der aktuelle Viewport.
+        /// </summary>
         Viewport Viewport { get; set; }
-
-        ContentManager Content { get; }
-
+        
+        /// <summary>
+        /// Die Hintergrundfarbe des Screens.
+        /// </summary>
         Color BackgroundColor { get; }
-
+        
+        /// <summary>
+        /// Gibt die Ausmaße des Screens zurück.
+        /// </summary>
         Bounds Bounds { get; }
 
         /// <summary>

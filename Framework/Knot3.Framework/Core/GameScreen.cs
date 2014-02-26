@@ -62,11 +62,14 @@ namespace Knot3.Framework.Core
         public GameClass Game { get; set; }
 
         /// <summary>
-        /// Der Inputhandler des Spielzustands.
+        /// Der InputManager des Spielzustands.
         /// </summary>
         public InputManager InputManager { get; set; }
 
-        public AudioManager Audio { get; private set; }
+        /// <summary>
+        /// Der AudioManager des Spielzustands.
+        /// </summary>
+        public AudioManager AudioManager { get; private set; }
 
         /// <summary>
         /// Der aktuelle Postprocessing-Effekt des Spielzustands
@@ -82,21 +85,35 @@ namespace Knot3.Framework.Core
         /// Der nächste Spielstand, der von Knot3Game gesetzt werden soll.
         /// </summary>
         public IGameScreen NextScreen { get; set; }
+        
+        /// <summary>
+        /// Der GraphicsDeviceManager von XNA.
+        /// </summary>
+        public GraphicsDeviceManager GraphicsManager { get { return Game.Graphics; } }
 
-        public GraphicsDeviceManager Graphics { get { return Game.Graphics; } }
-
+        /// <summary>
+        /// Das GraphicsDevice von XNA.
+        /// </summary>
         public GraphicsDevice Device { get { return Game.GraphicsDevice; } }
-
+        
+        /// <summary>
+        /// Der aktuelle Viewport.
+        /// </summary>
         public Viewport Viewport
         {
             get { return Device.Viewport; }
             set { Device.Viewport = value; }
         }
 
-        public ContentManager Content { get { return Game.Content; } }
-
+        /// <summary>
+        /// Die Hintergrundfarbe des Screens.
+        /// </summary>
         public Color BackgroundColor { get; protected set; }
 
+        /// <summary>
+        /// Gibt die Ausmaße des Screens zurück. Dabei handelt es sich
+        /// immer um die relative Position (0,0) und die relative Größe (1,1).
+        /// </summary>
         public Bounds Bounds
         {
             get { return new Bounds (screen: this, relX: 0f, relY: 0f, relWidth: 1f, relHeight: 1f); }
@@ -115,7 +132,7 @@ namespace Knot3.Framework.Core
             );
             PostProcessingEffect = new StandardEffect (this);
             InputManager = new InputManager (this);
-            Audio = new AudioManager (this);
+            AudioManager = new AudioManager (this);
             BackgroundColor = Design.ScreenBackground;
         }
 
@@ -127,7 +144,7 @@ namespace Knot3.Framework.Core
         public virtual void Entered (IGameScreen previousScreen, GameTime time)
         {
             Log.Debug ("Entered: ", this);
-            AddGameComponents (time, InputManager, Audio, new WidgetKeyHandler (this), new WidgetMouseHandler (this));
+            AddGameComponents (time, InputManager, AudioManager, new WidgetKeyHandler (this), new WidgetMouseHandler (this));
         }
 
         /// <summary>
@@ -158,7 +175,7 @@ namespace Knot3.Framework.Core
         /// <summary>
         /// Fügt die angegebenen GameComponents in die Components-Liste des Games ein.
         /// </summary>
-        public virtual void AddGameComponents (GameTime time, params IGameScreenComponent[] components)
+        public void AddGameComponents (GameTime time, params IGameScreenComponent[] components)
         {
             Log.BlockList (id: 27, before: "  - ", after: "", begin: "Add components: ", end: "");
             foreach (IGameScreenComponent component in components) {
@@ -171,7 +188,7 @@ namespace Knot3.Framework.Core
         /// <summary>
         /// Entfernt die angegebenen GameComponents aus der Components-Liste des Games.
         /// </summary>
-        public virtual void RemoveGameComponents (GameTime time, params IGameScreenComponent[] components)
+        public void RemoveGameComponents (GameTime time, params IGameScreenComponent[] components)
         {
             Log.BlockList (id: 28, before: "  - ", after: "", begin: "Remove components: ", end: "");
             foreach (IGameScreenComponent component in components) {

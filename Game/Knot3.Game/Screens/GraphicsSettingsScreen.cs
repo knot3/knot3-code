@@ -114,9 +114,9 @@ namespace Knot3.Game.Screens
             settingsMenu.Add (autoCamera);
 
             // Resolutions
-            string currentResolution = Graphics.GraphicsDevice.DisplayMode.Width.ToString ()
+            string currentResolution = GraphicsManager.GraphicsDevice.DisplayMode.Width.ToString ()
                                        + "x"
-                                       + Graphics.GraphicsDevice.DisplayMode.Height.ToString ();
+                                       + GraphicsManager.GraphicsDevice.DisplayMode.Height.ToString ();
 
             DisplayModeCollection modes = GraphicsAdapter.DefaultAdapter.SupportedDisplayModes;
             HashSet<string> reso = new HashSet<string> ();

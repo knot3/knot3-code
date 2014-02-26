@@ -83,7 +83,7 @@ namespace Knot3.Framework.Platform
 
         private static Effect LoadEffectDotnet (IGameScreen screen, string name)
         {
-            return screen.Content.Load<Effect> ("Shader/" + name);
+            return screen.Game.Content.Load<Effect> ("Shader/" + name);
         }
 
         private static Dictionary<string, ContentManager> contentManagers = new Dictionary<string, ContentManager> ();
@@ -96,7 +96,7 @@ namespace Knot3.Framework.Platform
                 content = contentManagers [screen.CurrentRenderEffects.CurrentEffect.ToString ()];
             }
             else {
-                contentManagers [screen.CurrentRenderEffects.CurrentEffect.ToString ()] = content = new ContentManager (screen.Content.ServiceProvider, screen.Content.RootDirectory);
+                contentManagers [screen.CurrentRenderEffects.CurrentEffect.ToString ()] = content = new ContentManager (screen.Game.Content.ServiceProvider, screen.Game.Content.RootDirectory);
             }
 
             Model model = LoadModel (content, screen.CurrentRenderEffects.CurrentEffect, name);
@@ -145,7 +145,7 @@ namespace Knot3.Framework.Platform
         private static Texture2D LoadTextureFromContentPipeline (IGameScreen screen, string name)
         {
             try {
-                return screen.Content.Load<Texture2D> ("Textures/" + name);
+                return screen.Game.Content.Load<Texture2D> ("Textures/" + name);
             }
             catch (IOException ex) {
                 Log.Debug (ex);
@@ -175,7 +175,7 @@ namespace Knot3.Framework.Platform
         public static SpriteFont LoadFont (this IGameScreen screen, string name)
         {
             try {
-                return screen.Content.Load<SpriteFont> ("Fonts/" + name);
+                return screen.Game.Content.Load<SpriteFont> ("Fonts/" + name);
             }
             catch (ContentLoadException ex) {
                 Log.Debug (ex);

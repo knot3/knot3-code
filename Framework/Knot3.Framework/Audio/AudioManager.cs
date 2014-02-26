@@ -146,7 +146,7 @@ namespace Knot3.Framework.Audio
         {
             try {
                 // versuche, die Audiodatei als "SoundEffect" zu laden
-                SoundEffect soundEffect = Screen.Content.Load<SoundEffect> (filepath);
+                SoundEffect soundEffect = Screen.Game.Content.Load<SoundEffect> (filepath);
                 AudioFiles [soundType].Add (new SoundEffectFile (name, soundEffect, soundType));
                 Log.Debug ("Load sound effect (", soundType, "): ", filepath);
             }

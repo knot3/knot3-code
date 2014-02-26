@@ -63,7 +63,7 @@ namespace Knot3.MockObjects
         /// </summary>
         public InputManager InputManager { get; private set; }
 
-        public AudioManager Audio { get; private set; }
+        public AudioManager AudioManager { get; private set; }
 
         /// <summary>
         /// Der aktuelle Postprocessing-Effekt des Spielzustands
@@ -80,7 +80,7 @@ namespace Knot3.MockObjects
         /// </summary>
         public IGameScreen NextScreen { get; set; }
 
-        public GraphicsDeviceManager Graphics { get; private set; }
+        public GraphicsDeviceManager GraphicsManager { get; private set; }
 
         public GraphicsDevice Device { get; private set; }
 

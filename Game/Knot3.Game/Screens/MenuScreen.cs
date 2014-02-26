@@ -82,7 +82,7 @@ namespace Knot3.Game.Screens
         {
             base.Entered (previousScreen, time);
             AddGameComponents (time, pointer, lines);
-            Audio.BackgroundMusic = Sound.MenuMusic;
+            AudioManager.BackgroundMusic = Sound.MenuMusic;
         }
     }
 }

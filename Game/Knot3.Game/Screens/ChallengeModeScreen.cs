@@ -405,7 +405,7 @@ namespace Knot3.Game.Screens
                                lines, playTimeDisplay, playTimeBorder,
                                undoButton, undoButtonBorder, redoButton, redoButtonBorder);
 
-            Audio.BackgroundMusic = Sound.ChallengeMusic;
+            AudioManager.BackgroundMusic = Sound.ChallengeMusic;
 
             // Einstellungen anwenden
             debugBoundings.Info.IsVisible = Config.Default ["debug", "show-boundings", false];

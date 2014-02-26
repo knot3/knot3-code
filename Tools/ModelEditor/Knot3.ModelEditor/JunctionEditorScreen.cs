@@ -236,7 +236,7 @@ namespace Knot3.ModelEditor
         {
             base.Entered (previousScreen, time);
             AddGameComponents (time, knotInput, pointer, world, modelMouseHandler, settingsMenu);
-            Audio.BackgroundMusic = Sound.CreativeMusic;
+            AudioManager.BackgroundMusic = Sound.CreativeMusic;
 
             // Einstellungen anwenden
             debugBoundings.Info.IsVisible = Config.Default ["debug", "show-boundings", false];

@@ -24,7 +24,6 @@
  */
 
 #endregion
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -101,6 +100,12 @@ namespace Knot3.Framework.Storage
         public static implicit operator string (Language language)
         {
             return language.Code;
+        }
+
+        [ExcludeFromCodeCoverageAttribute]
+        public override int GetHashCode ()
+        {
+            return Code.GetHashCode ();
         }
     }
 }
