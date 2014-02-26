@@ -70,8 +70,8 @@ namespace Knot3.Framework.Audio
 			                   + name.GetHashCode ().ToString ()
 			                   + ".wav";
 
-			Log.BlockList (id: 33, before: "  - ", after: "", begin: "Load ogg audio file:", end: "");
-			Log.BlockList (id: 34, before: "  - ", after: "", begin: "Decode ogg audio file:", end: "");
+			Log.BlockList (id: 33, before: "  - ", after: "", begin: "Load ogg audio files:", end: "");
+			Log.BlockList (id: 34, before: "  - ", after: "", begin: "Decode ogg audio files:", end: "");
 
 			byte[] data;
 			try {

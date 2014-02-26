@@ -187,7 +187,7 @@ namespace Knot3.Framework.Core
 		/// </summary>
 		public virtual void RemoveGameComponents (GameTime time, params IGameScreenComponent[] components)
 		{
-			Log.BlockList (id: 28, before: "  - ", after: "", begin: "Remove component: ", end: "");
+			Log.BlockList (id: 28, before: "  - ", after: "", begin: "Remove components: ", end: "");
 			foreach (IGameScreenComponent component in components) {
 				RemoveGameComponents (time, component.SubComponents (time).ToArray ());
 				Log.ListElement (id: 28, element: component);
