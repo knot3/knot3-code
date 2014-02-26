@@ -85,7 +85,7 @@ namespace Knot3.ModelEditor
         : base (game)
         {
             // die Spielwelt
-            world = new World (screen: this, drawIndex: DisplayLayer.GameWorld, bounds: Bounds.FromLeft (0.60f));
+            world = new World (screen: this, drawOrder: DisplayLayer.GameWorld, bounds: Bounds.FromLeft (0.60f));
             // der Input-Handler
             knotInput = new KnotInputHandler (screen: this, world: world);
             // der Mauszeiger

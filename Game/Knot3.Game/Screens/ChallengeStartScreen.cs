@@ -132,7 +132,7 @@ namespace Knot3.Game.Screens
             Bounds previewBounds = new Bounds (this, 0.45f, 0.1f, 0.48f, 0.5f);
             previewWorld = new World (
                 screen: this,
-                drawIndex: DisplayLayer.ScreenUI + DisplayLayer.GameWorld,
+                drawOrder: DisplayLayer.ScreenUI + DisplayLayer.GameWorld,
                 bounds: previewBounds
             );
             previewRenderer = new KnotRenderer (screen: this, position: Vector3.Zero);

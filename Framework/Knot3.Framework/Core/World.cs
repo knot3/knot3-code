@@ -32,19 +32,12 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 
-using Knot3.Framework.Core;
 using Knot3.Framework.Effects;
-using Knot3.Framework.Input;
 using Knot3.Framework.Math;
 using Knot3.Framework.Models;
-using Knot3.Framework.Platform;
 using Knot3.Framework.Storage;
-using Knot3.Framework.Utilities;
 
 namespace Knot3.Framework.Core
 {
@@ -94,6 +87,10 @@ namespace Knot3.Framework.Core
             }
         }
 
+        /// <summary>
+        /// Der Abstand von der aktuellen Kameraposition und dem ausgewählten Spielobjekt.
+        /// Gibt 0 zurück, wenn kein Spielobjekt ausgewählt ist.
+        /// </summary>
         public float SelectedObjectDistance
         {
             get {
@@ -134,10 +131,11 @@ namespace Knot3.Framework.Core
         public Bounds Bounds { get; private set; }
 
         /// <summary>
-        /// Erstellt eine neue Spielwelt im angegebenen Spielzustand.
+        /// Erstellt eine neue Spielwelt im angegebenen Spielzustand, dem angegebenen Rendereffekt und dem
+        /// angegebenen Bounds-Objekt.
         /// </summary>
-        public World (IGameScreen screen, DisplayLayer drawIndex, IRenderEffect effect, Bounds bounds)
-        : base (screen, drawIndex)
+        public World (IGameScreen screen, DisplayLayer drawOrder, IRenderEffect effect, Bounds bounds)
+        : base (screen, drawOrder)
         {
             // die Kamera für diese Spielwelt
             _camera = new Camera (screen, this);
@@ -145,18 +143,26 @@ namespace Knot3.Framework.Core
             // die Liste der Spielobjekte
             Objects = new HashSet<IGameObject> ();
 
+            // der Rendereffekt
             CurrentEffect = effect;
 
-            // Die relative Standard-Position und Größe
+            // die relative Standard-Position und Größe
             Bounds = bounds;
 
             if (Screen.Game != null) {
                 Screen.Game.FullScreenChanged += () => viewportCache.Clear ();
             }
         }
-
-        public World (IGameScreen screen, DisplayLayer drawIndex, Bounds bounds)
-        : this (screen, drawIndex, DefaultEffect (screen), bounds)
+        
+        /// <summary>
+        /// Erstellt eine neue Spielwelt im angegebenen Spielzustand und dem
+        /// angegebenen Bounds-Objekt.
+        /// Als Rendereffekt wird der in der Konfigurationsdatei festgelegte Standardeffekt festgelegt.
+        /// Falls während der Existenz dieses Objektes der Standardeffekt geändert wird,
+        /// wird der neue Effekt übernommen.
+        /// </summary>
+        public World (IGameScreen screen, DisplayLayer drawOrder, Bounds bounds)
+        : this (screen: screen, drawOrder: drawOrder, effect: DefaultEffect (screen), bounds: bounds)
         {
             RenderEffectLibrary.RenderEffectChanged += (newEffectName, time) => {
                 CurrentEffect = RenderEffectLibrary.CreateEffect (screen: screen, name: newEffectName);
@@ -171,6 +177,9 @@ namespace Knot3.Framework.Core
             return effect;
         }
 
+        /// <summary>
+        /// Füge ein Spielobjekt zur Spielwelt hinzu.
+        /// </summary>
         public void Add (IGameObject obj)
         {
             if (obj != null) {
@@ -180,6 +189,9 @@ namespace Knot3.Framework.Core
             Redraw = true;
         }
 
+        /// <summary>
+        /// Entferne ein Spielobjekt aus der Spielwelt.
+        /// </summary>
         public void Remove (IGameObject obj)
         {
             if (obj != null) {
@@ -210,6 +222,9 @@ namespace Knot3.Framework.Core
         private Dictionary<Point,Dictionary<Vector4, Viewport>> viewportCache
             = new Dictionary<Point,Dictionary<Vector4, Viewport>> ();
 
+        /// <summary>
+        /// Gibt den aktuellen Viewport zurück.
+        /// </summary>
         public Viewport Viewport
         {
             get {

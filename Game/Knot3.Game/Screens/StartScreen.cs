@@ -75,10 +75,10 @@ namespace Knot3.Game.Screens
         public StartScreen (GameClass game)
         : base (game)
         {
-            buttons = new Container (this, DisplayLayer.ScreenUI + DisplayLayer.Menu);
+            buttons = new Container (screen: this, drawOrder: DisplayLayer.ScreenUI + DisplayLayer.Menu);
 
             // logo
-            logo = this.LoadTexture ("logo");
+            logo = this.LoadTexture (name: "logo");
 
             // create a new SpriteBatch, which can be used to draw textures
             spriteBatch = new SpriteBatch (GraphicsDevice);

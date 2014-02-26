@@ -164,8 +164,8 @@ namespace Knot3.Game.Screens
         : base (game)
         {
             // world
-            PlayerWorld = new World (screen: this, drawIndex: DisplayLayer.GameWorld, bounds: Bounds.FromRight (percent: 0.5f));
-            ChallengeWorld = new World (screen: this, drawIndex: DisplayLayer.GameWorld, bounds: Bounds.FromLeft (percent: 0.5f));
+            PlayerWorld = new World (screen: this, drawOrder: DisplayLayer.GameWorld, bounds: Bounds.FromRight (percent: 0.5f));
+            ChallengeWorld = new World (screen: this, drawOrder: DisplayLayer.GameWorld, bounds: Bounds.FromLeft (percent: 0.5f));
             ChallengeWorld.Camera = PlayerWorld.Camera;
             PlayerWorld.OnRedraw += () => ChallengeWorld.Redraw = true;
             // input
