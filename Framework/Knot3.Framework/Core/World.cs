@@ -214,8 +214,8 @@ namespace Knot3.Framework.Core
         {
             get {
                 // when we have a graphics device
-                if (Screen.Device != null) {
-                    PresentationParameters pp = Screen.Device.PresentationParameters;
+                if (Screen.GraphicsDevice != null) {
+                    PresentationParameters pp = Screen.GraphicsDevice.PresentationParameters;
                     Point resolution = new Point (pp.BackBufferWidth, pp.BackBufferHeight);
                     Vector4 key = Bounds.Vector4;
                     if (!viewportCache.ContainsKey (resolution)) {

@@ -87,7 +87,7 @@ namespace Knot3.Game.Screens
         {
             MenuName = "Settings";
 
-            spriteBatch = new SpriteBatch (Device);
+            spriteBatch = new SpriteBatch (GraphicsDevice);
 
             navigationMenu = new Menu (this, DisplayLayer.ScreenUI + DisplayLayer.Menu);
             navigationMenu.Bounds.Position = new ScreenPoint (this, 0.100f, 0.180f);

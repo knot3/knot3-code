@@ -77,7 +77,7 @@ namespace Knot3.Framework.Effects
         public RenderEffect (IGameScreen screen)
         {
             this.screen = screen;
-            spriteBatch = new SpriteBatch (screen.Device);
+            spriteBatch = new SpriteBatch (screen.GraphicsDevice);
             screen.Game.FullScreenChanged += () => renderTargets.Clear ();
             SelectiveRendering = true;
         }
@@ -94,7 +94,7 @@ namespace Knot3.Framework.Effects
 
             RenderTarget = CurrentRenderTarget;
             screen.CurrentRenderEffects.Push (this);
-            screen.Device.Clear (Color.Transparent);
+            screen.GraphicsDevice.Clear (Color.Transparent);
 
             //spriteBatch.Begin (SpriteSortMode.Immediate, BlendState.NonPremultiplied);
             //spriteBatch.Draw (TextureHelper.Create (screen.Device, screen.Viewport.Width, screen.Viewport.Height, background),
@@ -102,11 +102,11 @@ namespace Knot3.Framework.Effects
             //spriteBatch.End ();
 
             // set the stencil screen
-            screen.Device.DepthStencilState = DepthStencilState.Default;
+            screen.GraphicsDevice.DepthStencilState = DepthStencilState.Default;
             // Setting the other screens isn't really necessary but good form
-            screen.Device.BlendState = BlendState.Opaque;
-            screen.Device.RasterizerState = RasterizerState.CullCounterClockwise;
-            screen.Device.SamplerStates [0] = SamplerState.LinearWrap;
+            screen.GraphicsDevice.BlendState = BlendState.Opaque;
+            screen.GraphicsDevice.RasterizerState = RasterizerState.CullCounterClockwise;
+            screen.GraphicsDevice.SamplerStates [0] = SamplerState.LinearWrap;
         }
 
         /// <summary>
@@ -215,7 +215,7 @@ namespace Knot3.Framework.Effects
         public RenderTarget2D CurrentRenderTarget
         {
             get {
-                PresentationParameters pp = screen.Device.PresentationParameters;
+                PresentationParameters pp = screen.GraphicsDevice.PresentationParameters;
                 Point resolution = new Point (pp.BackBufferWidth, pp.BackBufferHeight);
                 Rectangle viewport = new Rectangle (screen.Viewport.X, screen.Viewport.Y,
                                                     screen.Viewport.Width, screen.Viewport.Height);
@@ -229,7 +229,7 @@ namespace Knot3.Framework.Effects
                     try {
                         Log.Debug ("Supersampling=", Supersampling);
                         renderTargets [resolution] [viewport] [Supersampling] = new RenderTarget2D (
-                            screen.Device, (int)(viewport.Width * Supersampling), (int)(viewport.Height * Supersampling),
+                            screen.GraphicsDevice, (int)(viewport.Width * Supersampling), (int)(viewport.Height * Supersampling),
                             false, SurfaceFormat.Color, DepthFormat.Depth24, 1, RenderTargetUsage.PreserveContents
                         );
                         break;

@@ -158,8 +158,8 @@ namespace Knot3.Framework.Widgets
             int lineWidth = valueBounds.Width;
             int lineHeight = 2;
 
-            Texture2D lineTexture = new Texture2D (Screen.Device, lineWidth, lineHeight);
-            Texture2D rectangleTexture = new Texture2D (Screen.Device, 1, 1);
+            Texture2D lineTexture = new Texture2D (Screen.GraphicsDevice, lineWidth, lineHeight);
+            Texture2D rectangleTexture = new Texture2D (Screen.GraphicsDevice, 1, 1);
 
             Color[] dataLine = new Color[lineWidth * lineHeight];
             for (int i = 0; i < dataLine.Length; ++i) {

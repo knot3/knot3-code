@@ -99,7 +99,7 @@ namespace Knot3.Framework.Widgets
             Text = text;
             ItemOrder = -1;
             State = WidgetState.None;
-            spriteBatch = new SpriteBatch (screen.Device);
+            spriteBatch = new SpriteBatch (screen.GraphicsDevice);
             SelectedColorBackground = Color.Transparent;
             SelectedColorForeground = Color.White;
         }

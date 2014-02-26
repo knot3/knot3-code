@@ -84,7 +84,7 @@ namespace Knot3.Game.Models
             Info = info;
             SetPosition (Info.Position);
 
-            basicEffect = new BasicEffect (screen.Device);
+            basicEffect = new BasicEffect (screen.GraphicsDevice);
             if (info.Texture != null) {
                 texture = info.Texture;
             }
@@ -129,7 +129,7 @@ namespace Knot3.Game.Models
                 foreach (EffectPass pass in basicEffect.CurrentTechnique.Passes) {
                     pass.Apply ();
 
-                    Screen.Device.DrawUserIndexedPrimitives<VertexPositionNormalTexture> (
+                    Screen.GraphicsDevice.DrawUserIndexedPrimitives<VertexPositionNormalTexture> (
                         PrimitiveType.TriangleList, Vertices, 0, Vertices.Length, Indexes, 0, Indexes.Length / 3
                     );
                 }

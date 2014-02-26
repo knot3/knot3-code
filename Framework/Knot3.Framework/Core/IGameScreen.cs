@@ -87,7 +87,7 @@ namespace Knot3.Framework.Core
         /// <summary>
         /// Das GraphicsDevice von XNA.
         /// </summary>
-        GraphicsDevice Device { get; }
+        GraphicsDevice GraphicsDevice { get; }
 
         /// <summary>
         /// Der aktuelle Viewport.

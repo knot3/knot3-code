@@ -61,7 +61,7 @@ namespace Knot3.Framework.Input
         : base (screen, DisplayLayer.Cursor)
         {
             cursorTex = Screen.LoadTexture ("cursor");
-            spriteBatch = new SpriteBatch (screen.Device);
+            spriteBatch = new SpriteBatch (screen.GraphicsDevice);
         }
 
         /// <summary>

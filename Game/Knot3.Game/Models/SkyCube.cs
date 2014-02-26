@@ -162,7 +162,7 @@ namespace Knot3.Game.Models
         {
             string effectName = Config.Default ["video", "knot-shader", "default"];
             if (effectName == "celshader") {
-                return ContentLoader.CreateTexture (Screen.Device, Color.CornflowerBlue);
+                return ContentLoader.CreateTexture (Screen.GraphicsDevice, Color.CornflowerBlue);
             }
             else {
                 return CreateSpaceTexture ();
@@ -173,7 +173,7 @@ namespace Knot3.Game.Models
         {
             int width = 1000;
             int height = 1000;
-            Texture2D texture = new Texture2D (Screen.Device, width, height);
+            Texture2D texture = new Texture2D (Screen.GraphicsDevice, width, height);
             Color[] colors = new Color[width * height];
             for (int i = 0; i < colors.Length; i++) {
                 colors [i] = Color.Black;

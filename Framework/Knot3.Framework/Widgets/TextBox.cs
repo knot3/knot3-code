@@ -68,7 +68,7 @@ namespace Knot3.Framework.Widgets
         {
             Text = text;
             State = WidgetState.None;
-            spriteBatch = new SpriteBatch (screen.Device);
+            spriteBatch = new SpriteBatch (screen.GraphicsDevice);
         }
 
         [ExcludeFromCodeCoverageAttribute]

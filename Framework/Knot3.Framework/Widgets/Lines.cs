@@ -73,8 +73,8 @@ namespace Knot3.Framework.Widgets
         {
             this.lineWidth = lineWidth;
             points = new List<Vector2> ();
-            spriteBatch = new SpriteBatch (screen.Device);
-            texture = ContentLoader.CreateTexture (Screen.Device, Color.White);
+            spriteBatch = new SpriteBatch (screen.GraphicsDevice);
+            texture = ContentLoader.CreateTexture (Screen.GraphicsDevice, Color.White);
             LineColor = lineColor;
             OutlineColor = outlineColor;
             IsEnabled = true;

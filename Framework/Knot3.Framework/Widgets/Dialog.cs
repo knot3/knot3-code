@@ -91,7 +91,7 @@ namespace Knot3.Framework.Widgets
             Title = title;
 
             // erstelle einen Spritebatch zum Zeichnen der Titelleiste
-            spriteBatch = new SpriteBatch (screen.Device);
+            spriteBatch = new SpriteBatch (screen.GraphicsDevice);
 
             // Dialoge sind nach dem erstellen sichtbar, und das Delegate zum schließen macht sie unsichtbar
             IsVisible = true;

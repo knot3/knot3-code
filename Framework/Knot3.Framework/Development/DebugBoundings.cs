@@ -64,7 +64,7 @@ namespace Knot3.Framework.Development
             Info = new GameObjectInfo (position: position);
 
             sphereResolution = 40;
-            effect = new BasicEffect (screen.Device);
+            effect = new BasicEffect (screen.GraphicsDevice);
             effect.LightingEnabled = false;
             effect.VertexColorEnabled = false;
 
@@ -89,7 +89,7 @@ namespace Knot3.Framework.Development
                     color: Color.White
                 );
             }
-            vertBuffer = new VertexBuffer (screen.Device, typeof (VertexPositionColor), verts.Length, BufferUsage.None);
+            vertBuffer = new VertexBuffer (screen.GraphicsDevice, typeof (VertexPositionColor), verts.Length, BufferUsage.None);
             vertBuffer.SetData (verts);
         }
 
@@ -119,7 +119,7 @@ namespace Knot3.Framework.Development
 
             foreach (GameModel model in World.OfType<GameModel>()) {
                 if (model.Info.IsVisible) {
-                    screen.Device.SetVertexBuffer (vertBuffer);
+                    screen.GraphicsDevice.SetVertexBuffer (vertBuffer);
 
                     foreach (BoundingSphere sphere in model.Bounds) {
                         effect.World = Matrix.CreateScale (sphere.Radius) * Matrix.CreateTranslation (sphere.Center);
@@ -130,9 +130,9 @@ namespace Knot3.Framework.Development
                         foreach (EffectPass pass in effect.CurrentTechnique.Passes) {
                             pass.Apply ();
 
-                            screen.Device.DrawPrimitives (PrimitiveType.LineStrip, 0, sphereResolution);
-                            screen.Device.DrawPrimitives (PrimitiveType.LineStrip, sphereResolution + 1, sphereResolution);
-                            screen.Device.DrawPrimitives (PrimitiveType.LineStrip, (sphereResolution + 1) * 2, sphereResolution);
+                            screen.GraphicsDevice.DrawPrimitives (PrimitiveType.LineStrip, 0, sphereResolution);
+                            screen.GraphicsDevice.DrawPrimitives (PrimitiveType.LineStrip, sphereResolution + 1, sphereResolution);
+                            screen.GraphicsDevice.DrawPrimitives (PrimitiveType.LineStrip, (sphereResolution + 1) * 2, sphereResolution);
                         }
                     }
                 }

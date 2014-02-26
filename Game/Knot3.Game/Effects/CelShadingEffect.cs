@@ -84,7 +84,7 @@ namespace Knot3.Game.Effects
             celShader.Parameters ["LightDirection"].SetValue (lightDirection);
             celMap = screen.LoadTexture ("CelMap");
             if (celMap == null) {
-                celMap = ContentLoader.CreateTexture (screen.Device, Color.White);
+                celMap = ContentLoader.CreateTexture (screen.GraphicsDevice, Color.White);
             }
             celShader.Parameters ["Color"].SetValue (Color.Green.ToVector4 ());
             celShader.Parameters ["CelMap"].SetValue (celMap);

@@ -82,7 +82,7 @@ namespace Knot3.MockObjects
 
         public GraphicsDeviceManager GraphicsManager { get; private set; }
 
-        public GraphicsDevice Device { get; private set; }
+        public GraphicsDevice GraphicsDevice { get; private set; }
 
         public Viewport Viewport { get { return new Viewport (new Rectangle (0, 0, 800, 600)); } set { } }
 

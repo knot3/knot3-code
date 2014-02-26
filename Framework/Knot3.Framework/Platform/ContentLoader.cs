@@ -71,7 +71,7 @@ namespace Knot3.Framework.Platform
             Exception lastException = new Exception ("Could not find shader: " + name);
             foreach (string filename in filenames) {
                 try {
-                    Effect effect = new Effect (screen.Device, System.IO.File.ReadAllBytes (filename));
+                    Effect effect = new Effect (screen.GraphicsDevice, System.IO.File.ReadAllBytes (filename));
                     return effect;
                 }
                 catch (Exception ex) {
@@ -162,7 +162,7 @@ namespace Knot3.Framework.Platform
             try {
                 string filename = SystemInfo.RelativeContentDirectory + "Textures" + SystemInfo.PathSeparator + name;
                 FileStream stream = new FileStream (filename, FileMode.Open);
-                return Texture2D.FromStream (screen.Device, stream);
+                return Texture2D.FromStream (screen.GraphicsDevice, stream);
             }
             catch (Exception ex) {
                 // hier kommen bei indexierten Bitmaps nur "Exception"-Objekte,

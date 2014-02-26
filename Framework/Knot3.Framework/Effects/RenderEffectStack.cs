@@ -95,10 +95,10 @@ namespace Knot3.Framework.Effects
             if (stack.Count > 0) {
                 IRenderEffect removed = stack.Pop ();
                 if (stack.Count > 0) {
-                    screen.Device.SetRenderTarget (CurrentEffect.RenderTarget);
+                    screen.GraphicsDevice.SetRenderTarget (CurrentEffect.RenderTarget);
                 }
                 else {
-                    screen.Device.SetRenderTarget (null);
+                    screen.GraphicsDevice.SetRenderTarget (null);
                 }
                 return removed;
             }
@@ -113,7 +113,7 @@ namespace Knot3.Framework.Effects
         public void Push (IRenderEffect effect)
         {
             stack.Push (effect);
-            screen.Device.SetRenderTarget (effect.RenderTarget);
+            screen.GraphicsDevice.SetRenderTarget (effect.RenderTarget);
         }
     }
 }

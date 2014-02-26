@@ -108,7 +108,7 @@ namespace Knot3.Framework.Widgets
         : base (screen, drawOrder)
         {
             RelativeItemHeight = 0.040f;
-            spriteBatch = new SpriteBatch (screen.Device);
+            spriteBatch = new SpriteBatch (screen.GraphicsDevice);
 
             ItemBackgroundColor = Design.MenuItemBackgroundColorFunc;
             ItemForegroundColor = Design.MenuItemForegroundColorFunc;
@@ -240,7 +240,7 @@ namespace Knot3.Framework.Widgets
 
             if (IsVisible && IsEnabled && HasScrollbar) {
                 spriteBatch.Begin ();
-                Texture2D rectangleTexture = ContentLoader.CreateTexture (Screen.Device, Color.White);
+                Texture2D rectangleTexture = ContentLoader.CreateTexture (Screen.GraphicsDevice, Color.White);
                 Bounds sliderBounds = ScrollSliderInBarBounds.In (ScrollBarBounds);
                 spriteBatch.Draw (rectangleTexture, sliderBounds.Rectangle.Grow (1), Design.DefaultOutlineColor);
                 spriteBatch.Draw (rectangleTexture, sliderBounds.Rectangle, Design.DefaultLineColor);

@@ -94,15 +94,15 @@ namespace Knot3.Framework.Core
         /// <summary>
         /// Das GraphicsDevice von XNA.
         /// </summary>
-        public GraphicsDevice Device { get { return Game.GraphicsDevice; } }
+        public GraphicsDevice GraphicsDevice { get { return Game.GraphicsDevice; } }
         
         /// <summary>
         /// Der aktuelle Viewport.
         /// </summary>
         public Viewport Viewport
         {
-            get { return Device.Viewport; }
-            set { Device.Viewport = value; }
+            get { return GraphicsDevice.Viewport; }
+            set { GraphicsDevice.Viewport = value; }
         }
 
         /// <summary>

@@ -80,7 +80,7 @@ namespace Knot3.Framework.Widgets
         {
             this.name = name;
             OnClick = onClick;
-            spriteBatch = new SpriteBatch (screen.Device);
+            spriteBatch = new SpriteBatch (screen.GraphicsDevice);
         }
 
         /// <summary>

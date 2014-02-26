@@ -99,7 +99,7 @@ namespace Knot3.Game.Widgets
             tiles = new List<ScreenPoint> (CreateTiles (colors));
 
             // einen Spritebatch
-            spriteBatch = new SpriteBatch (screen.Device);
+            spriteBatch = new SpriteBatch (screen.GraphicsDevice);
 
             // Position und Größe
             Bounds.Position = ScreenPoint.Centered (screen, Bounds);
@@ -125,7 +125,7 @@ namespace Knot3.Game.Widgets
                 foreach (ScreenPoint tile in tiles) {
                     Bounds tileBounds = new Bounds (Bounds.Position + tile, tileSize);
                     Rectangle rect = tileBounds.Rectangle.Shrink (1);
-                    Texture2D dummyTexture = ContentLoader.CreateTexture (Screen.Device, colors [i]);
+                    Texture2D dummyTexture = ContentLoader.CreateTexture (Screen.GraphicsDevice, colors [i]);
                     spriteBatch.Draw (dummyTexture, rect, Color.White);
 
                     ++i;

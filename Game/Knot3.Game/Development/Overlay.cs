@@ -77,8 +77,8 @@ namespace Knot3.Game.Development
             World = world;
 
             // create a new SpriteBatch, which can be used to draw textures
-            effect = new BasicEffect (screen.Device);
-            spriteBatch = new SpriteBatch (screen.Device);
+            effect = new BasicEffect (screen.GraphicsDevice);
+            spriteBatch = new SpriteBatch (screen.GraphicsDevice);
             effect.VertexColorEnabled = true;
             effect.World = Matrix.CreateFromYawPitchRoll (0, 0, 0);
             if (Config.Default ["video", "camera-overlay", true]) {
@@ -118,7 +118,7 @@ namespace Knot3.Game.Development
         [ExcludeFromCodeCoverageAttribute]
         public override void Update (GameTime time)
         {
-            scale = Math.Max (0.7f, (float)Screen.Device.PresentationParameters.BackBufferWidth / 1366f);
+            scale = Math.Max (0.7f, (float)Screen.GraphicsDevice.PresentationParameters.BackBufferWidth / 1366f);
             lineHeight = (int)(20 * scale);
 
             if (Config.Default ["video", "camera-overlay", true]) {
@@ -159,7 +159,7 @@ namespace Knot3.Game.Development
 
             effect.CurrentTechnique.Passes [0].Apply ();
 
-            Screen.Device.DrawUserPrimitives (PrimitiveType.LineList, vertices, 0, 3, VertexPositionColor.VertexDeclaration);
+            Screen.GraphicsDevice.DrawUserPrimitives (PrimitiveType.LineList, vertices, 0, 3, VertexPositionColor.VertexDeclaration);
         }
 
         private void DrawOverlay (GameTime time)

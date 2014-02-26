@@ -423,7 +423,7 @@ namespace Knot3.Game.Models
         {
             int width = 50;
             int height = 50;
-            Texture2D texture = new Texture2D (screen.Device, width, height);
+            Texture2D texture = new Texture2D (screen.GraphicsDevice, width, height);
             Color[] colors = new Color[width * height];
             for (int w = 0; w < width; ++w) {
                 for (int h = 0; h < height; ++h) {
@@ -438,7 +438,7 @@ namespace Knot3.Game.Models
         {
             int width = 50;
             int height = 50;
-            Texture2D texture = new Texture2D (screen.Device, width, height);
+            Texture2D texture = new Texture2D (screen.GraphicsDevice, width, height);
             Color[] colors = new Color[width * height];
             for (int w = 0; w < width; ++w) {
                 for (int h = 0; h < height; ++h) {

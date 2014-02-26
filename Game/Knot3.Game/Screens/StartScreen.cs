@@ -81,7 +81,7 @@ namespace Knot3.Game.Screens
             logo = this.LoadTexture ("logo");
 
             // create a new SpriteBatch, which can be used to draw textures
-            spriteBatch = new SpriteBatch (Device);
+            spriteBatch = new SpriteBatch (GraphicsDevice);
 
             // menu
             buttons.ItemAlignX = HorizontalAlignment.Center;
