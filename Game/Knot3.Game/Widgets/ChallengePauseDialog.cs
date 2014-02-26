@@ -58,98 +58,98 @@ using Knot3.Game.Utilities;
 
 namespace Knot3.Game.Widgets
 {
-	/// <summary>
-	/// Pausiert ein Spieler im Creative- oder Challenge-Modus das Spiel,
-	/// wird dieser Dialog über anderen Spielkomponenten angezeigt.
-	/// </summary>
-	[ExcludeFromCodeCoverageAttribute]
-	public sealed class ChallengePauseDialog : Dialog
-	{
-		#region Properties
+    /// <summary>
+    /// Pausiert ein Spieler im Creative- oder Challenge-Modus das Spiel,
+    /// wird dieser Dialog über anderen Spielkomponenten angezeigt.
+    /// </summary>
+    [ExcludeFromCodeCoverageAttribute]
+    public sealed class ChallengePauseDialog : Dialog
+    {
+        #region Properties
 
-		/// <summary>
-		/// Das Menü, das verschiedene Schaltflächen enthält.
-		/// </summary>
-		private Menu pauseMenu;
+        /// <summary>
+        /// Das Menü, das verschiedene Schaltflächen enthält.
+        /// </summary>
+        private Menu pauseMenu;
 
-		#endregion
+        #endregion
 
-		#region Constructors
+        #region Constructors
 
-		/// <summary>
-		///
-		/// </summary>
-		public ChallengePauseDialog (IGameScreen screen, DisplayLayer drawOrder)
-		: base (screen, drawOrder, "Pause")
-		{
-			// Der Titel-Text ist mittig ausgerichtet
-			AlignX = HorizontalAlignment.Center;
+        /// <summary>
+        ///
+        /// </summary>
+        public ChallengePauseDialog (IGameScreen screen, DisplayLayer drawOrder)
+        : base (screen, drawOrder, "Pause")
+        {
+            // Der Titel-Text ist mittig ausgerichtet
+            AlignX = HorizontalAlignment.Center;
 
-			Bounds.Size = new ScreenPoint (screen, 0.3f, 0.31f);
-			// Erstelle das Pause-Menü
-			pauseMenu = new Menu (Screen, Index + DisplayLayer.Menu);
-			pauseMenu.Bounds = ContentBounds;
+            Bounds.Size = new ScreenPoint (screen, 0.3f, 0.31f);
+            // Erstelle das Pause-Menü
+            pauseMenu = new Menu (Screen, Index + DisplayLayer.Menu);
+            pauseMenu.Bounds = ContentBounds;
 
-			pauseMenu.ItemAlignX = HorizontalAlignment.Left;
-			pauseMenu.ItemAlignY = VerticalAlignment.Center;
+            pauseMenu.ItemAlignX = HorizontalAlignment.Left;
+            pauseMenu.ItemAlignY = VerticalAlignment.Center;
 
-			MenuEntry settingsButton = new MenuEntry (
-			    screen: Screen,
-			    drawOrder: Index + DisplayLayer.MenuItem,
-			    name: "Settings",
-			onClick: (time) => {
-				Close (time);
-				Screen.NextScreen = new SettingsScreen (Screen.Game);
-			}
-			);
-			MenuEntry backButton = new MenuEntry (
-			    screen: Screen,
-			    drawOrder: Index + DisplayLayer.MenuItem,
-			    name: "Back to Game",
-			onClick: (time) => {
-				Close (time);
-			}
-			);
+            MenuEntry settingsButton = new MenuEntry (
+                screen: Screen,
+                drawOrder: Index + DisplayLayer.MenuItem,
+                name: "Settings",
+            onClick: (time) => {
+                Close (time);
+                Screen.NextScreen = new SettingsScreen (Screen.Game);
+            }
+            );
+            MenuEntry backButton = new MenuEntry (
+                screen: Screen,
+                drawOrder: Index + DisplayLayer.MenuItem,
+                name: "Back to Game",
+            onClick: (time) => {
+                Close (time);
+            }
+            );
 
-			backButton.AddKey (Keys.Escape);
-			MenuEntry discardExitButton = new MenuEntry (
-			    screen: Screen,
-			    drawOrder: Index + DisplayLayer.MenuItem,
-			    name: "Abort Challenge",
-			onClick: (time) => {
-				Close (time);
-				Screen.NextScreen = new StartScreen (Screen.Game);
-			}
-			);
-			backButton.AddKey (Keys.Escape);
+            backButton.AddKey (Keys.Escape);
+            MenuEntry discardExitButton = new MenuEntry (
+                screen: Screen,
+                drawOrder: Index + DisplayLayer.MenuItem,
+                name: "Abort Challenge",
+            onClick: (time) => {
+                Close (time);
+                Screen.NextScreen = new StartScreen (Screen.Game);
+            }
+            );
+            backButton.AddKey (Keys.Escape);
 
-			pauseMenu.Add (settingsButton);
-			pauseMenu.Add (backButton);
-			pauseMenu.Add (discardExitButton);
-		}
+            pauseMenu.Add (settingsButton);
+            pauseMenu.Add (backButton);
+            pauseMenu.Add (discardExitButton);
+        }
 
-		#endregion
+        #endregion
 
-		#region Methods
+        #region Methods
 
-		[ExcludeFromCodeCoverageAttribute]
-		public override void Draw (GameTime time)
-		{
-			spriteBatch.Begin ();
-			spriteBatch.DrawColoredRectangle (Design.WidgetBackground * 0.8f, Screen.Bounds);
-			spriteBatch.End ();
+        [ExcludeFromCodeCoverageAttribute]
+        public override void Draw (GameTime time)
+        {
+            spriteBatch.Begin ();
+            spriteBatch.DrawColoredRectangle (Design.WidgetBackground * 0.8f, Screen.Bounds);
+            spriteBatch.End ();
 
-			base.Draw (time);
-		}
+            base.Draw (time);
+        }
 
-		public override IEnumerable<IGameScreenComponent> SubComponents (GameTime time)
-		{
-			foreach (DrawableGameScreenComponent component in base.SubComponents (time)) {
-				yield return component;
-			}
-			yield return pauseMenu;
-		}
+        public override IEnumerable<IGameScreenComponent> SubComponents (GameTime time)
+        {
+            foreach (DrawableGameScreenComponent component in base.SubComponents (time)) {
+                yield return component;
+            }
+            yield return pauseMenu;
+        }
 
-		#endregion
-	}
+        #endregion
+    }
 }

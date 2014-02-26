@@ -48,51 +48,51 @@ using Knot3.Framework.Utilities;
 
 namespace Knot3.Framework.Core
 {
-	/// <summary>
-	/// Eine Spielkomponente, die in einem IGameScreen verwendet wird und eine bestimmte Priorität hat.
-	/// </summary>
-	[ExcludeFromCodeCoverageAttribute]
-	public abstract class GameScreenComponent : GameComponent, IGameScreenComponent
-	{
-		#region Properties
+    /// <summary>
+    /// Eine Spielkomponente, die in einem IGameScreen verwendet wird und eine bestimmte Priorität hat.
+    /// </summary>
+    [ExcludeFromCodeCoverageAttribute]
+    public abstract class GameScreenComponent : GameComponent, IGameScreenComponent
+    {
+        #region Properties
 
-		/// <summary>
-		/// Die Zeichen- und Eingabepriorität.
-		/// </summary>
-		public DisplayLayer Index { get; set; }
+        /// <summary>
+        /// Die Zeichen- und Eingabepriorität.
+        /// </summary>
+        public DisplayLayer Index { get; set; }
 
-		/// <summary>
-		/// Der zugewiesene Spielzustand.
-		/// </summary>
-		public IGameScreen Screen { get; set; }
+        /// <summary>
+        /// Der zugewiesene Spielzustand.
+        /// </summary>
+        public IGameScreen Screen { get; set; }
 
-		#endregion
+        #endregion
 
-		#region Constructors
+        #region Constructors
 
-		/// <summary>
-		/// Erzeugt eine neue Instanz eines IGameScreenComponent-Objekts und initialisiert diese mit dem zugehörigen IGameScreen und der zugehörigen Zeichenreihenfolge. Diese Spielkomponente kann nur in dem zugehörigen IGameScreen verwendet werden.
-		/// </summary>
-		public GameScreenComponent (IGameScreen screen, DisplayLayer index)
-		: base (screen.Game)
-		{
-			this.Screen = screen;
-			this.Index = index;
-		}
+        /// <summary>
+        /// Erzeugt eine neue Instanz eines IGameScreenComponent-Objekts und initialisiert diese mit dem zugehörigen IGameScreen und der zugehörigen Zeichenreihenfolge. Diese Spielkomponente kann nur in dem zugehörigen IGameScreen verwendet werden.
+        /// </summary>
+        public GameScreenComponent (IGameScreen screen, DisplayLayer index)
+        : base (screen.Game)
+        {
+            this.Screen = screen;
+            this.Index = index;
+        }
 
-		#endregion
+        #endregion
 
-		#region Methods
+        #region Methods
 
-		/// <summary>
-		/// Gibt Spielkomponenten zurück, die in dieser Spielkomponente enthalten sind.
-		/// [returntype=IEnumerable<IGameScreenComponent>]
-		/// </summary>
-		public virtual IEnumerable<IGameScreenComponent> SubComponents (GameTime GameTime)
-		{
-			yield break;
-		}
+        /// <summary>
+        /// Gibt Spielkomponenten zurück, die in dieser Spielkomponente enthalten sind.
+        /// [returntype=IEnumerable<IGameScreenComponent>]
+        /// </summary>
+        public virtual IEnumerable<IGameScreenComponent> SubComponents (GameTime GameTime)
+        {
+            yield break;
+        }
 
-		#endregion
-	}
+        #endregion
+    }
 }

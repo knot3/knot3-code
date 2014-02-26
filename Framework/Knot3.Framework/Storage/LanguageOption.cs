@@ -38,65 +38,65 @@ using Knot3.Framework.Storage;
 
 namespace Knot3.Framework.Storage
 {
-	public class LanguageOption: DistinctOption
-	{
-		public new Language Value
-		{
-			get {
-				string code = base.Value;
-				foreach (Language lang in Localizer.ValidLanguages) {
-					if (lang.Code == code) {
-						return lang;
-					}
-				}
-				return Localizer.CurrentLanguage;
-			}
-			set {
-				base.Value = value.Code;
-			}
-		}
+    public class LanguageOption: DistinctOption
+    {
+        public new Language Value
+        {
+            get {
+                string code = base.Value;
+                foreach (Language lang in Localizer.ValidLanguages) {
+                    if (lang.Code == code) {
+                        return lang;
+                    }
+                }
+                return Localizer.CurrentLanguage;
+            }
+            set {
+                base.Value = value.Code;
+            }
+        }
 
-		public override string DisplayValue
-		{
-			get {
-				return toDisplayName (Value);
-			}
-		}
+        public override string DisplayValue
+        {
+            get {
+                return toDisplayName (Value);
+            }
+        }
 
-		public override Dictionary<string,string> DisplayValidValues
-		{
-			get {
-				Dictionary<string, string> dict = new Dictionary<string, string> ();
-				foreach (string value in base.ValidValues) {
-					dict [toDisplayName (value)] = value;
-				}
-				return dict;
-			}
-		}
+        public override Dictionary<string,string> DisplayValidValues
+        {
+            get {
+                Dictionary<string, string> dict = new Dictionary<string, string> ();
+                foreach (string value in base.ValidValues) {
+                    dict [toDisplayName (value)] = value;
+                }
+                return dict;
+            }
+        }
 
-		public LanguageOption (string section, string name, ConfigFile configFile)
-		: base (section, name, Localizer.DefaultLanguageCode, from lang in Localizer.ValidLanguages select lang.Code, configFile)
-		{
-		}
+        public LanguageOption (string section, string name, ConfigFile configFile)
+        : base (section, name, Localizer.DefaultLanguageCode, from lang in Localizer.ValidLanguages select lang.Code, configFile)
+        {
+        }
 
-		private string toDisplayName (string code)
-		{
-			foreach (Language lang in Localizer.ValidLanguages) {
-				if (lang.Code == code) {
-					return lang.DisplayName;
-				}
-			}
-			return Localizer.CurrentLanguage.DisplayName;
-		}
+        private string toDisplayName (string code)
+        {
+            foreach (Language lang in Localizer.ValidLanguages) {
+                if (lang.Code == code) {
+                    return lang.DisplayName;
+                }
+            }
+            return Localizer.CurrentLanguage.DisplayName;
+        }
 
-		private string fromDisplayName (string displayName)
-		{
-			foreach (Language lang in Localizer.ValidLanguages) {
-				if (lang.DisplayName == displayName) {
-					return lang.Code;
-				}
-			}
-			return Localizer.CurrentLanguage.Code;
-		}
-	}
+        private string fromDisplayName (string displayName)
+        {
+            foreach (Language lang in Localizer.ValidLanguages) {
+                if (lang.DisplayName == displayName) {
+                    return lang.Code;
+                }
+            }
+            return Localizer.CurrentLanguage.Code;
+        }
+    }
 }

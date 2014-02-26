@@ -55,34 +55,34 @@ using Knot3.Game.Widgets;
 
 namespace Knot3.Game.Data
 {
-	public interface ISavegameIO<Savegame, SavegameMetaData>
-	{
-		#region Properties
+    public interface ISavegameIO<Savegame, SavegameMetaData>
+    {
+        #region Properties
 
-		/// <summary>
-		/// Aufzählung der Dateierweiterungen.
-		/// </summary>
-		IEnumerable<string> FileExtensions { get; }
+        /// <summary>
+        /// Aufzählung der Dateierweiterungen.
+        /// </summary>
+        IEnumerable<string> FileExtensions { get; }
 
-		#endregion
+        #endregion
 
-		#region Methods
+        #region Methods
 
-		/// <summary>
-		/// Speichert einen Spielstand.
-		/// </summary>
-		void Save (Savegame knot);
+        /// <summary>
+        /// Speichert einen Spielstand.
+        /// </summary>
+        void Save (Savegame knot);
 
-		/// <summary>
-		/// Lädt einen Spielstand.
-		/// </summary>
-		Savegame Load (string filename);
+        /// <summary>
+        /// Lädt einen Spielstand.
+        /// </summary>
+        Savegame Load (string filename);
 
-		/// <summary>
-		/// Lädt die Metadaten eines Spielstands.
-		/// </summary>
-		SavegameMetaData LoadMetaData (string filename);
+        /// <summary>
+        /// Lädt die Metadaten eines Spielstands.
+        /// </summary>
+        SavegameMetaData LoadMetaData (string filename);
 
-		#endregion
-	}
+        #endregion
+    }
 }

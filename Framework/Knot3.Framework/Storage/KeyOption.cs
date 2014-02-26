@@ -48,34 +48,34 @@ using Knot3.Framework.Utilities;
 
 namespace Knot3.Framework.Storage
 {
-	public class KeyOption : DistinctOption
-	{
-		#region Properties
+    public class KeyOption : DistinctOption
+    {
+        #region Properties
 
-		/// <summary>
-		/// Eine Eigenschaft, die den aktuell abgespeicherten Wert zurückgibt.
-		/// </summary>
-		public new Keys Value
-		{
-			get {
-				return base.Value.ToEnumValue<Keys> ();
-			}
-			set {
-				base.Value = value.ToEnumDescription<Keys> ();
-			}
-		}
+        /// <summary>
+        /// Eine Eigenschaft, die den aktuell abgespeicherten Wert zurückgibt.
+        /// </summary>
+        public new Keys Value
+        {
+            get {
+                return base.Value.ToEnumValue<Keys> ();
+            }
+            set {
+                base.Value = value.ToEnumDescription<Keys> ();
+            }
+        }
 
-		public new static IEnumerable<string> ValidValues = typeof (Keys).ToEnumValues<Keys> ().ToEnumDescriptions<Keys> ();
+        public new static IEnumerable<string> ValidValues = typeof (Keys).ToEnumValues<Keys> ().ToEnumDescriptions<Keys> ();
 
-		#endregion
+        #endregion
 
-		#region Constructors
+        #region Constructors
 
-		public KeyOption (string section, string name, Keys defaultValue, ConfigFile configFile)
-		: base (section, name, defaultValue.ToEnumDescription<Keys> (), ValidValues, configFile)
-		{
-		}
+        public KeyOption (string section, string name, Keys defaultValue, ConfigFile configFile)
+        : base (section, name, defaultValue.ToEnumDescription<Keys> (), ValidValues, configFile)
+        {
+        }
 
-		#endregion
-	}
+        #endregion
+    }
 }

@@ -60,128 +60,128 @@ using Knot3.Game.Widgets;
 
 namespace Knot3.Game.Development
 {
-	/// <summary>
-	/// Der Spielzustand, der die Debugging-Einstellungen darstellt.
-	/// </summary>
-	[ExcludeFromCodeCoverageAttribute]
-	public class DebugSettingsScreen : SettingsScreen
-	{
-		#region Properties
+    /// <summary>
+    /// Der Spielzustand, der die Debugging-Einstellungen darstellt.
+    /// </summary>
+    [ExcludeFromCodeCoverageAttribute]
+    public class DebugSettingsScreen : SettingsScreen
+    {
+        #region Properties
 
-		/// <summary>
-		/// Das Menü, das die Einstellungen enthält.
-		/// </summary>
-		private Menu settingsMenu;
+        /// <summary>
+        /// Das Menü, das die Einstellungen enthält.
+        /// </summary>
+        private Menu settingsMenu;
 
-		#endregion
+        #endregion
 
-		#region Constructors
+        #region Constructors
 
-		/// <summary>
-		/// Erzeugt ein neues DebugSettingsScreen-Objekt und initialisiert dieses mit einem Knot3Game-Objekt.
-		/// </summary>
-		public DebugSettingsScreen (GameClass game)
-		: base (game)
-		{
-			MenuName = "Debug";
+        /// <summary>
+        /// Erzeugt ein neues DebugSettingsScreen-Objekt und initialisiert dieses mit einem Knot3Game-Objekt.
+        /// </summary>
+        public DebugSettingsScreen (GameClass game)
+        : base (game)
+        {
+            MenuName = "Debug";
 
-			settingsMenu = new Menu (this, DisplayLayer.ScreenUI + DisplayLayer.Menu);
-			settingsMenu.Bounds.Position = new ScreenPoint (this, 0.400f, 0.180f);
-			settingsMenu.Bounds.Size = new ScreenPoint (this, 0.500f, 0.770f);
-			settingsMenu.Bounds.Padding = new ScreenPoint (this, 0.010f, 0.010f);
-			settingsMenu.ItemAlignX = HorizontalAlignment.Left;
-			settingsMenu.ItemAlignY = VerticalAlignment.Center;
+            settingsMenu = new Menu (this, DisplayLayer.ScreenUI + DisplayLayer.Menu);
+            settingsMenu.Bounds.Position = new ScreenPoint (this, 0.400f, 0.180f);
+            settingsMenu.Bounds.Size = new ScreenPoint (this, 0.500f, 0.770f);
+            settingsMenu.Bounds.Padding = new ScreenPoint (this, 0.010f, 0.010f);
+            settingsMenu.ItemAlignX = HorizontalAlignment.Left;
+            settingsMenu.ItemAlignY = VerticalAlignment.Center;
 
-			CheckBoxItem showOverlay = new CheckBoxItem (
-			    screen: this,
-			    drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
-			    text: "Show Overlay",
-			    option: new BooleanOption ("video", "camera-overlay", false, Config.Default)
-			);
-			settingsMenu.Add (showOverlay);
+            CheckBoxItem showOverlay = new CheckBoxItem (
+                screen: this,
+                drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
+                text: "Show Overlay",
+                option: new BooleanOption ("video", "camera-overlay", false, Config.Default)
+            );
+            settingsMenu.Add (showOverlay);
 
-			CheckBoxItem showFps = new CheckBoxItem (
-			    screen: this,
-			    drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
-			    text: "Show FPS",
-			    option: new BooleanOption ("video", "fps-overlay", true, Config.Default)
-			);
-			settingsMenu.Add (showFps);
+            CheckBoxItem showFps = new CheckBoxItem (
+                screen: this,
+                drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
+                text: "Show FPS",
+                option: new BooleanOption ("video", "fps-overlay", true, Config.Default)
+            );
+            settingsMenu.Add (showFps);
 
-			CheckBoxItem showProfiler = new CheckBoxItem (
-			    screen: this,
-			    drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
-			    text: "Show Profiler",
-			    option: new BooleanOption ("video", "profiler-overlay", true, Config.Default)
-			);
-			settingsMenu.Add (showProfiler);
+            CheckBoxItem showProfiler = new CheckBoxItem (
+                screen: this,
+                drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
+                text: "Show Profiler",
+                option: new BooleanOption ("video", "profiler-overlay", true, Config.Default)
+            );
+            settingsMenu.Add (showProfiler);
 
-			CheckBoxItem showBoundings = new CheckBoxItem (
-			    screen: this,
-			    drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
-			    text: "Show Bounding Boxes",
-			    option: new BooleanOption ("debug", "show-boundings", false, Config.Default)
-			);
-			settingsMenu.Add (showBoundings);
+            CheckBoxItem showBoundings = new CheckBoxItem (
+                screen: this,
+                drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
+                text: "Show Bounding Boxes",
+                option: new BooleanOption ("debug", "show-boundings", false, Config.Default)
+            );
+            settingsMenu.Add (showBoundings);
 
-			CheckBoxItem showStartEdgeArrow = new CheckBoxItem (
-			    screen: this,
-			    drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
-			    text: "Show Start Edge Direction",
-			    option: new BooleanOption ("debug", "show-startedge-direction", false, Config.Default)
-			);
-			settingsMenu.Add (showStartEdgeArrow);
+            CheckBoxItem showStartEdgeArrow = new CheckBoxItem (
+                screen: this,
+                drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
+                text: "Show Start Edge Direction",
+                option: new BooleanOption ("debug", "show-startedge-direction", false, Config.Default)
+            );
+            settingsMenu.Add (showStartEdgeArrow);
 
-			string[] unprojectMethods = { "SelectedObject", "NearFarAverage" };
-			DistinctOption unprojectOption = new DistinctOption ("debug", "unproject", unprojectMethods[0], unprojectMethods, Config.Default);
-			DropDownMenuItem unprojectItem = new DropDownMenuItem (
-			    screen: this,
-			    drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
-			    text: "Unproject"
-			);
-			unprojectItem.AddEntries (unprojectOption);
-			settingsMenu.Add (unprojectItem);
+            string[] unprojectMethods = { "SelectedObject", "NearFarAverage" };
+            DistinctOption unprojectOption = new DistinctOption ("debug", "unproject", unprojectMethods[0], unprojectMethods, Config.Default);
+            DropDownMenuItem unprojectItem = new DropDownMenuItem (
+                screen: this,
+                drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
+                text: "Unproject"
+            );
+            unprojectItem.AddEntries (unprojectOption);
+            settingsMenu.Add (unprojectItem);
 
-			/*
-			CheckBoxItem shaderPascal = new CheckBoxItem (
-			    screen: this,
-			    drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
-			    text: "Use Pascal's Shader",
-			    option: new BooleanOptionInfo ("video", "pascal-shader", false, Options.Default)
-			);te
-			settingsMenu.Add (shaderPascal);
+            /*
+            CheckBoxItem shaderPascal = new CheckBoxItem (
+                screen: this,
+                drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
+                text: "Use Pascal's Shader",
+                option: new BooleanOptionInfo ("video", "pascal-shader", false, Options.Default)
+            );te
+            settingsMenu.Add (shaderPascal);
 
-			CheckBoxItem shaderCel = new CheckBoxItem (
-			    screen: this,
-			    drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
-			    text: "Use Cel Shader",
-			    option: new BooleanOptionInfo ("video", "cel-shading", false, Options.Default)
-			);
-			settingsMenu.Add (shaderCel);
-			*/
-		}
+            CheckBoxItem shaderCel = new CheckBoxItem (
+                screen: this,
+                drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
+                text: "Use Cel Shader",
+                option: new BooleanOptionInfo ("video", "cel-shading", false, Options.Default)
+            );
+            settingsMenu.Add (shaderCel);
+            */
+        }
 
-		#endregion
+        #endregion
 
-		#region Methods
+        #region Methods
 
-		/// <summary>
-		/// Wird für jeden Frame aufgerufen.
-		/// </summary>
-		[ExcludeFromCodeCoverageAttribute]
-		public override void Update (GameTime time)
-		{
-		}
+        /// <summary>
+        /// Wird für jeden Frame aufgerufen.
+        /// </summary>
+        [ExcludeFromCodeCoverageAttribute]
+        public override void Update (GameTime time)
+        {
+        }
 
-		/// <summary>
-		/// Fügt das Menü mit den Einstellungen in die Spielkomponentenliste ein.
-		/// </summary>
-		public override void Entered (IGameScreen previousScreen, GameTime time)
-		{
-			base.Entered (previousScreen, time);
-			AddGameComponents (time, settingsMenu);
-		}
+        /// <summary>
+        /// Fügt das Menü mit den Einstellungen in die Spielkomponentenliste ein.
+        /// </summary>
+        public override void Entered (IGameScreen previousScreen, GameTime time)
+        {
+            base.Entered (previousScreen, time);
+            AddGameComponents (time, settingsMenu);
+        }
 
-		#endregion
-	}
+        #endregion
+    }
 }

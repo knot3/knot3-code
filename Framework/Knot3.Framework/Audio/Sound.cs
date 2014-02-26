@@ -49,12 +49,12 @@ using Knot3.Framework.Utilities;
 
 namespace Knot3.Framework.Audio
 {
-	public enum Sound {
-		None = 0,
-		CreativeMusic,
-		ChallengeMusic,
-		MenuMusic,
-		PipeMoveSound,
-		PipeInvalidMoveSound,
-	}
+    public enum Sound {
+        None = 0,
+        CreativeMusic,
+        ChallengeMusic,
+        MenuMusic,
+        PipeMoveSound,
+        PipeInvalidMoveSound,
+    }
 }

@@ -51,64 +51,64 @@ using Knot3.Framework.Widgets;
 
 namespace Knot3.Framework.Effects
 {
-	[ExcludeFromCodeCoverageAttribute]
-	public class RenderEffectLibrary
-	{
-		public static List<EffectFactory> EffectLibrary = new List<EffectFactory> (new EffectFactory[] {
-			new EffectFactory (
-			    name: "default",
-			    displayName: "Default",
-			    createInstance: (screen) => new StandardEffect (screen)
-			),
-		}
-		                                                                          );
+    [ExcludeFromCodeCoverageAttribute]
+    public class RenderEffectLibrary
+    {
+        public static List<EffectFactory> EffectLibrary = new List<EffectFactory> (new EffectFactory[] {
+            new EffectFactory (
+                name: "default",
+                displayName: "Default",
+                createInstance: (screen) => new StandardEffect (screen)
+            ),
+        }
+                                                                                  );
 
-		public static Action<string, GameTime> RenderEffectChanged = (e, t) => {};
+        public static Action<string, GameTime> RenderEffectChanged = (e, t) => {};
 
-		public static IEnumerable<string> Names
-		{
-			get {
-				foreach (EffectFactory factory in EffectLibrary) {
-					yield return factory.Name;
-				}
-			}
-		}
+        public static IEnumerable<string> Names
+        {
+            get {
+                foreach (EffectFactory factory in EffectLibrary) {
+                    yield return factory.Name;
+                }
+            }
+        }
 
-		public static string DisplayName (string name)
-		{
-			return Factory (name).DisplayName;
-		}
+        public static string DisplayName (string name)
+        {
+            return Factory (name).DisplayName;
+        }
 
-		public static IRenderEffect CreateEffect (IGameScreen screen, string name)
-		{
-			return Factory (name).CreateInstance (screen);
-		}
+        public static IRenderEffect CreateEffect (IGameScreen screen, string name)
+        {
+            return Factory (name).CreateInstance (screen);
+        }
 
-		private static EffectFactory Factory (string name)
-		{
-			foreach (EffectFactory factory in EffectLibrary) {
-				if (factory.Name == name) {
-					return factory;
-				}
-			}
-			return EffectLibrary [0];
-		}
+        private static EffectFactory Factory (string name)
+        {
+            foreach (EffectFactory factory in EffectLibrary) {
+                if (factory.Name == name) {
+                    return factory;
+                }
+            }
+            return EffectLibrary [0];
+        }
 
-		[ExcludeFromCodeCoverageAttribute]
-		public class EffectFactory
-		{
-			public string Name { get; private set; }
+        [ExcludeFromCodeCoverageAttribute]
+        public class EffectFactory
+        {
+            public string Name { get; private set; }
 
-			public string DisplayName { get; private set; }
+            public string DisplayName { get; private set; }
 
-			public Func<IGameScreen, IRenderEffect> CreateInstance { get; private set; }
+            public Func<IGameScreen, IRenderEffect> CreateInstance { get; private set; }
 
-			public EffectFactory (string name, string displayName, Func<IGameScreen, IRenderEffect> createInstance)
-			{
-				Name = name;
-				DisplayName = displayName;
-				CreateInstance = createInstance;
-			}
-		}
-	}
+            public EffectFactory (string name, string displayName, Func<IGameScreen, IRenderEffect> createInstance)
+            {
+                Name = name;
+                DisplayName = displayName;
+                CreateInstance = createInstance;
+            }
+        }
+    }
 }

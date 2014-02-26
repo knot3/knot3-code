@@ -51,36 +51,36 @@ using Knot3.MockObjects;
 
 namespace Knot3.UnitTests.Audio
 {
-	[TestFixture]
-	public class Audio_Tests
-	{
-		FakeScreen screen;
+    [TestFixture]
+    public class Audio_Tests
+    {
+        FakeScreen screen;
 
-		[SetUp]
-		public void Audio_Setup ()
-		{
-			screen = new FakeScreen ();
-			AudioManager.Reset ();
-			new AudioManager (screen, TestHelper.TestResourcesDirectory);
-		}
+        [SetUp]
+        public void Audio_Setup ()
+        {
+            screen = new FakeScreen ();
+            AudioManager.Reset ();
+            new AudioManager (screen, TestHelper.TestResourcesDirectory);
+        }
 
-		[Test]
-		public void Audio_Volume_Tests ()
-		{
-			AudioManager.SetVolume (Sound.PipeMoveSound, 1f);
-		}
+        [Test]
+        public void Audio_Volume_Tests ()
+        {
+            AudioManager.SetVolume (Sound.PipeMoveSound, 1f);
+        }
 
-		[Test]
-		public void Audio_Load_Tests ()
-		{
-			string[] filenames = new string[] { "sound1.ogg", "invalid.ogg" };
-			foreach (string filename in filenames) {
-			}
-		}
+        [Test]
+        public void Audio_Load_Tests ()
+        {
+            string[] filenames = new string[] { "sound1.ogg", "invalid.ogg" };
+            foreach (string filename in filenames) {
+            }
+        }
 
-		[Test]
-		public void Audio_LoopPlaylist_Tests ()
-		{
-		}
-	}
+        [Test]
+        public void Audio_LoopPlaylist_Tests ()
+        {
+        }
+    }
 }

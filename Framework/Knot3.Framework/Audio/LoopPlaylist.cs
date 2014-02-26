@@ -50,77 +50,77 @@ using Knot3.Framework.Utilities;
 
 namespace Knot3.Framework.Audio
 {
-	/// <summary>
-	/// Diese Klasse repräsentiert eine Playlist, deren Audiodateien der reihe nach in einer
-	/// Endlosschleife abgespielt werden.
-	/// </summary>
-	public class LoopPlaylist : IPlaylist
-	{
-		private List<IAudioFile> Sounds;
-		private int index;
+    /// <summary>
+    /// Diese Klasse repräsentiert eine Playlist, deren Audiodateien der reihe nach in einer
+    /// Endlosschleife abgespielt werden.
+    /// </summary>
+    public class LoopPlaylist : IPlaylist
+    {
+        private List<IAudioFile> Sounds;
+        private int index;
 
-		public SoundState State { get; private set; }
+        public SoundState State { get; private set; }
 
-		/// <summary>
-		/// Erstellt eine neue Playlist.
-		/// </summary>
-		/// <param name='sounds'>
-		/// Die abzuspielenden Audiodateien.
-		/// </param>
-		public LoopPlaylist (IEnumerable<IAudioFile> sounds)
-		{
-			Sounds = sounds.ToList ();
-			index = 0;
-			State = SoundState.Stopped;
+        /// <summary>
+        /// Erstellt eine neue Playlist.
+        /// </summary>
+        /// <param name='sounds'>
+        /// Die abzuspielenden Audiodateien.
+        /// </param>
+        public LoopPlaylist (IEnumerable<IAudioFile> sounds)
+        {
+            Sounds = sounds.ToList ();
+            index = 0;
+            State = SoundState.Stopped;
 
-			Log.Debug ("Created new playlist (", Sounds.Count, " songs)");
-			foreach (IAudioFile sound in Sounds) {
-				Log.Debug ("  - ", sound.Name);
-			}
-		}
+            Log.Debug ("Created new playlist (", Sounds.Count, " songs)");
+            foreach (IAudioFile sound in Sounds) {
+                Log.Debug ("  - ", sound.Name);
+            }
+        }
 
-		public void Shuffle ()
-		{
-			Sounds = Sounds.Shuffle ().ToList ();
-		}
+        public void Shuffle ()
+        {
+            Sounds = Sounds.Shuffle ().ToList ();
+        }
 
-		/// <summary>
-		/// Starte die Wiedergabe.
-		/// </summary>
-		public void Start ()
-		{
-			if (Sounds.Count > 0) {
-				State = SoundState.Playing;
-				Sounds .At (index).Play ();
-			}
-		}
+        /// <summary>
+        /// Starte die Wiedergabe.
+        /// </summary>
+        public void Start ()
+        {
+            if (Sounds.Count > 0) {
+                State = SoundState.Playing;
+                Sounds .At (index).Play ();
+            }
+        }
 
-		/// <summary>
-		/// Stoppe die Wiedergabe.
-		/// </summary>
-		public void Stop ()
-		{
-			if (Sounds.Count > 0) {
-				State = SoundState.Stopped;
-				Sounds.At (index).Stop ();
-			}
-		}
+        /// <summary>
+        /// Stoppe die Wiedergabe.
+        /// </summary>
+        public void Stop ()
+        {
+            if (Sounds.Count > 0) {
+                State = SoundState.Stopped;
+                Sounds.At (index).Stop ();
+            }
+        }
 
-		/// <summary>
-		/// Wird für jeden Frame aufgerufen.
-		/// </summary>
-		[ExcludeFromCodeCoverageAttribute]
-		public void Update (GameTime time)
-		{
-			if (Sounds.Count > 0) {
-				if (State == SoundState.Playing && Sounds.At (index).State != SoundState.Playing) {
-					++index;
-					Sounds.At (index).Play ();
-				}
-			}
-			if (index >= 0 && index < Sounds.Count) {
-				Sounds.At (index).Update (time);
-			}
-		}
-	}
+        /// <summary>
+        /// Wird für jeden Frame aufgerufen.
+        /// </summary>
+        [ExcludeFromCodeCoverageAttribute]
+        public void Update (GameTime time)
+        {
+            if (Sounds.Count > 0) {
+                if (State == SoundState.Playing && Sounds.At (index).State != SoundState.Playing) {
+                    ++index;
+                    Sounds.At (index).Play ();
+                }
+            }
+            if (index >= 0 && index < Sounds.Count) {
+                Sounds.At (index).Update (time);
+            }
+        }
+    }
 }

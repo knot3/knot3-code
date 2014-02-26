@@ -49,68 +49,68 @@ using Knot3.Framework.Utilities;
 
 namespace Knot3.Framework.Storage
 {
-	/// <summary>
-	/// Enthält Informationen über einen Eintrag in einer Einstellungsdatei.
-	/// </summary>
-	public class Option
-	{
-		#region Properties
+    /// <summary>
+    /// Enthält Informationen über einen Eintrag in einer Einstellungsdatei.
+    /// </summary>
+    public class Option
+    {
+        #region Properties
 
-		/// <summary>
-		/// Die Einstellungsdatei.
-		/// </summary>
-		private ConfigFile ConfigFile;
+        /// <summary>
+        /// Die Einstellungsdatei.
+        /// </summary>
+        private ConfigFile ConfigFile;
 
-		/// <summary>
-		/// Der Abschnitt der Einstellungsdatei.
-		/// </summary>
-		public string Section { get; private set; }
+        /// <summary>
+        /// Der Abschnitt der Einstellungsdatei.
+        /// </summary>
+        public string Section { get; private set; }
 
-		/// <summary>
-		/// Der Name der Option.
-		/// </summary>
-		public string Name { get; private set; }
+        /// <summary>
+        /// Der Name der Option.
+        /// </summary>
+        public string Name { get; private set; }
 
-		/// <summary>
-		/// Der Standardwert der Option.
-		/// </summary>
-		public string DefaultValue { get; private set; }
+        /// <summary>
+        /// Der Standardwert der Option.
+        /// </summary>
+        public string DefaultValue { get; private set; }
 
-		public bool Verbose { get; set; }
+        public bool Verbose { get; set; }
 
-		/// <summary>
-		/// Der Wert der Option.
-		/// </summary>
-		public virtual string Value
-		{
-			get {
-				if (Verbose) {
-					Log.Debug ("Option: ", Section, ".", Name, " => ", ConfigFile [Section, Name, DefaultValue]);
-				}
-				return ConfigFile [Section, Name, DefaultValue];
-			}
-			set {
-				Log.Debug ("Option: ", Section, ".", Name, " <= ", value);
-				ConfigFile [Section, Name, DefaultValue] = value;
-			}
-		}
+        /// <summary>
+        /// Der Wert der Option.
+        /// </summary>
+        public virtual string Value
+        {
+            get {
+                if (Verbose) {
+                    Log.Debug ("Option: ", Section, ".", Name, " => ", ConfigFile [Section, Name, DefaultValue]);
+                }
+                return ConfigFile [Section, Name, DefaultValue];
+            }
+            set {
+                Log.Debug ("Option: ", Section, ".", Name, " <= ", value);
+                ConfigFile [Section, Name, DefaultValue] = value;
+            }
+        }
 
-		#endregion
+        #endregion
 
-		#region Constructors
+        #region Constructors
 
-		/// <summary>
-		/// Erstellt ein neues OptionsInfo-Objekt aus den übergegebenen Werten.
-		/// </summary>
-		public Option (string section, string name, string defaultValue, ConfigFile configFile)
-		{
-			Section = section;
-			Name = name;
-			DefaultValue = defaultValue;
-			ConfigFile = configFile != null ? configFile : Config.Default;
-			Verbose = true;
-		}
+        /// <summary>
+        /// Erstellt ein neues OptionsInfo-Objekt aus den übergegebenen Werten.
+        /// </summary>
+        public Option (string section, string name, string defaultValue, ConfigFile configFile)
+        {
+            Section = section;
+            Name = name;
+            DefaultValue = defaultValue;
+            ConfigFile = configFile != null ? configFile : Config.Default;
+            Verbose = true;
+        }
 
-		#endregion
-	}
+        #endregion
+    }
 }

@@ -58,11 +58,11 @@ using Knot3.Game.Widgets;
 
 namespace Knot3.Game.Development
 {
-	[ExcludeFromCodeCoverageAttribute]
-	public class DebugModelInfo:GameModelInfo
-	{
-		public DebugModelInfo (String modelname) : base (modelname)
-		{
-		}
-	}
+    [ExcludeFromCodeCoverageAttribute]
+    public class DebugModelInfo:GameModelInfo
+    {
+        public DebugModelInfo (String modelname) : base (modelname)
+        {
+        }
+    }
 }

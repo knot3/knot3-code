@@ -39,21 +39,21 @@ using Knot3.Framework.Utilities;
 
 namespace Knot3.Framework.Widgets
 {
-	/// <summary>
-	/// Der Zustand eines Menüeintrags.
-	/// </summary>
-	public enum WidgetState {
-		/// <summary>
-		/// Ausgewählt.
-		/// </summary>
-		Selected=1,
-		/// <summary>
-		/// Die Maus wurde direkt über den Menüeintrag navigiert und verweilt dort.
-		/// </summary>
-		Hovered=2,
-		/// <summary>
-		/// Ein undefinierter Zustand.
-		/// </summary>
-		None=0,
-	}
+    /// <summary>
+    /// Der Zustand eines Menüeintrags.
+    /// </summary>
+    public enum WidgetState {
+        /// <summary>
+        /// Ausgewählt.
+        /// </summary>
+        Selected=1,
+        /// <summary>
+        /// Die Maus wurde direkt über den Menüeintrag navigiert und verweilt dort.
+        /// </summary>
+        Hovered=2,
+        /// <summary>
+        /// Ein undefinierter Zustand.
+        /// </summary>
+        None=0,
+    }
 }

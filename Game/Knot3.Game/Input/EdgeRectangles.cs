@@ -58,43 +58,43 @@ using Knot3.Game.Widgets;
 
 namespace Knot3.Game.Input
 {
-	[ExcludeFromCodeCoverageAttribute]
-	public class EdgeRectangles : GameScreenComponent, IKeyEventListener
-	{
-		public Knot Knot { get; set; }
+    [ExcludeFromCodeCoverageAttribute]
+    public class EdgeRectangles : GameScreenComponent, IKeyEventListener
+    {
+        public Knot Knot { get; set; }
 
-		private Random random = new Random ();
+        private Random random = new Random ();
 
-		public EdgeRectangles (GameScreen screen)
-		: base (screen, DisplayLayer.None)
-		{
-			ValidKeys = new List<Keys> ();
-			ValidKeys.Add (Keys.N);
-		}
+        public EdgeRectangles (GameScreen screen)
+        : base (screen, DisplayLayer.None)
+        {
+            ValidKeys = new List<Keys> ();
+            ValidKeys.Add (Keys.N);
+        }
 
-		[ExcludeFromCodeCoverageAttribute]
-		public override void Update (GameTime time)
-		{
-		}
+        [ExcludeFromCodeCoverageAttribute]
+        public override void Update (GameTime time)
+        {
+        }
 
-		public void OnKeyEvent (List<Keys> key, KeyEvent keyEvent, GameTime time)
-		{
-			// Soll die Farbe geändert wurde?
-			if (Knot.SelectedEdges.Any ()
-			        && Screen.InputManager.KeyPressed (Keys.N)) {
-				int rectId = random.Next ();
-				foreach (Edge edge in Knot.SelectedEdges) {
-					edge.Rectangles.Add (rectId);
-					Log.Debug ("edge=", edge, ", edge.Rectangles=", string.Join (",", edge.Rectangles));
-				}
-				Knot.EdgesChanged ();
-			}
-		}
+        public void OnKeyEvent (List<Keys> key, KeyEvent keyEvent, GameTime time)
+        {
+            // Soll die Farbe geändert wurde?
+            if (Knot.SelectedEdges.Any ()
+                    && Screen.InputManager.KeyPressed (Keys.N)) {
+                int rectId = random.Next ();
+                foreach (Edge edge in Knot.SelectedEdges) {
+                    edge.Rectangles.Add (rectId);
+                    Log.Debug ("edge=", edge, ", edge.Rectangles=", string.Join (",", edge.Rectangles));
+                }
+                Knot.EdgesChanged ();
+            }
+        }
 
-		public List<Keys> ValidKeys { get; private set; }
+        public List<Keys> ValidKeys { get; private set; }
 
-		public bool IsKeyEventEnabled { get { return true; } }
+        public bool IsKeyEventEnabled { get { return true; } }
 
-		public bool IsModal { get { return false; } }
-	}
+        public bool IsModal { get { return false; } }
+    }
 }

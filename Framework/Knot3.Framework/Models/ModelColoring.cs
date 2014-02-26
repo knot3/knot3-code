@@ -50,110 +50,110 @@ using Knot3.Framework.Widgets;
 
 namespace Knot3.Framework.Models
 {
-	[ExcludeFromCodeCoverageAttribute]
-	public abstract class ModelColoring
-	{
-		public ModelColoring ()
-		{
-			HighlightColor = Color.Transparent;
-			HighlightIntensity = 0f;
-			Alpha = 1f;
-		}
+    [ExcludeFromCodeCoverageAttribute]
+    public abstract class ModelColoring
+    {
+        public ModelColoring ()
+        {
+            HighlightColor = Color.Transparent;
+            HighlightIntensity = 0f;
+            Alpha = 1f;
+        }
 
-		/// <summary>
-		/// Die Auswahlfarbe des Modells.
-		/// </summary>
-		public Color HighlightColor { get; private set; }
+        /// <summary>
+        /// Die Auswahlfarbe des Modells.
+        /// </summary>
+        public Color HighlightColor { get; private set; }
 
-		/// <summary>
-		/// Die Intensität der Auswahlfarbe.
-		/// </summary>
-		public float HighlightIntensity { get; private set; }
+        /// <summary>
+        /// Die Intensität der Auswahlfarbe.
+        /// </summary>
+        public float HighlightIntensity { get; private set; }
 
-		public void Highlight (float intensity, Color color)
-		{
-			HighlightColor = color;
-			HighlightIntensity = intensity;
-		}
+        public void Highlight (float intensity, Color color)
+        {
+            HighlightColor = color;
+            HighlightIntensity = intensity;
+        }
 
-		public void Unhighlight ()
-		{
-			HighlightColor = Color.Transparent;
-			HighlightIntensity = 0f;
-		}
+        public void Unhighlight ()
+        {
+            HighlightColor = Color.Transparent;
+            HighlightIntensity = 0f;
+        }
 
-		/// <summary>
-		/// Die Transparenz des Modells.
-		/// </summary>
-		public float Alpha { get; set; }
+        /// <summary>
+        /// Die Transparenz des Modells.
+        /// </summary>
+        public float Alpha { get; set; }
 
-		public abstract Color MixedColor { get; }
+        public abstract Color MixedColor { get; }
 
-		public abstract bool IsTransparent { get; }
-	}
+        public abstract bool IsTransparent { get; }
+    }
 
-	[ExcludeFromCodeCoverageAttribute]
-	public sealed class SingleColor : ModelColoring
-	{
-		public SingleColor (Color color)
-		: base ()
-		{
-			BaseColor = color;
-		}
+    [ExcludeFromCodeCoverageAttribute]
+    public sealed class SingleColor : ModelColoring
+    {
+        public SingleColor (Color color)
+        : base ()
+        {
+            BaseColor = color;
+        }
 
-		public SingleColor (Color color, float alpha)
-		: this (color)
-		{
-			Alpha = alpha;
-		}
+        public SingleColor (Color color, float alpha)
+        : this (color)
+        {
+            Alpha = alpha;
+        }
 
-		/// <summary>
-		/// Die Farbe des Modells.
-		/// </summary>
-		public Color BaseColor { get; set; }
+        /// <summary>
+        /// Die Farbe des Modells.
+        /// </summary>
+        public Color BaseColor { get; set; }
 
-		public override Color MixedColor { get { return BaseColor.Mix (HighlightColor, HighlightIntensity); } }
+        public override Color MixedColor { get { return BaseColor.Mix (HighlightColor, HighlightIntensity); } }
 
-		public override bool IsTransparent { get { return BaseColor == Color.Transparent; } }
-	}
+        public override bool IsTransparent { get { return BaseColor == Color.Transparent; } }
+    }
 
-	[ExcludeFromCodeCoverageAttribute]
-	public sealed class GradientColor : ModelColoring
-	{
-		public GradientColor (Color color1, Color color2)
-		: base ()
-		{
-			Color1 = color1;
-			Color2 = color2;
-		}
-		public GradientColor (Color color1, Color color2, float alpha)
-		: this (color1, color2)
-		{
-			Alpha = alpha;
-		}
+    [ExcludeFromCodeCoverageAttribute]
+    public sealed class GradientColor : ModelColoring
+    {
+        public GradientColor (Color color1, Color color2)
+        : base ()
+        {
+            Color1 = color1;
+            Color2 = color2;
+        }
+        public GradientColor (Color color1, Color color2, float alpha)
+        : this (color1, color2)
+        {
+            Alpha = alpha;
+        }
 
-		/// <summary>
-		/// Die erste Farbe des Modells.
-		/// </summary>
-		public Color Color1 { get; set; }
+        /// <summary>
+        /// Die erste Farbe des Modells.
+        /// </summary>
+        public Color Color1 { get; set; }
 
-		/// <summary>
-		/// Die zweite Farbe des Modells.
-		/// </summary>
-		public Color Color2 { get; set; }
+        /// <summary>
+        /// Die zweite Farbe des Modells.
+        /// </summary>
+        public Color Color2 { get; set; }
 
-		public override Color MixedColor
-		{
-			get {
-				return Color1.Mix (Color2, 0.5f).Mix (HighlightColor, HighlightIntensity);
-			}
-		}
+        public override Color MixedColor
+        {
+            get {
+                return Color1.Mix (Color2, 0.5f).Mix (HighlightColor, HighlightIntensity);
+            }
+        }
 
-		public override bool IsTransparent
-		{
-			get {
-				return Color1 == Color.Transparent && Color2 == Color.Transparent;
-			}
-		}
-	}
+        public override bool IsTransparent
+        {
+            get {
+                return Color1 == Color.Transparent && Color2 == Color.Transparent;
+            }
+        }
+    }
 }

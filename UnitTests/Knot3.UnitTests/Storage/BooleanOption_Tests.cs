@@ -48,49 +48,49 @@ using Knot3.Game.Core;
 
 namespace Knot3.UnitTests.Storage
 {
-	/// <summary>
-	///
-	/// </summary>
-	[TestFixture]
-	public class BooleanOption_Tests
-	{
-		[SetUp]
-		public void Init ()
-		{
-		}
+    /// <summary>
+    ///
+    /// </summary>
+    [TestFixture]
+    public class BooleanOption_Tests
+    {
+        [SetUp]
+        public void Init ()
+        {
+        }
 
-		[Test]
-		public void BooleanOptionInfo_Constructor_Test ()
-		{
-			string name = "test-option";
-			string section = "test-section";
-			bool defaultValue = false;
+        [Test]
+        public void BooleanOptionInfo_Constructor_Test ()
+        {
+            string name = "test-option";
+            string section = "test-section";
+            bool defaultValue = false;
 
-			ConfigFile configFile = new ConfigFile (TestHelper.RandomFilename (extension: "ini"));
+            ConfigFile configFile = new ConfigFile (TestHelper.RandomFilename (extension: "ini"));
 
-			BooleanOption option = new BooleanOption (section, name, defaultValue, configFile);
+            BooleanOption option = new BooleanOption (section, name, defaultValue, configFile);
 
-			Assert.IsFalse (option.Value);
-			string falseStr = option.DisplayValue;
-			Assert.IsTrue (option.DisplayValidValues.ContainsKey (falseStr));
+            Assert.IsFalse (option.Value);
+            string falseStr = option.DisplayValue;
+            Assert.IsTrue (option.DisplayValidValues.ContainsKey (falseStr));
 
-			option.Value = true;
-			Assert.IsTrue (option.Value);
-			string trueStr = option.DisplayValue;
-			Assert.IsTrue (option.DisplayValidValues.ContainsKey (trueStr));
+            option.Value = true;
+            Assert.IsTrue (option.Value);
+            string trueStr = option.DisplayValue;
+            Assert.IsTrue (option.DisplayValidValues.ContainsKey (trueStr));
 
-			Assert.AreNotEqual (falseStr, trueStr);
+            Assert.AreNotEqual (falseStr, trueStr);
 
-			option.Value = !option.Value;
-			Assert.IsFalse (option.Value);
-			Assert.AreEqual (falseStr, option.DisplayValue);
+            option.Value = !option.Value;
+            Assert.IsFalse (option.Value);
+            Assert.AreEqual (falseStr, option.DisplayValue);
 
-			option.Value = !option.Value;
-			Assert.IsTrue (option.Value);
-			Assert.AreEqual (trueStr, option.DisplayValue);
+            option.Value = !option.Value;
+            Assert.IsTrue (option.Value);
+            Assert.AreEqual (trueStr, option.DisplayValue);
 
-			(option as DistinctOption).Value = "invalid!!";
-			Assert.AreEqual (option.Value, defaultValue);
-		}
-	}
+            (option as DistinctOption).Value = "invalid!!";
+            Assert.AreEqual (option.Value, defaultValue);
+        }
+    }
 }

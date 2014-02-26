@@ -50,23 +50,23 @@ using Knot3.Framework.Widgets;
 
 namespace Knot3.Framework.Effects
 {
-	/// <summary>
-	/// Ein Rendereffekt, der 3D-Modelle mit dem von der XNA-Content-Pipeline standardmäßig zugewiesenen
-	/// BasicEffect-Shader zeichnet und keinen Post-Processing-Effekt anwendet.
-	/// </summary>
-	[ExcludeFromCodeCoverageAttribute]
-	public sealed class StandardEffect : RenderEffect
-	{
-		#region Constructors
+    /// <summary>
+    /// Ein Rendereffekt, der 3D-Modelle mit dem von der XNA-Content-Pipeline standardmäßig zugewiesenen
+    /// BasicEffect-Shader zeichnet und keinen Post-Processing-Effekt anwendet.
+    /// </summary>
+    [ExcludeFromCodeCoverageAttribute]
+    public sealed class StandardEffect : RenderEffect
+    {
+        #region Constructors
 
-		/// <summary>
-		/// Erstellt einen neuen Standardeffekt.
-		/// </summary>
-		public StandardEffect (IGameScreen screen)
-		: base (screen)
-		{
-		}
+        /// <summary>
+        /// Erstellt einen neuen Standardeffekt.
+        /// </summary>
+        public StandardEffect (IGameScreen screen)
+        : base (screen)
+        {
+        }
 
-		#endregion
-	}
+        #endregion
+    }
 }

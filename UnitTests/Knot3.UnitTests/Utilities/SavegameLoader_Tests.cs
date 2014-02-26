@@ -49,46 +49,46 @@ using Knot3.Game.Utilities;
 
 namespace Knot3.UnitTests.Utilities
 {
-	/// <summary>
-	///
-	/// </summary>
-	[TestFixture]
-	public class SavegameLoader_Tests
-	{
-		private SavegameLoader<Knot, KnotMetaData> loader;
+    /// <summary>
+    ///
+    /// </summary>
+    [TestFixture]
+    public class SavegameLoader_Tests
+    {
+        private SavegameLoader<Knot, KnotMetaData> loader;
 
-		[SetUp]
-		public void Init ()
-		{
-		}
+        [SetUp]
+        public void Init ()
+        {
+        }
 
-		[Test]
-		public void SavegameLoader_InvalidIndex_Test ()
-		{
-			// Erstelle einen Parser für das Dateiformat
-			KnotFileIO fileFormat = new KnotFileIO ();
-			// Erstelle einen Spielstand-Loader
-			loader = new SavegameLoader<Knot, KnotMetaData> (fileFormat, "{}''!!^?`´##~%%&&$!\\//\\//");
+        [Test]
+        public void SavegameLoader_InvalidIndex_Test ()
+        {
+            // Erstelle einen Parser für das Dateiformat
+            KnotFileIO fileFormat = new KnotFileIO ();
+            // Erstelle einen Spielstand-Loader
+            loader = new SavegameLoader<Knot, KnotMetaData> (fileFormat, "{}''!!^?`´##~%%&&$!\\//\\//");
 
-			// Suche nach Spielständen
-			loader.FindSavegames (AddSavegameToList);
-		}
+            // Suche nach Spielständen
+            loader.FindSavegames (AddSavegameToList);
+        }
 
-		[Test]
-		public void SavegameLoader_Load_Test ()
-		{
-			// Erstelle einen Parser für das Dateiformat
-			KnotFileIO fileFormat = new KnotFileIO ();
-			// Erstelle einen Spielstand-Loader
-			loader = new SavegameLoader<Knot, KnotMetaData> (fileFormat, "index-SavegameLoader_Tests");
+        [Test]
+        public void SavegameLoader_Load_Test ()
+        {
+            // Erstelle einen Parser für das Dateiformat
+            KnotFileIO fileFormat = new KnotFileIO ();
+            // Erstelle einen Spielstand-Loader
+            loader = new SavegameLoader<Knot, KnotMetaData> (fileFormat, "index-SavegameLoader_Tests");
 
-			// Suche nach Spielständen
-			loader.FindSavegames (AddSavegameToList);
-		}
+            // Suche nach Spielständen
+            loader.FindSavegames (AddSavegameToList);
+        }
 
-		private void AddSavegameToList (string filename, KnotMetaData meta)
-		{
-			Log.Debug ("SavegameLoader_Tests: filename: ", filename, ", meta:", meta);
-		}
-	}
+        private void AddSavegameToList (string filename, KnotMetaData meta)
+        {
+            Log.Debug ("SavegameLoader_Tests: filename: ", filename, ", meta:", meta);
+        }
+    }
 }

@@ -55,19 +55,19 @@ using Knot3.Game.Widgets;
 
 namespace Knot3.Game.Data
 {
-	[ExcludeFromCodeCoverageAttribute]
-	public static class DirectionHelper
-	{
-		public static Direction ToDirection (this Vector3 vector)
-		{
-			foreach (Direction direction in Direction.Values) {
-				if (direction.Vector == vector) {
-					return direction;
-				}
-			}
-			return Direction.Zero;
-		}
+    [ExcludeFromCodeCoverageAttribute]
+    public static class DirectionHelper
+    {
+        public static Direction ToDirection (this Vector3 vector)
+        {
+            foreach (Direction direction in Direction.Values) {
+                if (direction.Vector == vector) {
+                    return direction;
+                }
+            }
+            return Direction.Zero;
+        }
 
-		public static Axis[] Axes = new Axis[] { Axis.X, Axis.Y, Axis.Z };
-	}
+        public static Axis[] Axes = new Axis[] { Axis.X, Axis.Y, Axis.Z };
+    }
 }

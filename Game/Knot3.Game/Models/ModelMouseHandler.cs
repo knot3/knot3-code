@@ -60,82 +60,82 @@ using Knot3.Game.Widgets;
 
 namespace Knot3.Game.Models
 {
-	/// <summary>
-	/// Ein Inputhandler, der Mauseingaben auf 3D-Modellen verarbeitet.
-	/// </summary>
-	[ExcludeFromCodeCoverageAttribute]
-	public sealed class ModelMouseHandler : GameScreenComponent
-	{
-		private World World;
-		private double lastRayCheck = 0;
-		private ScreenPoint lastMousePosition;
+    /// <summary>
+    /// Ein Inputhandler, der Mauseingaben auf 3D-Modellen verarbeitet.
+    /// </summary>
+    [ExcludeFromCodeCoverageAttribute]
+    public sealed class ModelMouseHandler : GameScreenComponent
+    {
+        private World World;
+        private double lastRayCheck = 0;
+        private ScreenPoint lastMousePosition;
 
-		#region Constructors
+        #region Constructors
 
-		/// <summary>
-		/// Erzeugt eine neue Instanz eines ModelMouseHandler-Objekts und ordnet dieser ein IGameScreen-Objekt screen zu,
-		/// sowie eine Spielwelt world.
-		/// </summary>
-		public ModelMouseHandler (IGameScreen screen, World world)
-		: base (screen, DisplayLayer.None)
-		{
-			World = world;
-			lastMousePosition = ScreenPoint.Zero (screen);
-		}
+        /// <summary>
+        /// Erzeugt eine neue Instanz eines ModelMouseHandler-Objekts und ordnet dieser ein IGameScreen-Objekt screen zu,
+        /// sowie eine Spielwelt world.
+        /// </summary>
+        public ModelMouseHandler (IGameScreen screen, World world)
+        : base (screen, DisplayLayer.None)
+        {
+            World = world;
+            lastMousePosition = ScreenPoint.Zero (screen);
+        }
 
-		#endregion
+        #endregion
 
-		#region Methods
+        #region Methods
 
-		/// <summary>
-		/// Wird für jeden Frame aufgerufen.
-		/// </summary>
-		[ExcludeFromCodeCoverageAttribute]
-		public override void Update (GameTime time)
-		{
-			CheckMouseRay (time);
-		}
+        /// <summary>
+        /// Wird für jeden Frame aufgerufen.
+        /// </summary>
+        [ExcludeFromCodeCoverageAttribute]
+        public override void Update (GameTime time)
+        {
+            CheckMouseRay (time);
+        }
 
-		private void CheckMouseRay (GameTime time)
-		{
-			double millis = time.TotalGameTime.TotalMilliseconds;
-			if (millis > lastRayCheck + 10
-			        && (Screen.InputManager.CurrentInputAction == InputAction.CameraTargetMove
-			            || Screen.InputManager.CurrentInputAction == InputAction.FreeMouse)
-			        && Screen.InputManager.CurrentMousePosition != lastMousePosition) {
-				//Log.Debug (Screen.Input.CurrentInputAction);
-				lastRayCheck = millis;
-				lastMousePosition = Screen.InputManager.CurrentMousePosition;
+        private void CheckMouseRay (GameTime time)
+        {
+            double millis = time.TotalGameTime.TotalMilliseconds;
+            if (millis > lastRayCheck + 10
+                    && (Screen.InputManager.CurrentInputAction == InputAction.CameraTargetMove
+                        || Screen.InputManager.CurrentInputAction == InputAction.FreeMouse)
+                    && Screen.InputManager.CurrentMousePosition != lastMousePosition) {
+                //Log.Debug (Screen.Input.CurrentInputAction);
+                lastRayCheck = millis;
+                lastMousePosition = Screen.InputManager.CurrentMousePosition;
 
-				Profiler.ProfileDelegate ["Ray"] = () => {
-					UpdateMouseRay (time);
-				};
-			}
-		}
+                Profiler.ProfileDelegate ["Ray"] = () => {
+                    UpdateMouseRay (time);
+                };
+            }
+        }
 
-		private void UpdateMouseRay (GameTime time)
-		{
-			Ray ray = World.Camera.GetMouseRay (Screen.InputManager.CurrentMousePosition);
+        private void UpdateMouseRay (GameTime time)
+        {
+            Ray ray = World.Camera.GetMouseRay (Screen.InputManager.CurrentMousePosition);
 
-			GameObjectDistance nearest = null;
-			foreach (IGameObject obj in World.Objects) {
-				if (obj.Info.IsVisible) {
-					GameObjectDistance intersection = obj.Intersects (ray);
-					if (intersection != null) {
-						if (intersection.Distance > 0 && (nearest == null || intersection.Distance < nearest.Distance)) {
-							nearest = intersection;
-						}
-					}
-				}
-			}
-			if (nearest != null) {
-				World.SelectedObject = nearest.Object;
-			}
-			else {
-				World.SelectedObject = null;
-			}
-		}
+            GameObjectDistance nearest = null;
+            foreach (IGameObject obj in World.Objects) {
+                if (obj.Info.IsVisible) {
+                    GameObjectDistance intersection = obj.Intersects (ray);
+                    if (intersection != null) {
+                        if (intersection.Distance > 0 && (nearest == null || intersection.Distance < nearest.Distance)) {
+                            nearest = intersection;
+                        }
+                    }
+                }
+            }
+            if (nearest != null) {
+                World.SelectedObject = nearest.Object;
+            }
+            else {
+                World.SelectedObject = null;
+            }
+        }
 
-		#endregion
-	}
+        #endregion
+    }
 }

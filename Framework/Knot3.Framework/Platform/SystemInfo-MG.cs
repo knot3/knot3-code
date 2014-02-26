@@ -48,26 +48,26 @@ using Knot3.Framework.Utilities;
 
 namespace Knot3.Framework.Platform
 {
-	public static partial class SystemInfo
-	{
-		public static bool IsRunningOnMono ()
-		{
-			return Type.GetType ("Mono.Runtime") != null;
-		}
+    public static partial class SystemInfo
+    {
+        public static bool IsRunningOnMono ()
+        {
+            return Type.GetType ("Mono.Runtime") != null;
+        }
 
-		public static bool IsRunningOnMonogame ()
-		{
-			return true;
-		}
+        public static bool IsRunningOnMonogame ()
+        {
+            return true;
+        }
 
-		public static bool IsRunningOnLinux ()
-		{
-			return Environment.OSVersion.Platform == PlatformID.Unix;
-		}
+        public static bool IsRunningOnLinux ()
+        {
+            return Environment.OSVersion.Platform == PlatformID.Unix;
+        }
 
-		public static bool IsRunningOnWindows ()
-		{
-			return !IsRunningOnLinux ();
-		}
-	}
+        public static bool IsRunningOnWindows ()
+        {
+            return !IsRunningOnLinux ();
+        }
+    }
 }

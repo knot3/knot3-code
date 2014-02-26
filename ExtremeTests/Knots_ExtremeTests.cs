@@ -44,48 +44,48 @@ using Knot3.MockObjects;
 
 namespace Knot3.ExtremeTests
 {
-	public class ExtremeKnots
-	{
-		private static KnotFileIO knotFileIO;
-		// public static List<string> testKnotNames;
-		public static int[] SquareKnot_TestLengths = new int[] {100};
+    public class ExtremeKnots
+    {
+        private static KnotFileIO knotFileIO;
+        // public static List<string> testKnotNames;
+        public static int[] SquareKnot_TestLengths = new int[] {100};
 
-		static ExtremeKnots ()
-		{
-			knotFileIO = new KnotFileIO ();
-			//testKnotNames = new List<string>();
-		}
+        static ExtremeKnots ()
+        {
+            knotFileIO = new KnotFileIO ();
+            //testKnotNames = new List<string>();
+        }
 
-		public static void generateTestKnots ()
-		{
-			Knot knot = null;
-			string knotName = null;
+        public static void generateTestKnots ()
+        {
+            Knot knot = null;
+            string knotName = null;
 
-			foreach (int knotLength in SquareKnot_TestLengths) {
-				knotName = "Square-Knot_" + knotLength;
-				knot = KnotGenerator.generateSquareKnot (knotLength / 4, knotName);
-				Console.WriteLine ("Generating SK: " + knot.MetaData.Filename);
-			}
+            foreach (int knotLength in SquareKnot_TestLengths) {
+                knotName = "Square-Knot_" + knotLength;
+                knot = KnotGenerator.generateSquareKnot (knotLength / 4, knotName);
+                Console.WriteLine ("Generating SK: " + knot.MetaData.Filename);
+            }
 
-			// todo: einstellen, dass die Testknoten nicht bei den Savegames landen.
+            // todo: einstellen, dass die Testknoten nicht bei den Savegames landen.
 
-			//knotFileIO.Save (knot);
-		}
+            //knotFileIO.Save (knot);
+        }
 
-		public static void SaveSquareKnot (int numberOfEdges, string knotName)
-		{
-			Knot knot = null;
-			KnotFileIO knotFileIO = new KnotFileIO ();
+        public static void SaveSquareKnot (int numberOfEdges, string knotName)
+        {
+            Knot knot = null;
+            KnotFileIO knotFileIO = new KnotFileIO ();
 
-			// todo
+            // todo
 
-			knotFileIO.Save (knot);
-		}
+            knotFileIO.Save (knot);
+        }
 
-		public static void LoadSquareKnot (string knotName)
-		{
-			KnotFileIO knotFileIO = new KnotFileIO ();
-			knotFileIO.Load (knotName);
-		}
-	}
+        public static void LoadSquareKnot (string knotName)
+        {
+            KnotFileIO knotFileIO = new KnotFileIO ();
+            knotFileIO.Load (knotName);
+        }
+    }
 }

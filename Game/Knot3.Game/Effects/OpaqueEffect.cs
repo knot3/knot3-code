@@ -58,65 +58,65 @@ using Knot3.Game.Widgets;
 
 namespace Knot3.Game.Effects
 {
-	[ExcludeFromCodeCoverageAttribute]
-	public class OpaqueEffect : RenderEffect
-	{
-		public OpaqueEffect (IGameScreen screen)
-		: base (screen)
-		{
-			pascalEffect = screen.LoadEffect ("OpaqueShader");
-		}
+    [ExcludeFromCodeCoverageAttribute]
+    public class OpaqueEffect : RenderEffect
+    {
+        public OpaqueEffect (IGameScreen screen)
+        : base (screen)
+        {
+            pascalEffect = screen.LoadEffect ("OpaqueShader");
+        }
 
-		protected override void DrawRenderTarget (GameTime GameTime)
-		{
-			spriteBatch.Draw (RenderTarget, Vector2.Zero, Color.White);
-		}
+        protected override void DrawRenderTarget (GameTime GameTime)
+        {
+            spriteBatch.Draw (RenderTarget, Vector2.Zero, Color.White);
+        }
 
-		public override void RemapModel (Model model)
-		{
-			foreach (ModelMesh mesh in model.Meshes) {
-				foreach (ModelMeshPart part in mesh.MeshParts) {
-					part.Effect = pascalEffect;
-				}
-			}
-		}
+        public override void RemapModel (Model model)
+        {
+            foreach (ModelMesh mesh in model.Meshes) {
+                foreach (ModelMeshPart part in mesh.MeshParts) {
+                    part.Effect = pascalEffect;
+                }
+            }
+        }
 
-		public Color Color
-		{
-			get {
-				return Color.Red;
-			}
-			set {
-			}
-		}
+        public Color Color
+        {
+            get {
+                return Color.Red;
+            }
+            set {
+            }
+        }
 
-		public override void DrawModel (GameModel model, GameTime time)
-		{
-			// Setze den Viewport auf den der aktuellen Spielwelt
-			Viewport original = screen.Viewport;
-			screen.Viewport = model.World.Viewport;
+        public override void DrawModel (GameModel model, GameTime time)
+        {
+            // Setze den Viewport auf den der aktuellen Spielwelt
+            Viewport original = screen.Viewport;
+            screen.Viewport = model.World.Viewport;
 
-			Camera camera = model.World.Camera;
+            Camera camera = model.World.Camera;
 
-			//lightDirection = new Vector4 (-Vector3.Cross (Vector3.Normalize (camera.TargetDirection), camera.UpVector), 1);
-			pascalEffect.Parameters["World"].SetValue (model.WorldMatrix * camera.WorldMatrix);
-			pascalEffect.Parameters["View"].SetValue (camera.ViewMatrix);
-			pascalEffect.Parameters["Projection"].SetValue (camera.ProjectionMatrix);
+            //lightDirection = new Vector4 (-Vector3.Cross (Vector3.Normalize (camera.TargetDirection), camera.UpVector), 1);
+            pascalEffect.Parameters["World"].SetValue (model.WorldMatrix * camera.WorldMatrix);
+            pascalEffect.Parameters["View"].SetValue (camera.ViewMatrix);
+            pascalEffect.Parameters["Projection"].SetValue (camera.ProjectionMatrix);
 
-			pascalEffect.Parameters["color1"].SetValue (Color.Yellow.ToVector4 ());
-			pascalEffect.Parameters["color2"].SetValue (Color.Red.ToVector4 ());
+            pascalEffect.Parameters["color1"].SetValue (Color.Yellow.ToVector4 ());
+            pascalEffect.Parameters["color2"].SetValue (Color.Red.ToVector4 ());
 
-			pascalEffect.CurrentTechnique = pascalEffect.Techniques["Technique1"];
+            pascalEffect.CurrentTechnique = pascalEffect.Techniques["Technique1"];
 
-			foreach (ModelMesh mesh in model.Model.Meshes) {
-				mesh.Draw ();
-			}
+            foreach (ModelMesh mesh in model.Model.Meshes) {
+                mesh.Draw ();
+            }
 
-			// Setze den Viewport wieder auf den ganzen Screen
-			screen.Viewport = original;
-		}
+            // Setze den Viewport wieder auf den ganzen Screen
+            screen.Viewport = original;
+        }
 
-		Effect pascalEffect;
-		//Vector4 lightDirection; // Light source for toon shader
-	}
+        Effect pascalEffect;
+        //Vector4 lightDirection; // Light source for toon shader
+    }
 }

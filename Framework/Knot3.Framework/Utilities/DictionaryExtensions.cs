@@ -48,17 +48,17 @@ using Knot3.Framework.Utilities;
 
 namespace Knot3.Framework.Utilities
 {
-	[ExcludeFromCodeCoverageAttribute]
-	public static class DictionaryExtensions
-	{
-		public static void Add<KeyType, ListType, ValueType> (this Dictionary<KeyType, ListType> dict,
-		        KeyType key, ValueType value)
-		where ListType : IList<ValueType>, new ()
-		{
-			if (!dict.ContainsKey (key)) {
-				dict.Add (key, new ListType ());
-			}
-			dict [key].Add (value);
-		}
-	}
+    [ExcludeFromCodeCoverageAttribute]
+    public static class DictionaryExtensions
+    {
+        public static void Add<KeyType, ListType, ValueType> (this Dictionary<KeyType, ListType> dict,
+                KeyType key, ValueType value)
+        where ListType : IList<ValueType>, new ()
+        {
+            if (!dict.ContainsKey (key)) {
+                dict.Add (key, new ListType ());
+            }
+            dict [key].Add (value);
+        }
+    }
 }

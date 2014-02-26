@@ -58,97 +58,97 @@ using Knot3.Game.Widgets;
 
 namespace Knot3.MockObjects
 {
-	/// <summary>
-	/// Eine abstrakte Klasse, die eine Implementierung von IRenderEffect darstellt.
-	/// </summary>
-	public class FakeEffect : IRenderEffect
-	{
-		#region Properties
+    /// <summary>
+    /// Eine abstrakte Klasse, die eine Implementierung von IRenderEffect darstellt.
+    /// </summary>
+    public class FakeEffect : IRenderEffect
+    {
+        #region Properties
 
-		/// <summary>
-		/// Das Rendertarget, in das zwischen dem Aufruf der Begin ()- und der End ()-Methode gezeichnet wird,
-		/// weil es in Begin () als primäres Rendertarget des XNA-Frameworks gesetzt wird.
-		/// </summary>
-		public RenderTarget2D RenderTarget { get; private set; }
+        /// <summary>
+        /// Das Rendertarget, in das zwischen dem Aufruf der Begin ()- und der End ()-Methode gezeichnet wird,
+        /// weil es in Begin () als primäres Rendertarget des XNA-Frameworks gesetzt wird.
+        /// </summary>
+        public RenderTarget2D RenderTarget { get; private set; }
 
-		/// <summary>
-		/// Der Spielzustand, in dem der Effekt verwendet wird.
-		/// </summary>
-		protected IGameScreen screen { get; set; }
+        /// <summary>
+        /// Der Spielzustand, in dem der Effekt verwendet wird.
+        /// </summary>
+        protected IGameScreen screen { get; set; }
 
-		public bool SelectiveRendering { get { return true; } }
+        public bool SelectiveRendering { get { return true; } }
 
-		#endregion
+        #endregion
 
-		#region Constructors
+        #region Constructors
 
-		public FakeEffect (IGameScreen screen)
-		{
-			this.screen = screen;
-		}
+        public FakeEffect (IGameScreen screen)
+        {
+            this.screen = screen;
+        }
 
-		#endregion
+        #endregion
 
-		#region Methods
+        #region Methods
 
-		/// <summary>
-		/// In der Methode Begin () wird das aktuell von XNA genutzte Rendertarget auf einem Stack gesichert
-		/// und das Rendertarget des Effekts wird als aktuelles Rendertarget gesetzt.
-		/// </summary>
-		public void Begin (GameTime time)
-		{
-			screen.CurrentRenderEffects.Push (this);
-		}
+        /// <summary>
+        /// In der Methode Begin () wird das aktuell von XNA genutzte Rendertarget auf einem Stack gesichert
+        /// und das Rendertarget des Effekts wird als aktuelles Rendertarget gesetzt.
+        /// </summary>
+        public void Begin (GameTime time)
+        {
+            screen.CurrentRenderEffects.Push (this);
+        }
 
-		/// <summary>
-		/// Das auf dem Stack gesicherte, vorher genutzte Rendertarget wird wiederhergestellt und
-		/// das Rendertarget dieses Rendereffekts wird, unter Umständen in Unterklassen verändert,
-		/// auf dieses ubergeordnete Rendertarget gezeichnet.
-		/// </summary>
-		public virtual void End (GameTime time)
-		{
-			screen.CurrentRenderEffects.Pop ();
-		}
+        /// <summary>
+        /// Das auf dem Stack gesicherte, vorher genutzte Rendertarget wird wiederhergestellt und
+        /// das Rendertarget dieses Rendereffekts wird, unter Umständen in Unterklassen verändert,
+        /// auf dieses ubergeordnete Rendertarget gezeichnet.
+        /// </summary>
+        public virtual void End (GameTime time)
+        {
+            screen.CurrentRenderEffects.Pop ();
+        }
 
-		/// <summary>
-		/// Zeichnet das Spielmodell model mit diesem Rendereffekt.
-		/// </summary>
-		public virtual void DrawModel (GameModel model, GameTime time)
-		{
-			// Setze den Viewport auf den der aktuellen Spielwelt
-			Viewport original = screen.Viewport;
-			screen.Viewport = model.World.Viewport;
+        /// <summary>
+        /// Zeichnet das Spielmodell model mit diesem Rendereffekt.
+        /// </summary>
+        public virtual void DrawModel (GameModel model, GameTime time)
+        {
+            // Setze den Viewport auf den der aktuellen Spielwelt
+            Viewport original = screen.Viewport;
+            screen.Viewport = model.World.Viewport;
 
-			// hier würde das Modell gezeichnet werden
+            // hier würde das Modell gezeichnet werden
 
-			// Setze den Viewport wieder auf den ganzen Screen
-			screen.Viewport = original;
-		}
+            // Setze den Viewport wieder auf den ganzen Screen
+            screen.Viewport = original;
+        }
 
-		protected void ModifyBasicEffect (BasicEffect effect, GameModel model)
-		{
-		}
+        protected void ModifyBasicEffect (BasicEffect effect, GameModel model)
+        {
+        }
 
-		/// <summary>
-		/// Beim Laden des Modells wird von der XNA-Content-Pipeline jedem ModelMeshPart ein Shader der Klasse
-		/// BasicEffect zugewiesen. Für die Nutzung des Modells in diesem Rendereffekt kann jedem ModelMeshPart
-		/// ein anderer Shader zugewiesen werden.
-		/// </summary>
-		public virtual void RemapModel (Model model)
-		{
-		}
+        /// <summary>
+        /// Beim Laden des Modells wird von der XNA-Content-Pipeline jedem ModelMeshPart ein Shader der Klasse
+        /// BasicEffect zugewiesen. Für die Nutzung des Modells in diesem Rendereffekt kann jedem ModelMeshPart
+        /// ein anderer Shader zugewiesen werden.
+        /// </summary>
+        public virtual void RemapModel (Model model)
+        {
+        }
 
-		/// <summary>
-		/// Zeichnet das Rendertarget.
-		/// </summary>
-		protected virtual void DrawRenderTarget (GameTime GameTime)
-		{
-		}
+        /// <summary>
+        /// Zeichnet das Rendertarget.
+        /// </summary>
+        protected virtual void DrawRenderTarget (GameTime GameTime)
+        {
+        }
 
-		public void DrawLastFrame (GameTime time)
-		{
-		}
+        public void DrawLastFrame (GameTime time)
+        {
+        }
 
-		#endregion
-	}
+        #endregion
+    }
 }

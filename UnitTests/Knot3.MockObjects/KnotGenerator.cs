@@ -45,42 +45,42 @@ using Knot3.Game.Data;
 
 namespace Knot3.MockObjects
 {
-	public class KnotGenerator
-	{
-		public static readonly string FakeName = "FakeKnot";
+    public class KnotGenerator
+    {
+        public static readonly string FakeName = "FakeKnot";
 
-		// TODO (jemand): Wir brauchen hier noch eine bessere Lösung / Überladungen / Umgang mit "FakeKnots"
+        // TODO (jemand): Wir brauchen hier noch eine bessere Lösung / Überladungen / Umgang mit "FakeKnots"
 
-		public static Knot generateSquareKnot (int EdgeLength, string name)
-		{
-			Edge[] edgeList = new Edge[EdgeLength * 4];
+        public static Knot generateSquareKnot (int EdgeLength, string name)
+        {
+            Edge[] edgeList = new Edge[EdgeLength * 4];
 
-			for (int i = 0; i < EdgeLength; i++) {
-				edgeList[i] = Edge.Up;
-			}
-			for (int i = EdgeLength; i < EdgeLength*2; i++) {
-				edgeList[i] = Edge.Right;
-			}
-			for (int i = EdgeLength *2; i < EdgeLength*3; i++) {
-				edgeList[i] = Edge.Down;
-			}
-			for (int i = EdgeLength *3; i < EdgeLength*4; i++) {
-				edgeList[i] = Edge.Left;
-			}
-			KnotMetaData metaData = new KnotMetaData (name, edgeList.Count<Edge>, null, null);
-			Knot squareKnot = new Knot (metaData, edgeList);
+            for (int i = 0; i < EdgeLength; i++) {
+                edgeList[i] = Edge.Up;
+            }
+            for (int i = EdgeLength; i < EdgeLength*2; i++) {
+                edgeList[i] = Edge.Right;
+            }
+            for (int i = EdgeLength *2; i < EdgeLength*3; i++) {
+                edgeList[i] = Edge.Down;
+            }
+            for (int i = EdgeLength *3; i < EdgeLength*4; i++) {
+                edgeList[i] = Edge.Left;
+            }
+            KnotMetaData metaData = new KnotMetaData (name, edgeList.Count<Edge>, null, null);
+            Knot squareKnot = new Knot (metaData, edgeList);
 
-			return squareKnot;
-		}
+            return squareKnot;
+        }
 
-		public static Knot generateInvalidKnot ()
-		{
-			Edge[] edgeList = new Edge[] {
-				Edge.Up, Edge.Up, Edge.Up, Edge.Up
-			};
-			KnotMetaData metaData = new KnotMetaData ("Invalid", edgeList.Count<Edge>, null, null);
-			Knot invalidKnot = new Knot (metaData, edgeList);
-			return invalidKnot;
-		}
-	}
+        public static Knot generateInvalidKnot ()
+        {
+            Edge[] edgeList = new Edge[] {
+                Edge.Up, Edge.Up, Edge.Up, Edge.Up
+            };
+            KnotMetaData metaData = new KnotMetaData ("Invalid", edgeList.Count<Edge>, null, null);
+            Knot invalidKnot = new Knot (metaData, edgeList);
+            return invalidKnot;
+        }
+    }
 }

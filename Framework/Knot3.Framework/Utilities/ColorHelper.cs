@@ -48,23 +48,23 @@ using Knot3.Framework.Utilities;
 
 namespace Knot3.Framework.Utilities
 {
-	[ExcludeFromCodeCoverageAttribute]
-	public static class ColorHelper
-	{
-		public static Color Mix (this Color a, Color b, float percent = 0.5f)
-		{
-			percent = MathHelper.Clamp (percent, 0f, 1f);
-			return new Color (a.ToVector3 () * (1f - percent) + b.ToVector3 () * percent);
-		}
+    [ExcludeFromCodeCoverageAttribute]
+    public static class ColorHelper
+    {
+        public static Color Mix (this Color a, Color b, float percent = 0.5f)
+        {
+            percent = MathHelper.Clamp (percent, 0f, 1f);
+            return new Color (a.ToVector3 () * (1f - percent) + b.ToVector3 () * percent);
+        }
 
-		public static int Luminance (this Color color)
-		{
-			return (color.R * 3 + color.B + color.G * 4) >> 3;
-		}
+        public static int Luminance (this Color color)
+        {
+            return (color.R * 3 + color.B + color.G * 4) >> 3;
+        }
 
-		public static int SortColorsByLuminance (Color left, Color right)
-		{
-			return left.Luminance ().CompareTo (right.Luminance ());
-		}
-	}
+        public static int SortColorsByLuminance (Color left, Color right)
+        {
+            return left.Luminance ().CompareTo (right.Luminance ());
+        }
+    }
 }

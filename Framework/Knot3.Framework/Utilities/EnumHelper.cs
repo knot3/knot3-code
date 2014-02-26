@@ -51,85 +51,85 @@ using Knot3.Framework.Utilities;
 
 namespace Knot3.Framework.Utilities
 {
-	[ExcludeFromCodeCoverageAttribute]
-	public static class EnumHelper
-	{
-		public static IEnumerable<string> ToEnumDescriptions<T> (this IEnumerable<T> enumValues)
-		{
-			foreach (T val in enumValues) {
-				yield return val.ToEnumDescription<T> ();
-			}
-		}
+    [ExcludeFromCodeCoverageAttribute]
+    public static class EnumHelper
+    {
+        public static IEnumerable<string> ToEnumDescriptions<T> (this IEnumerable<T> enumValues)
+        {
+            foreach (T val in enumValues) {
+                yield return val.ToEnumDescription<T> ();
+            }
+        }
 
-		public static Hashtable GetDescriptionTable<T> ()
-		{
-			Hashtable table = new Hashtable ();
-			foreach (T val in ToEnumValues<T>()) {
-				string descr = val.ToEnumDescription<T> ();
-				table [val] = descr;
-				table [descr] = val;
-			}
-			return table;
-		}
+        public static Hashtable GetDescriptionTable<T> ()
+        {
+            Hashtable table = new Hashtable ();
+            foreach (T val in ToEnumValues<T>()) {
+                string descr = val.ToEnumDescription<T> ();
+                table [val] = descr;
+                table [descr] = val;
+            }
+            return table;
+        }
 
-		public static IEnumerable<T> ToEnumValues<T> ()
-		{
-			Type enumType = typeof (T);
+        public static IEnumerable<T> ToEnumValues<T> ()
+        {
+            Type enumType = typeof (T);
 
-			return enumType.ToEnumValues<T> ();
-		}
+            return enumType.ToEnumValues<T> ();
+        }
 
-		public static IEnumerable<T> ToEnumValues<T> (this Type enumType)
-		{
-			if (enumType.BaseType != typeof (Enum)) {
-				throw new ArgumentException ("T must be of type System.Enum");
-			}
+        public static IEnumerable<T> ToEnumValues<T> (this Type enumType)
+        {
+            if (enumType.BaseType != typeof (Enum)) {
+                throw new ArgumentException ("T must be of type System.Enum");
+            }
 
-			Array enumValArray = Enum.GetValues (enumType);
+            Array enumValArray = Enum.GetValues (enumType);
 
-			foreach (int val in enumValArray) {
-				yield return (T)Enum.Parse (enumType, val.ToString ());
-			}
-		}
+            foreach (int val in enumValArray) {
+                yield return (T)Enum.Parse (enumType, val.ToString ());
+            }
+        }
 
-		public static string ToEnumDescription<T> (this T value)
-		{
-			Type enumType = typeof (T);
+        public static string ToEnumDescription<T> (this T value)
+        {
+            Type enumType = typeof (T);
 
-			if (enumType.BaseType != typeof (Enum)) {
-				throw new ArgumentException ("T must be of type System.Enum");
-			}
+            if (enumType.BaseType != typeof (Enum)) {
+                throw new ArgumentException ("T must be of type System.Enum");
+            }
 
-			FieldInfo fi = value.GetType ().GetField (value.ToString ());
+            FieldInfo fi = value.GetType ().GetField (value.ToString ());
 
-			DescriptionAttribute[] attributes =
-			    (DescriptionAttribute[])fi.GetCustomAttributes (
-			        typeof (DescriptionAttribute),
-			        false);
+            DescriptionAttribute[] attributes =
+                (DescriptionAttribute[])fi.GetCustomAttributes (
+                    typeof (DescriptionAttribute),
+                    false);
 
-			if (attributes != null && attributes.Length > 0) {
-				return attributes [0].Description;
-			}
-			else {
-				return value.ToString ();
-			}
-		}
+            if (attributes != null && attributes.Length > 0) {
+                return attributes [0].Description;
+            }
+            else {
+                return value.ToString ();
+            }
+        }
 
-		public static T ToEnumValue<T> (this string value)
-		{
-			Type enumType = typeof (T);
-			if (enumType.BaseType != typeof (Enum)) {
-				throw new ArgumentException ("T must be of type System.Enum");
-			}
+        public static T ToEnumValue<T> (this string value)
+        {
+            Type enumType = typeof (T);
+            if (enumType.BaseType != typeof (Enum)) {
+                throw new ArgumentException ("T must be of type System.Enum");
+            }
 
-			T returnValue = default (T);
-			foreach (T enumVal in ToEnumValues<T>()) {
-				if (enumVal.ToEnumDescription<T> () == value) {
-					returnValue = enumVal;
-					break;
-				}
-			}
-			return returnValue;
-		}
-	}
+            T returnValue = default (T);
+            foreach (T enumVal in ToEnumValues<T>()) {
+                if (enumVal.ToEnumDescription<T> () == value) {
+                    returnValue = enumVal;
+                    break;
+                }
+            }
+            return returnValue;
+        }
+    }
 }

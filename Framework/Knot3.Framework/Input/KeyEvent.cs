@@ -39,9 +39,9 @@ using Knot3.Framework.Utilities;
 
 namespace Knot3.Framework.Input
 {
-	public enum KeyEvent {
-		None = 0,
-		KeyDown,
-		KeyHeldDown
-	}
+    public enum KeyEvent {
+        None = 0,
+        KeyDown,
+        KeyHeldDown
+    }
 }

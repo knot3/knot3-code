@@ -54,194 +54,194 @@ using Knot3.Framework.Widgets;
 
 namespace Knot3.Framework.Audio
 {
-	public class AudioManager : DrawableGameScreenComponent
-	{
-		/// <summary>
-		/// Eine Zuordnung zwischen dem Typ der Audiodateien und den Ordnern unter "Content/",
-		/// in denen sich die Audiodateien befinden.
-		/// </summary>
-		private static readonly Dictionary<Sound, string> AudioDirectories
-		= new Dictionary<Sound, string> {
-			{ Sound.CreativeMusic,			"Music/Creative" },
-			{ Sound.ChallengeMusic,			"Music/Challenge" },
-			{ Sound.MenuMusic,				"Music/Menu" },
-			{ Sound.PipeMoveSound,			"Sound/Pipe/Move" },
-			{ Sound.PipeInvalidMoveSound,	"Sound/Pipe/Invalid-Move" },
-		};
+    public class AudioManager : DrawableGameScreenComponent
+    {
+        /// <summary>
+        /// Eine Zuordnung zwischen dem Typ der Audiodateien und den Ordnern unter "Content/",
+        /// in denen sich die Audiodateien befinden.
+        /// </summary>
+        private static readonly Dictionary<Sound, string> AudioDirectories
+        = new Dictionary<Sound, string> {
+            { Sound.CreativeMusic,			"Music/Creative" },
+            { Sound.ChallengeMusic,			"Music/Challenge" },
+            { Sound.MenuMusic,				"Music/Menu" },
+            { Sound.PipeMoveSound,			"Sound/Pipe/Move" },
+            { Sound.PipeInvalidMoveSound,	"Sound/Pipe/Invalid-Move" },
+        };
 
-		// Enthält alle gefunden Audiodateien, sortiert nach ihrem Zweck
-		private static Dictionary<Sound, HashSet<IAudioFile>> AudioFiles
-		    = new Dictionary<Sound, HashSet<IAudioFile>> ();
+        // Enthält alle gefunden Audiodateien, sortiert nach ihrem Zweck
+        private static Dictionary<Sound, HashSet<IAudioFile>> AudioFiles
+            = new Dictionary<Sound, HashSet<IAudioFile>> ();
 
-		/// <summary>
-		/// Die aktuell verwendete Hintergrundmusik.
-		/// </summary>
-		public Sound BackgroundMusic
-		{
-			get {
-				return _backgroundMusic;
-			}
-			set {
-				if (value != Sound.None && value != _backgroundMusic) {
-					_backgroundMusic = value;
-					StartBackgroundMusic ();
-				}
-			}
-		}
+        /// <summary>
+        /// Die aktuell verwendete Hintergrundmusik.
+        /// </summary>
+        public Sound BackgroundMusic
+        {
+            get {
+                return _backgroundMusic;
+            }
+            set {
+                if (value != Sound.None && value != _backgroundMusic) {
+                    _backgroundMusic = value;
+                    StartBackgroundMusic ();
+                }
+            }
+        }
 
-		private static Sound _backgroundMusic = Sound.None;
+        private static Sound _backgroundMusic = Sound.None;
 
-		/// <summary>
-		/// Enthält die Playlist, die aktuell abgespielt wird,
-		/// oder null, falls keine Playlist abgespielt wird.
-		/// </summary>
-		public static IPlaylist Playlist { get; set; }
+        /// <summary>
+        /// Enthält die Playlist, die aktuell abgespielt wird,
+        /// oder null, falls keine Playlist abgespielt wird.
+        /// </summary>
+        public static IPlaylist Playlist { get; set; }
 
-		private static Dictionary<Sound, float> VolumeMap = new Dictionary<Sound, float> ();
+        private static Dictionary<Sound, float> VolumeMap = new Dictionary<Sound, float> ();
 
-		/// <summary>
-		/// Erstellt einen neuen AudioManager für den angegebenen Spielzustand.
-		/// </summary>
-		public AudioManager (IGameScreen screen, string directory)
-		: base (screen, DisplayLayer.None)
-		{
-			if (AudioFiles.Count == 0) {
-				// Erstelle für alle Enum-Werte von Sound ein HashSet
-				foreach (Sound soundType in typeof (Sound).ToEnumValues<Sound>()) {
-					AudioFiles [soundType] = new HashSet<IAudioFile> ();
-					VolumeMap [soundType] = ValidVolume (Config.Default ["volume", soundType.ToString (), 1]);
-				}
+        /// <summary>
+        /// Erstellt einen neuen AudioManager für den angegebenen Spielzustand.
+        /// </summary>
+        public AudioManager (IGameScreen screen, string directory)
+        : base (screen, DisplayLayer.None)
+        {
+            if (AudioFiles.Count == 0) {
+                // Erstelle für alle Enum-Werte von Sound ein HashSet
+                foreach (Sound soundType in typeof (Sound).ToEnumValues<Sound>()) {
+                    AudioFiles [soundType] = new HashSet<IAudioFile> ();
+                    VolumeMap [soundType] = ValidVolume (Config.Default ["volume", soundType.ToString (), 1]);
+                }
 
-				// Suche nach XNA-Audio-Dateien
-				FileUtility.SearchFiles (directory, new string[] {".xnb"}, AddXnaAudioFile);
+                // Suche nach XNA-Audio-Dateien
+                FileUtility.SearchFiles (directory, new string[] {".xnb"}, AddXnaAudioFile);
 
-				// Suche nach OGG-Dateien
-				FileUtility.SearchFiles (directory, new string[] {".ogg"}, AddOggAudioFile);
-			}
-		}
+                // Suche nach OGG-Dateien
+                FileUtility.SearchFiles (directory, new string[] {".ogg"}, AddOggAudioFile);
+            }
+        }
 
-		public AudioManager (IGameScreen screen)
-		: this (screen, SystemInfo.RelativeContentDirectory)
-		{
-		}
+        public AudioManager (IGameScreen screen)
+        : this (screen, SystemInfo.RelativeContentDirectory)
+        {
+        }
 
-		public static void Reset ()
-		{
-			AudioFiles.Clear ();
-			VolumeMap.Clear ();
-		}
+        public static void Reset ()
+        {
+            AudioFiles.Clear ();
+            VolumeMap.Clear ();
+        }
 
-		private void AddXnaAudioFile (string filepath)
-		{
-			filepath = filepath.Replace (".xnb", String.Empty).Replace (@"Content\", String.Empty).Replace ("Content/", String.Empty).Replace (@"\", "/");
+        private void AddXnaAudioFile (string filepath)
+        {
+            filepath = filepath.Replace (".xnb", String.Empty).Replace (@"Content\", String.Empty).Replace ("Content/", String.Empty).Replace (@"\", "/");
 
-			foreach (KeyValuePair<Sound,string> pair in AudioDirectories) {
-				Sound soundType = pair.Key;
-				string directory = pair.Value;
-				if (filepath.ToLower ().Contains (directory.ToLower ())) {
-					string name = Path.GetFileName (filepath);
-					LoadXnaSoundEffect (filepath, name, soundType);
-					break;
-				}
-			}
-		}
+            foreach (KeyValuePair<Sound,string> pair in AudioDirectories) {
+                Sound soundType = pair.Key;
+                string directory = pair.Value;
+                if (filepath.ToLower ().Contains (directory.ToLower ())) {
+                    string name = Path.GetFileName (filepath);
+                    LoadXnaSoundEffect (filepath, name, soundType);
+                    break;
+                }
+            }
+        }
 
-		private void LoadXnaSoundEffect (string filepath, string name, Sound soundType)
-		{
-			try {
-				// versuche, die Audiodatei als "SoundEffect" zu laden
-				SoundEffect soundEffect = Screen.Content.Load<SoundEffect> (filepath);
-				AudioFiles [soundType].Add (new SoundEffectFile (name, soundEffect, soundType));
-				Log.Debug ("Load sound effect (", soundType, "): ", filepath);
-			}
-			catch (Exception ex) {
-				Log.Debug (ex);
-			}
-		}
+        private void LoadXnaSoundEffect (string filepath, string name, Sound soundType)
+        {
+            try {
+                // versuche, die Audiodatei als "SoundEffect" zu laden
+                SoundEffect soundEffect = Screen.Content.Load<SoundEffect> (filepath);
+                AudioFiles [soundType].Add (new SoundEffectFile (name, soundEffect, soundType));
+                Log.Debug ("Load sound effect (", soundType, "): ", filepath);
+            }
+            catch (Exception ex) {
+                Log.Debug (ex);
+            }
+        }
 
-		private void AddOggAudioFile (string filepath)
-		{
-			filepath = filepath.Replace (@"\", "/");
+        private void AddOggAudioFile (string filepath)
+        {
+            filepath = filepath.Replace (@"\", "/");
 
-			foreach (KeyValuePair<Sound,string> pair in AudioDirectories) {
-				Sound soundType = pair.Key;
-				string directory = pair.Value;
-				if (filepath.ToLower ().Contains (directory.ToLower ())) {
-					string name = Path.GetFileName (filepath);
-					LoadOggAudioFile (filepath, name, soundType);
-					break;
-				}
-			}
-		}
+            foreach (KeyValuePair<Sound,string> pair in AudioDirectories) {
+                Sound soundType = pair.Key;
+                string directory = pair.Value;
+                if (filepath.ToLower ().Contains (directory.ToLower ())) {
+                    string name = Path.GetFileName (filepath);
+                    LoadOggAudioFile (filepath, name, soundType);
+                    break;
+                }
+            }
+        }
 
-		private void LoadOggAudioFile (string filepath, string name, Sound soundType)
-		{
-			try {
-				// erstelle ein OggVorbisFile-Objekt
-				AudioFiles [soundType].Add (new OggVorbisFile (name, filepath, soundType));
-			}
-			catch (Exception ex) {
-				// egal, warum das laden nicht klappt; mehr als die Fehlermeldung anzeigen
-				// macht wegen einer fehlenden Musikdatei keinen Sinn
-				Log.Debug ("Failed to load ogg audio file (", soundType, "): ", filepath);
-				Log.Debug (ex);
-			}
-		}
+        private void LoadOggAudioFile (string filepath, string name, Sound soundType)
+        {
+            try {
+                // erstelle ein OggVorbisFile-Objekt
+                AudioFiles [soundType].Add (new OggVorbisFile (name, filepath, soundType));
+            }
+            catch (Exception ex) {
+                // egal, warum das laden nicht klappt; mehr als die Fehlermeldung anzeigen
+                // macht wegen einer fehlenden Musikdatei keinen Sinn
+                Log.Debug ("Failed to load ogg audio file (", soundType, "): ", filepath);
+                Log.Debug (ex);
+            }
+        }
 
-		private void StartBackgroundMusic ()
-		{
-			if (Playlist != null) {
-				Playlist.Stop ();
-			}
-			Log.Debug ("Background Music: ", BackgroundMusic);
-			Playlist = new LoopPlaylist (AudioFiles [BackgroundMusic]);
-			Playlist.Shuffle ();
-			Playlist.Start ();
-		}
+        private void StartBackgroundMusic ()
+        {
+            if (Playlist != null) {
+                Playlist.Stop ();
+            }
+            Log.Debug ("Background Music: ", BackgroundMusic);
+            Playlist = new LoopPlaylist (AudioFiles [BackgroundMusic]);
+            Playlist.Shuffle ();
+            Playlist.Start ();
+        }
 
-		public void PlaySound (Sound sound)
-		{
-			Log.Debug ("Sound: ", sound);
-			if (AudioFiles [sound].Count > 0) {
-				AudioFiles [sound].RandomElement ().Play ();
-			}
-			else {
-				Log.Debug ("There are no audio files for: ", sound);
-			}
-		}
+        public void PlaySound (Sound sound)
+        {
+            Log.Debug ("Sound: ", sound);
+            if (AudioFiles [sound].Count > 0) {
+                AudioFiles [sound].RandomElement ().Play ();
+            }
+            else {
+                Log.Debug ("There are no audio files for: ", sound);
+            }
+        }
 
-		[ExcludeFromCodeCoverageAttribute]
-		public override void Update (GameTime time)
-		{
-			if (Playlist != null) {
-				Playlist.Update (time);
-			}
-			base.Update (time);
-		}
+        [ExcludeFromCodeCoverageAttribute]
+        public override void Update (GameTime time)
+        {
+            if (Playlist != null) {
+                Playlist.Update (time);
+            }
+            base.Update (time);
+        }
 
-		protected override void UnloadContent ()
-		{
-			Log.Debug ("UnloadContent ()");
-			Playlist.Stop ();
-			base.UnloadContent ();
-		}
+        protected override void UnloadContent ()
+        {
+            Log.Debug ("UnloadContent ()");
+            Playlist.Stop ();
+            base.UnloadContent ();
+        }
 
-		public static float Volume (Sound soundType)
-		{
-			return VolumeMap [soundType];
-		}
+        public static float Volume (Sound soundType)
+        {
+            return VolumeMap [soundType];
+        }
 
-		public static void SetVolume (Sound soundType, float volume)
-		{
-			volume = ValidVolume (volume);
-			VolumeMap [soundType] = volume;
-			Config.Default ["volume", soundType.ToString (), 1] = volume;
-			Log.Debug ("Set Volume (", soundType, "): ", volume);
-		}
+        public static void SetVolume (Sound soundType, float volume)
+        {
+            volume = ValidVolume (volume);
+            VolumeMap [soundType] = volume;
+            Config.Default ["volume", soundType.ToString (), 1] = volume;
+            Log.Debug ("Set Volume (", soundType, "): ", volume);
+        }
 
-		public static float ValidVolume (float volume)
-		{
-			return MathHelper.Clamp (volume, 0.0f, 2.0f);
-		}
-	}
+        public static float ValidVolume (float volume)
+        {
+            return MathHelper.Clamp (volume, 0.0f, 2.0f);
+        }
+    }
 }

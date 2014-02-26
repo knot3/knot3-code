@@ -57,82 +57,82 @@ using Knot3.Game.Widgets;
 
 namespace Knot3.Game.Models
 {
-	/// <summary>
-	/// Diese Klasse ArrowModel repräsentiert ein 3D-Modell für einen Pfeil, zum Einblenden an selektierten Kanten (s. Edge).
-	/// </summary>
-	[ExcludeFromCodeCoverageAttribute]
-	public sealed class ArrowModel : GameModel
-	{
-		#region Properties
+    /// <summary>
+    /// Diese Klasse ArrowModel repräsentiert ein 3D-Modell für einen Pfeil, zum Einblenden an selektierten Kanten (s. Edge).
+    /// </summary>
+    [ExcludeFromCodeCoverageAttribute]
+    public sealed class ArrowModel : GameModel
+    {
+        #region Properties
 
-		/// <summary>
-		/// Das Info-Objekt, das die Position und Richtung des ArrowModel\grq s enthält.
-		/// </summary>
-		public new Arrow Info { get { return base.Info as Arrow; } set { base.Info = value; } }
+        /// <summary>
+        /// Das Info-Objekt, das die Position und Richtung des ArrowModel\grq s enthält.
+        /// </summary>
+        public new Arrow Info { get { return base.Info as Arrow; } set { base.Info = value; } }
 
-		private BoundingSphere[] _bounds;
+        private BoundingSphere[] _bounds;
 
-		public override BoundingSphere[] Bounds
-		{
-			get { return _bounds; }
-		}
+        public override BoundingSphere[] Bounds
+        {
+            get { return _bounds; }
+        }
 
-		#endregion
+        #endregion
 
-		#region Constructors
+        #region Constructors
 
-		/// <summary>
-		/// Erstellt ein neues Pfeilmodell in dem angegebenen IGameScreen mit einem bestimmten Info-Objekt, das Position und Richtung des Pfeils festlegt.
-		/// </summary>
-		public ArrowModel (IGameScreen screen, Arrow info)
-		: base (screen, info)
-		{
-			_bounds = VectorHelper.CylinderBounds (
-			              length: Info.Length,
-			              radius: Info.Diameter / 2,
-			              direction: Info.Direction.Vector,
-			              position: info.Position - info.Direction.Vector * Info.Length / 2
-			          );
-		}
+        /// <summary>
+        /// Erstellt ein neues Pfeilmodell in dem angegebenen IGameScreen mit einem bestimmten Info-Objekt, das Position und Richtung des Pfeils festlegt.
+        /// </summary>
+        public ArrowModel (IGameScreen screen, Arrow info)
+        : base (screen, info)
+        {
+            _bounds = VectorHelper.CylinderBounds (
+                          length: Info.Length,
+                          radius: Info.Diameter / 2,
+                          direction: Info.Direction.Vector,
+                          position: info.Position - info.Direction.Vector * Info.Length / 2
+                      );
+        }
 
-		#endregion
+        #endregion
 
-		#region Methods
+        #region Methods
 
-		/// <summary>
-		/// Zeichnet den Pfeil.
-		/// </summary>
-		[ExcludeFromCodeCoverageAttribute]
-		public override void Draw (GameTime time)
-		{
-			Coloring = new SingleColor (Color.Red);
-			if (World.SelectedObject == this) {
-				Coloring.Highlight (intensity: 1f, color: Color.Orange);
-			}
-			else {
-				Coloring.Unhighlight ();
-			}
+        /// <summary>
+        /// Zeichnet den Pfeil.
+        /// </summary>
+        [ExcludeFromCodeCoverageAttribute]
+        public override void Draw (GameTime time)
+        {
+            Coloring = new SingleColor (Color.Red);
+            if (World.SelectedObject == this) {
+                Coloring.Highlight (intensity: 1f, color: Color.Orange);
+            }
+            else {
+                Coloring.Unhighlight ();
+            }
 
-			base.Draw (time);
-		}
+            base.Draw (time);
+        }
 
-		/// <summary>
-		/// Überprüft, ob der Mausstrahl den Pfeil schneidet.
-		/// </summary>
-		public override GameObjectDistance Intersects (Ray ray)
-		{
-			foreach (BoundingSphere sphere in Bounds) {
-				float? distance = ray.Intersects (sphere);
-				if (distance != null) {
-					GameObjectDistance intersection = new GameObjectDistance () {
-						Object=this, Distance=distance.Value
-					};
-					return intersection;
-				}
-			}
-			return null;
-		}
+        /// <summary>
+        /// Überprüft, ob der Mausstrahl den Pfeil schneidet.
+        /// </summary>
+        public override GameObjectDistance Intersects (Ray ray)
+        {
+            foreach (BoundingSphere sphere in Bounds) {
+                float? distance = ray.Intersects (sphere);
+                if (distance != null) {
+                    GameObjectDistance intersection = new GameObjectDistance () {
+                        Object=this, Distance=distance.Value
+                    };
+                    return intersection;
+                }
+            }
+            return null;
+        }
 
-		#endregion
-	}
+        #endregion
+    }
 }

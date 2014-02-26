@@ -56,70 +56,70 @@ using Knot3.Game.Widgets;
 
 namespace Knot3.MockObjects
 {
-	/// <summary>
-	/// Ein Stapel, der während der Draw-Aufrufe die Hierarchie der aktuell verwendeten Rendereffekte verwaltet
-	/// und automatisch das aktuell von XNA verwendete Rendertarget auf das Rendertarget des obersten Rendereffekts
-	/// setzt.
-	/// </summary>
-	public sealed class FakeEffectStack : IRenderEffectStack
-	{
-		#region Properties
+    /// <summary>
+    /// Ein Stapel, der während der Draw-Aufrufe die Hierarchie der aktuell verwendeten Rendereffekte verwaltet
+    /// und automatisch das aktuell von XNA verwendete Rendertarget auf das Rendertarget des obersten Rendereffekts
+    /// setzt.
+    /// </summary>
+    public sealed class FakeEffectStack : IRenderEffectStack
+    {
+        #region Properties
 
-		private static Stack<IRenderEffect> stack = new Stack<IRenderEffect> ();
+        private static Stack<IRenderEffect> stack = new Stack<IRenderEffect> ();
 
-		/// <summary>
-		/// Der oberste Rendereffekt.
-		/// </summary>
-		public IRenderEffect CurrentEffect
-		{
-			get {
-				if (stack.Count > 0) {
-					return stack.Peek ();
-				}
-				else {
-					return defaultEffect;
-				}
-			}
-		}
+        /// <summary>
+        /// Der oberste Rendereffekt.
+        /// </summary>
+        public IRenderEffect CurrentEffect
+        {
+            get {
+                if (stack.Count > 0) {
+                    return stack.Peek ();
+                }
+                else {
+                    return defaultEffect;
+                }
+            }
+        }
 
-		/// <summary>
-		/// Der Standard-Rendereffekt, der verwendet wird, wenn der Stapel leer ist.
-		/// </summary>
-		private IRenderEffect defaultEffect { get; set; }
+        /// <summary>
+        /// Der Standard-Rendereffekt, der verwendet wird, wenn der Stapel leer ist.
+        /// </summary>
+        private IRenderEffect defaultEffect { get; set; }
 
-		#endregion
+        #endregion
 
-		#region Constructors
+        #region Constructors
 
-		/// <summary>
-		/// Erstellt einen neuen Rendereffekt-Stapel.
-		/// </summary>
-		public FakeEffectStack (IGameScreen screen, IRenderEffect defaultEffect)
-		{
-			this.defaultEffect = defaultEffect;
-			stack = new Stack<IRenderEffect> ();
-		}
+        /// <summary>
+        /// Erstellt einen neuen Rendereffekt-Stapel.
+        /// </summary>
+        public FakeEffectStack (IGameScreen screen, IRenderEffect defaultEffect)
+        {
+            this.defaultEffect = defaultEffect;
+            stack = new Stack<IRenderEffect> ();
+        }
 
-		#endregion
+        #endregion
 
-		#region Methods
+        #region Methods
 
-		/// <summary>
-		/// Entfernt den obersten Rendereffekt vom Stapel.
-		/// </summary>
-		public IRenderEffect Pop ()
-		{
-			return stack.Pop ();
-		}
+        /// <summary>
+        /// Entfernt den obersten Rendereffekt vom Stapel.
+        /// </summary>
+        public IRenderEffect Pop ()
+        {
+            return stack.Pop ();
+        }
 
-		/// <summary>
-		/// Legt einen Rendereffekt auf den Stapel.
-		/// </summary>
-		public void Push (IRenderEffect effect)
-		{
-			stack.Push (effect);
-		}
+        /// <summary>
+        /// Legt einen Rendereffekt auf den Stapel.
+        /// </summary>
+        public void Push (IRenderEffect effect)
+        {
+            stack.Push (effect);
+        }
 
-		#endregion
-	}
+        #endregion
+    }
 }

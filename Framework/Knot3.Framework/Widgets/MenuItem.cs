@@ -54,160 +54,160 @@ using Knot3.Framework.Widgets;
 
 namespace Knot3.Framework.Widgets
 {
-	/// <summary>
-	/// Ein abstrakte Klasse für Menüeinträge.
-	/// </summary>
-	[ExcludeFromCodeCoverageAttribute]
-	public abstract class MenuItem : Widget, IKeyEventListener, IMouseClickEventListener, IMouseScrollEventListener
-	{
-		#region Properties
+    /// <summary>
+    /// Ein abstrakte Klasse für Menüeinträge.
+    /// </summary>
+    [ExcludeFromCodeCoverageAttribute]
+    public abstract class MenuItem : Widget, IKeyEventListener, IMouseClickEventListener, IMouseScrollEventListener
+    {
+        #region Properties
 
-		/// <summary>
-		/// Die Zeichenreihenfolge.
-		/// </summary>
-		public int ItemOrder { get; set; }
+        /// <summary>
+        /// Die Zeichenreihenfolge.
+        /// </summary>
+        public int ItemOrder { get; set; }
 
-		/// <summary>
-		/// Der Name des Menüeintrags, der auf der linken Seite angezeigt wird.
-		/// </summary>
-		public string Text { get; set; }
+        /// <summary>
+        /// Der Name des Menüeintrags, der auf der linken Seite angezeigt wird.
+        /// </summary>
+        public string Text { get; set; }
 
-		/// <summary>
-		/// Eine Referenz auf das Menu, in dem sich der Eintrag befindet.
-		/// </summary>
-		public Container Menu { get; set; }
+        /// <summary>
+        /// Eine Referenz auf das Menu, in dem sich der Eintrag befindet.
+        /// </summary>
+        public Container Menu { get; set; }
 
-		/// <summary>
-		/// Wie viel Prozent der Name des Eintrags (auf der linken Seite) von der Breite des Eintrags einnehmen darf.
-		/// </summary>
-		public virtual float NameWidth { get { return _nameWidth; } set { _nameWidth = value; } }
+        /// <summary>
+        /// Wie viel Prozent der Name des Eintrags (auf der linken Seite) von der Breite des Eintrags einnehmen darf.
+        /// </summary>
+        public virtual float NameWidth { get { return _nameWidth; } set { _nameWidth = value; } }
 
-		private float _nameWidth = 0.5f;
+        private float _nameWidth = 0.5f;
 
-		/// <summary>
-		/// Wie viel Prozent der Wert des Eintrags (auf der rechten Seite) von der Breite des Eintrags einnehmen darf.
-		/// </summary>
-		public virtual float ValueWidth { get { return _valueWidth; } set { _valueWidth = value; } }
+        /// <summary>
+        /// Wie viel Prozent der Wert des Eintrags (auf der rechten Seite) von der Breite des Eintrags einnehmen darf.
+        /// </summary>
+        public virtual float ValueWidth { get { return _valueWidth; } set { _valueWidth = value; } }
 
-		private float _valueWidth = 0.5f;
-		// ein Spritebatch
-		protected SpriteBatch spriteBatch;
+        private float _valueWidth = 0.5f;
+        // ein Spritebatch
+        protected SpriteBatch spriteBatch;
 
-		public virtual Bounds MouseClickBounds { get { return Bounds; } }
+        public virtual Bounds MouseClickBounds { get { return Bounds; } }
 
-		public Bounds MouseScrollBounds { get { return Bounds; } }
+        public Bounds MouseScrollBounds { get { return Bounds; } }
 
-		public Action<bool, GameTime> Hovered = (isHovered, time) => {};
-		#endregion
+        public Action<bool, GameTime> Hovered = (isHovered, time) => {};
+        #endregion
 
-		#region Constructors
+        #region Constructors
 
-		public MenuItem (IGameScreen screen, DisplayLayer drawOrder, string text)
-		: base (screen, drawOrder)
-		{
-			Text = text;
-			ItemOrder = -1;
-			State = WidgetState.None;
-			spriteBatch = new SpriteBatch (screen.Device);
-			SelectedColorBackground = Color.Transparent;
-			SelectedColorForeground = Color.White;
-		}
+        public MenuItem (IGameScreen screen, DisplayLayer drawOrder, string text)
+        : base (screen, drawOrder)
+        {
+            Text = text;
+            ItemOrder = -1;
+            State = WidgetState.None;
+            spriteBatch = new SpriteBatch (screen.Device);
+            SelectedColorBackground = Color.Transparent;
+            SelectedColorForeground = Color.White;
+        }
 
-		#endregion
+        #endregion
 
-		#region Methods
+        #region Methods
 
-		/// <summary>
-		/// Reaktionen auf einen Linksklick.
-		/// </summary>
-		public virtual void OnLeftClick (Vector2 position, ClickState state, GameTime time)
-		{
-		}
+        /// <summary>
+        /// Reaktionen auf einen Linksklick.
+        /// </summary>
+        public virtual void OnLeftClick (Vector2 position, ClickState state, GameTime time)
+        {
+        }
 
-		/// <summary>
-		/// Reaktionen auf einen Rechtsklick.
-		/// </summary>
-		public virtual void OnRightClick (Vector2 position, ClickState state, GameTime time)
-		{
-		}
+        /// <summary>
+        /// Reaktionen auf einen Rechtsklick.
+        /// </summary>
+        public virtual void OnRightClick (Vector2 position, ClickState state, GameTime time)
+        {
+        }
 
-		/// <summary>
-		/// Reaktionen auf Tasteneingaben.
-		/// </summary>
-		public virtual void OnKeyEvent (List<Keys> key, KeyEvent keyEvent, GameTime time)
-		{
-		}
+        /// <summary>
+        /// Reaktionen auf Tasteneingaben.
+        /// </summary>
+        public virtual void OnKeyEvent (List<Keys> key, KeyEvent keyEvent, GameTime time)
+        {
+        }
 
-		public virtual void SetHovered (bool isHovered, GameTime time)
-		{
-			State = isHovered ? WidgetState.Hovered : WidgetState.None;
-			Hovered (isHovered, time);
-		}
+        public virtual void SetHovered (bool isHovered, GameTime time)
+        {
+            State = isHovered ? WidgetState.Hovered : WidgetState.None;
+            Hovered (isHovered, time);
+        }
 
-		/// <summary>
-		/// Die Reaktion auf eine Bewegung des Mausrads.
-		/// </summary>
-		public void OnScroll (int scrollValue, GameTime time)
-		{
-			if (Menu != null) {
-				Menu.OnScroll (scrollValue);
-			}
-			else {
-				Log.Debug ("Warning: MenuItem is not assigned to a menu: ", this);
-			}
-		}
+        /// <summary>
+        /// Die Reaktion auf eine Bewegung des Mausrads.
+        /// </summary>
+        public void OnScroll (int scrollValue, GameTime time)
+        {
+            if (Menu != null) {
+                Menu.OnScroll (scrollValue);
+            }
+            else {
+                Log.Debug ("Warning: MenuItem is not assigned to a menu: ", this);
+            }
+        }
 
-		[ExcludeFromCodeCoverageAttribute]
-		public override void Draw (GameTime time)
-		{
-			base.Draw (time);
+        [ExcludeFromCodeCoverageAttribute]
+        public override void Draw (GameTime time)
+        {
+            base.Draw (time);
 
-			if (IsVisible) {
-				spriteBatch.Begin ();
+            if (IsVisible) {
+                spriteBatch.Begin ();
 
-				// zeichne den Hintergrund
-				spriteBatch.DrawColoredRectangle (BackgroundColor, Bounds);
+                // zeichne den Hintergrund
+                spriteBatch.DrawColoredRectangle (BackgroundColor, Bounds);
 
-				// lade die Schrift
-				SpriteFont font = Design.MenuFont (Screen);
+                // lade die Schrift
+                SpriteFont font = Design.MenuFont (Screen);
 
-				// zeichne die Schrift
-				Color foreground = ForegroundColor * (IsEnabled ? 1f : 0.5f);
-				if (IsLocalized) {
-					spriteBatch.DrawStringInRectangle (font, Text.Localize (), foreground, Bounds, AlignX, AlignY);
-				}
-				else {
-					spriteBatch.DrawStringInRectangle (font, Text, foreground, Bounds, AlignX, AlignY);
-				}
+                // zeichne die Schrift
+                Color foreground = ForegroundColor * (IsEnabled ? 1f : 0.5f);
+                if (IsLocalized) {
+                    spriteBatch.DrawStringInRectangle (font, Text.Localize (), foreground, Bounds, AlignX, AlignY);
+                }
+                else {
+                    spriteBatch.DrawStringInRectangle (font, Text, foreground, Bounds, AlignX, AlignY);
+                }
 
-				spriteBatch.End ();
-			}
-		}
+                spriteBatch.End ();
+            }
+        }
 
-		/// <summary>
-		/// Berechnet die Ausmaße des Namens des Menüeintrags.
-		/// </summary>
-		protected virtual Bounds NameBounds
-		{
-			get {
-				return Bounds.FromLeft (() => NameWidth);
-			}
-		}
+        /// <summary>
+        /// Berechnet die Ausmaße des Namens des Menüeintrags.
+        /// </summary>
+        protected virtual Bounds NameBounds
+        {
+            get {
+                return Bounds.FromLeft (() => NameWidth);
+            }
+        }
 
-		/// <summary>
-		/// Berechnet die Ausmaße des Wertes des Menüeintrags.
-		/// </summary>
-		protected virtual Bounds ValueBounds
-		{
-			get {
-				return Bounds.FromRight (() => ValueWidth);
-			}
-		}
+        /// <summary>
+        /// Berechnet die Ausmaße des Wertes des Menüeintrags.
+        /// </summary>
+        protected virtual Bounds ValueBounds
+        {
+            get {
+                return Bounds.FromRight (() => ValueWidth);
+            }
+        }
 
-		public virtual void Collapse ()
-		{
-		}
+        public virtual void Collapse ()
+        {
+        }
 
-		#endregion
-	}
+        #endregion
+    }
 }

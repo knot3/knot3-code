@@ -50,100 +50,100 @@ using Knot3.Game.Models;
 
 namespace Knot3.UnitTests.Data
 {
-	[TestFixture]
-	public class Edge_Tests
-	{
-		[Test]
-		public void Edge_Equals_Tests ()
-		{
-			Assert.AreNotEqual (Edge.Left, Edge.Left);
-			Assert.AreNotEqual (Edge.Right, Edge.Right);
-			Assert.AreNotEqual (Edge.Down, Edge.Down);
-			Assert.AreNotEqual (Edge.Up, Edge.Up);
-			Assert.AreNotEqual (Edge.Forward, Edge.Forward);
-			Assert.AreNotEqual (Edge.Backward, Edge.Backward);
+    [TestFixture]
+    public class Edge_Tests
+    {
+        [Test]
+        public void Edge_Equals_Tests ()
+        {
+            Assert.AreNotEqual (Edge.Left, Edge.Left);
+            Assert.AreNotEqual (Edge.Right, Edge.Right);
+            Assert.AreNotEqual (Edge.Down, Edge.Down);
+            Assert.AreNotEqual (Edge.Up, Edge.Up);
+            Assert.AreNotEqual (Edge.Forward, Edge.Forward);
+            Assert.AreNotEqual (Edge.Backward, Edge.Backward);
 
-			Assert.AreEqual ((Direction)Edge.Right, (Direction)Edge.UnitX);
-			Assert.AreEqual ((Direction)Edge.Up, (Direction)Edge.UnitY);
-			Assert.AreEqual ((Direction)Edge.Backward, (Direction)Edge.UnitZ);
+            Assert.AreEqual ((Direction)Edge.Right, (Direction)Edge.UnitX);
+            Assert.AreEqual ((Direction)Edge.Up, (Direction)Edge.UnitY);
+            Assert.AreEqual ((Direction)Edge.Backward, (Direction)Edge.UnitZ);
 
-			Assert.AreNotEqual (Edge.Zero, Edge.Zero);
-			Assert.AreEqual ((Direction)Edge.Zero, Direction.Zero);
-		}
+            Assert.AreNotEqual (Edge.Zero, Edge.Zero);
+            Assert.AreEqual ((Direction)Edge.Zero, Direction.Zero);
+        }
 
-		[Test]
-		public void Edge_Nonsense_Tests ()
-		{
-			Assert.False (Edge.Zero.Equals (null));
-			Assert.False (Edge.Zero.Equals (0f));
-			Assert.False (Edge.Zero.Equals ((object)null));
-			Assert.False (Edge.Zero.Equals ((object)0f));
-			Assert.False (Edge.Zero.Equals ((object)new Quaternion (0, 0, 0, 0)));
-			Assert.False (Edge.Zero.Equals ((object)Color.LemonChiffon));
-			Assert.False (Edge.Zero.Equals ((object)Direction.Down));
-			Assert.False (Edge.Zero.Equals ((object)Direction.Down.Vector));
-			Assert.False (Edge.Zero.Equals ((object)Direction.Down.Description));
+        [Test]
+        public void Edge_Nonsense_Tests ()
+        {
+            Assert.False (Edge.Zero.Equals (null));
+            Assert.False (Edge.Zero.Equals (0f));
+            Assert.False (Edge.Zero.Equals ((object)null));
+            Assert.False (Edge.Zero.Equals ((object)0f));
+            Assert.False (Edge.Zero.Equals ((object)new Quaternion (0, 0, 0, 0)));
+            Assert.False (Edge.Zero.Equals ((object)Color.LemonChiffon));
+            Assert.False (Edge.Zero.Equals ((object)Direction.Down));
+            Assert.False (Edge.Zero.Equals ((object)Direction.Down.Vector));
+            Assert.False (Edge.Zero.Equals ((object)Direction.Down.Description));
 
-			Assert.False (Direction.Zero.Equals ((object)null));
-			Assert.False (Direction.Zero.Equals ((object)0f));
-			Assert.False (Direction.Zero.Equals ((object)new Quaternion (0, 0, 0, 0)));
-			Assert.False (Direction.Zero.Equals ((object)Direction.Down));
-			Assert.False (Direction.Zero.Equals ((object)Direction.Down.Vector));
-			Assert.False (Direction.Zero.Equals ((object)Direction.Down.Description));
-			Assert.False (Direction.Zero.Equals ((object)""));
-		}
+            Assert.False (Direction.Zero.Equals ((object)null));
+            Assert.False (Direction.Zero.Equals ((object)0f));
+            Assert.False (Direction.Zero.Equals ((object)new Quaternion (0, 0, 0, 0)));
+            Assert.False (Direction.Zero.Equals ((object)Direction.Down));
+            Assert.False (Direction.Zero.Equals ((object)Direction.Down.Vector));
+            Assert.False (Direction.Zero.Equals ((object)Direction.Down.Description));
+            Assert.False (Direction.Zero.Equals ((object)""));
+        }
 
-		[Test]
-		public void Edge_ToString_Tests ()
-		{
-			Assert.IsNotEmpty (Edge.Zero.ToString ());
-			Assert.IsNotEmpty (Edge.Zero.GetHashCode () + "");
-		}
+        [Test]
+        public void Edge_ToString_Tests ()
+        {
+            Assert.IsNotEmpty (Edge.Zero.ToString ());
+            Assert.IsNotEmpty (Edge.Zero.GetHashCode () + "");
+        }
 
-		[Test]
-		public void Edge_FromString_Tests ()
-		{
-			Assert.AreEqual (Direction.FromString ("Left"), Edge.Left.Direction);
-			Assert.AreEqual (Direction.FromString ("Right"), Edge.Right.Direction);
-			Assert.AreEqual (Direction.FromString ("Down"), Edge.Down.Direction);
-			Assert.AreEqual (Direction.FromString ("Up"), Edge.Up.Direction);
-			Assert.AreEqual (Direction.FromString ("Forward"), Edge.Forward.Direction);
-			Assert.AreEqual (Direction.FromString ("Backward"), Edge.Backward.Direction);
-			Assert.IsNull (Direction.FromString ("fdsrfrdsf!!"));
-		}
+        [Test]
+        public void Edge_FromString_Tests ()
+        {
+            Assert.AreEqual (Direction.FromString ("Left"), Edge.Left.Direction);
+            Assert.AreEqual (Direction.FromString ("Right"), Edge.Right.Direction);
+            Assert.AreEqual (Direction.FromString ("Down"), Edge.Down.Direction);
+            Assert.AreEqual (Direction.FromString ("Up"), Edge.Up.Direction);
+            Assert.AreEqual (Direction.FromString ("Forward"), Edge.Forward.Direction);
+            Assert.AreEqual (Direction.FromString ("Backward"), Edge.Backward.Direction);
+            Assert.IsNull (Direction.FromString ("fdsrfrdsf!!"));
+        }
 
-		[Test]
-		public void Edge_FromAxis_Tests ()
-		{
-			Assert.AreEqual (Direction.FromAxis (Axis.X).Axis, Axis.X);
-			Assert.AreEqual (Direction.FromAxis (Axis.Y).Axis, Axis.Y);
-			Assert.AreEqual (Direction.FromAxis (Axis.Z).Axis, Axis.Z);
-		}
+        [Test]
+        public void Edge_FromAxis_Tests ()
+        {
+            Assert.AreEqual (Direction.FromAxis (Axis.X).Axis, Axis.X);
+            Assert.AreEqual (Direction.FromAxis (Axis.Y).Axis, Axis.Y);
+            Assert.AreEqual (Direction.FromAxis (Axis.Z).Axis, Axis.Z);
+        }
 
-		[Test]
-		public void Edge_Random_Tests ()
-		{
-			Assert.IsNotNull (Edge.RandomEdge ());
-			Assert.IsNotNull (Edge.RandomColor (new GameTime (new TimeSpan (0), new TimeSpan (0))));
-		}
+        [Test]
+        public void Edge_Random_Tests ()
+        {
+            Assert.IsNotNull (Edge.RandomEdge ());
+            Assert.IsNotNull (Edge.RandomColor (new GameTime (new TimeSpan (0), new TimeSpan (0))));
+        }
 
-		[Test]
-		public void Edge_Math_Tests ()
-		{
-			Assert.AreEqual (Direction.Left.Vector * 3, Direction.Left * 3);
-			Assert.AreEqual (Direction.Left.Vector / 3, Direction.Left / 3);
-			Assert.AreEqual (Direction.Left.Vector + Direction.Forward.Vector, Direction.Left + Direction.Forward);
-			Assert.AreEqual (Direction.Left.Vector - Direction.Forward.Vector, Direction.Left - Direction.Forward);
-		}
+        [Test]
+        public void Edge_Math_Tests ()
+        {
+            Assert.AreEqual (Direction.Left.Vector * 3, Direction.Left * 3);
+            Assert.AreEqual (Direction.Left.Vector / 3, Direction.Left / 3);
+            Assert.AreEqual (Direction.Left.Vector + Direction.Forward.Vector, Direction.Left + Direction.Forward);
+            Assert.AreEqual (Direction.Left.Vector - Direction.Forward.Vector, Direction.Left - Direction.Forward);
+        }
 
-		[Test]
-		public void Edge_Clone_Tests ()
-		{
-			Edge orig = Edge.Left;
-			Edge cloned = orig.Clone () as Edge;
-			Assert.AreNotEqual (orig, cloned);
-			Assert.AreEqual (orig.Direction, cloned.Direction);
-			Assert.AreEqual ((Direction)orig, (Direction)cloned);
-		}
-	}
+        [Test]
+        public void Edge_Clone_Tests ()
+        {
+            Edge orig = Edge.Left;
+            Edge cloned = orig.Clone () as Edge;
+            Assert.AreNotEqual (orig, cloned);
+            Assert.AreEqual (orig.Direction, cloned.Direction);
+            Assert.AreEqual ((Direction)orig, (Direction)cloned);
+        }
+    }
 }

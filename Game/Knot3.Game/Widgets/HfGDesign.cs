@@ -44,70 +44,70 @@ using Knot3.Game.Widgets;
 
 namespace Knot3.Game.Widgets
 {
-	[ExcludeFromCodeCoverageAttribute]
-	public sealed class HfGDesign : IDesign
-	{
-		public HfGDesign ()
-		{
-		}
+    [ExcludeFromCodeCoverageAttribute]
+    public sealed class HfGDesign : IDesign
+    {
+        public HfGDesign ()
+        {
+        }
 
-		public void Apply ()
-		{
-			Design.MenuFontName = "font-menu";
-			Design.DefaultLineColor = new Color (0xb4, 0xff, 0x00);
-			Design.DefaultOutlineColor = new Color (0x3b, 0x54, 0x00);
-			Design.WidgetBackground = Color.Black;
-			Design.WidgetForeground = Color.White;
-			Design.InGameBackground = Color.Black;
-			Design.ScreenBackground = Color.Black;
-			Design.WidgetBackgroundColorFunc = WidgetBackgroundColor;
-			Design.WidgetForegroundColorFunc = WidgetForegroundColor;
-			Design.MenuItemBackgroundColorFunc = MenuItemBackgroundColor;
-			Design.MenuItemForegroundColorFunc = MenuItemForegroundColor;
-		}
+        public void Apply ()
+        {
+            Design.MenuFontName = "font-menu";
+            Design.DefaultLineColor = new Color (0xb4, 0xff, 0x00);
+            Design.DefaultOutlineColor = new Color (0x3b, 0x54, 0x00);
+            Design.WidgetBackground = Color.Black;
+            Design.WidgetForeground = Color.White;
+            Design.InGameBackground = Color.Black;
+            Design.ScreenBackground = Color.Black;
+            Design.WidgetBackgroundColorFunc = WidgetBackgroundColor;
+            Design.WidgetForegroundColorFunc = WidgetForegroundColor;
+            Design.MenuItemBackgroundColorFunc = MenuItemBackgroundColor;
+            Design.MenuItemForegroundColorFunc = MenuItemForegroundColor;
+        }
 
-		private static Color WidgetBackgroundColor (WidgetState state)
-		{
-			if (state == WidgetState.None || state == WidgetState.Hovered) {
-				return Color.Transparent;
-			}
-			else if (state == WidgetState.Selected) {
-				return Color.Black;
-			}
-			else {
-				return Color.CornflowerBlue;
-			}
-		}
+        private static Color WidgetBackgroundColor (WidgetState state)
+        {
+            if (state == WidgetState.None || state == WidgetState.Hovered) {
+                return Color.Transparent;
+            }
+            else if (state == WidgetState.Selected) {
+                return Color.Black;
+            }
+            else {
+                return Color.CornflowerBlue;
+            }
+        }
 
-		private static Color WidgetForegroundColor (WidgetState state)
-		{
-			if (state == WidgetState.Hovered) {
-				return Color.White;
-			}
-			else if (state == WidgetState.None) {
-				return Color.White * 0.7f;
-			}
-			else if (state == WidgetState.Selected) {
-				return Color.White;
-			}
-			else {
-				return Color.CornflowerBlue;
-			}
-		}
+        private static Color WidgetForegroundColor (WidgetState state)
+        {
+            if (state == WidgetState.Hovered) {
+                return Color.White;
+            }
+            else if (state == WidgetState.None) {
+                return Color.White * 0.7f;
+            }
+            else if (state == WidgetState.Selected) {
+                return Color.White;
+            }
+            else {
+                return Color.CornflowerBlue;
+            }
+        }
 
-		private Color MenuItemBackgroundColor (WidgetState state)
-		{
-			return Color.Transparent;
-		}
+        private Color MenuItemBackgroundColor (WidgetState state)
+        {
+            return Color.Transparent;
+        }
 
-		private Color MenuItemForegroundColor (WidgetState state)
-		{
-			if (state == WidgetState.Hovered) {
-				return Color.White;
-			}
-			else {
-				return Color.White * 0.7f;
-			}
-		}
-	}
+        private Color MenuItemForegroundColor (WidgetState state)
+        {
+            if (state == WidgetState.Hovered) {
+                return Color.White;
+            }
+            else {
+                return Color.White * 0.7f;
+            }
+        }
+    }
 }

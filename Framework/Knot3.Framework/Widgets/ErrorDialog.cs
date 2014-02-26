@@ -50,24 +50,24 @@ using Knot3.Framework.Utilities;
 
 namespace Knot3.Framework.Widgets
 {
-	[ExcludeFromCodeCoverageAttribute]
-	public class ErrorDialog : ConfirmDialog
-	{
-		private TextBox textBox;
+    [ExcludeFromCodeCoverageAttribute]
+    public class ErrorDialog : ConfirmDialog
+    {
+        private TextBox textBox;
 
-		public ErrorDialog (IGameScreen screen, DisplayLayer drawOrder, string message)
-		: base (screen: screen, drawOrder: drawOrder, title: "Error")
-		{
-			textBox = new TextBox (screen: Screen, drawOrder: Index + DisplayLayer.MenuItem, text: message);
-			textBox.Bounds = ContentBounds;
-		}
+        public ErrorDialog (IGameScreen screen, DisplayLayer drawOrder, string message)
+        : base (screen: screen, drawOrder: drawOrder, title: "Error")
+        {
+            textBox = new TextBox (screen: Screen, drawOrder: Index + DisplayLayer.MenuItem, text: message);
+            textBox.Bounds = ContentBounds;
+        }
 
-		public override IEnumerable<IGameScreenComponent> SubComponents (GameTime time)
-		{
-			foreach (DrawableGameScreenComponent component in base.SubComponents (time)) {
-				yield return component;
-			}
-			yield return textBox;
-		}
-	}
+        public override IEnumerable<IGameScreenComponent> SubComponents (GameTime time)
+        {
+            foreach (DrawableGameScreenComponent component in base.SubComponents (time)) {
+                yield return component;
+            }
+            yield return textBox;
+        }
+    }
 }

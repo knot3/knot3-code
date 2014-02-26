@@ -58,47 +58,47 @@ using Knot3.Game.Widgets;
 
 namespace Knot3.Game.Screens
 {
-	/// <summary>
-	/// Eine abstrakte Klasse, von der alle Spielzustände erben, die Menüs darstellen.
-	/// </summary>
-	[ExcludeFromCodeCoverageAttribute]
-	public abstract class MenuScreen : GameScreen
-	{
-		#region Properties
+    /// <summary>
+    /// Eine abstrakte Klasse, von der alle Spielzustände erben, die Menüs darstellen.
+    /// </summary>
+    [ExcludeFromCodeCoverageAttribute]
+    public abstract class MenuScreen : GameScreen
+    {
+        #region Properties
 
-		private MousePointer pointer;
+        private MousePointer pointer;
 
-		// die Linien
-		protected Lines lines;
+        // die Linien
+        protected Lines lines;
 
-		#endregion
+        #endregion
 
-		#region Constructors
+        #region Constructors
 
-		public MenuScreen (GameClass game)
-		: base (game)
-		{
-			// die Linien
-			lines = new Lines (screen: this, drawOrder: DisplayLayer.Dialog, lineWidth: 6);
+        public MenuScreen (GameClass game)
+        : base (game)
+        {
+            // die Linien
+            lines = new Lines (screen: this, drawOrder: DisplayLayer.Dialog, lineWidth: 6);
 
-			// der Mauszeiger
-			pointer = new MousePointer (this);
-		}
+            // der Mauszeiger
+            pointer = new MousePointer (this);
+        }
 
-		#endregion
+        #endregion
 
-		#region Methods
+        #region Methods
 
-		/// <summary>
-		/// Wird aufgerufen, wenn in diesen Spielzustand gewechselt wird.
-		/// </summary>
-		public override void Entered (IGameScreen previousScreen, GameTime time)
-		{
-			base.Entered (previousScreen, time);
-			AddGameComponents (time, pointer, lines);
-			Audio.BackgroundMusic = Sound.MenuMusic;
-		}
+        /// <summary>
+        /// Wird aufgerufen, wenn in diesen Spielzustand gewechselt wird.
+        /// </summary>
+        public override void Entered (IGameScreen previousScreen, GameTime time)
+        {
+            base.Entered (previousScreen, time);
+            AddGameComponents (time, pointer, lines);
+            Audio.BackgroundMusic = Sound.MenuMusic;
+        }
 
-		#endregion
-	}
+        #endregion
+    }
 }

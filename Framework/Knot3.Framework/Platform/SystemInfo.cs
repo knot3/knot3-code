@@ -51,159 +51,159 @@ using Knot3.Framework.Utilities;
 
 namespace Knot3.Framework.Platform
 {
-	public static partial class SystemInfo
-	{
-		#region Properties
+    public static partial class SystemInfo
+    {
+        #region Properties
 
-		/// <summary>
-		/// Das Einstellungsverzeichnis.
-		/// </summary>
-		[ExcludeFromCodeCoverageAttribute]
-		public static string SettingsDirectory
-		{
-			get {
-				if (settingsDirectory != null) {
-					return settingsDirectory;
-				}
-				else {
-					string directory;
-					if (SystemInfo.IsRunningOnLinux ()) {
-						directory = Environment.GetEnvironmentVariable ("HOME") + "/.knot3/";
-					}
-					else {
-						directory = Environment.GetFolderPath (System.Environment.SpecialFolder.Personal) + "\\Knot3\\";
-					}
-					Directory.CreateDirectory (directory);
-					return settingsDirectory = directory;
-				}
-			}
-			set {
-				settingsDirectory = value;
-			}
-		}
+        /// <summary>
+        /// Das Einstellungsverzeichnis.
+        /// </summary>
+        [ExcludeFromCodeCoverageAttribute]
+        public static string SettingsDirectory
+        {
+            get {
+                if (settingsDirectory != null) {
+                    return settingsDirectory;
+                }
+                else {
+                    string directory;
+                    if (SystemInfo.IsRunningOnLinux ()) {
+                        directory = Environment.GetEnvironmentVariable ("HOME") + "/.knot3/";
+                    }
+                    else {
+                        directory = Environment.GetFolderPath (System.Environment.SpecialFolder.Personal) + "\\Knot3\\";
+                    }
+                    Directory.CreateDirectory (directory);
+                    return settingsDirectory = directory;
+                }
+            }
+            set {
+                settingsDirectory = value;
+            }
+        }
 
-		private static string settingsDirectory = null;
+        private static string settingsDirectory = null;
 
-		/// <summary>
-		/// Das Spielstandverzeichnis.
-		/// </summary>
-		[ExcludeFromCodeCoverageAttribute]
-		public static string SavegameDirectory
-		{
-			get {
-				string directory = SettingsDirectory + "Savegames";
-				Directory.CreateDirectory (directory);
-				return directory;
-			}
-		}
+        /// <summary>
+        /// Das Spielstandverzeichnis.
+        /// </summary>
+        [ExcludeFromCodeCoverageAttribute]
+        public static string SavegameDirectory
+        {
+            get {
+                string directory = SettingsDirectory + "Savegames";
+                Directory.CreateDirectory (directory);
+                return directory;
+            }
+        }
 
-		/// <summary>
-		/// Das Bildschirmfotoverzeichnis.
-		/// </summary>
-		[ExcludeFromCodeCoverageAttribute]
-		public static string ScreenshotDirectory
-		{
-			get {
-				string directory;
-				if (SystemInfo.IsRunningOnLinux ()) {
-					directory = Environment.GetEnvironmentVariable ("HOME");
-				}
-				else {
-					directory = Environment.GetFolderPath (System.Environment.SpecialFolder.MyPictures) + "\\Knot3\\";
-				}
-				Directory.CreateDirectory (directory);
-				return directory;
-			}
-		}
+        /// <summary>
+        /// Das Bildschirmfotoverzeichnis.
+        /// </summary>
+        [ExcludeFromCodeCoverageAttribute]
+        public static string ScreenshotDirectory
+        {
+            get {
+                string directory;
+                if (SystemInfo.IsRunningOnLinux ()) {
+                    directory = Environment.GetEnvironmentVariable ("HOME");
+                }
+                else {
+                    directory = Environment.GetFolderPath (System.Environment.SpecialFolder.MyPictures) + "\\Knot3\\";
+                }
+                Directory.CreateDirectory (directory);
+                return directory;
+            }
+        }
 
-		[ExcludeFromCodeCoverageAttribute]
-		public static string DecodedMusicCache
-		{
-			get {
-				string directory;
-				if (SystemInfo.IsRunningOnLinux ()) {
-					directory = "/var/tmp/knot3/";
-				}
-				else {
-					directory = Environment.GetFolderPath (System.Environment.SpecialFolder.MyMusic) + "\\Knot3\\";
-				}
-				Directory.CreateDirectory (directory);
-				return directory;
-			}
-		}
+        [ExcludeFromCodeCoverageAttribute]
+        public static string DecodedMusicCache
+        {
+            get {
+                string directory;
+                if (SystemInfo.IsRunningOnLinux ()) {
+                    directory = "/var/tmp/knot3/";
+                }
+                else {
+                    directory = Environment.GetFolderPath (System.Environment.SpecialFolder.MyMusic) + "\\Knot3\\";
+                }
+                Directory.CreateDirectory (directory);
+                return directory;
+            }
+        }
 
-		[ExcludeFromCodeCoverageAttribute]
-		public static string BaseDirectory
-		{
-			get {
-				if (baseDirectory != null) {
-					return baseDirectory;
-				}
-				else {
-					findBaseDirectory ();
-					return baseDirectory;
-				}
-			}
-		}
+        [ExcludeFromCodeCoverageAttribute]
+        public static string BaseDirectory
+        {
+            get {
+                if (baseDirectory != null) {
+                    return baseDirectory;
+                }
+                else {
+                    findBaseDirectory ();
+                    return baseDirectory;
+                }
+            }
+        }
 
-		[ExcludeFromCodeCoverageAttribute]
-		public static string RelativeBaseDirectory
-		{
-			get {
-				if (relativeBaseDirectory != null) {
-					return relativeBaseDirectory;
-				}
-				else {
-					findBaseDirectory ();
-					return relativeBaseDirectory;
-				}
-			}
-			set {
-				Log.Debug ("Set Base directory: ", value);
-				baseDirectory = value;
-				Log.Debug ("Set Base directory (relative): ", value);
-				relativeBaseDirectory = value;
-			}
-		}
+        [ExcludeFromCodeCoverageAttribute]
+        public static string RelativeBaseDirectory
+        {
+            get {
+                if (relativeBaseDirectory != null) {
+                    return relativeBaseDirectory;
+                }
+                else {
+                    findBaseDirectory ();
+                    return relativeBaseDirectory;
+                }
+            }
+            set {
+                Log.Debug ("Set Base directory: ", value);
+                baseDirectory = value;
+                Log.Debug ("Set Base directory (relative): ", value);
+                relativeBaseDirectory = value;
+            }
+        }
 
-		[ExcludeFromCodeCoverageAttribute]
-		private static void findBaseDirectory ()
-		{
-			string baseDir = Directory.GetCurrentDirectory ();
-			string relBaseDir = "." + PathSeparator;
-			string[] binDirectories = new string[] {
-				"Debug",
-				"Release",
-				"x86",
-				"bin",
-				"Game",
-				"ModelEditor",
-				"Tools",
-			};
-			foreach (string dir in binDirectories) {
-				if (baseDir.ToLower ().EndsWith (dir.ToLower ())) {
-					baseDir = baseDir.Substring (0, baseDir.Length - dir.Length - 1);
-					relBaseDir += ".." + PathSeparator;
-				}
-			}
-			Log.Debug ("Base directory: ", baseDir);
-			baseDirectory = baseDir;
-			Log.Debug ("Base directory (relative): ", relBaseDir);
-			relativeBaseDirectory = relBaseDir;
-		}
+        [ExcludeFromCodeCoverageAttribute]
+        private static void findBaseDirectory ()
+        {
+            string baseDir = Directory.GetCurrentDirectory ();
+            string relBaseDir = "." + PathSeparator;
+            string[] binDirectories = new string[] {
+                "Debug",
+                "Release",
+                "x86",
+                "bin",
+                "Game",
+                "ModelEditor",
+                "Tools",
+            };
+            foreach (string dir in binDirectories) {
+                if (baseDir.ToLower ().EndsWith (dir.ToLower ())) {
+                    baseDir = baseDir.Substring (0, baseDir.Length - dir.Length - 1);
+                    relBaseDir += ".." + PathSeparator;
+                }
+            }
+            Log.Debug ("Base directory: ", baseDir);
+            baseDirectory = baseDir;
+            Log.Debug ("Base directory (relative): ", relBaseDir);
+            relativeBaseDirectory = relBaseDir;
+        }
 
-		private static string relativeBaseDirectory = null;
-		private static string baseDirectory = null;
-		public readonly static char PathSeparator = Path.DirectorySeparatorChar;
+        private static string relativeBaseDirectory = null;
+        private static string baseDirectory = null;
+        public readonly static char PathSeparator = Path.DirectorySeparatorChar;
 
-		[ExcludeFromCodeCoverageAttribute]
-		public static string RelativeContentDirectory
-		{
-			get {
-				return SystemInfo.RelativeBaseDirectory + "Content" + PathSeparator;
-			}
-		}
+        [ExcludeFromCodeCoverageAttribute]
+        public static string RelativeContentDirectory
+        {
+            get {
+                return SystemInfo.RelativeBaseDirectory + "Content" + PathSeparator;
+            }
+        }
 
-		#endregion
-	}
+        #endregion
+    }
 }

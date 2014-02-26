@@ -55,34 +55,34 @@ using Knot3.Game.Widgets;
 
 namespace Knot3.Game.Data
 {
-	/// <summary>
-	/// Repräsentiert einen Übergang zwischen zwei Kanten.
-	/// </summary>
-	public interface IJunction
-	{
-		#region Properties
+    /// <summary>
+    /// Repräsentiert einen Übergang zwischen zwei Kanten.
+    /// </summary>
+    public interface IJunction
+    {
+        #region Properties
 
-		/// <summary>
-		/// Die Kante vor dem Übergang.
-		/// </summary>
-		Edge EdgeFrom { get; }
+        /// <summary>
+        /// Die Kante vor dem Übergang.
+        /// </summary>
+        Edge EdgeFrom { get; }
 
-		/// <summary>
-		/// Die Kante nach dem Übergang.
-		/// </summary>
-		Edge EdgeTo { get; }
+        /// <summary>
+        /// Die Kante nach dem Übergang.
+        /// </summary>
+        Edge EdgeTo { get; }
 
-		Node Node { get; }
+        Node Node { get; }
 
-		int Index { get; }
+        int Index { get; }
 
-		JunctionType Type { get; }
+        JunctionType Type { get; }
 
-		#endregion
-	}
+        #endregion
+    }
 
-	public enum JunctionType {
-		Angled,
-		Straight
-	}
+    public enum JunctionType {
+        Angled,
+        Straight
+    }
 }

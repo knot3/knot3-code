@@ -55,10 +55,10 @@ using Knot3.Game.Widgets;
 
 namespace Knot3.Game.Data
 {
-	/// <summary>
-	/// Diese Schnittstelle enthält Methoden, die von Speicherformaten für Knoten implementiert werden müssen.
-	/// </summary>
-	public interface IKnotIO : ISavegameIO<Knot, KnotMetaData>
-	{
-	}
+    /// <summary>
+    /// Diese Schnittstelle enthält Methoden, die von Speicherformaten für Knoten implementiert werden müssen.
+    /// </summary>
+    public interface IKnotIO : ISavegameIO<Knot, KnotMetaData>
+    {
+    }
 }

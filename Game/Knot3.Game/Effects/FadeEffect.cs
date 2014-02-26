@@ -56,88 +56,88 @@ using Knot3.Game.Widgets;
 
 namespace Knot3.Game.Effects
 {
-	/// <summary>
-	/// Ein Postprocessing-Effekt, der eine Überblendung zwischen zwei Spielzuständen darstellt.
-	/// </summary>
-	[ExcludeFromCodeCoverageAttribute]
-	public class FadeEffect : RenderEffect
-	{
-		#region Properties
+    /// <summary>
+    /// Ein Postprocessing-Effekt, der eine Überblendung zwischen zwei Spielzuständen darstellt.
+    /// </summary>
+    [ExcludeFromCodeCoverageAttribute]
+    public class FadeEffect : RenderEffect
+    {
+        #region Properties
 
-		private float alpha;
+        private float alpha;
 
-		/// <summary>
-		/// Gibt an, ob die Überblendung abgeschlossen ist und das RenderTarget nur noch den neuen Spielzustand darstellt.
-		/// </summary>
-		public Boolean IsFinished { get { return alpha <= 0; } }
+        /// <summary>
+        /// Gibt an, ob die Überblendung abgeschlossen ist und das RenderTarget nur noch den neuen Spielzustand darstellt.
+        /// </summary>
+        public Boolean IsFinished { get { return alpha <= 0; } }
 
-		/// <summary>
-		/// Der zuletzt gerenderte Frame im bisherigen Spielzustand.
-		/// </summary>
-		private RenderTarget2D PreviousRenderTarget { get; set; }
+        /// <summary>
+        /// Der zuletzt gerenderte Frame im bisherigen Spielzustand.
+        /// </summary>
+        private RenderTarget2D PreviousRenderTarget { get; set; }
 
-		#endregion
+        #endregion
 
-		#region Constructors
+        #region Constructors
 
-		/// <summary>
-		/// Erstellt einen Überblende-Effekt zwischen den angegebenen Spielzuständen.
-		/// </summary>
-		public FadeEffect (IGameScreen newScreen, IGameScreen oldScreen)
-		: base (newScreen)
-		{
-			if (oldScreen != null) {
-				PreviousRenderTarget = oldScreen.PostProcessingEffect.RenderTarget;
-				alpha = 1.0f;
-			}
-			else {
-				alpha = 0.0f;
-			}
-			SelectiveRendering = false;
-		}
+        /// <summary>
+        /// Erstellt einen Überblende-Effekt zwischen den angegebenen Spielzuständen.
+        /// </summary>
+        public FadeEffect (IGameScreen newScreen, IGameScreen oldScreen)
+        : base (newScreen)
+        {
+            if (oldScreen != null) {
+                PreviousRenderTarget = oldScreen.PostProcessingEffect.RenderTarget;
+                alpha = 1.0f;
+            }
+            else {
+                alpha = 0.0f;
+            }
+            SelectiveRendering = false;
+        }
 
-		#endregion
+        #endregion
 
-		#region Methods
+        #region Methods
 
-		/// <summary>
-		/// Zeichnet das Rendertarget.
-		/// </summary>
-		protected override void DrawRenderTarget (GameTime GameTime)
-		{
-			if (PreviousRenderTarget != null) {
-				alpha -= 0.05f;
+        /// <summary>
+        /// Zeichnet das Rendertarget.
+        /// </summary>
+        protected override void DrawRenderTarget (GameTime GameTime)
+        {
+            if (PreviousRenderTarget != null) {
+                alpha -= 0.05f;
 
-				spriteBatch.Draw (
-				    PreviousRenderTarget,
-				    new Vector2 (screen.Viewport.X, screen.Viewport.Y),
-				    null,
-				    Color.White,
-				    0f,
-				    Vector2.Zero,
-				    Vector2.One / Supersampling,
-				    SpriteEffects.None,
-				    1f
-				);
-			}
-			if (alpha <= 0) {
-				PreviousRenderTarget = null;
-				alpha = 0.0f;
-			}
+                spriteBatch.Draw (
+                    PreviousRenderTarget,
+                    new Vector2 (screen.Viewport.X, screen.Viewport.Y),
+                    null,
+                    Color.White,
+                    0f,
+                    Vector2.Zero,
+                    Vector2.One / Supersampling,
+                    SpriteEffects.None,
+                    1f
+                );
+            }
+            if (alpha <= 0) {
+                PreviousRenderTarget = null;
+                alpha = 0.0f;
+            }
 
-			spriteBatch.Draw (
-			    RenderTarget,
-			    new Vector2 (screen.Viewport.X, screen.Viewport.Y),
-			    null,
-			    Color.White * (1 - alpha),
-			    0f,
-			    Vector2.Zero,
-			    Vector2.One / Supersampling,
-			    SpriteEffects.None,
-			    1f
-			);
-		}
+            spriteBatch.Draw (
+                RenderTarget,
+                new Vector2 (screen.Viewport.X, screen.Viewport.Y),
+                null,
+                Color.White * (1 - alpha),
+                0f,
+                Vector2.Zero,
+                Vector2.One / Supersampling,
+                SpriteEffects.None,
+                1f
+            );
+        }
 
-		#endregion
-	}
+        #endregion
+    }
 }

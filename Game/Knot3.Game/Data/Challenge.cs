@@ -55,83 +55,83 @@ using Knot3.Game.Widgets;
 
 namespace Knot3.Game.Data
 {
-	/// <summary>
-	/// Ein Objekt dieser Klasse repräsentiert eine Challenge.
-	/// </summary>
-	public sealed class Challenge
-	{
-		#region Properties
+    /// <summary>
+    /// Ein Objekt dieser Klasse repräsentiert eine Challenge.
+    /// </summary>
+    public sealed class Challenge
+    {
+        #region Properties
 
-		/// <summary>
-		/// Der Ausgangsknoten, den der Spieler in den Referenzknoten transformiert.
-		/// </summary>
-		public Knot Start { get; private set; }
+        /// <summary>
+        /// Der Ausgangsknoten, den der Spieler in den Referenzknoten transformiert.
+        /// </summary>
+        public Knot Start { get; private set; }
 
-		/// <summary>
-		/// Der Referenzknoten, in den der Spieler den Ausgangsknoten transformiert.
-		/// </summary>
-		public Knot Target { get; private set; }
+        /// <summary>
+        /// Der Referenzknoten, in den der Spieler den Ausgangsknoten transformiert.
+        /// </summary>
+        public Knot Target { get; private set; }
 
-		/// <summary>
-		/// Eine sortierte Bestenliste.
-		/// </summary>
-		private SortedList<int, string> highscore { get; set; }
+        /// <summary>
+        /// Eine sortierte Bestenliste.
+        /// </summary>
+        private SortedList<int, string> highscore { get; set; }
 
-		/// <summary>
-		/// Ein öffentlicher Enumerator, der die Bestenliste unabhängig von der darunterliegenden Datenstruktur zugänglich macht.
-		/// </summary>
-		public IEnumerable<KeyValuePair<string, int>> Highscore { get { return MetaData.Highscore; } }
+        /// <summary>
+        /// Ein öffentlicher Enumerator, der die Bestenliste unabhängig von der darunterliegenden Datenstruktur zugänglich macht.
+        /// </summary>
+        public IEnumerable<KeyValuePair<string, int>> Highscore { get { return MetaData.Highscore; } }
 
-		/// <summary>
-		/// Die Metadaten der Challenge.
-		/// </summary>
-		public ChallengeMetaData MetaData { get; private set; }
+        /// <summary>
+        /// Die Metadaten der Challenge.
+        /// </summary>
+        public ChallengeMetaData MetaData { get; private set; }
 
-		/// <summary>
-		/// Der Name der Challenge.
-		/// </summary>
-		public string Name
-		{
-			get { return MetaData.Name; }
-			set { MetaData.Name = value; }
-		}
+        /// <summary>
+        /// Der Name der Challenge.
+        /// </summary>
+        public string Name
+        {
+            get { return MetaData.Name; }
+            set { MetaData.Name = value; }
+        }
 
-		#endregion
+        #endregion
 
-		#region Constructors
+        #region Constructors
 
-		/// <summary>
-		/// Erstellt ein Challenge-Objekt aus einem gegebenen Challenge-Metadaten-Objekt.
-		/// Erstellt ein Challenge-Objekt aus einer gegebenen Challenge-Datei.
-		/// </summary>
-		public Challenge (ChallengeMetaData meta, Knot start, Knot target)
-		{
-			MetaData = meta;
-			Start = start;
-			Target = target;
-		}
+        /// <summary>
+        /// Erstellt ein Challenge-Objekt aus einem gegebenen Challenge-Metadaten-Objekt.
+        /// Erstellt ein Challenge-Objekt aus einer gegebenen Challenge-Datei.
+        /// </summary>
+        public Challenge (ChallengeMetaData meta, Knot start, Knot target)
+        {
+            MetaData = meta;
+            Start = start;
+            Target = target;
+        }
 
-		#endregion
+        #endregion
 
-		#region Methods
+        #region Methods
 
-		/// <summary>
-		/// Fügt eine neue Bestzeit eines bestimmten Spielers in die Bestenliste ein.
-		/// </summary>
-		public void AddToHighscore (string name, int time)
-		{
-			MetaData.AddToHighscore (name, time);
-			Save ();
-		}
+        /// <summary>
+        /// Fügt eine neue Bestzeit eines bestimmten Spielers in die Bestenliste ein.
+        /// </summary>
+        public void AddToHighscore (string name, int time)
+        {
+            MetaData.AddToHighscore (name, time);
+            Save ();
+        }
 
-		/// <summary>
-		/// Speichert die Challenge.
-		/// </summary>
-		public void Save ()
-		{
-			MetaData.Format.Save (this);
-		}
+        /// <summary>
+        /// Speichert die Challenge.
+        /// </summary>
+        public void Save ()
+        {
+            MetaData.Format.Save (this);
+        }
 
-		#endregion
-	}
+        #endregion
+    }
 }

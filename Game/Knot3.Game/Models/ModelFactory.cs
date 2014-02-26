@@ -56,57 +56,57 @@ using Knot3.Game.Widgets;
 
 namespace Knot3.Game.Models
 {
-	/// <summary>
-	/// Ein Zwischenspeicher für 3D-Modelle.
-	/// </summary>
-	[ExcludeFromCodeCoverageAttribute]
-	public sealed class ModelFactory
-	{
-		#region Properties
+    /// <summary>
+    /// Ein Zwischenspeicher für 3D-Modelle.
+    /// </summary>
+    [ExcludeFromCodeCoverageAttribute]
+    public sealed class ModelFactory
+    {
+        #region Properties
 
-		/// <summary>
-		/// Die Zuordnung zwischen den Modellinformationen zu den 3D-Modellen.
-		/// </summary>
-		private Dictionary<GameModelInfo, GameModel> cache { get; set; }
+        /// <summary>
+        /// Die Zuordnung zwischen den Modellinformationen zu den 3D-Modellen.
+        /// </summary>
+        private Dictionary<GameModelInfo, GameModel> cache { get; set; }
 
-		/// <summary>
-		/// Ein Delegate, das beim Erstellen eines Zwischenspeichers zugewiesen wird und aus den
-		/// angegebenen Modellinformationen und dem angegebenen Spielzustand ein 3D-Modell erstellt.
-		/// </summary>
-		private Func<IGameScreen, GameModelInfo, GameModel> createModel { get; set; }
+        /// <summary>
+        /// Ein Delegate, das beim Erstellen eines Zwischenspeichers zugewiesen wird und aus den
+        /// angegebenen Modellinformationen und dem angegebenen Spielzustand ein 3D-Modell erstellt.
+        /// </summary>
+        private Func<IGameScreen, GameModelInfo, GameModel> createModel { get; set; }
 
-		#endregion
+        #endregion
 
-		#region Constructors
+        #region Constructors
 
-		/// <summary>
-		/// Erstellt einen neuen Zwischenspeicher.
-		/// </summary>
-		public ModelFactory (Func<IGameScreen, GameModelInfo, GameModel> createModel)
-		{
-			this.createModel = createModel;
-			cache = new Dictionary<GameModelInfo, GameModel> ();
-		}
+        /// <summary>
+        /// Erstellt einen neuen Zwischenspeicher.
+        /// </summary>
+        public ModelFactory (Func<IGameScreen, GameModelInfo, GameModel> createModel)
+        {
+            this.createModel = createModel;
+            cache = new Dictionary<GameModelInfo, GameModel> ();
+        }
 
-		#endregion
+        #endregion
 
-		#region Methods
+        #region Methods
 
-		/// <summary>
-		/// Falls das 3D-Modell zwischengespeichert ist, wird es zurückgegeben, sonst mit createModel () erstellt.
-		/// </summary>
-		public GameModel this [IGameScreen screen, GameModelInfo info]
-		{
-			get {
-				if (cache.ContainsKey (info)) {
-					return cache [info];
-				}
-				else {
-					return cache [info] = createModel (screen, info);
-				}
-			}
-		}
+        /// <summary>
+        /// Falls das 3D-Modell zwischengespeichert ist, wird es zurückgegeben, sonst mit createModel () erstellt.
+        /// </summary>
+        public GameModel this [IGameScreen screen, GameModelInfo info]
+        {
+            get {
+                if (cache.ContainsKey (info)) {
+                    return cache [info];
+                }
+                else {
+                    return cache [info] = createModel (screen, info);
+                }
+            }
+        }
 
-		#endregion
-	}
+        #endregion
+    }
 }

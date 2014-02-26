@@ -43,11 +43,11 @@ using Knot3.Game.Widgets;
 
 namespace Knot3.MockObjects
 {
-	public class FakeWidget : Widget
-	{
-		public FakeWidget (IGameScreen screen, DisplayLayer drawOrder)
-		: base (screen, drawOrder)
-		{
-		}
-	}
+    public class FakeWidget : Widget
+    {
+        public FakeWidget (IGameScreen screen, DisplayLayer drawOrder)
+        : base (screen, drawOrder)
+        {
+        }
+    }
 }

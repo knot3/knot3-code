@@ -48,21 +48,21 @@ using Knot3.Framework.Utilities;
 
 namespace Knot3.Framework.Input
 {
-	/// <summary>
-	/// Eine Wertesammlung der möglichen Klickzustände einer Maustaste.
-	/// </summary>
-	public enum ClickState {
-		/// <summary>
-		/// Wenn der Klickzustand nicht zugeordnet werden konnte. Undefiniert.
-		/// </summary>
-		None=0,
-		/// <summary>
-		/// Ein Einzelklick.
-		/// </summary>
-		SingleClick=1,
-		/// <summary>
-		/// Ein Doppelklick.
-		/// </summary>
-		DoubleClick=2,
-	}
+    /// <summary>
+    /// Eine Wertesammlung der möglichen Klickzustände einer Maustaste.
+    /// </summary>
+    public enum ClickState {
+        /// <summary>
+        /// Wenn der Klickzustand nicht zugeordnet werden konnte. Undefiniert.
+        /// </summary>
+        None=0,
+        /// <summary>
+        /// Ein Einzelklick.
+        /// </summary>
+        SingleClick=1,
+        /// <summary>
+        /// Ein Doppelklick.
+        /// </summary>
+        DoubleClick=2,
+    }
 }

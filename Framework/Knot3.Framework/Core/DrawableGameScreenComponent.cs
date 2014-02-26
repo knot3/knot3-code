@@ -48,61 +48,61 @@ using Knot3.Framework.Utilities;
 
 namespace Knot3.Framework.Core
 {
-	/// <summary>
-	/// Eine zeichenbare Spielkomponente, die in einem angegebenen Spielzustand verwendet wird und eine bestimmte Priorität hat.
-	/// </summary>
-	[ExcludeFromCodeCoverageAttribute]
-	public abstract class DrawableGameScreenComponent : DrawableGameComponent, IGameScreenComponent
-	{
-		#region Properties
+    /// <summary>
+    /// Eine zeichenbare Spielkomponente, die in einem angegebenen Spielzustand verwendet wird und eine bestimmte Priorität hat.
+    /// </summary>
+    [ExcludeFromCodeCoverageAttribute]
+    public abstract class DrawableGameScreenComponent : DrawableGameComponent, IGameScreenComponent
+    {
+        #region Properties
 
-		/// <summary>
-		/// Der zugewiesene Spielzustand.
-		/// </summary>
-		public IGameScreen Screen { get; set; }
+        /// <summary>
+        /// Der zugewiesene Spielzustand.
+        /// </summary>
+        public IGameScreen Screen { get; set; }
 
-		private DisplayLayer _index;
+        private DisplayLayer _index;
 
-		/// <summary>
-		/// Die Zeichen- und Eingabepriorität.
-		/// </summary>
-		public DisplayLayer Index
-		{
-			get { return _index; }
-			set {
-				_index = value;
-				DrawOrder = (int)value;
-			}
-		}
+        /// <summary>
+        /// Die Zeichen- und Eingabepriorität.
+        /// </summary>
+        public DisplayLayer Index
+        {
+            get { return _index; }
+            set {
+                _index = value;
+                DrawOrder = (int)value;
+            }
+        }
 
-		#endregion
+        #endregion
 
-		#region Constructors
+        #region Constructors
 
-		/// <summary>
-		/// Erzeugt eine neue Instanz eines DrawableGameScreenComponent-Objekts und ordnet dieser ein IGameScreen-Objekt zu.
-		/// index bezeichnet die Zeichenebene, auf welche die Komponente zu zeichnen ist.
-		/// </summary>
-		public DrawableGameScreenComponent (IGameScreen screen, DisplayLayer index)
-		: base (screen.Game)
-		{
-			this.Screen = screen;
-			this.Index = index;
-		}
+        /// <summary>
+        /// Erzeugt eine neue Instanz eines DrawableGameScreenComponent-Objekts und ordnet dieser ein IGameScreen-Objekt zu.
+        /// index bezeichnet die Zeichenebene, auf welche die Komponente zu zeichnen ist.
+        /// </summary>
+        public DrawableGameScreenComponent (IGameScreen screen, DisplayLayer index)
+        : base (screen.Game)
+        {
+            this.Screen = screen;
+            this.Index = index;
+        }
 
-		#endregion
+        #endregion
 
-		#region Methods
+        #region Methods
 
-		/// <summary>
-		/// Gibt Spielkomponenten zurück, die in dieser Spielkomponente enthalten sind.
-		/// [returntype=IEnumerable<IGameScreenComponent>]
-		/// </summary>
-		public virtual IEnumerable<IGameScreenComponent> SubComponents (GameTime GameTime)
-		{
-			yield break;
-		}
+        /// <summary>
+        /// Gibt Spielkomponenten zurück, die in dieser Spielkomponente enthalten sind.
+        /// [returntype=IEnumerable<IGameScreenComponent>]
+        /// </summary>
+        public virtual IEnumerable<IGameScreenComponent> SubComponents (GameTime GameTime)
+        {
+            yield break;
+        }
 
-		#endregion
-	}
+        #endregion
+    }
 }

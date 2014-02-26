@@ -38,73 +38,73 @@ using System.Linq;
 
 namespace Knot3.Framework.Storage
 {
-	public class Language
-	{
-		/// <summary>
-		/// Der Sprachcode der Sprache.
-		/// </summary>
-		public string Code { get; private set; }
+    public class Language
+    {
+        /// <summary>
+        /// Der Sprachcode der Sprache.
+        /// </summary>
+        public string Code { get; private set; }
 
-		/// <summary>
-		/// Der Anzeigename der Sprache.
-		/// </summary>
-		public string DisplayName { get; private set; }
+        /// <summary>
+        /// Der Anzeigename der Sprache.
+        /// </summary>
+        public string DisplayName { get; private set; }
 
-		/// <summary>
-		/// Die Datei, welche Informationen für die Lokalisierung enthält.
-		/// </summary>
-		public ConfigFile Localization { get; private set; }
+        /// <summary>
+        /// Die Datei, welche Informationen für die Lokalisierung enthält.
+        /// </summary>
+        public ConfigFile Localization { get; private set; }
 
-		public Language (string file)
-		{
-			Code = Path.GetFileNameWithoutExtension (file).ToLower ();
-			file = Localizer.LanguageDirectory + Code + ".ini";
-			Localization = new ConfigFile (file);
-			DisplayName = Localization ["language", "displayname", Code];
-		}
+        public Language (string file)
+        {
+            Code = Path.GetFileNameWithoutExtension (file).ToLower ();
+            file = Localizer.LanguageDirectory + Code + ".ini";
+            Localization = new ConfigFile (file);
+            DisplayName = Localization ["language", "displayname", Code];
+        }
 
-		public static bool operator != (Language a, Language b)
-		{
-			return !(a == b);
-		}
+        public static bool operator != (Language a, Language b)
+        {
+            return !(a == b);
+        }
 
-		public static bool operator == (Language a, Language b)
-		{
-			// If both are null, or both are same instance, return true.
-			if (System.Object.ReferenceEquals (a, b)) {
-				return true;
-			}
+        public static bool operator == (Language a, Language b)
+        {
+            // If both are null, or both are same instance, return true.
+            if (System.Object.ReferenceEquals (a, b)) {
+                return true;
+            }
 
-			// If one is null, but not both, return false.
-			if (((object)a == null) || ((object)b == null)) {
-				return false;
-			}
+            // If one is null, but not both, return false.
+            if (((object)a == null) || ((object)b == null)) {
+                return false;
+            }
 
-			// Return true if the fields match:
-			return a.Code == b.Code;
-		}
+            // Return true if the fields match:
+            return a.Code == b.Code;
+        }
 
-		public bool Equals (Language other)
-		{
-			return other != null && Code == other.Code;
-		}
+        public bool Equals (Language other)
+        {
+            return other != null && Code == other.Code;
+        }
 
-		public override bool Equals (object other)
-		{
-			if (other == null) {
-				return false;
-			}
-			else if (other is Language) {
-				return Equals (other as Language);
-			}
-			else {
-				return false;
-			}
-		}
+        public override bool Equals (object other)
+        {
+            if (other == null) {
+                return false;
+            }
+            else if (other is Language) {
+                return Equals (other as Language);
+            }
+            else {
+                return false;
+            }
+        }
 
-		public static implicit operator string (Language language)
-		{
-			return language.Code;
-		}
-	}
+        public static implicit operator string (Language language)
+        {
+            return language.Code;
+        }
+    }
 }

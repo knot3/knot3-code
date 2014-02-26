@@ -39,21 +39,21 @@ using Knot3.Framework.Utilities;
 
 namespace Knot3.Framework.Widgets
 {
-	/// <summary>
-	/// Eine horizontale Ausrichtung.
-	/// </summary>
-	public enum HorizontalAlignment {
-		/// <summary>
-		/// Links.
-		/// </summary>
-		Left=0,
-		/// <summary>
-		/// Mittig.
-		/// </summary>
-		Center=1,
-		/// <summary>
-		/// Rechts.
-		/// </summary>
-		Right=2,
-	}
+    /// <summary>
+    /// Eine horizontale Ausrichtung.
+    /// </summary>
+    public enum HorizontalAlignment {
+        /// <summary>
+        /// Links.
+        /// </summary>
+        Left=0,
+        /// <summary>
+        /// Mittig.
+        /// </summary>
+        Center=1,
+        /// <summary>
+        /// Rechts.
+        /// </summary>
+        Right=2,
+    }
 }

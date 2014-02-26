@@ -49,40 +49,40 @@ using Knot3.Framework.Utilities;
 
 namespace Knot3.Framework.Input
 {
-	/// <summary>
-	/// Eine Schnittstelle, die von Klassen implementiert wird, die auf Maus-Klicks reagieren.
-	/// </summary>
-	public interface IMouseMoveEventListener
-	{
-		#region Properties
+    /// <summary>
+    /// Eine Schnittstelle, die von Klassen implementiert wird, die auf Maus-Klicks reagieren.
+    /// </summary>
+    public interface IMouseMoveEventListener
+    {
+        #region Properties
 
-		/// <summary>
-		/// Die Eingabepriorität.
-		/// </summary>
-		DisplayLayer Index { get; }
+        /// <summary>
+        /// Die Eingabepriorität.
+        /// </summary>
+        DisplayLayer Index { get; }
 
-		/// <summary>
-		/// Ob die Klasse zur Zeit auf Mausbewegungen reagiert.
-		/// </summary>
-		bool IsMouseMoveEventEnabled { get; }
+        /// <summary>
+        /// Ob die Klasse zur Zeit auf Mausbewegungen reagiert.
+        /// </summary>
+        bool IsMouseMoveEventEnabled { get; }
 
-		#endregion
+        #endregion
 
-		#region Methods
+        #region Methods
 
-		/// <summary>
-		/// Die Ausmaße des von der Klasse repräsentierten Objektes.
-		/// </summary>
-		Bounds MouseMoveBounds { get; }
+        /// <summary>
+        /// Die Ausmaße des von der Klasse repräsentierten Objektes.
+        /// </summary>
+        Bounds MouseMoveBounds { get; }
 
-		void OnLeftMove (ScreenPoint previousPosition, ScreenPoint currentPosition, ScreenPoint move, GameTime time);
+        void OnLeftMove (ScreenPoint previousPosition, ScreenPoint currentPosition, ScreenPoint move, GameTime time);
 
-		void OnRightMove (ScreenPoint previousPosition, ScreenPoint currentPosition, ScreenPoint move, GameTime time);
+        void OnRightMove (ScreenPoint previousPosition, ScreenPoint currentPosition, ScreenPoint move, GameTime time);
 
-		void OnMove (ScreenPoint previousPosition, ScreenPoint currentPosition, ScreenPoint move, GameTime time);
+        void OnMove (ScreenPoint previousPosition, ScreenPoint currentPosition, ScreenPoint move, GameTime time);
 
-		void OnNoMove (ScreenPoint currentPosition, GameTime time);
+        void OnNoMove (ScreenPoint currentPosition, GameTime time);
 
-		#endregion
-	}
+        #endregion
+    }
 }

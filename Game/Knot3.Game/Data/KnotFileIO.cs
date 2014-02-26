@@ -60,100 +60,100 @@ using Knot3.Game.Widgets;
 
 namespace Knot3.Game.Data
 {
-	/// <summary>
-	/// Implementiert das Speicherformat für Knoten.
-	/// </summary>
-	public sealed class KnotFileIO : IKnotIO
-	{
-		#region Properties
+    /// <summary>
+    /// Implementiert das Speicherformat für Knoten.
+    /// </summary>
+    public sealed class KnotFileIO : IKnotIO
+    {
+        #region Properties
 
-		/// <summary>
-		/// Die für eine Knoten-Datei gültigen Dateiendungen.
-		/// </summary>
-		public IEnumerable<string> FileExtensions
-		{
-			get {
-				yield return ".knot";
-				yield return ".knt";
-			}
-		}
+        /// <summary>
+        /// Die für eine Knoten-Datei gültigen Dateiendungen.
+        /// </summary>
+        public IEnumerable<string> FileExtensions
+        {
+            get {
+                yield return ".knot";
+                yield return ".knt";
+            }
+        }
 
-		private Dictionary<string, Knot> KnotCache = new Dictionary<string, Knot> ();
-		private Dictionary<string, KnotMetaData> KnotMetaDataCache = new Dictionary<string, KnotMetaData> ();
+        private Dictionary<string, Knot> KnotCache = new Dictionary<string, Knot> ();
+        private Dictionary<string, KnotMetaData> KnotMetaDataCache = new Dictionary<string, KnotMetaData> ();
 
-		#endregion
+        #endregion
 
-		#region Constructors
+        #region Constructors
 
-		/// <summary>
-		/// Erstellt ein KnotFileIO-Objekt.
-		/// </summary>
-		public KnotFileIO ()
-		{
-		}
+        /// <summary>
+        /// Erstellt ein KnotFileIO-Objekt.
+        /// </summary>
+        public KnotFileIO ()
+        {
+        }
 
-		#endregion
+        #endregion
 
-		#region Methods
+        #region Methods
 
-		/// <summary>
-		/// Speichert einen Knoten in dem Dateinamen, der in dem Knot-Objekt enthalten ist.
-		/// </summary>
-		public void Save (Knot knot)
-		{
-			KnotStringIO parser = new KnotStringIO (knot);
-			Log.Debug ("KnotFileIO.Save (", knot, ") = #", parser.Content.Length);
-			if (knot.MetaData.Filename == null) {
-				throw new IOException ("Error! knot has no filename: " + knot);
-			}
-			else {
-				File.WriteAllText (knot.MetaData.Filename, parser.Content);
-			}
-		}
+        /// <summary>
+        /// Speichert einen Knoten in dem Dateinamen, der in dem Knot-Objekt enthalten ist.
+        /// </summary>
+        public void Save (Knot knot)
+        {
+            KnotStringIO parser = new KnotStringIO (knot);
+            Log.Debug ("KnotFileIO.Save (", knot, ") = #", parser.Content.Length);
+            if (knot.MetaData.Filename == null) {
+                throw new IOException ("Error! knot has no filename: " + knot);
+            }
+            else {
+                File.WriteAllText (knot.MetaData.Filename, parser.Content);
+            }
+        }
 
-		/// <summary>
-		/// Lädt eines Knotens aus einer angegebenen Datei.
-		/// </summary>
-		public Knot Load (string filename)
-		{
-			if (KnotCache.ContainsKey (filename)) {
-				return KnotCache [filename];
-			}
-			else {
-				Log.Debug ("Load knot from ", filename);
-				KnotStringIO parser = new KnotStringIO (content: string.Join ("\n", FileUtility.ReadFrom (filename)));
-				return KnotCache [filename] = new Knot (
-				    new KnotMetaData (parser.Name, () => parser.CountEdges, this, filename),
-				    parser.Edges
-				);
-			}
-		}
+        /// <summary>
+        /// Lädt eines Knotens aus einer angegebenen Datei.
+        /// </summary>
+        public Knot Load (string filename)
+        {
+            if (KnotCache.ContainsKey (filename)) {
+                return KnotCache [filename];
+            }
+            else {
+                Log.Debug ("Load knot from ", filename);
+                KnotStringIO parser = new KnotStringIO (content: string.Join ("\n", FileUtility.ReadFrom (filename)));
+                return KnotCache [filename] = new Knot (
+                    new KnotMetaData (parser.Name, () => parser.CountEdges, this, filename),
+                    parser.Edges
+                );
+            }
+        }
 
-		/// <summary>
-		/// Lädt die Metadaten eines Knotens aus einer angegebenen Datei.
-		/// </summary>
-		public KnotMetaData LoadMetaData (string filename)
-		{
-			if (KnotMetaDataCache.ContainsKey (filename)) {
-				return KnotMetaDataCache [filename];
-			}
-			else {
-				KnotStringIO parser = new KnotStringIO (content: string.Join ("\n", FileUtility.ReadFrom (filename)));
-				return KnotMetaDataCache [filename] = new KnotMetaData (
-				    name: parser.Name,
-				    countEdges: () => parser.CountEdges,
-				    format: this,
-				    filename: filename
-				);
-			}
-		}
+        /// <summary>
+        /// Lädt die Metadaten eines Knotens aus einer angegebenen Datei.
+        /// </summary>
+        public KnotMetaData LoadMetaData (string filename)
+        {
+            if (KnotMetaDataCache.ContainsKey (filename)) {
+                return KnotMetaDataCache [filename];
+            }
+            else {
+                KnotStringIO parser = new KnotStringIO (content: string.Join ("\n", FileUtility.ReadFrom (filename)));
+                return KnotMetaDataCache [filename] = new KnotMetaData (
+                    name: parser.Name,
+                    countEdges: () => parser.CountEdges,
+                    format: this,
+                    filename: filename
+                );
+            }
+        }
 
-		[ExcludeFromCodeCoverageAttribute]
-		public override string ToString ()
-		{
-			return "KnotFileIO";
-		}
+        [ExcludeFromCodeCoverageAttribute]
+        public override string ToString ()
+        {
+            return "KnotFileIO";
+        }
 
-		#endregion
-	}
+        #endregion
+    }
 }

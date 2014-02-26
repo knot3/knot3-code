@@ -57,54 +57,54 @@ using Knot3.Game.Widgets;
 
 namespace Knot3.Game.Models
 {
-	/// <summary>
-	/// Ein 3D-Modell, das einen Kantenübergang darstellt.
-	/// </summary>
-	[ExcludeFromCodeCoverageAttribute]
-	public sealed class JunctionModel : GameModel
-	{
-		#region Properties
+    /// <summary>
+    /// Ein 3D-Modell, das einen Kantenübergang darstellt.
+    /// </summary>
+    [ExcludeFromCodeCoverageAttribute]
+    public sealed class JunctionModel : GameModel
+    {
+        #region Properties
 
-		/// <summary>
-		/// Enthält Informationen über den darzustellende 3D-Modell des Kantenübergangs.
-		/// </summary>
-		public new Junction Info { get { return base.Info as Junction; } set { base.Info = value; } }
+        /// <summary>
+        /// Enthält Informationen über den darzustellende 3D-Modell des Kantenübergangs.
+        /// </summary>
+        public new Junction Info { get { return base.Info as Junction; } set { base.Info = value; } }
 
-		public bool IsVirtual { get; set; }
+        public bool IsVirtual { get; set; }
 
-		#endregion
+        #endregion
 
-		#region Constructors
+        #region Constructors
 
-		/// <summary>
-		/// Erstellt ein neues 3D-Modell mit dem angegebenen Spielzustand und dem angegebenen Informationsobjekt.
-		/// [base=screen, info]
-		/// </summary>
-		public JunctionModel (IGameScreen screen, Junction info)
-		: base (screen, info)
-		{
-		}
+        /// <summary>
+        /// Erstellt ein neues 3D-Modell mit dem angegebenen Spielzustand und dem angegebenen Informationsobjekt.
+        /// [base=screen, info]
+        /// </summary>
+        public JunctionModel (IGameScreen screen, Junction info)
+        : base (screen, info)
+        {
+        }
 
-		#endregion
+        #endregion
 
-		#region Methods
+        #region Methods
 
-		/// <summary>
-		/// Zeichnet das 3D-Modell mit dem aktuellen Rendereffekt.
-		/// </summary>
-		[ExcludeFromCodeCoverageAttribute]
-		public override void Draw (GameTime time)
-		{
-			Coloring = new GradientColor (Info.EdgeFrom, Info.EdgeTo);
-			if (IsVirtual) {
-				Coloring.Highlight (intensity: 0.5f, color: Color.White);
-			}
-			else {
-				Coloring.Unhighlight ();
-			}
-			base.Draw (time);
-		}
+        /// <summary>
+        /// Zeichnet das 3D-Modell mit dem aktuellen Rendereffekt.
+        /// </summary>
+        [ExcludeFromCodeCoverageAttribute]
+        public override void Draw (GameTime time)
+        {
+            Coloring = new GradientColor (Info.EdgeFrom, Info.EdgeTo);
+            if (IsVirtual) {
+                Coloring.Highlight (intensity: 0.5f, color: Color.White);
+            }
+            else {
+                Coloring.Unhighlight ();
+            }
+            base.Draw (time);
+        }
 
-		#endregion
-	}
+        #endregion
+    }
 }

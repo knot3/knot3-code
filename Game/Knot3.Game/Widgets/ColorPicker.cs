@@ -59,168 +59,168 @@ using Knot3.Game.Utilities;
 
 namespace Knot3.Game.Widgets
 {
-	/// <summary>
-	/// Ein Steuerelement der grafischen Benutzeroberfläche, das eine Auswahl von Farben ermöglicht.
-	/// </summary>
-	[ExcludeFromCodeCoverageAttribute]
-	public sealed class ColorPicker : Widget, IKeyEventListener, IMouseClickEventListener
-	{
-		#region Properties
+    /// <summary>
+    /// Ein Steuerelement der grafischen Benutzeroberfläche, das eine Auswahl von Farben ermöglicht.
+    /// </summary>
+    [ExcludeFromCodeCoverageAttribute]
+    public sealed class ColorPicker : Widget, IKeyEventListener, IMouseClickEventListener
+    {
+        #region Properties
 
-		/// <summary>
-		/// Die ausgewählte Farbe.
-		/// </summary>
-		public Color SelectedColor { get; set; }
+        /// <summary>
+        /// Die ausgewählte Farbe.
+        /// </summary>
+        public Color SelectedColor { get; set; }
 
-		/// <summary>
-		/// Wird aufgerufen, wenn eine neue Farbe ausgewählt wurde.
-		/// </summary>
-		public Action<Color, GameTime> ColorSelected { get; set; }
+        /// <summary>
+        /// Wird aufgerufen, wenn eine neue Farbe ausgewählt wurde.
+        /// </summary>
+        public Action<Color, GameTime> ColorSelected { get; set; }
 
-		private List<Color> colors;
-		private List<ScreenPoint> tiles;
-		private ScreenPoint tileSize;
-		private SpriteBatch spriteBatch;
+        private List<Color> colors;
+        private List<ScreenPoint> tiles;
+        private ScreenPoint tileSize;
+        private SpriteBatch spriteBatch;
 
-		public Bounds MouseClickBounds { get { return Bounds; } }
+        public Bounds MouseClickBounds { get { return Bounds; } }
 
-		#endregion
+        #endregion
 
-		#region Constructors
+        #region Constructors
 
-		/// <summary>
-		/// Erzeugt eine neue Instanz eines ColorPicker-Objekts und initialisiert diese
-		/// mit der Farbe, auf welche der Farbwähler beim Aufruf aus Sicht des Spielers zeigt.
-		/// </summary>
-		public ColorPicker (IGameScreen screen, DisplayLayer drawOrder, Color def)
-		: base (screen, drawOrder)
-		{
-			tileSize = new ScreenPoint (screen, 0.032f, 0.032f);
+        /// <summary>
+        /// Erzeugt eine neue Instanz eines ColorPicker-Objekts und initialisiert diese
+        /// mit der Farbe, auf welche der Farbwähler beim Aufruf aus Sicht des Spielers zeigt.
+        /// </summary>
+        public ColorPicker (IGameScreen screen, DisplayLayer drawOrder, Color def)
+        : base (screen, drawOrder)
+        {
+            tileSize = new ScreenPoint (screen, 0.032f, 0.032f);
 
-			// Widget-Attribute
-			BackgroundColorFunc = (s) => Design.WidgetBackground;
-			ForegroundColorFunc = (s) => Design.WidgetForeground;
-			AlignX = HorizontalAlignment.Left;
-			AlignY = VerticalAlignment.Top;
+            // Widget-Attribute
+            BackgroundColorFunc = (s) => Design.WidgetBackground;
+            ForegroundColorFunc = (s) => Design.WidgetForeground;
+            AlignX = HorizontalAlignment.Left;
+            AlignY = VerticalAlignment.Top;
 
-			// die Farb-Tiles
-			colors = new List<Color> (CreateColors (64));
-			colors.Sort (ColorHelper.SortColorsByLuminance);
-			tiles = new List<ScreenPoint> (CreateTiles (colors));
+            // die Farb-Tiles
+            colors = new List<Color> (CreateColors (64));
+            colors.Sort (ColorHelper.SortColorsByLuminance);
+            tiles = new List<ScreenPoint> (CreateTiles (colors));
 
-			// einen Spritebatch
-			spriteBatch = new SpriteBatch (screen.Device);
+            // einen Spritebatch
+            spriteBatch = new SpriteBatch (screen.Device);
 
-			// Position und Größe
-			Bounds.Position = ScreenPoint.Centered (screen, Bounds);
-			Bounds.Size.RelativeFunc = () => {
-				float sqrt = (float)Math.Ceiling (Math.Sqrt (colors.Count));
-				return tileSize * sqrt;
-			};
+            // Position und Größe
+            Bounds.Position = ScreenPoint.Centered (screen, Bounds);
+            Bounds.Size.RelativeFunc = () => {
+                float sqrt = (float)Math.Ceiling (Math.Sqrt (colors.Count));
+                return tileSize * sqrt;
+            };
 
-			// Die Callback-Funktion zur Selektion setzt das SelectedColor-Attribut
-			ColorSelected += (color, time) => {
-				SelectedColor = color;
-			};
-		}
+            // Die Callback-Funktion zur Selektion setzt das SelectedColor-Attribut
+            ColorSelected += (color, time) => {
+                SelectedColor = color;
+            };
+        }
 
-		#endregion
+        #endregion
 
-		#region Methods
+        #region Methods
 
-		[ExcludeFromCodeCoverageAttribute]
-		public override void Draw (GameTime time)
-		{
-			if (IsVisible) {
-				spriteBatch.Begin ();
+        [ExcludeFromCodeCoverageAttribute]
+        public override void Draw (GameTime time)
+        {
+            if (IsVisible) {
+                spriteBatch.Begin ();
 
-				// color tiles
-				int i = 0;
-				foreach (ScreenPoint tile in tiles) {
-					Bounds tileBounds = new Bounds (Bounds.Position + tile, tileSize);
-					Rectangle rect = tileBounds.Rectangle.Shrink (1);
-					Texture2D dummyTexture = ContentLoader.CreateTexture (Screen.Device, colors [i]);
-					spriteBatch.Draw (dummyTexture, rect, Color.White);
+                // color tiles
+                int i = 0;
+                foreach (ScreenPoint tile in tiles) {
+                    Bounds tileBounds = new Bounds (Bounds.Position + tile, tileSize);
+                    Rectangle rect = tileBounds.Rectangle.Shrink (1);
+                    Texture2D dummyTexture = ContentLoader.CreateTexture (Screen.Device, colors [i]);
+                    spriteBatch.Draw (dummyTexture, rect, Color.White);
 
-					++i;
-				}
+                    ++i;
+                }
 
-				spriteBatch.End ();
-			}
-		}
+                spriteBatch.End ();
+            }
+        }
 
-		/// <summary>
-		/// Reagiert auf Tastatureingaben.
-		/// </summary>
-		public void OnKeyEvent (List<Keys> key, KeyEvent keyEvent, GameTime time)
-		{
-		}
+        /// <summary>
+        /// Reagiert auf Tastatureingaben.
+        /// </summary>
+        public void OnKeyEvent (List<Keys> key, KeyEvent keyEvent, GameTime time)
+        {
+        }
 
-		/// <summary>
-		/// Bei einem Linksklick wird eine Farbe ausgewählt und im Attribut Color abgespeichert.
-		/// </summary>
-		public void OnLeftClick (Vector2 position, ClickState state, GameTime time)
-		{
-			position = position / Screen.Viewport.Size ();
-			Log.Debug ("ColorPicker.OnLeftClick: positon=", position);
-			int i = 0;
-			foreach (ScreenPoint tile in tiles) {
-				//Log.Debug ("ColorPicker: tile=", tile, "  "
-				//	+ (tile.X <= position.X) + " " + (tile.X + tileSize.X > position.X) + " " + (
-				//                       tile.Y <= position.Y) + " " + (tile.Y + tileSize.Y > position.Y)
-				//);
-				if (tile.Relative.X <= position.X && tile.Relative.X + tileSize.Relative.X > position.X
-				        && tile.Relative.Y <= position.Y && tile.Relative.Y + tileSize.Relative.Y > position.Y) {
-					Log.Debug ("ColorPicker: color=", colors [i]);
+        /// <summary>
+        /// Bei einem Linksklick wird eine Farbe ausgewählt und im Attribut Color abgespeichert.
+        /// </summary>
+        public void OnLeftClick (Vector2 position, ClickState state, GameTime time)
+        {
+            position = position / Screen.Viewport.Size ();
+            Log.Debug ("ColorPicker.OnLeftClick: positon=", position);
+            int i = 0;
+            foreach (ScreenPoint tile in tiles) {
+                //Log.Debug ("ColorPicker: tile=", tile, "  "
+                //	+ (tile.X <= position.X) + " " + (tile.X + tileSize.X > position.X) + " " + (
+                //                       tile.Y <= position.Y) + " " + (tile.Y + tileSize.Y > position.Y)
+                //);
+                if (tile.Relative.X <= position.X && tile.Relative.X + tileSize.Relative.X > position.X
+                        && tile.Relative.Y <= position.Y && tile.Relative.Y + tileSize.Relative.Y > position.Y) {
+                    Log.Debug ("ColorPicker: color=", colors [i]);
 
-					ColorSelected (colors [i], time);
-				}
-				++i;
-			}
-		}
+                    ColorSelected (colors [i], time);
+                }
+                ++i;
+            }
+        }
 
-		/// <summary>
-		/// Bei einem Rechtsklick geschieht nichts.
-		/// </summary>
-		public void OnRightClick (Vector2 position, ClickState state, GameTime time)
-		{
-		}
+        /// <summary>
+        /// Bei einem Rechtsklick geschieht nichts.
+        /// </summary>
+        public void OnRightClick (Vector2 position, ClickState state, GameTime time)
+        {
+        }
 
-		public void SetHovered (bool hovered, GameTime time)
-		{
-		}
+        public void SetHovered (bool hovered, GameTime time)
+        {
+        }
 
-		private static IEnumerable<Color> CreateColors (int num)
-		{
-			float steps = (float)Math.Pow (num, 1.0 / 3.0);
-			int n = 0;
-			for (int r = 0; r < steps; ++r) {
-				for (int g = 0; g < steps; ++g) {
-					for (int b = 0; b < steps; ++b) {
-						yield return new Color (new Vector3 (r, g, b) / steps);
-						++n;
-					}
-				}
-			}
-		}
+        private static IEnumerable<Color> CreateColors (int num)
+        {
+            float steps = (float)Math.Pow (num, 1.0 / 3.0);
+            int n = 0;
+            for (int r = 0; r < steps; ++r) {
+                for (int g = 0; g < steps; ++g) {
+                    for (int b = 0; b < steps; ++b) {
+                        yield return new Color (new Vector3 (r, g, b) / steps);
+                        ++n;
+                    }
+                }
+            }
+        }
 
-		private IEnumerable<ScreenPoint> CreateTiles (IEnumerable<Color> _colors)
-		{
-			Color[] colors = _colors.ToArray ();
-			float sqrt = (float)Math.Sqrt (colors.Length);
-			int row = 0;
-			int column = 0;
-			foreach (Color color in colors) {
-				yield return new ScreenPoint (Screen, tileSize * new Vector2 (column, row));
+        private IEnumerable<ScreenPoint> CreateTiles (IEnumerable<Color> _colors)
+        {
+            Color[] colors = _colors.ToArray ();
+            float sqrt = (float)Math.Sqrt (colors.Length);
+            int row = 0;
+            int column = 0;
+            foreach (Color color in colors) {
+                yield return new ScreenPoint (Screen, tileSize * new Vector2 (column, row));
 
-				++column;
-				if (column >= sqrt) {
-					column = 0;
-					++row;
-				}
-			}
-		}
+                ++column;
+                if (column >= sqrt) {
+                    column = 0;
+                    ++row;
+                }
+            }
+        }
 
-		#endregion
-	}
+        #endregion
+    }
 }

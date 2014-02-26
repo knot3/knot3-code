@@ -49,44 +49,44 @@ using Knot3.Framework.Utilities;
 
 namespace Knot3.Framework.Input
 {
-	/// <summary>
-	/// Eine Schnittstelle, die von Klassen implementiert wird, die auf Maus-Klicks reagieren.
-	/// </summary>
-	public interface IMouseClickEventListener
-	{
-		#region Properties
+    /// <summary>
+    /// Eine Schnittstelle, die von Klassen implementiert wird, die auf Maus-Klicks reagieren.
+    /// </summary>
+    public interface IMouseClickEventListener
+    {
+        #region Properties
 
-		/// <summary>
-		/// Die Eingabepriorität.
-		/// </summary>
-		DisplayLayer Index { get; }
+        /// <summary>
+        /// Die Eingabepriorität.
+        /// </summary>
+        DisplayLayer Index { get; }
 
-		/// <summary>
-		/// Ob die Klasse zur Zeit auf Mausklicks reagiert.
-		/// </summary>
-		bool IsMouseClickEventEnabled { get; }
+        /// <summary>
+        /// Ob die Klasse zur Zeit auf Mausklicks reagiert.
+        /// </summary>
+        bool IsMouseClickEventEnabled { get; }
 
-		#endregion
+        #endregion
 
-		#region Methods
+        #region Methods
 
-		/// <summary>
-		/// Die Ausmaße des von der Klasse repräsentierten Objektes.
-		/// </summary>
-		Bounds MouseClickBounds { get; }
+        /// <summary>
+        /// Die Ausmaße des von der Klasse repräsentierten Objektes.
+        /// </summary>
+        Bounds MouseClickBounds { get; }
 
-		/// <summary>
-		/// Die Reaktion auf einen Linksklick.
-		/// </summary>
-		void OnLeftClick (Vector2 position, ClickState state, GameTime time);
+        /// <summary>
+        /// Die Reaktion auf einen Linksklick.
+        /// </summary>
+        void OnLeftClick (Vector2 position, ClickState state, GameTime time);
 
-		/// <summary>
-		/// Die Reaktion auf einen Rechtsklick.
-		/// </summary>
-		void OnRightClick (Vector2 position, ClickState state, GameTime time);
+        /// <summary>
+        /// Die Reaktion auf einen Rechtsklick.
+        /// </summary>
+        void OnRightClick (Vector2 position, ClickState state, GameTime time);
 
-		void SetHovered (bool hovered, GameTime time);
+        void SetHovered (bool hovered, GameTime time);
 
-		#endregion
-	}
+        #endregion
+    }
 }

@@ -56,47 +56,47 @@ using Knot3.Game.Widgets;
 
 namespace Knot3.Game.Input
 {
-	[ExcludeFromCodeCoverageAttribute]
-	public class EdgeColoring : GameScreenComponent, IKeyEventListener
-	{
-		public Knot Knot { get; set; }
+    [ExcludeFromCodeCoverageAttribute]
+    public class EdgeColoring : GameScreenComponent, IKeyEventListener
+    {
+        public Knot Knot { get; set; }
 
-		public EdgeColoring (GameScreen screen)
-		: base (screen, DisplayLayer.None)
-		{
-			ValidKeys = new List<Keys> ();
-			ValidKeys.Add (Keys.C);
-		}
+        public EdgeColoring (GameScreen screen)
+        : base (screen, DisplayLayer.None)
+        {
+            ValidKeys = new List<Keys> ();
+            ValidKeys.Add (Keys.C);
+        }
 
-		[ExcludeFromCodeCoverageAttribute]
-		public override void Update (GameTime time)
-		{
-		}
+        [ExcludeFromCodeCoverageAttribute]
+        public override void Update (GameTime time)
+        {
+        }
 
-		public void OnKeyEvent (List<Keys> key, KeyEvent keyEvent, GameTime time)
-		{
-			// Soll sich die Farbe geändert wurde?
-			if (Knot.SelectedEdges.Any () && Screen.InputManager.KeyPressed (Keys.C)) {
-				Color currentColor = Knot.SelectedEdges.ElementAt (0);
-				ColorPickDialog picker = new ColorPickDialog (
-				    screen: Screen,
-				    drawOrder: DisplayLayer.Dialog,
-				    selectedColor: currentColor
-				);
-				foreach (Edge edge in Knot.SelectedEdges) {
-					picker.Close += (t) => {
-						edge.Color = picker.SelectedColor;
-					};
-				}
-				Knot.EdgesChanged ();
-				Screen.AddGameComponents (time, picker);
-			}
-		}
+        public void OnKeyEvent (List<Keys> key, KeyEvent keyEvent, GameTime time)
+        {
+            // Soll sich die Farbe geändert wurde?
+            if (Knot.SelectedEdges.Any () && Screen.InputManager.KeyPressed (Keys.C)) {
+                Color currentColor = Knot.SelectedEdges.ElementAt (0);
+                ColorPickDialog picker = new ColorPickDialog (
+                    screen: Screen,
+                    drawOrder: DisplayLayer.Dialog,
+                    selectedColor: currentColor
+                );
+                foreach (Edge edge in Knot.SelectedEdges) {
+                    picker.Close += (t) => {
+                        edge.Color = picker.SelectedColor;
+                    };
+                }
+                Knot.EdgesChanged ();
+                Screen.AddGameComponents (time, picker);
+            }
+        }
 
-		public List<Keys> ValidKeys { get; private set; }
+        public List<Keys> ValidKeys { get; private set; }
 
-		public bool IsKeyEventEnabled { get { return true; } }
+        public bool IsKeyEventEnabled { get { return true; } }
 
-		public bool IsModal { get { return false; } }
-	}
+        public bool IsModal { get { return false; } }
+    }
 }

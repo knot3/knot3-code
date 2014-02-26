@@ -52,108 +52,108 @@ using Knot3.Framework.Widgets;
 
 namespace Knot3.Framework.Widgets
 {
-	[ExcludeFromCodeCoverageAttribute]
-	public class Border : Widget
-	{
-		#region Properties
+    [ExcludeFromCodeCoverageAttribute]
+    public class Border : Widget
+    {
+        #region Properties
 
-		public int LineWidth { get; set; }
+        public int LineWidth { get; set; }
 
-		public int Padding { get; set; }
+        public int Padding { get; set; }
 
-		private Lines lines;
-		private Vector2 lastPosition = Vector2.Zero;
-		private Vector2 lastSize = Vector2.Zero;
+        private Lines lines;
+        private Vector2 lastPosition = Vector2.Zero;
+        private Vector2 lastSize = Vector2.Zero;
 
-		public override bool IsEnabled
-		{
-			get {
-				return base.IsEnabled;
-			}
-			set {
-				base.IsEnabled = value;
-				lines.IsEnabled = value;
-			}
-		}
+        public override bool IsEnabled
+        {
+            get {
+                return base.IsEnabled;
+            }
+            set {
+                base.IsEnabled = value;
+                lines.IsEnabled = value;
+            }
+        }
 
-		private Action<GameTime> OnUpdate = (time) => {};
+        private Action<GameTime> OnUpdate = (time) => {};
 
-		#endregion
+        #endregion
 
-		#region Constructors
+        #region Constructors
 
-		public Border (IGameScreen screen, DisplayLayer drawOrder, Bounds bounds,
-		               int lineWidth, int padding, Color lineColor, Color outlineColor)
-		: base (screen, drawOrder)
-		{
-			LineWidth = lineWidth;
-			Padding = padding;
-			lines = new Lines (screen, drawOrder, lineWidth, lineColor, outlineColor);
-			Bounds = bounds;
-		}
+        public Border (IGameScreen screen, DisplayLayer drawOrder, Bounds bounds,
+                       int lineWidth, int padding, Color lineColor, Color outlineColor)
+        : base (screen, drawOrder)
+        {
+            LineWidth = lineWidth;
+            Padding = padding;
+            lines = new Lines (screen, drawOrder, lineWidth, lineColor, outlineColor);
+            Bounds = bounds;
+        }
 
-		public Border (IGameScreen screen, DisplayLayer drawOrder, Widget widget, int lineWidth, int padding,
-		               Color lineColor, Color outlineColor)
-		: this (screen, drawOrder, widget.Bounds, lineWidth, padding, lineColor, outlineColor)
-		{
-			OnUpdate += (time) => IsVisible = lines.IsVisible = widget.IsVisible;
-		}
+        public Border (IGameScreen screen, DisplayLayer drawOrder, Widget widget, int lineWidth, int padding,
+                       Color lineColor, Color outlineColor)
+        : this (screen, drawOrder, widget.Bounds, lineWidth, padding, lineColor, outlineColor)
+        {
+            OnUpdate += (time) => IsVisible = lines.IsVisible = widget.IsVisible;
+        }
 
-		public Border (IGameScreen screen, DisplayLayer drawOrder, Bounds bounds, int lineWidth, int padding)
-		: this (screen: screen, drawOrder: drawOrder, bounds: bounds, lineWidth: lineWidth, padding: lineWidth,
-		        lineColor: Design.DefaultLineColor, outlineColor: Design.DefaultOutlineColor)
-		{
-		}
+        public Border (IGameScreen screen, DisplayLayer drawOrder, Bounds bounds, int lineWidth, int padding)
+        : this (screen: screen, drawOrder: drawOrder, bounds: bounds, lineWidth: lineWidth, padding: lineWidth,
+                lineColor: Design.DefaultLineColor, outlineColor: Design.DefaultOutlineColor)
+        {
+        }
 
-		public Border (IGameScreen screen, DisplayLayer drawOrder, Widget widget, int lineWidth, int padding)
-		: this (screen: screen, drawOrder: drawOrder, widget: widget, lineWidth: lineWidth, padding: lineWidth,
-		        lineColor: Design.DefaultLineColor, outlineColor: Design.DefaultOutlineColor)
-		{
-		}
+        public Border (IGameScreen screen, DisplayLayer drawOrder, Widget widget, int lineWidth, int padding)
+        : this (screen: screen, drawOrder: drawOrder, widget: widget, lineWidth: lineWidth, padding: lineWidth,
+                lineColor: Design.DefaultLineColor, outlineColor: Design.DefaultOutlineColor)
+        {
+        }
 
-		public Border (IGameScreen screen, DisplayLayer drawOrder, Widget widget)
-		: this (screen: screen, drawOrder: drawOrder, widget: widget, lineWidth: 2, padding: 0)
-		{
-		}
+        public Border (IGameScreen screen, DisplayLayer drawOrder, Widget widget)
+        : this (screen: screen, drawOrder: drawOrder, widget: widget, lineWidth: 2, padding: 0)
+        {
+        }
 
-		#endregion
+        #endregion
 
-		#region Methods
+        #region Methods
 
-		[ExcludeFromCodeCoverageAttribute]
-		public override void Update (GameTime time)
-		{
-			Vector2 position = Bounds.Position.Relative;
-			Vector2 size = Bounds.Size.Relative;
+        [ExcludeFromCodeCoverageAttribute]
+        public override void Update (GameTime time)
+        {
+            Vector2 position = Bounds.Position.Relative;
+            Vector2 size = Bounds.Size.Relative;
 
-			if (position != lastPosition || size != lastSize) {
-				lastPosition = position;
-				lastSize = size;
-				Vector2 padding = Vector2.One * 0.001f * Padding;
-				lines.Clear ();
-				lines.AddPoints (
-				    position.X - padding.X,
-				    position.Y - padding.Y,
-				    position.X + size.X + padding.X,
-				    position.Y + size.Y + padding.Y,
-				    position.X - padding.X,
-				    position.Y - padding.Y
-				);
-			}
+            if (position != lastPosition || size != lastSize) {
+                lastPosition = position;
+                lastSize = size;
+                Vector2 padding = Vector2.One * 0.001f * Padding;
+                lines.Clear ();
+                lines.AddPoints (
+                    position.X - padding.X,
+                    position.Y - padding.Y,
+                    position.X + size.X + padding.X,
+                    position.Y + size.Y + padding.Y,
+                    position.X - padding.X,
+                    position.Y - padding.Y
+                );
+            }
 
-			OnUpdate (time);
+            OnUpdate (time);
 
-			base.Update (time);
-		}
+            base.Update (time);
+        }
 
-		public override IEnumerable<IGameScreenComponent> SubComponents (GameTime time)
-		{
-			foreach (DrawableGameScreenComponent component in base.SubComponents (time)) {
-				yield return component;
-			}
-			yield return lines;
-		}
+        public override IEnumerable<IGameScreenComponent> SubComponents (GameTime time)
+        {
+            foreach (DrawableGameScreenComponent component in base.SubComponents (time)) {
+                yield return component;
+            }
+            yield return lines;
+        }
 
-		#endregion
-	}
+        #endregion
+    }
 }

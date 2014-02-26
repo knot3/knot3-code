@@ -52,87 +52,87 @@ using Knot3.Framework.Utilities;
 
 namespace Knot3.Framework.Audio
 {
-	public class OggVorbisFile : IAudioFile
-	{
-		public string Name { get; private set; }
+    public class OggVorbisFile : IAudioFile
+    {
+        public string Name { get; private set; }
 
-		public SoundState State { get { return internalFile.State; } }
+        public SoundState State { get { return internalFile.State; } }
 
-		private SoundEffectFile internalFile;
+        private SoundEffectFile internalFile;
 
-		public OggVorbisFile (string name, string filepath, Sound soundType)
-		{
-			Name = name;
-			string cachefile = SystemInfo.DecodedMusicCache
-			                   + SystemInfo.PathSeparator.ToString ()
-			                   + soundType.ToString ()
-			                   + "_"
-			                   + name.GetHashCode ().ToString ()
-			                   + ".wav";
+        public OggVorbisFile (string name, string filepath, Sound soundType)
+        {
+            Name = name;
+            string cachefile = SystemInfo.DecodedMusicCache
+                               + SystemInfo.PathSeparator.ToString ()
+                               + soundType.ToString ()
+                               + "_"
+                               + name.GetHashCode ().ToString ()
+                               + ".wav";
 
-			Log.BlockList (id: 33, before: "  - ", after: "", begin: "Load ogg audio files:", end: "");
-			Log.BlockList (id: 34, before: "  - ", after: "", begin: "Decode ogg audio files:", end: "");
+            Log.BlockList (id: 33, before: "  - ", after: "", begin: "Load ogg audio files:", end: "");
+            Log.BlockList (id: 34, before: "  - ", after: "", begin: "Decode ogg audio files:", end: "");
 
-			byte[] data;
-			try {
-				Log.ListElement (33, "[",soundType,"] ",name);
-				data = File.ReadAllBytes (cachefile);
-			}
-			catch (Exception) {
-				Log.ListElement (34, "[",soundType,"] ",name);
-				OggDecoder decoder = new OggDecoder ();
-				decoder.Initialize (TitleContainer.OpenStream (filepath));
-				data = decoder.SelectMany (chunk => chunk.Bytes.Take (chunk.Length)).ToArray ();
-				using (MemoryStream stream = new MemoryStream ())
-				using (BinaryWriter writer = new BinaryWriter (stream)) {
-					WriteWave (writer, decoder.Stereo ? 2 : 1, decoder.SampleRate, data);
-					stream.Position = 0;
-					data = stream.ToArray ();
-				}
-				File.WriteAllBytes (cachefile, data);
-			}
+            byte[] data;
+            try {
+                Log.ListElement (33, "[",soundType,"] ",name);
+                data = File.ReadAllBytes (cachefile);
+            }
+            catch (Exception) {
+                Log.ListElement (34, "[",soundType,"] ",name);
+                OggDecoder decoder = new OggDecoder ();
+                decoder.Initialize (TitleContainer.OpenStream (filepath));
+                data = decoder.SelectMany (chunk => chunk.Bytes.Take (chunk.Length)).ToArray ();
+                using (MemoryStream stream = new MemoryStream ())
+                using (BinaryWriter writer = new BinaryWriter (stream)) {
+                    WriteWave (writer, decoder.Stereo ? 2 : 1, decoder.SampleRate, data);
+                    stream.Position = 0;
+                    data = stream.ToArray ();
+                }
+                File.WriteAllBytes (cachefile, data);
+            }
 
-			using (MemoryStream stream = new MemoryStream (data)) {
-				stream.Position = 0;
-				SoundEffect soundEffect = SoundEffect.FromStream (stream);
-				internalFile = new SoundEffectFile (name, soundEffect, soundType);
-			}
-		}
+            using (MemoryStream stream = new MemoryStream (data)) {
+                stream.Position = 0;
+                SoundEffect soundEffect = SoundEffect.FromStream (stream);
+                internalFile = new SoundEffectFile (name, soundEffect, soundType);
+            }
+        }
 
-		public void Play ()
-		{
-			internalFile.Play ();
-		}
+        public void Play ()
+        {
+            internalFile.Play ();
+        }
 
-		public void Stop ()
-		{
-			internalFile.Stop ();
-		}
+        public void Stop ()
+        {
+            internalFile.Stop ();
+        }
 
-		[ExcludeFromCodeCoverageAttribute]
-		public void Update (GameTime time)
-		{
-			internalFile.Update (time);
-		}
+        [ExcludeFromCodeCoverageAttribute]
+        public void Update (GameTime time)
+        {
+            internalFile.Update (time);
+        }
 
-		private static void WriteWave (BinaryWriter writer, int channels, int rate, byte[] data)
-		{
-			writer.Write (new char[4] { 'R', 'I', 'F', 'F' });
-			writer.Write ((int)(36 + data.Length));
-			writer.Write (new char[4] { 'W', 'A', 'V', 'E' });
+        private static void WriteWave (BinaryWriter writer, int channels, int rate, byte[] data)
+        {
+            writer.Write (new char[4] { 'R', 'I', 'F', 'F' });
+            writer.Write ((int)(36 + data.Length));
+            writer.Write (new char[4] { 'W', 'A', 'V', 'E' });
 
-			writer.Write (new char[4] { 'f', 'm', 't', ' ' });
-			writer.Write ((int)16);
-			writer.Write ((short)1);
-			writer.Write ((short)channels);
-			writer.Write ((int)rate);
-			writer.Write ((int)(rate * ((16 * channels) / 8)));
-			writer.Write ((short)((16 * channels) / 8));
-			writer.Write ((short)16);
+            writer.Write (new char[4] { 'f', 'm', 't', ' ' });
+            writer.Write ((int)16);
+            writer.Write ((short)1);
+            writer.Write ((short)channels);
+            writer.Write ((int)rate);
+            writer.Write ((int)(rate * ((16 * channels) / 8)));
+            writer.Write ((short)((16 * channels) / 8));
+            writer.Write ((short)16);
 
-			writer.Write (new char[4] { 'd', 'a', 't', 'a' });
-			writer.Write ((int)data.Length);
-			writer.Write (data);
-		}
-	}
+            writer.Write (new char[4] { 'd', 'a', 't', 'a' });
+            writer.Write ((int)data.Length);
+            writer.Write (data);
+        }
+    }
 }

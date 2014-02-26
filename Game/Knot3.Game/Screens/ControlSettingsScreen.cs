@@ -59,97 +59,97 @@ using Knot3.Game.Widgets;
 
 namespace Knot3.Game.Screens
 {
-	/// <summary>
-	/// Der Spielzustand, der die Steuerungs-Einstellungen darstellt.
-	/// </summary>
-	[ExcludeFromCodeCoverageAttribute]
-	public class ControlSettingsScreen : SettingsScreen
-	{
-		#region Properties
+    /// <summary>
+    /// Der Spielzustand, der die Steuerungs-Einstellungen darstellt.
+    /// </summary>
+    [ExcludeFromCodeCoverageAttribute]
+    public class ControlSettingsScreen : SettingsScreen
+    {
+        #region Properties
 
-		/// <summary>
-		/// Das Menü, das die Einstellungen enthält.
-		/// </summary>
-		private Menu settingsMenu;
-		public static Action ControlSettingsChanged = () => {};
+        /// <summary>
+        /// Das Menü, das die Einstellungen enthält.
+        /// </summary>
+        private Menu settingsMenu;
+        public static Action ControlSettingsChanged = () => {};
 
-		#endregion
+        #endregion
 
-		#region Constructors
+        #region Constructors
 
-		/// <summary>
-		/// Erzeugt ein neues ControlSettingsScreen-Objekt und initialisiert dieses mit einem Knot3Game-Objekt.
-		/// </summary>
-		public ControlSettingsScreen (GameClass game)
-		: base (game)
-		{
-			MenuName = "Controls";
+        /// <summary>
+        /// Erzeugt ein neues ControlSettingsScreen-Objekt und initialisiert dieses mit einem Knot3Game-Objekt.
+        /// </summary>
+        public ControlSettingsScreen (GameClass game)
+        : base (game)
+        {
+            MenuName = "Controls";
 
-			settingsMenu = new Menu (this, DisplayLayer.ScreenUI + DisplayLayer.Menu);
-			settingsMenu.Bounds.Position = new ScreenPoint (this, 0.400f, 0.180f);
-			settingsMenu.Bounds.Size = new ScreenPoint (this, 0.500f, 0.620f);
-			settingsMenu.Bounds.Padding = new ScreenPoint (this, 0.010f, 0.010f);
-			settingsMenu.ItemAlignX = HorizontalAlignment.Left;
-			settingsMenu.ItemAlignY = VerticalAlignment.Center;
+            settingsMenu = new Menu (this, DisplayLayer.ScreenUI + DisplayLayer.Menu);
+            settingsMenu.Bounds.Position = new ScreenPoint (this, 0.400f, 0.180f);
+            settingsMenu.Bounds.Size = new ScreenPoint (this, 0.500f, 0.620f);
+            settingsMenu.Bounds.Padding = new ScreenPoint (this, 0.010f, 0.010f);
+            settingsMenu.ItemAlignX = HorizontalAlignment.Left;
+            settingsMenu.ItemAlignY = VerticalAlignment.Center;
 
-			CheckBoxItem moveToCenter = new CheckBoxItem (
-			    screen: this,
-			    drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
-			    text: "Move Rotation Targets to Center",
-			    option: new BooleanOption ("video", "arcball-around-center", true, Config.Default)
-			);
-			settingsMenu.Add (moveToCenter);
+            CheckBoxItem moveToCenter = new CheckBoxItem (
+                screen: this,
+                drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
+                text: "Move Rotation Targets to Center",
+                option: new BooleanOption ("video", "arcball-around-center", true, Config.Default)
+            );
+            settingsMenu.Add (moveToCenter);
 
-			// Lade die Standardbelegung
-			Dictionary<PlayerActions, Keys> defaultReversed = KnotInputHandler.DefaultKeyAssignment.ReverseDictionary ();
+            // Lade die Standardbelegung
+            Dictionary<PlayerActions, Keys> defaultReversed = KnotInputHandler.DefaultKeyAssignment.ReverseDictionary ();
 
-			// Iteriere dazu über alle gültigen PlayerActions...
-			foreach (PlayerActions action in typeof (PlayerActions).ToEnumValues<PlayerActions>()) {
-				string actionName = action.ToEnumDescription ();
+            // Iteriere dazu über alle gültigen PlayerActions...
+            foreach (PlayerActions action in typeof (PlayerActions).ToEnumValues<PlayerActions>()) {
+                string actionName = action.ToEnumDescription ();
 
-				// Erstelle das dazugehörige Options-Objekt...
-				KeyOption option = new KeyOption (
-				    section: "controls",
-				    name: actionName,
-				    defaultValue: defaultReversed [action],
-				    configFile: Config.Default
-				);
+                // Erstelle das dazugehörige Options-Objekt...
+                KeyOption option = new KeyOption (
+                    section: "controls",
+                    name: actionName,
+                    defaultValue: defaultReversed [action],
+                    configFile: Config.Default
+                );
 
-				// Erstelle ein KeyInputItem zum Festlegen der Tastenbelegung
-				KeyInputItem item = new KeyInputItem (
-				    screen: this,
-				    drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
-				    text: actionName,
-				    option: option
-				);
-				item.OnValueChanged += () => ControlSettingsChanged ();
+                // Erstelle ein KeyInputItem zum Festlegen der Tastenbelegung
+                KeyInputItem item = new KeyInputItem (
+                    screen: this,
+                    drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
+                    text: actionName,
+                    option: option
+                );
+                item.OnValueChanged += () => ControlSettingsChanged ();
 
-				// Füge es in das Menü ein
-				settingsMenu.Add (item);
-			}
-		}
+                // Füge es in das Menü ein
+                settingsMenu.Add (item);
+            }
+        }
 
-		#endregion
+        #endregion
 
-		#region Methods
+        #region Methods
 
-		/// <summary>
-		/// Wird für jeden Frame aufgerufen.
-		/// </summary>
-		[ExcludeFromCodeCoverageAttribute]
-		public override void Update (GameTime time)
-		{
-		}
+        /// <summary>
+        /// Wird für jeden Frame aufgerufen.
+        /// </summary>
+        [ExcludeFromCodeCoverageAttribute]
+        public override void Update (GameTime time)
+        {
+        }
 
-		/// <summary>
-		/// Fügt das Menü mit den Einstellungen in die Spielkomponentenliste ein.
-		/// </summary>
-		public override void Entered (IGameScreen previousScreen, GameTime time)
-		{
-			base.Entered (previousScreen, time);
-			AddGameComponents (time, settingsMenu);
-		}
+        /// <summary>
+        /// Fügt das Menü mit den Einstellungen in die Spielkomponentenliste ein.
+        /// </summary>
+        public override void Entered (IGameScreen previousScreen, GameTime time)
+        {
+            base.Entered (previousScreen, time);
+            AddGameComponents (time, settingsMenu);
+        }
 
-		#endregion
-	}
+        #endregion
+    }
 }

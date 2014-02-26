@@ -51,85 +51,85 @@ using Knot3.Framework.Utilities;
 
 namespace Knot3.Framework.Core
 {
-	public interface IGameScreen
-	{
-		#region Properties
+    public interface IGameScreen
+    {
+        #region Properties
 
-		/// <summary>
-		/// Das Spiel, zu dem der Spielzustand gehört.
-		/// </summary>
-		GameClass Game { get; set; }
+        /// <summary>
+        /// Das Spiel, zu dem der Spielzustand gehört.
+        /// </summary>
+        GameClass Game { get; set; }
 
-		/// <summary>
-		/// Der Inputhandler des Spielzustands.
-		/// </summary>
-		InputManager InputManager { get; }
+        /// <summary>
+        /// Der Inputhandler des Spielzustands.
+        /// </summary>
+        InputManager InputManager { get; }
 
-		AudioManager Audio { get; }
+        AudioManager Audio { get; }
 
-		/// <summary>
-		/// Der aktuelle Postprocessing-Effekt des Spielzustands
-		/// </summary>
-		IRenderEffect PostProcessingEffect { get; set; }
+        /// <summary>
+        /// Der aktuelle Postprocessing-Effekt des Spielzustands
+        /// </summary>
+        IRenderEffect PostProcessingEffect { get; set; }
 
-		/// <summary>
-		/// Ein Stack, der während dem Aufruf der Draw-Methoden der Spielkomponenten die jeweils aktuellen Rendereffekte enthält.
-		/// </summary>
-		IRenderEffectStack CurrentRenderEffects { get; set; }
+        /// <summary>
+        /// Ein Stack, der während dem Aufruf der Draw-Methoden der Spielkomponenten die jeweils aktuellen Rendereffekte enthält.
+        /// </summary>
+        IRenderEffectStack CurrentRenderEffects { get; set; }
 
-		/// <summary>
-		/// Der nächste Spielstand, der von Knot3Game gesetzt werden soll.
-		/// </summary>
-		IGameScreen NextScreen { get; set; }
+        /// <summary>
+        /// Der nächste Spielstand, der von Knot3Game gesetzt werden soll.
+        /// </summary>
+        IGameScreen NextScreen { get; set; }
 
-		GraphicsDeviceManager Graphics { get; }
+        GraphicsDeviceManager Graphics { get; }
 
-		GraphicsDevice Device { get; }
+        GraphicsDevice Device { get; }
 
-		Viewport Viewport { get; set; }
+        Viewport Viewport { get; set; }
 
-		ContentManager Content { get; }
+        ContentManager Content { get; }
 
-		Color BackgroundColor { get; }
+        Color BackgroundColor { get; }
 
-		Bounds Bounds { get; }
+        Bounds Bounds { get; }
 
-		#endregion
+        #endregion
 
-		#region Methods
+        #region Methods
 
-		/// <summary>
-		/// Beginnt mit dem Füllen der Spielkomponentenliste des XNA-Frameworks und fügt sowohl für Tastatur- als auch für
-		/// Mauseingaben einen Inputhandler für Widgets hinzu. Wird in Unterklassen von IGameScreen reimplementiert und fügt zusätzlich weitere
-		/// Spielkomponenten hinzu.
-		/// </summary>
-		void Entered (IGameScreen previousScreen, GameTime time);
+        /// <summary>
+        /// Beginnt mit dem Füllen der Spielkomponentenliste des XNA-Frameworks und fügt sowohl für Tastatur- als auch für
+        /// Mauseingaben einen Inputhandler für Widgets hinzu. Wird in Unterklassen von IGameScreen reimplementiert und fügt zusätzlich weitere
+        /// Spielkomponenten hinzu.
+        /// </summary>
+        void Entered (IGameScreen previousScreen, GameTime time);
 
-		/// <summary>
-		/// Leert die Spielkomponentenliste des XNA-Frameworks.
-		/// </summary>
-		void BeforeExit (IGameScreen nextScreen, GameTime time);
+        /// <summary>
+        /// Leert die Spielkomponentenliste des XNA-Frameworks.
+        /// </summary>
+        void BeforeExit (IGameScreen nextScreen, GameTime time);
 
-		/// <summary>
-		/// Zeichnet die Teile des IGameScreens, die keine Spielkomponenten sind.
-		/// </summary>
-		void Draw (GameTime time);
+        /// <summary>
+        /// Zeichnet die Teile des IGameScreens, die keine Spielkomponenten sind.
+        /// </summary>
+        void Draw (GameTime time);
 
-		/// <summary>
-		/// Wird für jeden Frame aufgerufen.
-		/// </summary>
-		void Update (GameTime time);
+        /// <summary>
+        /// Wird für jeden Frame aufgerufen.
+        /// </summary>
+        void Update (GameTime time);
 
-		/// <summary>
-		/// Fügt die angegebenen GameComponents in die Components-Liste des Games ein.
-		/// </summary>
-		void AddGameComponents (GameTime time, params IGameScreenComponent[] components);
+        /// <summary>
+        /// Fügt die angegebenen GameComponents in die Components-Liste des Games ein.
+        /// </summary>
+        void AddGameComponents (GameTime time, params IGameScreenComponent[] components);
 
-		/// <summary>
-		/// Entfernt die angegebenen GameComponents aus der Components-Liste des Games.
-		/// </summary>
-		void RemoveGameComponents (GameTime time, params IGameScreenComponent[] components);
+        /// <summary>
+        /// Entfernt die angegebenen GameComponents aus der Components-Liste des Games.
+        /// </summary>
+        void RemoveGameComponents (GameTime time, params IGameScreenComponent[] components);
 
-		#endregion
-	}
+        #endregion
+    }
 }

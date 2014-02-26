@@ -56,37 +56,37 @@ using Knot3.Game.Screens;
 
 namespace Knot3.Game.Widgets
 {
-	/// <summary>
-	/// Ein Menüeintrag, der eine aktuelle Farbe anzeigt und zum Ändern der Farbe per Mausklick einen ColorPicker öffnet.
-	/// </summary>
-	[ExcludeFromCodeCoverageAttribute]
-	public sealed class ColorPickItem : MenuItem
-	{
-		#region Properties
+    /// <summary>
+    /// Ein Menüeintrag, der eine aktuelle Farbe anzeigt und zum Ändern der Farbe per Mausklick einen ColorPicker öffnet.
+    /// </summary>
+    [ExcludeFromCodeCoverageAttribute]
+    public sealed class ColorPickItem : MenuItem
+    {
+        #region Properties
 
-		/// <summary>
-		/// Die aktuelle Farbe.
-		/// </summary>
-		public Color Color { get; set; }
+        /// <summary>
+        /// Die aktuelle Farbe.
+        /// </summary>
+        public Color Color { get; set; }
 
-		/// <summary>
-		/// Der ColorPicker, der bei einem Mausklick auf den Menüeintrag geöffnet wird.
-		/// </summary>
-		private ColorPicker picker { get; set; }
+        /// <summary>
+        /// Der ColorPicker, der bei einem Mausklick auf den Menüeintrag geöffnet wird.
+        /// </summary>
+        private ColorPicker picker { get; set; }
 
-		#endregion
+        #endregion
 
-		#region Constructors
+        #region Constructors
 
-		/// <summary>
-		/// Erzeugt ein neues ColorPickItem-Objekt und initialisiert dieses mit dem zugehörigen IGameScreen-Objekt.
-		/// Zudem sind Angaben zur Zeichenreihenfolge und der Auswahloption Pflicht.
-		/// </summary>
-		public ColorPickItem (IGameScreen screen, DisplayLayer drawOrder, string text, Color color)
-		: base (screen, drawOrder, text)
-		{
-		}
+        /// <summary>
+        /// Erzeugt ein neues ColorPickItem-Objekt und initialisiert dieses mit dem zugehörigen IGameScreen-Objekt.
+        /// Zudem sind Angaben zur Zeichenreihenfolge und der Auswahloption Pflicht.
+        /// </summary>
+        public ColorPickItem (IGameScreen screen, DisplayLayer drawOrder, string text, Color color)
+        : base (screen, drawOrder, text)
+        {
+        }
 
-		#endregion
-	}
+        #endregion
+    }
 }

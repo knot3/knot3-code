@@ -51,43 +51,43 @@ using Knot3.Framework.Widgets;
 
 namespace Knot3.Framework.Storage
 {
-	/// <summary>
-	/// Eine statische Klasse, die eine Referenz auf die zentrale Einstellungsdatei des Spiels enthält.
-	/// </summary>
-	public static class Config
-	{
-		#region Properties
+    /// <summary>
+    /// Eine statische Klasse, die eine Referenz auf die zentrale Einstellungsdatei des Spiels enthält.
+    /// </summary>
+    public static class Config
+    {
+        #region Properties
 
-		/// <summary>
-		/// Die zentrale Einstellungsdatei des Spiels.
-		/// </summary>
-		public static ConfigFile Default
-		{
-			get {
-				if (_default == null) {
-					_default = new ConfigFile (SystemInfo.SettingsDirectory + "knot3.ini");
-				}
-				return _default;
-			}
-			set {
-				_default = value;
-			}
-		}
+        /// <summary>
+        /// Die zentrale Einstellungsdatei des Spiels.
+        /// </summary>
+        public static ConfigFile Default
+        {
+            get {
+                if (_default == null) {
+                    _default = new ConfigFile (SystemInfo.SettingsDirectory + "knot3.ini");
+                }
+                return _default;
+            }
+            set {
+                _default = value;
+            }
+        }
 
-		private static ConfigFile _default;
+        private static ConfigFile _default;
 
-		public static ConfigFile Models
-		{
-			get {
-				if (_models == null) {
-					_models = new ConfigFile (SystemInfo.RelativeContentDirectory + "models.ini");
-				}
-				return _models;
-			}
-		}
+        public static ConfigFile Models
+        {
+            get {
+                if (_models == null) {
+                    _models = new ConfigFile (SystemInfo.RelativeContentDirectory + "models.ini");
+                }
+                return _models;
+            }
+        }
 
-		private static ConfigFile _models;
+        private static ConfigFile _models;
 
-		#endregion
-	}
+        #endregion
+    }
 }

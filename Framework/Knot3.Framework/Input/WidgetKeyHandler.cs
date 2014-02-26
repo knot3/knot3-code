@@ -48,50 +48,50 @@ using Knot3.Framework.Utilities;
 
 namespace Knot3.Framework.Input
 {
-	/// <summary>
-	/// Ein Inputhandler, der Tastatureingaben auf Widgets verarbeitet.
-	/// </summary>
-	[ExcludeFromCodeCoverageAttribute]
-	public sealed class WidgetKeyHandler : GameScreenComponent
-	{
-		public WidgetKeyHandler (IGameScreen screen)
-		: base (screen, DisplayLayer.None)
-		{
-		}
+    /// <summary>
+    /// Ein Inputhandler, der Tastatureingaben auf Widgets verarbeitet.
+    /// </summary>
+    [ExcludeFromCodeCoverageAttribute]
+    public sealed class WidgetKeyHandler : GameScreenComponent
+    {
+        public WidgetKeyHandler (IGameScreen screen)
+        : base (screen, DisplayLayer.None)
+        {
+        }
 
-		/// <summary>
-		/// Wird für jeden Frame aufgerufen.
-		/// </summary>
-		[ExcludeFromCodeCoverageAttribute]
-		public override void Update (GameTime time)
-		{
-			foreach (IKeyEventListener component in Screen.Game.Components.OfType<IKeyEventListener>()
-			         .Where (c => c.IsKeyEventEnabled).OrderByDescending (c => c.Index.Index)) {
-				// keyboard input
-				KeyEvent keyEvent = KeyEvent.None;
-				List<Keys> keysInvolved = new List<Keys> ();
+        /// <summary>
+        /// Wird für jeden Frame aufgerufen.
+        /// </summary>
+        [ExcludeFromCodeCoverageAttribute]
+        public override void Update (GameTime time)
+        {
+            foreach (IKeyEventListener component in Screen.Game.Components.OfType<IKeyEventListener>()
+                     .Where (c => c.IsKeyEventEnabled).OrderByDescending (c => c.Index.Index)) {
+                // keyboard input
+                KeyEvent keyEvent = KeyEvent.None;
+                List<Keys> keysInvolved = new List<Keys> ();
 
-				foreach (Keys key in component.ValidKeys) {
-					// Log.Debug ("receiver=",receiver,",validkeys=",key,", receiver.IsKeyEventEnabled=",((dynamic)receiver).IsVisible);
+                foreach (Keys key in component.ValidKeys) {
+                    // Log.Debug ("receiver=",receiver,",validkeys=",key,", receiver.IsKeyEventEnabled=",((dynamic)receiver).IsVisible);
 
-					if (Screen.InputManager.KeyPressed (key)) {
-						keysInvolved.Add (key);
-						keyEvent = KeyEvent.KeyDown;
-					}
-					else if (Screen.InputManager.KeyHeldDown (key)) {
-						keysInvolved.Add (key);
-						keyEvent = KeyEvent.KeyHeldDown;
-					}
-				}
+                    if (Screen.InputManager.KeyPressed (key)) {
+                        keysInvolved.Add (key);
+                        keyEvent = KeyEvent.KeyDown;
+                    }
+                    else if (Screen.InputManager.KeyHeldDown (key)) {
+                        keysInvolved.Add (key);
+                        keyEvent = KeyEvent.KeyHeldDown;
+                    }
+                }
 
-				if (keysInvolved.Count > 0) {
-					component.OnKeyEvent (keysInvolved, keyEvent, time);
-					break;
-				}
-				if (component.IsModal) {
-					break;
-				}
-			}
-		}
-	}
+                if (keysInvolved.Count > 0) {
+                    component.OnKeyEvent (keysInvolved, keyEvent, time);
+                    break;
+                }
+                if (component.IsModal) {
+                    break;
+                }
+            }
+        }
+    }
 }

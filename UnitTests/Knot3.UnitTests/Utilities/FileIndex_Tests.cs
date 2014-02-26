@@ -45,20 +45,20 @@ using Knot3.Framework.Utilities;
 
 namespace Knot3.UnitTests.Utilities
 {
-	/// <summary>
-	///
-	/// </summary>
-	[TestFixture]
-	public class FileIndex_Tests
-	{
-		[SetUp]
-		public void Init ()
-		{
-		}
+    /// <summary>
+    ///
+    /// </summary>
+    [TestFixture]
+    public class FileIndex_Tests
+    {
+        [SetUp]
+        public void Init ()
+        {
+        }
 
-		[Test]
-		public void Test ()
-		{
-		}
-	}
+        [Test]
+        public void Test ()
+        {
+        }
+    }
 }

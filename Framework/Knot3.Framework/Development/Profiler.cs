@@ -52,50 +52,50 @@ using Knot3.Framework.Widgets;
 
 namespace Knot3.Framework.Development
 {
-	[ExcludeFromCodeCoverageAttribute]
-	public static class Profiler
-	{
-		public static TimeSpan Time (Action action)
-		{
-			Stopwatch stopwatch = Stopwatch.StartNew ();
-			action ();
-			stopwatch.Stop ();
-			return stopwatch.Elapsed;
-		}
+    [ExcludeFromCodeCoverageAttribute]
+    public static class Profiler
+    {
+        public static TimeSpan Time (Action action)
+        {
+            Stopwatch stopwatch = Stopwatch.StartNew ();
+            action ();
+            stopwatch.Stop ();
+            return stopwatch.Elapsed;
+        }
 
-		public static Hashtable ProfilerMap = new Hashtable ();
+        public static Hashtable ProfilerMap = new Hashtable ();
 
-		public static HashtableActionWrapper ProfileDelegate = new HashtableActionWrapper ();
-		public static HashtableWrapper Values = new HashtableWrapper ();
+        public static HashtableActionWrapper ProfileDelegate = new HashtableActionWrapper ();
+        public static HashtableWrapper Values = new HashtableWrapper ();
 
-		[ExcludeFromCodeCoverageAttribute]
-		public class HashtableWrapper
-		{
-			public double this [string str]
-			{
-				get {
-					return (double)ProfilerMap [str];
-				}
-				set {
-					ProfilerMap [str] = value;
-				}
-			}
+        [ExcludeFromCodeCoverageAttribute]
+        public class HashtableWrapper
+        {
+            public double this [string str]
+            {
+                get {
+                    return (double)ProfilerMap [str];
+                }
+                set {
+                    ProfilerMap [str] = value;
+                }
+            }
 
-			public bool ContainsKey (string str)
-			{
-				return ProfilerMap.ContainsKey (str);
-			}
-		}
+            public bool ContainsKey (string str)
+            {
+                return ProfilerMap.ContainsKey (str);
+            }
+        }
 
-		[ExcludeFromCodeCoverageAttribute]
-		public class HashtableActionWrapper
-		{
-			public Action this [string str]
-			{
-				set {
-					ProfilerMap [str] = Time (value).TotalMilliseconds;
-				}
-			}
-		}
-	}
+        [ExcludeFromCodeCoverageAttribute]
+        public class HashtableActionWrapper
+        {
+            public Action this [string str]
+            {
+                set {
+                    ProfilerMap [str] = Time (value).TotalMilliseconds;
+                }
+            }
+        }
+    }
 }

@@ -39,8 +39,8 @@ using Knot3.Framework.Utilities;
 
 namespace Knot3.Framework.Widgets
 {
-	public interface IDesign
-	{
-		void Apply ();
-	}
+    public interface IDesign
+    {
+        void Apply ();
+    }
 }

@@ -53,111 +53,111 @@ using Knot3.Framework.Widgets;
 
 namespace Knot3.Framework.Widgets
 {
-	/// <summary>
-	/// Ein Menüeintrag, der einen Auswahlkasten darstellt.
-	/// </summary>
-	[ExcludeFromCodeCoverageAttribute]
-	public sealed class CheckBoxItem : MenuItem
-	{
-		#region Properties
+    /// <summary>
+    /// Ein Menüeintrag, der einen Auswahlkasten darstellt.
+    /// </summary>
+    [ExcludeFromCodeCoverageAttribute]
+    public sealed class CheckBoxItem : MenuItem
+    {
+        #region Properties
 
-		/// <summary>
-		/// Die Option, die mit dem Auswahlkasten verknüpft ist.
-		/// </summary>
-		private BooleanOption option { get; set; }
+        /// <summary>
+        /// Die Option, die mit dem Auswahlkasten verknüpft ist.
+        /// </summary>
+        private BooleanOption option { get; set; }
 
-		/// <summary>
-		/// Wie viel Prozent der Name des Eintrags (auf der linken Seite) von der Breite des Eintrags einnehmen darf.
-		/// </summary>
-		public override float NameWidth
-		{
-			get { return System.Math.Min (0.90f, 1.0f - ValueWidth); }
-			set { throw new ArgumentException ("You can't change the NameWidth of a CheckBoxItem!"); }
-		}
+        /// <summary>
+        /// Wie viel Prozent der Name des Eintrags (auf der linken Seite) von der Breite des Eintrags einnehmen darf.
+        /// </summary>
+        public override float NameWidth
+        {
+            get { return System.Math.Min (0.90f, 1.0f - ValueWidth); }
+            set { throw new ArgumentException ("You can't change the NameWidth of a CheckBoxItem!"); }
+        }
 
-		/// <summary>
-		/// Wie viel Prozent der Wert des Eintrags (auf der rechten Seite) von der Breite des Eintrags einnehmen darf.
-		/// </summary>
-		public override float ValueWidth
-		{
-			get { return Bounds.Size.Relative.Y / Bounds.Size.Relative.X; }
-			set { throw new ArgumentException ("You can't change the ValueWidth of a CheckBoxItem!"); }
-		}
+        /// <summary>
+        /// Wie viel Prozent der Wert des Eintrags (auf der rechten Seite) von der Breite des Eintrags einnehmen darf.
+        /// </summary>
+        public override float ValueWidth
+        {
+            get { return Bounds.Size.Relative.Y / Bounds.Size.Relative.X; }
+            set { throw new ArgumentException ("You can't change the ValueWidth of a CheckBoxItem!"); }
+        }
 
-		private bool currentValue;
+        private bool currentValue;
 
-		#endregion
+        #endregion
 
-		#region Constructors
+        #region Constructors
 
-		/// <summary>
-		/// Erzeugt ein neues CheckBoxItem-Objekt und initialisiert dieses mit dem zugehörigen IGameScreen-Objekt.
-		/// Zudem sind Angaben zur Zeichenreihenfolge und der Auswahloption Pflicht.
-		/// </summary>
-		public CheckBoxItem (IGameScreen screen, DisplayLayer drawOrder, string text, BooleanOption option)
-		: base (screen, drawOrder, text)
-		{
-			this.option = option;
-			currentValue = option.Value;
-		}
+        /// <summary>
+        /// Erzeugt ein neues CheckBoxItem-Objekt und initialisiert dieses mit dem zugehörigen IGameScreen-Objekt.
+        /// Zudem sind Angaben zur Zeichenreihenfolge und der Auswahloption Pflicht.
+        /// </summary>
+        public CheckBoxItem (IGameScreen screen, DisplayLayer drawOrder, string text, BooleanOption option)
+        : base (screen, drawOrder, text)
+        {
+            this.option = option;
+            currentValue = option.Value;
+        }
 
-		#endregion
+        #endregion
 
-		#region Methods
+        #region Methods
 
-		[ExcludeFromCodeCoverageAttribute]
-		public override void Draw (GameTime time)
-		{
-			base.Draw (time);
+        [ExcludeFromCodeCoverageAttribute]
+        public override void Draw (GameTime time)
+        {
+            base.Draw (time);
 
-			spriteBatch.Begin ();
+            spriteBatch.Begin ();
 
-			// berechne die Ausmaße des Wertefelds
-			Rectangle bounds = ValueBounds.Rectangle;
+            // berechne die Ausmaße des Wertefelds
+            Rectangle bounds = ValueBounds.Rectangle;
 
-			// zeichne den Hintergrund des Wertefelds
-			spriteBatch.DrawColoredRectangle (ForegroundColor, bounds);
-			spriteBatch.DrawColoredRectangle (Design.WidgetBackground, bounds.Shrink (2));
+            // zeichne den Hintergrund des Wertefelds
+            spriteBatch.DrawColoredRectangle (ForegroundColor, bounds);
+            spriteBatch.DrawColoredRectangle (Design.WidgetBackground, bounds.Shrink (2));
 
-			// wenn der Wert wahr ist
-			if (currentValue) {
-				spriteBatch.DrawColoredRectangle (ForegroundColor, bounds.Shrink (4));
-			}
+            // wenn der Wert wahr ist
+            if (currentValue) {
+                spriteBatch.DrawColoredRectangle (ForegroundColor, bounds.Shrink (4));
+            }
 
-			spriteBatch.End ();
-		}
+            spriteBatch.End ();
+        }
 
-		private void onClick ()
-		{
-			currentValue = option.Value = !option.Value;
-			Log.Debug ("option: ", option, " := ", currentValue);
-		}
+        private void onClick ()
+        {
+            currentValue = option.Value = !option.Value;
+            Log.Debug ("option: ", option, " := ", currentValue);
+        }
 
-		/// <summary>
-		/// Reaktionen auf einen Linksklick.
-		/// </summary>
-		public override void OnLeftClick (Vector2 position, ClickState state, GameTime time)
-		{
-			onClick ();
-		}
+        /// <summary>
+        /// Reaktionen auf einen Linksklick.
+        /// </summary>
+        public override void OnLeftClick (Vector2 position, ClickState state, GameTime time)
+        {
+            onClick ();
+        }
 
-		/// <summary>
-		/// Reaktionen auf Tasteneingaben.
-		/// </summary>
-		public override void OnKeyEvent (List<Keys> key, KeyEvent keyEvent, GameTime time)
-		{
-			if (keyEvent == KeyEvent.KeyDown) {
-				onClick ();
-			}
-		}
+        /// <summary>
+        /// Reaktionen auf Tasteneingaben.
+        /// </summary>
+        public override void OnKeyEvent (List<Keys> key, KeyEvent keyEvent, GameTime time)
+        {
+            if (keyEvent == KeyEvent.KeyDown) {
+                onClick ();
+            }
+        }
 
-		public void AddKey (Keys key)
-		{
-			if (!ValidKeys.Contains (key)) {
-				ValidKeys.Add (key);
-			}
-		}
+        public void AddKey (Keys key)
+        {
+            if (!ValidKeys.Contains (key)) {
+                ValidKeys.Add (key);
+            }
+        }
 
-		#endregion
-	}
+        #endregion
+    }
 }

@@ -49,26 +49,26 @@ using Knot3.Framework.Utilities;
 
 namespace Knot3.Framework.Audio
 {
-	/// <summary>
-	/// Dieses Interface repräsentiert eine Playlist.
-	/// </summary>
-	public interface IPlaylist
-	{
-		/// <summary>
-		/// Starte die Wiedergabe.
-		/// </summary>
-		void Start ();
+    /// <summary>
+    /// Dieses Interface repräsentiert eine Playlist.
+    /// </summary>
+    public interface IPlaylist
+    {
+        /// <summary>
+        /// Starte die Wiedergabe.
+        /// </summary>
+        void Start ();
 
-		/// <summary>
-		/// Stoppe die Wiedergabe.
-		/// </summary>
-		void Stop ();
+        /// <summary>
+        /// Stoppe die Wiedergabe.
+        /// </summary>
+        void Stop ();
 
-		/// <summary>
-		/// Wird für jeden Frame aufgerufen.
-		/// </summary>
-		void Update (GameTime time);
+        /// <summary>
+        /// Wird für jeden Frame aufgerufen.
+        /// </summary>
+        void Update (GameTime time);
 
-		void Shuffle ();
-	}
+        void Shuffle ();
+    }
 }

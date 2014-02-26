@@ -48,94 +48,94 @@ using Knot3.Framework.Utilities;
 
 namespace Knot3.Framework.Models
 {
-	/// <summary>
-	/// Enthält Informationen über ein 3D-Objekt wie die Position, Sichtbarkeit, Verschiebbarkeit und Auswählbarkeit.
-	/// </summary>
-	[ExcludeFromCodeCoverageAttribute]
-	public class GameObjectInfo : IEquatable<GameObjectInfo>
-	{
-		#region Properties
+    /// <summary>
+    /// Enthält Informationen über ein 3D-Objekt wie die Position, Sichtbarkeit, Verschiebbarkeit und Auswählbarkeit.
+    /// </summary>
+    [ExcludeFromCodeCoverageAttribute]
+    public class GameObjectInfo : IEquatable<GameObjectInfo>
+    {
+        #region Properties
 
-		/// <summary>
-		/// Die Verschiebbarkeit des Spielobjektes.
-		/// </summary>
-		public Boolean IsMovable { get; set; }
+        /// <summary>
+        /// Die Verschiebbarkeit des Spielobjektes.
+        /// </summary>
+        public Boolean IsMovable { get; set; }
 
-		/// <summary>
-		/// Die Auswählbarkeit des Spielobjektes.
-		/// </summary>
-		public Boolean IsSelectable { get; set; }
+        /// <summary>
+        /// Die Auswählbarkeit des Spielobjektes.
+        /// </summary>
+        public Boolean IsSelectable { get; set; }
 
-		/// <summary>
-		/// Die Sichtbarkeit des Spielobjektes.
-		/// </summary>
-		public Boolean IsVisible { get; set; }
+        /// <summary>
+        /// Die Sichtbarkeit des Spielobjektes.
+        /// </summary>
+        public Boolean IsVisible { get; set; }
 
-		/// <summary>
-		/// Die Position des Spielobjektes.
-		/// </summary>
-		public Vector3 Position { get; set; }
+        /// <summary>
+        /// Die Position des Spielobjektes.
+        /// </summary>
+        public Vector3 Position { get; set; }
 
-		#endregion
+        #endregion
 
-		#region Constructors
+        #region Constructors
 
-		public GameObjectInfo (Vector3 position, bool isVisible = true, bool isSelectable = false, bool isMovable = false)
-		{
-			Position = position;
-			IsVisible = isVisible;
-			IsSelectable = isSelectable;
-			IsMovable = isMovable;
-		}
+        public GameObjectInfo (Vector3 position, bool isVisible = true, bool isSelectable = false, bool isMovable = false)
+        {
+            Position = position;
+            IsVisible = isVisible;
+            IsSelectable = isSelectable;
+            IsMovable = isMovable;
+        }
 
-		#endregion
+        #endregion
 
-		#region Methods
+        #region Methods
 
-		/// <summary>
-		/// Vergleicht zwei Informationsobjekte für Spielobjekte.
-		/// [parameters=GameObjectInfo other]
-		/// </summary>
-		public virtual bool Equals (GameObjectInfo other)
-		{
-			if (other == null) {
-				return false;
-			}
+        /// <summary>
+        /// Vergleicht zwei Informationsobjekte für Spielobjekte.
+        /// [parameters=GameObjectInfo other]
+        /// </summary>
+        public virtual bool Equals (GameObjectInfo other)
+        {
+            if (other == null) {
+                return false;
+            }
 
-			if (this.Position == other.Position) {
-				return true;
-			}
-			else {
-				return false;
-			}
-		}
+            if (this.Position == other.Position) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
 
-		public override bool Equals (Object obj)
-		{
-			GameObjectInfo infoObj = obj as GameObjectInfo;
-			return Equals (infoObj);
-		}
+        public override bool Equals (Object obj)
+        {
+            GameObjectInfo infoObj = obj as GameObjectInfo;
+            return Equals (infoObj);
+        }
 
-		[ExcludeFromCodeCoverageAttribute]
-		public override int GetHashCode ()
-		{
-			return Position.GetHashCode ();
-		}
+        [ExcludeFromCodeCoverageAttribute]
+        public override int GetHashCode ()
+        {
+            return Position.GetHashCode ();
+        }
 
-		public static bool operator == (GameObjectInfo o1, GameObjectInfo o2)
-		{
-			if ((object)o1 == null || ((object)o2) == null) {
-				return Object.Equals (o1, o2);
-			}
+        public static bool operator == (GameObjectInfo o1, GameObjectInfo o2)
+        {
+            if ((object)o1 == null || ((object)o2) == null) {
+                return Object.Equals (o1, o2);
+            }
 
-			return o2.Equals (o2);
-		}
+            return o2.Equals (o2);
+        }
 
-		public static bool operator != (GameObjectInfo o1, GameObjectInfo o2)
-		{
-			return !(o1 == o2);
-		}
+        public static bool operator != (GameObjectInfo o1, GameObjectInfo o2)
+        {
+            return !(o1 == o2);
+        }
 
-		#endregion
-	}
+        #endregion
+    }
 }

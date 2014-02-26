@@ -39,21 +39,21 @@ using Knot3.Framework.Utilities;
 
 namespace Knot3.Framework.Widgets
 {
-	/// <summary>
-	/// Die vertikale Ausrichtung.
-	/// </summary>
-	public enum VerticalAlignment {
-		/// <summary>
-		/// Oben.
-		/// </summary>
-		Top=1,
-		/// <summary>
-		/// Mittig.
-		/// </summary>
-		Center=0,
-		/// <summary>
-		/// Unten.
-		/// </summary>
-		Bottom=2,
-	}
+    /// <summary>
+    /// Die vertikale Ausrichtung.
+    /// </summary>
+    public enum VerticalAlignment {
+        /// <summary>
+        /// Oben.
+        /// </summary>
+        Top=1,
+        /// <summary>
+        /// Mittig.
+        /// </summary>
+        Center=0,
+        /// <summary>
+        /// Unten.
+        /// </summary>
+        Bottom=2,
+    }
 }

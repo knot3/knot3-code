@@ -58,17 +58,17 @@ using Knot3.Game.Widgets;
 
 namespace Knot3.Game.Development
 {
-	[ExcludeFromCodeCoverageAttribute]
-	public class DebugModel:GameModel
-	{
-		public DebugModel (IGameScreen screen, DebugModelInfo info) : base (screen,info)
-		{
-		}
+    [ExcludeFromCodeCoverageAttribute]
+    public class DebugModel:GameModel
+    {
+        public DebugModel (IGameScreen screen, DebugModelInfo info) : base (screen,info)
+        {
+        }
 
-		public override void Update (GameTime gameTime)
-		{
-			Info.Position = World.Camera.Target;
-			base.Update (gameTime);
-		}
-	}
+        public override void Update (GameTime gameTime)
+        {
+            Info.Position = World.Camera.Target;
+            base.Update (gameTime);
+        }
+    }
 }

@@ -50,54 +50,54 @@ using Knot3.Framework.Widgets;
 
 namespace Knot3.Framework.Screens
 {
-	/// <summary>
-	/// Der Spielzustand, der die Auflistung der Mitwirkenden darstellt.
-	/// </summary>
-	[ExcludeFromCodeCoverageAttribute]
-	public class ErrorScreen : GameScreen
-	{
-		ErrorDialog dialog;
+    /// <summary>
+    /// Der Spielzustand, der die Auflistung der Mitwirkenden darstellt.
+    /// </summary>
+    [ExcludeFromCodeCoverageAttribute]
+    public class ErrorScreen : GameScreen
+    {
+        ErrorDialog dialog;
 
-		#region Constructors
+        #region Constructors
 
-		/// <summary>
-		/// Erzeugt ein neues CreditsScreen-Objekt und initialisiert dieses mit einem Knot3Game-Objekt.
-		/// </summary>
-		public ErrorScreen (GameClass game, Exception ex)
-		: base (game)
-		{
-			string msg = CreateMessage (ex);
-			Log.Error (ex);
-			dialog = new ErrorDialog (screen: this, drawOrder: DisplayLayer.Dialog, message: msg);
-			dialog.Bounds.Size = new ScreenPoint (screen: this, x: 0.750f, y: 0.750f);
-		}
+        /// <summary>
+        /// Erzeugt ein neues CreditsScreen-Objekt und initialisiert dieses mit einem Knot3Game-Objekt.
+        /// </summary>
+        public ErrorScreen (GameClass game, Exception ex)
+        : base (game)
+        {
+            string msg = CreateMessage (ex);
+            Log.Error (ex);
+            dialog = new ErrorDialog (screen: this, drawOrder: DisplayLayer.Dialog, message: msg);
+            dialog.Bounds.Size = new ScreenPoint (screen: this, x: 0.750f, y: 0.750f);
+        }
 
-		#endregion
+        #endregion
 
-		#region Methods
+        #region Methods
 
-		private string CreateMessage (Exception ex)
-		{
-			return ex.ToString ();
-		}
+        private string CreateMessage (Exception ex)
+        {
+            return ex.ToString ();
+        }
 
-		/// <summary>
-		/// Wird für jeden Frame aufgerufen.
-		/// </summary>
-		[ExcludeFromCodeCoverageAttribute]
-		public override void Update (GameTime time)
-		{
-		}
+        /// <summary>
+        /// Wird für jeden Frame aufgerufen.
+        /// </summary>
+        [ExcludeFromCodeCoverageAttribute]
+        public override void Update (GameTime time)
+        {
+        }
 
-		/// <summary>
-		/// Fügt das Menü mit den Mitwirkenden in die Spielkomponentenliste ein.
-		/// </summary>
-		public override void Entered (IGameScreen previousScreen, GameTime time)
-		{
-			base.Entered (previousScreen, time);
-			AddGameComponents (time, dialog);
-		}
+        /// <summary>
+        /// Fügt das Menü mit den Mitwirkenden in die Spielkomponentenliste ein.
+        /// </summary>
+        public override void Entered (IGameScreen previousScreen, GameTime time)
+        {
+            base.Entered (previousScreen, time);
+            AddGameComponents (time, dialog);
+        }
 
-		#endregion
-	}
+        #endregion
+    }
 }

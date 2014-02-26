@@ -50,18 +50,18 @@ using Knot3.Framework.Utilities;
 
 namespace Knot3.Framework.Math
 {
-	[ExcludeFromCodeCoverageAttribute]
-	public static class ModelExtensions
-	{
-		public static BoundingSphere[] Bounds (this Model model)
-		{
-			//Log.Debug (model);
-			BoundingSphere[] bounds = new BoundingSphere[model.Meshes.Count];
-			int i = 0;
-			foreach (ModelMesh mesh in model.Meshes) {
-				bounds [i++] = mesh.BoundingSphere;
-			}
-			return bounds;
-		}
-	}
+    [ExcludeFromCodeCoverageAttribute]
+    public static class ModelExtensions
+    {
+        public static BoundingSphere[] Bounds (this Model model)
+        {
+            //Log.Debug (model);
+            BoundingSphere[] bounds = new BoundingSphere[model.Meshes.Count];
+            int i = 0;
+            foreach (ModelMesh mesh in model.Meshes) {
+                bounds [i++] = mesh.BoundingSphere;
+            }
+            return bounds;
+        }
+    }
 }

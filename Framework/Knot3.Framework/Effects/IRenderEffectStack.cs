@@ -50,12 +50,12 @@ using Knot3.Framework.Widgets;
 
 namespace Knot3.Framework.Effects
 {
-	public interface IRenderEffectStack
-	{
-		IRenderEffect CurrentEffect { get; }
+    public interface IRenderEffectStack
+    {
+        IRenderEffect CurrentEffect { get; }
 
-		IRenderEffect Pop ();
+        IRenderEffect Pop ();
 
-		void Push (IRenderEffect effect);
-	}
+        void Push (IRenderEffect effect);
+    }
 }

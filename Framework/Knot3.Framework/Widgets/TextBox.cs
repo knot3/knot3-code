@@ -52,88 +52,88 @@ using Knot3.Framework.Widgets;
 
 namespace Knot3.Framework.Widgets
 {
-	/// <summary>
-	/// Ein Widget, der eine Zeichenkette anzeigt.
-	/// </summary>
-	[ExcludeFromCodeCoverageAttribute]
-	public class TextBox : Widget
-	{
-		#region Properties
+    /// <summary>
+    /// Ein Widget, der eine Zeichenkette anzeigt.
+    /// </summary>
+    [ExcludeFromCodeCoverageAttribute]
+    public class TextBox : Widget
+    {
+        #region Properties
 
-		// ein Spritebatch
-		protected SpriteBatch spriteBatch;
+        // ein Spritebatch
+        protected SpriteBatch spriteBatch;
 
-		public string Text { get; set; }
+        public string Text { get; set; }
 
-		#endregion
+        #endregion
 
-		#region Constructors
+        #region Constructors
 
-		/// <summary>
-		/// Erzeugt ein neues TextItem-Objekt und initialisiert dieses mit dem zugehörigen IGameScreen-Objekt.
-		/// Zudem sind Angabe der Zeichenreihenfolge und der Zeichenkette, die angezeigt wird, für Pflicht.
-		/// </summary>
-		public TextBox (IGameScreen screen, DisplayLayer drawOrder, string text)
-		: base (screen, drawOrder)
-		{
-			Text = text;
-			State = WidgetState.None;
-			spriteBatch = new SpriteBatch (screen.Device);
-		}
+        /// <summary>
+        /// Erzeugt ein neues TextItem-Objekt und initialisiert dieses mit dem zugehörigen IGameScreen-Objekt.
+        /// Zudem sind Angabe der Zeichenreihenfolge und der Zeichenkette, die angezeigt wird, für Pflicht.
+        /// </summary>
+        public TextBox (IGameScreen screen, DisplayLayer drawOrder, string text)
+        : base (screen, drawOrder)
+        {
+            Text = text;
+            State = WidgetState.None;
+            spriteBatch = new SpriteBatch (screen.Device);
+        }
 
-		#endregion
+        #endregion
 
-		#region Methods
+        #region Methods
 
-		[ExcludeFromCodeCoverageAttribute]
-		public override void Draw (GameTime time)
-		{
-			base.Draw (time);
+        [ExcludeFromCodeCoverageAttribute]
+        public override void Draw (GameTime time)
+        {
+            base.Draw (time);
 
-			if (IsVisible) {
-				spriteBatch.Begin ();
+            if (IsVisible) {
+                spriteBatch.Begin ();
 
-				// zeichne den Hintergrund
-				spriteBatch.DrawColoredRectangle (BackgroundColor, Bounds);
+                // zeichne den Hintergrund
+                spriteBatch.DrawColoredRectangle (BackgroundColor, Bounds);
 
-				// lade die Schrift
-				SpriteFont font = Design.MenuFont (Screen);
+                // lade die Schrift
+                SpriteFont font = Design.MenuFont (Screen);
 
-				// zeichne die Schrift
-				Color foreground = ForegroundColor * (IsEnabled ? 1f : 0.5f);
-				Vector2 scale = new Vector2 (0.1f, 0.1f) // Standard-Skalierung ist 10%
-				/ new Vector2 (800, 600) // bei 800x600
-				* Screen.Bounds.Size.AbsoluteVector; // Auf aktuelle Auflösung hochrechnen
-				string wrappedText = parseText (Text, scale);
-				spriteBatch.DrawScaledString (font, wrappedText, foreground, Bounds.Position, scale);
+                // zeichne die Schrift
+                Color foreground = ForegroundColor * (IsEnabled ? 1f : 0.5f);
+                Vector2 scale = new Vector2 (0.1f, 0.1f) // Standard-Skalierung ist 10%
+                / new Vector2 (800, 600) // bei 800x600
+                * Screen.Bounds.Size.AbsoluteVector; // Auf aktuelle Auflösung hochrechnen
+                string wrappedText = parseText (Text, scale);
+                spriteBatch.DrawScaledString (font, wrappedText, foreground, Bounds.Position, scale);
 
-				spriteBatch.End ();
-			}
-		}
+                spriteBatch.End ();
+            }
+        }
 
-		private String parseText (String text, Vector2 scale)
-		{
-			// lade die Schrift
-			SpriteFont font = Design.MenuFont (Screen);
-			// berechne die Skalierung der schrift
-			//spriteBatch.DrawStringInRectangle (font, parseText (Text), foreground, Bounds, AlignX, AlignY);
+        private String parseText (String text, Vector2 scale)
+        {
+            // lade die Schrift
+            SpriteFont font = Design.MenuFont (Screen);
+            // berechne die Skalierung der schrift
+            //spriteBatch.DrawStringInRectangle (font, parseText (Text), foreground, Bounds, AlignX, AlignY);
 
-			String line = String.Empty;
-			String returnString = String.Empty;
-			String[] wordArray = Regex.Split (text, @"(?<=[.,; !])");
+            String line = String.Empty;
+            String returnString = String.Empty;
+            String[] wordArray = Regex.Split (text, @"(?<=[.,; !])");
 
-			foreach (String word in wordArray) {
-				if ((font.MeasureString (line + word) * scale).X > Bounds.Rectangle.Width) {
-					returnString = returnString + line + '\n';
-					line = String.Empty;
-				}
+            foreach (String word in wordArray) {
+                if ((font.MeasureString (line + word) * scale).X > Bounds.Rectangle.Width) {
+                    returnString = returnString + line + '\n';
+                    line = String.Empty;
+                }
 
-				line = line + word;
-			}
+                line = line + word;
+            }
 
-			return returnString + line;
-		}
+            return returnString + line;
+        }
 
-		#endregion
-	}
+        #endregion
+    }
 }

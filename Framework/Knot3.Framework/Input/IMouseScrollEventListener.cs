@@ -49,34 +49,34 @@ using Knot3.Framework.Utilities;
 
 namespace Knot3.Framework.Input
 {
-	public interface IMouseScrollEventListener
-	{
-		#region Properties
+    public interface IMouseScrollEventListener
+    {
+        #region Properties
 
-		/// <summary>
-		/// Die Eingabepriorität.
-		/// </summary>
-		DisplayLayer Index { get; }
+        /// <summary>
+        /// Die Eingabepriorität.
+        /// </summary>
+        DisplayLayer Index { get; }
 
-		/// <summary>
-		/// Zeigt an, ob die Klasse zur Zeit auf Mausrad-Bewegungen reagiert.
-		/// </summary>
-		bool IsMouseScrollEventEnabled { get; }
+        /// <summary>
+        /// Zeigt an, ob die Klasse zur Zeit auf Mausrad-Bewegungen reagiert.
+        /// </summary>
+        bool IsMouseScrollEventEnabled { get; }
 
-		#endregion
+        #endregion
 
-		#region Methods
+        #region Methods
 
-		/// <summary>
-		/// Die Ausmaße des von der Klasse repräsentierten Objektes.
-		/// </summary>
-		Bounds MouseScrollBounds { get; }
+        /// <summary>
+        /// Die Ausmaße des von der Klasse repräsentierten Objektes.
+        /// </summary>
+        Bounds MouseScrollBounds { get; }
 
-		/// <summary>
-		/// Die Reaktion auf ein Scrollen. Der Wert ist relativ zum letzten Frame.
-		/// </summary>
-		void OnScroll (int scrollWheelValue,GameTime time);
+        /// <summary>
+        /// Die Reaktion auf ein Scrollen. Der Wert ist relativ zum letzten Frame.
+        /// </summary>
+        void OnScroll (int scrollWheelValue,GameTime time);
 
-		#endregion
-	}
+        #endregion
+    }
 }

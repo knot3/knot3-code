@@ -49,69 +49,69 @@ using Knot3.Framework.Utilities;
 
 namespace Knot3.Framework.Input
 {
-	/// <summary>
-	/// Repräsentiert einen Mauszeiger.
-	/// </summary>
-	[ExcludeFromCodeCoverageAttribute]
-	public sealed class MousePointer : DrawableGameScreenComponent
-	{
-		private SpriteBatch spriteBatch;
-		private Texture2D cursorTex;
+    /// <summary>
+    /// Repräsentiert einen Mauszeiger.
+    /// </summary>
+    [ExcludeFromCodeCoverageAttribute]
+    public sealed class MousePointer : DrawableGameScreenComponent
+    {
+        private SpriteBatch spriteBatch;
+        private Texture2D cursorTex;
 
-		#region Constructors
+        #region Constructors
 
-		/// <summary>
-		/// Erstellt einen neuen Mauszeiger für den angegebenen Spielzustand.
-		/// </summary>
-		public MousePointer (IGameScreen screen)
-		: base (screen, DisplayLayer.Cursor)
-		{
-			cursorTex = Screen.LoadTexture ("cursor");
-			spriteBatch = new SpriteBatch (screen.Device);
-		}
+        /// <summary>
+        /// Erstellt einen neuen Mauszeiger für den angegebenen Spielzustand.
+        /// </summary>
+        public MousePointer (IGameScreen screen)
+        : base (screen, DisplayLayer.Cursor)
+        {
+            cursorTex = Screen.LoadTexture ("cursor");
+            spriteBatch = new SpriteBatch (screen.Device);
+        }
 
-		#endregion
+        #endregion
 
-		#region Methods
+        #region Methods
 
-		/// <summary>
-		/// Zeichnet den Mauszeiger.
-		/// </summary>
-		[ExcludeFromCodeCoverageAttribute]
-		public override void Draw (GameTime time)
-		{
-			DrawCursor (time);
-		}
+        /// <summary>
+        /// Zeichnet den Mauszeiger.
+        /// </summary>
+        [ExcludeFromCodeCoverageAttribute]
+        public override void Draw (GameTime time)
+        {
+            DrawCursor (time);
+        }
 
-		private void DrawCursor (GameTime time)
-		{
-			if (!SystemInfo.IsRunningOnLinux ()) {
-				spriteBatch.Begin ();
+        private void DrawCursor (GameTime time)
+        {
+            if (!SystemInfo.IsRunningOnLinux ()) {
+                spriteBatch.Begin ();
 
-				if (Screen.InputManager.GrabMouseMovement || Screen.InputManager.CurrentInputAction == InputAction.CameraTargetMove
-				        || (Screen.InputManager.CurrentInputAction == InputAction.ArcballMove
-				            && (Screen.InputManager.CurrentMouseState.LeftButton == ButtonState.Pressed
-				                || Screen.InputManager.CurrentMouseState.RightButton == ButtonState.Pressed))) {
-					//spriteBatch.Draw (cursorTex, Screen.Device.Viewport.Center (), Color.White);
-				}
-				else {
-					spriteBatch.Draw (
-					    cursorTex,
-					    Screen.InputManager.CurrentMousePosition.AbsoluteVector * Config.Default ["video", "Supersamples", 1],
-					    null,
-					    Color.White,
-					    0f,
-					    Vector2.Zero,
-					    Vector2.One * Config.Default ["video", "Supersamples", 1],
-					    SpriteEffects.None,
-					    1f
-					);
-				}
+                if (Screen.InputManager.GrabMouseMovement || Screen.InputManager.CurrentInputAction == InputAction.CameraTargetMove
+                        || (Screen.InputManager.CurrentInputAction == InputAction.ArcballMove
+                            && (Screen.InputManager.CurrentMouseState.LeftButton == ButtonState.Pressed
+                                || Screen.InputManager.CurrentMouseState.RightButton == ButtonState.Pressed))) {
+                    //spriteBatch.Draw (cursorTex, Screen.Device.Viewport.Center (), Color.White);
+                }
+                else {
+                    spriteBatch.Draw (
+                        cursorTex,
+                        Screen.InputManager.CurrentMousePosition.AbsoluteVector * Config.Default ["video", "Supersamples", 1],
+                        null,
+                        Color.White,
+                        0f,
+                        Vector2.Zero,
+                        Vector2.One * Config.Default ["video", "Supersamples", 1],
+                        SpriteEffects.None,
+                        1f
+                    );
+                }
 
-				spriteBatch.End ();
-			}
-		}
+                spriteBatch.End ();
+            }
+        }
 
-		#endregion
-	}
+        #endregion
+    }
 }

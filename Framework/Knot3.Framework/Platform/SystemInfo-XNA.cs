@@ -48,26 +48,26 @@ using Knot3.Framework.Utilities;
 
 namespace Knot3.Framework.Platform
 {
-	public static partial class SystemInfo
-	{
-		public static bool IsRunningOnMono ()
-		{
-			return false;
-		}
+    public static partial class SystemInfo
+    {
+        public static bool IsRunningOnMono ()
+        {
+            return false;
+        }
 
-		public static bool IsRunningOnMonogame ()
-		{
-			return false;
-		}
+        public static bool IsRunningOnMonogame ()
+        {
+            return false;
+        }
 
-		public static bool IsRunningOnLinux ()
-		{
-			return false;
-		}
+        public static bool IsRunningOnLinux ()
+        {
+            return false;
+        }
 
-		public static bool IsRunningOnWindows ()
-		{
-			return true;
-		}
-	}
+        public static bool IsRunningOnWindows ()
+        {
+            return true;
+        }
+    }
 }

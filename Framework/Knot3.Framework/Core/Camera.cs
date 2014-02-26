@@ -53,325 +53,325 @@ using Knot3.Framework.Widgets;
 
 namespace Knot3.Framework.Core
 {
-	/// <summary>
-	/// Jede Instanz der World-Klasse hält eine für diese Spielwelt verwendete Kamera als Attribut.
-	/// Die Hauptfunktion der Kamera-Klasse ist das Berechnen der drei Matrizen, die für die Positionierung
-	/// und Skalierung von 3D-Objekten in einer bestimmten Spielwelt benötigt werden, der View-, World- und Projection-Matrix.
-	/// Um diese Matrizen zu berechnen, benötigt die Kamera unter Anderem Informationen über die aktuelle Kamera-Position,
-	/// das aktuelle Kamera-Ziel und das Field of View.
-	/// </summary>
-	public sealed class Camera : GameScreenComponent
-	{
-		#region Properties
+    /// <summary>
+    /// Jede Instanz der World-Klasse hält eine für diese Spielwelt verwendete Kamera als Attribut.
+    /// Die Hauptfunktion der Kamera-Klasse ist das Berechnen der drei Matrizen, die für die Positionierung
+    /// und Skalierung von 3D-Objekten in einer bestimmten Spielwelt benötigt werden, der View-, World- und Projection-Matrix.
+    /// Um diese Matrizen zu berechnen, benötigt die Kamera unter Anderem Informationen über die aktuelle Kamera-Position,
+    /// das aktuelle Kamera-Ziel und das Field of View.
+    /// </summary>
+    public sealed class Camera : GameScreenComponent
+    {
+        #region Properties
 
-		private Vector3 _position;
+        private Vector3 _position;
 
-		/// <summary>
-		/// Die Position der Kamera.
-		/// </summary>
-		public Vector3 Position
-		{
-			get { return _position; }
-			set {
-				OnViewChanged ();
-				if ((value.X.Abs () <= MaxPositionDistance && value.Y.Abs () <= MaxPositionDistance
-				        && value.Z.Abs () <= MaxPositionDistance) || MaxPositionDistance == 0) {
-					_position = value;
-				}
-			}
-		}
+        /// <summary>
+        /// Die Position der Kamera.
+        /// </summary>
+        public Vector3 Position
+        {
+            get { return _position; }
+            set {
+                OnViewChanged ();
+                if ((value.X.Abs () <= MaxPositionDistance && value.Y.Abs () <= MaxPositionDistance
+                        && value.Z.Abs () <= MaxPositionDistance) || MaxPositionDistance == 0) {
+                    _position = value;
+                }
+            }
+        }
 
-		private Vector3 _target;
+        private Vector3 _target;
 
-		/// <summary>
-		/// Das Ziel der Kamera.
-		/// </summary>
-		public Vector3 Target
-		{
-			get { return _target; }
-			set {
-				OnViewChanged ();
-				_target = value;
-			}
-		}
+        /// <summary>
+        /// Das Ziel der Kamera.
+        /// </summary>
+        public Vector3 Target
+        {
+            get { return _target; }
+            set {
+                OnViewChanged ();
+                _target = value;
+            }
+        }
 
-		private float _foV;
+        private float _foV;
 
-		/// <summary>
-		/// Das Sichtfeld.
-		/// </summary>
-		public float FoV
-		{
-			get { return _foV; }
-			set {
-				_foV = MathHelper.Clamp (value, 10, 70);
-				OnViewChanged ();
-			}
-		}
+        /// <summary>
+        /// Das Sichtfeld.
+        /// </summary>
+        public float FoV
+        {
+            get { return _foV; }
+            set {
+                _foV = MathHelper.Clamp (value, 10, 70);
+                OnViewChanged ();
+            }
+        }
 
-		/// <summary>
-		/// Die View-Matrix wird über die statische Methode CreateLookAt der Klasse Matrix des XNA-Frameworks
-		/// mit Matrix.CreateLookAt (Position, Target, Vector3.Up) berechnet.
-		/// </summary>
-		public Matrix ViewMatrix { get; private set; }
+        /// <summary>
+        /// Die View-Matrix wird über die statische Methode CreateLookAt der Klasse Matrix des XNA-Frameworks
+        /// mit Matrix.CreateLookAt (Position, Target, Vector3.Up) berechnet.
+        /// </summary>
+        public Matrix ViewMatrix { get; private set; }
 
-		/// <summary>
-		/// Die World-Matrix wird mit Matrix.CreateFromYawPitchRoll und den drei Rotationswinkeln berechnet.
-		/// </summary>
-		public Matrix WorldMatrix { get; private set; }
+        /// <summary>
+        /// Die World-Matrix wird mit Matrix.CreateFromYawPitchRoll und den drei Rotationswinkeln berechnet.
+        /// </summary>
+        public Matrix WorldMatrix { get; private set; }
 
-		/// <summary>
-		/// Die Projektionsmatrix wird über die statische XNA-Methode Matrix.CreatePerspectiveFieldOfView berechnet.
-		/// </summary>
-		public Matrix ProjectionMatrix { get; private set; }
+        /// <summary>
+        /// Die Projektionsmatrix wird über die statische XNA-Methode Matrix.CreatePerspectiveFieldOfView berechnet.
+        /// </summary>
+        public Matrix ProjectionMatrix { get; private set; }
 
-		/// <summary>
-		/// Berechnet ein Bounding-Frustum, das benötigt wird, um festzustellen, ob ein 3D-Objekt sich im Blickfeld des Spielers befindet.
-		/// </summary>
-		public BoundingFrustum ViewFrustum { get; private set; }
+        /// <summary>
+        /// Berechnet ein Bounding-Frustum, das benötigt wird, um festzustellen, ob ein 3D-Objekt sich im Blickfeld des Spielers befindet.
+        /// </summary>
+        public BoundingFrustum ViewFrustum { get; private set; }
 
-		/// <summary>
-		/// Eine Referenz auf die Spielwelt, für welche die Kamera zuständig ist.
-		/// </summary>
-		private World World { get; set; }
+        /// <summary>
+        /// Eine Referenz auf die Spielwelt, für welche die Kamera zuständig ist.
+        /// </summary>
+        private World World { get; set; }
 
-		/// <summary>
-		/// Die Rotationswinkel.
-		/// </summary>
-		public Angles3 Rotation { get; set; }
+        /// <summary>
+        /// Die Rotationswinkel.
+        /// </summary>
+        public Angles3 Rotation { get; set; }
 
-		public Vector3 UpVector { get; private set; }
+        public Vector3 UpVector { get; private set; }
 
-		public float MaxPositionDistance { get; set; }
+        public float MaxPositionDistance { get; set; }
 
-		public Action OnViewChanged = () => {};
-		private float aspectRatio;
-		private float nearPlane;
-		private float farPlane;
-		private Vector3 defaultPosition = new Vector3 (400, 400, 700);
+        public Action OnViewChanged = () => {};
+        private float aspectRatio;
+        private float nearPlane;
+        private float farPlane;
+        private Vector3 defaultPosition = new Vector3 (400, 400, 700);
 
-		#endregion
+        #endregion
 
-		#region Constructors
+        #region Constructors
 
-		/// <summary>
-		/// Erstellt eine neue Kamera in einem bestimmten IGameScreen für eine bestimmte Spielwelt.
-		/// </summary>
-		public Camera (IGameScreen screen, World world)
-		: base (screen, DisplayLayer.None)
-		{
-			World = world;
-			Position = defaultPosition;
-			Target = Vector3.Zero;
-			UpVector = Vector3.Up;
-			Rotation = Angles3.Zero;
-			MaxPositionDistance = 5000;
+        /// <summary>
+        /// Erstellt eine neue Kamera in einem bestimmten IGameScreen für eine bestimmte Spielwelt.
+        /// </summary>
+        public Camera (IGameScreen screen, World world)
+        : base (screen, DisplayLayer.None)
+        {
+            World = world;
+            Position = defaultPosition;
+            Target = Vector3.Zero;
+            UpVector = Vector3.Up;
+            Rotation = Angles3.Zero;
+            MaxPositionDistance = 5000;
 
-			FoV = 60;
-			nearPlane = 0.5f;
-			farPlane = 15000.0f;
+            FoV = 60;
+            nearPlane = 0.5f;
+            farPlane = 15000.0f;
 
-			UpdateMatrices (null);
-		}
+            UpdateMatrices (null);
+        }
 
-		#endregion
+        #endregion
 
-		#region Methods
+        #region Methods
 
-		/// <summary>
-		/// Die Blickrichtung.
-		/// </summary>
-		public Vector3 PositionToTargetDirection
-		{
-			get {
-				return Vector3.Normalize (Target - Position);
-			}
-		}
+        /// <summary>
+        /// Die Blickrichtung.
+        /// </summary>
+        public Vector3 PositionToTargetDirection
+        {
+            get {
+                return Vector3.Normalize (Target - Position);
+            }
+        }
 
-		public Vector3 PositionToArcballTargetDirection
-		{
-			get {
-				return Vector3.Normalize (ArcballTarget - Position);
-			}
-		}
+        public Vector3 PositionToArcballTargetDirection
+        {
+            get {
+                return Vector3.Normalize (ArcballTarget - Position);
+            }
+        }
 
-		/// <summary>
-		/// Der Abstand zwischen der Kamera und dem Kamera-Ziel.
-		/// </summary>
-		public float PositionToTargetDistance
-		{
-			get {
-				return Position.DistanceTo (Target);
-			}
-			set {
-				Position = Position.SetDistanceTo (Target, value);
-			}
-		}
+        /// <summary>
+        /// Der Abstand zwischen der Kamera und dem Kamera-Ziel.
+        /// </summary>
+        public float PositionToTargetDistance
+        {
+            get {
+                return Position.DistanceTo (Target);
+            }
+            set {
+                Position = Position.SetDistanceTo (Target, value);
+            }
+        }
 
-		public float PositionToArcballTargetDistance
-		{
-			get {
-				return Position.DistanceTo (ArcballTarget);
-			}
-			set {
-				Position = Position.SetDistanceTo (ArcballTarget, value);
-			}
-		}
+        public float PositionToArcballTargetDistance
+        {
+            get {
+                return Position.DistanceTo (ArcballTarget);
+            }
+            set {
+                Position = Position.SetDistanceTo (ArcballTarget, value);
+            }
+        }
 
-		/// <summary>
-		/// Wird für jeden Frame aufgerufen.
-		/// </summary>
-		[ExcludeFromCodeCoverageAttribute]
-		public override void Update (GameTime time)
-		{
-			// Setze den Viewport auf den der aktuellen Spielwelt
-			Viewport original = Screen.Viewport;
-			Screen.Viewport = World.Viewport;
+        /// <summary>
+        /// Wird für jeden Frame aufgerufen.
+        /// </summary>
+        [ExcludeFromCodeCoverageAttribute]
+        public override void Update (GameTime time)
+        {
+            // Setze den Viewport auf den der aktuellen Spielwelt
+            Viewport original = Screen.Viewport;
+            Screen.Viewport = World.Viewport;
 
-			UpdateMatrices (time);
-			UpdateSmoothMove (time);
+            UpdateMatrices (time);
+            UpdateSmoothMove (time);
 
-			// Setze den Viewport wieder auf den ganzen Screen
-			Screen.Viewport = original;
-		}
+            // Setze den Viewport wieder auf den ganzen Screen
+            Screen.Viewport = original;
+        }
 
-		private void UpdateMatrices (GameTime time)
-		{
-			aspectRatio = Screen.Viewport.AspectRatio;
-			farPlane = MaxPositionDistance * 4;
-			ViewMatrix = Matrix.CreateLookAt (Position, Target, UpVector);
-			WorldMatrix = Matrix.CreateFromYawPitchRoll (Rotation.Y, Rotation.X, Rotation.Z);
-			ProjectionMatrix = Matrix.CreatePerspectiveFieldOfView (MathHelper.ToRadians (FoV), aspectRatio, nearPlane, farPlane);
-			ViewFrustum = new BoundingFrustum (ViewMatrix * ProjectionMatrix);
-		}
+        private void UpdateMatrices (GameTime time)
+        {
+            aspectRatio = Screen.Viewport.AspectRatio;
+            farPlane = MaxPositionDistance * 4;
+            ViewMatrix = Matrix.CreateLookAt (Position, Target, UpVector);
+            WorldMatrix = Matrix.CreateFromYawPitchRoll (Rotation.Y, Rotation.X, Rotation.Z);
+            ProjectionMatrix = Matrix.CreatePerspectiveFieldOfView (MathHelper.ToRadians (FoV), aspectRatio, nearPlane, farPlane);
+            ViewFrustum = new BoundingFrustum (ViewMatrix * ProjectionMatrix);
+        }
 
-		/// <summary>
-		/// Berechnet einen Strahl für die angegebenene 2D-Mausposition.
-		/// </summary>
-		public Ray GetMouseRay (ScreenPoint mousePosition)
-		{
-			Viewport viewport = World.Viewport;
+        /// <summary>
+        /// Berechnet einen Strahl für die angegebenene 2D-Mausposition.
+        /// </summary>
+        public Ray GetMouseRay (ScreenPoint mousePosition)
+        {
+            Viewport viewport = World.Viewport;
 
-			Vector3 nearPoint = new Vector3 (mousePosition.AbsoluteVector, 0);
-			Vector3 farPoint = new Vector3 (mousePosition.AbsoluteVector, 1);
+            Vector3 nearPoint = new Vector3 (mousePosition.AbsoluteVector, 0);
+            Vector3 farPoint = new Vector3 (mousePosition.AbsoluteVector, 1);
 
-			nearPoint = viewport.Unproject (nearPoint, ProjectionMatrix, ViewMatrix, Matrix.Identity);
-			farPoint = viewport.Unproject (farPoint, ProjectionMatrix, ViewMatrix, Matrix.Identity);
+            nearPoint = viewport.Unproject (nearPoint, ProjectionMatrix, ViewMatrix, Matrix.Identity);
+            farPoint = viewport.Unproject (farPoint, ProjectionMatrix, ViewMatrix, Matrix.Identity);
 
-			Vector3 direction = farPoint - nearPoint;
-			direction.Normalize ();
+            Vector3 direction = farPoint - nearPoint;
+            direction.Normalize ();
 
-			return new Ray (nearPoint, direction);
-		}
+            return new Ray (nearPoint, direction);
+        }
 
-		/// <summary>
-		/// Eine Position, um die rotiert werden soll, wenn der User die rechte Maustaste gedrückt hält und die Maus bewegt.
-		/// </summary>
-		public Vector3 ArcballTarget
-		{
-			get {
-				if (World.SelectedObject != null) {
-					return World.SelectedObject.Center ();
-				}
-				else {
-					return Vector3.Zero;
-				}
-			}
-		}
+        /// <summary>
+        /// Eine Position, um die rotiert werden soll, wenn der User die rechte Maustaste gedrückt hält und die Maus bewegt.
+        /// </summary>
+        public Vector3 ArcballTarget
+        {
+            get {
+                if (World.SelectedObject != null) {
+                    return World.SelectedObject.Center ();
+                }
+                else {
+                    return Vector3.Zero;
+                }
+            }
+        }
 
-		public void ResetCamera ()
-		{
-			Position = defaultPosition;
-			Target = new Vector3 (0, 0, 0);
-			Rotation = Angles3.Zero;
-			FoV = 45;
-		}
+        public void ResetCamera ()
+        {
+            Position = defaultPosition;
+            Target = new Vector3 (0, 0, 0);
+            Rotation = Angles3.Zero;
+            FoV = 45;
+        }
 
-		private Vector3? smoothTarget = null;
-		private float smoothDistance = 0f;
-		private float smoothProgress = 0f;
+        private Vector3? smoothTarget = null;
+        private float smoothDistance = 0f;
+        private float smoothProgress = 0f;
 
-		public void StartSmoothMove (Vector3 target, GameTime time)
-		{
-			if (!InSmoothMove) {
-				smoothTarget = target;
-				smoothDistance = System.Math.Abs (Target.DistanceTo (target));
-				smoothProgress = 0f;
-			}
-		}
+        public void StartSmoothMove (Vector3 target, GameTime time)
+        {
+            if (!InSmoothMove) {
+                smoothTarget = target;
+                smoothDistance = System.Math.Abs (Target.DistanceTo (target));
+                smoothProgress = 0f;
+            }
+        }
 
-		public bool InSmoothMove { get { return smoothTarget.HasValue && smoothProgress <= 1f; } }
+        public bool InSmoothMove { get { return smoothTarget.HasValue && smoothProgress <= 1f; } }
 
-		private void UpdateSmoothMove (GameTime time)
-		{
-			if (InSmoothMove) {
-				float distance = MathHelper.SmoothStep (0, smoothDistance, smoothProgress);
+        private void UpdateSmoothMove (GameTime time)
+        {
+            if (InSmoothMove) {
+                float distance = MathHelper.SmoothStep (0, smoothDistance, smoothProgress);
 
-				smoothProgress += 0.05f;
+                smoothProgress += 0.05f;
 
-				//Log.Debug ("distance = ", distance);
-				Target = Target.SetDistanceTo (target: smoothTarget.Value, distance: System.Math.Max (0, smoothDistance - distance));
-				World.Redraw = true;
-			}
-		}
+                //Log.Debug ("distance = ", distance);
+                Target = Target.SetDistanceTo (target: smoothTarget.Value, distance: System.Math.Max (0, smoothDistance - distance));
+                World.Redraw = true;
+            }
+        }
 
-		/// <summary>
-		/// Berechne aus einer 2D-Positon (z.b. Mausposition) die entsprechende Position im 3D-Raum.
-		/// Für die fehlende dritte Koordinate wird eine Angabe einer weiteren 3D-Position benötigt,
-		/// mit der die 3D-(Maus-)Position auf der selben Ebene liegen soll.
-		/// </summary>
-		public Vector3 To3D (ScreenPoint position, Vector3 nearTo)
-		{
-			if (Config.Default ["debug", "unproject", "SelectedObject"] == "NearFarAverage") {
-				Vector3 nearScreenPoint = new Vector3 (position.AbsoluteVector, 0);
-				Vector3 farScreenPoint = new Vector3 (position.AbsoluteVector, 1);
-				Vector3 nearWorldPoint = World.Viewport.Unproject (
-				                             source: nearScreenPoint,
-				                             projection: World.Camera.ProjectionMatrix,
-				                             view: World.Camera.ViewMatrix,
-				                             world: Matrix.Identity
-				                         );
-				Vector3 farWorldPoint = World.Viewport.Unproject (
-				                            source: farScreenPoint,
-				                            projection: World.Camera.ProjectionMatrix,
-				                            view: World.Camera.ViewMatrix,
-				                            world: Matrix.Identity
-				                        );
+        /// <summary>
+        /// Berechne aus einer 2D-Positon (z.b. Mausposition) die entsprechende Position im 3D-Raum.
+        /// Für die fehlende dritte Koordinate wird eine Angabe einer weiteren 3D-Position benötigt,
+        /// mit der die 3D-(Maus-)Position auf der selben Ebene liegen soll.
+        /// </summary>
+        public Vector3 To3D (ScreenPoint position, Vector3 nearTo)
+        {
+            if (Config.Default ["debug", "unproject", "SelectedObject"] == "NearFarAverage") {
+                Vector3 nearScreenPoint = new Vector3 (position.AbsoluteVector, 0);
+                Vector3 farScreenPoint = new Vector3 (position.AbsoluteVector, 1);
+                Vector3 nearWorldPoint = World.Viewport.Unproject (
+                                             source: nearScreenPoint,
+                                             projection: World.Camera.ProjectionMatrix,
+                                             view: World.Camera.ViewMatrix,
+                                             world: Matrix.Identity
+                                         );
+                Vector3 farWorldPoint = World.Viewport.Unproject (
+                                            source: farScreenPoint,
+                                            projection: World.Camera.ProjectionMatrix,
+                                            view: World.Camera.ViewMatrix,
+                                            world: Matrix.Identity
+                                        );
 
-				Vector3 direction = farWorldPoint - nearWorldPoint;
+                Vector3 direction = farWorldPoint - nearWorldPoint;
 
-				float zFactor = -nearWorldPoint.Y / direction.Y;
-				Vector3 zeroWorldPoint = nearWorldPoint + direction * zFactor;
-				return zeroWorldPoint;
-			}
-			else {
-				Vector3 screenLocation = World.Viewport.Project (
-				                             source: nearTo,
-				                             projection: World.Camera.ProjectionMatrix,
-				                             view: World.Camera.ViewMatrix,
-				                             world: World.Camera.WorldMatrix
-				                         );
-				Vector3 currentMousePosition = World.Viewport.Unproject (
-				                                   source: new Vector3 (position.AbsoluteVector, screenLocation.Z),
-				                                   projection: World.Camera.ProjectionMatrix,
-				                                   view: World.Camera.ViewMatrix,
-				                                   world: Matrix.Identity
-				                               );
-				return currentMousePosition;
-			}
-		}
+                float zFactor = -nearWorldPoint.Y / direction.Y;
+                Vector3 zeroWorldPoint = nearWorldPoint + direction * zFactor;
+                return zeroWorldPoint;
+            }
+            else {
+                Vector3 screenLocation = World.Viewport.Project (
+                                             source: nearTo,
+                                             projection: World.Camera.ProjectionMatrix,
+                                             view: World.Camera.ViewMatrix,
+                                             world: World.Camera.WorldMatrix
+                                         );
+                Vector3 currentMousePosition = World.Viewport.Unproject (
+                                                   source: new Vector3 (position.AbsoluteVector, screenLocation.Z),
+                                                   projection: World.Camera.ProjectionMatrix,
+                                                   view: World.Camera.ViewMatrix,
+                                                   world: Matrix.Identity
+                                               );
+                return currentMousePosition;
+            }
+        }
 
-		public Vector2 To2D (Vector3 position)
-		{
-			Vector3 screenLocation = World.Viewport.Project (
-			                             source: position,
-			                             projection: World.Camera.ProjectionMatrix,
-			                             view: World.Camera.ViewMatrix,
-			                             world: World.Camera.WorldMatrix
-			                         );
-			return new Vector2 (screenLocation.X, screenLocation.Y);
-		}
+        public Vector2 To2D (Vector3 position)
+        {
+            Vector3 screenLocation = World.Viewport.Project (
+                                         source: position,
+                                         projection: World.Camera.ProjectionMatrix,
+                                         view: World.Camera.ViewMatrix,
+                                         world: World.Camera.WorldMatrix
+                                     );
+            return new Vector2 (screenLocation.X, screenLocation.Y);
+        }
 
-		#endregion
-	}
+        #endregion
+    }
 }

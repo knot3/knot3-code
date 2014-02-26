@@ -40,27 +40,27 @@ using Knot3.Framework.Storage;
 
 namespace Knot3.UnitTests
 {
-	[SetUpFixture]
-	public class GlobalSetup
-	{
-		[SetUp]
-		public void RunBeforeAnyTests ()
-		{
-			Log.Message ("Start Unit Tests...");
+    [SetUpFixture]
+    public class GlobalSetup
+    {
+        [SetUp]
+        public void RunBeforeAnyTests ()
+        {
+            Log.Message ("Start Unit Tests...");
 
-			Directory.Delete (TestHelper.TempDirectory, true);
-			Directory.CreateDirectory (TestHelper.TempDirectory);
+            Directory.Delete (TestHelper.TempDirectory, true);
+            Directory.CreateDirectory (TestHelper.TempDirectory);
 
-			// Temporäre Verzeichnisse nur für die Tests zuweisen!
-			SystemInfo.RelativeBaseDirectory = TestHelper.TempDirectory;
-			SystemInfo.SettingsDirectory = TestHelper.TempDirectory;
-			Config.Default = new ConfigFile (TestHelper.TempDirectory + "knot3.ini");
-		}
+            // Temporäre Verzeichnisse nur für die Tests zuweisen!
+            SystemInfo.RelativeBaseDirectory = TestHelper.TempDirectory;
+            SystemInfo.SettingsDirectory = TestHelper.TempDirectory;
+            Config.Default = new ConfigFile (TestHelper.TempDirectory + "knot3.ini");
+        }
 
-		[TearDown]
-		public void RunAfterAnyTests ()
-		{
-			Log.Message ("Stop Unit Tests...");
-		}
-	}
+        [TearDown]
+        public void RunAfterAnyTests ()
+        {
+            Log.Message ("Stop Unit Tests...");
+        }
+    }
 }

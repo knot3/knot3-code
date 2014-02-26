@@ -55,10 +55,10 @@ using Knot3.Game.Widgets;
 
 namespace Knot3.Game.Data
 {
-	/// <summary>
-	/// Diese Schnittstelle enthält Methoden, die von Speicherformaten für Challenges implementiert werden müssen.
-	/// </summary>
-	public interface IChallengeIO : ISavegameIO<Challenge, ChallengeMetaData>
-	{
-	}
+    /// <summary>
+    /// Diese Schnittstelle enthält Methoden, die von Speicherformaten für Challenges implementiert werden müssen.
+    /// </summary>
+    public interface IChallengeIO : ISavegameIO<Challenge, ChallengeMetaData>
+    {
+    }
 }

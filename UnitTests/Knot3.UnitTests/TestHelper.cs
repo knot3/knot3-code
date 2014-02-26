@@ -46,46 +46,46 @@ using Knot3.Game.Utilities;
 
 namespace Knot3.UnitTests
 {
-	public static class TestHelper
-	{
-		private static Random random = new Random ();
+    public static class TestHelper
+    {
+        private static Random random = new Random ();
 
-		public static string TestResourcesDirectory
-		{
-			get {
-				return SystemInfo.RelativeBaseDirectory + "Resources" + SystemInfo.PathSeparator;
-			}
-		}
+        public static string TestResourcesDirectory
+        {
+            get {
+                return SystemInfo.RelativeBaseDirectory + "Resources" + SystemInfo.PathSeparator;
+            }
+        }
 
-		public static string TempDirectory
-		{
-			get {
-				string directory;
-				/*
-				if (SystemInfo.IsRunningOnLinux ()) {
-					directory = "/var/tmp/knot3-tests/";
-				}
-				else {
-					directory = Path.GetTempPath () + "\\Knot3-Tests\\";
-				}
-				*/
-				directory = "tmp" + SystemInfo.PathSeparator;
-				Directory.CreateDirectory (directory);
-				return directory;
-			}
-		}
+        public static string TempDirectory
+        {
+            get {
+                string directory;
+                /*
+                if (SystemInfo.IsRunningOnLinux ()) {
+                	directory = "/var/tmp/knot3-tests/";
+                }
+                else {
+                	directory = Path.GetTempPath () + "\\Knot3-Tests\\";
+                }
+                */
+                directory = "tmp" + SystemInfo.PathSeparator;
+                Directory.CreateDirectory (directory);
+                return directory;
+            }
+        }
 
-		public static string RandomFilename (string extension)
-		{
-			string filename = TestHelper.TempDirectory + "test" + (random.Next () % 100) + "." + extension;
+        public static string RandomFilename (string extension)
+        {
+            string filename = TestHelper.TempDirectory + "test" + (random.Next () % 100) + "." + extension;
 
-			try {
-				File.Delete (filename);
-			}
-			catch (IOException) {
-			}
+            try {
+                File.Delete (filename);
+            }
+            catch (IOException) {
+            }
 
-			return filename;
-		}
-	}
+            return filename;
+        }
+    }
 }

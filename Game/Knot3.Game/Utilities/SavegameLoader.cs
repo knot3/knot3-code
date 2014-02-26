@@ -58,74 +58,74 @@ using Knot3.Game.Widgets;
 
 namespace Knot3.Game.Utilities
 {
-	public class SavegameLoader<Savegame, SavegameMetaData>
-	{
-		public ISavegameIO<Savegame, SavegameMetaData> FileFormat { get; set; }
+    public class SavegameLoader<Savegame, SavegameMetaData>
+    {
+        public ISavegameIO<Savegame, SavegameMetaData> FileFormat { get; set; }
 
-		public FileIndex fileIndex { get; private set; }
+        public FileIndex fileIndex { get; private set; }
 
-		public string IndexName;
-		private Action<string, SavegameMetaData> OnSavegameFound;
+        public string IndexName;
+        private Action<string, SavegameMetaData> OnSavegameFound;
 
-		public SavegameLoader (ISavegameIO<Savegame, SavegameMetaData> fileFormat, string indexName)
-		{
-			FileFormat = fileFormat;
-			IndexName = indexName;
-		}
+        public SavegameLoader (ISavegameIO<Savegame, SavegameMetaData> fileFormat, string indexName)
+        {
+            FileFormat = fileFormat;
+            IndexName = indexName;
+        }
 
-		public void FindSavegames (Action<string, SavegameMetaData> onSavegameFound)
-		{
-			// Erstelle einen neuen Index, der eine Datei mit dem angegeben Indexnamen im Spielstandverzeichnis einliest
-			fileIndex = new FileIndex (SystemInfo.SavegameDirectory + SystemInfo.PathSeparator.ToString () + IndexName + ".txt");
+        public void FindSavegames (Action<string, SavegameMetaData> onSavegameFound)
+        {
+            // Erstelle einen neuen Index, der eine Datei mit dem angegeben Indexnamen im Spielstandverzeichnis einliest
+            fileIndex = new FileIndex (SystemInfo.SavegameDirectory + SystemInfo.PathSeparator.ToString () + IndexName + ".txt");
 
-			// Diese Verzeichnisse werden nach Spielständen durchsucht
-			string[] searchDirectories = new string[] {
-				SystemInfo.BaseDirectory,
-				SystemInfo.SavegameDirectory
-			};
-			Log.Debug ("Search for Savegames: ", string.Join (", ", searchDirectories));
+            // Diese Verzeichnisse werden nach Spielständen durchsucht
+            string[] searchDirectories = new string[] {
+                SystemInfo.BaseDirectory,
+                SystemInfo.SavegameDirectory
+            };
+            Log.Debug ("Search for Savegames: ", string.Join (", ", searchDirectories));
 
-			// Suche nach Spielstanddateien und fülle das Menü auf
-			OnSavegameFound = onSavegameFound;
-			FileUtility.SearchFiles (searchDirectories, FileFormat.FileExtensions, AddFileToList);
-		}
+            // Suche nach Spielstanddateien und fülle das Menü auf
+            OnSavegameFound = onSavegameFound;
+            FileUtility.SearchFiles (searchDirectories, FileFormat.FileExtensions, AddFileToList);
+        }
 
-		/// <summary>
-		/// Diese Methode wird für jede gefundene Spielstanddatei aufgerufen
-		/// </summary>
-		private void AddFileToList (string filename)
-		{
-			// Lese die Datei ein und erstelle einen Hashcode
-			string hashcode = FileUtility.GetHash (filename);
+        /// <summary>
+        /// Diese Methode wird für jede gefundene Spielstanddatei aufgerufen
+        /// </summary>
+        private void AddFileToList (string filename)
+        {
+            // Lese die Datei ein und erstelle einen Hashcode
+            string hashcode = FileUtility.GetHash (filename);
 
-			// Ist dieser Hashcode im Index enthalten?
-			// Dann wäre der Spielstand gültig, sonst ungültig oder unbekannt.
-			bool isValid = fileIndex.Contains (hashcode);
+            // Ist dieser Hashcode im Index enthalten?
+            // Dann wäre der Spielstand gültig, sonst ungültig oder unbekannt.
+            bool isValid = fileIndex.Contains (hashcode);
 
-			// Wenn der Spielstand ungültig oder unbekannt ist...
-			if (!isValid) {
-				try {
-					// Lade den Knoten und prüfe, ob Exceptions auftreten
-					FileFormat.Load (filename);
-					// Keine Exceptions? Dann ist enthält die Datei einen gültigen Knoten!
-					isValid = true;
-					fileIndex.Add (hashcode);
-				}
-				catch (Exception ex) {
-					// Es ist eine Exception aufgetreten, der Knoten ist offenbar ungültig.
-					Log.Debug (ex);
-					isValid = false;
-				}
-			}
+            // Wenn der Spielstand ungültig oder unbekannt ist...
+            if (!isValid) {
+                try {
+                    // Lade den Knoten und prüfe, ob Exceptions auftreten
+                    FileFormat.Load (filename);
+                    // Keine Exceptions? Dann ist enthält die Datei einen gültigen Knoten!
+                    isValid = true;
+                    fileIndex.Add (hashcode);
+                }
+                catch (Exception ex) {
+                    // Es ist eine Exception aufgetreten, der Knoten ist offenbar ungültig.
+                    Log.Debug (ex);
+                    isValid = false;
+                }
+            }
 
-			// Falls der Knoten gültig ist, entweder laut Index oder nach Überprüfung, dann...
-			if (isValid) {
-				// Lade die Metadaten
-				SavegameMetaData meta = FileFormat.LoadMetaData (filename);
+            // Falls der Knoten gültig ist, entweder laut Index oder nach Überprüfung, dann...
+            if (isValid) {
+                // Lade die Metadaten
+                SavegameMetaData meta = FileFormat.LoadMetaData (filename);
 
-				// Rufe die Callback-Funktion auf
-				OnSavegameFound (filename, meta);
-			}
-		}
-	}
+                // Rufe die Callback-Funktion auf
+                OnSavegameFound (filename, meta);
+            }
+        }
+    }
 }

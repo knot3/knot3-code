@@ -52,106 +52,106 @@ using Knot3.Framework.Widgets;
 
 namespace Knot3.Framework.Widgets
 {
-	/// <summary>
-	/// Eine Schaltfläche, der eine Zeichenkette anzeigt und auf einen Linksklick reagiert.
-	/// </summary>
-	[ExcludeFromCodeCoverageAttribute]
-	public class MenuEntry : MenuItem
-	{
-		#region Properties
+    /// <summary>
+    /// Eine Schaltfläche, der eine Zeichenkette anzeigt und auf einen Linksklick reagiert.
+    /// </summary>
+    [ExcludeFromCodeCoverageAttribute]
+    public class MenuEntry : MenuItem
+    {
+        #region Properties
 
-		/// <summary>
-		/// Die Aktion, die ausgeführt wird, wenn der Spieler auf die Schaltfläche klickt.
-		/// </summary>
-		public Action<GameTime> OnClick { get; set; }
+        /// <summary>
+        /// Die Aktion, die ausgeführt wird, wenn der Spieler auf die Schaltfläche klickt.
+        /// </summary>
+        public Action<GameTime> OnClick { get; set; }
 
-		/// <summary>
-		/// Wie viel Prozent der Name des Eintrags (auf der linken Seite) von der Breite des Eintrags einnehmen darf.
-		/// </summary>
-		public override float NameWidth
-		{
-			get { return 1.00f; }
-			set { throw new ArgumentException ("You can't change the NameWidth of a MenuButton!"); }
-		}
+        /// <summary>
+        /// Wie viel Prozent der Name des Eintrags (auf der linken Seite) von der Breite des Eintrags einnehmen darf.
+        /// </summary>
+        public override float NameWidth
+        {
+            get { return 1.00f; }
+            set { throw new ArgumentException ("You can't change the NameWidth of a MenuButton!"); }
+        }
 
-		/// <summary>
-		/// Wie viel Prozent der Wert des Eintrags (auf der rechten Seite) von der Breite des Eintrags einnehmen darf.
-		/// </summary>
-		public override float ValueWidth
-		{
-			get { return 0.00f; }
-			set { throw new ArgumentException ("You can't change the ValueWidth of a MenuButton!"); }
-		}
+        /// <summary>
+        /// Wie viel Prozent der Wert des Eintrags (auf der rechten Seite) von der Breite des Eintrags einnehmen darf.
+        /// </summary>
+        public override float ValueWidth
+        {
+            get { return 0.00f; }
+            set { throw new ArgumentException ("You can't change the ValueWidth of a MenuButton!"); }
+        }
 
-		public bool IsSelectable { get; set; }
+        public bool IsSelectable { get; set; }
 
-		#endregion
+        #endregion
 
-		#region Constructors
+        #region Constructors
 
-		/// <summary>
-		/// Erzeugt ein neues MenuButton-Objekt und initialisiert dieses mit dem zugehörigen IGameScreen-Objekt.
-		/// Zudem sind Angabe der Zeichenreihenfolge, einer Zeichenkette für den Namen der Schaltfläche
-		/// und der Aktion, welche bei einem Klick ausgeführt wird Pflicht.
-		/// </summary>
-		public MenuEntry (IGameScreen screen, DisplayLayer drawOrder, string name, Action<GameTime> onClick)
-		: base (screen, drawOrder, name)
-		{
-			IsSelectable = true;
-			OnClick = onClick;
-		}
+        /// <summary>
+        /// Erzeugt ein neues MenuButton-Objekt und initialisiert dieses mit dem zugehörigen IGameScreen-Objekt.
+        /// Zudem sind Angabe der Zeichenreihenfolge, einer Zeichenkette für den Namen der Schaltfläche
+        /// und der Aktion, welche bei einem Klick ausgeführt wird Pflicht.
+        /// </summary>
+        public MenuEntry (IGameScreen screen, DisplayLayer drawOrder, string name, Action<GameTime> onClick)
+        : base (screen, drawOrder, name)
+        {
+            IsSelectable = true;
+            OnClick = onClick;
+        }
 
-		#endregion
+        #endregion
 
-		#region Methods
+        #region Methods
 
-		/// <summary>
-		/// Reaktionen auf einen Linksklick.
-		/// </summary>
-		public override void OnLeftClick (Vector2 position, ClickState state, GameTime time)
-		{
-			base.OnLeftClick (position, state, time);
-			if (IsSelectable) {
-				State = WidgetState.Selected;
+        /// <summary>
+        /// Reaktionen auf einen Linksklick.
+        /// </summary>
+        public override void OnLeftClick (Vector2 position, ClickState state, GameTime time)
+        {
+            base.OnLeftClick (position, state, time);
+            if (IsSelectable) {
+                State = WidgetState.Selected;
 
-				if (Menu != null) {
-					foreach (MenuItem item in Menu) {
-						Log.Debug ("State: ", item.State);
-						if (item is MenuEntry && item !=this) {
-							item.State = WidgetState.None;
-						}
-					}
-				}
-			}
+                if (Menu != null) {
+                    foreach (MenuItem item in Menu) {
+                        Log.Debug ("State: ", item.State);
+                        if (item is MenuEntry && item !=this) {
+                            item.State = WidgetState.None;
+                        }
+                    }
+                }
+            }
 
-			OnClick (time);
-		}
+            OnClick (time);
+        }
 
-		/// <summary>
-		/// Reaktionen auf Tasteneingaben.
-		/// </summary>
-		public override void OnKeyEvent (List<Keys> key, KeyEvent keyEvent, GameTime time)
-		{
-			// Log.Debug ("OnKeyEvent: ", key[0]);
-			if (keyEvent == KeyEvent.KeyDown) {
-				OnClick (time);
-			}
-		}
+        /// <summary>
+        /// Reaktionen auf Tasteneingaben.
+        /// </summary>
+        public override void OnKeyEvent (List<Keys> key, KeyEvent keyEvent, GameTime time)
+        {
+            // Log.Debug ("OnKeyEvent: ", key[0]);
+            if (keyEvent == KeyEvent.KeyDown) {
+                OnClick (time);
+            }
+        }
 
-		public override void SetHovered (bool isHovered, GameTime time)
-		{
-			if (State != WidgetState.Selected && Enabled) {
-				base.SetHovered (isHovered, time);
-			}
-		}
+        public override void SetHovered (bool isHovered, GameTime time)
+        {
+            if (State != WidgetState.Selected && Enabled) {
+                base.SetHovered (isHovered, time);
+            }
+        }
 
-		public void AddKey (Keys key)
-		{
-			if (!ValidKeys.Contains (key)) {
-				ValidKeys.Add (key);
-			}
-		}
+        public void AddKey (Keys key)
+        {
+            if (!ValidKeys.Contains (key)) {
+                ValidKeys.Add (key);
+            }
+        }
 
-		#endregion
-	}
+        #endregion
+    }
 }

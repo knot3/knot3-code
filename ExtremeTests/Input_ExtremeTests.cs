@@ -38,7 +38,7 @@ using System.Threading.Tasks;
 
 namespace Knot3.ExtremeTests
 {
-	class ExtremeInputs
-	{
-	}
+    class ExtremeInputs
+    {
+    }
 }

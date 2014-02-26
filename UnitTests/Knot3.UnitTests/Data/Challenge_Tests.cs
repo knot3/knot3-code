@@ -45,15 +45,15 @@ using Knot3.Game.Data;
 
 namespace Knot3.UnitTests.Data
 {
-	/// <summary>
-	/// Zusammenfassungsbeschreibung für Test_Challenge
-	/// </summary>
-	[TestFixture]
-	public class Challenge_Tests
-	{
-		[Test]
-		public void Challenge_Constructor_Tests ()
-		{
-		}
-	}
+    /// <summary>
+    /// Zusammenfassungsbeschreibung für Test_Challenge
+    /// </summary>
+    [TestFixture]
+    public class Challenge_Tests
+    {
+        [Test]
+        public void Challenge_Constructor_Tests ()
+        {
+        }
+    }
 }

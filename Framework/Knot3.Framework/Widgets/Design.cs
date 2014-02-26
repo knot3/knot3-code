@@ -51,46 +51,46 @@ using Knot3.Framework.Widgets;
 
 namespace Knot3.Framework.Widgets
 {
-	[ExcludeFromCodeCoverageAttribute]
-	public static class Design
-	{
-		private static string menuFontName;
+    [ExcludeFromCodeCoverageAttribute]
+    public static class Design
+    {
+        private static string menuFontName;
 
-		public static string MenuFontName
-		{
-			get {
-				return menuFontName;
-			}
-			set {
-				menuFontName = value;
-				menuFont = null;
-			}
-		}
+        public static string MenuFontName
+        {
+            get {
+                return menuFontName;
+            }
+            set {
+                menuFontName = value;
+                menuFont = null;
+            }
+        }
 
-		private static SpriteFont menuFont;
+        private static SpriteFont menuFont;
 
-		public static SpriteFont MenuFont (IGameScreen screen)
-		{
-			if (menuFont != null) {
-				return menuFont;
-			}
-			else {
-				// lade die Schriftart der Menüs in das private Attribut
-				menuFont = screen.LoadFont ("font-menu");
-				return menuFont;
-			}
-		}
+        public static SpriteFont MenuFont (IGameScreen screen)
+        {
+            if (menuFont != null) {
+                return menuFont;
+            }
+            else {
+                // lade die Schriftart der Menüs in das private Attribut
+                menuFont = screen.LoadFont ("font-menu");
+                return menuFont;
+            }
+        }
 
-		// die Standardfarben der Linien
-		public static Color DefaultLineColor;
-		public static Color DefaultOutlineColor;
-		public static Color InGameBackground;
-		public static Color WidgetBackground;
-		public static Color WidgetForeground;
-		public static Color ScreenBackground;
-		public static Func<WidgetState, Color> WidgetBackgroundColorFunc;
-		public static Func<WidgetState, Color> WidgetForegroundColorFunc;
-		public static Func<WidgetState, Color> MenuItemBackgroundColorFunc;
-		public static Func<WidgetState, Color> MenuItemForegroundColorFunc;
-	}
+        // die Standardfarben der Linien
+        public static Color DefaultLineColor;
+        public static Color DefaultOutlineColor;
+        public static Color InGameBackground;
+        public static Color WidgetBackground;
+        public static Color WidgetForeground;
+        public static Color ScreenBackground;
+        public static Func<WidgetState, Color> WidgetBackgroundColorFunc;
+        public static Func<WidgetState, Color> WidgetForegroundColorFunc;
+        public static Func<WidgetState, Color> MenuItemBackgroundColorFunc;
+        public static Func<WidgetState, Color> MenuItemForegroundColorFunc;
+    }
 }

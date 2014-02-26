@@ -51,55 +51,55 @@ using Knot3.Framework.Widgets;
 
 namespace Knot3.Framework.Widgets
 {
-	/// <summary>
-	/// Ein Widget, der eine Zeichenkette anzeigt.
-	/// </summary>
-	[ExcludeFromCodeCoverageAttribute]
-	public class TextItem : MenuItem
-	{
-		#region Properties
+    /// <summary>
+    /// Ein Widget, der eine Zeichenkette anzeigt.
+    /// </summary>
+    [ExcludeFromCodeCoverageAttribute]
+    public class TextItem : MenuItem
+    {
+        #region Properties
 
-		/// <summary>
-		/// Wie viel Prozent der Name des Eintrags (auf der linken Seite) von der Breite des Eintrags einnehmen darf.
-		/// </summary>
-		public override float NameWidth
-		{
-			get { return 1.00f; }
-			set { throw new ArgumentException ("You can't change the NameWidth of a TextItem!"); }
-		}
+        /// <summary>
+        /// Wie viel Prozent der Name des Eintrags (auf der linken Seite) von der Breite des Eintrags einnehmen darf.
+        /// </summary>
+        public override float NameWidth
+        {
+            get { return 1.00f; }
+            set { throw new ArgumentException ("You can't change the NameWidth of a TextItem!"); }
+        }
 
-		/// <summary>
-		/// Wie viel Prozent der Wert des Eintrags (auf der rechten Seite) von der Breite des Eintrags einnehmen darf.
-		/// </summary>
-		public override float ValueWidth
-		{
-			get { return 0.00f; }
-			set { throw new ArgumentException ("You can't change the ValueWidth of a TextItem!"); }
-		}
+        /// <summary>
+        /// Wie viel Prozent der Wert des Eintrags (auf der rechten Seite) von der Breite des Eintrags einnehmen darf.
+        /// </summary>
+        public override float ValueWidth
+        {
+            get { return 0.00f; }
+            set { throw new ArgumentException ("You can't change the ValueWidth of a TextItem!"); }
+        }
 
-		#endregion
+        #endregion
 
-		#region Constructors
+        #region Constructors
 
-		/// <summary>
-		/// Erzeugt ein neues TextItem-Objekt und initialisiert dieses mit dem zugehörigen IGameScreen-Objekt.
-		/// Zudem sind Angabe der Zeichenreihenfolge und der Zeichenkette, die angezeigt wird, für Pflicht.
-		/// </summary>
-		public TextItem (IGameScreen screen, DisplayLayer drawOrder, string text)
-		: base (screen, drawOrder, text)
-		{
-		}
+        /// <summary>
+        /// Erzeugt ein neues TextItem-Objekt und initialisiert dieses mit dem zugehörigen IGameScreen-Objekt.
+        /// Zudem sind Angabe der Zeichenreihenfolge und der Zeichenkette, die angezeigt wird, für Pflicht.
+        /// </summary>
+        public TextItem (IGameScreen screen, DisplayLayer drawOrder, string text)
+        : base (screen, drawOrder, text)
+        {
+        }
 
-		#endregion
+        #endregion
 
-		#region Methods
+        #region Methods
 
-		//Da TextItems werden nicht unterlegt um sie von Buttons abzugrenzen
-		public override void SetHovered (bool hovered, GameTime time)
-		{
-			State = WidgetState.None;
-		}
+        //Da TextItems werden nicht unterlegt um sie von Buttons abzugrenzen
+        public override void SetHovered (bool hovered, GameTime time)
+        {
+            State = WidgetState.None;
+        }
 
-		#endregion
-	}
+        #endregion
+    }
 }

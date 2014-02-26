@@ -42,35 +42,35 @@ using Knot3.Framework.Utilities;
 
 namespace Knot3.ModelEditor
 {
-	[ExcludeFromCodeCoverageAttribute]
-	static class Program
-	{
-		private static ModelEditorGame game;
+    [ExcludeFromCodeCoverageAttribute]
+    static class Program
+    {
+        private static ModelEditorGame game;
 
-		/// <summary>
-		/// The main entry point for the application.
-		///
-		/// </summary>
-		///
-		[STAThread]
-		static void Main ()
-		{
-			Log.Message ("Knot" + Char.ConvertFromUtf32 ('\u00B3').ToString () + " " + Version);
-			Log.Message ("Model Editor");
+        /// <summary>
+        /// The main entry point for the application.
+        ///
+        /// </summary>
+        ///
+        [STAThread]
+        static void Main ()
+        {
+            Log.Message ("Knot" + Char.ConvertFromUtf32 ('\u00B3').ToString () + " " + Version);
+            Log.Message ("Model Editor");
 
-			game = new ModelEditorGame ();
-			game.Run ();
-		}
+            game = new ModelEditorGame ();
+            game.Run ();
+        }
 
-		/// <summary>
-		/// Gibt die Versionsnummer zurück.
-		/// </summary>
-		/// <returns></returns>
-		public static string Version
-		{
-			get {
-				return System.Reflection.Assembly.GetExecutingAssembly ().GetName ().Version.ToString ();
-			}
-		}
-	}
+        /// <summary>
+        /// Gibt die Versionsnummer zurück.
+        /// </summary>
+        /// <returns></returns>
+        public static string Version
+        {
+            get {
+                return System.Reflection.Assembly.GetExecutingAssembly ().GetName ().Version.ToString ();
+            }
+        }
+    }
 }

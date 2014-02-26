@@ -49,34 +49,34 @@ using Knot3.Framework.Utilities;
 
 namespace Knot3.Framework.Audio
 {
-	/// <summary>
-	/// Repräsentiert eine Audiodatei.
-	/// </summary>
-	public interface IAudioFile
-	{
-		/// <summary>
-		/// Der Anzeigename der Audiodatei.
-		/// </summary>
-		string Name { get; }
+    /// <summary>
+    /// Repräsentiert eine Audiodatei.
+    /// </summary>
+    public interface IAudioFile
+    {
+        /// <summary>
+        /// Der Anzeigename der Audiodatei.
+        /// </summary>
+        string Name { get; }
 
-		/// <summary>
-		/// Gibt an, ob die Wiedergabe läuft oder gestoppt bzw. pausiert ist.
-		/// </summary>
-		SoundState State { get; }
+        /// <summary>
+        /// Gibt an, ob die Wiedergabe läuft oder gestoppt bzw. pausiert ist.
+        /// </summary>
+        SoundState State { get; }
 
-		/// <summary>
-		/// Starte die Wiedergabe.
-		/// </summary>
-		void Play ();
+        /// <summary>
+        /// Starte die Wiedergabe.
+        /// </summary>
+        void Play ();
 
-		/// <summary>
-		/// Stoppe die Wiedergabe.
-		/// </summary>
-		void Stop ();
+        /// <summary>
+        /// Stoppe die Wiedergabe.
+        /// </summary>
+        void Stop ();
 
-		/// <summary>
-		/// Wird für jeden Frame aufgerufen.
-		/// </summary>
-		void Update (GameTime time);
-	}
+        /// <summary>
+        /// Wird für jeden Frame aufgerufen.
+        /// </summary>
+        void Update (GameTime time);
+    }
 }

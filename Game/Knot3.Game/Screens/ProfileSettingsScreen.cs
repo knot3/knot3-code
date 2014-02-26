@@ -58,72 +58,72 @@ using Knot3.Game.Widgets;
 
 namespace Knot3.Game.Screens
 {
-	/// <summary>
-	/// Der Spielzustand, der die Profil-Einstellungen darstellt.
-	/// </summary>
-	[ExcludeFromCodeCoverageAttribute]
-	public class ProfileSettingsScreen : SettingsScreen
-	{
-		#region Properties
+    /// <summary>
+    /// Der Spielzustand, der die Profil-Einstellungen darstellt.
+    /// </summary>
+    [ExcludeFromCodeCoverageAttribute]
+    public class ProfileSettingsScreen : SettingsScreen
+    {
+        #region Properties
 
-		/// <summary>
-		/// Das vertikale Menü wo die Einstellungen anzeigt. Hier nimmt der Spieler Einstellungen vor.
-		/// </summary>
-		private Menu settingsMenu { get; set; }
+        /// <summary>
+        /// Das vertikale Menü wo die Einstellungen anzeigt. Hier nimmt der Spieler Einstellungen vor.
+        /// </summary>
+        private Menu settingsMenu { get; set; }
 
-		#endregion
+        #endregion
 
-		#region Constructors
+        #region Constructors
 
-		/// <summary>
-		/// Erzeugt eine neue Instanz eines ProfileSettingsScreen-Objekts und initialisiert dieses mit einem Knot3Game-Objekt.
-		/// </summary>
-		public ProfileSettingsScreen (GameClass game)
-		: base (game)
-		{
-			MenuName = "Profile";
+        /// <summary>
+        /// Erzeugt eine neue Instanz eines ProfileSettingsScreen-Objekts und initialisiert dieses mit einem Knot3Game-Objekt.
+        /// </summary>
+        public ProfileSettingsScreen (GameClass game)
+        : base (game)
+        {
+            MenuName = "Profile";
 
-			settingsMenu = new Menu (this, DisplayLayer.ScreenUI + DisplayLayer.Menu);
-			settingsMenu.Bounds.Position = new ScreenPoint (this, 0.400f, 0.180f);
-			settingsMenu.Bounds.Size = new ScreenPoint (this, 0.500f, 0.720f);
-			settingsMenu.Bounds.Padding = new ScreenPoint (this, 0.010f, 0.010f);
-			settingsMenu.ItemAlignX = HorizontalAlignment.Left;
-			settingsMenu.ItemAlignY = VerticalAlignment.Center;
+            settingsMenu = new Menu (this, DisplayLayer.ScreenUI + DisplayLayer.Menu);
+            settingsMenu.Bounds.Position = new ScreenPoint (this, 0.400f, 0.180f);
+            settingsMenu.Bounds.Size = new ScreenPoint (this, 0.500f, 0.720f);
+            settingsMenu.Bounds.Padding = new ScreenPoint (this, 0.010f, 0.010f);
+            settingsMenu.ItemAlignX = HorizontalAlignment.Left;
+            settingsMenu.ItemAlignY = VerticalAlignment.Center;
 
-			InputItem playerNameInput = new InputItem (
-			    screen: this,
-			    drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
-			    text: "Player Name:",
-			    inputText: Config.Default["profile", "name", "Player"]
-			);
-			playerNameInput.OnValueSubmitted += () => {
-				Config.Default["profile", "name", String.Empty] = playerNameInput.InputText;
-			};
+            InputItem playerNameInput = new InputItem (
+                screen: this,
+                drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
+                text: "Player Name:",
+                inputText: Config.Default["profile", "name", "Player"]
+            );
+            playerNameInput.OnValueSubmitted += () => {
+                Config.Default["profile", "name", String.Empty] = playerNameInput.InputText;
+            };
 
-			settingsMenu.Add (playerNameInput);
-		}
+            settingsMenu.Add (playerNameInput);
+        }
 
-		#endregion
+        #endregion
 
-		#region Methods
+        #region Methods
 
-		/// <summary>
-		/// Wird für jeden Frame aufgerufen.
-		/// </summary>
-		[ExcludeFromCodeCoverageAttribute]
-		public override void Update (GameTime time)
-		{
-		}
+        /// <summary>
+        /// Wird für jeden Frame aufgerufen.
+        /// </summary>
+        [ExcludeFromCodeCoverageAttribute]
+        public override void Update (GameTime time)
+        {
+        }
 
-		/// <summary>
-		/// Fügt das Menü mit den Einstellungen in die Spielkomponentenliste ein.
-		/// </summary>
-		public override void Entered (IGameScreen previousScreen, GameTime time)
-		{
-			base.Entered (previousScreen, time);
-			AddGameComponents (time, settingsMenu);
-		}
+        /// <summary>
+        /// Fügt das Menü mit den Einstellungen in die Spielkomponentenliste ein.
+        /// </summary>
+        public override void Entered (IGameScreen previousScreen, GameTime time)
+        {
+            base.Entered (previousScreen, time);
+            AddGameComponents (time, settingsMenu);
+        }
 
-		#endregion
-	}
+        #endregion
+    }
 }

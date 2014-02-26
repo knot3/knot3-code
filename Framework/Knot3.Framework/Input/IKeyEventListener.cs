@@ -48,39 +48,39 @@ using Knot3.Framework.Utilities;
 
 namespace Knot3.Framework.Input
 {
-	/// <summary>
-	/// Eine Schnittstelle, die von Klassen implementiert wird, welche auf Tastatureingaben reagieren.
-	/// </summary>
-	public interface IKeyEventListener
-	{
-		#region Properties
+    /// <summary>
+    /// Eine Schnittstelle, die von Klassen implementiert wird, welche auf Tastatureingaben reagieren.
+    /// </summary>
+    public interface IKeyEventListener
+    {
+        #region Properties
 
-		/// <summary>
-		/// Die Eingabepriorität.
-		/// </summary>
-		DisplayLayer Index { get; }
+        /// <summary>
+        /// Die Eingabepriorität.
+        /// </summary>
+        DisplayLayer Index { get; }
 
-		/// <summary>
-		/// Zeigt an, ob die Klasse zur Zeit auf Tastatureingaben reagiert.
-		/// </summary>
-		bool IsKeyEventEnabled { get; }
+        /// <summary>
+        /// Zeigt an, ob die Klasse zur Zeit auf Tastatureingaben reagiert.
+        /// </summary>
+        bool IsKeyEventEnabled { get; }
 
-		bool IsModal { get; }
+        bool IsModal { get; }
 
-		/// <summary>
-		/// Die Tasten, auf die die Klasse reagiert.
-		/// </summary>
-		List<Keys> ValidKeys { get; }
+        /// <summary>
+        /// Die Tasten, auf die die Klasse reagiert.
+        /// </summary>
+        List<Keys> ValidKeys { get; }
 
-		#endregion
+        #endregion
 
-		#region Methods
+        #region Methods
 
-		/// <summary>
-		/// Die Reaktion auf eine Tasteneingabe.
-		/// </summary>
-		void OnKeyEvent (List<Keys> key, KeyEvent keyEvent, GameTime time);
+        /// <summary>
+        /// Die Reaktion auf eine Tasteneingabe.
+        /// </summary>
+        void OnKeyEvent (List<Keys> key, KeyEvent keyEvent, GameTime time);
 
-		#endregion
-	}
+        #endregion
+    }
 }

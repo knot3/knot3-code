@@ -61,45 +61,45 @@ using Knot3.Game.Widgets;
 
 namespace Knot3.Game.Utilities
 {
-	public class FileIndex
-	{
-		private HashSet<string> hashes;
-		private string filename;
+    public class FileIndex
+    {
+        private HashSet<string> hashes;
+        private string filename;
 
-		public FileIndex (string filename)
-		{
-			this.filename = filename;
-			try {
-				hashes = new HashSet<string> (FileUtility.ReadFrom (filename));
-			}
-			catch (System.ArgumentException) {
-				hashes = new HashSet<string> ();
-			}
-			catch (IOException) {
-				hashes = new HashSet<string> ();
-			}
-		}
+        public FileIndex (string filename)
+        {
+            this.filename = filename;
+            try {
+                hashes = new HashSet<string> (FileUtility.ReadFrom (filename));
+            }
+            catch (System.ArgumentException) {
+                hashes = new HashSet<string> ();
+            }
+            catch (IOException) {
+                hashes = new HashSet<string> ();
+            }
+        }
 
-		public void Add (string hash)
-		{
-			hashes.Add (hash);
-			Save ();
-		}
+        public void Add (string hash)
+        {
+            hashes.Add (hash);
+            Save ();
+        }
 
-		public void Remove (string hash)
-		{
-			hashes.Remove (hash);
-			Save ();
-		}
+        public void Remove (string hash)
+        {
+            hashes.Remove (hash);
+            Save ();
+        }
 
-		public bool Contains (string hash)
-		{
-			return hashes.Contains (hash);
-		}
+        public bool Contains (string hash)
+        {
+            return hashes.Contains (hash);
+        }
 
-		private void Save ()
-		{
-			File.WriteAllText (filename, string.Join ("\n", hashes));
-		}
-	}
+        private void Save ()
+        {
+            File.WriteAllText (filename, string.Join ("\n", hashes));
+        }
+    }
 }

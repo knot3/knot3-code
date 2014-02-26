@@ -39,150 +39,150 @@ using System.Threading.Tasks;
 
 namespace Knot3.ExtremeTests
 {
-	public struct TimeStatistics {
-		public long outlier;
-		public long slowest;
-		public long fastest;
-		public long average;
-	}
+    public struct TimeStatistics {
+        public long outlier;
+        public long slowest;
+        public long fastest;
+        public long average;
+    }
 
-	public class Benchmark
-	{
-		public static TimeStatistics StopTime (Action action, int numberOfPasses, TimeStatistics timeStatistics)
-		{
-			Stopwatch stopwatch = new Stopwatch ();
-			long nsPerTick = (1000L * 1000L * 1000L) / Stopwatch.Frequency;
+    public class Benchmark
+    {
+        public static TimeStatistics StopTime (Action action, int numberOfPasses, TimeStatistics timeStatistics)
+        {
+            Stopwatch stopwatch = new Stopwatch ();
+            long nsPerTick = (1000L * 1000L * 1000L) / Stopwatch.Frequency;
 
-			timeStatistics.slowest = long.MinValue;
-			timeStatistics.fastest = long.MaxValue;
-			timeStatistics.average = 0;
-			// todo: timeStatistics.name = ...
+            timeStatistics.slowest = long.MinValue;
+            timeStatistics.fastest = long.MaxValue;
+            timeStatistics.average = 0;
+            // todo: timeStatistics.name = ...
 
-			numberOfPasses++;
+            numberOfPasses++;
 
-			for (int countedPass = 0; countedPass < numberOfPasses; countedPass++) {
-				stopwatch.Reset ();
-				stopwatch.Start ();
-				action ();
-				stopwatch.Stop ();
+            for (int countedPass = 0; countedPass < numberOfPasses; countedPass++) {
+                stopwatch.Reset ();
+                stopwatch.Start ();
+                action ();
+                stopwatch.Stop ();
 
-				if (countedPass == 0) {
-					timeStatistics.outlier = stopwatch.ElapsedTicks * nsPerTick;
-					numberOfPasses--;
-					continue;
-				}
+                if (countedPass == 0) {
+                    timeStatistics.outlier = stopwatch.ElapsedTicks * nsPerTick;
+                    numberOfPasses--;
+                    continue;
+                }
 
-				if (stopwatch.ElapsedTicks < 0) {
-					numberOfPasses++;
-					continue;
-				}
+                if (stopwatch.ElapsedTicks < 0) {
+                    numberOfPasses++;
+                    continue;
+                }
 
-				if (stopwatch.ElapsedTicks > timeStatistics.slowest) {
-					timeStatistics.slowest = stopwatch.ElapsedTicks;
-				}
-				else if (stopwatch.ElapsedTicks < timeStatistics.fastest) {
-					timeStatistics.fastest = stopwatch.ElapsedTicks;
-				}
+                if (stopwatch.ElapsedTicks > timeStatistics.slowest) {
+                    timeStatistics.slowest = stopwatch.ElapsedTicks;
+                }
+                else if (stopwatch.ElapsedTicks < timeStatistics.fastest) {
+                    timeStatistics.fastest = stopwatch.ElapsedTicks;
+                }
 
-				// no overflow testing ...
+                // no overflow testing ...
 
-				timeStatistics.average = timeStatistics.average + stopwatch.ElapsedTicks;
+                timeStatistics.average = timeStatistics.average + stopwatch.ElapsedTicks;
 
-				// no cache pollution ...
-			}
+                // no cache pollution ...
+            }
 
-			timeStatistics.average = timeStatistics.average / numberOfPasses;
+            timeStatistics.average = timeStatistics.average / numberOfPasses;
 
-			// todo
-			timeStatistics.slowest = timeStatistics.slowest * nsPerTick;
-			timeStatistics.fastest = timeStatistics.fastest * nsPerTick;
-			timeStatistics.average = timeStatistics.average * nsPerTick;
+            // todo
+            timeStatistics.slowest = timeStatistics.slowest * nsPerTick;
+            timeStatistics.fastest = timeStatistics.fastest * nsPerTick;
+            timeStatistics.average = timeStatistics.average * nsPerTick;
 
-			return timeStatistics;
-		}
+            return timeStatistics;
+        }
 
-		public static void PrintTimerProperties ()
-		{
-			Console.Write (
-			    "\n"
-			    + "--- Eigenschaften des Zeitgebers ---"
-			    + "\n\n"
+        public static void PrintTimerProperties ()
+        {
+            Console.Write (
+                "\n"
+                + "--- Eigenschaften des Zeitgebers ---"
+                + "\n\n"
 
-			    // Auflösung:
-			    + "\t Ist hochaufgelöst? - "
-			    + ((Stopwatch.IsHighResolution) ? "Ja" : "Nein")
-			    + "."
-			    + "\n\n"
+                // Auflösung:
+                + "\t Ist hochaufgelöst? - "
+                + ((Stopwatch.IsHighResolution) ? "Ja" : "Nein")
+                + "."
+                + "\n\n"
 
-			    // Frequenz:
-			    + "\t Frequenz: "
-			    + Stopwatch.Frequency
-			    + " Ticks pro Sekunde.\n\n"
+                // Frequenz:
+                + "\t Frequenz: "
+                + Stopwatch.Frequency
+                + " Ticks pro Sekunde.\n\n"
 
-			    // Ticks in NS:
-			    + "\t Ein Tick dauert "
-			    + ((1000L * 1000L * 1000L) / Stopwatch.Frequency)
-			    + " NS.\n\n"
-			);
-		}
+                // Ticks in NS:
+                + "\t Ein Tick dauert "
+                + ((1000L * 1000L * 1000L) / Stopwatch.Frequency)
+                + " NS.\n\n"
+            );
+        }
 
-		// todo noch in MS und S ...
-		public static void PrintTimeStatistics (TimeStatistics timeStatistics, string description)
-		{
-			long nanosToMilis = 1000L * 1000L;
-			long milisToSecs = 1000L;
+        // todo noch in MS und S ...
+        public static void PrintTimeStatistics (TimeStatistics timeStatistics, string description)
+        {
+            long nanosToMilis = 1000L * 1000L;
+            long milisToSecs = 1000L;
 
-			// Langsamste Zeit ...
-			long maxNanos = timeStatistics.slowest;
-			long maxMilis = maxNanos / nanosToMilis;
-			long maxSecs = maxMilis / milisToSecs;
+            // Langsamste Zeit ...
+            long maxNanos = timeStatistics.slowest;
+            long maxMilis = maxNanos / nanosToMilis;
+            long maxSecs = maxMilis / milisToSecs;
 
-			// Schnellste Zeit ...
-			long minNanos = timeStatistics.fastest;
-			long minMilis = minNanos / nanosToMilis;
-			long minSecs = minMilis / milisToSecs;
+            // Schnellste Zeit ...
+            long minNanos = timeStatistics.fastest;
+            long minMilis = minNanos / nanosToMilis;
+            long minSecs = minMilis / milisToSecs;
 
-			// Mittlere Zeit ...
-			long avgNanos = timeStatistics.average;
-			long avgMilis = avgNanos / nanosToMilis;
-			long avgSecs = avgMilis / milisToSecs;
+            // Mittlere Zeit ...
+            long avgNanos = timeStatistics.average;
+            long avgMilis = avgNanos / nanosToMilis;
+            long avgSecs = avgMilis / milisToSecs;
 
-			// Ausreißer ...
-			long outNanos = timeStatistics.outlier;
-			long outMilis = outNanos / nanosToMilis;
-			long outSecs = outMilis / milisToSecs;
+            // Ausreißer ...
+            long outNanos = timeStatistics.outlier;
+            long outMilis = outNanos / nanosToMilis;
+            long outSecs = outMilis / milisToSecs;
 
-			Console.Write (
-			    // "Name: "
-			    description + "\n"
-			    + "max = " + maxNanos + " NS >= " + maxMilis + " MS >= " + maxSecs + "\n"
-			    + "min = " + minNanos + " NS >= " + minMilis + " MS >= " + minSecs + "\n"
-			    + "avg = " + avgNanos + " NS >= " + avgMilis + " MS >= " + avgSecs + "\n"
-			    + "out = " + outNanos + " NS >= " + outMilis + " MS >= " + outSecs + "\n"
-			);
-		}
+            Console.Write (
+                // "Name: "
+                description + "\n"
+                + "max = " + maxNanos + " NS >= " + maxMilis + " MS >= " + maxSecs + "\n"
+                + "min = " + minNanos + " NS >= " + minMilis + " MS >= " + minSecs + "\n"
+                + "avg = " + avgNanos + " NS >= " + avgMilis + " MS >= " + avgSecs + "\n"
+                + "out = " + outNanos + " NS >= " + outMilis + " MS >= " + outSecs + "\n"
+            );
+        }
 
-		public static void setUp ()
-		{
-			ExtremeKnots.generateTestKnots ();
-		}
+        public static void setUp ()
+        {
+            ExtremeKnots.generateTestKnots ();
+        }
 
-		static void Main (string[] args)
-		{
-			Action test = null;
-			string description = null;
-			TimeStatistics timeStatistics = new TimeStatistics ();
+        static void Main (string[] args)
+        {
+            Action test = null;
+            string description = null;
+            TimeStatistics timeStatistics = new TimeStatistics ();
 
-			// setUp ();
-			PrintTimerProperties ();
+            // setUp ();
+            PrintTimerProperties ();
 
-			foreach (int length in ExtremeKnots.SquareKnot_TestLengths) {
-				description = "Knoten-Laden: Knoten mit 100 Kanten, 100 WH:";
-				test = () => ExtremeKnots.LoadSquareKnot ("Square-Knot_" + length);
-				timeStatistics = StopTime (test, 100, timeStatistics);
-				PrintTimeStatistics (timeStatistics, description);
-			}
-			// ...
-		}
-	}
+            foreach (int length in ExtremeKnots.SquareKnot_TestLengths) {
+                description = "Knoten-Laden: Knoten mit 100 Kanten, 100 WH:";
+                test = () => ExtremeKnots.LoadSquareKnot ("Square-Knot_" + length);
+                timeStatistics = StopTime (test, 100, timeStatistics);
+                PrintTimeStatistics (timeStatistics, description);
+            }
+            // ...
+        }
+    }
 }

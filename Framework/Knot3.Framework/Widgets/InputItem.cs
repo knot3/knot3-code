@@ -52,113 +52,113 @@ using Knot3.Framework.Widgets;
 
 namespace Knot3.Framework.Widgets
 {
-	/// <summary>
-	/// Ein Menüeintrag, der Texteingaben vom Spieler annimmt.
-	/// </summary>
-	[ExcludeFromCodeCoverageAttribute]
-	public class InputItem : MenuItem
-	{
-		#region Properties
+    /// <summary>
+    /// Ein Menüeintrag, der Texteingaben vom Spieler annimmt.
+    /// </summary>
+    [ExcludeFromCodeCoverageAttribute]
+    public class InputItem : MenuItem
+    {
+        #region Properties
 
-		/// <summary>
-		/// Beinhaltet den vom Spieler eingegebenen Text.
-		/// </summary>
-		public string InputText { get; set; }
+        /// <summary>
+        /// Beinhaltet den vom Spieler eingegebenen Text.
+        /// </summary>
+        public string InputText { get; set; }
 
-		public Action OnValueChanged = () => {};
-		public Action OnValueSubmitted = () => {};
+        public Action OnValueChanged = () => {};
+        public Action OnValueSubmitted = () => {};
 
-		/// <summary>
-		/// Gibt an, ob gerade auf einen Tastendruck gewartet wird.
-		/// </summary>
-		public bool IsInputEnabled { get; set; }
+        /// <summary>
+        /// Gibt an, ob gerade auf einen Tastendruck gewartet wird.
+        /// </summary>
+        public bool IsInputEnabled { get; set; }
 
-		public override bool IsKeyEventEnabled
-		{
-			get { return isKeyEventEnabled.HasValue ? isKeyEventEnabled.Value : IsVisible && IsEnabled && IsInputEnabled; }
-			set { isKeyEventEnabled = value; }
-		}
+        public override bool IsKeyEventEnabled
+        {
+            get { return isKeyEventEnabled.HasValue ? isKeyEventEnabled.Value : IsVisible && IsEnabled && IsInputEnabled; }
+            set { isKeyEventEnabled = value; }
+        }
 
-		private bool? isKeyEventEnabled = null;
+        private bool? isKeyEventEnabled = null;
 
-		public override bool IsMouseClickEventEnabled
-		{
-			get { return isMouseClickEventEnabled.HasValue ? isMouseClickEventEnabled.Value : base.IsMouseClickEventEnabled; }
-			set { isMouseClickEventEnabled = value; }
-		}
+        public override bool IsMouseClickEventEnabled
+        {
+            get { return isMouseClickEventEnabled.HasValue ? isMouseClickEventEnabled.Value : base.IsMouseClickEventEnabled; }
+            set { isMouseClickEventEnabled = value; }
+        }
 
-		private bool? isMouseClickEventEnabled = null;
+        private bool? isMouseClickEventEnabled = null;
 
-		#endregion
+        #endregion
 
-		#region Constructors
+        #region Constructors
 
-		/// <summary>
-		/// Erzeugt ein neues InputItem-Objekt und initialisiert dieses mit dem zugehörigen IGameScreen-Objekt.
-		/// Zudem sind Angaben zur Zeichenreihenfolge und für evtl. bereits vor-eingetragenen Text Pflicht.
-		/// </summary>
-		public InputItem (IGameScreen screen, DisplayLayer drawOrder, string text, string inputText)
-		: base (screen, drawOrder, text)
-		{
-			InputText = inputText;
-			ValidKeys.AddRange (TextHelper.ValidKeys);
-			ValidKeys.Add (Keys.Enter);
-			IsInputEnabled = false;
-		}
+        /// <summary>
+        /// Erzeugt ein neues InputItem-Objekt und initialisiert dieses mit dem zugehörigen IGameScreen-Objekt.
+        /// Zudem sind Angaben zur Zeichenreihenfolge und für evtl. bereits vor-eingetragenen Text Pflicht.
+        /// </summary>
+        public InputItem (IGameScreen screen, DisplayLayer drawOrder, string text, string inputText)
+        : base (screen, drawOrder, text)
+        {
+            InputText = inputText;
+            ValidKeys.AddRange (TextHelper.ValidKeys);
+            ValidKeys.Add (Keys.Enter);
+            IsInputEnabled = false;
+        }
 
-		public override void OnKeyEvent (List<Keys> key, KeyEvent keyEvent, GameTime time)
-		{
-			string temp = InputText;
-			TextHelper.TryTextInput (ref temp, Screen, time);
-			InputText = temp;
-			OnValueChanged ();
-			if (key.Contains (Keys.Enter)) {
-				IsInputEnabled = false;
-				OnValueSubmitted ();
-			}
-		}
+        public override void OnKeyEvent (List<Keys> key, KeyEvent keyEvent, GameTime time)
+        {
+            string temp = InputText;
+            TextHelper.TryTextInput (ref temp, Screen, time);
+            InputText = temp;
+            OnValueChanged ();
+            if (key.Contains (Keys.Enter)) {
+                IsInputEnabled = false;
+                OnValueSubmitted ();
+            }
+        }
 
-		/// <summary>
-		/// Reaktionen auf einen Linksklick.
-		/// </summary>
-		public override void OnLeftClick (Vector2 position, ClickState state, GameTime time)
-		{
-			if (IsVisible) {
-				IsInputEnabled = true;
-			}
-		}
+        /// <summary>
+        /// Reaktionen auf einen Linksklick.
+        /// </summary>
+        public override void OnLeftClick (Vector2 position, ClickState state, GameTime time)
+        {
+            if (IsVisible) {
+                IsInputEnabled = true;
+            }
+        }
 
-		[ExcludeFromCodeCoverageAttribute]
-		public override void Draw (GameTime time)
-		{
-			base.Draw (time);
+        [ExcludeFromCodeCoverageAttribute]
+        public override void Draw (GameTime time)
+        {
+            base.Draw (time);
 
-			spriteBatch.Begin ();
+            spriteBatch.Begin ();
 
-			// berechne die Ausmaße des Eingabefelds
-			Bounds bounds = ValueBounds;
+            // berechne die Ausmaße des Eingabefelds
+            Bounds bounds = ValueBounds;
 
-			// zeichne den Hintergrund des Eingabefelds
-			spriteBatch.DrawColoredRectangle (ForegroundColor, bounds);
-			Color backgroundColor = IsInputEnabled ? Design.WidgetBackground.Mix (Design.WidgetForeground, 0.25f) : Design.WidgetBackground;
-			spriteBatch.DrawColoredRectangle (backgroundColor, bounds.Shrink (xy: 2));
+            // zeichne den Hintergrund des Eingabefelds
+            spriteBatch.DrawColoredRectangle (ForegroundColor, bounds);
+            Color backgroundColor = IsInputEnabled ? Design.WidgetBackground.Mix (Design.WidgetForeground, 0.25f) : Design.WidgetBackground;
+            spriteBatch.DrawColoredRectangle (backgroundColor, bounds.Shrink (xy: 2));
 
-			// lade die Schrift
-			SpriteFont font = Design.MenuFont (Screen);
+            // lade die Schrift
+            SpriteFont font = Design.MenuFont (Screen);
 
-			// zeichne die Schrift
-			spriteBatch.DrawStringInRectangle (
-			    font: font,
-			    text: InputText,
-			    color: ForegroundColor,
-			    bounds: bounds.Shrink (x: 4, y: 2),
-			    alignX: HorizontalAlignment.Left,
-			    alignY: AlignY
-			);
+            // zeichne die Schrift
+            spriteBatch.DrawStringInRectangle (
+                font: font,
+                text: InputText,
+                color: ForegroundColor,
+                bounds: bounds.Shrink (x: 4, y: 2),
+                alignX: HorizontalAlignment.Left,
+                alignY: AlignY
+            );
 
-			spriteBatch.End ();
-		}
+            spriteBatch.End ();
+        }
 
-		#endregion
-	}
+        #endregion
+    }
 }

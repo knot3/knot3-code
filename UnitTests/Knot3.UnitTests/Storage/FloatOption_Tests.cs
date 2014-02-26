@@ -48,47 +48,47 @@ using Knot3.Game.Core;
 
 namespace Knot3.UnitTests.Storage
 {
-	/// <summary>
-	///
-	/// </summary>
-	[TestFixture]
-	public class FloatOption_Tests
-	{
-		[SetUp]
-		public void Init ()
-		{
-		}
+    /// <summary>
+    ///
+    /// </summary>
+    [TestFixture]
+    public class FloatOption_Tests
+    {
+        [SetUp]
+        public void Init ()
+        {
+        }
 
-		[Test]
-		public void Test ()
-		{
-			string name = "test-option";
-			string section = "test-section";
-			float defaultValue = 5f;
-			float[] validValues = new float[] { 0f, 5f, 10f, 15f, 20f };
+        [Test]
+        public void Test ()
+        {
+            string name = "test-option";
+            string section = "test-section";
+            float defaultValue = 5f;
+            float[] validValues = new float[] { 0f, 5f, 10f, 15f, 20f };
 
-			ConfigFile configFile = new ConfigFile (TestHelper.RandomFilename (extension: "ini"));
+            ConfigFile configFile = new ConfigFile (TestHelper.RandomFilename (extension: "ini"));
 
-			FloatOption option = new FloatOption (section, name, defaultValue, validValues, configFile);
+            FloatOption option = new FloatOption (section, name, defaultValue, validValues, configFile);
 
-			Assert.AreEqual (option.Value, defaultValue);
-			string defaultStr = option.DisplayValue;
-			Assert.IsTrue (option.DisplayValidValues.ContainsKey (defaultStr));
+            Assert.AreEqual (option.Value, defaultValue);
+            string defaultStr = option.DisplayValue;
+            Assert.IsTrue (option.DisplayValidValues.ContainsKey (defaultStr));
 
-			option.Value = 10f;
-			Assert.AreEqual (option.Value, 10f);
-			string tenStr = option.DisplayValue;
-			Assert.IsTrue (option.DisplayValidValues.ContainsKey (tenStr));
+            option.Value = 10f;
+            Assert.AreEqual (option.Value, 10f);
+            string tenStr = option.DisplayValue;
+            Assert.IsTrue (option.DisplayValidValues.ContainsKey (tenStr));
 
-			Assert.AreNotEqual (defaultStr, tenStr);
+            Assert.AreNotEqual (defaultStr, tenStr);
 
-			option.Value = 99f;
-			Assert.AreEqual (option.Value, defaultValue);
-			Assert.AreEqual (defaultStr, option.DisplayValue);
+            option.Value = 99f;
+            Assert.AreEqual (option.Value, defaultValue);
+            Assert.AreEqual (defaultStr, option.DisplayValue);
 
-			(option as DistinctOption).Value = "invalid!!";
-			Assert.AreEqual (option.Value, defaultValue);
-			Assert.AreEqual (defaultStr, option.DisplayValue);
-		}
-	}
+            (option as DistinctOption).Value = "invalid!!";
+            Assert.AreEqual (option.Value, defaultValue);
+            Assert.AreEqual (defaultStr, option.DisplayValue);
+        }
+    }
 }

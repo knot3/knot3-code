@@ -48,45 +48,45 @@ using Knot3.Framework.Utilities;
 
 namespace Knot3.Framework.Storage
 {
-	/// <summary>
-	/// Diese Klasse repräsentiert eine Option, welche die Werte \glqq Wahr\grqq~oder \glqq Falsch\grqq~annehmen kann.
-	/// </summary>
-	public sealed class BooleanOption : DistinctOption
-	{
-		#region Properties
+    /// <summary>
+    /// Diese Klasse repräsentiert eine Option, welche die Werte \glqq Wahr\grqq~oder \glqq Falsch\grqq~annehmen kann.
+    /// </summary>
+    public sealed class BooleanOption : DistinctOption
+    {
+        #region Properties
 
-		/// <summary>
-		/// Eine Eigenschaft, die den aktuell abgespeicherten Wert zurückgibt.
-		/// </summary>
-		public new bool Value
-		{
-			get {
-				return base.Value == ConfigFile.True ? true : false;
-			}
-			set {
-				base.Value = value ? ConfigFile.True : ConfigFile.False;
-			}
-		}
+        /// <summary>
+        /// Eine Eigenschaft, die den aktuell abgespeicherten Wert zurückgibt.
+        /// </summary>
+        public new bool Value
+        {
+            get {
+                return base.Value == ConfigFile.True ? true : false;
+            }
+            set {
+                base.Value = value ? ConfigFile.True : ConfigFile.False;
+            }
+        }
 
-		public new static string[] ValidValues = new string[] {
-			ConfigFile.True,
-			ConfigFile.False
-		};
+        public new static string[] ValidValues = new string[] {
+            ConfigFile.True,
+            ConfigFile.False
+        };
 
-		#endregion
+        #endregion
 
-		#region Constructors
+        #region Constructors
 
-		/// <summary>
-		/// Erstellt eine neue Option, welche die Werte \glqq Wahr\grqq~oder \glqq Falsch\grqq~annehmen kann. Mit dem angegebenen Namen, in dem
-		/// angegebenen Abschnitt der angegebenen Einstellungsdatei.
-		/// [base=section, name, defaultValue?ConfigFile.True:ConfigFile.False, ValidValues, configFile]
-		/// </summary>
-		public BooleanOption (string section, string name, bool defaultValue, ConfigFile configFile)
-		: base (section, name, defaultValue?ConfigFile.True:ConfigFile.False, ValidValues, configFile)
-		{
-		}
+        /// <summary>
+        /// Erstellt eine neue Option, welche die Werte \glqq Wahr\grqq~oder \glqq Falsch\grqq~annehmen kann. Mit dem angegebenen Namen, in dem
+        /// angegebenen Abschnitt der angegebenen Einstellungsdatei.
+        /// [base=section, name, defaultValue?ConfigFile.True:ConfigFile.False, ValidValues, configFile]
+        /// </summary>
+        public BooleanOption (string section, string name, bool defaultValue, ConfigFile configFile)
+        : base (section, name, defaultValue?ConfigFile.True:ConfigFile.False, ValidValues, configFile)
+        {
+        }
 
-		#endregion
-	}
+        #endregion
+    }
 }

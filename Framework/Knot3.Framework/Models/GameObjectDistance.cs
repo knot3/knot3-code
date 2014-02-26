@@ -48,25 +48,25 @@ using Knot3.Framework.Utilities;
 
 namespace Knot3.Framework.Models
 {
-	/// <summary>
-	/// Die Klasse GameObjectDistance beschreibt den Abstand zu einem Spielobjekt.
-	/// Dies ist z.B. hilfreich, um Schnittstellen, Verdeckungen, ... zu berechnen.
-	/// </summary>
-	[ExcludeFromCodeCoverageAttribute]
-	public sealed class GameObjectDistance
-	{
-		#region Properties
+    /// <summary>
+    /// Die Klasse GameObjectDistance beschreibt den Abstand zu einem Spielobjekt.
+    /// Dies ist z.B. hilfreich, um Schnittstellen, Verdeckungen, ... zu berechnen.
+    /// </summary>
+    [ExcludeFromCodeCoverageAttribute]
+    public sealed class GameObjectDistance
+    {
+        #region Properties
 
-		/// <summary>
-		/// Ein Spielobjekt.
-		/// </summary>
-		public IGameObject Object { get; set; }
+        /// <summary>
+        /// Ein Spielobjekt.
+        /// </summary>
+        public IGameObject Object { get; set; }
 
-		/// <summary>
-		/// Distance hält den Abstand als Gleitkommawert.
-		/// </summary>
-		public float Distance { get; set; }
+        /// <summary>
+        /// Distance hält den Abstand als Gleitkommawert.
+        /// </summary>
+        public float Distance { get; set; }
 
-		#endregion
-	}
+        #endregion
+    }
 }

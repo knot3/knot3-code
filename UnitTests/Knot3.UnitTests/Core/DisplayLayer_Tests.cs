@@ -52,63 +52,63 @@ using Knot3.MockObjects;
 
 namespace Knot3.UnitTests
 {
-	[TestFixture]
-	public class DisplayLayer_Tests
-	{
-		IGameScreen screen;
+    [TestFixture]
+    public class DisplayLayer_Tests
+    {
+        IGameScreen screen;
 
-		[SetUp]
-		public void DisplayLayer_Setup ()
-		{
-			screen = new FakeScreen ();
-		}
+        [SetUp]
+        public void DisplayLayer_Setup ()
+        {
+            screen = new FakeScreen ();
+        }
 
-		[Test]
-		public void DisplayLayer_Equals_Tests ()
-		{
-			foreach (DisplayLayer lay1 in DisplayLayer.Values) {
-				Assert.AreEqual (lay1, lay1);
-				Assert.IsTrue (lay1.Equals (lay1));
-				Assert.IsTrue (lay1.Equals (lay1));
-				Assert.IsFalse (lay1.Equals ((object)null));
-				Assert.IsFalse (lay1.Equals ((DisplayLayer)null));
-				foreach (DisplayLayer lay2 in DisplayLayer.Values) {
-					if (lay1.Index == lay2.Index) {
-						Assert.AreEqual (lay1, lay2);
-					}
-					else {
-						Assert.AreNotEqual (lay1, lay2);
-					}
-				}
-			}
-		}
+        [Test]
+        public void DisplayLayer_Equals_Tests ()
+        {
+            foreach (DisplayLayer lay1 in DisplayLayer.Values) {
+                Assert.AreEqual (lay1, lay1);
+                Assert.IsTrue (lay1.Equals (lay1));
+                Assert.IsTrue (lay1.Equals (lay1));
+                Assert.IsFalse (lay1.Equals ((object)null));
+                Assert.IsFalse (lay1.Equals ((DisplayLayer)null));
+                foreach (DisplayLayer lay2 in DisplayLayer.Values) {
+                    if (lay1.Index == lay2.Index) {
+                        Assert.AreEqual (lay1, lay2);
+                    }
+                    else {
+                        Assert.AreNotEqual (lay1, lay2);
+                    }
+                }
+            }
+        }
 
-		[Test]
-		public void DisplayLayer_Implicit_Tests ()
-		{
-			foreach (DisplayLayer lay in DisplayLayer.Values) {
-				int index = lay;
-				Assert.AreEqual (lay.Index, index);
-			}
-		}
+        [Test]
+        public void DisplayLayer_Implicit_Tests ()
+        {
+            foreach (DisplayLayer lay in DisplayLayer.Values) {
+                int index = lay;
+                Assert.AreEqual (lay.Index, index);
+            }
+        }
 
-		[Test]
-		public void DisplayLayer_Math_Tests ()
-		{
-			foreach (DisplayLayer lay1 in DisplayLayer.Values) {
-				foreach (DisplayLayer lay2 in DisplayLayer.Values) {
-					Assert.AreEqual (lay1 + lay2, lay2 + lay1);
-					Assert.AreEqual (lay1 + lay2, lay1 + new FakeWidget (screen, lay2));
-				}
-				Assert.AreEqual ((lay1 * 99).Index, lay1.Index * 99);
-			}
-		}
+        [Test]
+        public void DisplayLayer_Math_Tests ()
+        {
+            foreach (DisplayLayer lay1 in DisplayLayer.Values) {
+                foreach (DisplayLayer lay2 in DisplayLayer.Values) {
+                    Assert.AreEqual (lay1 + lay2, lay2 + lay1);
+                    Assert.AreEqual (lay1 + lay2, lay1 + new FakeWidget (screen, lay2));
+                }
+                Assert.AreEqual ((lay1 * 99).Index, lay1.Index * 99);
+            }
+        }
 
-		[Test]
-		public void DisplayLayer_ToString_Tests ()
-		{
-			Assert.IsNotEmpty (DisplayLayer.Background.ToString ());
-			Assert.IsNotEmpty (DisplayLayer.Background.GetHashCode () + "");
-		}
-	}
+        [Test]
+        public void DisplayLayer_ToString_Tests ()
+        {
+            Assert.IsNotEmpty (DisplayLayer.Background.ToString ());
+            Assert.IsNotEmpty (DisplayLayer.Background.GetHashCode () + "");
+        }
+    }
 }

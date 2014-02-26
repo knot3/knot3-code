@@ -51,133 +51,133 @@ using Knot3.Framework.Widgets;
 
 namespace Knot3.Framework.Widgets
 {
-	/// <summary>
-	/// Eine abstrakte Klasse, von der alle Element der grafischen Benutzeroberfläche erben.
-	/// </summary>
-	[ExcludeFromCodeCoverageAttribute]
-	public abstract class Widget : DrawableGameScreenComponent
-	{
-		#region Properties
+    /// <summary>
+    /// Eine abstrakte Klasse, von der alle Element der grafischen Benutzeroberfläche erben.
+    /// </summary>
+    [ExcludeFromCodeCoverageAttribute]
+    public abstract class Widget : DrawableGameScreenComponent
+    {
+        #region Properties
 
-		/// <summary>
-		/// Die Ausmaße des Widgets.
-		/// </summary>
-		public Bounds Bounds { get; set; }
+        /// <summary>
+        /// Die Ausmaße des Widgets.
+        /// </summary>
+        public Bounds Bounds { get; set; }
 
-		/// <summary>
-		/// Gibt an, ob das grafische Element sichtbar ist.
-		/// </summary>
-		public virtual bool IsVisible
-		{
-			get { return _isVisible && !Bounds.Size.IsEmpty; }
-			set { _isVisible = value; }
-		}
+        /// <summary>
+        /// Gibt an, ob das grafische Element sichtbar ist.
+        /// </summary>
+        public virtual bool IsVisible
+        {
+            get { return _isVisible && !Bounds.Size.IsEmpty; }
+            set { _isVisible = value; }
+        }
 
-		private bool _isVisible;
+        private bool _isVisible;
 
-		/// <summary>
-		/// Eine Funktion, die die Hintergrundfarbe für einen bestimmten Status zurückgibt.
-		/// </summary>
-		public Func<WidgetState, Color> BackgroundColorFunc { private get; set; }
+        /// <summary>
+        /// Eine Funktion, die die Hintergrundfarbe für einen bestimmten Status zurückgibt.
+        /// </summary>
+        public Func<WidgetState, Color> BackgroundColorFunc { private get; set; }
 
-		/// <summary>
-		/// Eine Funktion, die die Vordergrundfarbe für einen bestimmten Status zurückgibt.
-		/// </summary>
-		public Func<WidgetState, Color> ForegroundColorFunc { private get; set; }
+        /// <summary>
+        /// Eine Funktion, die die Vordergrundfarbe für einen bestimmten Status zurückgibt.
+        /// </summary>
+        public Func<WidgetState, Color> ForegroundColorFunc { private get; set; }
 
-		/// <summary>
-		/// Ruft BackgroundColorFunc mit dem aktuellen Status auf und gibt die aktuelle Hintergrundfarbe zurück.
-		/// </summary>
-		public Color BackgroundColor { get { return BackgroundColorFunc (State); } }
+        /// <summary>
+        /// Ruft BackgroundColorFunc mit dem aktuellen Status auf und gibt die aktuelle Hintergrundfarbe zurück.
+        /// </summary>
+        public Color BackgroundColor { get { return BackgroundColorFunc (State); } }
 
-		/// <summary>
-		/// Ruft ForegroundColorFunc mit dem aktuellen Status auf und gibt die aktuelle Vordergrundfarbe zurück.
-		/// </summary>
-		public Color ForegroundColor { get { return ForegroundColorFunc (State); } }
+        /// <summary>
+        /// Ruft ForegroundColorFunc mit dem aktuellen Status auf und gibt die aktuelle Vordergrundfarbe zurück.
+        /// </summary>
+        public Color ForegroundColor { get { return ForegroundColorFunc (State); } }
 
-		/// <summary>
-		/// Die horizontale Ausrichtung.
-		/// </summary>
-		public HorizontalAlignment AlignX { get; set; }
+        /// <summary>
+        /// Die horizontale Ausrichtung.
+        /// </summary>
+        public HorizontalAlignment AlignX { get; set; }
 
-		/// <summary>
-		/// Die vertikale Ausrichtung.
-		/// </summary>
-		public VerticalAlignment AlignY { get; set; }
+        /// <summary>
+        /// Die vertikale Ausrichtung.
+        /// </summary>
+        public VerticalAlignment AlignY { get; set; }
 
-		/// <summary>
-		/// Die Tasten, auf die dieses Widget reagiert.
-		/// </summary>
-		public List<Keys> ValidKeys { get; protected set; }
+        /// <summary>
+        /// Die Tasten, auf die dieses Widget reagiert.
+        /// </summary>
+        public List<Keys> ValidKeys { get; protected set; }
 
-		public virtual bool IsKeyEventEnabled
-		{
-			get { return IsVisible && ValidKeys.Count > 0; }
-			set { }
-		}
+        public virtual bool IsKeyEventEnabled
+        {
+            get { return IsVisible && ValidKeys.Count > 0; }
+            set { }
+        }
 
-		public virtual bool IsMouseClickEventEnabled
-		{
-			get { return IsVisible; }
-			set { }
-		}
+        public virtual bool IsMouseClickEventEnabled
+        {
+            get { return IsVisible; }
+            set { }
+        }
 
-		public virtual bool IsMouseMoveEventEnabled
-		{
-			get { return IsVisible; }
-			set { }
-		}
+        public virtual bool IsMouseMoveEventEnabled
+        {
+            get { return IsVisible; }
+            set { }
+        }
 
-		public virtual bool IsMouseScrollEventEnabled
-		{
-			get { return IsVisible; }
-			set { }
-		}
+        public virtual bool IsMouseScrollEventEnabled
+        {
+            get { return IsVisible; }
+            set { }
+        }
 
-		public virtual bool IsEnabled
-		{
-			get { return _isEnabled; }
-			set { _isEnabled = value; }
-		}
+        public virtual bool IsEnabled
+        {
+            get { return _isEnabled; }
+            set { _isEnabled = value; }
+        }
 
-		private bool _isEnabled;
+        private bool _isEnabled;
 
-		public virtual WidgetState State { get; set; }
+        public virtual WidgetState State { get; set; }
 
-		public virtual Color SelectedColorBackground { get; set; }
+        public virtual Color SelectedColorBackground { get; set; }
 
-		public virtual Color SelectedColorForeground { get; set; }
+        public virtual Color SelectedColorForeground { get; set; }
 
-		public bool IsModal { get; set; }
+        public bool IsModal { get; set; }
 
-		public bool IsLocalized { get; set; }
+        public bool IsLocalized { get; set; }
 
-		#endregion
+        #endregion
 
-		#region Constructors
+        #region Constructors
 
-		/// <summary>
-		/// Erstellt ein neues grafisches Benutzerschnittstellenelement in dem angegebenen Spielzustand
-		/// mit der angegebenen Zeichenreihenfolge.
-		/// </summary>
-		public Widget (IGameScreen screen, DisplayLayer drawOrder)
-		: base (screen, drawOrder)
-		{
-			Bounds = Bounds.Zero (screen);
-			AlignX = HorizontalAlignment.Left;
-			AlignY = VerticalAlignment.Center;
-			ForegroundColorFunc = Design.WidgetForegroundColorFunc;
-			BackgroundColorFunc = Design.WidgetBackgroundColorFunc;
-			ValidKeys = new List<Keys> ();
-			IsVisible = true;
-			_isEnabled = true;
-			IsModal = false;
-			IsLocalized = true;
-			State = WidgetState.None;
-			SelectedColorBackground = Design.WidgetForeground;
-			SelectedColorForeground = Design.WidgetBackground;
-		}
+        /// <summary>
+        /// Erstellt ein neues grafisches Benutzerschnittstellenelement in dem angegebenen Spielzustand
+        /// mit der angegebenen Zeichenreihenfolge.
+        /// </summary>
+        public Widget (IGameScreen screen, DisplayLayer drawOrder)
+        : base (screen, drawOrder)
+        {
+            Bounds = Bounds.Zero (screen);
+            AlignX = HorizontalAlignment.Left;
+            AlignY = VerticalAlignment.Center;
+            ForegroundColorFunc = Design.WidgetForegroundColorFunc;
+            BackgroundColorFunc = Design.WidgetBackgroundColorFunc;
+            ValidKeys = new List<Keys> ();
+            IsVisible = true;
+            _isEnabled = true;
+            IsModal = false;
+            IsLocalized = true;
+            State = WidgetState.None;
+            SelectedColorBackground = Design.WidgetForeground;
+            SelectedColorForeground = Design.WidgetBackground;
+        }
 
-		#endregion
-	}
+        #endregion
+    }
 }

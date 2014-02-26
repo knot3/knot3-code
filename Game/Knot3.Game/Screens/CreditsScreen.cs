@@ -55,51 +55,51 @@ using Knot3.Game.Widgets;
 
 namespace Knot3.Game.Screens
 {
-	/// <summary>
-	/// Der Spielzustand, der die Auflistung der Mitwirkenden darstellt.
-	/// </summary>
-	[ExcludeFromCodeCoverageAttribute]
-	public class CreditsScreen : MenuScreen
-	{
-		#region Properties
+    /// <summary>
+    /// Der Spielzustand, der die Auflistung der Mitwirkenden darstellt.
+    /// </summary>
+    [ExcludeFromCodeCoverageAttribute]
+    public class CreditsScreen : MenuScreen
+    {
+        #region Properties
 
-		private String text;
+        private String text;
 
-		#endregion
+        #endregion
 
-		#region Constructors
+        #region Constructors
 
-		/// <summary>
-		/// Erzeugt ein neues CreditsScreen-Objekt und initialisiert dieses mit einem Knot3Game-Objekt.
-		/// </summary>
-		public CreditsScreen (GameClass game)
-		: base (game)
-		{
-			text = "...";
-		}
+        /// <summary>
+        /// Erzeugt ein neues CreditsScreen-Objekt und initialisiert dieses mit einem Knot3Game-Objekt.
+        /// </summary>
+        public CreditsScreen (GameClass game)
+        : base (game)
+        {
+            text = "...";
+        }
 
-		#endregion
+        #endregion
 
-		#region Methods
+        #region Methods
 
-		/// <summary>
-		/// Wird für jeden Frame aufgerufen.
-		/// </summary>
-		[ExcludeFromCodeCoverageAttribute]
-		public override void Update (GameTime time)
-		{
-			if (text.Length == 0) {
-				text = "";    //TODO
-			}
-		}
+        /// <summary>
+        /// Wird für jeden Frame aufgerufen.
+        /// </summary>
+        [ExcludeFromCodeCoverageAttribute]
+        public override void Update (GameTime time)
+        {
+            if (text.Length == 0) {
+                text = "";    //TODO
+            }
+        }
 
-		/// <summary>
-		/// Fügt das Menü mit den Mitwirkenden in die Spielkomponentenliste ein.
-		/// </summary>
-		public override void Entered (IGameScreen previousScreen, GameTime GameTime)
-		{
-		}
+        /// <summary>
+        /// Fügt das Menü mit den Mitwirkenden in die Spielkomponentenliste ein.
+        /// </summary>
+        public override void Entered (IGameScreen previousScreen, GameTime GameTime)
+        {
+        }
 
-		#endregion
-	}
+        #endregion
+    }
 }

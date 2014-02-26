@@ -52,330 +52,330 @@ using Knot3.Framework.Utilities;
 
 namespace Knot3.Framework.Core
 {
-	/// <summary>
-	/// Repräsentiert eine Spielwelt, in der sich 3D-Modelle befinden und gezeichnet werden können.
-	/// </summary>
-	public sealed class World : DrawableGameScreenComponent, IEnumerable<IGameObject>
-	{
-		#region Properties
+    /// <summary>
+    /// Repräsentiert eine Spielwelt, in der sich 3D-Modelle befinden und gezeichnet werden können.
+    /// </summary>
+    public sealed class World : DrawableGameScreenComponent, IEnumerable<IGameObject>
+    {
+        #region Properties
 
-		/// <summary>
-		/// Die Kamera dieser Spielwelt.
-		/// </summary>
-		public Camera Camera
-		{
-			get {
-				return _camera;
-			}
-			set {
-				_camera = value;
-				useInternalCamera = false;
-			}
-		}
+        /// <summary>
+        /// Die Kamera dieser Spielwelt.
+        /// </summary>
+        public Camera Camera
+        {
+            get {
+                return _camera;
+            }
+            set {
+                _camera = value;
+                useInternalCamera = false;
+            }
+        }
 
-		private Camera _camera;
-		private bool useInternalCamera = true;
+        private Camera _camera;
+        private bool useInternalCamera = true;
 
-		/// <summary>
-		/// Die Liste von Spielobjekten.
-		/// </summary>
-		public HashSet<IGameObject> Objects { get; set; }
+        /// <summary>
+        /// Die Liste von Spielobjekten.
+        /// </summary>
+        public HashSet<IGameObject> Objects { get; set; }
 
-		private IGameObject _selectedObject;
+        private IGameObject _selectedObject;
 
-		/// <summary>
-		/// Das aktuell ausgewählte Spielobjekt.
-		/// </summary>
-		public IGameObject SelectedObject
-		{
-			get {
-				return _selectedObject;
-			}
-			set {
-				if (_selectedObject != value) {
-					_selectedObject = value;
-					SelectionChanged (_selectedObject);
-					Redraw = true;
-				}
-			}
-		}
+        /// <summary>
+        /// Das aktuell ausgewählte Spielobjekt.
+        /// </summary>
+        public IGameObject SelectedObject
+        {
+            get {
+                return _selectedObject;
+            }
+            set {
+                if (_selectedObject != value) {
+                    _selectedObject = value;
+                    SelectionChanged (_selectedObject);
+                    Redraw = true;
+                }
+            }
+        }
 
-		public float SelectedObjectDistance
-		{
-			get {
-				if (SelectedObject != null) {
-					Vector3 toTarget = SelectedObject.Center () - Camera.Position;
-					return toTarget.Length ();
-				}
-				else {
-					return 0;
-				}
-			}
-		}
+        public float SelectedObjectDistance
+        {
+            get {
+                if (SelectedObject != null) {
+                    Vector3 toTarget = SelectedObject.Center () - Camera.Position;
+                    return toTarget.Length ();
+                }
+                else {
+                    return 0;
+                }
+            }
+        }
 
-		/// <summary>
-		/// Der aktuell angewendete Rendereffekt.
-		/// </summary>
-		public IRenderEffect CurrentEffect { get; set; }
+        /// <summary>
+        /// Der aktuell angewendete Rendereffekt.
+        /// </summary>
+        public IRenderEffect CurrentEffect { get; set; }
 
-		/// <summary>
-		/// Wird ausgelöst, wenn das selektierte Spielobjekt geändert wurde.
-		/// </summary>
-		public Action<IGameObject> SelectionChanged = (o) => {};
+        /// <summary>
+        /// Wird ausgelöst, wenn das selektierte Spielobjekt geändert wurde.
+        /// </summary>
+        public Action<IGameObject> SelectionChanged = (o) => {};
 
-		/// <summary>
-		/// Gibt an, ob die Spielwelt im folgenden Frame neugezeichnet wird
-		/// oder nur der letzte Frame wiedergegeben wird.
-		/// </summary>
-		public bool Redraw { get; set; }
+        /// <summary>
+        /// Gibt an, ob die Spielwelt im folgenden Frame neugezeichnet wird
+        /// oder nur der letzte Frame wiedergegeben wird.
+        /// </summary>
+        public bool Redraw { get; set; }
 
-		/// <summary>
-		/// Wird ausgelöst, wenn die Spielwelt neu gezeichnet wird.
-		/// </summary>
-		public Action OnRedraw = () => {};
+        /// <summary>
+        /// Wird ausgelöst, wenn die Spielwelt neu gezeichnet wird.
+        /// </summary>
+        public Action OnRedraw = () => {};
 
-		/// <summary>
-		/// Die Ausmaße der Welt auf dem Screen.
-		/// </summary>
-		public Bounds Bounds { get; private set; }
+        /// <summary>
+        /// Die Ausmaße der Welt auf dem Screen.
+        /// </summary>
+        public Bounds Bounds { get; private set; }
 
-		#endregion
+        #endregion
 
-		#region Constructors
+        #region Constructors
 
-		/// <summary>
-		/// Erstellt eine neue Spielwelt im angegebenen Spielzustand.
-		/// </summary>
-		public World (IGameScreen screen, DisplayLayer drawIndex, IRenderEffect effect, Bounds bounds)
-		: base (screen, drawIndex)
-		{
-			// die Kamera für diese Spielwelt
-			_camera = new Camera (screen, this);
+        /// <summary>
+        /// Erstellt eine neue Spielwelt im angegebenen Spielzustand.
+        /// </summary>
+        public World (IGameScreen screen, DisplayLayer drawIndex, IRenderEffect effect, Bounds bounds)
+        : base (screen, drawIndex)
+        {
+            // die Kamera für diese Spielwelt
+            _camera = new Camera (screen, this);
 
-			// die Liste der Spielobjekte
-			Objects = new HashSet<IGameObject> ();
+            // die Liste der Spielobjekte
+            Objects = new HashSet<IGameObject> ();
 
-			CurrentEffect = effect;
+            CurrentEffect = effect;
 
-			// Die relative Standard-Position und Größe
-			Bounds = bounds;
+            // Die relative Standard-Position und Größe
+            Bounds = bounds;
 
-			if (Screen.Game != null) {
-				Screen.Game.FullScreenChanged += () => viewportCache.Clear ();
-			}
-		}
+            if (Screen.Game != null) {
+                Screen.Game.FullScreenChanged += () => viewportCache.Clear ();
+            }
+        }
 
-		public World (IGameScreen screen, DisplayLayer drawIndex, Bounds bounds)
-		: this (screen, drawIndex, DefaultEffect (screen), bounds)
-		{
-			RenderEffectLibrary.RenderEffectChanged += (newEffectName, time) => {
-				CurrentEffect = RenderEffectLibrary.CreateEffect (screen: screen, name: newEffectName);
-			};
-		}
+        public World (IGameScreen screen, DisplayLayer drawIndex, Bounds bounds)
+        : this (screen, drawIndex, DefaultEffect (screen), bounds)
+        {
+            RenderEffectLibrary.RenderEffectChanged += (newEffectName, time) => {
+                CurrentEffect = RenderEffectLibrary.CreateEffect (screen: screen, name: newEffectName);
+            };
+        }
 
-		private static IRenderEffect DefaultEffect (IGameScreen screen)
-		{
-			// suche den eingestellten Standardeffekt heraus
-			string effectName = Config.Default ["video", "knot-shader", "default"];
-			IRenderEffect effect = RenderEffectLibrary.CreateEffect (screen: screen, name: effectName);
-			return effect;
-		}
+        private static IRenderEffect DefaultEffect (IGameScreen screen)
+        {
+            // suche den eingestellten Standardeffekt heraus
+            string effectName = Config.Default ["video", "knot-shader", "default"];
+            IRenderEffect effect = RenderEffectLibrary.CreateEffect (screen: screen, name: effectName);
+            return effect;
+        }
 
-		#endregion
+        #endregion
 
-		#region Methods
+        #region Methods
 
-		public void Add (IGameObject obj)
-		{
-			if (obj != null) {
-				Objects.Add (obj);
-				obj.World = this;
-			}
-			Redraw = true;
-		}
+        public void Add (IGameObject obj)
+        {
+            if (obj != null) {
+                Objects.Add (obj);
+                obj.World = this;
+            }
+            Redraw = true;
+        }
 
-		public void Remove (IGameObject obj)
-		{
-			if (obj != null) {
-				Objects.Remove (obj);
-			}
-			Redraw = true;
-		}
+        public void Remove (IGameObject obj)
+        {
+            if (obj != null) {
+                Objects.Remove (obj);
+            }
+            Redraw = true;
+        }
 
-		/// <summary>
-		/// Ruft auf allen Spielobjekten die Update ()-Methode auf.
-		/// </summary>
-		[ExcludeFromCodeCoverageAttribute]
-		public override void Update (GameTime time)
-		{
-			if (!Config.Default ["video", "selectiveRendering", false]) {
-				Redraw = true;
-			}
-			if (!Screen.PostProcessingEffect.SelectiveRendering) {
-				Redraw = true;
-			}
+        /// <summary>
+        /// Ruft auf allen Spielobjekten die Update ()-Methode auf.
+        /// </summary>
+        [ExcludeFromCodeCoverageAttribute]
+        public override void Update (GameTime time)
+        {
+            if (!Config.Default ["video", "selectiveRendering", false]) {
+                Redraw = true;
+            }
+            if (!Screen.PostProcessingEffect.SelectiveRendering) {
+                Redraw = true;
+            }
 
-			// run the update method on all game objects
-			foreach (IGameObject obj in Objects) {
-				obj.Update (time);
-			}
-		}
+            // run the update method on all game objects
+            foreach (IGameObject obj in Objects) {
+                obj.Update (time);
+            }
+        }
 
-		private Dictionary<Point,Dictionary<Vector4, Viewport>> viewportCache
-		    = new Dictionary<Point,Dictionary<Vector4, Viewport>> ();
+        private Dictionary<Point,Dictionary<Vector4, Viewport>> viewportCache
+            = new Dictionary<Point,Dictionary<Vector4, Viewport>> ();
 
-		public Viewport Viewport
-		{
-			get {
-				// when we have a graphics device
-				if (Screen.Device != null) {
-					PresentationParameters pp = Screen.Device.PresentationParameters;
-					Point resolution = new Point (pp.BackBufferWidth, pp.BackBufferHeight);
-					Vector4 key = Bounds.Vector4;
-					if (!viewportCache.ContainsKey (resolution)) {
-						viewportCache [resolution] = new Dictionary<Vector4, Viewport> ();
-					}
-					if (!viewportCache [resolution].ContainsKey (key)) {
-						Rectangle subScreen = Bounds.Rectangle;
-						viewportCache [resolution] [key] = new Viewport (subScreen.X, subScreen.Y, subScreen.Width, subScreen.Height) {
-							MinDepth = 0,
-							MaxDepth = 1
-						};
-					}
-					return viewportCache [resolution] [key];
-				}
-				// for unit tests
-				else {
-					return Screen.Viewport;
-				}
-			}
-		}
+        public Viewport Viewport
+        {
+            get {
+                // when we have a graphics device
+                if (Screen.Device != null) {
+                    PresentationParameters pp = Screen.Device.PresentationParameters;
+                    Point resolution = new Point (pp.BackBufferWidth, pp.BackBufferHeight);
+                    Vector4 key = Bounds.Vector4;
+                    if (!viewportCache.ContainsKey (resolution)) {
+                        viewportCache [resolution] = new Dictionary<Vector4, Viewport> ();
+                    }
+                    if (!viewportCache [resolution].ContainsKey (key)) {
+                        Rectangle subScreen = Bounds.Rectangle;
+                        viewportCache [resolution] [key] = new Viewport (subScreen.X, subScreen.Y, subScreen.Width, subScreen.Height) {
+                            MinDepth = 0,
+                            MaxDepth = 1
+                        };
+                    }
+                    return viewportCache [resolution] [key];
+                }
+                // for unit tests
+                else {
+                    return Screen.Viewport;
+                }
+            }
+        }
 
-		/// <summary>
-		/// Ruft auf allen Spielobjekten die Draw ()-Methode auf.
-		/// </summary>
-		[ExcludeFromCodeCoverageAttribute]
-		public override void Draw (GameTime time)
-		{
-			if (Redraw) {
-				OnRedraw ();
-				Redraw = false;
+        /// <summary>
+        /// Ruft auf allen Spielobjekten die Draw ()-Methode auf.
+        /// </summary>
+        [ExcludeFromCodeCoverageAttribute]
+        public override void Draw (GameTime time)
+        {
+            if (Redraw) {
+                OnRedraw ();
+                Redraw = false;
 
-				//Screen.BackgroundColor = CurrentEffect is CelShadingEffect ? Color.CornflowerBlue : _Color.Black;
+                //Screen.BackgroundColor = CurrentEffect is CelShadingEffect ? Color.CornflowerBlue : _Color.Black;
 
-				// begin the knot render effect
-				CurrentEffect.Begin (time);
+                // begin the knot render effect
+                CurrentEffect.Begin (time);
 
-				foreach (IGameObject obj in Objects) {
-					obj.World = this;
-					obj.Draw (time);
-				}
+                foreach (IGameObject obj in Objects) {
+                    obj.World = this;
+                    obj.Draw (time);
+                }
 
-				// end of the knot render effect
-				CurrentEffect.End (time);
-			}
-			else {
-				CurrentEffect.DrawLastFrame (time);
-			}
-		}
+                // end of the knot render effect
+                CurrentEffect.End (time);
+            }
+            else {
+                CurrentEffect.DrawLastFrame (time);
+            }
+        }
 
-		/// <summary>
-		/// Liefert einen Enumerator über die Spielobjekte dieser Spielwelt.
-		/// [returntype=IEnumerator<IGameObject>]
-		/// </summary>
-		public IEnumerator<IGameObject> GetEnumerator ()
-		{
-			foreach (IGameObject obj in flat (Objects)) {
-				yield return obj;
-			}
-		}
+        /// <summary>
+        /// Liefert einen Enumerator über die Spielobjekte dieser Spielwelt.
+        /// [returntype=IEnumerator<IGameObject>]
+        /// </summary>
+        public IEnumerator<IGameObject> GetEnumerator ()
+        {
+            foreach (IGameObject obj in flat (Objects)) {
+                yield return obj;
+            }
+        }
 
-		private IEnumerable<IGameObject> flat (IEnumerable<IGameObject> enumerable)
-		{
-			foreach (IGameObject obj in enumerable) {
-				if (obj is IEnumerable<IGameObject>) {
-					foreach (IGameObject subobj in flat (obj as IEnumerable<IGameObject>)) {
-						yield return subobj;
-					}
-				}
-				else {
-					yield return obj;
-				}
-			}
-		}
-		// Explicit interface implementation for nongeneric interface
-		IEnumerator IEnumerable.GetEnumerator ()
-		{
-			return GetEnumerator (); // Just return the generic version
-		}
+        private IEnumerable<IGameObject> flat (IEnumerable<IGameObject> enumerable)
+        {
+            foreach (IGameObject obj in enumerable) {
+                if (obj is IEnumerable<IGameObject>) {
+                    foreach (IGameObject subobj in flat (obj as IEnumerable<IGameObject>)) {
+                        yield return subobj;
+                    }
+                }
+                else {
+                    yield return obj;
+                }
+            }
+        }
+        // Explicit interface implementation for nongeneric interface
+        IEnumerator IEnumerable.GetEnumerator ()
+        {
+            return GetEnumerator (); // Just return the generic version
+        }
 
-		public override IEnumerable<IGameScreenComponent> SubComponents (GameTime time)
-		{
-			foreach (DrawableGameScreenComponent component in base.SubComponents (time)) {
-				yield return component;
-			}
-			if (useInternalCamera) {
-				yield return Camera;
-			}
-		}
+        public override IEnumerable<IGameScreenComponent> SubComponents (GameTime time)
+        {
+            foreach (DrawableGameScreenComponent component in base.SubComponents (time)) {
+                yield return component;
+            }
+            if (useInternalCamera) {
+                yield return Camera;
+            }
+        }
 
-		/// <summary>
-		/// Gibt einen Iterator über alle Spielobjekte zurück, der so sortiert ist, dass die
-		/// Spielobjekte, die der angegebenen 2D-Position am nächsten sind, am Anfang stehen.
-		/// Dazu wird die 2D-Position in eine 3D-Position konvertiert.
-		/// </summary>
-		public IEnumerable<IGameObject> FindNearestObjects (ScreenPoint nearTo)
-		{
-			Dictionary<float, IGameObject> distances = new Dictionary<float, IGameObject> ();
-			foreach (IGameObject obj in this) {
-				if (obj.Info.IsSelectable) {
-					// Berechne aus der angegebenen 2D-Position eine 3D-Position
-					Vector3 position3D = Camera.To3D (
-					                         position: nearTo,
-					                         nearTo: obj.Center ()
-					                     );
-					// Berechne die Distanz zwischen 3D-Mausposition und dem Spielobjekt
-					float distance = System.Math.Abs ((position3D - obj.Center ()).Length ());
-					distances [distance] = obj;
-				}
-			}
-			if (distances.Count > 0) {
-				IEnumerable<float> sorted = distances.Keys.OrderBy (k => k);
-				foreach (float where in sorted) {
-					yield return distances [where];
-					// Log.Debug ("where=", where, " = ", distances [where].Center ());
-				}
-			}
-			else {
-				yield break;
-			}
-		}
+        /// <summary>
+        /// Gibt einen Iterator über alle Spielobjekte zurück, der so sortiert ist, dass die
+        /// Spielobjekte, die der angegebenen 2D-Position am nächsten sind, am Anfang stehen.
+        /// Dazu wird die 2D-Position in eine 3D-Position konvertiert.
+        /// </summary>
+        public IEnumerable<IGameObject> FindNearestObjects (ScreenPoint nearTo)
+        {
+            Dictionary<float, IGameObject> distances = new Dictionary<float, IGameObject> ();
+            foreach (IGameObject obj in this) {
+                if (obj.Info.IsSelectable) {
+                    // Berechne aus der angegebenen 2D-Position eine 3D-Position
+                    Vector3 position3D = Camera.To3D (
+                                             position: nearTo,
+                                             nearTo: obj.Center ()
+                                         );
+                    // Berechne die Distanz zwischen 3D-Mausposition und dem Spielobjekt
+                    float distance = System.Math.Abs ((position3D - obj.Center ()).Length ());
+                    distances [distance] = obj;
+                }
+            }
+            if (distances.Count > 0) {
+                IEnumerable<float> sorted = distances.Keys.OrderBy (k => k);
+                foreach (float where in sorted) {
+                    yield return distances [where];
+                    // Log.Debug ("where=", where, " = ", distances [where].Center ());
+                }
+            }
+            else {
+                yield break;
+            }
+        }
 
-		/// <summary>
-		/// Gibt einen Iterator über alle Spielobjekte zurück, der so sortiert ist, dass die
-		/// Spielobjekte, die der angegebenen 3D-Position am nächsten sind, am Anfang stehen.
-		/// </summary>
-		public IEnumerable<IGameObject> FindNearestObjects (Vector3 nearTo)
-		{
-			Dictionary<float, IGameObject> distances = new Dictionary<float, IGameObject> ();
-			foreach (IGameObject obj in this) {
-				if (obj.Info.IsSelectable) {
-					// Berechne die Distanz zwischen 3D-Mausposition und dem Spielobjekt
-					float distance = System.Math.Abs ((nearTo - obj.Center ()).Length ());
-					distances [distance] = obj;
-				}
-			}
-			if (distances.Count > 0) {
-				IEnumerable<float> sorted = distances.Keys.OrderBy (k => k);
-				foreach (float where in sorted) {
-					yield return distances [where];
-				}
-			}
-			else {
-				yield break;
-			}
-		}
+        /// <summary>
+        /// Gibt einen Iterator über alle Spielobjekte zurück, der so sortiert ist, dass die
+        /// Spielobjekte, die der angegebenen 3D-Position am nächsten sind, am Anfang stehen.
+        /// </summary>
+        public IEnumerable<IGameObject> FindNearestObjects (Vector3 nearTo)
+        {
+            Dictionary<float, IGameObject> distances = new Dictionary<float, IGameObject> ();
+            foreach (IGameObject obj in this) {
+                if (obj.Info.IsSelectable) {
+                    // Berechne die Distanz zwischen 3D-Mausposition und dem Spielobjekt
+                    float distance = System.Math.Abs ((nearTo - obj.Center ()).Length ());
+                    distances [distance] = obj;
+                }
+            }
+            if (distances.Count > 0) {
+                IEnumerable<float> sorted = distances.Keys.OrderBy (k => k);
+                foreach (float where in sorted) {
+                    yield return distances [where];
+                }
+            }
+            else {
+                yield break;
+            }
+        }
 
-		#endregion
-	}
+        #endregion
+    }
 }

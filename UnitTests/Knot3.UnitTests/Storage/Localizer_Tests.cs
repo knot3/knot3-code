@@ -45,20 +45,20 @@ using Knot3.Framework.Utilities;
 
 namespace Knot3.UnitTests.Storage
 {
-	/// <summary>
-	///
-	/// </summary>
-	[TestFixture]
-	public class Localizer_Tests
-	{
-		[SetUp]
-		public void Init ()
-		{
-		}
+    /// <summary>
+    ///
+    /// </summary>
+    [TestFixture]
+    public class Localizer_Tests
+    {
+        [SetUp]
+        public void Init ()
+        {
+        }
 
-		[Test]
-		public void Test ()
-		{
-		}
-	}
+        [Test]
+        public void Test ()
+        {
+        }
+    }
 }

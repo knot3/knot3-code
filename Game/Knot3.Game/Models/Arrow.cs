@@ -58,52 +58,52 @@ using Knot3.Game.Widgets;
 
 namespace Knot3.Game.Models
 {
-	/// <summary>
-	/// Ein Objekt der Klasse ArrowModelInfo hält alle Informationen, die zur Erstellung eines Pfeil-3D-Modelles (s. ArrowModel) notwendig sind.
-	/// </summary>
-	[ExcludeFromCodeCoverageAttribute]
-	public sealed class Arrow : GameModelInfo
-	{
-		#region Properties
+    /// <summary>
+    /// Ein Objekt der Klasse ArrowModelInfo hält alle Informationen, die zur Erstellung eines Pfeil-3D-Modelles (s. ArrowModel) notwendig sind.
+    /// </summary>
+    [ExcludeFromCodeCoverageAttribute]
+    public sealed class Arrow : GameModelInfo
+    {
+        #region Properties
 
-		/// <summary>
-		/// Gibt die Richtung, in die der Pfeil zeigen soll an.
-		/// </summary>
-		public Direction Direction { get; private set; }
+        /// <summary>
+        /// Gibt die Richtung, in die der Pfeil zeigen soll an.
+        /// </summary>
+        public Direction Direction { get; private set; }
 
-		public float Length { get { return 40f; } }
+        public float Length { get { return 40f; } }
 
-		public float Diameter { get { return 8f; } }
+        public float Diameter { get { return 8f; } }
 
-		private Dictionary<Direction, Angles3> RotationMap = new Dictionary<Direction, Angles3> ()
-		{
-			{ Direction.Up, 		Angles3.FromDegrees (90, 0, 00) },
-			{ Direction.Down, 		Angles3.FromDegrees (270, 0, 0) },
-			{ Direction.Right, 		Angles3.FromDegrees (0, 270, 0) },
-			{ Direction.Left, 		Angles3.FromDegrees (0, 90, 0) },
-			{ Direction.Forward, 	Angles3.FromDegrees (0, 0, 0) },
-			{ Direction.Backward, 	Angles3.FromDegrees (180, 0, 0) },
-		};
+        private Dictionary<Direction, Angles3> RotationMap = new Dictionary<Direction, Angles3> ()
+        {
+            { Direction.Up, 		Angles3.FromDegrees (90, 0, 00) },
+            { Direction.Down, 		Angles3.FromDegrees (270, 0, 0) },
+            { Direction.Right, 		Angles3.FromDegrees (0, 270, 0) },
+            { Direction.Left, 		Angles3.FromDegrees (0, 90, 0) },
+            { Direction.Forward, 	Angles3.FromDegrees (0, 0, 0) },
+            { Direction.Backward, 	Angles3.FromDegrees (180, 0, 0) },
+        };
 
-		#endregion
+        #endregion
 
-		#region Constructors
+        #region Constructors
 
-		/// <summary>
-		/// Erstellt ein neues ArrowModelInfo-Objekt an einer bestimmten Position position im 3D-Raum. Dieses zeigt in eine durch direction bestimmte Richtung.
-		/// </summary>
-		public Arrow (Vector3 position, Direction direction)
-		: base ("arrow")
-		{
-			Direction = direction;
-			Position = position + Direction.Vector * Node.Scale / 3;
-			Scale = new Vector3 (7,7,20);
-			IsMovable = true;
+        /// <summary>
+        /// Erstellt ein neues ArrowModelInfo-Objekt an einer bestimmten Position position im 3D-Raum. Dieses zeigt in eine durch direction bestimmte Richtung.
+        /// </summary>
+        public Arrow (Vector3 position, Direction direction)
+        : base ("arrow")
+        {
+            Direction = direction;
+            Position = position + Direction.Vector * Node.Scale / 3;
+            Scale = new Vector3 (7,7,20);
+            IsMovable = true;
 
-			// Berechne die Drehung
-			Rotation += RotationMap [direction];
-		}
+            // Berechne die Drehung
+            Rotation += RotationMap [direction];
+        }
 
-		#endregion
-	}
+        #endregion
+    }
 }
