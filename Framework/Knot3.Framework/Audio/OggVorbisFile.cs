@@ -64,22 +64,22 @@ namespace Knot3.Framework.Audio
         {
             Name = name;
             string cachefile = SystemInfo.DecodedMusicCache
-                               + SystemInfo.PathSeparator.ToString ()
-                               + soundType.ToString ()
-                               + "_"
-                               + name.GetHashCode ().ToString ()
-                               + ".wav";
+                + SystemInfo.PathSeparator.ToString ()
+                + soundType.ToString ()
+                + "_"
+                + name.GetHashCode ().ToString ()
+                + ".wav";
 
             Log.BlockList (id: 33, before: "  - ", after: "", begin: "Load ogg audio files:", end: "");
             Log.BlockList (id: 34, before: "  - ", after: "", begin: "Decode ogg audio files:", end: "");
 
             byte[] data;
             try {
-                Log.ListElement (33, "[",soundType,"] ",name);
+                Log.ListElement (33, "[", soundType, "] ", name);
                 data = File.ReadAllBytes (cachefile);
             }
             catch (Exception) {
-                Log.ListElement (34, "[",soundType,"] ",name);
+                Log.ListElement (34, "[", soundType, "] ", name);
                 OggDecoder decoder = new OggDecoder ();
                 decoder.Initialize (TitleContainer.OpenStream (filepath));
                 data = decoder.SelectMany (chunk => chunk.Bytes.Take (chunk.Length)).ToArray ();
