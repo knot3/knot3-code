@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -44,8 +42,6 @@ using Knot3.Framework.Input;
 using Knot3.Framework.Platform;
 using Knot3.Framework.Utilities;
 
-#endregion
-
 namespace Knot3.Framework.Core
 {
     /// <summary>
@@ -53,7 +49,6 @@ namespace Knot3.Framework.Core
     /// </summary>
     public interface IGameScreenComponent : IGameComponent
     {
-        #region Properties
 
         /// <summary>
         /// Die Zeichen- und Eingabepriorität.
@@ -65,9 +60,7 @@ namespace Knot3.Framework.Core
         /// </summary>
         IGameScreen Screen { get; set; }
 
-        #endregion
 
-        #region Methods
 
         /// <summary>
         /// Gibt Spielkomponenten zurück, die in dieser Spielkomponente enthalten sind.
@@ -75,6 +68,5 @@ namespace Knot3.Framework.Core
         /// </summary>
         IEnumerable<IGameScreenComponent> SubComponents (GameTime time);
 
-        #endregion
     }
 }

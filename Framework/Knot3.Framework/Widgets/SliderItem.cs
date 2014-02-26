@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -49,8 +47,6 @@ using Knot3.Framework.Platform;
 using Knot3.Framework.Utilities;
 using Knot3.Framework.Widgets;
 
-#endregion
-
 namespace Knot3.Framework.Widgets
 {
     /// <summary>
@@ -60,7 +56,6 @@ namespace Knot3.Framework.Widgets
     [ExcludeFromCodeCoverageAttribute]
     public sealed class SliderItem : MenuItem, IMouseClickEventListener, IMouseMoveEventListener
     {
-        #region Properties
 
         /// <summary>
         /// Der aktuelle Wert.
@@ -140,9 +135,7 @@ namespace Knot3.Framework.Widgets
         public override Bounds MouseClickBounds { get { return ValueBounds; } }
         public Bounds MouseMoveBounds { get { return ValueBounds; } }
 
-        #endregion
 
-        #region Constructors
 
         /// <summary>
         /// Erzeugt eine neue Instanz eines SliderItem-Objekts und initialisiert diese
@@ -158,9 +151,7 @@ namespace Knot3.Framework.Widgets
             _value = value;
         }
 
-        #endregion
 
-        #region Methods
 
         [ExcludeFromCodeCoverageAttribute]
         public override void Draw (GameTime time)
@@ -230,6 +221,5 @@ namespace Knot3.Framework.Widgets
         {
         }
 
-        #endregion
     }
 }

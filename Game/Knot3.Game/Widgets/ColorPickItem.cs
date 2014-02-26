@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -52,8 +50,6 @@ using Knot3.Game.Input;
 using Knot3.Game.Models;
 using Knot3.Game.Screens;
 
-#endregion
-
 namespace Knot3.Game.Widgets
 {
     /// <summary>
@@ -62,7 +58,6 @@ namespace Knot3.Game.Widgets
     [ExcludeFromCodeCoverageAttribute]
     public sealed class ColorPickItem : MenuItem
     {
-        #region Properties
 
         /// <summary>
         /// Die aktuelle Farbe.
@@ -74,9 +69,7 @@ namespace Knot3.Game.Widgets
         /// </summary>
         private ColorPicker picker { get; set; }
 
-        #endregion
 
-        #region Constructors
 
         /// <summary>
         /// Erzeugt ein neues ColorPickItem-Objekt und initialisiert dieses mit dem zugehörigen IGameScreen-Objekt.
@@ -87,6 +80,5 @@ namespace Knot3.Game.Widgets
         {
         }
 
-        #endregion
     }
 }

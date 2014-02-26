@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -44,8 +42,6 @@ using Knot3.Framework.Input;
 using Knot3.Framework.Platform;
 using Knot3.Framework.Utilities;
 
-#endregion
-
 namespace Knot3.Framework.Math
 {
     /// <summary>
@@ -55,7 +51,6 @@ namespace Knot3.Framework.Math
     /// </summary>
     public sealed class Angles3 : IEquatable<Angles3>
     {
-        #region Properties
 
         /// <summary>
         /// Der Winkel im Bogenmaß für das Rollen um die X-Achse. Siehe statische Methode Matrix.CreateRotationX (float) des XNA-Frameworks.
@@ -80,9 +75,7 @@ namespace Knot3.Framework.Math
             get { return new Angles3 (0f, 0f, 0f); }
         }
 
-        #endregion
 
-        #region Constructors
 
         /// <summary>
         /// Konstruiert ein neues Angles3-Objekt mit drei gegebenen Winkeln im Bogenmaß.
@@ -101,9 +94,7 @@ namespace Knot3.Framework.Math
             Z = v.Z;
         }
 
-        #endregion
 
-        #region Methods
 
         /// <summary>
         /// Eine statische Methode, die Grad in Bogenmaß konvertiert.
@@ -143,9 +134,7 @@ namespace Knot3.Framework.Math
             return (int)(this.X + this.Y + this.Z);
         }
 
-        #endregion
 
-        #region Operators
 
         public static bool operator == (Angles3 value1, Angles3 value2)
         {
@@ -216,6 +205,5 @@ namespace Knot3.Framework.Math
                      + ")";
         }
 
-        #endregion
     }
 }

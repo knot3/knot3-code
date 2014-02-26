@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -56,8 +54,6 @@ using Knot3.Game.Screens;
 using Knot3.Game.Utilities;
 using Knot3.Game.Widgets;
 
-#endregion
-
 namespace Knot3.Game.Models
 {
     /// <summary>
@@ -68,7 +64,6 @@ namespace Knot3.Game.Models
     [ExcludeFromCodeCoverageAttribute]
     public sealed class KnotRenderer : IGameObject, IEnumerable<IGameObject>
     {
-        #region Properties
 
         private IGameScreen screen;
 
@@ -160,9 +155,7 @@ namespace Knot3.Game.Models
         /// </summary>
         private bool showArrows { get { return Config.Default ["video", "arrows", false]; } }
 
-        #endregion
 
-        #region Constructors
 
         /// <summary>
         /// Erstellt ein neues KnotRenderer-Objekt für den angegebenen Spielzustand mit den angegebenen
@@ -183,9 +176,7 @@ namespace Knot3.Game.Models
             nodeMap = new NodeMap ();
         }
 
-        #endregion
 
-        #region Methods
 
         /// <summary>
         /// Gibt den Ursprung des Knotens zurück.
@@ -546,6 +537,5 @@ namespace Knot3.Game.Models
             return GetEnumerator (); // Just return the generic version
         }
 
-        #endregion
     }
 }

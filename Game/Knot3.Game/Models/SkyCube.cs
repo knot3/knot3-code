@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -54,14 +52,11 @@ using Knot3.Game.Screens;
 using Knot3.Game.Utilities;
 using Knot3.Game.Widgets;
 
-#endregion
-
 namespace Knot3.Game.Models
 {
     [ExcludeFromCodeCoverageAttribute]
     public class SkyCube : IGameObject, IEnumerable<IGameObject>
     {
-        #region Properties
 
         /// <summary>
         /// Der dazugehörige Screen.
@@ -116,9 +111,7 @@ namespace Knot3.Game.Models
         /// </summary>
         private Dictionary<Direction, Texture2D> textureCache = new Dictionary<Direction, Texture2D>();
 
-        #endregion
 
-        #region Constructors
 
         /// <summary>
         /// Erstellt ein neues KnotRenderer-Objekt für den angegebenen Spielzustand mit den angegebenen
@@ -138,9 +131,7 @@ namespace Knot3.Game.Models
             ConstructRectangles ();
         }
 
-        #endregion
 
-        #region Methods
 
         private void ConstructRectangles ()
         {
@@ -271,6 +262,5 @@ namespace Knot3.Game.Models
             return GetEnumerator (); // Just return the generic version
         }
 
-        #endregion
     }
 }

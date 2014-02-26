@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -44,8 +42,6 @@ using Knot3.Framework.Input;
 using Knot3.Framework.Platform;
 using Knot3.Framework.Utilities;
 
-#endregion
-
 namespace Knot3.Framework.Storage
 {
     /// <summary>
@@ -53,7 +49,6 @@ namespace Knot3.Framework.Storage
     /// </summary>
     public class DistinctOption : Option
     {
-        #region Properties
 
         /// <summary>
         /// Eine Menge von Texten, welche die für die Option gültigen Werte beschreiben.
@@ -85,9 +80,7 @@ namespace Knot3.Framework.Storage
             }
         }
 
-        #endregion
 
-        #region Constructors
 
         /// <summary>
         /// Erstellt eine neue Option, die einen der angegebenen Werte aus validValues annehmen kann, mit dem angegebenen Namen in dem
@@ -102,6 +95,5 @@ namespace Knot3.Framework.Storage
             DisplayValidValues = new Dictionary<string,string> (ValidValues.ToDictionary (x=>x,x=>x));
         }
 
-        #endregion
     }
 }

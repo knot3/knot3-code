@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -52,8 +50,6 @@ using Knot3.Game.Input;
 using Knot3.Game.Screens;
 using Knot3.Game.Widgets;
 
-#endregion
-
 namespace Knot3.Game.Models
 {
     /// <summary>
@@ -62,7 +58,6 @@ namespace Knot3.Game.Models
     [ExcludeFromCodeCoverageAttribute]
     public sealed class ModelFactory
     {
-        #region Properties
 
         /// <summary>
         /// Die Zuordnung zwischen den Modellinformationen zu den 3D-Modellen.
@@ -75,9 +70,7 @@ namespace Knot3.Game.Models
         /// </summary>
         private Func<IGameScreen, GameModelInfo, GameModel> createModel { get; set; }
 
-        #endregion
 
-        #region Constructors
 
         /// <summary>
         /// Erstellt einen neuen Zwischenspeicher.
@@ -88,9 +81,7 @@ namespace Knot3.Game.Models
             cache = new Dictionary<GameModelInfo, GameModel> ();
         }
 
-        #endregion
 
-        #region Methods
 
         /// <summary>
         /// Falls das 3D-Modell zwischengespeichert ist, wird es zurückgegeben, sonst mit createModel () erstellt.
@@ -107,6 +98,5 @@ namespace Knot3.Game.Models
             }
         }
 
-        #endregion
     }
 }

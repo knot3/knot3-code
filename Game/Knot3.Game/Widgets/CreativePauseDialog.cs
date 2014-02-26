@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -54,8 +52,6 @@ using Knot3.Game.Input;
 using Knot3.Game.Models;
 using Knot3.Game.Screens;
 
-#endregion
-
 namespace Knot3.Game.Widgets
 {
     /// <summary>
@@ -65,7 +61,6 @@ namespace Knot3.Game.Widgets
     [ExcludeFromCodeCoverageAttribute]
     public sealed class CreativePauseDialog : Dialog
     {
-        #region Properties
 
         /// <summary>
         /// Das Menü, das verschiedene Schaltflächen enthält.
@@ -73,9 +68,7 @@ namespace Knot3.Game.Widgets
         private Menu pauseMenu;
         private Knot knot;
 
-        #endregion
 
-        #region Constructors
 
         /// <summary>
         ///
@@ -205,6 +198,5 @@ namespace Knot3.Game.Widgets
             };
         }
 
-        #endregion
     }
 }

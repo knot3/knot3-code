@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -45,13 +43,10 @@ using Knot3.Framework.Math;
 using Knot3.Framework.Platform;
 using Knot3.Framework.Utilities;
 
-#endregion
-
 namespace Knot3.Framework.Input
 {
     public interface IMouseScrollEventListener
     {
-        #region Properties
 
         /// <summary>
         /// Die Eingabepriorität.
@@ -63,9 +58,7 @@ namespace Knot3.Framework.Input
         /// </summary>
         bool IsMouseScrollEventEnabled { get; }
 
-        #endregion
 
-        #region Methods
 
         /// <summary>
         /// Die Ausmaße des von der Klasse repräsentierten Objektes.
@@ -77,6 +70,5 @@ namespace Knot3.Framework.Input
         /// </summary>
         void OnScroll (int scrollWheelValue,GameTime time);
 
-        #endregion
     }
 }

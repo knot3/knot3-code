@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -38,8 +36,6 @@ using Knot3.Framework.Input;
 using Knot3.Framework.Platform;
 using Knot3.Framework.Utilities;
 
-#endregion
-
 namespace Knot3.Framework.Storage
 {
     /// <summary>
@@ -47,7 +43,6 @@ namespace Knot3.Framework.Storage
     /// </summary>
     public sealed class FloatOption : DistinctOption
     {
-        #region Properties
 
         /// <summary>
         /// Eine Eigenschaft, die den aktuell abgespeicherten Wert zurückgibt.
@@ -76,9 +71,7 @@ namespace Knot3.Framework.Storage
             }
         }
 
-        #endregion
 
-        #region Constructors
 
         /// <summary>
         /// Erstellt eine neue Option, welche die Werte \glqq Wahr\grqq~oder \glqq Falsch\grqq~annehmen kann. Mit dem angegebenen Namen, in dem
@@ -105,6 +98,5 @@ namespace Knot3.Framework.Storage
                 return 0;
             }
         }
-        #endregion
     }
 }

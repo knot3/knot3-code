@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -50,8 +48,6 @@ using Knot3.Framework.Platform;
 using Knot3.Framework.Utilities;
 using Knot3.Framework.Widgets;
 
-#endregion
-
 namespace Knot3.Framework.Core
 {
     /// <summary>
@@ -60,7 +56,6 @@ namespace Knot3.Framework.Core
     [ExcludeFromCodeCoverageAttribute]
     public class GameScreen : IGameScreen
     {
-        #region Properties
 
         /// <summary>
         /// Das Spiel, zu dem der Spielzustand gehört.
@@ -108,9 +103,7 @@ namespace Knot3.Framework.Core
             get { return new Bounds (screen: this, relX: 0f, relY: 0f, relWidth: 1f, relHeight: 1f); }
         }
 
-        #endregion
 
-        #region Constructors
 
         /// <summary>
         /// Erzeugt ein neues IGameScreen-Objekt und initialisiert dieses mit einem Knot3Game-Objekt.
@@ -129,9 +122,7 @@ namespace Knot3.Framework.Core
             BackgroundColor = Design.ScreenBackground;
         }
 
-        #endregion
 
-        #region Methods
 
         /// <summary>
         /// Beginnt mit dem Füllen der Spielkomponentenliste des XNA-Frameworks und fügt sowohl für Tastatur- als auch für
@@ -195,6 +186,5 @@ namespace Knot3.Framework.Core
             }
         }
 
-        #endregion
     }
 }

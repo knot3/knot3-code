@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -51,8 +49,6 @@ using Knot3.Game.Input;
 using Knot3.Game.Models;
 using Knot3.Game.Widgets;
 
-#endregion
-
 namespace Knot3.Game.Screens
 {
     /// <summary>
@@ -62,7 +58,6 @@ namespace Knot3.Game.Screens
     [ExcludeFromCodeCoverageAttribute]
     public class TutorialChallengeModeScreen : ChallengeModeScreen
     {
-        #region Constructors
 
         public TutorialChallengeModeScreen (Knot3Game game, Challenge challenge)
         : base (game, challenge)
@@ -70,9 +65,7 @@ namespace Knot3.Game.Screens
             throw new System.NotImplementedException ();
         }
 
-        #endregion
 
-        #region Methods
 
         /// <summary>
         /// Fügt die Tutoriellanzeige in die Spielkomponentenliste ein.
@@ -82,6 +75,5 @@ namespace Knot3.Game.Screens
             throw new System.NotImplementedException ();
         }
 
-        #endregion
     }
 }

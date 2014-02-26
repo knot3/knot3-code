@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -45,8 +43,6 @@ using Knot3.Framework.Input;
 using Knot3.Framework.Platform;
 using Knot3.Framework.Utilities;
 
-#endregion
-
 namespace Knot3.Framework.Storage
 {
     /// <summary>
@@ -54,7 +50,6 @@ namespace Knot3.Framework.Storage
     /// </summary>
     public class Option
     {
-        #region Properties
 
         /// <summary>
         /// Die Einstellungsdatei.
@@ -95,9 +90,7 @@ namespace Knot3.Framework.Storage
             }
         }
 
-        #endregion
 
-        #region Constructors
 
         /// <summary>
         /// Erstellt ein neues OptionsInfo-Objekt aus den übergegebenen Werten.
@@ -111,6 +104,5 @@ namespace Knot3.Framework.Storage
             Verbose = true;
         }
 
-        #endregion
     }
 }

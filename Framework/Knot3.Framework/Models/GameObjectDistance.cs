@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -44,8 +42,6 @@ using Knot3.Framework.Input;
 using Knot3.Framework.Platform;
 using Knot3.Framework.Utilities;
 
-#endregion
-
 namespace Knot3.Framework.Models
 {
     /// <summary>
@@ -55,7 +51,6 @@ namespace Knot3.Framework.Models
     [ExcludeFromCodeCoverageAttribute]
     public sealed class GameObjectDistance
     {
-        #region Properties
 
         /// <summary>
         /// Ein Spielobjekt.
@@ -67,6 +62,5 @@ namespace Knot3.Framework.Models
         /// </summary>
         public float Distance { get; set; }
 
-        #endregion
     }
 }

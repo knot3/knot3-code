@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -54,8 +52,6 @@ using Knot3.Game.Models;
 using Knot3.Game.Screens;
 using Knot3.Game.Utilities;
 
-#endregion
-
 namespace Knot3.Game.Widgets
 {
     /// <summary>
@@ -65,16 +61,13 @@ namespace Knot3.Game.Widgets
     [ExcludeFromCodeCoverageAttribute]
     public sealed class ChallengePauseDialog : Dialog
     {
-        #region Properties
 
         /// <summary>
         /// Das Menü, das verschiedene Schaltflächen enthält.
         /// </summary>
         private Menu pauseMenu;
 
-        #endregion
 
-        #region Constructors
 
         /// <summary>
         ///
@@ -128,9 +121,7 @@ namespace Knot3.Game.Widgets
             pauseMenu.Add (discardExitButton);
         }
 
-        #endregion
 
-        #region Methods
 
         [ExcludeFromCodeCoverageAttribute]
         public override void Draw (GameTime time)
@@ -150,6 +141,5 @@ namespace Knot3.Game.Widgets
             yield return pauseMenu;
         }
 
-        #endregion
     }
 }

@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -51,8 +49,6 @@ using Knot3.Game.Models;
 using Knot3.Game.Screens;
 using Knot3.Game.Widgets;
 
-#endregion
-
 namespace Knot3.Game.Data
 {
     /// <summary>
@@ -61,7 +57,6 @@ namespace Knot3.Game.Data
     /// </summary>
     public sealed class Node : IEquatable<Node>, ICloneable
     {
-        #region Properties
 
         /// <summary>
         /// X steht für eine x-Koordinate im dreidimensionalen Raster.
@@ -83,9 +78,7 @@ namespace Knot3.Game.Data
         /// </summary>
         public static readonly int Scale = 100;
 
-        #endregion
 
-        #region Constructors
 
         /// <summary>
         /// Erzeugt eine neue Instanz eines Node-Objekts und initialisiert diese mit Werten
@@ -98,9 +91,7 @@ namespace Knot3.Game.Data
             Z = z;
         }
 
-        #endregion
 
-        #region Methods
 
         /// <summary>
         /// Liefert die x-, y- und z-Koordinaten im 3D-Raum als ein Vektor3 der Form (x, y, z).
@@ -207,6 +198,5 @@ namespace Knot3.Game.Data
             }
         }
 
-        #endregion
     }
 }

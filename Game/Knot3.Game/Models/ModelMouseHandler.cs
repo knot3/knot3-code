@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -56,8 +54,6 @@ using Knot3.Game.Screens;
 using Knot3.Game.Utilities;
 using Knot3.Game.Widgets;
 
-#endregion
-
 namespace Knot3.Game.Models
 {
     /// <summary>
@@ -70,7 +66,6 @@ namespace Knot3.Game.Models
         private double lastRayCheck = 0;
         private ScreenPoint lastMousePosition;
 
-        #region Constructors
 
         /// <summary>
         /// Erzeugt eine neue Instanz eines ModelMouseHandler-Objekts und ordnet dieser ein IGameScreen-Objekt screen zu,
@@ -83,9 +78,7 @@ namespace Knot3.Game.Models
             lastMousePosition = ScreenPoint.Zero (screen);
         }
 
-        #endregion
 
-        #region Methods
 
         /// <summary>
         /// Wird für jeden Frame aufgerufen.
@@ -136,6 +129,5 @@ namespace Knot3.Game.Models
             }
         }
 
-        #endregion
     }
 }

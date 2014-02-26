@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -53,8 +51,6 @@ using Knot3.Game.Input;
 using Knot3.Game.Screens;
 using Knot3.Game.Widgets;
 
-#endregion
-
 namespace Knot3.Game.Models
 {
     /// <summary>
@@ -63,7 +59,6 @@ namespace Knot3.Game.Models
     [ExcludeFromCodeCoverageAttribute]
     public sealed class Pipe : GameModelInfo
     {
-        #region Properties
 
         /// <summary>
         /// Die Kante, die durch das 3D-Modell dargestellt wird.
@@ -95,9 +90,7 @@ namespace Knot3.Game.Models
             { Direction.Backward, 	Angles3.FromDegrees (0, 0, 0) },
         };
 
-        #endregion
 
-        #region Constructors
 
         /// <summary>
         /// Erstellt ein neues Informationsobjekt für ein 3D-Modell, das eine Kante darstellt.
@@ -151,9 +144,7 @@ namespace Knot3.Game.Models
             }
         }
 
-        #endregion
 
-        #region Methods
 
         public override bool Equals (GameObjectInfo other)
         {
@@ -174,6 +165,5 @@ namespace Knot3.Game.Models
             }
         }
 
-        #endregion
     }
 }

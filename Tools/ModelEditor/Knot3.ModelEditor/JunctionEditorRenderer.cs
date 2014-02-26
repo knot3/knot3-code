@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -55,14 +53,11 @@ using Knot3.Game.Screens;
 using Knot3.Game.Utilities;
 using Knot3.Game.Widgets;
 
-#endregion
-
 namespace Knot3.ModelEditor
 {
     [ExcludeFromCodeCoverageAttribute]
     public class JunctionEditorRenderer : IGameObject, IEnumerable<IGameObject>
     {
-        #region Properties
 
         private IGameScreen screen;
 
@@ -101,9 +96,7 @@ namespace Knot3.ModelEditor
         /// </summary>
         private JunctionEditorNodeMap nodeMap;
 
-        #endregion
 
-        #region Constructors
 
         /// <summary>
         /// Erstellt ein neues KnotRenderer-Objekt für den angegebenen Spielzustand mit den angegebenen
@@ -120,9 +113,7 @@ namespace Knot3.ModelEditor
             nodeMap = new JunctionEditorNodeMap ();
         }
 
-        #endregion
 
-        #region Methods
 
         /// <summary>
         /// Gibt den Ursprung des Knotens zurück.
@@ -261,6 +252,5 @@ namespace Knot3.ModelEditor
             return GetEnumerator (); // Just return the generic version
         }
 
-        #endregion
     }
 }

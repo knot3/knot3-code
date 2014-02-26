@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -54,8 +52,6 @@ using Knot3.Game.Models;
 using Knot3.Game.Utilities;
 using Knot3.Game.Widgets;
 
-#endregion
-
 namespace Knot3.Game.Screens
 {
     /// <summary>
@@ -64,16 +60,13 @@ namespace Knot3.Game.Screens
     [ExcludeFromCodeCoverageAttribute]
     public abstract class MenuScreen : GameScreen
     {
-        #region Properties
 
         private MousePointer pointer;
 
         // die Linien
         protected Lines lines;
 
-        #endregion
 
-        #region Constructors
 
         public MenuScreen (GameClass game)
         : base (game)
@@ -85,9 +78,7 @@ namespace Knot3.Game.Screens
             pointer = new MousePointer (this);
         }
 
-        #endregion
 
-        #region Methods
 
         /// <summary>
         /// Wird aufgerufen, wenn in diesen Spielzustand gewechselt wird.
@@ -99,6 +90,5 @@ namespace Knot3.Game.Screens
             Audio.BackgroundMusic = Sound.MenuMusic;
         }
 
-        #endregion
     }
 }

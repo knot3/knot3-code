@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -45,8 +43,6 @@ using Knot3.Framework.Math;
 using Knot3.Framework.Platform;
 using Knot3.Framework.Utilities;
 
-#endregion
-
 namespace Knot3.Framework.Models
 {
     /// <summary>
@@ -55,7 +51,6 @@ namespace Knot3.Framework.Models
     [ExcludeFromCodeCoverageAttribute]
     public abstract class GameModelInfo : GameObjectInfo
     {
-        #region Properties
 
         /// <summary>
         /// Der Dateiname des Modells.
@@ -72,9 +67,7 @@ namespace Knot3.Framework.Models
         /// </summary>
         public Vector3 Scale { get; set; }
 
-        #endregion
 
-        #region Constructors
 
         /// <summary>
         /// Erstellt ein neues Informations-Objekt eines 3D-Modells mit den angegebenen Informationen zu
@@ -100,6 +93,5 @@ namespace Knot3.Framework.Models
             Scale = Vector3.One;
         }
 
-        #endregion
     }
 }

@@ -25,15 +25,11 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 
 using Knot3.Framework.Platform;
-
-#endregion
 
 namespace ConfigReset
 {

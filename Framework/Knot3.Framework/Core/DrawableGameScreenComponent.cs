@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -44,8 +42,6 @@ using Knot3.Framework.Input;
 using Knot3.Framework.Platform;
 using Knot3.Framework.Utilities;
 
-#endregion
-
 namespace Knot3.Framework.Core
 {
     /// <summary>
@@ -54,7 +50,6 @@ namespace Knot3.Framework.Core
     [ExcludeFromCodeCoverageAttribute]
     public abstract class DrawableGameScreenComponent : DrawableGameComponent, IGameScreenComponent
     {
-        #region Properties
 
         /// <summary>
         /// Der zugewiesene Spielzustand.
@@ -75,9 +70,7 @@ namespace Knot3.Framework.Core
             }
         }
 
-        #endregion
 
-        #region Constructors
 
         /// <summary>
         /// Erzeugt eine neue Instanz eines DrawableGameScreenComponent-Objekts und ordnet dieser ein IGameScreen-Objekt zu.
@@ -90,9 +83,7 @@ namespace Knot3.Framework.Core
             this.Index = index;
         }
 
-        #endregion
 
-        #region Methods
 
         /// <summary>
         /// Gibt Spielkomponenten zurück, die in dieser Spielkomponente enthalten sind.
@@ -103,6 +94,5 @@ namespace Knot3.Framework.Core
             yield break;
         }
 
-        #endregion
     }
 }

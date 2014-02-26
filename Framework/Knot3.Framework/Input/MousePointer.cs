@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -45,8 +43,6 @@ using Knot3.Framework.Platform;
 using Knot3.Framework.Storage;
 using Knot3.Framework.Utilities;
 
-#endregion
-
 namespace Knot3.Framework.Input
 {
     /// <summary>
@@ -58,7 +54,6 @@ namespace Knot3.Framework.Input
         private SpriteBatch spriteBatch;
         private Texture2D cursorTex;
 
-        #region Constructors
 
         /// <summary>
         /// Erstellt einen neuen Mauszeiger für den angegebenen Spielzustand.
@@ -70,9 +65,7 @@ namespace Knot3.Framework.Input
             spriteBatch = new SpriteBatch (screen.Device);
         }
 
-        #endregion
 
-        #region Methods
 
         /// <summary>
         /// Zeichnet den Mauszeiger.
@@ -112,6 +105,5 @@ namespace Knot3.Framework.Input
             }
         }
 
-        #endregion
     }
 }

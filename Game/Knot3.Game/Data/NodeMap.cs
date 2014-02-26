@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -52,8 +50,6 @@ using Knot3.Game.Screens;
 using Knot3.Game.Utilities;
 using Knot3.Game.Widgets;
 
-#endregion
-
 namespace Knot3.Game.Data
 {
     /// <summary>
@@ -61,7 +57,6 @@ namespace Knot3.Game.Data
     /// </summary>
     public sealed class NodeMap : INodeMap
     {
-        #region Properties
 
         private Hashtable fromMap = new Hashtable ();
         private Hashtable toMap = new Hashtable ();
@@ -78,9 +73,7 @@ namespace Knot3.Game.Data
 
         public Action IndexRebuilt { get; set; }
 
-        #endregion
 
-        #region Constructors
 
         public NodeMap ()
         {
@@ -94,9 +87,7 @@ namespace Knot3.Game.Data
             BuildIndex ();
         }
 
-        #endregion
 
-        #region Methods
 
         /// <summary>
         /// Gibt die Rasterposition des Übergangs am Anfang der Kante zurück.
@@ -172,6 +163,5 @@ namespace Knot3.Game.Data
             IndexRebuilt ();
         }
 
-        #endregion
     }
 }

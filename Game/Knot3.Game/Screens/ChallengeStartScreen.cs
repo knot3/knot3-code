@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -54,8 +52,6 @@ using Knot3.Game.Models;
 using Knot3.Game.Utilities;
 using Knot3.Game.Widgets;
 
-#endregion
-
 namespace Knot3.Game.Screens
 {
     /// <summary>
@@ -64,7 +60,6 @@ namespace Knot3.Game.Screens
     [ExcludeFromCodeCoverageAttribute]
     public sealed class ChallengeStartScreen : MenuScreen
     {
-        #region Properties
 
         /// <summary>
         /// Das Menü, das die Spielstände enthält.
@@ -86,9 +81,7 @@ namespace Knot3.Game.Screens
         private ModelMouseHandler previewMouseHandler;
         private Button startButton;
 
-        #endregion
 
-        #region Constructors
 
         /// <summary>
         /// Erstellt eine neue Instanz eines ChallengeStartScreen-Objekts und
@@ -186,9 +179,7 @@ namespace Knot3.Game.Screens
             startButton.AlignX = HorizontalAlignment.Center;
         }
 
-        #endregion
 
-        #region Methods
 
         private void UpdateFiles ()
         {
@@ -265,6 +256,5 @@ namespace Knot3.Game.Screens
             AddGameComponents (time, savegameMenu, title, previewWorld, previewBorder, previewInput, previewMouseHandler, backButton, startButton, infoTitle);
         }
 
-        #endregion
     }
 }

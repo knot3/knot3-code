@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -44,8 +42,6 @@ using Knot3.Framework.Input;
 using Knot3.Framework.Platform;
 using Knot3.Framework.Utilities;
 
-#endregion
-
 namespace Knot3.Framework.Models
 {
     /// <summary>
@@ -54,7 +50,6 @@ namespace Knot3.Framework.Models
     /// </summary>
     public interface IGameObject
     {
-        #region Properties
 
         /// <summary>
         /// Informationen über das Spielobjekt, wie z.B. die Position.
@@ -66,9 +61,7 @@ namespace Knot3.Framework.Models
         /// </summary>
         World World { get; set; }
 
-        #endregion
 
-        #region Methods
 
         /// <summary>
         /// Die Mitte des Spielobjektes im 3D-Raum.
@@ -90,6 +83,5 @@ namespace Knot3.Framework.Models
         /// </summary>
         GameObjectDistance Intersects (Ray ray);
 
-        #endregion
     }
 }

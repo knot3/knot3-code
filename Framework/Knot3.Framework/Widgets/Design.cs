@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -46,8 +44,6 @@ using Knot3.Framework.Models;
 using Knot3.Framework.Platform;
 using Knot3.Framework.Utilities;
 using Knot3.Framework.Widgets;
-
-#endregion
 
 namespace Knot3.Framework.Widgets
 {

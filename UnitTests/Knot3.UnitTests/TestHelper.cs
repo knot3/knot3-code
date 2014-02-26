@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
@@ -41,8 +39,6 @@ using Knot3.Framework.Utilities;
 
 using Knot3.Game.Core;
 using Knot3.Game.Utilities;
-
-#endregion
 
 namespace Knot3.UnitTests
 {

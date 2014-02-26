@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -52,8 +50,6 @@ using Knot3.Game.Models;
 using Knot3.Game.Screens;
 using Knot3.Game.Widgets;
 
-#endregion
-
 namespace Knot3.MockObjects
 {
     /// <summary>
@@ -63,7 +59,6 @@ namespace Knot3.MockObjects
     /// </summary>
     public sealed class FakeEffectStack : IRenderEffectStack
     {
-        #region Properties
 
         private static Stack<IRenderEffect> stack = new Stack<IRenderEffect> ();
 
@@ -87,9 +82,7 @@ namespace Knot3.MockObjects
         /// </summary>
         private IRenderEffect defaultEffect { get; set; }
 
-        #endregion
 
-        #region Constructors
 
         /// <summary>
         /// Erstellt einen neuen Rendereffekt-Stapel.
@@ -100,9 +93,7 @@ namespace Knot3.MockObjects
             stack = new Stack<IRenderEffect> ();
         }
 
-        #endregion
 
-        #region Methods
 
         /// <summary>
         /// Entfernt den obersten Rendereffekt vom Stapel.
@@ -120,6 +111,5 @@ namespace Knot3.MockObjects
             stack.Push (effect);
         }
 
-        #endregion
     }
 }

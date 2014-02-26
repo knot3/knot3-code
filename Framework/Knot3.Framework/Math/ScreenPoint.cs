@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -40,13 +38,10 @@ using Knot3.Framework.Input;
 using Knot3.Framework.Platform;
 using Knot3.Framework.Utilities;
 
-#endregion
-
 namespace Knot3.Framework.Math
 {
     public class ScreenPoint : IEquatable<ScreenPoint>
     {
-        #region Properties
 
         public IGameScreen Screen { get; private set; }
 
@@ -104,9 +99,7 @@ namespace Knot3.Framework.Math
 
         public bool IsEmpty { get { return Relative.Length () == 0; } }
 
-        #endregion
 
-        #region Constructors
 
         public ScreenPoint (IGameScreen screen, Func<Vector2> func)
         {
@@ -132,9 +125,7 @@ namespace Knot3.Framework.Math
             RelativeFunc = () => new Vector2 (x (), y ());
         }
 
-        #endregion
 
-        #region Methods and Operators
 
         public void Assign (ScreenPoint other)
         {
@@ -281,6 +272,5 @@ namespace Knot3.Framework.Math
             return Relative.GetHashCode ();
         }
 
-        #endregion
     }
 }

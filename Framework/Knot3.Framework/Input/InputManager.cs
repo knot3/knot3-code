@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -46,8 +44,6 @@ using Knot3.Framework.Math;
 using Knot3.Framework.Platform;
 using Knot3.Framework.Utilities;
 
-#endregion
-
 namespace Knot3.Framework.Input
 {
     /// <summary>
@@ -56,7 +52,6 @@ namespace Knot3.Framework.Input
     [ExcludeFromCodeCoverageAttribute]
     public sealed class InputManager : GameScreenComponent
     {
-        #region Properties
 
         /// <summary>
         /// Enthält den Klickzustand der rechten Maustaste.
@@ -114,9 +109,7 @@ namespace Knot3.Framework.Input
 
         public static bool FullscreenToggled { get; set; }
 
-        #endregion
 
-        #region Constructors
 
         /// <summary>
         /// Erstellt ein neues InputManager-Objekt, das an den übergebenen Spielzustand gebunden ist.
@@ -130,9 +123,7 @@ namespace Knot3.Framework.Input
             PreviousMouseState = CurrentMouseState = Mouse.GetState ();
         }
 
-        #endregion
 
-        #region Methods
 
         /// <summary>
         /// Wird für jeden Frame aufgerufen.
@@ -243,6 +234,5 @@ namespace Knot3.Framework.Input
             return CurrentKeyboardState.IsKeyDown (key);
         }
 
-        #endregion
     }
 }

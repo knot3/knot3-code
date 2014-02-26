@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -55,8 +53,6 @@ using Knot3.Game.Screens;
 using Knot3.Game.Utilities;
 using Knot3.Game.Widgets;
 
-#endregion
-
 namespace Knot3.Game.Data
 {
     /// <summary>
@@ -64,7 +60,6 @@ namespace Knot3.Game.Data
     /// </summary>
     public class ChallengeMetaData
     {
-        #region Properties
 
         /// <summary>
         /// Der Name der Challenge.
@@ -150,9 +145,7 @@ namespace Knot3.Game.Data
             }
         }
 
-        #endregion
 
-        #region Constructors
 
         /// <summary>
         /// Erstellt ein Challenge-Metadaten-Objekt mit einem gegebenen Namen und den Metadaten des Ausgangs- und Referenzknotens.
@@ -175,9 +168,7 @@ namespace Knot3.Game.Data
             }
         }
 
-        #endregion
 
-        #region Methods
 
         /// <summary>
         /// Fügt eine neue Bestzeit eines bestimmten Spielers in die Bestenliste ein.
@@ -239,6 +230,5 @@ namespace Knot3.Game.Data
             return !(a == b);
         }
 
-        #endregion
     }
 }

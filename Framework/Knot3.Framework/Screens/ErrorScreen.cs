@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -46,8 +44,6 @@ using Knot3.Framework.Platform;
 using Knot3.Framework.Utilities;
 using Knot3.Framework.Widgets;
 
-#endregion
-
 namespace Knot3.Framework.Screens
 {
     /// <summary>
@@ -58,7 +54,6 @@ namespace Knot3.Framework.Screens
     {
         ErrorDialog dialog;
 
-        #region Constructors
 
         /// <summary>
         /// Erzeugt ein neues CreditsScreen-Objekt und initialisiert dieses mit einem Knot3Game-Objekt.
@@ -72,9 +67,7 @@ namespace Knot3.Framework.Screens
             dialog.Bounds.Size = new ScreenPoint (screen: this, x: 0.750f, y: 0.750f);
         }
 
-        #endregion
 
-        #region Methods
 
         private string CreateMessage (Exception ex)
         {
@@ -98,6 +91,5 @@ namespace Knot3.Framework.Screens
             AddGameComponents (time, dialog);
         }
 
-        #endregion
     }
 }

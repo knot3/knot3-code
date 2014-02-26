@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -49,8 +47,6 @@ using Knot3.Framework.Storage;
 using Knot3.Framework.Utilities;
 using Knot3.Framework.Widgets;
 
-#endregion
-
 namespace Knot3.Framework.Core
 {
     /// <summary>
@@ -62,7 +58,6 @@ namespace Knot3.Framework.Core
     /// </summary>
     public sealed class Camera : GameScreenComponent
     {
-        #region Properties
 
         private Vector3 _position;
 
@@ -150,9 +145,7 @@ namespace Knot3.Framework.Core
         private float farPlane;
         private Vector3 defaultPosition = new Vector3 (400, 400, 700);
 
-        #endregion
 
-        #region Constructors
 
         /// <summary>
         /// Erstellt eine neue Kamera in einem bestimmten IGameScreen für eine bestimmte Spielwelt.
@@ -174,9 +167,7 @@ namespace Knot3.Framework.Core
             UpdateMatrices (null);
         }
 
-        #endregion
 
-        #region Methods
 
         /// <summary>
         /// Die Blickrichtung.
@@ -372,6 +363,5 @@ namespace Knot3.Framework.Core
             return new Vector2 (screenLocation.X, screenLocation.Y);
         }
 
-        #endregion
     }
 }

@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -58,8 +56,6 @@ using Knot3.Game.Screens;
 using Knot3.Game.Utilities;
 using Knot3.Game.Widgets;
 
-#endregion
-
 namespace Knot3.Game.Input
 {
     /// <summary>
@@ -69,7 +65,6 @@ namespace Knot3.Game.Input
     [ExcludeFromCodeCoverageAttribute]
     public sealed class KnotInputHandler : GameScreenComponent, IKeyEventListener, IMouseMoveEventListener, IMouseScrollEventListener
     {
-        #region Properties
 
         /// <summary>
         /// Die Spielwelt.
@@ -138,9 +133,7 @@ namespace Knot3.Game.Input
 
         public bool IsModal { get { return false; } }
 
-        #endregion
 
-        #region Constructors
 
         /// <summary>
         /// Erstellt einen neuen KnotInputHandler für den angegebenen Spielzustand und die angegebene Spielwelt.
@@ -194,9 +187,7 @@ namespace Knot3.Game.Input
             };
         }
 
-        #endregion
 
-        #region Methods
 
         /// <summary>
         /// Wird für jeden Frame aufgerufen.
@@ -566,6 +557,5 @@ namespace Knot3.Game.Input
 
         public Bounds MouseScrollBounds { get { return world.Bounds; } }
 
-        #endregion
     }
 }

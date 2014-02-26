@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -54,8 +52,6 @@ using Knot3.Game.Screens;
 using Knot3.Game.Utilities;
 using Knot3.Game.Widgets;
 
-#endregion
-
 namespace Knot3.MockObjects
 {
     /// <summary>
@@ -63,7 +59,6 @@ namespace Knot3.MockObjects
     /// </summary>
     public class FakeEffect : IRenderEffect
     {
-        #region Properties
 
         /// <summary>
         /// Das Rendertarget, in das zwischen dem Aufruf der Begin ()- und der End ()-Methode gezeichnet wird,
@@ -78,18 +73,14 @@ namespace Knot3.MockObjects
 
         public bool SelectiveRendering { get { return true; } }
 
-        #endregion
 
-        #region Constructors
 
         public FakeEffect (IGameScreen screen)
         {
             this.screen = screen;
         }
 
-        #endregion
 
-        #region Methods
 
         /// <summary>
         /// In der Methode Begin () wird das aktuell von XNA genutzte Rendertarget auf einem Stack gesichert
@@ -149,6 +140,5 @@ namespace Knot3.MockObjects
         {
         }
 
-        #endregion
     }
 }

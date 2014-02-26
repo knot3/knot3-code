@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -57,8 +55,6 @@ using Knot3.Game.Models;
 using Knot3.Game.Screens;
 using Knot3.Game.Widgets;
 
-#endregion
-
 namespace Knot3.Game.Data
 {
     /// <summary>
@@ -66,7 +62,6 @@ namespace Knot3.Game.Data
     /// </summary>
     public sealed class ChallengeFileIO : IChallengeIO
     {
-        #region Properties
 
         /// <summary>
         /// Die für eine Knoten-Datei gültigen Dateiendungen.
@@ -82,9 +77,7 @@ namespace Knot3.Game.Data
             }
         }
 
-        #endregion
 
-        #region Constructors
 
         /// <summary>
         /// Erstellt ein ChallengeFileIO-Objekt.
@@ -93,9 +86,7 @@ namespace Knot3.Game.Data
         {
         }
 
-        #endregion
 
-        #region Methods
 
         /// <summary>
         /// Speichert eine Challenge in dem Dateinamen, der in dem Challenge-Objekt enthalten ist.
@@ -247,7 +238,6 @@ namespace Knot3.Game.Data
             }
         }
 
-        #endregion
     }
 
     [ExcludeFromCodeCoverageAttribute]

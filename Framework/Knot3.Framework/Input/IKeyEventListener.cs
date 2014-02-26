@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -44,8 +42,6 @@ using Knot3.Framework.Input;
 using Knot3.Framework.Platform;
 using Knot3.Framework.Utilities;
 
-#endregion
-
 namespace Knot3.Framework.Input
 {
     /// <summary>
@@ -53,7 +49,6 @@ namespace Knot3.Framework.Input
     /// </summary>
     public interface IKeyEventListener
     {
-        #region Properties
 
         /// <summary>
         /// Die Eingabepriorität.
@@ -72,15 +67,12 @@ namespace Knot3.Framework.Input
         /// </summary>
         List<Keys> ValidKeys { get; }
 
-        #endregion
 
-        #region Methods
 
         /// <summary>
         /// Die Reaktion auf eine Tasteneingabe.
         /// </summary>
         void OnKeyEvent (List<Keys> key, KeyEvent keyEvent, GameTime time);
 
-        #endregion
     }
 }

@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -51,8 +49,6 @@ using Knot3.Game.Models;
 using Knot3.Game.Screens;
 using Knot3.Game.Widgets;
 
-#endregion
-
 namespace Knot3.Game.Data
 {
     /// <summary>
@@ -63,7 +59,6 @@ namespace Knot3.Game.Data
     /// </summary>
     public sealed class Direction : IEquatable<Direction>
     {
-        #region Enumeration Values
 
         /// <summary>
         /// Links.
@@ -94,9 +89,7 @@ namespace Knot3.Game.Data
         /// </summary>
         public static readonly Direction Zero = new Direction (Vector3.Zero, "Zero");
 
-        #endregion
 
-        #region Static Attributes
 
         public static readonly Direction[] Values = {
             Left, Right, Up, Down, Forward,	Backward
@@ -119,9 +112,7 @@ namespace Knot3.Game.Data
             { Zero, Axis.Zero }
         };
 
-        #endregion
 
-        #region Properties
 
         public Vector3 Vector { get; private set; }
 
@@ -131,9 +122,7 @@ namespace Knot3.Game.Data
 
         public Axis Axis { get { return AxisMap[this]; } }
 
-        #endregion
 
-        #region Constructors
 
         private Direction (Vector3 vector, string desciption)
         {
@@ -141,9 +130,7 @@ namespace Knot3.Game.Data
             Description = desciption;
         }
 
-        #endregion
 
-        #region Methods and Operators
 
         public static Direction FromAxis (Axis axis)
         {
@@ -247,7 +234,6 @@ namespace Knot3.Game.Data
             return Description.GetHashCode ();
         }
 
-        #endregion
     }
 
     public enum Axis {

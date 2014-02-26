@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -53,8 +51,6 @@ using Knot3.Game.Screens;
 using Knot3.Game.Utilities;
 using Knot3.Game.Widgets;
 
-#endregion
-
 namespace Knot3.Game.Models
 {
     /// <summary>
@@ -63,7 +59,6 @@ namespace Knot3.Game.Models
     [ExcludeFromCodeCoverageAttribute]
     public sealed class ArrowModel : GameModel
     {
-        #region Properties
 
         /// <summary>
         /// Das Info-Objekt, das die Position und Richtung des ArrowModel\grq s enthält.
@@ -77,9 +72,7 @@ namespace Knot3.Game.Models
             get { return _bounds; }
         }
 
-        #endregion
 
-        #region Constructors
 
         /// <summary>
         /// Erstellt ein neues Pfeilmodell in dem angegebenen IGameScreen mit einem bestimmten Info-Objekt, das Position und Richtung des Pfeils festlegt.
@@ -95,9 +88,7 @@ namespace Knot3.Game.Models
                       );
         }
 
-        #endregion
 
-        #region Methods
 
         /// <summary>
         /// Zeichnet den Pfeil.
@@ -133,6 +124,5 @@ namespace Knot3.Game.Models
             return null;
         }
 
-        #endregion
     }
 }

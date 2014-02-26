@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -41,13 +39,10 @@ using Knot3.Framework.Math;
 using Knot3.Framework.Platform;
 using Knot3.Framework.Utilities;
 
-#endregion
-
 namespace Knot3.Framework.Math
 {
     public class Bounds
     {
-        #region Properties
 
         /// <summary>
         /// Die von der Auflösung unabhängige Position in Prozent.
@@ -103,9 +98,7 @@ namespace Knot3.Framework.Math
             }
         }
 
-        #endregion
 
-        #region Constructors
 
         public Bounds (ScreenPoint position, ScreenPoint size, ScreenPoint padding)
         {
@@ -128,9 +121,7 @@ namespace Knot3.Framework.Math
             _padding = new ScreenPoint (screen, Vector2.Zero);
         }
 
-        #endregion
 
-        #region Methods and Operators
 
         public bool Contains (Point point)
         {
@@ -244,6 +235,5 @@ namespace Knot3.Framework.Math
             return "(" + Position.Relative.X + "x" + Position.Relative.Y + "," + Size.Relative.X + "x" + Size.Relative.Y + ")";
         }
 
-        #endregion
     }
 }

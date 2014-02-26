@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -58,8 +56,6 @@ using Knot3.Game.Models;
 using Knot3.Game.Utilities;
 using Knot3.Game.Widgets;
 
-#endregion
-
 namespace Knot3.Game.Screens
 {
     /// <summary>
@@ -68,7 +64,6 @@ namespace Knot3.Game.Screens
     [ExcludeFromCodeCoverageAttribute]
     public class ChallengeModeScreen : GameScreen
     {
-        #region Properties
 
         /// <summary>
         /// Die Spielwelt in der die 3D-Modelle des dargestellten Referenzknotens enthalten sind.
@@ -163,9 +158,7 @@ namespace Knot3.Game.Screens
         // Der Status, z.b. ist die Challenge beendet?
         private ChallengeModeState state;
 
-        #endregion
 
-        #region Constructors
 
         /// <summary>
         /// Erzeugt eine neue Instanz eines ChallengeModeScreen-Objekts und initialisiert diese mit einem Knot3Game-Objekt, einem Spielerknoten playerKnot und dem Knoten challengeKnot, den der Spieler nachbauen soll.
@@ -258,9 +251,7 @@ namespace Knot3.Game.Screens
             state = ChallengeModeState.Start;
         }
 
-        #endregion
 
-        #region Methods
 
         private void OnKnotMoved (Knot newKnot)
         {
@@ -425,7 +416,6 @@ namespace Knot3.Game.Screens
             debugBoundings.Info.IsVisible = Config.Default ["debug", "show-boundings", false];
         }
 
-        #endregion
 
         enum ChallengeModeState {
             Start,

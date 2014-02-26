@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -51,22 +49,17 @@ using Knot3.Game.Models;
 using Knot3.Game.Screens;
 using Knot3.Game.Widgets;
 
-#endregion
-
 namespace Knot3.Game.Data
 {
     public interface ISavegameIO<Savegame, SavegameMetaData>
     {
-        #region Properties
 
         /// <summary>
         /// Aufzählung der Dateierweiterungen.
         /// </summary>
         IEnumerable<string> FileExtensions { get; }
 
-        #endregion
 
-        #region Methods
 
         /// <summary>
         /// Speichert einen Spielstand.
@@ -83,6 +76,5 @@ namespace Knot3.Game.Data
         /// </summary>
         SavegameMetaData LoadMetaData (string filename);
 
-        #endregion
     }
 }

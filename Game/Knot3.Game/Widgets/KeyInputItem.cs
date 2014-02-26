@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -55,8 +53,6 @@ using Knot3.Game.Models;
 using Knot3.Game.Screens;
 using Knot3.Game.Utilities;
 
-#endregion
-
 namespace Knot3.Game.Widgets
 {
     /// <summary>
@@ -65,7 +61,6 @@ namespace Knot3.Game.Widgets
     [ExcludeFromCodeCoverageAttribute]
     public sealed class KeyInputItem : InputItem
     {
-        #region Properties
 
         /// <summary>
         /// Die Option in einer Einstellungsdatei.
@@ -90,9 +85,7 @@ namespace Knot3.Game.Widgets
             set { throw new ArgumentException ("You can't change the ValueWidth of a KeyInputItem!"); }
         }
 
-        #endregion
 
-        #region Constructors
 
         /// <summary>
         /// Erzeugt ein neues CheckBoxItem-Objekt und initialisiert dieses mit dem zugehörigen IGameScreen-Objekt.
@@ -104,9 +97,7 @@ namespace Knot3.Game.Widgets
             this.option = option;
         }
 
-        #endregion
 
-        #region Methods
 
         /// <summary>
         /// Speichert die aktuell gedrückte Taste in der Option.
@@ -150,6 +141,5 @@ namespace Knot3.Game.Widgets
             }
         }
 
-        #endregion
     }
 }

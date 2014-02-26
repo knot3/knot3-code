@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -48,8 +46,6 @@ using Knot3.Framework.Platform;
 using Knot3.Framework.Utilities;
 using Knot3.Framework.Widgets;
 
-#endregion
-
 namespace Knot3.Framework.Widgets
 {
     /// <summary>
@@ -58,7 +54,6 @@ namespace Knot3.Framework.Widgets
     [ExcludeFromCodeCoverageAttribute]
     public class MenuEntry : MenuItem
     {
-        #region Properties
 
         /// <summary>
         /// Die Aktion, die ausgeführt wird, wenn der Spieler auf die Schaltfläche klickt.
@@ -85,9 +80,7 @@ namespace Knot3.Framework.Widgets
 
         public bool IsSelectable { get; set; }
 
-        #endregion
 
-        #region Constructors
 
         /// <summary>
         /// Erzeugt ein neues MenuButton-Objekt und initialisiert dieses mit dem zugehörigen IGameScreen-Objekt.
@@ -101,9 +94,7 @@ namespace Knot3.Framework.Widgets
             OnClick = onClick;
         }
 
-        #endregion
 
-        #region Methods
 
         /// <summary>
         /// Reaktionen auf einen Linksklick.
@@ -152,6 +143,5 @@ namespace Knot3.Framework.Widgets
             }
         }
 
-        #endregion
     }
 }

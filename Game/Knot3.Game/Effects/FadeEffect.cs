@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -52,8 +50,6 @@ using Knot3.Game.Models;
 using Knot3.Game.Screens;
 using Knot3.Game.Widgets;
 
-#endregion
-
 namespace Knot3.Game.Effects
 {
     /// <summary>
@@ -62,7 +58,6 @@ namespace Knot3.Game.Effects
     [ExcludeFromCodeCoverageAttribute]
     public class FadeEffect : RenderEffect
     {
-        #region Properties
 
         private float alpha;
 
@@ -76,9 +71,7 @@ namespace Knot3.Game.Effects
         /// </summary>
         private RenderTarget2D PreviousRenderTarget { get; set; }
 
-        #endregion
 
-        #region Constructors
 
         /// <summary>
         /// Erstellt einen Überblende-Effekt zwischen den angegebenen Spielzuständen.
@@ -96,9 +89,7 @@ namespace Knot3.Game.Effects
             SelectiveRendering = false;
         }
 
-        #endregion
 
-        #region Methods
 
         /// <summary>
         /// Zeichnet das Rendertarget.
@@ -138,6 +129,5 @@ namespace Knot3.Game.Effects
             );
         }
 
-        #endregion
     }
 }

@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -54,8 +52,6 @@ using Knot3.Game.Models;
 using Knot3.Game.Screens;
 using Knot3.Game.Widgets;
 
-#endregion
-
 namespace Knot3.Game.Data
 {
     /// <summary>
@@ -64,7 +60,6 @@ namespace Knot3.Game.Data
     /// </summary>
     public sealed class KnotStringIO
     {
-        #region Properties
 
         /// <summary>
         /// Der Name der eingelesenen Knotendatei oder des zugewiesenen Knotenobjektes.
@@ -143,9 +138,7 @@ namespace Knot3.Game.Data
             }
         }
 
-        #endregion
 
-        #region Constructors
 
         /// <summary>
         /// Liest das in der angegebenen Zeichenkette enthaltene Dateiformat ein. Enthält es einen gültigen Knoten,
@@ -172,9 +165,7 @@ namespace Knot3.Game.Data
             }
         }
 
-        #endregion
 
-        #region Methods
 
         private static IEnumerable<string> ToLines (IEnumerable<Edge> edges)
         {
@@ -263,6 +254,5 @@ namespace Knot3.Game.Data
             return "KnotStringIO (length=" + Content.Length + ")";
         }
 
-        #endregion
     }
 }

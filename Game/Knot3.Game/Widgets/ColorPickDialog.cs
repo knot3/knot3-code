@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -52,14 +50,11 @@ using Knot3.Game.Input;
 using Knot3.Game.Models;
 using Knot3.Game.Screens;
 
-#endregion
-
 namespace Knot3.Game.Widgets
 {
     [ExcludeFromCodeCoverageAttribute]
     public class ColorPickDialog : Dialog
     {
-        #region Properties
 
         /// <summary>
         /// Die ausgewählte Farbe.
@@ -68,9 +63,7 @@ namespace Knot3.Game.Widgets
 
         private ColorPicker colorPicker;
 
-        #endregion
 
-        #region Constructors
 
         /// <summary>
         /// Erzeugt ein neues ConfirmDialog-Objekt und initialisiert dieses mit dem zugehörigen IGameScreen-Objekt.
@@ -97,9 +90,7 @@ namespace Knot3.Game.Widgets
             ValidKeys.AddRange (new Keys[] { Keys.Escape });
         }
 
-        #endregion
 
-        #region Methods
 
         /// <summary>
         ///
@@ -128,6 +119,5 @@ namespace Knot3.Game.Widgets
             yield return colorPicker;
         }
 
-        #endregion
     }
 }

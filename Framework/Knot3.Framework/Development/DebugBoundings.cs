@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -45,14 +43,11 @@ using Knot3.Framework.Models;
 using Knot3.Framework.Platform;
 using Knot3.Framework.Utilities;
 
-#endregion
-
 namespace Knot3.Framework.Development
 {
     [ExcludeFromCodeCoverageAttribute]
     public class DebugBoundings : IGameObject
     {
-        #region Properties
 
         private IGameScreen screen;
 
@@ -64,9 +59,7 @@ namespace Knot3.Framework.Development
         private BasicEffect effect;
         private int sphereResolution;
 
-        #endregion
 
-        #region Constructors
 
         public DebugBoundings (IGameScreen screen, Vector3 position)
         {
@@ -103,9 +96,7 @@ namespace Knot3.Framework.Development
             vertBuffer.SetData (verts);
         }
 
-        #endregion
 
-        #region Methods
 
         /// <summary>
         /// Gibt den Ursprung des Knotens zurück.
@@ -161,6 +152,5 @@ namespace Knot3.Framework.Development
             return null;
         }
 
-        #endregion
     }
 }

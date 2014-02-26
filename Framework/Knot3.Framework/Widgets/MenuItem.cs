@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -50,8 +48,6 @@ using Knot3.Framework.Storage;
 using Knot3.Framework.Utilities;
 using Knot3.Framework.Widgets;
 
-#endregion
-
 namespace Knot3.Framework.Widgets
 {
     /// <summary>
@@ -60,7 +56,6 @@ namespace Knot3.Framework.Widgets
     [ExcludeFromCodeCoverageAttribute]
     public abstract class MenuItem : Widget, IKeyEventListener, IMouseClickEventListener, IMouseScrollEventListener
     {
-        #region Properties
 
         /// <summary>
         /// Die Zeichenreihenfolge.
@@ -98,9 +93,7 @@ namespace Knot3.Framework.Widgets
         public Bounds MouseScrollBounds { get { return Bounds; } }
 
         public Action<bool, GameTime> Hovered = (isHovered, time) => {};
-        #endregion
 
-        #region Constructors
 
         public MenuItem (IGameScreen screen, DisplayLayer drawOrder, string text)
         : base (screen, drawOrder)
@@ -113,9 +106,7 @@ namespace Knot3.Framework.Widgets
             SelectedColorForeground = Color.White;
         }
 
-        #endregion
 
-        #region Methods
 
         /// <summary>
         /// Reaktionen auf einen Linksklick.
@@ -208,6 +199,5 @@ namespace Knot3.Framework.Widgets
         {
         }
 
-        #endregion
     }
 }

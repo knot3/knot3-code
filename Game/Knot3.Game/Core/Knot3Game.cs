@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -56,8 +54,6 @@ using Knot3.Game.Screens;
 using Knot3.Game.Utilities;
 using Knot3.Game.Widgets;
 
-#endregion
-
 namespace Knot3.Game.Core
 {
     /// <summary>
@@ -66,7 +62,6 @@ namespace Knot3.Game.Core
     [ExcludeFromCodeCoverageAttribute]
     public class Knot3Game : GameClass
     {
-        #region Constructors
 
         /// <summary>
         /// Erstellt ein neues zentrales Spielobjekt und setzt die Auflösung des BackBuffers auf
@@ -79,9 +74,7 @@ namespace Knot3.Game.Core
             Window.Title = "Knot3 " + Program.Version;
         }
 
-        #endregion
 
-        #region Methods
 
         /// <summary>
         /// Initialisiert die Attribute dieser Klasse.
@@ -214,6 +207,5 @@ namespace Knot3.Game.Core
             }
         }
 
-        #endregion
     }
 }

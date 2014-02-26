@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -53,8 +51,6 @@ using Knot3.Game.Screens;
 using Knot3.Game.Utilities;
 using Knot3.Game.Widgets;
 
-#endregion
-
 namespace Knot3.Game.Models
 {
     /// <summary>
@@ -63,7 +59,6 @@ namespace Knot3.Game.Models
     [ExcludeFromCodeCoverageAttribute]
     public sealed class JunctionModel : GameModel
     {
-        #region Properties
 
         /// <summary>
         /// Enthält Informationen über den darzustellende 3D-Modell des Kantenübergangs.
@@ -72,9 +67,7 @@ namespace Knot3.Game.Models
 
         public bool IsVirtual { get; set; }
 
-        #endregion
 
-        #region Constructors
 
         /// <summary>
         /// Erstellt ein neues 3D-Modell mit dem angegebenen Spielzustand und dem angegebenen Informationsobjekt.
@@ -85,9 +78,7 @@ namespace Knot3.Game.Models
         {
         }
 
-        #endregion
 
-        #region Methods
 
         /// <summary>
         /// Zeichnet das 3D-Modell mit dem aktuellen Rendereffekt.
@@ -105,6 +96,5 @@ namespace Knot3.Game.Models
             base.Draw (time);
         }
 
-        #endregion
     }
 }

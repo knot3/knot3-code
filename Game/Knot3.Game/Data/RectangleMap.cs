@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -52,30 +50,23 @@ using Knot3.Game.Screens;
 using Knot3.Game.Utilities;
 using Knot3.Game.Widgets;
 
-#endregion
-
 namespace Knot3.Game.Data
 {
     public sealed class RectangleMap
     {
-        #region Properties
 
         private INodeMap NodeMap;
         private Dictionary<Vector3, List<PossibleRectanglePosition>> positions
             = new Dictionary<Vector3, List<PossibleRectanglePosition>> ();
 
-        #endregion
 
-        #region Constructors
 
         public RectangleMap (INodeMap nodeMap)
         {
             NodeMap = nodeMap;
         }
 
-        #endregion
 
-        #region Methods
 
         public void AddEdge (Edge edge, bool isVirtual)
         {
@@ -150,7 +141,6 @@ namespace Knot3.Game.Data
             }
         }
 
-        #endregion
     }
 
     public struct PossibleRectanglePosition {

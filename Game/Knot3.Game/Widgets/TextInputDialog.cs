@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -54,8 +52,6 @@ using Knot3.Game.Input;
 using Knot3.Game.Models;
 using Knot3.Game.Screens;
 
-#endregion
-
 namespace Knot3.Game.Widgets
 {
     /// <summary>
@@ -64,7 +60,6 @@ namespace Knot3.Game.Widgets
     [ExcludeFromCodeCoverageAttribute]
     public class TextInputDialog : Dialog, IKeyEventListener
     {
-        #region Properties
 
         /// <summary>
         /// Der Text, der durch den Spieler eingegeben wurde.
@@ -111,9 +106,7 @@ namespace Knot3.Game.Widgets
         private InputItem textInput;
         private TextItem textItem;
 
-        #endregion
 
-        #region Constructors
 
         /// <summary>
         ///
@@ -143,9 +136,7 @@ namespace Knot3.Game.Widgets
             ValidKeys.AddRange (new Keys[] { Keys.Enter, Keys.Escape });
         }
 
-        #endregion
 
-        #region Methods
 
         /// <summary>
         ///
@@ -188,6 +179,5 @@ namespace Knot3.Game.Widgets
             yield return menu;
         }
 
-        #endregion
     }
 }

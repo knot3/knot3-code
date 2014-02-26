@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -56,8 +54,6 @@ using Knot3.Game.Screens;
 using Knot3.Game.Utilities;
 using Knot3.Game.Widgets;
 
-#endregion
-
 namespace Knot3.Game.Data
 {
     /// <summary>
@@ -65,7 +61,6 @@ namespace Knot3.Game.Data
     /// </summary>
     public sealed class KnotFileIO : IKnotIO
     {
-        #region Properties
 
         /// <summary>
         /// Die für eine Knoten-Datei gültigen Dateiendungen.
@@ -81,9 +76,7 @@ namespace Knot3.Game.Data
         private Dictionary<string, Knot> KnotCache = new Dictionary<string, Knot> ();
         private Dictionary<string, KnotMetaData> KnotMetaDataCache = new Dictionary<string, KnotMetaData> ();
 
-        #endregion
 
-        #region Constructors
 
         /// <summary>
         /// Erstellt ein KnotFileIO-Objekt.
@@ -92,9 +85,7 @@ namespace Knot3.Game.Data
         {
         }
 
-        #endregion
 
-        #region Methods
 
         /// <summary>
         /// Speichert einen Knoten in dem Dateinamen, der in dem Knot-Objekt enthalten ist.
@@ -154,6 +145,5 @@ namespace Knot3.Game.Data
             return "KnotFileIO";
         }
 
-        #endregion
     }
 }

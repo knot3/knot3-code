@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -45,8 +43,6 @@ using Knot3.Framework.Input;
 using Knot3.Framework.Platform;
 using Knot3.Framework.Utilities;
 
-#endregion
-
 namespace Knot3.Framework.Storage
 {
     /// <summary>
@@ -54,7 +50,6 @@ namespace Knot3.Framework.Storage
     /// </summary>
     public sealed class ConfigFile
     {
-        #region Properties
 
         /// <summary>
         /// Die Repräsentation des Wahrheitswerts "wahr" als String in einer Einstellungsdatei.
@@ -69,9 +64,7 @@ namespace Knot3.Framework.Storage
         private string Filename;
         private IniFile ini;
 
-        #endregion
 
-        #region Constructors
 
         public ConfigFile (string filename)
         {
@@ -84,9 +77,7 @@ namespace Knot3.Framework.Storage
             ini = new IniFile (Filename);
         }
 
-        #endregion
 
-        #region Methods
 
         /// <summary>
         /// Setzt den Wert der Option mit dem angegebenen Namen in den angegebenen Abschnitt auf den angegebenen Wert.
@@ -177,6 +168,5 @@ namespace Knot3.Framework.Storage
             }
         }
 
-        #endregion
     }
 }

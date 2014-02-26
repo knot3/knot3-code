@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -45,8 +43,6 @@ using Knot3.Game.Core;
 using Knot3.Game.Data;
 using Knot3.Game.Effects;
 using Knot3.Game.Models;
-
-#endregion
 
 namespace Knot3.UnitTests.Data
 {

@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -53,8 +51,6 @@ using Knot3.Game.Input;
 using Knot3.Game.Models;
 using Knot3.Game.Screens;
 
-#endregion
-
 namespace Knot3.Game.Widgets
 {
     /// <summary>
@@ -64,14 +60,11 @@ namespace Knot3.Game.Widgets
     [ExcludeFromCodeCoverageAttribute]
     public sealed class HighscoreDialog : Dialog
     {
-        #region Properties
 
         private Menu highscoreList;
         private Container buttons;
 
-        #endregion
 
-        #region Constructors
 
         /// <summary>
         ///
@@ -136,9 +129,7 @@ namespace Knot3.Game.Widgets
             buttons.Add (returnButton);
         }
 
-        #endregion
 
-        #region Methods
 
         public override IEnumerable<IGameScreenComponent> SubComponents (GameTime time)
         {
@@ -149,6 +140,5 @@ namespace Knot3.Game.Widgets
             yield return buttons;
         }
 
-        #endregion
     }
 }

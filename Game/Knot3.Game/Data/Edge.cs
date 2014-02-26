@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -51,8 +49,6 @@ using Knot3.Game.Models;
 using Knot3.Game.Screens;
 using Knot3.Game.Widgets;
 
-#endregion
-
 namespace Knot3.Game.Data
 {
     /// <summary>
@@ -60,7 +56,6 @@ namespace Knot3.Game.Data
     /// </summary>
     public sealed class Edge : IEquatable<Edge>, ICloneable
     {
-        #region Properties
 
         /// <summary>
         /// Die Farbe der Kante.
@@ -80,9 +75,7 @@ namespace Knot3.Game.Data
         private int id;
         private static int previousId = 0;
 
-        #endregion
 
-        #region Constructors
 
         /// <summary>
         /// Erstellt eine neue Kante mit der angegebenen Richtung.
@@ -106,9 +99,7 @@ namespace Knot3.Game.Data
             Rectangles = new HashSet<int>();
         }
 
-        #endregion
 
-        #region Methods
 
         public static bool operator == (Edge a, Edge b)
         {
@@ -185,9 +176,7 @@ namespace Knot3.Game.Data
             return edge.Color;
         }
 
-        #endregion
 
-        #region Helper Methods
 
         private static Random r = new Random ();
 
@@ -212,9 +201,7 @@ namespace Knot3.Game.Data
             return new Edge (Direction, Color);
         }
 
-        #endregion
 
-        #region Static Properties
 
         public static List<Color> Colors = new List<Color> ()
         {
@@ -242,6 +229,5 @@ namespace Knot3.Game.Data
 
         public static Edge Backward { get { return new Edge (Direction.Backward); } }
 
-        #endregion
     }
 }

@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -52,13 +50,10 @@ using Knot3.Game.Screens;
 using Knot3.Game.Utilities;
 using Knot3.Game.Widgets;
 
-#endregion
-
 namespace Knot3.Game.Data
 {
     public interface INodeMap
     {
-        #region Properties
 
         /// <summary>
         /// Die Skalierung, die bei einer Konvertierung in einen Vector3 des XNA-Frameworks durch die ToVector ()-Methode der Node-Objekte verwendet wird.
@@ -71,9 +66,7 @@ namespace Knot3.Game.Data
 
         Action IndexRebuilt { get; set; }
 
-        #endregion
 
-        #region Methods
 
         /// <summary>
         /// Gibt die Rasterposition des Übergangs am Anfang der Kante zurück.
@@ -98,6 +91,5 @@ namespace Knot3.Game.Data
         /// </summary>
         void OnEdgesChanged ();
 
-        #endregion
     }
 }

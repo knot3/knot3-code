@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -47,8 +45,6 @@ using Knot3.Framework.Platform;
 using Knot3.Framework.Utilities;
 using Knot3.Framework.Widgets;
 
-#endregion
-
 namespace Knot3.Framework.Widgets
 {
     /// <summary>
@@ -57,7 +53,6 @@ namespace Knot3.Framework.Widgets
     [ExcludeFromCodeCoverageAttribute]
     public abstract class Widget : DrawableGameScreenComponent
     {
-        #region Properties
 
         /// <summary>
         /// Die Ausmaße des Widgets.
@@ -152,9 +147,7 @@ namespace Knot3.Framework.Widgets
 
         public bool IsLocalized { get; set; }
 
-        #endregion
 
-        #region Constructors
 
         /// <summary>
         /// Erstellt ein neues grafisches Benutzerschnittstellenelement in dem angegebenen Spielzustand
@@ -178,6 +171,5 @@ namespace Knot3.Framework.Widgets
             SelectedColorForeground = Design.WidgetBackground;
         }
 
-        #endregion
     }
 }

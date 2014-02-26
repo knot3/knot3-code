@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -58,14 +56,11 @@ using Knot3.Game.Screens;
 using Knot3.Game.Utilities;
 using Knot3.Game.Widgets;
 
-#endregion
-
 namespace Knot3.ModelEditor
 {
     [ExcludeFromCodeCoverageAttribute]
     public class JunctionEditorScreen : GameScreen
     {
-        #region Properties
 
         /// <summary>
         /// Die Spielwelt in der die 3D-Objekte des dargestellten Knotens enthalten sind.
@@ -84,9 +79,7 @@ namespace Knot3.ModelEditor
         private Menu settingsMenu;
         private DropDownMenuItem[] itemBumpRotation;
 
-        #endregion
 
-        #region Constructors
 
         /// <summary>
         /// Erzeugt eine neue Instanz eines CreativeModeScreen-Objekts und initialisiert diese mit einem Knot3Game-Objekt game, sowie einem Knoten knot.
@@ -172,9 +165,7 @@ namespace Knot3.ModelEditor
             world.Camera.PositionToTargetDistance = 180;
         }
 
-        #endregion
 
-        #region Methods
 
         private void OnDirectionsChanged (GameTime time)
         {
@@ -256,6 +247,5 @@ namespace Knot3.ModelEditor
             debugBoundings.Info.IsVisible = Config.Default ["debug", "show-boundings", false];
         }
 
-        #endregion
     }
 }

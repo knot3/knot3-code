@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -48,8 +46,6 @@ using Knot3.Framework.Platform;
 using Knot3.Framework.Utilities;
 using Knot3.Framework.Widgets;
 
-#endregion
-
 namespace Knot3.Framework.Widgets
 {
     /// <summary>
@@ -58,7 +54,6 @@ namespace Knot3.Framework.Widgets
     [ExcludeFromCodeCoverageAttribute]
     public class InputItem : MenuItem
     {
-        #region Properties
 
         /// <summary>
         /// Beinhaltet den vom Spieler eingegebenen Text.
@@ -89,9 +84,7 @@ namespace Knot3.Framework.Widgets
 
         private bool? isMouseClickEventEnabled = null;
 
-        #endregion
 
-        #region Constructors
 
         /// <summary>
         /// Erzeugt ein neues InputItem-Objekt und initialisiert dieses mit dem zugehörigen IGameScreen-Objekt.
@@ -159,6 +152,5 @@ namespace Knot3.Framework.Widgets
             spriteBatch.End ();
         }
 
-        #endregion
     }
 }

@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -56,8 +54,6 @@ using Knot3.Game.Models;
 using Knot3.Game.Utilities;
 using Knot3.Game.Widgets;
 
-#endregion
-
 namespace Knot3.Game.Screens
 {
     /// <summary>
@@ -66,7 +62,6 @@ namespace Knot3.Game.Screens
     [ExcludeFromCodeCoverageAttribute]
     public class SettingsScreen : MenuScreen
     {
-        #region Properties
 
         /// <summary>
         /// Der Name des Menüs.
@@ -88,9 +83,7 @@ namespace Knot3.Game.Screens
         /// </summary>
         private MenuEntry backButton;
 
-        #endregion
 
-        #region Constructors
 
         public SettingsScreen (GameClass game)
         : base (game)
@@ -162,9 +155,7 @@ namespace Knot3.Game.Screens
             backButton.AlignX = HorizontalAlignment.Center;
         }
 
-        #endregion
 
-        #region Methods
 
         /// <summary>
         /// Fügt das Haupt-Einstellungsmenü in die Spielkomponentenliste ein.
@@ -191,6 +182,5 @@ namespace Knot3.Game.Screens
             spriteBatch.End ();
         }
 
-        #endregion
     }
 }

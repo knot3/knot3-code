@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -47,8 +45,6 @@ using Knot3.Framework.Platform;
 using Knot3.Framework.Utilities;
 using Knot3.Framework.Widgets;
 
-#endregion
-
 namespace Knot3.Framework.Storage
 {
     /// <summary>
@@ -56,7 +52,6 @@ namespace Knot3.Framework.Storage
     /// </summary>
     public static class Config
     {
-        #region Properties
 
         /// <summary>
         /// Die zentrale Einstellungsdatei des Spiels.
@@ -88,6 +83,5 @@ namespace Knot3.Framework.Storage
 
         private static ConfigFile _models;
 
-        #endregion
     }
 }

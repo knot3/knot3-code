@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Diagnostics.CodeAnalysis;
 
@@ -47,13 +45,10 @@ using Knot3.Game.Effects;
 using Knot3.Game.Input;
 using Knot3.Game.Widgets;
 
-#endregion
-
 namespace Knot3.MockObjects
 {
     public class FakeScreen : IGameScreen
     {
-        #region Properties
 
         /// <summary>
         /// Das Spiel, zu dem der Spielzustand gehört.
@@ -101,9 +96,7 @@ namespace Knot3.MockObjects
             get { return new Bounds (screen: this, relX: 0f, relY: 0f, relWidth: 1f, relHeight: 1f); }
         }
 
-        #endregion
 
-        #region Constructors
 
         public FakeScreen ()
         {
@@ -119,9 +112,7 @@ namespace Knot3.MockObjects
             //Content = new ContentManager (Content.ServiceProvider, Content.RootDirectory);
         }
 
-        #endregion
 
-        #region Methods
 
         /// <summary>
         /// Beginnt mit dem Füllen der Spielkomponentenliste des XNA-Frameworks und fügt sowohl für Tastatur- als auch für
@@ -167,6 +158,5 @@ namespace Knot3.MockObjects
         {
         }
 
-        #endregion
     }
 }

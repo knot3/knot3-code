@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -45,8 +43,6 @@ using Knot3.Framework.Input;
 using Knot3.Framework.Platform;
 using Knot3.Framework.Utilities;
 
-#endregion
-
 namespace Knot3.Framework.Storage
 {
     /// <summary>
@@ -54,7 +50,6 @@ namespace Knot3.Framework.Storage
     /// </summary>
     public static class Localizer
     {
-        #region Properties
 
         public static readonly string DefaultLanguageCode = "en";
 
@@ -117,9 +112,7 @@ namespace Knot3.Framework.Storage
             }
         }
 
-        #endregion
 
-        #region Methods
 
         /// <summary>
         /// Liefert zu dem übergebenen Bezeichner den zugehörigen Text aus der Lokalisierungsdatei der
@@ -156,6 +149,5 @@ namespace Knot3.Framework.Storage
                    .Replace ("&Auml;", "\u00C4").Replace ("&Ouml;", "\u00D6").Replace ("&Uuml;", "\u00DC");
         }
 
-        #endregion
     }
 }

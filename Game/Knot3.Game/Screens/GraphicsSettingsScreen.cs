@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -55,8 +53,6 @@ using Knot3.Game.Input;
 using Knot3.Game.Models;
 using Knot3.Game.Widgets;
 
-#endregion
-
 namespace Knot3.Game.Screens
 {
     /// <summary>
@@ -65,16 +61,13 @@ namespace Knot3.Game.Screens
     [ExcludeFromCodeCoverageAttribute]
     public class GraphicsSettingsScreen : SettingsScreen
     {
-        #region Properties
 
         /// <summary>
         /// Das Menü, das die Einstellungen enthält.
         /// </summary>
         private Menu settingsMenu;
 
-        #endregion
 
-        #region Constructors
 
         /// <summary>
         /// Erzeugt ein neues GraphicsSettingsScreen-Objekt und initialisiert dieses mit einem Knot3Game-Objekt.
@@ -205,9 +198,7 @@ namespace Knot3.Game.Screens
             settingsMenu.Add (languageItem);
         }
 
-        #endregion
 
-        #region Methods
 
         /// <summary>
         /// Wird für jeden Frame aufgerufen.
@@ -226,6 +217,5 @@ namespace Knot3.Game.Screens
             AddGameComponents (time, settingsMenu);
         }
 
-        #endregion
     }
 }

@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -54,8 +52,6 @@ using Knot3.Game.Screens;
 using Knot3.Game.Utilities;
 using Knot3.Game.Widgets;
 
-#endregion
-
 namespace Knot3.Game.Models
 {
     /// <summary>
@@ -64,7 +60,6 @@ namespace Knot3.Game.Models
     [ExcludeFromCodeCoverageAttribute]
     public sealed class Arrow : GameModelInfo
     {
-        #region Properties
 
         /// <summary>
         /// Gibt die Richtung, in die der Pfeil zeigen soll an.
@@ -85,9 +80,7 @@ namespace Knot3.Game.Models
             { Direction.Backward, 	Angles3.FromDegrees (180, 0, 0) },
         };
 
-        #endregion
 
-        #region Constructors
 
         /// <summary>
         /// Erstellt ein neues ArrowModelInfo-Objekt an einer bestimmten Position position im 3D-Raum. Dieses zeigt in eine durch direction bestimmte Richtung.
@@ -104,6 +97,5 @@ namespace Knot3.Game.Models
             Rotation += RotationMap [direction];
         }
 
-        #endregion
     }
 }

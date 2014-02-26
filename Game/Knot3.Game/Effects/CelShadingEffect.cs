@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -54,8 +52,6 @@ using Knot3.Game.Screens;
 using Knot3.Game.Utilities;
 using Knot3.Game.Widgets;
 
-#endregion
-
 namespace Knot3.Game.Effects
 {
     /// <summary>
@@ -72,7 +68,6 @@ namespace Knot3.Game.Effects
         float outlineThickness = 1.0f;  // current outline thickness
         float outlineThreshold = 0.2f;  // current edge detection threshold
 
-        #region Constructors
 
         /// <summary>
         /// Erstellt einen neuen Cel-Shading-Effekt für den angegebenen IGameScreen.
@@ -104,9 +99,7 @@ namespace Knot3.Game.Effects
                 new Vector2 (screen.Viewport.Bounds.Width, screen.Viewport.Bounds.Height));
         }
 
-        #endregion
 
-        #region Methods
 
         /// <summary>
         /// Zeichnet das Rendertarget.
@@ -182,6 +175,5 @@ namespace Knot3.Game.Effects
             }
         }
 
-        #endregion
     }
 }

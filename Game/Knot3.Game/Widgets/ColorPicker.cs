@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -55,8 +53,6 @@ using Knot3.Game.Models;
 using Knot3.Game.Screens;
 using Knot3.Game.Utilities;
 
-#endregion
-
 namespace Knot3.Game.Widgets
 {
     /// <summary>
@@ -65,7 +61,6 @@ namespace Knot3.Game.Widgets
     [ExcludeFromCodeCoverageAttribute]
     public sealed class ColorPicker : Widget, IKeyEventListener, IMouseClickEventListener
     {
-        #region Properties
 
         /// <summary>
         /// Die ausgewählte Farbe.
@@ -84,9 +79,7 @@ namespace Knot3.Game.Widgets
 
         public Bounds MouseClickBounds { get { return Bounds; } }
 
-        #endregion
 
-        #region Constructors
 
         /// <summary>
         /// Erzeugt eine neue Instanz eines ColorPicker-Objekts und initialisiert diese
@@ -124,9 +117,7 @@ namespace Knot3.Game.Widgets
             };
         }
 
-        #endregion
 
-        #region Methods
 
         [ExcludeFromCodeCoverageAttribute]
         public override void Draw (GameTime time)
@@ -221,6 +212,5 @@ namespace Knot3.Game.Widgets
             }
         }
 
-        #endregion
     }
 }

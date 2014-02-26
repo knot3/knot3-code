@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -46,8 +44,6 @@ using Knot3.Framework.Platform;
 using Knot3.Framework.Utilities;
 using Knot3.Framework.Widgets;
 
-#endregion
-
 namespace Knot3.Framework.Effects
 {
     /// <summary>
@@ -58,7 +54,6 @@ namespace Knot3.Framework.Effects
     [ExcludeFromCodeCoverageAttribute]
     public sealed class RenderEffectStack : IRenderEffectStack
     {
-        #region Properties
 
         private IGameScreen screen;
         private static Stack<IRenderEffect> stack = new Stack<IRenderEffect> ();
@@ -83,9 +78,7 @@ namespace Knot3.Framework.Effects
         /// </summary>
         private IRenderEffect defaultEffect { get; set; }
 
-        #endregion
 
-        #region Constructors
 
         /// <summary>
         /// Erstellt einen neuen Rendereffekt-Stapel.
@@ -97,9 +90,7 @@ namespace Knot3.Framework.Effects
             stack = new Stack<IRenderEffect> ();
         }
 
-        #endregion
 
-        #region Methods
 
         /// <summary>
         /// Entfernt den obersten Rendereffekt vom Stapel.
@@ -130,6 +121,5 @@ namespace Knot3.Framework.Effects
             screen.Device.SetRenderTarget (effect.RenderTarget);
         }
 
-        #endregion
     }
 }

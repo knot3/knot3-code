@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -47,13 +45,10 @@ using Knot3.Framework.Input;
 using Knot3.Framework.Platform;
 using Knot3.Framework.Utilities;
 
-#endregion
-
 namespace Knot3.Framework.Platform
 {
     public static partial class SystemInfo
     {
-        #region Properties
 
         /// <summary>
         /// Das Einstellungsverzeichnis.
@@ -204,6 +199,5 @@ namespace Knot3.Framework.Platform
             }
         }
 
-        #endregion
     }
 }

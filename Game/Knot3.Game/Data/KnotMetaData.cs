@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -53,8 +51,6 @@ using Knot3.Game.Screens;
 using Knot3.Game.Utilities;
 using Knot3.Game.Widgets;
 
-#endregion
-
 namespace Knot3.Game.Data
 {
     /// <summary>
@@ -65,7 +61,6 @@ namespace Knot3.Game.Data
     /// </summary>
     public class KnotMetaData : IEquatable<KnotMetaData>
     {
-        #region Properties
 
         /// <summary>
         /// Der Anzeigename des Knotens, welcher auch leer sein kann.
@@ -122,9 +117,7 @@ namespace Knot3.Game.Data
         /// </summary>
         public string Filename { get; private set; }
 
-        #endregion
 
-        #region Constructors
 
         /// <summary>
         /// Erstellt ein neues Knoten-Metadaten-Objekt mit einem angegebenen Knotennamen
@@ -151,9 +144,7 @@ namespace Knot3.Game.Data
             Filename = null;
         }
 
-        #endregion
 
-        #region Methods
 
         public bool Equals (KnotMetaData other)
         {
@@ -192,6 +183,5 @@ namespace Knot3.Game.Data
             return !(a == b);
         }
 
-        #endregion
     }
 }

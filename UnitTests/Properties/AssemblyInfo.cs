@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using System.Runtime.CompilerServices;
@@ -36,8 +34,6 @@ using Knot3.Framework.Core;
 using Knot3.Framework.Input;
 using Knot3.Framework.Platform;
 using Knot3.Framework.Utilities;
-
-#endregion
 
 // Allgemeine Informationen über eine Assembly werden über folgende
 // Attribute gesteuert. Ändern Sie diese Attributwerte, um die Informationen zu ändern,

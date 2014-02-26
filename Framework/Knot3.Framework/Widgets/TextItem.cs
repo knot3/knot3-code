@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -47,8 +45,6 @@ using Knot3.Framework.Platform;
 using Knot3.Framework.Utilities;
 using Knot3.Framework.Widgets;
 
-#endregion
-
 namespace Knot3.Framework.Widgets
 {
     /// <summary>
@@ -57,7 +53,6 @@ namespace Knot3.Framework.Widgets
     [ExcludeFromCodeCoverageAttribute]
     public class TextItem : MenuItem
     {
-        #region Properties
 
         /// <summary>
         /// Wie viel Prozent der Name des Eintrags (auf der linken Seite) von der Breite des Eintrags einnehmen darf.
@@ -77,9 +72,7 @@ namespace Knot3.Framework.Widgets
             set { throw new ArgumentException ("You can't change the ValueWidth of a TextItem!"); }
         }
 
-        #endregion
 
-        #region Constructors
 
         /// <summary>
         /// Erzeugt ein neues TextItem-Objekt und initialisiert dieses mit dem zugehörigen IGameScreen-Objekt.
@@ -90,9 +83,7 @@ namespace Knot3.Framework.Widgets
         {
         }
 
-        #endregion
 
-        #region Methods
 
         //Da TextItems werden nicht unterlegt um sie von Buttons abzugrenzen
         public override void SetHovered (bool hovered, GameTime time)
@@ -100,6 +91,5 @@ namespace Knot3.Framework.Widgets
             State = WidgetState.None;
         }
 
-        #endregion
     }
 }

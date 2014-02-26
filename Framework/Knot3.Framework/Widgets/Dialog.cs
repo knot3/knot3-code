@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -49,8 +47,6 @@ using Knot3.Framework.Platform;
 using Knot3.Framework.Utilities;
 using Knot3.Framework.Widgets;
 
-#endregion
-
 namespace Knot3.Framework.Widgets
 {
     /// <summary>
@@ -59,7 +55,6 @@ namespace Knot3.Framework.Widgets
     [ExcludeFromCodeCoverageAttribute]
     public abstract class Dialog : Widget, IKeyEventListener, IMouseClickEventListener, IMouseMoveEventListener
     {
-        #region Properties
 
         /// <summary>
         /// Der Fenstertitel.
@@ -85,9 +80,7 @@ namespace Knot3.Framework.Widgets
 
         public Bounds MouseMoveBounds { get { return TitleBounds; } }
 
-        #endregion
 
-        #region Constructors
 
         /// <summary>
         /// Erzeugt ein neues Dialog-Objekt und initialisiert dieses mit dem zugehörigen IGameScreen-Objekt.
@@ -148,9 +141,7 @@ namespace Knot3.Framework.Widgets
             ValidKeys = new List<Keys> ();
         }
 
-        #endregion
 
-        #region Methods
 
         [ExcludeFromCodeCoverageAttribute]
         public override void Draw (GameTime time)
@@ -260,6 +251,5 @@ namespace Knot3.Framework.Widgets
         {
         }
 
-        #endregion
     }
 }

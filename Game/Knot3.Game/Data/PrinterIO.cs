@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -51,8 +49,6 @@ using Knot3.Game.Models;
 using Knot3.Game.Screens;
 using Knot3.Game.Widgets;
 
-#endregion
-
 namespace Knot3.Game.Data
 {
     /// <summary>
@@ -61,16 +57,13 @@ namespace Knot3.Game.Data
     [ExcludeFromCodeCoverageAttribute]
     public class PrinterIO : IKnotIO
     {
-        #region Properties
 
         /// <summary>
         /// Die gültigen Dateiendungen für das 3D-Drucker-Format.
         /// </summary>
         public IEnumerable<string> FileExtensions { get; set; }
 
-        #endregion
 
-        #region Constructors
 
         /// <summary>
         /// Erstellt ein neues PrinterIO-Objekt.
@@ -80,9 +73,7 @@ namespace Knot3.Game.Data
             throw new System.NotImplementedException ();
         }
 
-        #endregion
 
-        #region Methods
 
         /// <summary>
         /// Exportiert den Knoten in einem gültigen 3D-Drucker-Format.
@@ -108,6 +99,5 @@ namespace Knot3.Game.Data
             throw new System.NotImplementedException ();
         }
 
-        #endregion
     }
 }

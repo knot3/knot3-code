@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -54,8 +52,6 @@ using Knot3.Game.Screens;
 using Knot3.Game.Utilities;
 using Knot3.Game.Widgets;
 
-#endregion
-
 namespace Knot3.Game.Models
 {
     /// <summary>
@@ -64,7 +60,6 @@ namespace Knot3.Game.Models
     [ExcludeFromCodeCoverageAttribute]
     public sealed class TexturedRectangle : IGameObject, IDisposable, IEquatable<TexturedRectangle>
     {
-        #region Attributes and Properties
 
         private IGameScreen Screen;
 
@@ -84,9 +79,7 @@ namespace Knot3.Game.Models
         private BasicEffect basicEffect;
         private Texture2D texture;
 
-        #endregion
 
-        #region Constructors
 
         public TexturedRectangle (IGameScreen screen, TexturedRectangleInfo info)
         {
@@ -106,18 +99,14 @@ namespace Knot3.Game.Models
             }
         }
 
-        #endregion
 
-        #region Update
 
         [ExcludeFromCodeCoverageAttribute]
         public void Update (GameTime time)
         {
         }
 
-        #endregion
 
-        #region Draw
 
         [ExcludeFromCodeCoverageAttribute]
         public void Draw (GameTime time)
@@ -157,7 +146,6 @@ namespace Knot3.Game.Models
             }
         }
 
-        #endregion
 
         private void FillVertices ()
         {

@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -46,8 +44,6 @@ using Knot3.Framework.Platform;
 using Knot3.Framework.Utilities;
 using Knot3.Framework.Widgets;
 
-#endregion
-
 namespace Knot3.Framework.Effects
 {
     /// <summary>
@@ -57,7 +53,6 @@ namespace Knot3.Framework.Effects
     [ExcludeFromCodeCoverageAttribute]
     public sealed class StandardEffect : RenderEffect
     {
-        #region Constructors
 
         /// <summary>
         /// Erstellt einen neuen Standardeffekt.
@@ -67,6 +62,5 @@ namespace Knot3.Framework.Effects
         {
         }
 
-        #endregion
     }
 }

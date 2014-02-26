@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -47,8 +45,6 @@ using Knot3.Game.Effects;
 using Knot3.Game.Models;
 
 using Knot3.MockObjects;
-
-#endregion
 
 namespace Knot3.UnitTests
 {

@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -45,8 +43,6 @@ using Knot3.Framework.Math;
 using Knot3.Framework.Platform;
 using Knot3.Framework.Utilities;
 
-#endregion
-
 namespace Knot3.Framework.Models
 {
     /// <summary>
@@ -55,7 +51,6 @@ namespace Knot3.Framework.Models
     [ExcludeFromCodeCoverageAttribute]
     public abstract class GameModel : IGameObject
     {
-        #region Properties
 
         GameObjectInfo IGameObject.Info { get { return Info; } }
 
@@ -103,9 +98,7 @@ namespace Knot3.Framework.Models
 
         protected IGameScreen screen;
 
-        #endregion
 
-        #region Constructors
 
         /// <summary>
         /// Erstellt ein neues 3D-Modell in dem angegebenen Spielzustand mit den angegebenen Modellinformationen.
@@ -119,9 +112,7 @@ namespace Knot3.Framework.Models
             Coloring = new SingleColor (Color.Transparent);
         }
 
-        #endregion
 
-        #region Methods
 
         /// <summary>
         /// Gibt die Mitte des 3D-Modells zurück.
@@ -177,9 +168,7 @@ namespace Knot3.Framework.Models
             return null;
         }
 
-        #endregion
 
-        #region Cache
 
         private Vector3 _scale;
         private Angles3 _rotation;
@@ -238,6 +227,5 @@ namespace Knot3.Framework.Models
             }
         }
 
-        #endregion
     }
 }

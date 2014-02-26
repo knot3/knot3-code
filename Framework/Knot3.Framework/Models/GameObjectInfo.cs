@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -44,8 +42,6 @@ using Knot3.Framework.Input;
 using Knot3.Framework.Platform;
 using Knot3.Framework.Utilities;
 
-#endregion
-
 namespace Knot3.Framework.Models
 {
     /// <summary>
@@ -54,7 +50,6 @@ namespace Knot3.Framework.Models
     [ExcludeFromCodeCoverageAttribute]
     public class GameObjectInfo : IEquatable<GameObjectInfo>
     {
-        #region Properties
 
         /// <summary>
         /// Die Verschiebbarkeit des Spielobjektes.
@@ -76,9 +71,7 @@ namespace Knot3.Framework.Models
         /// </summary>
         public Vector3 Position { get; set; }
 
-        #endregion
 
-        #region Constructors
 
         public GameObjectInfo (Vector3 position, bool isVisible = true, bool isSelectable = false, bool isMovable = false)
         {
@@ -88,9 +81,7 @@ namespace Knot3.Framework.Models
             IsMovable = isMovable;
         }
 
-        #endregion
 
-        #region Methods
 
         /// <summary>
         /// Vergleicht zwei Informationsobjekte für Spielobjekte.
@@ -136,6 +127,5 @@ namespace Knot3.Framework.Models
             return !(o1 == o2);
         }
 
-        #endregion
     }
 }

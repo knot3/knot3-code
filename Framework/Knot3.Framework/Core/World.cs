@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -48,8 +46,6 @@ using Knot3.Framework.Platform;
 using Knot3.Framework.Storage;
 using Knot3.Framework.Utilities;
 
-#endregion
-
 namespace Knot3.Framework.Core
 {
     /// <summary>
@@ -57,7 +53,6 @@ namespace Knot3.Framework.Core
     /// </summary>
     public sealed class World : DrawableGameScreenComponent, IEnumerable<IGameObject>
     {
-        #region Properties
 
         /// <summary>
         /// Die Kamera dieser Spielwelt.
@@ -139,9 +134,7 @@ namespace Knot3.Framework.Core
         /// </summary>
         public Bounds Bounds { get; private set; }
 
-        #endregion
 
-        #region Constructors
 
         /// <summary>
         /// Erstellt eine neue Spielwelt im angegebenen Spielzustand.
@@ -181,9 +174,7 @@ namespace Knot3.Framework.Core
             return effect;
         }
 
-        #endregion
 
-        #region Methods
 
         public void Add (IGameObject obj)
         {
@@ -376,6 +367,5 @@ namespace Knot3.Framework.Core
             }
         }
 
-        #endregion
     }
 }

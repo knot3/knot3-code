@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -50,8 +48,6 @@ using Knot3.Framework.Storage;
 using Knot3.Framework.Utilities;
 using Knot3.Framework.Widgets;
 
-#endregion
-
 namespace Knot3.Framework.Widgets
 {
     /// <summary>
@@ -60,7 +56,6 @@ namespace Knot3.Framework.Widgets
     [ExcludeFromCodeCoverageAttribute]
     public sealed class DropDownMenuItem : MenuItem
     {
-        #region Properties
 
         /// <summary>
         /// Das Dropdown-Menü, das ein- und ausgeblendet werden kann.
@@ -82,9 +77,7 @@ namespace Knot3.Framework.Widgets
 
         public Action<GameTime> ValueChanged = (time) => {};
 
-        #endregion
 
-        #region Constructors
 
         /// <summary>
         /// Erzeugt ein neues ConfirmDialog-Objekt und initialisiert dieses mit dem zugehörigen IGameScreen-Objekt.
@@ -120,9 +113,7 @@ namespace Knot3.Framework.Widgets
             ValidKeys.Add (Keys.Escape);
         }
 
-        #endregion
 
-        #region Methods
 
         /// <summary>
         /// Fügt Einträge in das Dropdown-Menü ein, die auf Einstellungsoptionen basieren.
@@ -189,6 +180,5 @@ namespace Knot3.Framework.Widgets
             yield return currentValue;
         }
 
-        #endregion
     }
 }

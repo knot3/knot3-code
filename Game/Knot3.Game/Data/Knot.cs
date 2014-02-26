@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -55,8 +53,6 @@ using Knot3.Game.Screens;
 using Knot3.Game.Utilities;
 using Knot3.Game.Widgets;
 
-#endregion
-
 namespace Knot3.Game.Data
 {
     /// <summary>
@@ -64,7 +60,6 @@ namespace Knot3.Game.Data
     /// </summary>
     public sealed class Knot : ICloneable, IEnumerable<Edge>, IEquatable<Knot>
     {
-        #region Properties
 
         /// <summary>
         /// Der Name des Knotens, welcher auch leer sein kann.
@@ -131,9 +126,7 @@ namespace Knot3.Game.Data
 
         public Vector3 OffSet { get; private set;}
 
-        #endregion
 
-        #region Constructors
 
         /// <summary>
         /// Erstellt einen minimalen Standardknoten. Das Metadaten-Objekt enthält in den Eigenschaften,
@@ -193,9 +186,7 @@ namespace Knot3.Game.Data
             OffSet = offset;
         }
 
-        #endregion
 
-        #region Methods
 
         /// <summary>
         /// Prüft ob die gegeben Struktur einen gültigen Knoten darstellt.
@@ -625,9 +616,7 @@ namespace Knot3.Game.Data
                    + ")";
         }
 
-        #endregion
 
-        #region Classes and Structs
 
         private struct KnotCharakteristic {
             public CircleEntry<Edge> CharacteristicalEdge { get; private set; }
@@ -642,6 +631,5 @@ namespace Knot3.Game.Data
             }
         }
 
-        #endregion
     }
 }

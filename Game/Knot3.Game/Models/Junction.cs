@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -56,8 +54,6 @@ using Knot3.Game.Screens;
 using Knot3.Game.Utilities;
 using Knot3.Game.Widgets;
 
-#endregion
-
 namespace Knot3.Game.Models
 {
     /// <summary>
@@ -66,7 +62,6 @@ namespace Knot3.Game.Models
     [ExcludeFromCodeCoverageAttribute]
     public sealed class Junction : GameModelInfo, IJunction
     {
-        #region Properties
 
         /// <summary>
         /// Die Kante vor dem Übergang.
@@ -229,9 +224,7 @@ namespace Knot3.Game.Models
             { Tuple.Create (Direction.Backward, Direction.Down), 	Tuple.Create (0f, 0f) }, // works
         };
 
-        #endregion
 
-        #region Constructors
 
         /// <summary>
         /// Erstellt ein neues Informationsobjekt für ein 3D-Modell, das einen Kantenübergang darstellt.
@@ -263,9 +256,7 @@ namespace Knot3.Game.Models
             };
         }
 
-        #endregion
 
-        #region Methods
 
         private void chooseModel ()
         {
@@ -367,7 +358,6 @@ namespace Knot3.Game.Models
             }
         }
 
-        #endregion
     }
 
     enum JunctionDirection {

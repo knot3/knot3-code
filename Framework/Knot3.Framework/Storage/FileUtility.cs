@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -48,8 +46,6 @@ using Knot3.Framework.Input;
 using Knot3.Framework.Platform;
 using Knot3.Framework.Utilities;
 
-#endregion
-
 namespace Knot3.Framework.Storage
 {
     /// <summary>
@@ -57,7 +53,6 @@ namespace Knot3.Framework.Storage
     /// </summary>
     public static class FileUtility
     {
-        #region Methods
 
         /// <summary>
         /// Konvertiert einen Namen eines Knotens oder einer Challenge in einen gültigen Dateinamen durch Weglassen ungültiger Zeichen.
@@ -120,6 +115,5 @@ namespace Knot3.Framework.Storage
             }
         }
 
-        #endregion
     }
 }

@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -39,8 +37,6 @@ using System.Threading.Tasks;
 using Knot3.Game.Data;
 
 using Knot3.MockObjects;
-
-#endregion
 
 namespace Knot3.ExtremeTests
 {

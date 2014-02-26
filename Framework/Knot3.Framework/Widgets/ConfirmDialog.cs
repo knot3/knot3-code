@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -45,8 +43,6 @@ using Knot3.Framework.Platform;
 using Knot3.Framework.Utilities;
 using Knot3.Framework.Widgets;
 
-#endregion
-
 namespace Knot3.Framework.Widgets
 {
     /// <summary>
@@ -55,7 +51,6 @@ namespace Knot3.Framework.Widgets
     [ExcludeFromCodeCoverageAttribute]
     public abstract class ConfirmDialog : Dialog
     {
-        #region Properties
 
         /// <summary>
         /// Das Menü, das Schaltflächen enthält.
@@ -64,9 +59,7 @@ namespace Knot3.Framework.Widgets
 
         protected Menu menu;
 
-        #endregion
 
-        #region Constructors
 
         /// <summary>
         /// Erzeugt ein neues ConfirmDialog-Objekt und initialisiert dieses mit dem zugehörigen IGameScreen-Objekt.
@@ -98,9 +91,7 @@ namespace Knot3.Framework.Widgets
             menu.Add (textInput);
         }
 
-        #endregion
 
-        #region Methods
 
         /// <summary>
         ///
@@ -123,6 +114,5 @@ namespace Knot3.Framework.Widgets
             yield return menu;
         }
 
-        #endregion
     }
 }

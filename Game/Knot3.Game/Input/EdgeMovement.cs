@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -58,8 +56,6 @@ using Knot3.Game.Screens;
 using Knot3.Game.Utilities;
 using Knot3.Game.Widgets;
 
-#endregion
-
 namespace Knot3.Game.Input
 {
     /// <summary>
@@ -68,7 +64,6 @@ namespace Knot3.Game.Input
     [ExcludeFromCodeCoverageAttribute]
     public sealed class EdgeMovement : IGameObject, IEnumerable<IGameObject>
     {
-        #region Properties
 
         private IGameScreen Screen;
 
@@ -94,9 +89,7 @@ namespace Knot3.Game.Input
         private KnotRenderer knotRenderer;
         private Dictionary<Vector3, Knot> knotCache = new Dictionary<Vector3, Knot> ();
 
-        #endregion
 
-        #region Constructors
 
         /// <summary>
         /// Erzeugt eine neue Instanz eines EdgeMovement-Objekts und initialisiert diese
@@ -112,9 +105,7 @@ namespace Knot3.Game.Input
             shadowModels = new List<ShadowModel> ();
         }
 
-        #endregion
 
-        #region Methods
 
         /// <summary>
         /// Gibt den Ursprung des Knotens zurück.
@@ -440,6 +431,5 @@ namespace Knot3.Game.Input
             }
         }
 
-        #endregion
     }
 }

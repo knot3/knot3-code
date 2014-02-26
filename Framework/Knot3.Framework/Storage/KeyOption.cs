@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -44,13 +42,10 @@ using Knot3.Framework.Input;
 using Knot3.Framework.Platform;
 using Knot3.Framework.Utilities;
 
-#endregion
-
 namespace Knot3.Framework.Storage
 {
     public class KeyOption : DistinctOption
     {
-        #region Properties
 
         /// <summary>
         /// Eine Eigenschaft, die den aktuell abgespeicherten Wert zurückgibt.
@@ -67,15 +62,12 @@ namespace Knot3.Framework.Storage
 
         public new static IEnumerable<string> ValidValues = typeof (Keys).ToEnumValues<Keys> ().ToEnumDescriptions<Keys> ();
 
-        #endregion
 
-        #region Constructors
 
         public KeyOption (string section, string name, Keys defaultValue, ConfigFile configFile)
         : base (section, name, defaultValue.ToEnumDescription<Keys> (), ValidValues, configFile)
         {
         }
 
-        #endregion
     }
 }

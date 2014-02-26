@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -47,8 +45,6 @@ using Knot3.Framework.Platform;
 using Knot3.Framework.Utilities;
 using Knot3.Framework.Widgets;
 
-#endregion
-
 namespace Knot3.Framework.Widgets
 {
     /// <summary>
@@ -59,7 +55,6 @@ namespace Knot3.Framework.Widgets
     [ExcludeFromCodeCoverageAttribute]
     public class Container : Widget, IEnumerable<Widget>
     {
-        #region Properties
 
         /// <summary>
         /// Die vom Zustand des Menüeintrags abhängige Vordergrundfarbe des Menüeintrags.
@@ -99,9 +94,7 @@ namespace Knot3.Framework.Widgets
             }
         }
 
-        #endregion
 
-        #region Constructors
 
         /// <summary>
         /// Erzeugt ein neues Menu-Objekt und initialisiert dieses mit dem zugehörigen IGameScreen-Objekt.
@@ -115,9 +108,7 @@ namespace Knot3.Framework.Widgets
             ItemAlignY = VerticalAlignment.Center;
         }
 
-        #endregion
 
-        #region Methods
 
         /// <summary>
         /// Fügt einen Eintrag in das Menü ein. Falls der Menüeintrag \glqq null\grqq~oder leere Werte für
@@ -242,6 +233,5 @@ namespace Knot3.Framework.Widgets
             }
         }
 
-        #endregion
     }
 }

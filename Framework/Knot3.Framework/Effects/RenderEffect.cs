@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -48,8 +46,6 @@ using Knot3.Framework.Storage;
 using Knot3.Framework.Utilities;
 using Knot3.Framework.Widgets;
 
-#endregion
-
 namespace Knot3.Framework.Effects
 {
     /// <summary>
@@ -58,7 +54,6 @@ namespace Knot3.Framework.Effects
     [ExcludeFromCodeCoverageAttribute]
     public abstract class RenderEffect : IRenderEffect
     {
-        #region Properties
 
         /// <summary>
         /// Das Rendertarget, in das zwischen dem Aufruf der Begin ()- und der End ()-Methode gezeichnet wird,
@@ -80,9 +75,7 @@ namespace Knot3.Framework.Effects
 
         public bool SelectiveRendering { get; set; }
 
-        #endregion
 
-        #region Constructors
 
         public RenderEffect (IGameScreen screen)
         {
@@ -92,9 +85,7 @@ namespace Knot3.Framework.Effects
             SelectiveRendering = true;
         }
 
-        #endregion
 
-        #region Methods
 
         /// <summary>
         /// In der Methode Begin () wird das aktuell von XNA genutzte Rendertarget auf einem Stack gesichert
@@ -223,9 +214,7 @@ namespace Knot3.Framework.Effects
             spriteBatch.End ();
         }
 
-        #endregion
 
-        #region RenderTarget Cache
 
         private Dictionary<Point,Dictionary<Rectangle,Dictionary<float, RenderTarget2D>>> renderTargets
             = new Dictionary<Point,Dictionary<Rectangle,Dictionary<float, RenderTarget2D>>> ();
@@ -267,6 +256,5 @@ namespace Knot3.Framework.Effects
             }
         }
 
-        #endregion
     }
 }

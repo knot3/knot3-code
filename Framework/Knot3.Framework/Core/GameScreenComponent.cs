@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -44,8 +42,6 @@ using Knot3.Framework.Input;
 using Knot3.Framework.Platform;
 using Knot3.Framework.Utilities;
 
-#endregion
-
 namespace Knot3.Framework.Core
 {
     /// <summary>
@@ -54,7 +50,6 @@ namespace Knot3.Framework.Core
     [ExcludeFromCodeCoverageAttribute]
     public abstract class GameScreenComponent : GameComponent, IGameScreenComponent
     {
-        #region Properties
 
         /// <summary>
         /// Die Zeichen- und Eingabepriorität.
@@ -66,9 +61,7 @@ namespace Knot3.Framework.Core
         /// </summary>
         public IGameScreen Screen { get; set; }
 
-        #endregion
 
-        #region Constructors
 
         /// <summary>
         /// Erzeugt eine neue Instanz eines IGameScreenComponent-Objekts und initialisiert diese mit dem zugehörigen IGameScreen und der zugehörigen Zeichenreihenfolge. Diese Spielkomponente kann nur in dem zugehörigen IGameScreen verwendet werden.
@@ -80,9 +73,7 @@ namespace Knot3.Framework.Core
             this.Index = index;
         }
 
-        #endregion
 
-        #region Methods
 
         /// <summary>
         /// Gibt Spielkomponenten zurück, die in dieser Spielkomponente enthalten sind.
@@ -93,6 +84,5 @@ namespace Knot3.Framework.Core
             yield break;
         }
 
-        #endregion
     }
 }

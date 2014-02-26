@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -54,8 +52,6 @@ using Knot3.Game.Models;
 using Knot3.Game.Utilities;
 using Knot3.Game.Widgets;
 
-#endregion
-
 namespace Knot3.Game.Screens
 {
     /// <summary>
@@ -64,7 +60,6 @@ namespace Knot3.Game.Screens
     [ExcludeFromCodeCoverageAttribute]
     public sealed class CreativeLoadScreen : MenuScreen
     {
-        #region Properties
 
         /// <summary>
         /// Das Menü, das die Spielstände enthält.
@@ -87,9 +82,7 @@ namespace Knot3.Game.Screens
         private ModelMouseHandler previewMouseHandler;
         private Menu knotInfo;
 
-        #endregion
 
-        #region Constructors
 
         /// <summary>
         /// Erzeugt ein neues CreativeLoadScreen-Objekt und initialisiert dieses mit einem Knot3Game-Objekt.
@@ -169,9 +162,7 @@ namespace Knot3.Game.Screens
             startButton.AlignX = HorizontalAlignment.Center;
         }
 
-        #endregion
 
-        #region Methods
 
         private void UpdateFiles ()
         {
@@ -243,6 +234,5 @@ namespace Knot3.Game.Screens
             AddGameComponents (time, title, savegameMenu, previewBorder, previewWorld, previewInput, previewMouseHandler, backButton, startButton, infoTitle);
         }
 
-        #endregion
     }
 }

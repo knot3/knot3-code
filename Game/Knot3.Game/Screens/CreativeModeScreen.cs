@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -57,8 +55,6 @@ using Knot3.Game.Models;
 using Knot3.Game.Utilities;
 using Knot3.Game.Widgets;
 
-#endregion
-
 namespace Knot3.Game.Screens
 {
     /// <summary>
@@ -67,7 +63,6 @@ namespace Knot3.Game.Screens
     [ExcludeFromCodeCoverageAttribute]
     public class CreativeModeScreen : GameScreen
     {
-        #region Properties
 
         /// <summary>
         /// Die Spielwelt in der die 3D-Objekte des dargestellten Knotens enthalten sind.
@@ -127,9 +122,7 @@ namespace Knot3.Game.Screens
         private Button redoButton;
         private Border redoButtonBorder;
 
-        #endregion
 
-        #region Constructors
 
         /// <summary>
         /// Erzeugt eine neue Instanz eines CreativeModeScreen-Objekts und initialisiert diese mit einem Knot3Game-Objekt game, sowie einem Knoten knot.
@@ -227,9 +220,7 @@ namespace Knot3.Game.Screens
         }
         */
 
-        #endregion
 
-        #region Methods
 
         private void OnKnotMoved (Knot newKnot)
         {
@@ -321,6 +312,5 @@ namespace Knot3.Game.Screens
             debugBoundings.Info.IsVisible = Config.Default ["debug", "show-boundings", false];
         }
 
-        #endregion
     }
 }

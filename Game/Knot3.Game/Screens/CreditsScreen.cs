@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -51,8 +49,6 @@ using Knot3.Game.Input;
 using Knot3.Game.Models;
 using Knot3.Game.Widgets;
 
-#endregion
-
 namespace Knot3.Game.Screens
 {
     /// <summary>
@@ -61,13 +57,10 @@ namespace Knot3.Game.Screens
     [ExcludeFromCodeCoverageAttribute]
     public class CreditsScreen : MenuScreen
     {
-        #region Properties
 
         private String text;
 
-        #endregion
 
-        #region Constructors
 
         /// <summary>
         /// Erzeugt ein neues CreditsScreen-Objekt und initialisiert dieses mit einem Knot3Game-Objekt.
@@ -78,9 +71,7 @@ namespace Knot3.Game.Screens
             text = "...";
         }
 
-        #endregion
 
-        #region Methods
 
         /// <summary>
         /// Wird für jeden Frame aufgerufen.
@@ -100,6 +91,5 @@ namespace Knot3.Game.Screens
         {
         }
 
-        #endregion
     }
 }

@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -46,8 +44,6 @@ using Knot3.Framework.Platform;
 using Knot3.Framework.Utilities;
 using Knot3.Framework.Widgets;
 
-#endregion
-
 namespace Knot3.Framework.Effects
 {
     /// <summary>
@@ -55,7 +51,6 @@ namespace Knot3.Framework.Effects
     /// </summary>
     public interface IRenderEffect
     {
-        #region Properties
 
         /// <summary>
         /// Das Rendertarget, in das zwischen dem Aufruf der Begin ()- und der End ()-Methode gezeichnet wird,
@@ -65,9 +60,7 @@ namespace Knot3.Framework.Effects
 
         bool SelectiveRendering { get; }
 
-        #endregion
 
-        #region Methods
 
         /// <summary>
         /// In der Methode Begin () wird das aktuell von XNA genutzte Rendertarget auf einem Stapel gesichert
@@ -96,6 +89,5 @@ namespace Knot3.Framework.Effects
 
         void DrawLastFrame (GameTime time);
 
-        #endregion
     }
 }

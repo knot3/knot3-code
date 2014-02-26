@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -53,8 +51,6 @@ using Knot3.Game.Models;
 using Knot3.Game.Utilities;
 using Knot3.Game.Widgets;
 
-#endregion
-
 namespace Knot3.Game.Screens
 {
     /// <summary>
@@ -64,16 +60,13 @@ namespace Knot3.Game.Screens
     [ExcludeFromCodeCoverageAttribute]
     public class CreativeMainScreen : MenuScreen
     {
-        #region Properties
 
         /// <summary>
         /// Ein Menü aus Schaltflächen, welche den Spielwunsch des Spielers weiterleiten.
         /// </summary>
         private Container buttons;
 
-        #endregion
 
-        #region Constructors
 
         /// <summary>
         /// Erzeugt ein neues CreativeMainScreen-Objekt und initialisiert dieses mit einem Knot3Game-Objekt.
@@ -137,9 +130,7 @@ namespace Knot3.Game.Screens
             lines.AddPoints (0.975f, 0.850f, 0.825f, 0.950f, 0.975f, 0.850f);
         }
 
-        #endregion
 
-        #region Methods
 
         /// <summary>
         ///
@@ -158,6 +149,5 @@ namespace Knot3.Game.Screens
         {
         }
 
-        #endregion
     }
 }

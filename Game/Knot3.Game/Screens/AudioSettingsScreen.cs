@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -54,8 +52,6 @@ using Knot3.Game.Input;
 using Knot3.Game.Models;
 using Knot3.Game.Widgets;
 
-#endregion
-
 namespace Knot3.Game.Screens
 {
     /// <summary>
@@ -64,7 +60,6 @@ namespace Knot3.Game.Screens
     [ExcludeFromCodeCoverageAttribute]
     public class AudioSettingsScreen : SettingsScreen
     {
-        #region Properties
 
         /// <summary>
         /// Das Menü, das die Einstellungen enthält.
@@ -91,9 +86,7 @@ namespace Knot3.Game.Screens
 
         private Action UpdateSliders = () => {};
 
-        #endregion
 
-        #region Constructors
 
         /// <summary>
         /// Erzeugt ein neues AudioSettingsScreen-Objekt und initialisiert dieses mit einem Knot3Game-Objekt.
@@ -142,9 +135,7 @@ namespace Knot3.Game.Screens
             UpdateSliders ();
         }
 
-        #endregion
 
-        #region Methods
 
         /// <summary>
         /// Fügt das Menü mit den Einstellungen in die Spielkomponentenliste ein.
@@ -156,6 +147,5 @@ namespace Knot3.Game.Screens
             UpdateSliders ();
         }
 
-        #endregion
     }
 }

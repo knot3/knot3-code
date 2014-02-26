@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -52,8 +50,6 @@ using Knot3.Game.Input;
 using Knot3.Game.Screens;
 using Knot3.Game.Widgets;
 
-#endregion
-
 namespace Knot3.Game.Models
 {
     /// <summary>
@@ -62,7 +58,6 @@ namespace Knot3.Game.Models
     [ExcludeFromCodeCoverageAttribute]
     public sealed class ShadowModel : IGameObject
     {
-        #region Properties
 
         private IGameScreen Screen;
         private GameModel DecoratedModel;
@@ -106,9 +101,7 @@ namespace Knot3.Game.Models
         /// </summary>
         public GameObjectInfo Info { get; private set; }
 
-        #endregion
 
-        #region Constructors
 
         /// <summary>
         /// Erstellt ein neues Vorschaumodell in dem angegebenen Spielzustand für das angegebene zu dekorierende Modell.
@@ -120,9 +113,7 @@ namespace Knot3.Game.Models
             Info = new GameObjectInfo (position: Vector3.Zero, isVisible: true, isSelectable: false, isMovable: false);
         }
 
-        #endregion
 
-        #region Methods
 
         /// <summary>
         /// Zeichnet das Vorschaumodell.
@@ -168,6 +159,5 @@ namespace Knot3.Game.Models
             return null;
         }
 
-        #endregion
     }
 }

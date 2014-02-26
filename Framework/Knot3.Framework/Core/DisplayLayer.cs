@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -45,8 +43,6 @@ using Knot3.Framework.Platform;
 using Knot3.Framework.Utilities;
 using Knot3.Framework.Widgets;
 
-#endregion
-
 namespace Knot3.Framework.Core
 {
     /// <summary>
@@ -54,7 +50,6 @@ namespace Knot3.Framework.Core
     /// </summary>
     public class DisplayLayer : IEquatable<DisplayLayer>
     {
-        #region Enumeration Values
 
         /// <summary>
         /// Steht für die hinterste Ebene bei der Zeichenreihenfolge.
@@ -98,21 +93,15 @@ namespace Knot3.Framework.Core
             None, Background, GameWorld, ScreenUI, Dialog, Menu, MenuItem, Overlay, Cursor
         };
 
-        #endregion
 
-        #region Static Attributes
 
-        #endregion
 
-        #region Properties
 
         public int Index { get; private set; }
 
         public string Description { get; private set; }
 
-        #endregion
 
-        #region Constructors
 
         private DisplayLayer (int index, string desciption)
         {
@@ -126,9 +115,7 @@ namespace Knot3.Framework.Core
             Description = layer1.Description + "+" + layer2.Description;
         }
 
-        #endregion
 
-        #region Methods and Operators
 
         [ExcludeFromCodeCoverageAttribute]
         public override string ToString ()
@@ -198,6 +185,5 @@ namespace Knot3.Framework.Core
             return Description.GetHashCode ();
         }
 
-        #endregion
     }
 }

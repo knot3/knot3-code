@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -53,8 +51,6 @@ using Knot3.Game.Screens;
 using Knot3.Game.Utilities;
 using Knot3.Game.Widgets;
 
-#endregion
-
 namespace Knot3.Game.Models
 {
     /// <summary>
@@ -63,7 +59,6 @@ namespace Knot3.Game.Models
     [ExcludeFromCodeCoverageAttribute]
     public sealed class PipeModel : GameModel
     {
-        #region Properties
 
         /// <summary>
         /// Enthält Informationen über die darzustellende Kante.
@@ -79,9 +74,7 @@ namespace Knot3.Game.Models
 
         public bool IsVirtual { get; set; }
 
-        #endregion
 
-        #region Constructors
 
         /// <summary>
         /// Erstellt ein neues 3D-Modell mit dem angegebenen Spielzustand und den angegebenen Spielinformationen.
@@ -100,9 +93,7 @@ namespace Knot3.Game.Models
                       );
         }
 
-        #endregion
 
-        #region Methods
 
         [ExcludeFromCodeCoverageAttribute]
         public override void Draw (GameTime time)
@@ -141,6 +132,5 @@ namespace Knot3.Game.Models
             return null;
         }
 
-        #endregion
     }
 }

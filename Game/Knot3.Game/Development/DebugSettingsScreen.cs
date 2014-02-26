@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -56,8 +54,6 @@ using Knot3.Game.Screens;
 using Knot3.Game.Utilities;
 using Knot3.Game.Widgets;
 
-#endregion
-
 namespace Knot3.Game.Development
 {
     /// <summary>
@@ -66,16 +62,13 @@ namespace Knot3.Game.Development
     [ExcludeFromCodeCoverageAttribute]
     public class DebugSettingsScreen : SettingsScreen
     {
-        #region Properties
 
         /// <summary>
         /// Das Menü, das die Einstellungen enthält.
         /// </summary>
         private Menu settingsMenu;
 
-        #endregion
 
-        #region Constructors
 
         /// <summary>
         /// Erzeugt ein neues DebugSettingsScreen-Objekt und initialisiert dieses mit einem Knot3Game-Objekt.
@@ -161,9 +154,7 @@ namespace Knot3.Game.Development
             */
         }
 
-        #endregion
 
-        #region Methods
 
         /// <summary>
         /// Wird für jeden Frame aufgerufen.
@@ -182,6 +173,5 @@ namespace Knot3.Game.Development
             AddGameComponents (time, settingsMenu);
         }
 
-        #endregion
     }
 }

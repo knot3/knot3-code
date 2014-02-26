@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -53,14 +51,11 @@ using Knot3.Game.Screens;
 using Knot3.Game.Utilities;
 using Knot3.Game.Widgets;
 
-#endregion
-
 namespace Knot3.ModelEditor
 {
     [ExcludeFromCodeCoverageAttribute]
     public class JunctionEditorNodeMap : INodeMap
     {
-        #region Properties
 
         private Hashtable fromMap = new Hashtable ();
         private Hashtable toMap = new Hashtable ();
@@ -83,18 +78,14 @@ namespace Knot3.ModelEditor
 
         public Action IndexRebuilt { get; set; }
 
-        #endregion
 
-        #region Constructors
 
         public JunctionEditorNodeMap ()
         {
             IndexRebuilt = () => {};
         }
 
-        #endregion
 
-        #region Methods
 
         public void Render (Tuple<Direction, Direction, Direction> direction)
         {
@@ -179,6 +170,5 @@ namespace Knot3.ModelEditor
             IndexRebuilt ();
         }
 
-        #endregion
     }
 }

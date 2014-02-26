@@ -25,8 +25,6 @@
 
 #endregion
 
-#region Using
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -48,14 +46,11 @@ using Knot3.Framework.Platform;
 using Knot3.Framework.Utilities;
 using Knot3.Framework.Widgets;
 
-#endregion
-
 namespace Knot3.Framework.Platform
 {
     [ExcludeFromCodeCoverageAttribute]
     public static class ContentLoader
     {
-        #region Shaders
 
         public static Effect LoadEffect (this IGameScreen screen, string name)
         {
@@ -92,9 +87,7 @@ namespace Knot3.Framework.Platform
             return screen.Content.Load<Effect> ("Shader/" + name);
         }
 
-        #endregion
 
-        #region Models
 
         private static Dictionary<string, ContentManager> contentManagers = new Dictionary<string, ContentManager> ();
         private static HashSet<string> invalidModels = new HashSet<string> ();
@@ -132,9 +125,7 @@ namespace Knot3.Framework.Platform
             }
         }
 
-        #endregion
 
-        #region Real Textures
 
         private static Dictionary<string, Texture2D> textureCache = new Dictionary<string, Texture2D> ();
 
@@ -197,9 +188,7 @@ namespace Knot3.Framework.Platform
             }
         }
 
-        #endregion
 
-        #region Dummy Textures
 
         public static Texture2D CreateTexture (GraphicsDevice graphicsDevice, Color color)
         {
@@ -339,6 +328,5 @@ namespace Knot3.Framework.Platform
             return textPosition;
         }
 
-        #endregion
     }
 }
