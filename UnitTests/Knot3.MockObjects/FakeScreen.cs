@@ -27,7 +27,6 @@
  * 
  * See the LICENSE file for full license details of the Knot3 project.
  */
-
 using System.Diagnostics.CodeAnalysis;
 
 using Microsoft.Xna.Framework;
@@ -79,7 +78,13 @@ namespace Knot3.MockObjects
 
         public GraphicsDevice GraphicsDevice { get; private set; }
 
-        public Viewport Viewport { get { return new Viewport (new Rectangle (0, 0, 800, 600)); } set { } }
+        public Viewport Viewport
+        {
+            get { return _viewport; }
+            set { }
+        }
+
+        private Viewport _viewport;
 
         public ContentManager Content { get; private set; }
 
@@ -91,6 +96,11 @@ namespace Knot3.MockObjects
         }
 
         public FakeScreen ()
+            :this(800, 600)
+        {
+        }
+
+        public FakeScreen (int width, int height)
         {
             NextScreen = this;
             CurrentRenderEffects = new FakeEffectStack (
@@ -101,7 +111,7 @@ namespace Knot3.MockObjects
             //Input = new InputManager (this);
             //Audio = new AudioManager (this);
             BackgroundColor = Color.Black;
-            //Content = new ContentManager (Content.ServiceProvider, Content.RootDirectory);
+            _viewport = new Viewport (new Rectangle (0, 0, width, height));
         }
 
         /// <summary>

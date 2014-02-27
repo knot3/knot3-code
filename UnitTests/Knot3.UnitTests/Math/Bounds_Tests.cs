@@ -27,7 +27,6 @@
  * 
  * See the LICENSE file for full license details of the Knot3 project.
  */
-
 using System.Diagnostics.CodeAnalysis;
 
 using Microsoft.Xna.Framework;
@@ -65,15 +64,15 @@ namespace Knot3.UnitTests.Math
         [Test]
         public void Bounds_Contains_Test ()
         {
-            Assert.AreEqual (true , bound.Contains (testPoint));
-            Assert.AreEqual (true, bound.Contains ((Point) testPoint));
+            Assert.AreEqual (true, bound.Contains (testPoint));
+            Assert.AreEqual (true, bound.Contains ((Point)testPoint));
         }
 
         [Test]
         public void Bounds_FromDirection_Test ()
         {
             //top
-            Bounds compareBound = new Bounds (point, new ScreenPoint (fakeScreen,1f, 0.9f));
+            Bounds compareBound = new Bounds (point, new ScreenPoint (fakeScreen, 1f, 0.9f));
             Assert.IsTrue (boundsEqual (compareBound, bound.FromTop (0.9f)), "top");
             //bottom
             compareBound = new Bounds (new ScreenPoint (fakeScreen, 0f, 0.1f), new ScreenPoint (fakeScreen, 1f, 0.9f));
@@ -84,6 +83,15 @@ namespace Knot3.UnitTests.Math
             //left
             compareBound = new Bounds (point, new ScreenPoint (fakeScreen, 0.9f, 1f));
             Assert.IsTrue (boundsEqual (bound.FromLeft (0.9f), compareBound), "left");
+        }
+
+        [Test]
+        public void Bounds_Grow_Test ()
+        {
+            FakeScreen screen2 = new FakeScreen (width: 1000, height: 1000);
+            Bounds bounds = new Bounds (screen: screen2, relX: 0.100f, relY: 0.100f, relWidth: 0.300f, relHeight: 0.700f);
+            Assert.IsTrue (boundsEqual (bounds.Grow (5), new Bounds (screen: screen2, relX: 0.095f, relY: 0.095f, relWidth: 0.310f, relHeight: 0.710f)));
+            Assert.IsTrue (boundsEqual (bounds.Shrink (5), new Bounds (screen: screen2, relX: 0.105f, relY: 0.105f, relWidth: 0.290f, relHeight: 0.690f)));
         }
 
         [Test]
