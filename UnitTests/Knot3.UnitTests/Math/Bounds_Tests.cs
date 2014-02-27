@@ -92,7 +92,9 @@ namespace Knot3.UnitTests.Math
             FakeScreen screen2 = new FakeScreen (width: 1000, height: 1000);
             Bounds bounds = new Bounds (screen: screen2, relX: 0.100f, relY: 0.100f, relWidth: 0.300f, relHeight: 0.700f);
             Assert.IsTrue (boundsEqual (bounds.Grow (5), new Bounds (screen: screen2, relX: 0.095f, relY: 0.095f, relWidth: 0.310f, relHeight: 0.710f)));
+            Assert.IsTrue (boundsEqual (bounds.Grow (5, 2), new Bounds (screen: screen2, relX: 0.095f, relY: 0.098f, relWidth: 0.310f, relHeight: 0.704f)));
             Assert.IsTrue (boundsEqual (bounds.Shrink (5), new Bounds (screen: screen2, relX: 0.105f, relY: 0.105f, relWidth: 0.290f, relHeight: 0.690f)));
+            Assert.IsTrue (boundsEqual (bounds.Shrink (5, 2), new Bounds (screen: screen2, relX: 0.105f, relY: 0.102f, relWidth: 0.290f, relHeight: 0.696f)));
         }
 
         [Test]

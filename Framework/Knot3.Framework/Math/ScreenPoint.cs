@@ -128,7 +128,7 @@ namespace Knot3.Framework.Math
 
         public static ScreenPoint FromAbsolute (float x, float y, IGameScreen screen)
         {
-            return new ScreenPoint (screen, x / screen.Viewport.Height, x / screen.Viewport.Width);
+            return new ScreenPoint (screen, x / screen.Viewport.Width, y / screen.Viewport.Height);
         }
 
         public static ScreenPoint FromAbsolute (Point point, IGameScreen screen)
