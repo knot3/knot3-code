@@ -45,11 +45,11 @@ namespace Knot3.Game.Audio
 
         public override void Initialize (string directory)
         {
-            AudioDirectories [Sound.CreativeMusic] = "Music/Creative";
-            AudioDirectories [Sound.ChallengeMusic] = "Music/Challenge";
-            AudioDirectories [Sound.MenuMusic] = "Music/Menu";
-            AudioDirectories [Sound.PipeMoveSound] = "Sound/Pipe/Move";
-            AudioDirectories [Sound.PipeInvalidMoveSound] = "Sound/Pipe/Invalid-Move";
+            AudioDirectories [Knot3Sound.CreativeMusic] = "Music/Creative";
+            AudioDirectories [Knot3Sound.ChallengeMusic] = "Music/Challenge";
+            AudioDirectories [Knot3Sound.MenuMusic] = "Music/Menu";
+            AudioDirectories [Knot3Sound.PipeMoveSound] = "Sound/Pipe/Move";
+            AudioDirectories [Knot3Sound.PipeInvalidMoveSound] = "Sound/Pipe/Invalid-Move";
 
             base.Initialize (directory);
         }

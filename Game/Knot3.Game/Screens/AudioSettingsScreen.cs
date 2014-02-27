@@ -57,15 +57,15 @@ namespace Knot3.Game.Screens
             {
                 "Music",
                 new HashSet<Sound>() {
-                    Sound.CreativeMusic,
-                    Sound.ChallengeMusic,
-                    Sound.MenuMusic,
+                    Knot3Sound.CreativeMusic,
+                    Knot3Sound.ChallengeMusic,
+                    Knot3Sound.MenuMusic,
                 }
             }, {
                 "Sound",
                 new HashSet<Sound>()
                 {
-                    Sound.PipeMoveSound,
+                    Knot3Sound.PipeMoveSound,
                 }
             },
         };

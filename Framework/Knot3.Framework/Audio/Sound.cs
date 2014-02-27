@@ -28,16 +28,68 @@
  * See the LICENSE file for full license details of the Knot3 project.
  */
 
+using System;
 using System.Diagnostics.CodeAnalysis;
 
 namespace Knot3.Framework.Audio
 {
-    public enum Sound {
-        None = 0,
-        CreativeMusic,
-        ChallengeMusic,
-        MenuMusic,
-        PipeMoveSound,
-        PipeInvalidMoveSound,
+    public class Sound : IEquatable<Sound>
+    {
+        public static readonly Sound None = new Sound ("None");
+
+        public string Name { get; private set; }
+
+        public Sound (string name)
+        {
+            Name = name;
+        }
+
+        [ExcludeFromCodeCoverageAttribute]
+        public override string ToString ()
+        {
+            return Name;
+        }
+
+        public static implicit operator string (Sound layer)
+        {
+            return layer.Name;
+        }
+
+        public static bool operator == (Sound a, Sound b)
+        {
+            // If both are null, or both are same instance, return true.
+            if (System.Object.ReferenceEquals (a, b)) {
+                return true;
+            }
+
+            // If one is null, but not both, return false.
+            if (((object)a == null) || ((object)b == null)) {
+                return false;
+            }
+
+            // Return true if the fields match:
+            return a.Name == b.Name;
+        }
+
+        public static bool operator != (Sound d1, Sound d2)
+        {
+            return !(d1 == d2);
+        }
+
+        public bool Equals (Sound other)
+        {
+            return other != null && Name == other.Name;
+        }
+
+        public override bool Equals (object other)
+        {
+            return other != null && Equals (other as Sound);
+        }
+
+        [ExcludeFromCodeCoverageAttribute]
+        public override int GetHashCode ()
+        {
+            return Name.GetHashCode ();
+        }
     }
 }

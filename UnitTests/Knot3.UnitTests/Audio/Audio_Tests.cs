@@ -57,7 +57,7 @@ namespace Knot3.UnitTests.Audio
         [Test]
         public void Audio_Volume_Tests ()
         {
-            AudioManager.SetVolume (Sound.PipeMoveSound, 1f);
+            AudioManager.SetVolume (Knot3Sound.PipeMoveSound, 1f);
         }
 
         [Test]

@@ -30,44 +30,13 @@
 
 using System.Diagnostics.CodeAnalysis;
 
-using Microsoft.Xna.Framework;
-
-using Knot3.Framework.Audio;
-using Knot3.Framework.Core;
-using Knot3.Framework.Input;
-using Knot3.Framework.Widgets;
-
-namespace Knot3.Game.Screens
+namespace Knot3.Framework.Audio
 {
-    /// <summary>
-    /// Eine abstrakte Klasse, von der alle Spielzustände erben, die Menüs darstellen.
-    /// </summary>
-    [ExcludeFromCodeCoverageAttribute]
-    public abstract class MenuScreen : Screen
-    {
-        private MousePointer pointer;
-
-        // die Linien
-        protected Lines lines;
-
-        public MenuScreen (GameCore game)
-        : base (game)
-        {
-            // die Linien
-            lines = new Lines (screen: this, drawOrder: DisplayLayer.Dialog, lineWidth: 6);
-
-            // der Mauszeiger
-            pointer = new MousePointer (this);
-        }
-
-        /// <summary>
-        /// Wird aufgerufen, wenn in diesen Spielzustand gewechselt wird.
-        /// </summary>
-        public override void Entered (IScreen previousScreen, GameTime time)
-        {
-            base.Entered (previousScreen, time);
-            AddGameComponents (time, pointer, lines);
-            AudioManager.BackgroundMusic = Knot3Sound.MenuMusic;
-        }
+    public static class Knot3Sound {
+        public static readonly Sound CreativeMusic = new Sound ("CreativeMusic");
+        public static readonly Sound ChallengeMusic = new Sound ("ChallengeMusic");
+        public static readonly Sound MenuMusic = new Sound ("MenuMusic");
+        public static readonly Sound PipeMoveSound = new Sound ("PipeMoveSound");
+        public static readonly Sound PipeInvalidMoveSound = new Sound ("PipeInvalidMoveSound");
     }
 }

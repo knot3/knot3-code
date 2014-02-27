@@ -253,11 +253,11 @@ namespace Knot3.Game.Input
 
                     if (newKnot != null) {
                         KnotMoved (newKnot);
-                        Screen.AudioManager.PlaySound (Sound.PipeMoveSound);
+                        Screen.AudioManager.PlaySound (Knot3Sound.PipeMoveSound);
                     }
                     else {
                         KnotMoved (Knot);
-                        Screen.AudioManager.PlaySound (Sound.PipeInvalidMoveSound);
+                        Screen.AudioManager.PlaySound (Knot3Sound.PipeInvalidMoveSound);
                     }
                     previousMousePosition = currentMousePosition;
                 }
