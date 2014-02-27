@@ -27,6 +27,7 @@
  * 
  * See the LICENSE file for full license details of the Knot3 project.
  */
+
 using System.Diagnostics.CodeAnalysis;
 
 using Microsoft.Xna.Framework;
@@ -96,7 +97,7 @@ namespace Knot3.MockObjects
         }
 
         public FakeScreen ()
-            :this(800, 600)
+            :this (800, 600)
         {
         }
 
