@@ -28,8 +28,6 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 
-
-
 namespace Knot3.Framework.Utilities
 {
     [ExcludeFromCodeCoverageAttribute]

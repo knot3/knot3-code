@@ -25,18 +25,20 @@
 
 #endregion
 
-using Knot3.Framework.Core;
-using Knot3.Framework.Development;
-using Knot3.Framework.Math;
-using Knot3.Framework.Widgets;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
+
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+
+using Knot3.Framework.Core;
+using Knot3.Framework.Development;
+using Knot3.Framework.Math;
+using Knot3.Framework.Widgets;
 
 namespace Knot3.Framework.Utilities
 {

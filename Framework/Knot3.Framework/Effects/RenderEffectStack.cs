@@ -25,9 +25,10 @@
 
 #endregion
 
-using Knot3.Framework.Core;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+
+using Knot3.Framework.Core;
 
 namespace Knot3.Framework.Effects
 {

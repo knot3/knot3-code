@@ -25,10 +25,13 @@
 
 #endregion
 
+using System.Diagnostics.CodeAnalysis;
+
+using NUnit.Framework;
 
 using Knot3.Framework.Audio;
+
 using Knot3.MockObjects;
-using NUnit.Framework;
 
 namespace Knot3.UnitTests.Audio
 {

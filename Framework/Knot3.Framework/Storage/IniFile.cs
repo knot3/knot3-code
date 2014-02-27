@@ -31,7 +31,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 
-
 namespace Knot3.Framework.Storage
 {
     public sealed class IniFile : IDisposable

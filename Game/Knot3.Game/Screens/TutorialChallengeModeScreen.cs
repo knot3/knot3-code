@@ -25,11 +25,14 @@
 
 #endregion
 
+using System.Diagnostics.CodeAnalysis;
+
+using Microsoft.Xna.Framework;
+
 using Knot3.Framework.Core;
+
 using Knot3.Game.Core;
 using Knot3.Game.Data;
-using Microsoft.Xna.Framework;
-using System.Diagnostics.CodeAnalysis;
 
 namespace Knot3.Game.Screens
 {

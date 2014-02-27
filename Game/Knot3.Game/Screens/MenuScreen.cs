@@ -25,13 +25,14 @@
 
 #endregion
 
+using System.Diagnostics.CodeAnalysis;
+
+using Microsoft.Xna.Framework;
+
 using Knot3.Framework.Audio;
 using Knot3.Framework.Core;
 using Knot3.Framework.Input;
 using Knot3.Framework.Widgets;
-using Microsoft.Xna.Framework;
-using System.Diagnostics.CodeAnalysis;
-
 
 namespace Knot3.Game.Screens
 {

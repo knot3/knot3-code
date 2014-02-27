@@ -25,10 +25,13 @@
 
 #endregion
 
+using System.Diagnostics.CodeAnalysis;
+using System.IO;
+
+using NUnit.Framework;
+
 using Knot3.Framework.Platform;
 using Knot3.Framework.Storage;
-using NUnit.Framework;
-using System.IO;
 
 namespace Knot3.UnitTests
 {

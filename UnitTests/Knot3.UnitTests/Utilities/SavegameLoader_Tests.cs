@@ -25,12 +25,14 @@
 
 #endregion
 
+using System.Diagnostics.CodeAnalysis;
 
+using NUnit.Framework;
 
 using Knot3.Framework.Platform;
+
 using Knot3.Game.Data;
 using Knot3.Game.Utilities;
-using NUnit.Framework;
 
 namespace Knot3.UnitTests.Utilities
 {

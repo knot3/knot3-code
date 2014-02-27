@@ -25,10 +25,10 @@
 
 #endregion
 
+using System.Diagnostics.CodeAnalysis;
 
 using Knot3.Framework.Core;
 using Knot3.Framework.Widgets;
-
 
 namespace Knot3.MockObjects
 {

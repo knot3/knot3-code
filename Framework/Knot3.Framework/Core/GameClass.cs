@@ -25,12 +25,14 @@
 
 #endregion
 
-using Knot3.Framework.Platform;
-using Knot3.Framework.Storage;
-using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+
+using Microsoft.Xna.Framework;
+
+using Knot3.Framework.Platform;
+using Knot3.Framework.Storage;
 
 namespace Knot3.Framework.Core
 {

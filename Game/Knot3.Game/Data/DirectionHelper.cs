@@ -25,10 +25,9 @@
 
 #endregion
 
-using Microsoft.Xna.Framework;
 using System.Diagnostics.CodeAnalysis;
 
-
+using Microsoft.Xna.Framework;
 
 namespace Knot3.Game.Data
 {

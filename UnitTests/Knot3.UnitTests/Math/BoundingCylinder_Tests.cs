@@ -25,10 +25,13 @@
 
 #endregion
 
+using System.Diagnostics.CodeAnalysis;
+
+using Microsoft.Xna.Framework;
+
+using NUnit.Framework;
 
 using Knot3.Framework.Math;
-using Microsoft.Xna.Framework;
-using NUnit.Framework;
 
 namespace Knot3.UnitTests.Math
 {

@@ -25,9 +25,12 @@
 
 #endregion
 
-using Knot3.Framework.Platform;
-using NUnit.Framework;
 using System;
+using System.Diagnostics.CodeAnalysis;
+
+using NUnit.Framework;
+
+using Knot3.Framework.Platform;
 
 namespace Knot3.UnitTests.Platform
 {

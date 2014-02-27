@@ -25,10 +25,11 @@
 
 #endregion
 
-using Knot3.Framework.Widgets;
-using Microsoft.Xna.Framework;
 using System.Diagnostics.CodeAnalysis;
 
+using Microsoft.Xna.Framework;
+
+using Knot3.Framework.Widgets;
 
 namespace Knot3.Game.Widgets
 {

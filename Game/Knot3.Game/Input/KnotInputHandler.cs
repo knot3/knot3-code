@@ -25,6 +25,14 @@
 
 #endregion
 
+using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
+
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
+
 using Knot3.Framework.Core;
 using Knot3.Framework.Development;
 using Knot3.Framework.Input;
@@ -33,14 +41,9 @@ using Knot3.Framework.Models;
 using Knot3.Framework.Platform;
 using Knot3.Framework.Storage;
 using Knot3.Framework.Utilities;
+
 using Knot3.Game.Data;
 using Knot3.Game.Screens;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Input;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 
 namespace Knot3.Game.Input
 {

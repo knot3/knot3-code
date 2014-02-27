@@ -31,9 +31,6 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
-
-
-
 namespace Knot3.Game.Data
 {
     /// <summary>

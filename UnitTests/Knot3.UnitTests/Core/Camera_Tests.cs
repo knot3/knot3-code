@@ -25,15 +25,19 @@
 
 #endregion
 
+using System.Diagnostics.CodeAnalysis;
+
+using Microsoft.Xna.Framework;
+
+using NUnit.Framework;
 
 using Knot3.Framework.Core;
 using Knot3.Framework.Effects;
 using Knot3.Framework.Math;
 using Knot3.Framework.Storage;
 using Knot3.Framework.Utilities;
+
 using Knot3.MockObjects;
-using Microsoft.Xna.Framework;
-using NUnit.Framework;
 
 namespace Knot3.UnitTests.Core
 {

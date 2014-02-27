@@ -25,12 +25,16 @@
 
 #endregion
 
-using Knot3.Game.Data;
-using Knot3.MockObjects;
-using NUnit.Framework;
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
+
+using NUnit.Framework;
+
+using Knot3.Game.Data;
+
+using Knot3.MockObjects;
 
 namespace Knot3.UnitTests.Data
 {

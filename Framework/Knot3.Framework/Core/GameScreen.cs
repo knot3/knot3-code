@@ -25,16 +25,18 @@
 
 #endregion
 
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
+
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+
 using Knot3.Framework.Audio;
 using Knot3.Framework.Effects;
 using Knot3.Framework.Input;
 using Knot3.Framework.Math;
 using Knot3.Framework.Platform;
 using Knot3.Framework.Widgets;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 
 namespace Knot3.Framework.Core
 {

@@ -29,8 +29,6 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 
-
-
 namespace Knot3.Framework.Platform
 {
     public static partial class SystemInfo

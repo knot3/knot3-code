@@ -25,10 +25,10 @@
 
 #endregion
 
+using System.Diagnostics.CodeAnalysis;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
-
 
 namespace Knot3.Framework.Audio
 {

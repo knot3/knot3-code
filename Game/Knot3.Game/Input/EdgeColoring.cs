@@ -25,15 +25,18 @@
 
 #endregion
 
-using Knot3.Framework.Core;
-using Knot3.Framework.Input;
-using Knot3.Game.Data;
-using Knot3.Game.Widgets;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
+
+using Knot3.Framework.Core;
+using Knot3.Framework.Input;
+
+using Knot3.Game.Data;
+using Knot3.Game.Widgets;
 
 namespace Knot3.Game.Input
 {

@@ -25,14 +25,19 @@
 
 #endregion
 
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
+
+using NUnit.Framework;
+
 using Knot3.Framework.Core;
 using Knot3.Framework.Effects;
+
 using Knot3.Game.Data;
 using Knot3.Game.Models;
+
 using Knot3.MockObjects;
-using NUnit.Framework;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Knot3.UnitTests.Core
 {

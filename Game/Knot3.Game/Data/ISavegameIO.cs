@@ -26,9 +26,7 @@
 #endregion
 
 using System.Collections.Generic;
-
-
-
+using System.Diagnostics.CodeAnalysis;
 
 namespace Knot3.Game.Data
 {

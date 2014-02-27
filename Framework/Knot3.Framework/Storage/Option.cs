@@ -25,7 +25,7 @@
 
 #endregion
 
-
+using System.Diagnostics.CodeAnalysis;
 
 using Knot3.Framework.Platform;
 

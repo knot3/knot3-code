@@ -31,7 +31,6 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Windows.Forms;
 
-
 namespace Knot3.Framework.Platform
 {
     [ExcludeFromCodeCoverageAttribute]

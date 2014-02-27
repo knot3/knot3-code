@@ -25,11 +25,12 @@
 
 #endregion
 
-using Knot3.Framework.Core;
-using Knot3.Framework.Models;
-using Microsoft.Xna.Framework;
 using System.Diagnostics.CodeAnalysis;
 
+using Microsoft.Xna.Framework;
+
+using Knot3.Framework.Core;
+using Knot3.Framework.Models;
 
 namespace Knot3.Game.Development
 {

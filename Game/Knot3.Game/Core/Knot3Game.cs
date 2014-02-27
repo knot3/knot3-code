@@ -25,17 +25,20 @@
 
 #endregion
 
-using Knot3.Framework.Core;
-using Knot3.Framework.Effects;
-using Knot3.Framework.Screens;
-using Knot3.Game.Effects;
-using Knot3.Game.Screens;
-using Knot3.Game.Widgets;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
+
+using Knot3.Framework.Core;
+using Knot3.Framework.Effects;
+using Knot3.Framework.Screens;
+
+using Knot3.Game.Effects;
+using Knot3.Game.Screens;
+using Knot3.Game.Widgets;
 
 namespace Knot3.Game.Core
 {

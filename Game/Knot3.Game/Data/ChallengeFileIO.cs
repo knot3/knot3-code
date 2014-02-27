@@ -25,14 +25,15 @@
 
 #endregion
 
-using Ionic.Zip;
-using Knot3.Framework.Platform;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 
+using Ionic.Zip;
+
+using Knot3.Framework.Platform;
 
 namespace Knot3.Game.Data
 {

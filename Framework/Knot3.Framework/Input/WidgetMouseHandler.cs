@@ -25,12 +25,14 @@
 
 #endregion
 
-using Knot3.Framework.Core;
-using Knot3.Framework.Math;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Input;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
+
+using Knot3.Framework.Core;
+using Knot3.Framework.Math;
 
 namespace Knot3.Framework.Input
 {

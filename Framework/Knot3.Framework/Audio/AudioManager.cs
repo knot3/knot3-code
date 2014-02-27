@@ -25,16 +25,18 @@
 
 #endregion
 
-using Knot3.Framework.Core;
-using Knot3.Framework.Platform;
-using Knot3.Framework.Storage;
-using Knot3.Framework.Utilities;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
+
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
+
+using Knot3.Framework.Core;
+using Knot3.Framework.Platform;
+using Knot3.Framework.Storage;
+using Knot3.Framework.Utilities;
 
 namespace Knot3.Framework.Audio
 {

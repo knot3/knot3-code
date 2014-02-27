@@ -25,10 +25,14 @@
 
 #endregion
 
-using Knot3.Game.Data;
-using Microsoft.Xna.Framework;
-using NUnit.Framework;
 using System;
+using System.Diagnostics.CodeAnalysis;
+
+using Microsoft.Xna.Framework;
+
+using NUnit.Framework;
+
+using Knot3.Game.Data;
 
 namespace Knot3.UnitTests.Data
 {

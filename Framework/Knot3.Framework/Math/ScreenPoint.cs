@@ -25,11 +25,13 @@
 
 #endregion
 
-using Knot3.Framework.Core;
-using Knot3.Framework.Utilities;
-using Microsoft.Xna.Framework;
 using System;
 using System.Diagnostics.CodeAnalysis;
+
+using Microsoft.Xna.Framework;
+
+using Knot3.Framework.Core;
+using Knot3.Framework.Utilities;
 
 namespace Knot3.Framework.Math
 {

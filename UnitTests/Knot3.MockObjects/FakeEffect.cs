@@ -25,13 +25,14 @@
 
 #endregion
 
+using System.Diagnostics.CodeAnalysis;
+
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 using Knot3.Framework.Core;
 using Knot3.Framework.Effects;
 using Knot3.Framework.Models;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-
 
 namespace Knot3.MockObjects
 {

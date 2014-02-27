@@ -25,13 +25,15 @@
 
 #endregion
 
+using System;
+using System.Diagnostics.CodeAnalysis;
+
+using Microsoft.Xna.Framework;
+
 using Knot3.Framework.Core;
 using Knot3.Framework.Math;
 using Knot3.Framework.Platform;
 using Knot3.Framework.Widgets;
-using Microsoft.Xna.Framework;
-using System;
-using System.Diagnostics.CodeAnalysis;
 
 namespace Knot3.Framework.Screens
 {

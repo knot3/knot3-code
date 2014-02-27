@@ -25,13 +25,14 @@
 
 #endregion
 
-using Knot3.Framework.Core;
-using Knot3.Framework.Effects;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Diagnostics.CodeAnalysis;
 
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+
+using Knot3.Framework.Core;
+using Knot3.Framework.Effects;
 
 namespace Knot3.Game.Effects
 {

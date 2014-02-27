@@ -26,8 +26,7 @@
 #endregion
 
 using System.ComponentModel;
-
-
+using System.Diagnostics.CodeAnalysis;
 
 namespace Knot3.Framework.Input
 {

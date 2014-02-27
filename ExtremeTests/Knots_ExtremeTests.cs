@@ -25,9 +25,12 @@
 
 #endregion
 
-using Knot3.Game.Data;
-using Knot3.MockObjects;
 using System;
+using System.Diagnostics.CodeAnalysis;
+
+using Knot3.Game.Data;
+
+using Knot3.MockObjects;
 
 namespace Knot3.ExtremeTests
 {

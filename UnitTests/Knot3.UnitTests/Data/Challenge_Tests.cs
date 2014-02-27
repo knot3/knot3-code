@@ -25,10 +25,9 @@
 
 #endregion
 
+using System.Diagnostics.CodeAnalysis;
 
 using NUnit.Framework;
-
-
 
 namespace Knot3.UnitTests.Data
 {

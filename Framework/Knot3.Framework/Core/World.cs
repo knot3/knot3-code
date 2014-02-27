@@ -25,17 +25,19 @@
 
 #endregion
 
-using Knot3.Framework.Effects;
-using Knot3.Framework.Math;
-using Knot3.Framework.Models;
-using Knot3.Framework.Storage;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+
+using Knot3.Framework.Effects;
+using Knot3.Framework.Math;
+using Knot3.Framework.Models;
+using Knot3.Framework.Storage;
 
 namespace Knot3.Framework.Core
 {

@@ -25,14 +25,17 @@
 
 #endregion
 
-using Knot3.Framework.Platform;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
-using OggSharp;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
+
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
+
+using OggSharp;
+
+using Knot3.Framework.Platform;
 
 namespace Knot3.Framework.Audio
 {

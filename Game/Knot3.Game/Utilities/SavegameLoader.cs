@@ -25,10 +25,13 @@
 
 #endregion
 
+using System;
+using System.Diagnostics.CodeAnalysis;
+
 using Knot3.Framework.Platform;
 using Knot3.Framework.Storage;
+
 using Knot3.Game.Data;
-using System;
 
 namespace Knot3.Game.Utilities
 {

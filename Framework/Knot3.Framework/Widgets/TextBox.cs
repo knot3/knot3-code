@@ -25,13 +25,15 @@
 
 #endregion
 
-using Knot3.Framework.Core;
-using Knot3.Framework.Platform;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.RegularExpressions;
+
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+
+using Knot3.Framework.Core;
+using Knot3.Framework.Platform;
 
 namespace Knot3.Framework.Widgets
 {

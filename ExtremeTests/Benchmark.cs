@@ -27,6 +27,7 @@
 
 using System;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Knot3.ExtremeTests
 {
