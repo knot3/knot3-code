@@ -25,19 +25,11 @@
 
 #endregion
 
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Windows.Forms;
-
-using Knot3.Framework.Core;
-using Knot3.Framework.Development;
-using Knot3.Framework.Input;
 using Knot3.Framework.Platform;
-using Knot3.Framework.Utilities;
-
 using Knot3.Game.Core;
+using System;
+using System.Diagnostics.CodeAnalysis;
+using System.Windows.Forms;
 
 namespace Knot3.Game
 {

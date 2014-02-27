@@ -25,6 +25,9 @@
 
 #endregion
 
+using Knot3.Framework.Platform;
+using Knot3.Framework.Utilities;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -32,26 +35,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-
-using Knot3.Framework.Core;
-using Knot3.Framework.Development;
-using Knot3.Framework.Input;
-using Knot3.Framework.Platform;
-using Knot3.Framework.Utilities;
-
-using Knot3.Game.Core;
-using Knot3.Game.Development;
-using Knot3.Game.Effects;
-using Knot3.Game.Input;
-using Knot3.Game.Models;
-using Knot3.Game.Screens;
-using Knot3.Game.Utilities;
-using Knot3.Game.Widgets;
 
 namespace Knot3.Game.Data
 {

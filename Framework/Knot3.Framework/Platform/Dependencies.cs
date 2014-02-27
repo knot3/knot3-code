@@ -25,14 +25,12 @@
 
 #endregion
 
+using Ionic.Zip;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Net;
 
-using Ionic.Zip;
-
-using Knot3.Framework.Platform;
 
 namespace Knot3.Framework.Platform
 {

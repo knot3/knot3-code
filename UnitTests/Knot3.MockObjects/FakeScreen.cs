@@ -25,25 +25,16 @@
 
 #endregion
 
-using System;
-using System.Diagnostics.CodeAnalysis;
-
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Graphics;
 
 using Knot3.Framework.Audio;
 using Knot3.Framework.Core;
 using Knot3.Framework.Effects;
 using Knot3.Framework.Input;
 using Knot3.Framework.Math;
-using Knot3.Framework.Platform;
-using Knot3.Framework.Utilities;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
 
-using Knot3.Game.Core;
-using Knot3.Game.Effects;
-using Knot3.Game.Input;
-using Knot3.Game.Widgets;
 
 namespace Knot3.MockObjects
 {

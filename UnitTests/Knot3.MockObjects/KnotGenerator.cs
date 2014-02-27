@@ -25,19 +25,8 @@
 
 #endregion
 
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Knot3.Framework.Core;
-using Knot3.Framework.Input;
-using Knot3.Framework.Platform;
-using Knot3.Framework.Utilities;
-
 using Knot3.Game.Data;
+using System.Linq;
 
 namespace Knot3.MockObjects
 {
