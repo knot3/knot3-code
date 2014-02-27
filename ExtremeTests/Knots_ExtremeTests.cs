@@ -27,7 +27,6 @@
  * 
  * See the LICENSE file for full license details of the Knot3 project.
  */
-
 using System;
 using System.Diagnostics.CodeAnalysis;
 
@@ -47,6 +46,7 @@ namespace Knot3.ExtremeTests
         {
             knotFileIO = new KnotFileIO ();
             //testKnotNames = new List<string>();
+            Console.WriteLine (knotFileIO);
         }
 
         public static void generateTestKnots ()

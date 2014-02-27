@@ -27,7 +27,6 @@
  * 
  * See the LICENSE file for full license details of the Knot3 project.
  */
-
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 
@@ -68,6 +67,37 @@ namespace Knot3.Framework.Core
         public virtual IEnumerable<IScreenComponent> SubComponents (GameTime GameTime)
         {
             yield break;
+        }
+    }
+    
+    [ExcludeFromCodeCoverage]
+    public static class GameComponentExtensions
+    {
+        public static ScreenComponent ToScreenComponent (this GameComponent component, IScreen screen, DisplayLayer index)
+        {
+            return new GameComponentWrapper (component, screen, index);
+        }
+
+        public static ScreenComponent ToScreenComponent (this GameComponent component, IScreen screen)
+        {
+            return component.ToScreenComponent (screen, DisplayLayer.None);
+        }
+
+        [ExcludeFromCodeCoverage]
+        class GameComponentWrapper : ScreenComponent
+        {
+            private GameComponent Wrapped;
+
+            public GameComponentWrapper (GameComponent component, IScreen screen, DisplayLayer index)
+            : base (screen, index)
+            {
+                Wrapped = component;
+            }
+
+            public override void Update (GameTime time)
+            {
+                Wrapped.Update (time);
+            }
         }
     }
 }

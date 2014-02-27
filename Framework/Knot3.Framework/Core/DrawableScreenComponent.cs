@@ -27,7 +27,6 @@
  * 
  * See the LICENSE file for full license details of the Knot3 project.
  */
-
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 
@@ -80,7 +79,8 @@ namespace Knot3.Framework.Core
             yield break;
         }
     }
-
+    
+    [ExcludeFromCodeCoverage]
     public static class DrawableGameComponentExtensions
     {
         public static DrawableScreenComponent ToScreenComponent (this DrawableGameComponent component, IScreen screen, DisplayLayer index)
@@ -92,27 +92,27 @@ namespace Knot3.Framework.Core
         {
             return component.ToScreenComponent (screen, DisplayLayer.None);
         }
-    }
 
-    [ExcludeFromCodeCoverage]
-    class DrawableGameComponentWrapper : DrawableScreenComponent
-    {
-        private DrawableGameComponent Wrapped;
+        [ExcludeFromCodeCoverage]
+        class DrawableGameComponentWrapper : DrawableScreenComponent
+        {
+            private DrawableGameComponent Wrapped;
 
-        public DrawableGameComponentWrapper (DrawableGameComponent component, IScreen screen, DisplayLayer index)
+            public DrawableGameComponentWrapper (DrawableGameComponent component, IScreen screen, DisplayLayer index)
             : base (screen, index)
-        {
-            Wrapped = component;
-        }
+            {
+                Wrapped = component;
+            }
 
-        public override void Update (GameTime time)
-        {
-            Wrapped.Update (time);
-        }
+            public override void Update (GameTime time)
+            {
+                Wrapped.Update (time);
+            }
 
-        public override void Draw (GameTime time)
-        {
-            Wrapped.Draw (time);
+            public override void Draw (GameTime time)
+            {
+                Wrapped.Draw (time);
+            }
         }
     }
 }

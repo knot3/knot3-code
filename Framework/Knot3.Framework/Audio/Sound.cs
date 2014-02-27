@@ -27,14 +27,25 @@
  * 
  * See the LICENSE file for full license details of the Knot3 project.
  */
-
 using System;
 using System.Diagnostics.CodeAnalysis;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Knot3.Framework.Audio
 {
     public class Sound : IEquatable<Sound>
     {
+        /// <summary>
+        /// Gibt alle Sound-Werte zurück.
+        /// </summary>
+        public static Sound[] Values { get { return _values.Select (name => new Sound (name)).ToArray (); } }
+
+        private static HashSet<string> _values = new HashSet<string> ();
+
+        /// <summary>
+        /// Kein Sound.
+        /// </summary>
         public static readonly Sound None = new Sound ("None");
 
         public string Name { get; private set; }
@@ -42,6 +53,7 @@ namespace Knot3.Framework.Audio
         public Sound (string name)
         {
             Name = name;
+            _values.Add (name);
         }
 
         [ExcludeFromCodeCoverageAttribute]

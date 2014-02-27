@@ -43,12 +43,9 @@ namespace Knot3.UnitTests.Audio
     [TestFixture]
     public class Audio_Tests
     {
-        FakeScreen screen;
-
         [SetUp]
         public void Audio_Setup ()
         {
-            screen = new FakeScreen ();
             AudioManager audio = new Knot3AudioManager (game: null);
             audio.Reset ();
             audio.Initialize (TestHelper.TestResourcesDirectory);

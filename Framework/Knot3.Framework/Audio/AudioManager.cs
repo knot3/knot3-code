@@ -100,7 +100,7 @@ namespace Knot3.Framework.Audio
 
             if (AudioFiles.Count == 0) {
                 // Erstelle für alle Enum-Werte von Sound ein HashSet
-                foreach (Sound soundType in typeof (Sound).ToEnumValues<Sound>()) {
+                foreach (Sound soundType in Sound.Values) {
                     AudioFiles [soundType] = new HashSet<IAudioFile> ();
                     VolumeMap [soundType] = ValidVolume (Config.Default ["volume", soundType.ToString (), 1]);
                 }
