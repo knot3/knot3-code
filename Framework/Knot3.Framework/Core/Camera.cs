@@ -47,7 +47,7 @@ namespace Knot3.Framework.Core
     /// Um diese Matrizen zu berechnen, benötigt die Kamera unter Anderem Informationen über die aktuelle Kamera-Position,
     /// das aktuelle Kamera-Ziel und das Field of View.
     /// </summary>
-    public sealed class Camera : GameScreenComponent
+    public sealed class Camera : ScreenComponent
     {
         private Vector3 _position;
 
@@ -138,7 +138,7 @@ namespace Knot3.Framework.Core
         /// <summary>
         /// Erstellt eine neue Kamera in einem bestimmten IGameScreen für eine bestimmte Spielwelt.
         /// </summary>
-        public Camera (IGameScreen screen, World world)
+        public Camera (IScreen screen, World world)
         : base (screen, DisplayLayer.None)
         {
             World = world;

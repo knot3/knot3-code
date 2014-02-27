@@ -83,7 +83,7 @@ namespace Knot3.Framework.Audio
         /// <summary>
         /// Erstellt einen neuen AudioManager für den angegebenen Spielzustand.
         /// </summary>
-        public AudioManager (GameClass game)
+        public AudioManager (Game game)
         : base (game)
         {
             AudioDirectories = new Dictionary<Sound, string> ();

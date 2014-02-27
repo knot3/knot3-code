@@ -56,7 +56,7 @@ namespace Knot3.Game.Screens
     /// Der Spielzustand, der während dem Erstellen und Bearbeiten eines Knotens aktiv ist und für den Knoten eine 3D-Welt zeichnet.
     /// </summary>
     [ExcludeFromCodeCoverageAttribute]
-    public class CreativeModeScreen : GameScreen
+    public class CreativeModeScreen : Screen
     {
         /// <summary>
         /// Die Spielwelt in der die 3D-Objekte des dargestellten Knotens enthalten sind.
@@ -119,7 +119,7 @@ namespace Knot3.Game.Screens
         /// <summary>
         /// Erzeugt eine neue Instanz eines CreativeModeScreen-Objekts und initialisiert diese mit einem Knot3Game-Objekt game, sowie einem Knoten knot.
         /// </summary>
-        public CreativeModeScreen (GameClass game, Knot knot)
+        public CreativeModeScreen (GameCore game, Knot knot)
         : base (game)
         {
             // die Spielwelt
@@ -290,7 +290,7 @@ namespace Knot3.Game.Screens
         /// <summary>
         /// Fügt die 3D-Welt und den Inputhandler in die Spielkomponentenliste ein.
         /// </summary>
-        public override void Entered (IGameScreen previousScreen, GameTime time)
+        public override void Entered (IScreen previousScreen, GameTime time)
         {
             base.Entered (previousScreen, time);
             AddGameComponents (time, knotInput, overlay, pointer, world, modelMouseHandler,

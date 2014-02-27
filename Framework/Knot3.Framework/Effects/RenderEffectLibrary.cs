@@ -66,7 +66,7 @@ namespace Knot3.Framework.Effects
             return Factory (name).DisplayName;
         }
 
-        public static IRenderEffect CreateEffect (IGameScreen screen, string name)
+        public static IRenderEffect CreateEffect (IScreen screen, string name)
         {
             return Factory (name).CreateInstance (screen);
         }
@@ -88,9 +88,9 @@ namespace Knot3.Framework.Effects
 
             public string DisplayName { get; private set; }
 
-            public Func<IGameScreen, IRenderEffect> CreateInstance { get; private set; }
+            public Func<IScreen, IRenderEffect> CreateInstance { get; private set; }
 
-            public EffectFactory (string name, string displayName, Func<IGameScreen, IRenderEffect> createInstance)
+            public EffectFactory (string name, string displayName, Func<IScreen, IRenderEffect> createInstance)
             {
                 Name = name;
                 DisplayName = displayName;

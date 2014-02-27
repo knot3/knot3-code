@@ -55,7 +55,7 @@ namespace Knot3.Game.Widgets
         /// Zudem sind Angaben zur Zeichenreihenfolge, einer Zeichenkette für den Titel und für den eingeblendeten Text Pflicht.
         /// [base=screen, drawOrder, title, text]
         /// </summary>
-        public ColorPickDialog (IGameScreen screen, DisplayLayer drawOrder, Color selectedColor)
+        public ColorPickDialog (IScreen screen, DisplayLayer drawOrder, Color selectedColor)
         : base (screen, drawOrder, "Select a color")
         {
             // Die ausgewählte Farbe
@@ -94,9 +94,9 @@ namespace Knot3.Game.Widgets
             Close (time);
         }
 
-        public override IEnumerable<IGameScreenComponent> SubComponents (GameTime time)
+        public override IEnumerable<IScreenComponent> SubComponents (GameTime time)
         {
-            foreach (DrawableGameScreenComponent component in base.SubComponents (time)) {
+            foreach (DrawableScreenComponent component in base.SubComponents (time)) {
                 yield return component;
             }
             yield return colorPicker;

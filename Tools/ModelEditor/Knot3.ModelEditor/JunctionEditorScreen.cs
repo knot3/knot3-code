@@ -62,7 +62,7 @@ using Knot3.Game.Widgets;
 namespace Knot3.ModelEditor
 {
     [ExcludeFromCodeCoverageAttribute]
-    public class JunctionEditorScreen : GameScreen
+    public class JunctionEditorScreen : Screen
     {
         /// <summary>
         /// Die Spielwelt in der die 3D-Objekte des dargestellten Knotens enthalten sind.
@@ -84,7 +84,7 @@ namespace Knot3.ModelEditor
         /// <summary>
         /// Erzeugt eine neue Instanz eines CreativeModeScreen-Objekts und initialisiert diese mit einem Knot3Game-Objekt game, sowie einem Knoten knot.
         /// </summary>
-        public JunctionEditorScreen (GameClass game)
+        public JunctionEditorScreen (GameCore game)
         : base (game)
         {
             // die Spielwelt
@@ -235,7 +235,7 @@ namespace Knot3.ModelEditor
         /// <summary>
         /// Fügt die 3D-Welt und den Inputhandler in die Spielkomponentenliste ein.
         /// </summary>
-        public override void Entered (IGameScreen previousScreen, GameTime time)
+        public override void Entered (IScreen previousScreen, GameTime time)
         {
             base.Entered (previousScreen, time);
             AddGameComponents (time, knotInput, pointer, world, modelMouseHandler, settingsMenu);

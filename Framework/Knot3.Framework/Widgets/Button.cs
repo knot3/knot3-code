@@ -69,7 +69,7 @@ namespace Knot3.Framework.Widgets
         /// Zudem sind Angabe der Zeichenreihenfolge, einer Zeichenkette für den Namen der Schaltfläche
         /// und der Aktion, welche bei einem Klick ausgeführt wird Pflicht.
         /// </summary>
-        public Button (IGameScreen screen, DisplayLayer drawOrder, string name, Action<GameTime> onClick)
+        public Button (IScreen screen, DisplayLayer drawOrder, string name, Action<GameTime> onClick)
         : base (screen, drawOrder)
         {
             this.name = name;

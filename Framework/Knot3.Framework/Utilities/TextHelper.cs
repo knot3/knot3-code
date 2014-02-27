@@ -44,7 +44,7 @@ namespace Knot3.Framework.Utilities
         private static Keys lastKey = Keys.None;
         private static double lastMillis = 0;
 
-        public static bool TryTextInput (ref string str, IGameScreen screen, GameTime time)
+        public static bool TryTextInput (ref string str, IScreen screen, GameTime time)
         {
             bool catched = false;
             if (lastKey != Keys.None) {
@@ -83,7 +83,7 @@ namespace Knot3.Framework.Utilities
             return catched;
         }
 
-        private static bool TryConvertKey (Keys keyPressed, IGameScreen screen, out char key)
+        private static bool TryConvertKey (Keys keyPressed, IScreen screen, out char key)
         {
             bool shift = screen.InputManager.KeyHeldDown (Keys.LeftShift) || screen.InputManager.KeyHeldDown (Keys.RightShift);
 

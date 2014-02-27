@@ -50,7 +50,7 @@ namespace Knot3.Game.Core
     /// Die zentrale Spielklasse, die von der \glqq Game\grqq~-Klasse des XNA-Frameworks erbt.
     /// </summary>
     [ExcludeFromCodeCoverageAttribute]
-    public class Knot3Game : GameClass
+    public class Knot3Game : GameCore
     {
         /// <summary>
         /// Erstellt ein neues zentrales Spielobjekt und setzt die Auflösung des BackBuffers auf
@@ -103,7 +103,7 @@ namespace Knot3.Game.Core
             );
 
             // screens
-            Screens = new Stack<IGameScreen> ();
+            Screens = new Stack<IScreen> ();
             Screens.Push (new StartScreen (this));
             Screens.Peek ().Entered (null, null);
 
@@ -118,7 +118,7 @@ namespace Knot3.Game.Core
         {
             try {
                 // Lade den aktuellen Screen
-                IGameScreen current = Screens.Peek ();
+                IScreen current = Screens.Peek ();
 
                 // Starte den Post-Processing-Effekt des Screens
                 current.PostProcessingEffect.Begin (time);
@@ -154,7 +154,7 @@ namespace Knot3.Game.Core
 
         public void ShowError (Exception ex)
         {
-            Screens = new Stack<IGameScreen> ();
+            Screens = new Stack<IScreen> ();
             Screens.Push (new ErrorScreen (this, ex));
             Screens.Peek ().Entered (null, null);
         }
@@ -167,8 +167,8 @@ namespace Knot3.Game.Core
             try {
                 updateResolution ();
                 // falls der Screen gewechselt werden soll...
-                IGameScreen current = Screens.Peek ();
-                IGameScreen next = current.NextScreen;
+                IScreen current = Screens.Peek ();
+                IScreen next = current.NextScreen;
                 if (current != next) {
                     next.PostProcessingEffect = new FadeEffect (next, current);
                     current.BeforeExit (next, time);

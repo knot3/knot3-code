@@ -77,7 +77,7 @@ namespace Knot3.Game.Screens
         /// <summary>
         /// Erzeugt ein neues CreativeLoadScreen-Objekt und initialisiert dieses mit einem Knot3Game-Objekt.
         /// </summary>
-        public CreativeLoadScreen (GameClass game)
+        public CreativeLoadScreen (GameCore game)
         : base (game)
         {
             savegameMenu = new Menu (this, DisplayLayer.ScreenUI + DisplayLayer.Menu);
@@ -215,7 +215,7 @@ namespace Knot3.Game.Screens
         /// <summary>
         /// Fügt das Menü mit den Spielständen in die Spielkomponentenliste ein.
         /// </summary>
-        public override void Entered (IGameScreen previousScreen, GameTime time)
+        public override void Entered (IScreen previousScreen, GameTime time)
         {
             UpdateFiles ();
             base.Entered (previousScreen, time);

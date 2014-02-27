@@ -42,7 +42,7 @@ namespace Knot3.Framework.Development
     [ExcludeFromCodeCoverageAttribute]
     public class DebugBoundings : IGameObject
     {
-        private IGameScreen screen;
+        private IScreen screen;
 
         public GameObjectInfo Info { get; private set; }
 
@@ -52,7 +52,7 @@ namespace Knot3.Framework.Development
         private BasicEffect effect;
         private int sphereResolution;
 
-        public DebugBoundings (IGameScreen screen, Vector3 position)
+        public DebugBoundings (IScreen screen, Vector3 position)
         {
             this.screen = screen;
             Info = new GameObjectInfo (position: position);

@@ -57,7 +57,7 @@ namespace Knot3.Game.Effects
         /// <summary>
         /// Erstellt einen neuen Cel-Shading-Effekt für den angegebenen IGameScreen.
         /// </summary>
-        public CelShadingEffect (IGameScreen screen)
+        public CelShadingEffect (IScreen screen)
         : base (screen)
         {
             /* Set our light direction for the cel-shader

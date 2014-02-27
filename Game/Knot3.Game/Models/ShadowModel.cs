@@ -44,7 +44,7 @@ namespace Knot3.Game.Models
     [ExcludeFromCodeCoverageAttribute]
     public sealed class ShadowModel : IGameObject
     {
-        private IGameScreen Screen;
+        private IScreen Screen;
         private GameModel DecoratedModel;
 
         /// <summary>
@@ -89,7 +89,7 @@ namespace Knot3.Game.Models
         /// <summary>
         /// Erstellt ein neues Vorschaumodell in dem angegebenen Spielzustand für das angegebene zu dekorierende Modell.
         /// </summary>
-        public ShadowModel (IGameScreen screen, GameModel decoratedModel)
+        public ShadowModel (IScreen screen, GameModel decoratedModel)
         {
             Screen = screen;
             DecoratedModel = decoratedModel;

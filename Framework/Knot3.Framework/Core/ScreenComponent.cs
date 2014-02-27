@@ -39,7 +39,7 @@ namespace Knot3.Framework.Core
     /// Eine Spielkomponente, die in einem IGameScreen verwendet wird und eine bestimmte Priorität hat.
     /// </summary>
     [ExcludeFromCodeCoverageAttribute]
-    public abstract class GameScreenComponent : GameComponent, IGameScreenComponent
+    public abstract class ScreenComponent : GameComponent, IScreenComponent
     {
         /// <summary>
         /// Die Zeichen- und Eingabepriorität.
@@ -49,12 +49,12 @@ namespace Knot3.Framework.Core
         /// <summary>
         /// Der zugewiesene Spielzustand.
         /// </summary>
-        public IGameScreen Screen { get; set; }
+        public IScreen Screen { get; set; }
 
         /// <summary>
         /// Erzeugt eine neue Instanz eines IGameScreenComponent-Objekts und initialisiert diese mit dem zugehörigen IGameScreen und der zugehörigen Zeichenreihenfolge. Diese Spielkomponente kann nur in dem zugehörigen IGameScreen verwendet werden.
         /// </summary>
-        public GameScreenComponent (IGameScreen screen, DisplayLayer index)
+        public ScreenComponent (IScreen screen, DisplayLayer index)
         : base (screen.Game)
         {
             this.Screen = screen;
@@ -65,7 +65,7 @@ namespace Knot3.Framework.Core
         /// Gibt Spielkomponenten zurück, die in dieser Spielkomponente enthalten sind.
         /// [returntype=IEnumerable<IGameScreenComponent>]
         /// </summary>
-        public virtual IEnumerable<IGameScreenComponent> SubComponents (GameTime GameTime)
+        public virtual IEnumerable<IScreenComponent> SubComponents (GameTime GameTime)
         {
             yield break;
         }

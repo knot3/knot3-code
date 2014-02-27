@@ -63,7 +63,7 @@ namespace Knot3.Framework.Widgets
 
         private Action<GameTime> OnUpdate = (time) => {};
 
-        public Border (IGameScreen screen, DisplayLayer drawOrder, Bounds bounds,
+        public Border (IScreen screen, DisplayLayer drawOrder, Bounds bounds,
                        int lineWidth, int padding, Color lineColor, Color outlineColor)
         : base (screen, drawOrder)
         {
@@ -73,26 +73,26 @@ namespace Knot3.Framework.Widgets
             Bounds = bounds;
         }
 
-        public Border (IGameScreen screen, DisplayLayer drawOrder, Widget widget, int lineWidth, int padding,
+        public Border (IScreen screen, DisplayLayer drawOrder, Widget widget, int lineWidth, int padding,
                        Color lineColor, Color outlineColor)
         : this (screen, drawOrder, widget.Bounds, lineWidth, padding, lineColor, outlineColor)
         {
             OnUpdate += (time) => IsVisible = lines.IsVisible = widget.IsVisible;
         }
 
-        public Border (IGameScreen screen, DisplayLayer drawOrder, Bounds bounds, int lineWidth, int padding)
+        public Border (IScreen screen, DisplayLayer drawOrder, Bounds bounds, int lineWidth, int padding)
         : this (screen: screen, drawOrder: drawOrder, bounds: bounds, lineWidth: lineWidth, padding: lineWidth,
                 lineColor: Design.DefaultLineColor, outlineColor: Design.DefaultOutlineColor)
         {
         }
 
-        public Border (IGameScreen screen, DisplayLayer drawOrder, Widget widget, int lineWidth, int padding)
+        public Border (IScreen screen, DisplayLayer drawOrder, Widget widget, int lineWidth, int padding)
         : this (screen: screen, drawOrder: drawOrder, widget: widget, lineWidth: lineWidth, padding: lineWidth,
                 lineColor: Design.DefaultLineColor, outlineColor: Design.DefaultOutlineColor)
         {
         }
 
-        public Border (IGameScreen screen, DisplayLayer drawOrder, Widget widget)
+        public Border (IScreen screen, DisplayLayer drawOrder, Widget widget)
         : this (screen: screen, drawOrder: drawOrder, widget: widget, lineWidth: 2, padding: 0)
         {
         }
@@ -123,9 +123,9 @@ namespace Knot3.Framework.Widgets
             base.Update (time);
         }
 
-        public override IEnumerable<IGameScreenComponent> SubComponents (GameTime time)
+        public override IEnumerable<IScreenComponent> SubComponents (GameTime time)
         {
-            foreach (DrawableGameScreenComponent component in base.SubComponents (time)) {
+            foreach (DrawableScreenComponent component in base.SubComponents (time)) {
                 yield return component;
             }
             yield return lines;

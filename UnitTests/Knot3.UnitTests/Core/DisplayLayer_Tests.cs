@@ -41,7 +41,7 @@ namespace Knot3.UnitTests
     [TestFixture]
     public class DisplayLayer_Tests
     {
-        IGameScreen screen;
+        IScreen screen;
 
         [SetUp]
         public void DisplayLayer_Setup ()

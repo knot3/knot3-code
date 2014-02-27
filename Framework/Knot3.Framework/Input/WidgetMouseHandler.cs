@@ -43,9 +43,9 @@ namespace Knot3.Framework.Input
     /// Ein Inputhandler, der Mauseingaben auf Widgets verarbeitet.
     /// </summary>
     [ExcludeFromCodeCoverageAttribute]
-    public sealed class WidgetMouseHandler : GameScreenComponent
+    public sealed class WidgetMouseHandler : ScreenComponent
     {
-        public WidgetMouseHandler (IGameScreen screen)
+        public WidgetMouseHandler (IScreen screen)
         : base (screen, DisplayLayer.None)
         {
         }

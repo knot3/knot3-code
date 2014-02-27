@@ -87,7 +87,7 @@ namespace Knot3.Framework.Widgets
 
         public Action<bool, GameTime> Hovered = (isHovered, time) => {};
 
-        public MenuItem (IGameScreen screen, DisplayLayer drawOrder, string text)
+        public MenuItem (IScreen screen, DisplayLayer drawOrder, string text)
         : base (screen, drawOrder)
         {
             Text = text;

@@ -60,7 +60,7 @@ namespace Knot3.Game.Effects
         /// <summary>
         /// Erstellt einen Überblende-Effekt zwischen den angegebenen Spielzuständen.
         /// </summary>
-        public FadeEffect (IGameScreen newScreen, IGameScreen oldScreen)
+        public FadeEffect (IScreen newScreen, IScreen oldScreen)
         : base (newScreen)
         {
             if (oldScreen != null) {

@@ -61,7 +61,7 @@ namespace Knot3.Game.Widgets
         /// <summary>
         ///
         /// </summary>
-        public CreativePauseDialog (IGameScreen screen, DisplayLayer drawOrder, Knot knot)
+        public CreativePauseDialog (IScreen screen, DisplayLayer drawOrder, Knot knot)
         : base (screen, drawOrder, "Pause")
         {
             this.knot = knot;
@@ -139,9 +139,9 @@ namespace Knot3.Game.Widgets
             pauseMenu.Add (discardExitButton);
         }
 
-        public override IEnumerable<IGameScreenComponent> SubComponents (GameTime time)
+        public override IEnumerable<IScreenComponent> SubComponents (GameTime time)
         {
-            foreach (DrawableGameScreenComponent component in base.SubComponents (time)) {
+            foreach (DrawableScreenComponent component in base.SubComponents (time)) {
                 yield return component;
             }
             yield return pauseMenu;

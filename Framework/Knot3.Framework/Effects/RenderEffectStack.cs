@@ -43,7 +43,7 @@ namespace Knot3.Framework.Effects
     [ExcludeFromCodeCoverageAttribute]
     public sealed class RenderEffectStack : IRenderEffectStack
     {
-        private IGameScreen screen;
+        private IScreen screen;
         private static Stack<IRenderEffect> stack = new Stack<IRenderEffect> ();
 
         /// <summary>
@@ -69,7 +69,7 @@ namespace Knot3.Framework.Effects
         /// <summary>
         /// Erstellt einen neuen Rendereffekt-Stapel.
         /// </summary>
-        public RenderEffectStack (IGameScreen screen, IRenderEffect defaultEffect)
+        public RenderEffectStack (IScreen screen, IRenderEffect defaultEffect)
         {
             this.screen = screen;
             this.defaultEffect = defaultEffect;

@@ -57,7 +57,7 @@ namespace Knot3.Game.Widgets
         /// Erzeugt ein neues ColorPickItem-Objekt und initialisiert dieses mit dem zugehörigen IGameScreen-Objekt.
         /// Zudem sind Angaben zur Zeichenreihenfolge und der Auswahloption Pflicht.
         /// </summary>
-        public ColorPickItem (IGameScreen screen, DisplayLayer drawOrder, string text, Color color)
+        public ColorPickItem (IScreen screen, DisplayLayer drawOrder, string text, Color color)
         : base (screen, drawOrder, text)
         {
         }

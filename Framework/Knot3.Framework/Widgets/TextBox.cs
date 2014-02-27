@@ -55,7 +55,7 @@ namespace Knot3.Framework.Widgets
         /// Erzeugt ein neues TextItem-Objekt und initialisiert dieses mit dem zugehörigen IGameScreen-Objekt.
         /// Zudem sind Angabe der Zeichenreihenfolge und der Zeichenkette, die angezeigt wird, für Pflicht.
         /// </summary>
-        public TextBox (IGameScreen screen, DisplayLayer drawOrder, string text)
+        public TextBox (IScreen screen, DisplayLayer drawOrder, string text)
         : base (screen, drawOrder)
         {
             Text = text;

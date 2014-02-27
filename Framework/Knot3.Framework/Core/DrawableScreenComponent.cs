@@ -39,12 +39,12 @@ namespace Knot3.Framework.Core
     /// Eine zeichenbare Spielkomponente, die in einem angegebenen Spielzustand verwendet wird und eine bestimmte Priorität hat.
     /// </summary>
     [ExcludeFromCodeCoverageAttribute]
-    public abstract class DrawableGameScreenComponent : DrawableGameComponent, IGameScreenComponent
+    public abstract class DrawableScreenComponent : DrawableGameComponent, IScreenComponent
     {
         /// <summary>
         /// Der zugewiesene Spielzustand.
         /// </summary>
-        public IGameScreen Screen { get; set; }
+        public IScreen Screen { get; set; }
 
         private DisplayLayer _index;
 
@@ -64,7 +64,7 @@ namespace Knot3.Framework.Core
         /// Erzeugt eine neue Instanz eines DrawableGameScreenComponent-Objekts und ordnet dieser ein IGameScreen-Objekt zu.
         /// index bezeichnet die Zeichenebene, auf welche die Komponente zu zeichnen ist.
         /// </summary>
-        public DrawableGameScreenComponent (IGameScreen screen, DisplayLayer index)
+        public DrawableScreenComponent (IScreen screen, DisplayLayer index)
         : base (screen.Game)
         {
             this.Screen = screen;
@@ -75,7 +75,7 @@ namespace Knot3.Framework.Core
         /// Gibt Spielkomponenten zurück, die in dieser Spielkomponente enthalten sind.
         /// [returntype=IEnumerable<IGameScreenComponent>]
         /// </summary>
-        public virtual IEnumerable<IGameScreenComponent> SubComponents (GameTime GameTime)
+        public virtual IEnumerable<IScreenComponent> SubComponents (GameTime GameTime)
         {
             yield break;
         }
@@ -83,23 +83,23 @@ namespace Knot3.Framework.Core
 
     public static class DrawableGameComponentExtensions
     {
-        public static DrawableGameScreenComponent ToGameScreenComponent (this DrawableGameComponent component, IGameScreen screen, DisplayLayer index)
+        public static DrawableScreenComponent ToScreenComponent (this DrawableGameComponent component, IScreen screen, DisplayLayer index)
         {
-            return new DrawableGameScreenComponentWrapper (component, screen, index);
+            return new DrawableGameComponentWrapper (component, screen, index);
         }
 
-        public static DrawableGameScreenComponent ToGameScreenComponent (this DrawableGameComponent component, IGameScreen screen)
+        public static DrawableScreenComponent ToScreenComponent (this DrawableGameComponent component, IScreen screen)
         {
-            return component.ToGameScreenComponent (screen, DisplayLayer.None);
+            return component.ToScreenComponent (screen, DisplayLayer.None);
         }
     }
 
     [ExcludeFromCodeCoverage]
-    class DrawableGameScreenComponentWrapper : DrawableGameScreenComponent
+    class DrawableGameComponentWrapper : DrawableScreenComponent
     {
         private DrawableGameComponent Wrapped;
 
-        public DrawableGameScreenComponentWrapper (DrawableGameComponent component, IGameScreen screen, DisplayLayer index)
+        public DrawableGameComponentWrapper (DrawableGameComponent component, IScreen screen, DisplayLayer index)
             : base (screen, index)
         {
             Wrapped = component;

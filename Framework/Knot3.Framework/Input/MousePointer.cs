@@ -44,7 +44,7 @@ namespace Knot3.Framework.Input
     /// Repräsentiert einen Mauszeiger.
     /// </summary>
     [ExcludeFromCodeCoverageAttribute]
-    public sealed class MousePointer : DrawableGameScreenComponent
+    public sealed class MousePointer : DrawableScreenComponent
     {
         private SpriteBatch spriteBatch;
         private Texture2D cursorTex;
@@ -52,7 +52,7 @@ namespace Knot3.Framework.Input
         /// <summary>
         /// Erstellt einen neuen Mauszeiger für den angegebenen Spielzustand.
         /// </summary>
-        public MousePointer (IGameScreen screen)
+        public MousePointer (IScreen screen)
         : base (screen, DisplayLayer.Cursor)
         {
             cursorTex = Screen.LoadTexture ("cursor");

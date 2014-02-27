@@ -58,7 +58,7 @@ namespace Knot3.Game.Screens
         /// <summary>
         /// Erzeugt ein neues GraphicsSettingsScreen-Objekt und initialisiert dieses mit einem Knot3Game-Objekt.
         /// </summary>
-        public GraphicsSettingsScreen (GameClass game)
+        public GraphicsSettingsScreen (GameCore game)
         : base (game)
         {
             MenuName = "Graphics";
@@ -195,7 +195,7 @@ namespace Knot3.Game.Screens
         /// <summary>
         /// Fügt das Menü mit den Einstellungen in die Spielkomponentenliste ein.
         /// </summary>
-        public override void Entered (IGameScreen previousScreen, GameTime time)
+        public override void Entered (IScreen previousScreen, GameTime time)
         {
             base.Entered (previousScreen, time);
             AddGameComponents (time, settingsMenu);

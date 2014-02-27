@@ -37,7 +37,7 @@ namespace Knot3.MockObjects
 {
     public class FakeWidget : Widget
     {
-        public FakeWidget (IGameScreen screen, DisplayLayer drawOrder)
+        public FakeWidget (IScreen screen, DisplayLayer drawOrder)
         : base (screen, drawOrder)
         {
         }

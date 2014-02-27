@@ -57,7 +57,7 @@ namespace Knot3.Game.Screens
     /// Der Spielzustand, der während dem Spielen einer Challenge aktiv ist und für den Ausgangs- und Referenzknoten je eine 3D-Welt zeichnet.
     /// </summary>
     [ExcludeFromCodeCoverageAttribute]
-    public class ChallengeModeScreen : GameScreen
+    public class ChallengeModeScreen : Screen
     {
         /// <summary>
         /// Die Spielwelt in der die 3D-Modelle des dargestellten Referenzknotens enthalten sind.
@@ -155,7 +155,7 @@ namespace Knot3.Game.Screens
         /// <summary>
         /// Erzeugt eine neue Instanz eines ChallengeModeScreen-Objekts und initialisiert diese mit einem Knot3Game-Objekt, einem Spielerknoten playerKnot und dem Knoten challengeKnot, den der Spieler nachbauen soll.
         /// </summary>
-        public ChallengeModeScreen (GameClass game, Challenge challenge)
+        public ChallengeModeScreen (GameCore game, Challenge challenge)
         : base (game)
         {
             // world
@@ -392,7 +392,7 @@ namespace Knot3.Game.Screens
         /// <summary>
         /// Fügt die 3D-Welten und den Inputhandler in die Spielkomponentenliste ein.
         /// </summary>
-        public override void Entered (IGameScreen previousScreen, GameTime time)
+        public override void Entered (IScreen previousScreen, GameTime time)
         {
             base.Entered (previousScreen, time);
             AddGameComponents (time, playerKnotInput, challengeKnotInput, overlay, pointer,

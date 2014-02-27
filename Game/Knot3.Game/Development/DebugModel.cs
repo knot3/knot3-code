@@ -40,7 +40,7 @@ namespace Knot3.Game.Development
     [ExcludeFromCodeCoverageAttribute]
     public class DebugModel:GameModel
     {
-        public DebugModel (IGameScreen screen, DebugModelInfo info) : base (screen,info)
+        public DebugModel (IScreen screen, DebugModelInfo info) : base (screen,info)
         {
         }
 

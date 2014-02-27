@@ -56,7 +56,7 @@ namespace Knot3.Game.Input
     [ExcludeFromCodeCoverageAttribute]
     public sealed class EdgeMovement : IGameObject, IEnumerable<IGameObject>
     {
-        private IGameScreen Screen;
+        private IScreen Screen;
 
         /// <summary>
         /// Enthält Informationen über die Position des Knotens.
@@ -85,7 +85,7 @@ namespace Knot3.Game.Input
         /// mit ihrem zugehörigen IGameScreen-Objekt screen, der Spielwelt world und
         /// Objektinformationen info.
         /// </summary>
-        public EdgeMovement (IGameScreen screen, World world, KnotRenderer knotRenderer, Vector3 position)
+        public EdgeMovement (IScreen screen, World world, KnotRenderer knotRenderer, Vector3 position)
         {
             Screen = screen;
             World = world;

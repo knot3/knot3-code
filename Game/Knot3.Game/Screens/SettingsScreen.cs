@@ -72,7 +72,7 @@ namespace Knot3.Game.Screens
         /// </summary>
         private MenuEntry backButton;
 
-        public SettingsScreen (GameClass game)
+        public SettingsScreen (GameCore game)
         : base (game)
         {
             MenuName = "Settings";
@@ -145,7 +145,7 @@ namespace Knot3.Game.Screens
         /// <summary>
         /// Fügt das Haupt-Einstellungsmenü in die Spielkomponentenliste ein.
         /// </summary>
-        public override void Entered (IGameScreen previousScreen, GameTime time)
+        public override void Entered (IScreen previousScreen, GameTime time)
         {
             base.Entered (previousScreen, time);
             AddGameComponents (time, navigationMenu, backButton);

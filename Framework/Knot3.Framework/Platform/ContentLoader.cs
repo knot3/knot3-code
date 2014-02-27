@@ -47,7 +47,7 @@ namespace Knot3.Framework.Platform
     [ExcludeFromCodeCoverageAttribute]
     public static class ContentLoader
     {
-        public static Effect LoadEffect (this IGameScreen screen, string name)
+        public static Effect LoadEffect (this IScreen screen, string name)
         {
             if (SystemInfo.IsRunningOnMono () || SystemInfo.IsRunningOnMonogame ()) {
                 return LoadEffectMono (screen, name);
@@ -57,7 +57,7 @@ namespace Knot3.Framework.Platform
             }
         }
 
-        private static Effect LoadEffectMono (IGameScreen screen, string name)
+        private static Effect LoadEffectMono (IScreen screen, string name)
         {
             string[] filenames = {
                 SystemInfo.RelativeContentDirectory + "Shader/" + name + ".mgfx",
@@ -77,7 +77,7 @@ namespace Knot3.Framework.Platform
             throw lastException;
         }
 
-        private static Effect LoadEffectDotnet (IGameScreen screen, string name)
+        private static Effect LoadEffectDotnet (IScreen screen, string name)
         {
             return screen.Game.Content.Load<Effect> ("Shader/" + name);
         }
@@ -85,7 +85,7 @@ namespace Knot3.Framework.Platform
         private static Dictionary<string, ContentManager> contentManagers = new Dictionary<string, ContentManager> ();
         private static HashSet<string> invalidModels = new HashSet<string> ();
 
-        public static Model LoadModel (this IGameScreen screen, string name)
+        public static Model LoadModel (this IScreen screen, string name)
         {
             ContentManager content;
             if (contentManagers.ContainsKey (screen.CurrentRenderEffects.CurrentEffect.ToString ())) {
@@ -120,7 +120,7 @@ namespace Knot3.Framework.Platform
 
         private static Dictionary<string, Texture2D> textureCache = new Dictionary<string, Texture2D> ();
 
-        public static Texture2D LoadTexture (this IGameScreen screen, string name)
+        public static Texture2D LoadTexture (this IScreen screen, string name)
         {
             string key = "Content_" + name;
             if (textureCache.ContainsKey (key)) {
@@ -138,7 +138,7 @@ namespace Knot3.Framework.Platform
             }
         }
 
-        private static Texture2D LoadTextureFromContentPipeline (IGameScreen screen, string name)
+        private static Texture2D LoadTextureFromContentPipeline (IScreen screen, string name)
         {
             try {
                 return screen.Game.Content.Load<Texture2D> ("Textures/" + name);
@@ -153,7 +153,7 @@ namespace Knot3.Framework.Platform
             }
         }
 
-        private static Texture2D LoadTextureFromFile (IGameScreen screen, string name)
+        private static Texture2D LoadTextureFromFile (IScreen screen, string name)
         {
             try {
                 string filename = SystemInfo.RelativeContentDirectory + "Textures" + SystemInfo.PathSeparator + name;
@@ -168,7 +168,7 @@ namespace Knot3.Framework.Platform
             }
         }
 
-        public static SpriteFont LoadFont (this IGameScreen screen, string name)
+        public static SpriteFont LoadFont (this IScreen screen, string name)
         {
             try {
                 return screen.Game.Content.Load<SpriteFont> ("Fonts/" + name);

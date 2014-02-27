@@ -51,7 +51,7 @@ namespace Knot3.Game.Models
         /// <summary>
         /// Der dazugehörige Screen.
         /// </summary>
-        private IGameScreen Screen;
+        private IScreen Screen;
 
         /// <summary>
         /// Enthält Informationen über die Position des Mitte der Welt.
@@ -105,14 +105,14 @@ namespace Knot3.Game.Models
         /// Erstellt ein neues KnotRenderer-Objekt für den angegebenen Spielzustand mit den angegebenen
         /// Spielobjekt-Informationen, die unter Anderem die Position des Knotenursprungs enthalten.
         /// </summary>
-        public SkyCube (IGameScreen screen, Vector3 position)
+        public SkyCube (IScreen screen, Vector3 position)
         {
             Screen = screen;
             Info = new GameObjectInfo (position: position);
             random = new Random ();
         }
 
-        public SkyCube (IGameScreen screen, Vector3 position, float distance)
+        public SkyCube (IScreen screen, Vector3 position, float distance)
         : this (screen, position)
         {
             Distance = distance;

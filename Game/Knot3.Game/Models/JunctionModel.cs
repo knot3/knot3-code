@@ -54,7 +54,7 @@ namespace Knot3.Game.Models
         /// Erstellt ein neues 3D-Modell mit dem angegebenen Spielzustand und dem angegebenen Informationsobjekt.
         /// [base=screen, info]
         /// </summary>
-        public JunctionModel (IGameScreen screen, Junction info)
+        public JunctionModel (IScreen screen, Junction info)
         : base (screen, info)
         {
         }

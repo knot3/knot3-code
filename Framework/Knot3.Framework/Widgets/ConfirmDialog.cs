@@ -57,7 +57,7 @@ namespace Knot3.Framework.Widgets
         /// Zudem sind Angaben zur Zeichenreihenfolge, einer Zeichenkette für den Titel und für den eingeblendeten Text Pflicht.
         /// [base=screen, drawOrder, title, text]
         /// </summary>
-        public ConfirmDialog (IGameScreen screen, DisplayLayer drawOrder, string title)
+        public ConfirmDialog (IScreen screen, DisplayLayer drawOrder, string title)
         : base (screen, drawOrder, title)
         {
             // Der Titel-Text ist mittig ausgerichtet
@@ -74,7 +74,7 @@ namespace Knot3.Framework.Widgets
             ValidKeys.AddRange (new Keys[] { Keys.Enter, Keys.Escape });
         }
 
-        public ConfirmDialog (IGameScreen screen, DisplayLayer drawOrder, string title, string text)
+        public ConfirmDialog (IScreen screen, DisplayLayer drawOrder, string title, string text)
         : this (screen, drawOrder, title)
         {
             // Die Textanzeige
@@ -95,9 +95,9 @@ namespace Knot3.Framework.Widgets
             base.OnKeyEvent (key, keyEvent, time);
         }
 
-        public override IEnumerable<IGameScreenComponent> SubComponents (GameTime time)
+        public override IEnumerable<IScreenComponent> SubComponents (GameTime time)
         {
-            foreach (DrawableGameScreenComponent component in base.SubComponents (time)) {
+            foreach (DrawableScreenComponent component in base.SubComponents (time)) {
                 yield return component;
             }
             yield return menu;

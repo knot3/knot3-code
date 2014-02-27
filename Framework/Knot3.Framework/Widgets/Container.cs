@@ -89,7 +89,7 @@ namespace Knot3.Framework.Widgets
         /// Erzeugt ein neues Menu-Objekt und initialisiert dieses mit dem zugehörigen IGameScreen-Objekt.
         /// Zudem ist die Angabe der Zeichenreihenfolge Pflicht.
         /// </summary>
-        public Container (IGameScreen screen, DisplayLayer drawOrder)
+        public Container (IScreen screen, DisplayLayer drawOrder)
         : base (screen, drawOrder)
         {
             items = new List<Widget> ();
@@ -178,12 +178,12 @@ namespace Knot3.Framework.Widgets
             return GetEnumerator (); // Just return the generic version
         }
 
-        public override IEnumerable<IGameScreenComponent> SubComponents (GameTime time)
+        public override IEnumerable<IScreenComponent> SubComponents (GameTime time)
         {
-            foreach (DrawableGameScreenComponent component in base.SubComponents (time)) {
+            foreach (DrawableScreenComponent component in base.SubComponents (time)) {
                 yield return component;
             }
-            foreach (DrawableGameScreenComponent item in items) {
+            foreach (DrawableScreenComponent item in items) {
                 yield return item;
             }
         }

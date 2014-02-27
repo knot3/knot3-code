@@ -44,7 +44,7 @@ namespace Knot3.Framework.Effects
         /// <summary>
         /// Erstellt einen neuen Standardeffekt.
         /// </summary>
-        public StandardEffect (IGameScreen screen)
+        public StandardEffect (IScreen screen)
         : base (screen)
         {
         }

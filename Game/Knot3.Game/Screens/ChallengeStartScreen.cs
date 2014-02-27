@@ -77,7 +77,7 @@ namespace Knot3.Game.Screens
         /// Erstellt eine neue Instanz eines ChallengeStartScreen-Objekts und
         /// initialisiert diese mit einem Knot3Game-Objekt.
         /// </summary>
-        public ChallengeStartScreen (GameClass game)
+        public ChallengeStartScreen (GameCore game)
         : base (game)
         {
             savegameMenu = new Menu (this, DisplayLayer.ScreenUI + DisplayLayer.Menu);
@@ -237,7 +237,7 @@ namespace Knot3.Game.Screens
         /// <summary>
         /// Fügt das Menü mit den Spielständen in die Spielkomponentenliste ein.
         /// </summary>
-        public override void Entered (IGameScreen previousScreen, GameTime time)
+        public override void Entered (IScreen previousScreen, GameTime time)
         {
             UpdateFiles ();
             base.Entered (previousScreen, time);

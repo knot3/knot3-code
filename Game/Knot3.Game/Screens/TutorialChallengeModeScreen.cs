@@ -55,7 +55,7 @@ namespace Knot3.Game.Screens
         /// <summary>
         /// Fügt die Tutoriellanzeige in die Spielkomponentenliste ein.
         /// </summary>
-        public override void Entered (IGameScreen previousScreen, GameTime GameTime)
+        public override void Entered (IScreen previousScreen, GameTime GameTime)
         {
             throw new System.NotImplementedException ();
         }

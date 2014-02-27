@@ -53,11 +53,11 @@ namespace Knot3.MockObjects
         /// <summary>
         /// Der Spielzustand, in dem der Effekt verwendet wird.
         /// </summary>
-        protected IGameScreen screen { get; set; }
+        protected IScreen screen { get; set; }
 
         public bool SelectiveRendering { get { return true; } }
 
-        public FakeEffect (IGameScreen screen)
+        public FakeEffect (IScreen screen)
         {
             this.screen = screen;
         }

@@ -43,14 +43,14 @@ namespace Knot3.Game.Screens
     /// Eine abstrakte Klasse, von der alle Spielzustände erben, die Menüs darstellen.
     /// </summary>
     [ExcludeFromCodeCoverageAttribute]
-    public abstract class MenuScreen : GameScreen
+    public abstract class MenuScreen : Screen
     {
         private MousePointer pointer;
 
         // die Linien
         protected Lines lines;
 
-        public MenuScreen (GameClass game)
+        public MenuScreen (GameCore game)
         : base (game)
         {
             // die Linien
@@ -63,7 +63,7 @@ namespace Knot3.Game.Screens
         /// <summary>
         /// Wird aufgerufen, wenn in diesen Spielzustand gewechselt wird.
         /// </summary>
-        public override void Entered (IGameScreen previousScreen, GameTime time)
+        public override void Entered (IScreen previousScreen, GameTime time)
         {
             base.Entered (previousScreen, time);
             AddGameComponents (time, pointer, lines);

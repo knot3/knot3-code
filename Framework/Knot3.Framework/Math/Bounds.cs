@@ -107,7 +107,7 @@ namespace Knot3.Framework.Math
             _padding = new ScreenPoint (position.Screen, Vector2.Zero);
         }
 
-        public Bounds (IGameScreen screen, float relX, float relY, float relWidth, float relHeight)
+        public Bounds (IScreen screen, float relX, float relY, float relWidth, float relHeight)
         {
             _position = new ScreenPoint (screen, relX, relY);
             _size = new ScreenPoint (screen, relWidth, relHeight);
@@ -124,7 +124,7 @@ namespace Knot3.Framework.Math
             return Rectangle.Contains ((Point)point);
         }
 
-        public static Bounds Zero (IGameScreen screen)
+        public static Bounds Zero (IScreen screen)
         {
             return new Bounds (
                        position: ScreenPoint.Zero (screen),

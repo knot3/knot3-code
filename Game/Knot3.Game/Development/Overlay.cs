@@ -46,7 +46,7 @@ using Knot3.Game.Models;
 namespace Knot3.Game.Development
 {
     [ExcludeFromCodeCoverageAttribute]
-    public sealed class Overlay : DrawableGameScreenComponent
+    public sealed class Overlay : DrawableScreenComponent
     {
         // graphics-related classes
         private SpriteBatch spriteBatch;
@@ -60,7 +60,7 @@ namespace Knot3.Game.Development
         private DebugModel debugModel;
         private bool debugModelAdded;
 
-        public Overlay (IGameScreen screen, World world)
+        public Overlay (IScreen screen, World world)
         : base (screen, DisplayLayer.Overlay)
         {
             // game world

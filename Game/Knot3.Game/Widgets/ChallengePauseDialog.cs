@@ -58,7 +58,7 @@ namespace Knot3.Game.Widgets
         /// <summary>
         ///
         /// </summary>
-        public ChallengePauseDialog (IGameScreen screen, DisplayLayer drawOrder)
+        public ChallengePauseDialog (IScreen screen, DisplayLayer drawOrder)
         : base (screen, drawOrder, "Pause")
         {
             // Der Titel-Text ist mittig ausgerichtet
@@ -117,9 +117,9 @@ namespace Knot3.Game.Widgets
             base.Draw (time);
         }
 
-        public override IEnumerable<IGameScreenComponent> SubComponents (GameTime time)
+        public override IEnumerable<IScreenComponent> SubComponents (GameTime time)
         {
-            foreach (DrawableGameScreenComponent component in base.SubComponents (time)) {
+            foreach (DrawableScreenComponent component in base.SubComponents (time)) {
                 yield return component;
             }
             yield return pauseMenu;

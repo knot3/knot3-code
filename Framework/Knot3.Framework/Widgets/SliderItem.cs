@@ -132,7 +132,7 @@ namespace Knot3.Framework.Widgets
         /// mit dem zugehörigen IGameScreen-Objekt. Zudem ist die Angabe der Zeichenreihenfolge,
         /// einem minimalen einstellbaren Wert, einem maximalen einstellbaren Wert und einem Standardwert Pflicht.
         /// </summary>
-        public SliderItem (IGameScreen screen, DisplayLayer drawOrder, string text, int max, int min, int step, int value)
+        public SliderItem (IScreen screen, DisplayLayer drawOrder, string text, int max, int min, int step, int value)
         : base (screen, drawOrder, text)
         {
             MaxValue = max;

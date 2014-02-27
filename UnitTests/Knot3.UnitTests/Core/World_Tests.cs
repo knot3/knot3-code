@@ -47,7 +47,7 @@ namespace Knot3.UnitTests.Core
     [TestFixture]
     public class World_Tests
     {
-        private IGameScreen screen;
+        private IScreen screen;
         private IRenderEffect effect;
 
         [Test, Description ("World Add/Remove")]

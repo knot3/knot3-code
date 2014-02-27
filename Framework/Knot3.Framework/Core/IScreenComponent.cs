@@ -38,7 +38,7 @@ namespace Knot3.Framework.Core
     /// <summary>
     /// Eine Schnittstelle für eine Spielkomponente, die in einem angegebenen Spielzustand verwendet wird und eine bestimmte Priorität hat.
     /// </summary>
-    public interface IGameScreenComponent : IGameComponent
+    public interface IScreenComponent : IGameComponent
     {
         /// <summary>
         /// Die Zeichen- und Eingabepriorität.
@@ -48,12 +48,12 @@ namespace Knot3.Framework.Core
         /// <summary>
         /// Der zugewiesene Spielzustand.
         /// </summary>
-        IGameScreen Screen { get; set; }
+        IScreen Screen { get; set; }
 
         /// <summary>
         /// Gibt Spielkomponenten zurück, die in dieser Spielkomponente enthalten sind.
         /// [returntype=IEnumerable<IGameScreenComponent>]
         /// </summary>
-        IEnumerable<IGameScreenComponent> SubComponents (GameTime time);
+        IEnumerable<IScreenComponent> SubComponents (GameTime time);
     }
 }

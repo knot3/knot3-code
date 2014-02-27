@@ -44,11 +44,11 @@ using Knot3.Game.Widgets;
 namespace Knot3.Game.Input
 {
     [ExcludeFromCodeCoverageAttribute]
-    public class EdgeColoring : GameScreenComponent, IKeyEventListener
+    public class EdgeColoring : ScreenComponent, IKeyEventListener
     {
         public Knot Knot { get; set; }
 
-        public EdgeColoring (GameScreen screen)
+        public EdgeColoring (Screen screen)
         : base (screen, DisplayLayer.None)
         {
             ValidKeys = new List<Keys> ();

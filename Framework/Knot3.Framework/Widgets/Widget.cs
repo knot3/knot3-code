@@ -44,7 +44,7 @@ namespace Knot3.Framework.Widgets
     /// Eine abstrakte Klasse, von der alle Element der grafischen Benutzeroberfläche erben.
     /// </summary>
     [ExcludeFromCodeCoverageAttribute]
-    public abstract class Widget : DrawableGameScreenComponent
+    public abstract class Widget : DrawableScreenComponent
     {
         /// <summary>
         /// Die Ausmaße des Widgets.
@@ -143,7 +143,7 @@ namespace Knot3.Framework.Widgets
         /// Erstellt ein neues grafisches Benutzerschnittstellenelement in dem angegebenen Spielzustand
         /// mit der angegebenen Zeichenreihenfolge.
         /// </summary>
-        public Widget (IGameScreen screen, DisplayLayer drawOrder)
+        public Widget (IScreen screen, DisplayLayer drawOrder)
         : base (screen, drawOrder)
         {
             Bounds = Bounds.Zero (screen);

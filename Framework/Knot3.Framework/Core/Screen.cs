@@ -29,6 +29,7 @@
  */
 
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -37,96 +38,154 @@ using Knot3.Framework.Audio;
 using Knot3.Framework.Effects;
 using Knot3.Framework.Input;
 using Knot3.Framework.Math;
+using Knot3.Framework.Platform;
+using Knot3.Framework.Widgets;
 
 namespace Knot3.Framework.Core
 {
-    public interface IGameScreen
+    /// <summary>
+    /// Ein Spielzustand, der zu einem angegebenen Spiel gehört und einen Inputhandler und Rendereffekte enthält.
+    /// </summary>
+    [ExcludeFromCodeCoverageAttribute]
+    public class Screen : IScreen
     {
         /// <summary>
         /// Das Spiel, zu dem der Spielzustand gehört.
         /// </summary>
-        GameClass Game { get; set; }
+        public GameCore Game { get; set; }
 
         /// <summary>
         /// Der InputManager des Spielzustands.
         /// </summary>
-        InputManager InputManager { get; }
-        
+        public InputManager InputManager { get; set; }
+
         /// <summary>
         /// Der AudioManager des Spielzustands.
         /// </summary>
-        AudioManager AudioManager { get; }
+        public AudioManager AudioManager { get { return Game.AudioManager; } }
 
         /// <summary>
         /// Der aktuelle Postprocessing-Effekt des Spielzustands
         /// </summary>
-        IRenderEffect PostProcessingEffect { get; set; }
+        public IRenderEffect PostProcessingEffect { get; set; }
 
         /// <summary>
         /// Ein Stack, der während dem Aufruf der Draw-Methoden der Spielkomponenten die jeweils aktuellen Rendereffekte enthält.
         /// </summary>
-        IRenderEffectStack CurrentRenderEffects { get; set; }
+        public IRenderEffectStack CurrentRenderEffects { get; set; }
 
         /// <summary>
         /// Der nächste Spielstand, der von Knot3Game gesetzt werden soll.
         /// </summary>
-        IGameScreen NextScreen { get; set; }
-
+        public IScreen NextScreen { get; set; }
+        
         /// <summary>
         /// Der GraphicsDeviceManager von XNA.
         /// </summary>
-        GraphicsDeviceManager GraphicsManager { get; }
+        public GraphicsDeviceManager GraphicsManager { get { return Game.Graphics; } }
 
         /// <summary>
         /// Das GraphicsDevice von XNA.
         /// </summary>
-        GraphicsDevice GraphicsDevice { get; }
-
+        public GraphicsDevice GraphicsDevice { get { return Game.GraphicsDevice; } }
+        
         /// <summary>
         /// Der aktuelle Viewport.
         /// </summary>
-        Viewport Viewport { get; set; }
-        
+        public Viewport Viewport
+        {
+            get { return GraphicsDevice.Viewport; }
+            set { GraphicsDevice.Viewport = value; }
+        }
+
         /// <summary>
         /// Die Hintergrundfarbe des Screens.
         /// </summary>
-        Color BackgroundColor { get; }
-        
+        public Color BackgroundColor { get; protected set; }
+
         /// <summary>
-        /// Gibt die Ausmaße des Screens zurück.
+        /// Gibt die Ausmaße des Screens zurück. Dabei handelt es sich
+        /// immer um die relative Position (0,0) und die relative Größe (1,1).
         /// </summary>
-        Bounds Bounds { get; }
+        public Bounds Bounds
+        {
+            get { return new Bounds (screen: this, relX: 0f, relY: 0f, relWidth: 1f, relHeight: 1f); }
+        }
+
+        /// <summary>
+        /// Erzeugt ein neues IGameScreen-Objekt und initialisiert dieses mit einem Knot3Game-Objekt.
+        /// </summary>
+        public Screen (GameCore game)
+        {
+            Game = game;
+            NextScreen = this;
+            CurrentRenderEffects = new RenderEffectStack (screen: this, defaultEffect: new StandardEffect (screen: this));
+            PostProcessingEffect = new StandardEffect (screen: this);
+            InputManager = new InputManager (screen: this);
+            BackgroundColor = Design.ScreenBackground;
+        }
 
         /// <summary>
         /// Beginnt mit dem Füllen der Spielkomponentenliste des XNA-Frameworks und fügt sowohl für Tastatur- als auch für
         /// Mauseingaben einen Inputhandler für Widgets hinzu. Wird in Unterklassen von IGameScreen reimplementiert und fügt zusätzlich weitere
         /// Spielkomponenten hinzu.
         /// </summary>
-        void Entered (IGameScreen previousScreen, GameTime time);
+        public virtual void Entered (IScreen previousScreen, GameTime time)
+        {
+            Log.Debug ("Entered: ", this);
+            IScreenComponent audioManager = AudioManager.ToScreenComponent (screen: this);
+            AddGameComponents (time, InputManager, audioManager, new WidgetKeyHandler (this), new WidgetMouseHandler (this));
+        }
 
         /// <summary>
         /// Leert die Spielkomponentenliste des XNA-Frameworks.
         /// </summary>
-        void BeforeExit (IGameScreen nextScreen, GameTime time);
+        public virtual void BeforeExit (IScreen nextScreen, GameTime time)
+        {
+            Log.Debug ("BeforeExit: ", this);
+            Game.Components.Clear ();
+        }
 
         /// <summary>
         /// Zeichnet die Teile des IGameScreens, die keine Spielkomponenten sind.
         /// </summary>
-        void Draw (GameTime time);
+        [ExcludeFromCodeCoverageAttribute]
+        public virtual void Draw (GameTime time)
+        {
+        }
 
         /// <summary>
         /// Wird für jeden Frame aufgerufen.
         /// </summary>
-        void Update (GameTime time);
+        [ExcludeFromCodeCoverageAttribute]
+        public virtual void Update (GameTime time)
+        {
+        }
 
         /// <summary>
         /// Fügt die angegebenen GameComponents in die Components-Liste des Games ein.
         /// </summary>
-        void AddGameComponents (GameTime time, params IGameScreenComponent[] components);
+        public void AddGameComponents (GameTime time, params IScreenComponent[] components)
+        {
+            Log.BlockList (id: 27, before: "  - ", after: "", begin: "Add components: ", end: "");
+            foreach (IScreenComponent component in components) {
+                Log.ListElement (id: 27, element: component);
+                Game.Components.Add (component);
+                AddGameComponents (time, component.SubComponents (time).ToArray ());
+            }
+        }
 
         /// <summary>
         /// Entfernt die angegebenen GameComponents aus der Components-Liste des Games.
         /// </summary>
-        void RemoveGameComponents (GameTime time, params IGameScreenComponent[] components);
+        public void RemoveGameComponents (GameTime time, params IScreenComponent[] components)
+        {
+            Log.BlockList (id: 28, before: "  - ", after: "", begin: "Remove components: ", end: "");
+            foreach (IScreenComponent component in components) {
+                RemoveGameComponents (time, component.SubComponents (time).ToArray ());
+                Log.ListElement (id: 28, element: component);
+                Game.Components.Remove (component);
+            }
+        }
     }
 }

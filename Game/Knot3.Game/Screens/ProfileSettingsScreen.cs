@@ -54,7 +54,7 @@ namespace Knot3.Game.Screens
         /// <summary>
         /// Erzeugt eine neue Instanz eines ProfileSettingsScreen-Objekts und initialisiert dieses mit einem Knot3Game-Objekt.
         /// </summary>
-        public ProfileSettingsScreen (GameClass game)
+        public ProfileSettingsScreen (GameCore game)
         : base (game)
         {
             MenuName = "Profile";
@@ -90,7 +90,7 @@ namespace Knot3.Game.Screens
         /// <summary>
         /// Fügt das Menü mit den Einstellungen in die Spielkomponentenliste ein.
         /// </summary>
-        public override void Entered (IGameScreen previousScreen, GameTime time)
+        public override void Entered (IScreen previousScreen, GameTime time)
         {
             base.Entered (previousScreen, time);
             AddGameComponents (time, settingsMenu);

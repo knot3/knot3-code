@@ -45,13 +45,13 @@ using Knot3.Game.Data;
 namespace Knot3.Game.Input
 {
     [ExcludeFromCodeCoverageAttribute]
-    public class EdgeRectangles : GameScreenComponent, IKeyEventListener
+    public class EdgeRectangles : ScreenComponent, IKeyEventListener
     {
         public Knot Knot { get; set; }
 
         private Random random = new Random ();
 
-        public EdgeRectangles (GameScreen screen)
+        public EdgeRectangles (Screen screen)
         : base (screen, DisplayLayer.None)
         {
             ValidKeys = new List<Keys> ();

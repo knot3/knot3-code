@@ -43,9 +43,9 @@ namespace Knot3.Framework.Input
     /// Ein Inputhandler, der Tastatureingaben auf Widgets verarbeitet.
     /// </summary>
     [ExcludeFromCodeCoverageAttribute]
-    public sealed class WidgetKeyHandler : GameScreenComponent
+    public sealed class WidgetKeyHandler : ScreenComponent
     {
-        public WidgetKeyHandler (IGameScreen screen)
+        public WidgetKeyHandler (IScreen screen)
         : base (screen, DisplayLayer.None)
         {
         }

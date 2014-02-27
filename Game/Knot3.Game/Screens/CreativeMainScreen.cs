@@ -57,7 +57,7 @@ namespace Knot3.Game.Screens
         /// <summary>
         /// Erzeugt ein neues CreativeMainScreen-Objekt und initialisiert dieses mit einem Knot3Game-Objekt.
         /// </summary>
-        public CreativeMainScreen (GameClass game)
+        public CreativeMainScreen (GameCore game)
         : base (game)
         {
             buttons = new Container (this, DisplayLayer.ScreenUI + DisplayLayer.Menu);
@@ -119,7 +119,7 @@ namespace Knot3.Game.Screens
         /// <summary>
         ///
         /// </summary>
-        public override void Entered (IGameScreen previousScreen, GameTime time)
+        public override void Entered (IScreen previousScreen, GameTime time)
         {
             base.Entered (previousScreen, time);
             AddGameComponents (time, buttons);

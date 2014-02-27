@@ -79,7 +79,7 @@ namespace Knot3.Framework.Widgets
         /// Zudem sind Angaben zur Zeichenreihenfolge, einer Zeichenkette für den Titel und für den eingeblendeten Text Pflicht.
         /// [base=screen, drawOrder]
         /// </summary>
-        public Dialog (IGameScreen screen, DisplayLayer drawOrder, string title)
+        public Dialog (IScreen screen, DisplayLayer drawOrder, string title)
         : base (screen, drawOrder)
         {
             // Setzte Titel und Text
@@ -153,9 +153,9 @@ namespace Knot3.Framework.Widgets
             spriteBatch.End ();
         }
 
-        public override IEnumerable<IGameScreenComponent> SubComponents (GameTime time)
+        public override IEnumerable<IScreenComponent> SubComponents (GameTime time)
         {
-            foreach (DrawableGameScreenComponent component in base.SubComponents (time)) {
+            foreach (DrawableScreenComponent component in base.SubComponents (time)) {
                 yield return component;
             }
             yield return titleBorder;

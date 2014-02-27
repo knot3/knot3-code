@@ -42,12 +42,12 @@ using Knot3.Framework.Math;
 
 namespace Knot3.MockObjects
 {
-    public class FakeScreen : IGameScreen
+    public class FakeScreen : IScreen
     {
         /// <summary>
         /// Das Spiel, zu dem der Spielzustand gehört.
         /// </summary>
-        public GameClass Game
+        public GameCore Game
         {
             get { return null;}
             set {}
@@ -73,7 +73,7 @@ namespace Knot3.MockObjects
         /// <summary>
         /// Der nächste Spielstand, der von Knot3Game gesetzt werden soll.
         /// </summary>
-        public IGameScreen NextScreen { get; set; }
+        public IScreen NextScreen { get; set; }
 
         public GraphicsDeviceManager GraphicsManager { get; private set; }
 
@@ -120,14 +120,14 @@ namespace Knot3.MockObjects
         /// Mauseingaben einen Inputhandler für Widgets hinzu. Wird in Unterklassen von IGameScreen reimplementiert und fügt zusätzlich weitere
         /// Spielkomponenten hinzu.
         /// </summary>
-        public void Entered (IGameScreen previousScreen, GameTime time)
+        public void Entered (IScreen previousScreen, GameTime time)
         {
         }
 
         /// <summary>
         /// Leert die Spielkomponentenliste des XNA-Frameworks.
         /// </summary>
-        public void BeforeExit (IGameScreen nextScreen, GameTime time)
+        public void BeforeExit (IScreen nextScreen, GameTime time)
         {
         }
 
@@ -148,14 +148,14 @@ namespace Knot3.MockObjects
         /// <summary>
         /// Fügt die angegebenen GameComponents in die Components-Liste des Games ein.
         /// </summary>
-        public void AddGameComponents (GameTime time, params IGameScreenComponent[] components)
+        public void AddGameComponents (GameTime time, params IScreenComponent[] components)
         {
         }
 
         /// <summary>
         /// Entfernt die angegebenen GameComponents aus der Components-Liste des Games.
         /// </summary>
-        public void RemoveGameComponents (GameTime time, params IGameScreenComponent[] components)
+        public void RemoveGameComponents (GameTime time, params IScreenComponent[] components)
         {
         }
     }

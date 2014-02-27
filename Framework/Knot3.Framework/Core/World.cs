@@ -47,7 +47,7 @@ namespace Knot3.Framework.Core
     /// <summary>
     /// Repräsentiert eine Spielwelt, in der sich 3D-Modelle befinden und gezeichnet werden können.
     /// </summary>
-    public sealed class World : DrawableGameScreenComponent, IEnumerable<IGameObject>
+    public sealed class World : DrawableScreenComponent, IEnumerable<IGameObject>
     {
         /// <summary>
         /// Die Kamera dieser Spielwelt.
@@ -137,7 +137,7 @@ namespace Knot3.Framework.Core
         /// Erstellt eine neue Spielwelt im angegebenen Spielzustand, dem angegebenen Rendereffekt und dem
         /// angegebenen Bounds-Objekt.
         /// </summary>
-        public World (IGameScreen screen, DisplayLayer drawOrder, IRenderEffect effect, Bounds bounds)
+        public World (IScreen screen, DisplayLayer drawOrder, IRenderEffect effect, Bounds bounds)
         : base (screen, drawOrder)
         {
             // die Kamera für diese Spielwelt
@@ -164,7 +164,7 @@ namespace Knot3.Framework.Core
         /// Falls während der Existenz dieses Objektes der Standardeffekt geändert wird,
         /// wird der neue Effekt übernommen.
         /// </summary>
-        public World (IGameScreen screen, DisplayLayer drawOrder, Bounds bounds)
+        public World (IScreen screen, DisplayLayer drawOrder, Bounds bounds)
         : this (screen: screen, drawOrder: drawOrder, effect: DefaultEffect (screen), bounds: bounds)
         {
             RenderEffectLibrary.RenderEffectChanged += (newEffectName, time) => {
@@ -172,7 +172,7 @@ namespace Knot3.Framework.Core
             };
         }
 
-        private static IRenderEffect DefaultEffect (IGameScreen screen)
+        private static IRenderEffect DefaultEffect (IScreen screen)
         {
             // suche den eingestellten Standardeffekt heraus
             string effectName = Config.Default ["video", "knot-shader", "default"];
@@ -313,9 +313,9 @@ namespace Knot3.Framework.Core
             return GetEnumerator (); // Just return the generic version
         }
 
-        public override IEnumerable<IGameScreenComponent> SubComponents (GameTime time)
+        public override IEnumerable<IScreenComponent> SubComponents (GameTime time)
         {
-            foreach (DrawableGameScreenComponent component in base.SubComponents (time)) {
+            foreach (DrawableScreenComponent component in base.SubComponents (time)) {
                 yield return component;
             }
             if (useInternalCamera) {

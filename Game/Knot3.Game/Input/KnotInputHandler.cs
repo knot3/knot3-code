@@ -55,7 +55,7 @@ namespace Knot3.Game.Input
     /// und das Kamera-Ziel.
     /// </summary>
     [ExcludeFromCodeCoverageAttribute]
-    public sealed class KnotInputHandler : GameScreenComponent, IKeyEventListener, IMouseMoveEventListener, IMouseScrollEventListener
+    public sealed class KnotInputHandler : ScreenComponent, IKeyEventListener, IMouseMoveEventListener, IMouseScrollEventListener
     {
         /// <summary>
         /// Die Spielwelt.
@@ -128,7 +128,7 @@ namespace Knot3.Game.Input
         /// Erstellt einen neuen KnotInputHandler für den angegebenen Spielzustand und die angegebene Spielwelt.
         /// [base=screen]
         /// </summary>
-        public KnotInputHandler (IGameScreen screen, World world)
+        public KnotInputHandler (IScreen screen, World world)
         : base (screen, world.Index)
         {
             // Standardmäßig aktiviert

@@ -75,7 +75,7 @@ namespace Knot3.Game.Screens
         /// <summary>
         /// Erzeugt ein neues AudioSettingsScreen-Objekt und initialisiert dieses mit einem Knot3Game-Objekt.
         /// </summary>
-        public AudioSettingsScreen (GameClass game)
+        public AudioSettingsScreen (GameCore game)
         : base (game)
         {
             MenuName = "Audio";
@@ -122,7 +122,7 @@ namespace Knot3.Game.Screens
         /// <summary>
         /// Fügt das Menü mit den Einstellungen in die Spielkomponentenliste ein.
         /// </summary>
-        public override void Entered (IGameScreen previousScreen, GameTime GameTime)
+        public override void Entered (IScreen previousScreen, GameTime GameTime)
         {
             base.Entered (previousScreen, GameTime);
             AddGameComponents (GameTime, settingsMenu);

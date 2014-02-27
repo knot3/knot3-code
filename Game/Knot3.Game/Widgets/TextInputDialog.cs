@@ -97,7 +97,7 @@ namespace Knot3.Game.Widgets
         /// <summary>
         ///
         /// </summary>
-        public TextInputDialog (IGameScreen screen, DisplayLayer drawOrder, string title, string text, string inputText)
+        public TextInputDialog (IScreen screen, DisplayLayer drawOrder, string title, string text, string inputText)
         : base (screen, drawOrder, title)
         {
             textItem = new TextItem (screen, drawOrder, String.Empty);
@@ -135,7 +135,7 @@ namespace Knot3.Game.Widgets
                         canClose = false;
                         textInput.InputText = String.Empty;
                         textInput.IsInputEnabled = true; // Fokus
-                        // FIX: bekommt bei schnellem ENTER drücken nicht wieder den Fokus.
+                        // FIX: bekommt bei schnellem ENTER drï¿½cken nicht wieder den Fokus.
                     }
                 }
 
@@ -144,7 +144,7 @@ namespace Knot3.Game.Widgets
                         canClose = false;
                         textInput.InputText = String.Empty;
                         textInput.IsInputEnabled = true; // Fokus
-                        // FIX: bekommt bei schnellem ENTER drücken nicht wieder den Fokus.
+                        // FIX: bekommt bei schnellem ENTER drï¿½cken nicht wieder den Fokus.
                     }
                 }
 
@@ -155,9 +155,9 @@ namespace Knot3.Game.Widgets
             base.OnKeyEvent (key, keyEvent, time);
         }
 
-        public override IEnumerable<IGameScreenComponent> SubComponents (GameTime time)
+        public override IEnumerable<IScreenComponent> SubComponents (GameTime time)
         {
-            foreach (DrawableGameScreenComponent component in base.SubComponents (time)) {
+            foreach (DrawableScreenComponent component in base.SubComponents (time)) {
                 yield return component;
             }
             yield return menu;

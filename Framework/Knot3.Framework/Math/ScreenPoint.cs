@@ -40,7 +40,7 @@ namespace Knot3.Framework.Math
 {
     public class ScreenPoint : IEquatable<ScreenPoint>
     {
-        public IGameScreen Screen { get; private set; }
+        public IScreen Screen { get; private set; }
 
         public Vector2 Relative
         {
@@ -96,25 +96,25 @@ namespace Knot3.Framework.Math
 
         public bool IsEmpty { get { return Relative.Length () == 0; } }
 
-        public ScreenPoint (IGameScreen screen, Func<Vector2> func)
+        public ScreenPoint (IScreen screen, Func<Vector2> func)
         {
             Screen = screen;
             RelativeFunc = func;
         }
 
-        public ScreenPoint (IGameScreen screen, Vector2 vector)
+        public ScreenPoint (IScreen screen, Vector2 vector)
         {
             Screen = screen;
             Relative = vector;
         }
 
-        public ScreenPoint (IGameScreen screen, float x, float y)
+        public ScreenPoint (IScreen screen, float x, float y)
         {
             Screen = screen;
             Relative = new Vector2 (x, y);
         }
 
-        public ScreenPoint (IGameScreen screen, Func<float> x, Func<float> y)
+        public ScreenPoint (IScreen screen, Func<float> x, Func<float> y)
         {
             Screen = screen;
             RelativeFunc = () => new Vector2 (x (), y ());
@@ -126,32 +126,32 @@ namespace Knot3.Framework.Math
             RelativeFunc = other.RelativeFunc;
         }
 
-        public static ScreenPoint FromAbsolute (float x, float y, IGameScreen screen)
+        public static ScreenPoint FromAbsolute (float x, float y, IScreen screen)
         {
             return new ScreenPoint (screen, x / screen.Viewport.Width, y / screen.Viewport.Height);
         }
 
-        public static ScreenPoint FromAbsolute (Point point, IGameScreen screen)
+        public static ScreenPoint FromAbsolute (Point point, IScreen screen)
         {
             return FromAbsolute ((float)point.X, (float)point.Y, screen);
         }
 
-        public static ScreenPoint Zero (IGameScreen screen)
+        public static ScreenPoint Zero (IScreen screen)
         {
             return new ScreenPoint (screen, Vector2.Zero);
         }
 
-        public static ScreenPoint TopLeft (IGameScreen screen)
+        public static ScreenPoint TopLeft (IScreen screen)
         {
             return new ScreenPoint (screen, Vector2.Zero);
         }
 
-        public static ScreenPoint BottomRight (IGameScreen screen)
+        public static ScreenPoint BottomRight (IScreen screen)
         {
             return new ScreenPoint (screen, Vector2.One);
         }
 
-        public static ScreenPoint Centered (IGameScreen screen, Bounds sizeOf)
+        public static ScreenPoint Centered (IScreen screen, Bounds sizeOf)
         {
             return new ScreenPoint (screen, () => (ScreenPoint.BottomRight (screen) - sizeOf.Size) / 2);
         }

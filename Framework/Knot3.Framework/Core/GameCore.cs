@@ -41,7 +41,7 @@ using Knot3.Framework.Storage;
 namespace Knot3.Framework.Core
 {
     [ExcludeFromCodeCoverageAttribute]
-    public abstract class GameClass : Microsoft.Xna.Framework.Game
+    public abstract class GameCore : Microsoft.Xna.Framework.Game
     {
         private static readonly Vector2 defaultSize = SystemInfo.IsRunningOnLinux ()
                 ? new Vector2 (1024, 600) : new Vector2 (1280, 720);
@@ -88,7 +88,7 @@ namespace Knot3.Framework.Core
         /// <summary>
         /// Enthält als oberste Element den aktuellen Spielzustand und darunter die zuvor aktiven Spielzustände.
         /// </summary>
-        public Stack<IGameScreen> Screens { get; set; }
+        public Stack<IScreen> Screens { get; set; }
 
         /// <summary>
         /// Dieses Attribut dient sowohl zum Setzen des Aktivierungszustandes der vertikalen Synchronisation,
@@ -121,7 +121,7 @@ namespace Knot3.Framework.Core
         /// die in der Einstellungsdatei gespeicherte Auflösung oder falls nicht vorhanden auf die aktuelle
         /// Bildschirmauflösung und wechselt in den Vollbildmodus.
         /// </summary>
-        public GameClass ()
+        public GameCore ()
         {
             Graphics = new GraphicsDeviceManager (this);
 
@@ -152,8 +152,8 @@ namespace Knot3.Framework.Core
         private void toDefaultSize (bool fullscreen)
         {
             if (!fullscreen) {
-                Graphics.PreferredBackBufferWidth = (int)GameClass.defaultSize.X;
-                Graphics.PreferredBackBufferHeight = (int)GameClass.defaultSize.Y;
+                Graphics.PreferredBackBufferWidth = (int)GameCore.defaultSize.X;
+                Graphics.PreferredBackBufferHeight = (int)GameCore.defaultSize.Y;
                 Graphics.ApplyChanges ();
             }
         }

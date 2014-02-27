@@ -41,7 +41,7 @@ using Knot3.Framework.Utilities;
 namespace Knot3.Framework.Widgets
 {
     [ExcludeFromCodeCoverageAttribute]
-    public sealed class Lines : DrawableGameScreenComponent
+    public sealed class Lines : DrawableScreenComponent
     {
         private Texture2D texture;
         private SpriteBatch spriteBatch;
@@ -61,7 +61,7 @@ namespace Knot3.Framework.Widgets
 
         public Color OutlineColor { get; private set; }
 
-        public Lines (IGameScreen screen, DisplayLayer drawOrder, int lineWidth, Color lineColor, Color outlineColor)
+        public Lines (IScreen screen, DisplayLayer drawOrder, int lineWidth, Color lineColor, Color outlineColor)
         : base (screen, drawOrder)
         {
             this.lineWidth = lineWidth;
@@ -74,7 +74,7 @@ namespace Knot3.Framework.Widgets
             IsVisible = true;
         }
 
-        public Lines (IGameScreen screen, DisplayLayer drawOrder, int lineWidth)
+        public Lines (IScreen screen, DisplayLayer drawOrder, int lineWidth)
         : this (screen, drawOrder, lineWidth, Design.DefaultLineColor, Design.DefaultOutlineColor)
         {
         }

@@ -91,12 +91,12 @@ namespace Knot3.Framework.Models
             }
         }
 
-        protected IGameScreen screen;
+        protected IScreen screen;
 
         /// <summary>
         /// Erstellt ein neues 3D-Modell in dem angegebenen Spielzustand mit den angegebenen Modellinformationen.
         /// </summary>
-        public GameModel (IGameScreen screen, GameModelInfo info)
+        public GameModel (IScreen screen, GameModelInfo info)
         {
             this.screen = screen;
             Info = info;

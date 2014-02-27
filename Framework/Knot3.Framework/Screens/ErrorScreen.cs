@@ -44,14 +44,14 @@ namespace Knot3.Framework.Screens
     /// Der Spielzustand, der die Auflistung der Mitwirkenden darstellt.
     /// </summary>
     [ExcludeFromCodeCoverageAttribute]
-    public class ErrorScreen : GameScreen
+    public class ErrorScreen : Screen
     {
         ErrorDialog dialog;
 
         /// <summary>
         /// Erzeugt ein neues CreditsScreen-Objekt und initialisiert dieses mit einem Knot3Game-Objekt.
         /// </summary>
-        public ErrorScreen (GameClass game, Exception ex)
+        public ErrorScreen (GameCore game, Exception ex)
         : base (game)
         {
             string msg = CreateMessage (ex);
@@ -76,7 +76,7 @@ namespace Knot3.Framework.Screens
         /// <summary>
         /// Fügt das Menü mit den Mitwirkenden in die Spielkomponentenliste ein.
         /// </summary>
-        public override void Entered (IGameScreen previousScreen, GameTime time)
+        public override void Entered (IScreen previousScreen, GameTime time)
         {
             base.Entered (previousScreen, time);
             AddGameComponents (time, dialog);

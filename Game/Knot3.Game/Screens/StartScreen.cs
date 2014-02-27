@@ -60,7 +60,7 @@ namespace Knot3.Game.Screens
         /// <summary>
         /// Erzeugt eine neue Instanz eines StartScreen-Objekts und initialisiert diese mit einem Knot3Game-Objekt.
         /// </summary>
-        public StartScreen (GameClass game)
+        public StartScreen (GameCore game)
         : base (game)
         {
             buttons = new Container (screen: this, drawOrder: DisplayLayer.ScreenUI + DisplayLayer.Menu);
@@ -177,7 +177,7 @@ namespace Knot3.Game.Screens
         /// <summary>
         /// Fügt die das Menü in die Spielkomponentenliste ein.
         /// </summary>
-        public override void Entered (IGameScreen previousScreen, GameTime time)
+        public override void Entered (IScreen previousScreen, GameTime time)
         {
             base.Entered (previousScreen, time);
             AddGameComponents (time, buttons);

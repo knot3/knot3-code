@@ -79,7 +79,7 @@ namespace Knot3.Game.Widgets
         /// Erzeugt ein neues CheckBoxItem-Objekt und initialisiert dieses mit dem zugehörigen IGameScreen-Objekt.
         /// Zudem sind Angaben zur Zeichenreihenfolge und der Eingabeoption Pflicht.
         /// </summary>
-        public KeyInputItem (IGameScreen screen, DisplayLayer drawOrder, string text, KeyOption option)
+        public KeyInputItem (IScreen screen, DisplayLayer drawOrder, string text, KeyOption option)
         : base (screen, drawOrder, text, (option as DistinctOption).Value)
         {
             this.option = option;

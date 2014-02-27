@@ -258,12 +258,12 @@ namespace Knot3.Framework.Utilities
             return new BoundingBox (Vector3.Transform (box.Min, translation), Vector3.Transform (box.Max, translation));
         }
 
-        public static ScreenPoint ToScreenPoint (this MouseState mouse, IGameScreen screen)
+        public static ScreenPoint ToScreenPoint (this MouseState mouse, IScreen screen)
         {
             return new ScreenPoint (screen, (float)mouse.X / (float)screen.Viewport.Width, (float)mouse.Y / (float)screen.Viewport.Height);
         }
 
-        public static ScreenPoint Center (this Viewport viewport, IGameScreen screen)
+        public static ScreenPoint Center (this Viewport viewport, IScreen screen)
         {
             Vector2 center = new Vector2 (viewport.X + viewport.Width / 2, viewport.Y + viewport.Height / 2);
             return new ScreenPoint (screen, center / screen.Viewport.Size ());

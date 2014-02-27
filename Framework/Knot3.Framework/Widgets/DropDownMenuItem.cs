@@ -73,7 +73,7 @@ namespace Knot3.Framework.Widgets
         /// Erzeugt ein neues ConfirmDialog-Objekt und initialisiert dieses mit dem zugehörigen IGameScreen-Objekt.
         /// Zudem ist die Angabe der Zeichenreihenfolge Pflicht.
         /// </summary>
-        public DropDownMenuItem (IGameScreen screen, DisplayLayer drawOrder, string text)
+        public DropDownMenuItem (IScreen screen, DisplayLayer drawOrder, string text)
         : base (screen, drawOrder, String.Empty)
         {
             dropdown = new Menu (screen: screen, drawOrder: Index + DisplayLayer.Menu);
@@ -158,9 +158,9 @@ namespace Knot3.Framework.Widgets
             dropdown.IsVisible = false;
         }
 
-        public override IEnumerable<IGameScreenComponent> SubComponents (GameTime time)
+        public override IEnumerable<IScreenComponent> SubComponents (GameTime time)
         {
-            foreach (DrawableGameScreenComponent component in base.SubComponents (time)) {
+            foreach (DrawableScreenComponent component in base.SubComponents (time)) {
                 yield return component;
             }
             yield return dropdown;

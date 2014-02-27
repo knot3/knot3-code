@@ -68,7 +68,7 @@ namespace Knot3.MockObjects
         /// <summary>
         /// Erstellt einen neuen Rendereffekt-Stapel.
         /// </summary>
-        public FakeEffectStack (IGameScreen screen, IRenderEffect defaultEffect)
+        public FakeEffectStack (IScreen screen, IRenderEffect defaultEffect)
         {
             this.defaultEffect = defaultEffect;
             stack = new Stack<IRenderEffect> ();

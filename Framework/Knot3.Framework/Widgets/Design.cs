@@ -57,7 +57,7 @@ namespace Knot3.Framework.Widgets
 
         private static SpriteFont menuFont;
 
-        public static SpriteFont MenuFont (IGameScreen screen)
+        public static SpriteFont MenuFont (IScreen screen)
         {
             if (menuFont != null) {
                 return menuFont;

@@ -51,7 +51,7 @@ namespace Knot3.Game.Models
     [ExcludeFromCodeCoverageAttribute]
     public sealed class TexturedRectangle : IGameObject, IDisposable, IEquatable<TexturedRectangle>
     {
-        private IGameScreen Screen;
+        private IScreen Screen;
 
         GameObjectInfo IGameObject.Info { get { return Info; } }
 
@@ -69,7 +69,7 @@ namespace Knot3.Game.Models
         private BasicEffect basicEffect;
         private Texture2D texture;
 
-        public TexturedRectangle (IGameScreen screen, TexturedRectangleInfo info)
+        public TexturedRectangle (IScreen screen, TexturedRectangleInfo info)
         {
             Screen = screen;
             Info = info;

@@ -43,7 +43,7 @@ namespace Knot3.Game.Effects
     [ExcludeFromCodeCoverageAttribute]
     public class Z_Nebula : RenderEffect
     {
-        public Z_Nebula (IGameScreen screen)
+        public Z_Nebula (IScreen screen)
         : base (screen)
         {
             zNebulaEffect = screen.LoadEffect ("Z_Nebula");

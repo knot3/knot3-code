@@ -55,7 +55,7 @@ namespace Knot3.Game.Development
         /// <summary>
         /// Erzeugt ein neues DebugSettingsScreen-Objekt und initialisiert dieses mit einem Knot3Game-Objekt.
         /// </summary>
-        public DebugSettingsScreen (GameClass game)
+        public DebugSettingsScreen (GameCore game)
         : base (game)
         {
             MenuName = "Debug";
@@ -147,7 +147,7 @@ namespace Knot3.Game.Development
         /// <summary>
         /// Fügt das Menü mit den Einstellungen in die Spielkomponentenliste ein.
         /// </summary>
-        public override void Entered (IGameScreen previousScreen, GameTime time)
+        public override void Entered (IScreen previousScreen, GameTime time)
         {
             base.Entered (previousScreen, time);
             AddGameComponents (time, settingsMenu);

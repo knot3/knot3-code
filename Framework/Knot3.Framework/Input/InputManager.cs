@@ -45,7 +45,7 @@ namespace Knot3.Framework.Input
     /// Stellt für jeden Frame die Maus- und Tastatureingaben bereit. Daraus werden die nicht von XNA bereitgestellten Mauseingaben berechnet. Zusätzlich wird die aktuelle Eingabeaktion berechnet.
     /// </summary>
     [ExcludeFromCodeCoverageAttribute]
-    public sealed class InputManager : GameScreenComponent
+    public sealed class InputManager : ScreenComponent
     {
         /// <summary>
         /// Enthält den Klickzustand der rechten Maustaste.
@@ -106,7 +106,7 @@ namespace Knot3.Framework.Input
         /// <summary>
         /// Erstellt ein neues InputManager-Objekt, das an den übergebenen Spielzustand gebunden ist.
         /// </summary>
-        public InputManager (IGameScreen screen)
+        public InputManager (IScreen screen)
         : base (screen, DisplayLayer.None)
         {
             CurrentInputAction = InputAction.FreeMouse;

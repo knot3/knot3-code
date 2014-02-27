@@ -48,7 +48,7 @@ namespace Knot3.Game.Screens
         /// <summary>
         /// Erzeugt ein neues CreditsScreen-Objekt und initialisiert dieses mit einem Knot3Game-Objekt.
         /// </summary>
-        public CreditsScreen (GameClass game)
+        public CreditsScreen (GameCore game)
         : base (game)
         {
             text = "...";
@@ -68,7 +68,7 @@ namespace Knot3.Game.Screens
         /// <summary>
         /// Fügt das Menü mit den Mitwirkenden in die Spielkomponentenliste ein.
         /// </summary>
-        public override void Entered (IGameScreen previousScreen, GameTime GameTime)
+        public override void Entered (IScreen previousScreen, GameTime GameTime)
         {
         }
     }

@@ -96,7 +96,7 @@ namespace Knot3.Framework.Widgets
         /// Erzeugt eine neue Instanz eines VerticalMenu-Objekts und initialisiert diese mit dem zugehörigen IGameScreen-Objekt.
         /// Zudem ist die Angaben der Zeichenreihenfolge Pflicht.
         /// </summary>
-        public Menu (IGameScreen screen, DisplayLayer drawOrder)
+        public Menu (IScreen screen, DisplayLayer drawOrder)
         : base (screen, drawOrder)
         {
             RelativeItemHeight = 0.040f;
