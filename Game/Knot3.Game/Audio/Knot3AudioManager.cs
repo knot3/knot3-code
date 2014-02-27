@@ -28,49 +28,30 @@
  * See the LICENSE file for full license details of the Knot3 project.
  */
 
+using System;
 using System.Diagnostics.CodeAnalysis;
 
-using NUnit.Framework;
-
 using Knot3.Framework.Audio;
+using Knot3.Framework.Core;
 
-using Knot3.Game.Audio;
-
-using Knot3.MockObjects;
-
-namespace Knot3.UnitTests.Audio
+namespace Knot3.Game.Audio
 {
-    [TestFixture]
-    public class Audio_Tests
+    public class Knot3AudioManager : AudioManager
     {
-        FakeScreen screen;
-
-        [SetUp]
-        public void Audio_Setup ()
+        public Knot3AudioManager (GameClass game)
+            : base (game)
         {
-            screen = new FakeScreen ();
-            AudioManager audio = new Knot3AudioManager (game: null);
-            audio.Reset ();
-            audio.Initialize (TestHelper.TestResourcesDirectory);
         }
 
-        [Test]
-        public void Audio_Volume_Tests ()
+        public override void Initialize (string directory)
         {
-            AudioManager.SetVolume (Sound.PipeMoveSound, 1f);
-        }
+            AudioDirectories [Sound.CreativeMusic] = "Music/Creative";
+            AudioDirectories [Sound.ChallengeMusic] = "Music/Challenge";
+            AudioDirectories [Sound.MenuMusic] = "Music/Menu";
+            AudioDirectories [Sound.PipeMoveSound] = "Sound/Pipe/Move";
+            AudioDirectories [Sound.PipeInvalidMoveSound] = "Sound/Pipe/Invalid-Move";
 
-        [Test]
-        public void Audio_Load_Tests ()
-        {
-            string[] filenames = new string[] { "sound1.ogg", "invalid.ogg" };
-            foreach (string filename in filenames) {
-            }
-        }
-
-        [Test]
-        public void Audio_LoopPlaylist_Tests ()
-        {
+            base.Initialize (directory);
         }
     }
 }

@@ -43,24 +43,16 @@ using Knot3.Framework.Utilities;
 
 namespace Knot3.Framework.Audio
 {
-    public class AudioManager : DrawableGameScreenComponent
+    public abstract class AudioManager : DrawableGameComponent
     {
         /// <summary>
         /// Eine Zuordnung zwischen dem Typ der Audiodateien und den Ordnern unter "Content/",
         /// in denen sich die Audiodateien befinden.
         /// </summary>
-        private static readonly Dictionary<Sound, string> AudioDirectories
-        = new Dictionary<Sound, string> {
-            { Sound.CreativeMusic,			"Music/Creative" },
-            { Sound.ChallengeMusic,			"Music/Challenge" },
-            { Sound.MenuMusic,				"Music/Menu" },
-            { Sound.PipeMoveSound,			"Sound/Pipe/Move" },
-            { Sound.PipeInvalidMoveSound,	"Sound/Pipe/Invalid-Move" },
-        };
+        public Dictionary<Sound, string> AudioDirectories { get; private set; }
 
         // Enthält alle gefunden Audiodateien, sortiert nach ihrem Zweck
-        private static Dictionary<Sound, HashSet<IAudioFile>> AudioFiles
-            = new Dictionary<Sound, HashSet<IAudioFile>> ();
+        private Dictionary<Sound, HashSet<IAudioFile>> AudioFiles = new Dictionary<Sound, HashSet<IAudioFile>> ();
 
         /// <summary>
         /// Die aktuell verwendete Hintergrundmusik.
@@ -78,22 +70,34 @@ namespace Knot3.Framework.Audio
             }
         }
 
-        private static Sound _backgroundMusic = Sound.None;
+        private Sound _backgroundMusic = Sound.None;
 
         /// <summary>
         /// Enthält die Playlist, die aktuell abgespielt wird,
         /// oder null, falls keine Playlist abgespielt wird.
         /// </summary>
-        public static IPlaylist Playlist { get; set; }
+        public IPlaylist Playlist { get; set; }
 
         private static Dictionary<Sound, float> VolumeMap = new Dictionary<Sound, float> ();
 
         /// <summary>
         /// Erstellt einen neuen AudioManager für den angegebenen Spielzustand.
         /// </summary>
-        public AudioManager (IGameScreen screen, string directory)
-        : base (screen, DisplayLayer.None)
+        public AudioManager (GameClass game)
+        : base (game)
         {
+            AudioDirectories = new Dictionary<Sound, string> ();
+        }
+
+        public override void Initialize ()
+        {
+            Initialize (SystemInfo.RelativeContentDirectory);
+        }
+
+        public virtual void Initialize (string directory)
+        {
+            base.Initialize ();
+
             if (AudioFiles.Count == 0) {
                 // Erstelle für alle Enum-Werte von Sound ein HashSet
                 foreach (Sound soundType in typeof (Sound).ToEnumValues<Sound>()) {
@@ -101,51 +105,15 @@ namespace Knot3.Framework.Audio
                     VolumeMap [soundType] = ValidVolume (Config.Default ["volume", soundType.ToString (), 1]);
                 }
 
-                // Suche nach XNA-Audio-Dateien
-                FileUtility.SearchFiles (directory, new string[] {".xnb"}, AddXnaAudioFile);
-
                 // Suche nach OGG-Dateien
                 FileUtility.SearchFiles (directory, new string[] {".ogg"}, AddOggAudioFile);
             }
         }
 
-        public AudioManager (IGameScreen screen)
-        : this (screen, SystemInfo.RelativeContentDirectory)
-        {
-        }
-
-        public static void Reset ()
+        public void Reset ()
         {
             AudioFiles.Clear ();
             VolumeMap.Clear ();
-        }
-
-        private void AddXnaAudioFile (string filepath)
-        {
-            filepath = filepath.Replace (".xnb", String.Empty).Replace (@"Content\", String.Empty).Replace ("Content/", String.Empty).Replace (@"\", "/");
-
-            foreach (KeyValuePair<Sound,string> pair in AudioDirectories) {
-                Sound soundType = pair.Key;
-                string directory = pair.Value;
-                if (filepath.ToLower ().Contains (directory.ToLower ())) {
-                    string name = Path.GetFileName (filepath);
-                    LoadXnaSoundEffect (filepath, name, soundType);
-                    break;
-                }
-            }
-        }
-
-        private void LoadXnaSoundEffect (string filepath, string name, Sound soundType)
-        {
-            try {
-                // versuche, die Audiodatei als "SoundEffect" zu laden
-                SoundEffect soundEffect = Screen.Game.Content.Load<SoundEffect> (filepath);
-                AudioFiles [soundType].Add (new SoundEffectFile (name, soundEffect, soundType));
-                Log.Debug ("Load sound effect (", soundType, "): ", filepath);
-            }
-            catch (Exception ex) {
-                Log.Debug (ex);
-            }
         }
 
         private void AddOggAudioFile (string filepath)
@@ -206,13 +174,6 @@ namespace Knot3.Framework.Audio
                 Playlist.Update (time);
             }
             base.Update (time);
-        }
-
-        protected override void UnloadContent ()
-        {
-            Log.Debug ("UnloadContent ()");
-            Playlist.Stop ();
-            base.UnloadContent ();
         }
 
         public static float Volume (Sound soundType)

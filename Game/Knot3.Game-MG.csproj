@@ -57,6 +57,7 @@
     <Content Include="..\knot3.ico" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Knot3.Game\Audio\Knot3AudioManager.cs" />
     <Compile Include="Knot3.Game\Core\Knot3Game.cs" />
     <Compile Include="Knot3.Game\Data\Challenge.cs" />
     <Compile Include="Knot3.Game\Data\ChallengeFileIO.cs" />
@@ -142,5 +143,8 @@
       <Project>{0EFA2EF3-DEB0-44E3-BE88-722866A5D511}</Project>
       <Name>Knot3.Content-MG</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Knot3.Game\Audio\" />
   </ItemGroup>
 </Project>

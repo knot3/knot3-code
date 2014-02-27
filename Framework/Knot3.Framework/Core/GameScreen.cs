@@ -62,7 +62,7 @@ namespace Knot3.Framework.Core
         /// <summary>
         /// Der AudioManager des Spielzustands.
         /// </summary>
-        public AudioManager AudioManager { get; private set; }
+        public AudioManager AudioManager { get { return Game.AudioManager; } }
 
         /// <summary>
         /// Der aktuelle Postprocessing-Effekt des Spielzustands
@@ -119,13 +119,9 @@ namespace Knot3.Framework.Core
         {
             Game = game;
             NextScreen = this;
-            CurrentRenderEffects = new RenderEffectStack (
-                screen: this,
-                defaultEffect: new StandardEffect (this)
-            );
-            PostProcessingEffect = new StandardEffect (this);
-            InputManager = new InputManager (this);
-            AudioManager = new AudioManager (this);
+            CurrentRenderEffects = new RenderEffectStack (screen: this, defaultEffect: new StandardEffect (screen: this));
+            PostProcessingEffect = new StandardEffect (screen: this);
+            InputManager = new InputManager (screen: this);
             BackgroundColor = Design.ScreenBackground;
         }
 
@@ -137,7 +133,8 @@ namespace Knot3.Framework.Core
         public virtual void Entered (IGameScreen previousScreen, GameTime time)
         {
             Log.Debug ("Entered: ", this);
-            AddGameComponents (time, InputManager, AudioManager, new WidgetKeyHandler (this), new WidgetMouseHandler (this));
+            IGameScreenComponent audioManager = AudioManager.ToGameScreenComponent (screen: this);
+            AddGameComponents (time, InputManager, audioManager, new WidgetKeyHandler (this), new WidgetMouseHandler (this));
         }
 
         /// <summary>

@@ -34,6 +34,7 @@ using System.Diagnostics.CodeAnalysis;
 
 using Microsoft.Xna.Framework;
 
+using Knot3.Framework.Audio;
 using Knot3.Framework.Platform;
 using Knot3.Framework.Storage;
 
@@ -109,6 +110,11 @@ namespace Knot3.Framework.Core
         /// Der aktuelle Grafikgeräteverwalter des XNA-Frameworks.
         /// </summary>
         public GraphicsDeviceManager Graphics { get; private set; }
+
+        /// <summary>
+        /// Der AudioManager des Spiels.
+        /// </summary>
+        public AudioManager AudioManager { get; protected set; }
 
         /// <summary>
         /// Erstellt ein neues zentrales Spielobjekt und setzt die Auflösung des BackBuffers auf

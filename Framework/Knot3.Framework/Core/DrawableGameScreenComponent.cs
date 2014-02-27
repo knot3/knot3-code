@@ -80,4 +80,39 @@ namespace Knot3.Framework.Core
             yield break;
         }
     }
+
+    public static class DrawableGameComponentExtensions
+    {
+        public static DrawableGameScreenComponent ToGameScreenComponent (this DrawableGameComponent component, IGameScreen screen, DisplayLayer index)
+        {
+            return new DrawableGameScreenComponentWrapper (component, screen, index);
+        }
+
+        public static DrawableGameScreenComponent ToGameScreenComponent (this DrawableGameComponent component, IGameScreen screen)
+        {
+            return component.ToGameScreenComponent (screen, DisplayLayer.None);
+        }
+    }
+
+    [ExcludeFromCodeCoverage]
+    class DrawableGameScreenComponentWrapper : DrawableGameScreenComponent
+    {
+        private DrawableGameComponent Wrapped;
+
+        public DrawableGameScreenComponentWrapper (DrawableGameComponent component, IGameScreen screen, DisplayLayer index)
+            : base (screen, index)
+        {
+            Wrapped = component;
+        }
+
+        public override void Update (GameTime time)
+        {
+            Wrapped.Update (time);
+        }
+
+        public override void Draw (GameTime time)
+        {
+            Wrapped.Draw (time);
+        }
+    }
 }

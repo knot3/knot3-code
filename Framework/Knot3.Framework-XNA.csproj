@@ -60,7 +60,7 @@
     <Compile Include="Knot3.Framework\Core\Camera.cs" />
     <Compile Include="Knot3.Framework\Core\DisplayLayer.cs" />
     <Compile Include="Knot3.Framework\Core\DrawableGameScreenComponent.cs" />
-    <Compile Include="Knot3.Framework\Core\GameClass.cs" />
+    <Compile Include="Knot3.Framework\Core\GameMainClass.cs" />
     <Compile Include="Knot3.Framework\Core\GameScreen.cs" />
     <Compile Include="Knot3.Framework\Core\GameScreenComponent.cs" />
     <Compile Include="Knot3.Framework\Core\IGameScreen.cs" />

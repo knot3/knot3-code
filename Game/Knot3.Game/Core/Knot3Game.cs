@@ -39,6 +39,7 @@ using Knot3.Framework.Core;
 using Knot3.Framework.Effects;
 using Knot3.Framework.Screens;
 
+using Knot3.Game.Audio;
 using Knot3.Game.Effects;
 using Knot3.Game.Screens;
 using Knot3.Game.Widgets;
@@ -77,24 +78,29 @@ namespace Knot3.Game.Core
             // design
             new HfGDesign ().Apply ();
 
-            RenderEffectLibrary.EffectFactory[] effects = new RenderEffectLibrary.EffectFactory[] {
-                new RenderEffectLibrary.EffectFactory (
+            // audio
+            AudioManager = new Knot3AudioManager (game: this);
+            AudioManager.Initialize ();
+
+            // effects
+            RenderEffectLibrary.EffectLibrary.Add (new RenderEffectLibrary.EffectFactory (
                     name: "celshader",
                     displayName: "Cel Shading",
                     createInstance: (screen) => new CelShadingEffect (screen)
-                ),
-                new RenderEffectLibrary.EffectFactory (
+            )
+            );
+            RenderEffectLibrary.EffectLibrary.Add (new RenderEffectLibrary.EffectFactory (
                     name: "opaque",
                     displayName: "opaque",
                     createInstance: (screen) => new OpaqueEffect (screen)
-                ),
-                new RenderEffectLibrary.EffectFactory (
+            )
+            );
+            RenderEffectLibrary.EffectLibrary.Add (new RenderEffectLibrary.EffectFactory (
                     name: "z-nebula",
                     displayName: "Z-Nebula",
                     createInstance: (screen) => new Z_Nebula (screen)
-                )
-            };
-            RenderEffectLibrary.EffectLibrary.AddRange (effects);
+            )
+            );
 
             // screens
             Screens = new Stack<IGameScreen> ();
