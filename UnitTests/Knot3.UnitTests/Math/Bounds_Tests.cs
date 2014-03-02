@@ -109,11 +109,11 @@ namespace Knot3.UnitTests.Math
         [Test]
         public void Bounds_Get_Test ()
         {
-            Assert.AreEqual (point, bound.Padding);
-            Assert.AreEqual (point, bound.Position);
+            Assert.AreEqual (point, bound.Padding, "Bounds_Get_Test 1");
+            Assert.AreEqual (point, bound.Position, "Bounds_Get_Test 2");
             Vector4 vector = bound.Vector4;
             Vector4 vector2 = new Vector4 (0,0,800,600);
-            Assert.AreEqual (vector, vector2);
+            Assert.AreEqual (vector, vector2, "Bounds_Get_Test 3");
         }
 
         [Test]
