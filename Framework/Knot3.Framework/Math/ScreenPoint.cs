@@ -248,6 +248,9 @@ namespace Knot3.Framework.Math
             if (other == null) {
                 return false;
             }
+            else if (other is ScreenPoint) {
+                return Equals ((ScreenPoint)other);
+            }
             else if (other is Vector2) {
                 return Relative.Equals ((Vector2)other);
             }
