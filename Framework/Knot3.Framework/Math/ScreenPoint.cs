@@ -34,8 +34,8 @@ using System.Diagnostics.CodeAnalysis;
 using Microsoft.Xna.Framework;
 
 using Knot3.Framework.Core;
-using Knot3.Framework.Utilities;
 using Knot3.Framework.Platform;
+using Knot3.Framework.Utilities;
 
 namespace Knot3.Framework.Math
 {
@@ -237,9 +237,9 @@ namespace Knot3.Framework.Math
         public bool Equals (ScreenPoint other)
         {
             float epsilon = 0.000001f;
-            Log.Debug("X-X: "+System.Math.Abs (Relative.X - other.Relative.X));
-            Log.Debug("Y-Y: "+System.Math.Abs (Relative.Y - other.Relative.Y));
-            Log.Debug("epsilon: "+epsilon);
+            Log.Debug ("X-X: ",System.Math.Abs (Relative.X - other.Relative.X));
+            Log.Debug ("Y-Y: ",System.Math.Abs (Relative.Y - other.Relative.Y));
+            Log.Debug ("epsilon: ",epsilon);
             return other != null && System.Math.Abs (Relative.X - other.Relative.X) < epsilon && System.Math.Abs (Relative.Y - other.Relative.Y) < epsilon;
         }
 
