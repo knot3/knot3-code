@@ -106,6 +106,23 @@ namespace Knot3.UnitTests.Math
             Assert.AreEqual (true, boundsEqual (compareBound, bound));
         }
 
+        [Test]
+        public void Bounds_Get_Test()
+        {
+            Assert.AreEqual(point, bound.Padding);
+            Assert.AreEqual(point, bound.Position);
+            Vector4 vector = bound.Vector4;
+            Vector4 vector2 = new Vector4(0,0,800,600);
+            Assert.AreEqual(vector, vector2);
+        }
+
+        [Test]
+        public void Bounds_In_Test()
+        {
+            Bounds bound2 = new Bounds(point, size);
+            Assert.AreEqual(true, boundsEqual(bound.In(bound),bound2));
+        }
+
         private bool boundsEqual (Bounds a, Bounds b)
         {
             if (a.Position.Equals (b.Position) && a.Size.Equals (b.Size)) {
