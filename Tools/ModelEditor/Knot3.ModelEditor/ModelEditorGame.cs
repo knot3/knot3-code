@@ -85,6 +85,10 @@ namespace Knot3.ModelEditor
             // design
             new HfGDesign ().Apply ();
 
+            // audio
+            AudioManager = new SilentAudioManager (game: this);
+            AudioManager.Initialize ();
+
             // screens
             Screens = new Stack<IScreen> ();
             Screens.Push (new JunctionEditorScreen (this));

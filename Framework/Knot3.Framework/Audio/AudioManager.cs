@@ -151,9 +151,14 @@ namespace Knot3.Framework.Audio
                 Playlist.Stop ();
             }
             Log.Debug ("Background Music: ", BackgroundMusic);
-            Playlist = new LoopPlaylist (AudioFiles [BackgroundMusic]);
-            Playlist.Shuffle ();
-            Playlist.Start ();
+            if (AudioFiles.ContainsKey (BackgroundMusic)) {
+                Playlist = new LoopPlaylist (AudioFiles [BackgroundMusic]);
+                Playlist.Shuffle ();
+                Playlist.Start ();
+            }
+            else {
+                Log.Message("Warning: ", BackgroundMusic, ": no sound files available!");
+            }
         }
 
         public void PlaySound (Sound sound)
