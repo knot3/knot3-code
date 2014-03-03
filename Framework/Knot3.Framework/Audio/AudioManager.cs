@@ -157,7 +157,7 @@ namespace Knot3.Framework.Audio
                 Playlist.Start ();
             }
             else {
-                Log.Message("Warning: ", BackgroundMusic, ": no sound files available!");
+                Log.Message ("Warning: ", BackgroundMusic, ": no sound files available!");
             }
         }
 

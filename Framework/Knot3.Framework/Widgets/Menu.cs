@@ -27,6 +27,7 @@
  * 
  * See the LICENSE file for full license details of the Knot3 project.
  */
+
 using System.Diagnostics.CodeAnalysis;
 
 using Microsoft.Xna.Framework;
@@ -232,7 +233,6 @@ namespace Knot3.Framework.Widgets
             base.Draw (time);
 
             if (IsVisible && IsEnabled) {
-                
                 spriteBatch.Begin ();
                 Texture2D backgroundTexture = ContentLoader.CreateTexture (Screen.GraphicsDevice, Color.White);
                 spriteBatch.Draw (backgroundTexture, Bounds, BackgroundColor);

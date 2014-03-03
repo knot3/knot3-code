@@ -27,6 +27,7 @@
  * 
  * See the LICENSE file for full license details of the Knot3 project.
  */
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -147,7 +148,7 @@ namespace Knot3.ModelEditor
             IndexRebuilt = () => {};
             junctionMap.Clear ();
             Node zero = new Node (0, 0, 0);
-            for (int i = 0; i < (int)Math.Floor(_edges.Length / 2f); ++i) {
+            for (int i = 0; i < (int)Math.Floor (_edges.Length / 2f); ++i) {
                 Edge edge1 = _edges [i * 2 + 0];
                 Edge edge2 = _edges [i * 2 + 1];
 
