@@ -63,7 +63,7 @@ namespace Knot3.Framework.Widgets
         /// <summary>
         /// Eine Referenz auf das Menu, in dem sich der Eintrag befindet.
         /// </summary>
-        public Container Menu { get; set; }
+        public Container Container { get; set; }
 
         /// <summary>
         /// Wie viel Prozent der Name des Eintrags (auf der linken Seite) von der Breite des Eintrags einnehmen darf.
@@ -130,8 +130,8 @@ namespace Knot3.Framework.Widgets
         /// </summary>
         public void OnScroll (int scrollValue, GameTime time)
         {
-            if (Menu != null) {
-                Menu.OnScroll (scrollValue);
+            if (Container != null) {
+                Container.OnScroll (scrollValue);
             }
             else {
                 Log.Debug ("Warning: MenuItem is not assigned to a menu: ", this);

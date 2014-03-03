@@ -27,7 +27,6 @@
  * 
  * See the LICENSE file for full license details of the Knot3 project.
  */
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -140,10 +139,21 @@ namespace Knot3.ModelEditor
             return nearest;
         }
 
-        public void Render (Tuple<Direction, Direction, Direction> directions)
+        public void Render (Direction[] directions)
         {
-            if (directions.Item1.Axis != directions.Item2.Axis && directions.Item1.Axis != directions.Item3.Axis &&
-                    directions.Item2.Axis != directions.Item3.Axis) {
+            bool valid = true;
+            HashSet<Axis> axes = new HashSet<Axis> ();
+            foreach (Direction direction in directions) {
+                if (axes.Contains (direction.Axis)) {
+                    valid = false;
+                    break;
+                }
+                else {
+                    axes.Add (direction.Axis);
+                }
+            }
+
+            if (valid) {
                 nodeMap.Render (directions);
                 nodeMap.Offset = Info.Position;
 

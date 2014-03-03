@@ -27,7 +27,6 @@
  * 
  * See the LICENSE file for full license details of the Knot3 project.
  */
-
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -79,8 +78,13 @@ namespace Knot3.ModelEditor
         private DebugBoundings debugBoundings;
         private MenuEntry backButton;
         private Menu settingsMenu;
+        private FloatOption optionJunctionCount;
+        private DistinctOption[] optionJuctionDirection;
+        private DropDownMenuItem[] itemJunctionDirection;
         private DropDownMenuItem[] itemBumpRotation;
-
+        private DropDownMenuItem[] itemModels;
+        private DropDownMenuItem itemJunctionCount;
+        
         /// <summary>
         /// Erzeugt eine neue Instanz eines CreativeModeScreen-Objekts und initialisiert diese mit einem Knot3Game-Objekt game, sowie einem Knoten knot.
         /// </summary>
@@ -122,12 +126,27 @@ namespace Knot3.ModelEditor
             settingsMenu = new Menu (this, DisplayLayer.Overlay + DisplayLayer.Menu);
             settingsMenu.Bounds = Bounds.FromRight (0.40f).FromBottom (0.9f).FromLeft (0.8f);
             settingsMenu.Bounds.Padding = new ScreenPoint (this, 0.010f, 0.010f);
-            settingsMenu.ItemForegroundColor = (state) => Design.WidgetForeground;
-            settingsMenu.ItemBackgroundColor = (state) => Design.WidgetBackground;
-            settingsMenu.ItemAlignX = HorizontalAlignment.Left;
-            settingsMenu.ItemAlignY = VerticalAlignment.Center;
+            settingsMenu.RelativeItemHeight = 0.030f;
+
+            float[] validJunctionCounts = new float[] { 1, 2, 3 };
+            optionJunctionCount = new FloatOption (
+                section: "debug",
+                name: "debug_junction_count",
+                defaultValue: validJunctionCounts.At (-1),
+                validValues: validJunctionCounts,
+                configFile: Config.Default
+            );
+            itemJunctionCount = new DropDownMenuItem (
+                screen: this,
+                drawOrder: DisplayLayer.Overlay + DisplayLayer.MenuItem,
+                text: "Junctions #"
+            );
+            itemJunctionCount.AddEntries (optionJunctionCount);
+            itemJunctionCount.ValueChanged += OnJunctionCountChanged;
 
             Direction[] validDirections = Direction.Values;
+            optionJuctionDirection = new DistinctOption[3];
+            itemJunctionDirection = new DropDownMenuItem[3];
             for (int i = 0; i < 3; ++i) {
                 DistinctOption option = new DistinctOption (
                     section: "debug",
@@ -139,11 +158,12 @@ namespace Knot3.ModelEditor
                 DropDownMenuItem item = new DropDownMenuItem (
                     screen: this,
                     drawOrder: DisplayLayer.Overlay + DisplayLayer.MenuItem,
-                    text: "Direction " + i.ToString ()
+                    text: Localizer.Localize ("Direction ") + i.ToString ()
                 );
                 item.AddEntries (option);
+                optionJuctionDirection [i] = option;
                 item.ValueChanged += OnDirectionsChanged;
-                settingsMenu.Add (item);
+                itemJunctionDirection [i] = item;
             }
 
             itemBumpRotation = new DropDownMenuItem[3];
@@ -151,69 +171,120 @@ namespace Knot3.ModelEditor
                 DropDownMenuItem item = new DropDownMenuItem (
                     screen: this,
                     drawOrder: DisplayLayer.Overlay + DisplayLayer.MenuItem,
-                    text: "Bump Angle " + i.ToString ()
+                    text: Localizer.Localize ("Bump Angle ") + i.ToString ()
                 );
                 item.ValueChanged += OnAnglesChanged;
-                settingsMenu.Add (item);
                 itemBumpRotation [i] = item;
             }
 
-            OnDirectionsChanged (null);
+            itemModels = new DropDownMenuItem[3];
+            for (int i = 0; i < 3; ++i) {
+                DropDownMenuItem item = new DropDownMenuItem (
+                    screen: this,
+                    drawOrder: DisplayLayer.Overlay + DisplayLayer.MenuItem,
+                    text: Localizer.Localize ("Model ") + i.ToString ()
+                );
+                item.ValueChanged += OnModelsChanged;
+                itemModels [i] = item;
+            }
 
-            settingsMenu.Add (backButton);
+            OnDirectionsChanged (null);
+            OnJunctionCountChanged (null);
 
             world.Camera.PositionToTargetDistance = 180;
         }
 
         private void OnDirectionsChanged (GameTime time)
         {
-            var directions = Directions;
             float[] validAngles = new float[] {
                 0, 45, 90, 135, 180, 225, 270, 315
             };
-            for (int i = 0; i < 3; ++i) {
-                FloatOption option = new FloatOption (
-                    section: NodeConfigKey (directions.ToEnumerable ()),
+            string[] validModelnames = AvailableModels;
+            if (validModelnames.Length == 0)
+                throw new Exception ("No models are available!");
+            
+            for (int i = 0; i < JunctionCount; ++i) {
+                FloatOption optionBumpRotation = new FloatOption (
+                    section: NodeConfigKey (Directions),
                     name: "bump" + i.ToString (),
                     defaultValue: 0,
                     validValues: validAngles,
                     configFile: Config.Models
                 );
-                itemBumpRotation [i].AddEntries (option);
+                itemBumpRotation [i].AddEntries (optionBumpRotation);
                 if (time != null) {
                     RemoveGameComponents (time, itemBumpRotation [i]);
                     AddGameComponents (time, itemBumpRotation [i]);
                 }
+                
+                DistinctOption optionModel = new DistinctOption (
+                    section: NodeConfigKey (Directions),
+                    name: "modelname" + i.ToString (),
+                    defaultValue: validModelnames [0],
+                    validValues: validModelnames,
+                    configFile: Config.Models
+                );
+                itemModels [i].AddEntries (optionModel);
+                if (time != null) {
+                    RemoveGameComponents (time, itemModels [i]);
+                    AddGameComponents (time, itemModels [i]);
+                }
             }
-
-            /*
-            for (int i = 0; i < 3; ++i) {
-            	Options.Default ["debug", "debug_junction_angle_bump" + i, 0f] = Options.Models [, "i, 0f];
-            }
-            */
-            knotRenderer.Render (directions: directions);
-        }
-
-        private void OnAnglesChanged (GameTime time)
-        {
-            /*
-            var directions = Directions;
-            for (int i = 0; i < 3; ++i) {
-            	Options.Models [NodeConfigKey (directions.ToEnumerable ()), "bump" + i, 0f] = Options.Default ["debug", "debug_junction_angle_bump" + i, 0f];
-            }
-            */
 
             knotRenderer.Render (directions: Directions);
         }
 
-        private Tuple<Direction, Direction, Direction> Directions
+        private void OnAnglesChanged (GameTime time)
+        {
+            knotRenderer.Render (directions: Directions);
+        }
+
+        private void OnModelsChanged (GameTime time)
+        {
+            knotRenderer.Render (directions: Directions);
+        }
+
+        private void OnJunctionCountChanged (GameTime time)
+        {
+            if (time != null) {
+                RemoveGameComponents (time, settingsMenu);
+            }
+            settingsMenu.Clear ();
+            settingsMenu.Add (itemJunctionCount);
+
+            for (int i = 0; i < 3 && i < JunctionCount; ++i) {
+                settingsMenu.Add (itemJunctionDirection [i]);
+            }
+            for (int i = 0; i < 3 && i < JunctionCount; ++i) {
+                settingsMenu.Add (itemBumpRotation [i]);
+            }
+            for (int i = 0; i < 3 && i < JunctionCount; ++i) {
+                settingsMenu.Add (itemModels [i]);
+            }
+            if (time != null) {
+                AddGameComponents (time, settingsMenu);
+            }
+
+            OnDirectionsChanged (time);
+        }
+
+        private int JunctionCount { get { return (int)optionJunctionCount.Value; } }
+
+        private Direction[] Directions
         {
             get {
-                Direction[] validDirections = Direction.Values;
-                Direction d1 = Direction.FromString (Config.Default ["debug", "debug_junction_direction0" /* + 0 */, validDirections [0]]);
-                Direction d2 = Direction.FromString (Config.Default ["debug", "debug_junction_direction1" /* + 1 */, validDirections [2]]);
-                Direction d3 = Direction.FromString (Config.Default ["debug", "debug_junction_direction2" /* + 2 */, validDirections [4]]);
-                return Tuple.Create (d1, d2, d3);
+                List<Direction> directions = new List<Direction> ();
+                for (int i = 0; i < JunctionCount; ++i) {
+                    DistinctOption option = optionJuctionDirection [i];
+                    Direction d = Direction.FromString (option.Value);
+                    if (d != Direction.Zero) {
+                        directions.Add (d);
+                    }
+                }
+                if (directions.Count == 0)
+                    directions.Add (Direction.Values [0]);
+
+                return directions.ToArray ();
             }
         }
 
@@ -221,6 +292,31 @@ namespace Knot3.ModelEditor
         {
             IEnumerable<string> _directions = directions.Select (direction => direction + String.Empty + direction);
             return "Node" + directions.Count ().ToString () + ":" + string.Join (",", _directions);
+        }
+
+        private string[] _availableModels;
+
+        public string[] AvailableModels
+        {
+            get {
+                if (_availableModels != null) {
+                    return _availableModels;
+                }
+                else {
+                    List<string> modelnames = new List<string> ();
+                    Action<string> fileFound = (file) => {
+                        string name = Path.GetFileNameWithoutExtension (file);
+                        Log.Debug ("Model file: ", file, ", canonical name: ", name);
+                        modelnames.Add (name);
+                    };
+                    string directory = SystemInfo.RelativeContentDirectory + "Models";
+                    FileUtility.SearchFiles (directory: directory, extensions: new string[] {
+                        "xnb",
+                        "fbx"
+                    }, add: fileFound);
+                    return _availableModels = modelnames.ToArray ();
+                }
+            }
         }
 
         /// <summary>

@@ -27,7 +27,6 @@
  * 
  * See the LICENSE file for full license details of the Knot3 project.
  */
-
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -55,6 +54,7 @@ namespace Knot3.Framework.Widgets
         private Menu dropdown;
         private Border dropdownBorder;
         private InputItem currentValue;
+        private Action<GameTime> updateCurrentValue = (t) => {};
 
         public override bool IsVisible
         {
@@ -79,9 +79,9 @@ namespace Knot3.Framework.Widgets
             dropdown = new Menu (screen: screen, drawOrder: Index + DisplayLayer.Menu);
             dropdown.Bounds.Position = ValueBounds.Position;
             dropdown.Bounds.Size = new ScreenPoint (Screen, () => ValueBounds.Size.OnlyX + ValueBounds.Size.OnlyY * 10);
-            dropdown.Bounds.Padding = new ScreenPoint (screen, 0.010f, 0.010f);
-            dropdown.ItemForegroundColor = (i) => Menu.ItemForegroundColor (i);
-            dropdown.ItemBackgroundColor = (i) => Design.WidgetBackground;
+            dropdown.ItemForegroundColor = (s) => Container.ItemForegroundColor (s);
+            dropdown.ItemBackgroundColor = (s) => Design.WidgetBackground;
+            dropdown.BackgroundColorFunc = (s) => Design.WidgetBackground;
             dropdown.ItemAlignX = HorizontalAlignment.Left;
             dropdown.ItemAlignY = VerticalAlignment.Center;
             dropdown.IsVisible = false;
@@ -128,12 +128,13 @@ namespace Knot3.Framework.Widgets
                 dropdown.Add (button);
             }
             currentValue.InputText = option.DisplayValue;
+            updateCurrentValue = (t) => currentValue.InputText = option.DisplayValue;
         }
 
         public override void OnKeyEvent (List<Keys> key, KeyEvent keyEvent, GameTime time)
         {
             if (key.Contains (Keys.Escape)) {
-                Menu.Collapse ();
+                Container.Collapse ();
                 dropdown.IsVisible = false;
             }
         }
@@ -148,14 +149,28 @@ namespace Knot3.Framework.Widgets
 
         private void onClick ()
         {
+            if (Container is Menu) {
+                float itemHeight = (Container as Menu).RelativeItemHeight;
+                dropdown.RelativeItemHeight = itemHeight;
+                dropdown.Bounds.Padding = new ScreenPoint (Screen, itemHeight / 5);
+            }
+            else {
+                dropdown.Bounds.Padding = new ScreenPoint (Screen, 0.010f);
+            }
+
             bool newValue = !dropdown.IsVisible;
-            Menu.Collapse ();
+            Container.Collapse ();
             dropdown.IsVisible = newValue;
         }
 
         public override void Collapse ()
         {
             dropdown.IsVisible = false;
+        }
+
+        public override void Update (GameTime time)
+        {
+            updateCurrentValue (time);
         }
 
         public override IEnumerable<IScreenComponent> SubComponents (GameTime time)

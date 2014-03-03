@@ -27,7 +27,6 @@
  * 
  * See the LICENSE file for full license details of the Knot3 project.
  */
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -82,16 +81,14 @@ namespace Knot3.ModelEditor
 
         public JunctionEditorNodeMap ()
         {
-            IndexRebuilt = () => {};
+ IndexRebuilt = () => {};
         }
 
-        public void Render (Tuple<Direction, Direction, Direction> direction)
+        public void Render (Direction[] directions)
         {
-            _edges = new Edge[] {
-                new Edge (direction.Item1), new Edge (direction.Item1),
-                new Edge (direction.Item2), new Edge (direction.Item2),
-                new Edge (direction.Item3), new Edge (direction.Item3),
-            };
+            _edges = new Edge[directions.Length * 2];
+            directions.Length.Repeat (i => _edges [i * 2] = new Edge (directions [i]));
+            directions.Length.Repeat (i => _edges [i * 2 + 1] = new Edge (directions [i]));
             BuildIndex ();
         }
 
@@ -119,13 +116,13 @@ namespace Knot3.ModelEditor
         public List<IJunction> JunctionsBeforeEdge (Edge edge)
         {
             Node node = NodeBeforeEdge (edge);
-            return junctionMap.ContainsKey (node) ? junctionMap [node] : new List<IJunction>();
+            return junctionMap.ContainsKey (node) ? junctionMap [node] : new List<IJunction> ();
         }
 
         public List<IJunction> JunctionsAfterEdge (Edge edge)
         {
             Node node = NodeAfterEdge (edge);
-            return junctionMap.ContainsKey (node) ? junctionMap [node] : new List<IJunction>();
+            return junctionMap.ContainsKey (node) ? junctionMap [node] : new List<IJunction> ();
         }
 
         public IEnumerable<Node> Nodes
@@ -149,9 +146,8 @@ namespace Knot3.ModelEditor
             toMap.Clear ();
             IndexRebuilt = () => {};
             junctionMap.Clear ();
-
             Node zero = new Node (0, 0, 0);
-            for (int i = 0; i <= 2; ++i) {
+            for (int i = 0; i < (int)Math.Floor(_edges.Length / 2f); ++i) {
                 Edge edge1 = _edges [i * 2 + 0];
                 Edge edge2 = _edges [i * 2 + 1];
 

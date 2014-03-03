@@ -93,8 +93,8 @@ namespace Knot3.Framework.Widgets
             if (IsSelectable) {
                 State = WidgetState.Selected;
 
-                if (Menu != null) {
-                    foreach (MenuItem item in Menu) {
+                if (Container != null) {
+                    foreach (MenuItem item in Container) {
                         Log.Debug ("State: ", item.State);
                         if (item is MenuEntry && item !=this) {
                             item.State = WidgetState.None;

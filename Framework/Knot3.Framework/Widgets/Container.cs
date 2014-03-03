@@ -27,7 +27,6 @@
  * 
  * See the LICENSE file for full license details of the Knot3 project.
  */
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -95,6 +94,8 @@ namespace Knot3.Framework.Widgets
             items = new List<Widget> ();
             ItemAlignX = HorizontalAlignment.Left;
             ItemAlignY = VerticalAlignment.Center;
+            ItemForegroundColor = (state) => Design.WidgetForeground;
+            ItemBackgroundColor = (state) => Design.WidgetBackground;
         }
 
         /// <summary>
@@ -106,7 +107,7 @@ namespace Knot3.Framework.Widgets
             item.ItemOrder = items.Count;
             assignMenuItemInformation (item);
             items.Add (item);
-            item.Menu = this;
+            item.Container = this;
         }
 
         public void Add (Widget item)
@@ -122,10 +123,11 @@ namespace Knot3.Framework.Widgets
         {
             if (items.Contains (item)) {
                 items.Remove (item);
-                for (int i = 0; i < items.Count; ++i) {
-                    if (items[i] is MenuItem) {
-                        (items[i] as MenuItem).ItemOrder = i;
-                    }
+            }
+            for (int i = 0, j = 0; i < items.Count; ++i) {
+                if (items [i] is MenuItem) {
+                    (items [i] as MenuItem).ItemOrder = j;
+                    ++j;
                 }
             }
         }
@@ -141,12 +143,7 @@ namespace Knot3.Framework.Widgets
             return items [i % items.Count];
         }
 
-        public Widget this [int i]
-        {
-            get {
-                return GetItem (i);
-            }
-        }
+        public Widget this [int i] { get { return GetItem (i); } }
 
         /// <summary>
         /// Gibt die Anzahl der Einträge des Menüs zurück.

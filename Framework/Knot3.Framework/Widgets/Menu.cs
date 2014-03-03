@@ -27,7 +27,6 @@
  * 
  * See the LICENSE file for full license details of the Knot3 project.
  */
-
 using System.Diagnostics.CodeAnalysis;
 
 using Microsoft.Xna.Framework;
@@ -104,11 +103,13 @@ namespace Knot3.Framework.Widgets
 
             ItemBackgroundColor = Design.MenuItemBackgroundColorFunc;
             ItemForegroundColor = Design.MenuItemForegroundColorFunc;
+            BackgroundColorFunc = Design.WidgetBackgroundColorFunc;
+            ForegroundColorFunc = Design.WidgetForegroundColorFunc;
         }
 
         protected override void assignMenuItemInformation (MenuItem item)
         {
-            Bounds itemBounds = ItemBounds (item.ItemOrder);
+            Bounds itemBounds = ItemBounds (item);
             item.Bounds.Position = itemBounds.Position;
             item.Bounds.Size = itemBounds.Size;
             base.assignMenuItemInformation (item);
@@ -117,12 +118,12 @@ namespace Knot3.Framework.Widgets
         /// <summary>
         /// Die von der Auflösung unabhängigen Ausmaße der Menüeinträge.
         /// </summary>
-        public Bounds ItemBounds (int itemOrder)
+        public Bounds ItemBounds (MenuItem item)
         {
             return new Bounds (
-                       position: new ScreenPoint (Screen, () => verticalRelativeItemPosition (itemOrder)),
-                       size: new ScreenPoint (Screen, () => verticalRelativeItemSize (itemOrder))
-                   );
+                position: new ScreenPoint (Screen, () => verticalRelativeItemPosition (item.ItemOrder)),
+                size: new ScreenPoint (Screen, () => verticalRelativeItemSize (item.ItemOrder))
+            );
         }
 
         private Vector2 verticalRelativeItemPosition (int itemOrder)
@@ -230,14 +231,20 @@ namespace Knot3.Framework.Widgets
         {
             base.Draw (time);
 
-            if (IsVisible && IsEnabled && HasScrollbar) {
+            if (IsVisible && IsEnabled) {
+                
                 spriteBatch.Begin ();
-                Texture2D rectangleTexture = ContentLoader.CreateTexture (Screen.GraphicsDevice, Color.White);
-                Bounds sliderBounds = ScrollSliderInBarBounds.In (ScrollBarBounds);
-                spriteBatch.Draw (rectangleTexture, sliderBounds.Rectangle.Grow (1), Design.DefaultOutlineColor);
-                spriteBatch.Draw (rectangleTexture, sliderBounds.Rectangle, Design.DefaultLineColor);
-                // Log.Debug ("ScrollSliderBounds=", sliderBounds.Rectangle);
-                // Log.Debug ("ScrollBarBounds=", ScrollBarBounds.Rectangle);
+                Texture2D backgroundTexture = ContentLoader.CreateTexture (Screen.GraphicsDevice, Color.White);
+                spriteBatch.Draw (backgroundTexture, Bounds, BackgroundColor);
+
+                if (HasScrollbar) {
+                    Texture2D rectangleTexture = ContentLoader.CreateTexture (Screen.GraphicsDevice, Color.White);
+                    Bounds sliderBounds = ScrollSliderInBarBounds.In (ScrollBarBounds);
+                    spriteBatch.Draw (rectangleTexture, sliderBounds.Rectangle.Grow (1), Design.DefaultOutlineColor);
+                    spriteBatch.Draw (rectangleTexture, sliderBounds.Rectangle, Design.DefaultLineColor);
+                    // Log.Debug ("ScrollSliderBounds=", sliderBounds.Rectangle);
+                    // Log.Debug ("ScrollBarBounds=", ScrollBarBounds.Rectangle);
+                }
                 spriteBatch.End ();
             }
         }
@@ -245,7 +252,7 @@ namespace Knot3.Framework.Widgets
         public void OnLeftMove (ScreenPoint previousPosition, ScreenPoint currentPosition, ScreenPoint move, GameTime time)
         {
             //currentScrollPosition += (int)((move.Y / RelativeItemHeight)
-            //	* ((float)minScrollPosition / (maxScrollPosition - pageScrollPosition)));
+            //  * ((float)minScrollPosition / (maxScrollPosition - pageScrollPosition)));
 
             if (IsVisible && IsEnabled && HasScrollbar) {
                 //Bounds slider = ScrollSliderInBarBounds;
@@ -263,7 +270,7 @@ namespace Knot3.Framework.Widgets
                 sliderPosition = move.Y / ScrollBarBounds.Size.Absolute.Y;
 
                 Log.Debug ("sliderPosition new=", sliderPosition, ", current.Y=", currentPosition.Y
-                	+ ", bar.Size.Y=" + ScrollBarBounds.Size.Absolute.Y
+                    + ", bar.Size.Y=" + ScrollBarBounds.Size.Absolute.Y
                 );
                 currentScrollPosition = (int)(sliderPosition * (maxValue - pageValue));
                 */

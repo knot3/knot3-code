@@ -121,6 +121,12 @@ namespace Knot3.Framework.Math
             RelativeFunc = () => new Vector2 (x (), y ());
         }
 
+        public ScreenPoint (IScreen screen, float xy)
+        {
+            Screen = screen;
+            Relative = new Vector2 (xy, xy);
+        }
+
         public void Assign (ScreenPoint other)
         {
             Screen = other.Screen;

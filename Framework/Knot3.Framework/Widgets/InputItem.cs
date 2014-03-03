@@ -119,30 +119,32 @@ namespace Knot3.Framework.Widgets
         {
             base.Draw (time);
 
-            spriteBatch.Begin ();
+            if (IsVisible) {
+                spriteBatch.Begin ();
 
-            // berechne die Ausmaße des Eingabefelds
-            Bounds bounds = ValueBounds;
+                // berechne die Ausmaße des Eingabefelds
+                Bounds bounds = ValueBounds;
 
-            // zeichne den Hintergrund des Eingabefelds
-            spriteBatch.DrawColoredRectangle (ForegroundColor, bounds);
-            Color backgroundColor = IsInputEnabled ? Design.WidgetBackground.Mix (Design.WidgetForeground, 0.25f) : Design.WidgetBackground;
-            spriteBatch.DrawColoredRectangle (backgroundColor, bounds.Shrink (xy: 2));
+                // zeichne den Hintergrund des Eingabefelds
+                spriteBatch.DrawColoredRectangle (ForegroundColor, bounds);
+                Color backgroundColor = IsInputEnabled ? Design.WidgetBackground.Mix (Design.WidgetForeground, 0.25f) : Design.WidgetBackground;
+                spriteBatch.DrawColoredRectangle (backgroundColor, bounds.Shrink (xy: 2));
 
-            // lade die Schrift
-            SpriteFont font = Design.MenuFont (Screen);
+                // lade die Schrift
+                SpriteFont font = Design.MenuFont (Screen);
 
-            // zeichne die Schrift
-            spriteBatch.DrawStringInRectangle (
-                font: font,
-                text: InputText,
-                color: ForegroundColor,
-                bounds: bounds.Shrink (x: 4, y: 2),
-                alignX: HorizontalAlignment.Left,
-                alignY: AlignY
-            );
+                // zeichne die Schrift
+                spriteBatch.DrawStringInRectangle (
+                    font: font,
+                    text: InputText,
+                    color: ForegroundColor,
+                    bounds: bounds.Shrink (x: 4, y: 2),
+                    alignX: HorizontalAlignment.Left,
+                    alignY: AlignY
+                );
 
-            spriteBatch.End ();
+                spriteBatch.End ();
+            }
         }
     }
 }
