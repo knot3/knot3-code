@@ -29,6 +29,7 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
@@ -38,7 +39,6 @@ using NUnit.Framework;
 using Knot3.Game.Data;
 
 using Knot3.MockObjects;
-using System.Collections.Generic;
 
 namespace Knot3.UnitTests.Data
 {
@@ -49,19 +49,17 @@ namespace Knot3.UnitTests.Data
         KnotStringIO complexKnotStringIO;
 
         [SetUp]
-        public void Init()
+        public void Init ()
         {
-             squaredKnotStringIO = new KnotStringIO(KnotGenerator.generateSquareKnot(10, KnotGenerator.FakeName));
-             complexKnotStringIO = new KnotStringIO(KnotGenerator.generateComplexKnot(KnotGenerator.FakeName));
-
+             squaredKnotStringIO = new KnotStringIO (KnotGenerator.generateSquareKnot (10, KnotGenerator.FakeName));
+             complexKnotStringIO = new KnotStringIO (KnotGenerator.generateComplexKnot (KnotGenerator.FakeName));
         }
         [Test]
         public void KnotStringIO_Invalid_Test ()
         {            
             KnotStringIO other = new KnotStringIO (squaredKnotStringIO.Content);
-
            
-            Assert.AreEqual(squaredKnotStringIO.CountEdges, 40, "Count Edges");
+            Assert.AreEqual (squaredKnotStringIO.CountEdges, 40, "Count Edges");
 
             Assert.AreEqual (squaredKnotStringIO.Content, other.Content, "Contetnt equal");
             KnotStringIO invalidContent = null;
@@ -79,22 +77,21 @@ namespace Knot3.UnitTests.Data
         }
 
         [Test]
-        public void KnotStringIO_EdgeCount_Test()
+        public void KnotStringIO_EdgeCount_Test ()
         {
-            Assert.AreEqual(squaredKnotStringIO.CountEdges, 40, "Squared Knot Edge Count");
-            Assert.AreEqual(complexKnotStringIO.CountEdges, 6, "Squared Knot Edge Count");
+            Assert.AreEqual (squaredKnotStringIO.CountEdges, 40, "Squared Knot Edge Count");
+            Assert.AreEqual (complexKnotStringIO.CountEdges, 6, "Squared Knot Edge Count");
         }
 
         [Test]
-        public void KnotStringIO_Decode_Test()
+        public void KnotStringIO_Decode_Test ()
         {
             String content = "Start\nY#FF0000FF#\nZ#FF0000FF#\ny#FF0000FF#\nz#FF0000FF#";
 
-          KnotStringIO other = new KnotStringIO(content);
-          List<Edge> squaredEdges = complexKnotStringIO.Edges.ToList();
-          List<Edge> allEdges = complexKnotStringIO.Edges.ToList();
-          List<Edge> coloredEdges = other.Edges.ToList(); 
-
+          KnotStringIO other = new KnotStringIO (content);
+          List<Edge> squaredEdges = complexKnotStringIO.Edges.ToList ();
+          List<Edge> allEdges = complexKnotStringIO.Edges.ToList ();
+          List<Edge> coloredEdges = other.Edges.ToList (); 
         }
     }
 }

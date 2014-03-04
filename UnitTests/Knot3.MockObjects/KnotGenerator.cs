@@ -73,15 +73,14 @@ namespace Knot3.MockObjects
             return invalidKnot;
         }
 
-        public static Knot generateComplexKnot(string name)
+        public static Knot generateComplexKnot (string name)
         {
             Edge[] edgeList = new Edge[] {
                 Edge.Up, Edge.Backward, Edge.Right, Edge.Forward, Edge.Down, Edge.Left
             };
-            KnotMetaData metaData = new KnotMetaData(name, edgeList.Count<Edge>, null, null);
-            Knot complexKnot = new Knot(metaData, edgeList);
+            KnotMetaData metaData = new KnotMetaData (name, edgeList.Count<Edge>, null, null);
+            Knot complexKnot = new Knot (metaData, edgeList);
             return complexKnot;
-
         }
     }
 }
