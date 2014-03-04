@@ -210,7 +210,7 @@ namespace Knot3.Game.Data
             if (hexString.StartsWith ("#")) {
                 hexString = hexString.Substring (1);
             }
-            uint hex = uint.Parse (hexString, System.Globalization.NumberStyles.HexNumber);
+            uint hex = unchecked( uint.Parse (hexString, System.Globalization.NumberStyles.HexNumber) );
             Color color = Color.White;
             if (hexString.Length == 8) {
                 color.R = (byte)(hex >> 24);
