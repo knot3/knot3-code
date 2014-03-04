@@ -213,15 +213,19 @@ namespace Knot3.Game.Data
             uint hex = unchecked ( uint.Parse (hexString, System.Globalization.NumberStyles.HexNumber) );
             Color color = Color.White;
             if (hexString.Length == 8) {
-                color.R = (byte)(hex >> 24);
-                color.G = (byte)(hex >> 16);
-                color.B = (byte)(hex >> 8);
-                color.A = (byte)(hex);
+                unchecked {
+                    color.R = (byte)(hex >> 24);
+                    color.G = (byte)(hex >> 16);
+                    color.B = (byte)(hex >> 8);
+                    color.A = (byte)(hex);
+                }
             }
             else if (hexString.Length == 6) {
-                color.R = (byte)(hex >> 16);
-                color.G = (byte)(hex >> 8);
-                color.B = (byte)(hex);
+                unchecked {
+                    color.R = (byte)(hex >> 16);
+                    color.G = (byte)(hex >> 8);
+                    color.B = (byte)(hex);
+                }
             }
             else {
                 throw new IOException ("Invald hex representation of an ARGB or RGB color value.");
