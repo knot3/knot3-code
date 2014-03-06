@@ -31,6 +31,7 @@
 using System.Diagnostics.CodeAnalysis;
 
 using NUnit.Framework;
+using Knot3.Framework.Storage;
 
 namespace Knot3.UnitTests.Storage
 {
@@ -43,11 +44,25 @@ namespace Knot3.UnitTests.Storage
         [SetUp]
         public void Init ()
         {
+            Language lang1 = new Language (file: Localizer.LanguageDirectory + "xx.ini");
+            lang1.Localization["text", "new game", ""] = "Neues Spiel";
+
+            Language lang2 = new Language (file: Localizer.LanguageDirectory + "xy.ini");
+            lang2.Localization["text", "new game", ""] = "New Game";
         }
 
         [Test]
-        public void Test ()
+        public void Localizer_String_Tests ()
         {
+            SetLanguage ("xx");
+            Assert.AreEqual (Localizer.Localize ("new game"), "Neues Spiel");
+            SetLanguage ("xy");
+            Assert.AreNotEqual (Localizer.Localize ("new game"), "Neues Spiel");
+            Assert.AreEqual (Localizer.Localize ("new game"), "New Game");
+        }
+
+        public void SetLanguage(string code) {
+            Config.Default ["language", "current", "xx"] = code;
         }
     }
 }
