@@ -96,8 +96,9 @@ namespace Knot3.Framework.Audio
 
         public virtual void Initialize (string directory)
         {
-            if (SystemInfo.IsRunningOnMonogame ())
-            base.Initialize ();
+            if (SystemInfo.IsRunningOnMonogame ()) {
+                base.Initialize ();
+            }
 
             if (AudioFiles.Count == 0) {
                 // Erstelle für alle Enum-Werte von Sound ein HashSet

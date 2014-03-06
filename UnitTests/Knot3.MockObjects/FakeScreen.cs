@@ -97,7 +97,7 @@ namespace Knot3.MockObjects
         }
 
         public FakeScreen ()
-            :this (800, 600)
+        :this (800, 600)
         {
         }
 

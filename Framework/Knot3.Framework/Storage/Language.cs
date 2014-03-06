@@ -44,7 +44,7 @@ namespace Knot3.Framework.Storage
         /// Der Anzeigename der Sprache.
         /// </summary>
         public string DisplayName { get { return Localization ["language", "displayname", Code]; } set { Localization ["language", "displayname", Code] = value; } }
-        
+
         /// <summary>
         /// Die Datei, welche Informationen für die Lokalisierung enthält.
         /// </summary>

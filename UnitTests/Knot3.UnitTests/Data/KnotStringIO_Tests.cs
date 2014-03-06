@@ -53,14 +53,14 @@ namespace Knot3.UnitTests.Data
         [SetUp]
         public void Init ()
         {
-             squaredKnotStringIO = new KnotStringIO (KnotGenerator.generateSquareKnot (10, KnotGenerator.FakeName));
-             complexKnotStringIO = new KnotStringIO (KnotGenerator.generateComplexKnot (KnotGenerator.FakeName));
+            squaredKnotStringIO = new KnotStringIO (KnotGenerator.generateSquareKnot (10, KnotGenerator.FakeName));
+            complexKnotStringIO = new KnotStringIO (KnotGenerator.generateComplexKnot (KnotGenerator.FakeName));
         }
         [Test]
         public void KnotStringIO_Invalid_Test ()
-        {            
+        {
             KnotStringIO other = new KnotStringIO (squaredKnotStringIO.Content);
-           
+
             Assert.AreEqual (squaredKnotStringIO.CountEdges, 40, "Count Edges");
 
             Assert.AreEqual (squaredKnotStringIO.Content, other.Content, "Contetnt equal");
@@ -96,21 +96,20 @@ namespace Knot3.UnitTests.Data
         [Test]
         public void KnotStringIO_Decode_Test ()
         {
-          String content_rgba = "Start\nY#FF0000FF#\nZ#FF0000FF#\ny#FF0000FF#\nz#FF0000FF#";
+            String content_rgba = "Start\nY#FF0000FF#\nZ#FF0000FF#\ny#FF0000FF#\nz#FF0000FF#";
             String content_rgb = "Start\nY#FF0000#\nz#FF0000#\ny#FF0000#\nZ#FF0000#";
-          String content_rectangle = "Start\nY#FF0000#1000#\nZ#FF0000#1000\ny#FF0000#1000\nz#FF0000#1000";
-          KnotStringIO rgba = new KnotStringIO (content_rgba);
-          KnotStringIO rgb = new KnotStringIO (content_rgb);
+            String content_rectangle = "Start\nY#FF0000#1000#\nZ#FF0000#1000\ny#FF0000#1000\nz#FF0000#1000";
+            KnotStringIO rgba = new KnotStringIO (content_rgba);
+            KnotStringIO rgb = new KnotStringIO (content_rgb);
 
-          KnotStringIO rectangle = new KnotStringIO (content_rectangle);
-          Assert.DoesNotThrow (() =>
-          {
-              List<Edge> squaredEdges = complexKnotStringIO.Edges.ToList ();
-              List<Edge> allEdges = complexKnotStringIO.Edges.ToList ();
-              List<Edge> coloredRGBAEdges = rgba.Edges.ToList (); 
-              List<Edge> coloredRGBEdges = rgb.Edges.ToList ();
-              List<Edge> rectangleEdges = rectangle.Edges.ToList ();
-         }, " Erstellung");
+            KnotStringIO rectangle = new KnotStringIO (content_rectangle);
+            Assert.DoesNotThrow (() => {
+                List<Edge> squaredEdges = complexKnotStringIO.Edges.ToList ();
+                List<Edge> allEdges = complexKnotStringIO.Edges.ToList ();
+                List<Edge> coloredRGBAEdges = rgba.Edges.ToList ();
+                List<Edge> coloredRGBEdges = rgb.Edges.ToList ();
+                List<Edge> rectangleEdges = rectangle.Edges.ToList ();
+            }, " Erstellung");
         }
 
         [Test]

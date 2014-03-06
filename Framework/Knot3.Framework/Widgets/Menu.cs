@@ -122,9 +122,9 @@ namespace Knot3.Framework.Widgets
         public Bounds ItemBounds (MenuItem item)
         {
             return new Bounds (
-                position: new ScreenPoint (Screen, () => verticalRelativeItemPosition (item.ItemOrder)),
-                size: new ScreenPoint (Screen, () => verticalRelativeItemSize (item.ItemOrder))
-            );
+                       position: new ScreenPoint (Screen, () => verticalRelativeItemPosition (item.ItemOrder)),
+                       size: new ScreenPoint (Screen, () => verticalRelativeItemSize (item.ItemOrder))
+                   );
         }
 
         private Vector2 verticalRelativeItemPosition (int itemOrder)

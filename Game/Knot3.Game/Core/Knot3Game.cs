@@ -89,20 +89,20 @@ namespace Knot3.Game.Core
                     name: "celshader",
                     displayName: "Cel Shading",
                     createInstance: (screen) => new CelShadingEffect (screen)
-            )
-            );
+                                                   )
+                                                  );
             RenderEffectLibrary.EffectLibrary.Add (new RenderEffectLibrary.EffectFactory (
                     name: "opaque",
                     displayName: "opaque",
                     createInstance: (screen) => new OpaqueEffect (screen)
-            )
-            );
+                                                   )
+                                                  );
             RenderEffectLibrary.EffectLibrary.Add (new RenderEffectLibrary.EffectFactory (
                     name: "z-nebula",
                     displayName: "Z-Nebula",
                     createInstance: (screen) => new Z_Nebula (screen)
-            )
-            );
+                                                   )
+                                                  );
 
             // screens
             Screens = new Stack<IScreen> ();

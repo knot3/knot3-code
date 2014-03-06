@@ -156,7 +156,7 @@ namespace Knot3.Framework.Core
                 Screen.Game.FullScreenChanged += () => viewportCache.Clear ();
             }
         }
-        
+
         /// <summary>
         /// Erstellt eine neue Spielwelt im angegebenen Spielzustand und dem
         /// angegebenen Bounds-Objekt.

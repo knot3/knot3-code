@@ -86,7 +86,7 @@ namespace Knot3.ModelEditor
         private DropDownMenuItem[] itemBumpRotation;
         private DropDownMenuItem[] itemModels;
         private DropDownMenuItem itemJunctionCount;
-        
+
         /// <summary>
         /// Erzeugt eine neue Instanz eines CreativeModeScreen-Objekts und initialisiert diese mit einem Knot3Game-Objekt game, sowie einem Knoten knot.
         /// </summary>
@@ -202,9 +202,10 @@ namespace Knot3.ModelEditor
                 0, 45, 90, 135, 180, 225, 270, 315
             };
             string[] validModelnames = AvailableModels;
-            if (validModelnames.Length == 0)
+            if (validModelnames.Length == 0) {
                 throw new Exception ("No models are available!");
-            
+            }
+
             for (int i = 0; i < JunctionCount; ++i) {
                 FloatOption optionBumpRotation = new FloatOption (
                     section: NodeConfigKey (Directions),
@@ -218,7 +219,7 @@ namespace Knot3.ModelEditor
                     RemoveGameComponents (time, itemBumpRotation [i]);
                     AddGameComponents (time, itemBumpRotation [i]);
                 }
-                
+
                 DistinctOption optionModel = new DistinctOption (
                     section: NodeConfigKey (Directions),
                     name: "modelname" + i.ToString (),
@@ -283,8 +284,9 @@ namespace Knot3.ModelEditor
                         directions.Add (d);
                     }
                 }
-                if (directions.Count == 0)
+                if (directions.Count == 0) {
                     directions.Add (Direction.Values [0]);
+                }
 
                 return directions.ToArray ();
             }

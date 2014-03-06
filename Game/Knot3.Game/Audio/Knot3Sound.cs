@@ -34,7 +34,8 @@ using Knot3.Framework.Audio;
 
 namespace Knot3.Game.Audio
 {
-    public static class Knot3Sound {
+    public static class Knot3Sound
+    {
         public static readonly Sound CreativeMusic = new Sound ("CreativeMusic");
         public static readonly Sound ChallengeMusic = new Sound ("ChallengeMusic");
         public static readonly Sound MenuMusic = new Sound ("MenuMusic");

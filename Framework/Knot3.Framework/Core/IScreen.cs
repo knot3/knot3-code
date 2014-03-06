@@ -51,7 +51,7 @@ namespace Knot3.Framework.Core
         /// Der InputManager des Spielzustands.
         /// </summary>
         InputManager InputManager { get; }
-        
+
         /// <summary>
         /// Der AudioManager des Spielzustands.
         /// </summary>
@@ -86,12 +86,12 @@ namespace Knot3.Framework.Core
         /// Der aktuelle Viewport.
         /// </summary>
         Viewport Viewport { get; set; }
-        
+
         /// <summary>
         /// Die Hintergrundfarbe des Screens.
         /// </summary>
         Color BackgroundColor { get; }
-        
+
         /// <summary>
         /// Gibt die Ausmaße des Screens zurück.
         /// </summary>
