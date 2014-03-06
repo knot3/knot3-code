@@ -159,6 +159,7 @@ namespace Knot3.Game.Data
             }
         }
 
+        [ExcludeFromCodeCoverage]
         private static IEnumerable<string> ToLines (IEnumerable<Edge> edges)
         {
             foreach (Edge edge in edges) {

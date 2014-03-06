@@ -39,6 +39,7 @@ using NUnit.Framework;
 using Knot3.Game.Data;
 
 using Knot3.MockObjects;
+using Knot3.Framework.Platform;
 
 namespace Knot3.UnitTests.Data
 {
@@ -70,7 +71,7 @@ namespace Knot3.UnitTests.Data
                 // muss man zurück zum Konstruktur noch das eigentlich dort abgespeicherte
                 // Attribut Edges abrufen (das ist ein Iterator mit lazy evaluation)
                 // und das dann in eine Liste umwandeln
-                Console.WriteLine (invalidContent.Edges.ToList ());
+                Log.Debug (invalidContent.Edges.ToList ());
             }
                                       );
             Assert.AreEqual (squaredKnotStringIO.Content, other.Content, "Content equal");
@@ -81,6 +82,14 @@ namespace Knot3.UnitTests.Data
         {
             Assert.AreEqual (squaredKnotStringIO.CountEdges, 40, "Squared Knot Edge Count");
             Assert.AreEqual (complexKnotStringIO.CountEdges, 6, "Squared Knot Edge Count");
+        }
+
+        [Test]
+        public void KnotStringIO_SetEdges_Test ()
+        {
+            KnotStringIO copy = new KnotStringIO (squaredKnotStringIO.Name);
+            copy.Edges = squaredKnotStringIO.Edges;
+            Assert.AreEqual (copy.Content, squaredKnotStringIO.Content, "Copy");
         }
 
         [Test]
