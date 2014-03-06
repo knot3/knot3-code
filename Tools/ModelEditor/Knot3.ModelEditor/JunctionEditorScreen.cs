@@ -58,6 +58,7 @@ using Knot3.Game.Models;
 using Knot3.Game.Screens;
 using Knot3.Game.Utilities;
 using Knot3.Game.Widgets;
+using Knot3.Game.Audio;
 
 namespace Knot3.ModelEditor
 {
