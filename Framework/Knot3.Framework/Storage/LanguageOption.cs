@@ -82,7 +82,7 @@ namespace Knot3.Framework.Storage
                     return lang.DisplayName;
                 }
             }
-            return Localizer.CurrentLanguage.DisplayName;
+            return Localizer.CurrentLanguage != null ? Localizer.CurrentLanguage.DisplayName : code;
         }
 
         private string fromDisplayName (string displayName)
@@ -92,7 +92,7 @@ namespace Knot3.Framework.Storage
                     return lang.Code;
                 }
             }
-            return Localizer.CurrentLanguage.Code;
+            return Localizer.CurrentLanguage != null ? Localizer.CurrentLanguage.Code : displayName;
         }
     }
 }

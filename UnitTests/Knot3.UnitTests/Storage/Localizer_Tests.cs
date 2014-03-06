@@ -29,9 +29,7 @@
  */
 
 using System.Diagnostics.CodeAnalysis;
-
 using NUnit.Framework;
-
 using Knot3.Framework.Storage;
 
 namespace Knot3.UnitTests.Storage
@@ -51,11 +49,11 @@ namespace Knot3.UnitTests.Storage
         {
             lang1 = new Language (file: Localizer.LanguageDirectory + "xx.ini");
             lang1.DisplayName = "XX";
-            lang1.Localization["text", "new game", ""] = "Neues Spiel";
+            lang1.Localization ["text", "new game", ""] = "Neues Spiel";
 
             lang2 = new Language (file: Localizer.LanguageDirectory + "xy.ini");
             lang2.DisplayName = "XY";
-            lang2.Localization["text", "new game", ""] = "New Game";
+            lang2.Localization ["text", "new game", ""] = "New Game";
 
             languageOption = new LanguageOption (
                 section: "language",
@@ -75,13 +73,15 @@ namespace Knot3.UnitTests.Storage
         }
 
         [Test]
-        public void Language_Equals_Tests () {
+        public void Language_Equals_Tests ()
+        {
             Assert.AreNotEqual (lang1, lang2);
             Assert.AreEqual (lang1, lang1);
         }
 
         [Test]
-        public void Language_DisplayName_Tests () {
+        public void Language_DisplayName_Tests ()
+        {
             SetLanguage (lang1);
 
             Assert.AreNotEqual (languageOption.DisplayValue, lang2.DisplayName);
@@ -90,12 +90,23 @@ namespace Knot3.UnitTests.Storage
             Language lang3 = new Language (file: Localizer.LanguageDirectory + "xz.ini");
             Assert.AreEqual (lang3.Localization ["language", "displayname", ""], lang3.DisplayName);
             lang3.DisplayName = "XZ";
-
             Assert.AreEqual (lang3.Localization ["language", "displayname", ""], lang3.DisplayName);
             Assert.AreEqual (lang3.Localization ["language", "displayname", ""], "XZ");
-                }
 
-        public void SetLanguage (Language lang) {
+
+        }
+
+        [Test]
+        public void Language_ValidDisplayNames_Tests ()
+        {
+            SetLanguage (lang1);
+            Assert.True(languageOption.DisplayValidValues.ContainsKey (lang1.DisplayName));
+            Assert.True(languageOption.DisplayValidValues.ContainsKey (languageOption.DisplayValue));
+            Assert.True(languageOption.DisplayValidValues.ContainsValue (lang1.Code));
+        }
+
+        public void SetLanguage (Language lang)
+        {
             languageOption.Value = lang;
             //Config.Default ["language", "current", "xx"] = code;
         }
