@@ -228,7 +228,7 @@ namespace Knot3.Game.Data
                 }
             }
             else {
-                throw new IOException ("Invald hex representation of an ARGB or RGB color value.");
+                throw new IOException ("Invalid hex representation of an ARGB or RGB color value.");
             }
             return color;
         }

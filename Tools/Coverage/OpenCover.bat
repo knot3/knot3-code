@@ -100,37 +100,37 @@ echo.
 echo  Paths to ...
 echo.
 for %%p in ("%CD%") do (
-echo    Curr. Location  : %%~sp
+echo    Curr. Location  : %%p
 )
 
 echo.
 
 for %%p in ("%PATH_TO_NUNIT%") do (
-echo    NUnit           : %%~sp
+echo    NUnit           : %%p
 )
 for %%p in ("%PATH_TO_OPENCOVER%") do (
 echo    OpenCover       : %%~sp
 )
 for %%p in ("%PATH_TO_REPORTGENERATOR%") do (
-echo    ReportGenerator : %%~sp
+echo    ReportGenerator : %%p
 )
 
 echo.
 
 for %%p in ("%PATH_TO_PROJECT%") do (
-echo    VS-Project      : %%~sp
+echo    VS-Project      : %%p
 )
 for %%p in ("%PATH_TO_TESTS%") do (
-echo    Tests           : %%~sp
+echo    Tests           : %%p
 )
 for %%p in ("%PATH_TO_RAW_REPORTDATA%") do (
-echo    Rep. Dsrc.      : %%~sp
+echo    Rep. Dsrc.      : %%p
 )
 for %%p in ("%PATH_TO_HTML_REPORT%") do (
-echo    Rep. Dst. ^(HTM^) : %%~sp
+echo    Rep. Dst. ^(HTM^) : %%p
 ) 
 for %%p in ("%PATH_TO_LATEX_REPORT%") do (
-echo    Rep. Dst. ^(TEX^) : %%~sp
+echo    Rep. Dst. ^(TEX^) : %%p
 )
 echo.
 
