@@ -45,7 +45,7 @@ using Knot3.Game.Data;
 namespace Knot3.Game.Input
 {
     [ExcludeFromCodeCoverageAttribute]
-    public class EdgeRectangles : ScreenComponent, IKeyEventListener
+    public class EdgeRectangles : ScreenComponent
     {
         public Knot Knot { get; set; }
 
@@ -54,20 +54,13 @@ namespace Knot3.Game.Input
         public EdgeRectangles (Screen screen)
         : base (screen, DisplayLayer.None)
         {
-            ValidKeys = new List<Keys> ();
-            ValidKeys.Add (Keys.N);
         }
 
-        [ExcludeFromCodeCoverageAttribute]
         public override void Update (GameTime time)
         {
-        }
-
-        public void OnKeyEvent (List<Keys> key, KeyEvent keyEvent, GameTime time)
-        {
-            // Soll die Farbe geändert wurde?
-            if (Knot.SelectedEdges.Any ()
-                    && Screen.InputManager.KeyPressed (Keys.N)) {
+            Keys key = KnotInputHandler.CurrentKeyAssignmentReversed [PlayerActions.EdgeColoring];
+            // Soll sich die Rechteck geändert wurde?
+            if (Knot.SelectedEdges.Any () && Screen.InputManager.KeyPressed (key)) {
                 int rectId = random.Next ();
                 foreach (Edge edge in Knot.SelectedEdges) {
                     edge.Rectangles.Add (rectId);
@@ -76,10 +69,6 @@ namespace Knot3.Game.Input
                 Knot.EdgesChanged ();
             }
         }
-
-        public List<Keys> ValidKeys { get; private set; }
-
-        public bool IsKeyEventEnabled { get { return true; } }
 
         public bool IsModal { get { return false; } }
     }

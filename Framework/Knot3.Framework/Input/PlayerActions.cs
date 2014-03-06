@@ -73,5 +73,9 @@ namespace Knot3.Framework.Input
         AddToEdgeSelection,
         [Description ("Add Range to Selection")]
         AddRangeToEdgeSelection,
+        [Description ("Set Edge Color")]
+        EdgeColoring,
+        [Description ("Set Edge Rectangles")]
+        EdgeRectangles,
     }
 }

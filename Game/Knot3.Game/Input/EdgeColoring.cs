@@ -40,30 +40,25 @@ using Knot3.Framework.Input;
 
 using Knot3.Game.Data;
 using Knot3.Game.Widgets;
+using Knot3.Framework.Platform;
 
 namespace Knot3.Game.Input
 {
     [ExcludeFromCodeCoverageAttribute]
-    public class EdgeColoring : ScreenComponent, IKeyEventListener
+    public class EdgeColoring : ScreenComponent
     {
         public Knot Knot { get; set; }
 
         public EdgeColoring (Screen screen)
         : base (screen, DisplayLayer.None)
         {
-            ValidKeys = new List<Keys> ();
-            ValidKeys.Add (Keys.C);
         }
 
-        [ExcludeFromCodeCoverageAttribute]
         public override void Update (GameTime time)
         {
-        }
-
-        public void OnKeyEvent (List<Keys> key, KeyEvent keyEvent, GameTime time)
-        {
+            Keys key = KnotInputHandler.CurrentKeyAssignmentReversed [PlayerActions.EdgeColoring];
             // Soll sich die Farbe geändert wurde?
-            if (Knot.SelectedEdges.Any () && Screen.InputManager.KeyPressed (Keys.C)) {
+            if (Knot.SelectedEdges.Any () && Screen.InputManager.KeyPressed (key)) {
                 Color currentColor = Knot.SelectedEdges.ElementAt (0);
                 ColorPickDialog picker = new ColorPickDialog (
                     screen: Screen,
@@ -79,10 +74,6 @@ namespace Knot3.Game.Input
                 Screen.AddGameComponents (time, picker);
             }
         }
-
-        public List<Keys> ValidKeys { get; private set; }
-
-        public bool IsKeyEventEnabled { get { return true; } }
 
         public bool IsModal { get { return false; } }
     }

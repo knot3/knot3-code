@@ -114,6 +114,8 @@ namespace Knot3.Game.Input
             { Keys.LeftAlt,			PlayerActions.ToggleMouseLock },
             { Keys.RightControl,	PlayerActions.AddToEdgeSelection },
             { Keys.RightShift,		PlayerActions.AddRangeToEdgeSelection },
+            { Keys.C,               PlayerActions.EdgeColoring },
+            { Keys.N,               PlayerActions.EdgeRectangles },
         };
         /// <summary>
         /// Was bei den jeweiligen Aktionen ausgeführt wird.
@@ -171,6 +173,14 @@ namespace Knot3.Game.Input
                 },
                 {
                     PlayerActions.AddRangeToEdgeSelection, (time) => {
+                    }
+                },
+                {
+                    PlayerActions.EdgeColoring, (time) => {
+                    }
+                },
+                {
+                    PlayerActions.EdgeRectangles, (time) => {
                     }
                 },
             };
