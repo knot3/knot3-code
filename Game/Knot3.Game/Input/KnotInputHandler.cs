@@ -116,6 +116,7 @@ namespace Knot3.Game.Input
             { Keys.RightShift,		PlayerActions.AddRangeToEdgeSelection },
             { Keys.C,               PlayerActions.EdgeColoring },
             { Keys.N,               PlayerActions.EdgeRectangles },
+            { Keys.F11,             PlayerActions.ToggleFullscreen }
         };
         /// <summary>
         /// Was bei den jeweiligen Aktionen ausgeführt wird.
@@ -183,6 +184,9 @@ namespace Knot3.Game.Input
                     PlayerActions.EdgeRectangles, (time) => {
                     }
                 },
+                {
+                    PlayerActions.ToggleFullscreen, (time) => toggleFullscreen(time)
+                }
             };
         }
 
@@ -548,6 +552,13 @@ namespace Knot3.Game.Input
             if (Screen.InputManager.KeyPressed (CurrentKeyAssignmentReversed [PlayerActions.ResetCamera])) {
                 camera.ResetCamera ();
             }
+        }
+
+
+        private void toggleFullscreen(GameTime time)
+        {
+            Screen.Game.IsFullScreen = !Screen.Game.IsFullScreen;
+            InputManager.FullscreenToggled = true;
         }
 
         public Bounds MouseMoveBounds { get { return world.Bounds; } }
