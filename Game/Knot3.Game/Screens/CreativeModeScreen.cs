@@ -49,6 +49,7 @@ using Knot3.Game.Development;
 using Knot3.Game.Input;
 using Knot3.Game.Models;
 using Knot3.Game.Widgets;
+using Knot3.Game.Audio;
 
 namespace Knot3.Game.Screens
 {

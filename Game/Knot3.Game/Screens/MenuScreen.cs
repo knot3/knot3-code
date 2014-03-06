@@ -36,6 +36,7 @@ using Knot3.Framework.Audio;
 using Knot3.Framework.Core;
 using Knot3.Framework.Input;
 using Knot3.Framework.Widgets;
+using Knot3.Game.Audio;
 
 namespace Knot3.Game.Screens
 {
