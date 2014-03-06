@@ -29,6 +29,7 @@
  */
 
 using System.Diagnostics.CodeAnalysis;
+
 using Knot3.Framework.Audio;
 
 namespace Knot3.Game.Audio
