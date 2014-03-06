@@ -107,7 +107,7 @@ namespace Knot3.Game.Widgets
                 name: "Save As",
             onClick: (time) => {
                 Close (time);
-                    KnotSaveAs (()=>{}, time);
+                KnotSaveAs (()=> {}, time);
             }
             );
             MenuEntry saveExitButton = new MenuEntry (
@@ -116,7 +116,7 @@ namespace Knot3.Game.Widgets
                 name: "Save and Exit",
             onClick: (time) => {
                 Close (time);
-                    KnotSaveExit (time);                                   
+                KnotSaveExit (time);
             }
             );
             MenuEntry discardExitButton = new MenuEntry (
@@ -152,7 +152,7 @@ namespace Knot3.Game.Widgets
                 knot.Save ();
             }
             catch (IOException) {
-                KnotSaveAs (()=>{}, time);
+                KnotSaveAs (()=> {}, time);
             }
         }
 
@@ -182,7 +182,7 @@ namespace Knot3.Game.Widgets
                     );
                     Screen.AddGameComponents (null, errorDialog);
                 }
-                onClose();
+                onClose ();
             };
         }
 
