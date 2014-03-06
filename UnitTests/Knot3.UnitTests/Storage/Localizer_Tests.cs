@@ -55,7 +55,6 @@ namespace Knot3.UnitTests.Storage
             lang2 = new Language (file: Localizer.LanguageDirectory + "xy.ini");
             lang2.Localization["text", "new game", ""] = "New Game";
 
-
             languageOption = new LanguageOption (
                 section: "language",
                 name: "current",
@@ -74,12 +73,12 @@ namespace Knot3.UnitTests.Storage
         }
 
         [Test]
-        public void Language_Equals_Tests() {
+        public void Language_Equals_Tests () {
             Assert.AreNotEqual (lang1, lang2);
             Assert.AreEqual (lang1, lang1);
         }
 
-        public void SetLanguage(Language lang) {
+        public void SetLanguage (Language lang) {
             languageOption.Value = lang;
             //Config.Default ["language", "current", "xx"] = code;
         }
