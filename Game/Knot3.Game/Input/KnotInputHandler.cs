@@ -163,31 +163,17 @@ namespace Knot3.Game.Input
                 { PlayerActions.RotateRight,             (time) => rotate (Vector2.UnitX * 4, time) },
                 { PlayerActions.ZoomIn,                  (time) => zoom (-1, time) },
                 { PlayerActions.ZoomOut,                 (time) => zoom (+1, time) },
-                { PlayerActions.ResetCamera,             (time) => resetCamera (time) }, {
-                    PlayerActions.MoveToCenter,
-                    (time) => camera.StartSmoothMove (target: camera.ArcballTarget, time: time)
-                },
+                { PlayerActions.ResetCamera,             (time) => resetCamera (time) },
+                { PlayerActions.MoveToCenter,            (time) => moveToCenter(time) },
                 { PlayerActions.ToggleMouseLock,         (time) => toggleMouseLock (time) },
-                {
-                    PlayerActions.AddToEdgeSelection,      (time) => {
-                    }
-                },
-                {
-                    PlayerActions.AddRangeToEdgeSelection, (time) => {
-                    }
-                },
-                {
-                    PlayerActions.EdgeColoring, (time) => {
-                    }
-                },
-                {
-                    PlayerActions.EdgeRectangles, (time) => {
-                    }
-                },
-                {
-                    PlayerActions.ToggleFullscreen, (time) => toggleFullscreen (time)
-                }
+                { PlayerActions.ToggleFullscreen,        (time) => toggleFullscreen (time) }
             };
+
+            foreach (PlayerActions action in EnumHelper.ToEnumValues<PlayerActions>()) {
+                if (!ActionBindings.ContainsKey (action)) {
+                    ActionBindings [action] = (time) => {};
+                }
+            }
         }
 
         /// <summary>
@@ -558,6 +544,11 @@ namespace Knot3.Game.Input
         {
             Screen.Game.IsFullScreen = !Screen.Game.IsFullScreen;
             InputManager.FullscreenToggled = true;
+        }
+
+        private void moveToCenter (GameTime time)
+        {
+            camera.StartSmoothMove (target: camera.ArcballTarget, time: time);
         }
 
         public Bounds MouseMoveBounds { get { return world.Bounds; } }
