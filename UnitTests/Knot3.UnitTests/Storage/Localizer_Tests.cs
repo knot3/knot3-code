@@ -29,7 +29,9 @@
  */
 
 using System.Diagnostics.CodeAnalysis;
+
 using NUnit.Framework;
+
 using Knot3.Framework.Storage;
 
 namespace Knot3.UnitTests.Storage
@@ -92,17 +94,15 @@ namespace Knot3.UnitTests.Storage
             lang3.DisplayName = "XZ";
             Assert.AreEqual (lang3.Localization ["language", "displayname", ""], lang3.DisplayName);
             Assert.AreEqual (lang3.Localization ["language", "displayname", ""], "XZ");
-
-
         }
 
         [Test]
         public void Language_ValidDisplayNames_Tests ()
         {
             SetLanguage (lang1);
-            Assert.True(languageOption.DisplayValidValues.ContainsKey (lang1.DisplayName));
-            Assert.True(languageOption.DisplayValidValues.ContainsKey (languageOption.DisplayValue));
-            Assert.True(languageOption.DisplayValidValues.ContainsValue (lang1.Code));
+            Assert.True (languageOption.DisplayValidValues.ContainsKey (lang1.DisplayName));
+            Assert.True (languageOption.DisplayValidValues.ContainsKey (languageOption.DisplayValue));
+            Assert.True (languageOption.DisplayValidValues.ContainsValue (lang1.Code));
         }
 
         public void SetLanguage (Language lang)
