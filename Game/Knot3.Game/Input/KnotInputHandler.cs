@@ -185,7 +185,7 @@ namespace Knot3.Game.Input
                     }
                 },
                 {
-                    PlayerActions.ToggleFullscreen, (time) => toggleFullscreen(time)
+                    PlayerActions.ToggleFullscreen, (time) => toggleFullscreen (time)
                 }
             };
         }
@@ -554,8 +554,7 @@ namespace Knot3.Game.Input
             }
         }
 
-
-        private void toggleFullscreen(GameTime time)
+        private void toggleFullscreen (GameTime time)
         {
             Screen.Game.IsFullScreen = !Screen.Game.IsFullScreen;
             InputManager.FullscreenToggled = true;
