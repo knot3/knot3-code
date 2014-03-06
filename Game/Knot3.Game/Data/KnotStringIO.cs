@@ -37,6 +37,7 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 
 using Knot3.Framework.Platform;
+using Knot3.Framework.Utilities;
 
 namespace Knot3.Game.Data
 {
@@ -52,6 +53,15 @@ namespace Knot3.Game.Data
         public string Name { get; set; }
 
         private IEnumerable<string> edgeLines;
+
+        public static Dictionary<char, Direction> DirectionCodeMap = new Dictionary<char,Direction>() {
+            { 'X', Edge.Right },
+            { 'x', Edge.Left },
+            { 'Y', Edge.Up },
+            { 'y', Edge.Down },
+            { 'Z', Edge.Backward },
+            { 'z', Edge.Forward }
+        };
 
         /// <summary>
         /// Die Kanten der eingelesenen Knotendatei oder des zugewiesenen Knotenobjektes.
@@ -169,43 +179,17 @@ namespace Knot3.Game.Data
 
         private static Edge DecodeEdge (char c)
         {
-            switch (c) {
-            case 'X':
-                return Edge.Right;
-            case 'x':
-                return Edge.Left;
-            case 'Y':
-                return Edge.Up;
-            case 'y':
-                return Edge.Down;
-            case 'Z':
-                return Edge.Backward;
-            case 'z':
-                return Edge.Forward;
-            default:
+            if (DirectionCodeMap.ContainsKey(c))
+                return new Edge (DirectionCodeMap [c]);
+            else
                 throw new IOException ("Failed to decode Edge: '" + c + "'!");
-            }
         }
 
         private static char EncodeEdge (Edge edge)
         {
-            if (edge.Direction == Direction.Right) {
-                return 'X';
-            }
-            else if (edge.Direction == Direction.Left) {
-                return  'x';
-            }
-            else if (edge.Direction == Direction.Up) {
-                return  'Y';
-            }
-            else if (edge.Direction == Direction.Down) {
-                return  'y';
-            }
-            else if (edge.Direction == Direction.Backward) {
-                return  'Z';
-            }
-            else if (edge.Direction == Direction.Forward) {
-                return  'z';
+            Dictionary<Direction, char> reversed = DirectionCodeMap.ReverseDictionary();
+            if (reversed.ContainsKey(edge.Direction)) {
+                return reversed[edge.Direction];
             }
             else {
                 throw new IOException ("Failed to encode Edge: '" + edge + "'!");
