@@ -204,7 +204,7 @@ namespace Knot3.Game.Screens
                 return selectedStartKnot != null && selectedTargetKnot != null
                        && selectedStartKnot.MetaData.Filename != selectedTargetKnot.MetaData.Filename
                        && challengeName.InputText.Length > 0
-                       && (selectedStartKnot.MetaData.CountEdges > 4 || selectedTargetKnot.MetaData.CountEdges > 4);
+                       && !selectedStartKnot.Equals(selectedTargetKnot);
             }
         }
 
