@@ -77,5 +77,7 @@ namespace Knot3.Framework.Input
         EdgeColoring,
         [Description ("Set Edge Rectangles")]
         EdgeRectangles,
+        [Description ("Toggle Fullscreen")]
+        ToggleFullscreen,
     }
 }

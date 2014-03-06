@@ -160,12 +160,6 @@ namespace Knot3.Framework.Input
                     RightMouseButton = ClickState.None;
                 }
             }
-
-            // fullscreen
-            if (Screen.InputManager.KeyPressed (Keys.F11)) {
-                Screen.Game.IsFullScreen = !Screen.Game.IsFullScreen;
-                FullscreenToggled = true;
-            }
         }
 
         public void ResetMouse (ScreenPoint position)

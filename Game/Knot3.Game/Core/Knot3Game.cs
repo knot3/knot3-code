@@ -37,10 +37,12 @@ using Microsoft.Xna.Framework.Input;
 
 using Knot3.Framework.Core;
 using Knot3.Framework.Effects;
+using Knot3.Framework.Input;
 using Knot3.Framework.Screens;
 
 using Knot3.Game.Audio;
 using Knot3.Game.Effects;
+using Knot3.Game.Input;
 using Knot3.Game.Screens;
 using Knot3.Game.Widgets;
 
@@ -186,6 +188,12 @@ namespace Knot3.Game.Core
                     this.Exit ();
                     return;
                 }
+
+                /*if (current.InputManager.KeyPressed (KnotInputHandler.CurrentKeyAssignmentReversed [PlayerActions.ToggleFullscreen]))
+                {
+                    IsFullScreen = !IsFullScreen;
+                    InputManager.FullscreenToggled = true;
+                }*/
 
                 // Rufe Update () auf dem aktuellen Screen auf
                 Screens.Peek ().Update (time);
