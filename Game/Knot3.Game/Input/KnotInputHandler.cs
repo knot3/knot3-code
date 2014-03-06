@@ -164,7 +164,7 @@ namespace Knot3.Game.Input
                 { PlayerActions.ZoomIn,                  (time) => zoom (-1, time) },
                 { PlayerActions.ZoomOut,                 (time) => zoom (+1, time) },
                 { PlayerActions.ResetCamera,             (time) => resetCamera (time) },
-                { PlayerActions.MoveToCenter,            (time) => moveToCenter(time) },
+                { PlayerActions.MoveToCenter,            (time) => moveToCenter (time) },
                 { PlayerActions.ToggleMouseLock,         (time) => toggleMouseLock (time) },
                 { PlayerActions.ToggleFullscreen,        (time) => toggleFullscreen (time) }
             };
