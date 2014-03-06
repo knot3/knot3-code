@@ -67,11 +67,11 @@ namespace Knot3.Game.Data
                     if (line.StartsWith ("#")) {
                         line = line.Substring (1);
                     }
-                    if (line.IndexOf ("#") > -1)
-                    {   
-                            edge.Color = DecodeColor (line.Substring (0, line.IndexOf ("#")));
+                    if (line.IndexOf ("#") > -1) {   
+                        edge.Color = DecodeColor (line.Substring (0, line.IndexOf ("#")));
                         line = line.Substring (line.IndexOf ("#"));
-                    } else {
+                    }
+                    else {
                         edge.Color = DecodeColor (line);
                         line = "";
                     }
@@ -218,7 +218,7 @@ namespace Knot3.Game.Data
                 hexString = hexString.Substring (1);
             }
 
-            Console.WriteLine (hexString);
+            Log.Debug (hexString);
             uint hex = unchecked ( uint.Parse (hexString, System.Globalization.NumberStyles.HexNumber) );
             Color color = Color.White;
             if (hexString.Length == 8) {
