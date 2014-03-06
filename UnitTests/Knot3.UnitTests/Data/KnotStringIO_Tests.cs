@@ -92,10 +92,10 @@ namespace Knot3.UnitTests.Data
           KnotStringIO rgba = new KnotStringIO (content_rgba);
           KnotStringIO rgb = new KnotStringIO (content_rgb);
 
-          KnotStringIO rectangle = new KnotStringIO(content_rectangle);
-          Assert.DoesNotThrow(() =>
+          KnotStringIO rectangle = new KnotStringIO (content_rectangle);
+          Assert.DoesNotThrow (() =>
           {
-              List<Edge> squaredEdges = complexKnotStringIO.Edges.ToList();
+              List<Edge> squaredEdges = complexKnotStringIO.Edges.ToList ();
               List<Edge> allEdges = complexKnotStringIO.Edges.ToList ();
               List<Edge> coloredRGBAEdges = rgba.Edges.ToList (); 
               List<Edge> coloredRGBEdges = rgb.Edges.ToList ();
@@ -103,24 +103,22 @@ namespace Knot3.UnitTests.Data
          }, " Erstellung");
         }
 
-
         [Test]
-        public void KnotStringIO_invalid_Decode_Test()
+        public void KnotStringIO_invalid_Decode_Test ()
         {
             String content_rgba = "Start\nY#FZ0000FF#\nZ#FF0000FF#\ny#FF0000FF#\nz#FF0000FF#";
             String content_rgb = "Start\nY#FF000Z#\nZ#FF00<10#\ny#FF0000#\nz#FF0000#";
             String content_rectangle = "Start\nY#FF0000#D000#\nZ#FF0000#1!00\ny#FF0000#1000\nz#FF0000#1000";
-            KnotStringIO rgba = new KnotStringIO(content_rgba);
-            KnotStringIO rgb = new KnotStringIO(content_rgb);
-            KnotStringIO rectangle = new KnotStringIO(content_rectangle);
-            Assert.Catch( () => {
-                List<Edge> squaredEdges = complexKnotStringIO.Edges.ToList();
-                List<Edge> allEdges = complexKnotStringIO.Edges.ToList();
-                List<Edge> coloredRGBAEdges = rgba.Edges.ToList();
-                List<Edge> coloredRGBEdges = rgb.Edges.ToList();
-                List<Edge> rectangleEdges = rectangle.Edges.ToList();
+            KnotStringIO rgba = new KnotStringIO (content_rgba);
+            KnotStringIO rgb = new KnotStringIO (content_rgb);
+            KnotStringIO rectangle = new KnotStringIO (content_rectangle);
+            Assert.Catch ( () => {
+                List<Edge> squaredEdges = complexKnotStringIO.Edges.ToList ();
+                List<Edge> allEdges = complexKnotStringIO.Edges.ToList ();
+                List<Edge> coloredRGBAEdges = rgba.Edges.ToList ();
+                List<Edge> coloredRGBEdges = rgb.Edges.ToList ();
+                List<Edge> rectangleEdges = rectangle.Edges.ToList ();
             }, " Erstellung");
-
         }
     }
 }
