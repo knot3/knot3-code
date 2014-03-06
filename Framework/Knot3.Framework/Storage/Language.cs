@@ -43,8 +43,8 @@ namespace Knot3.Framework.Storage
         /// <summary>
         /// Der Anzeigename der Sprache.
         /// </summary>
-        public string DisplayName { get; private set; }
-
+        public string DisplayName { get { return Localization ["language", "displayname", Code]; } set { Localization ["language", "displayname", Code] = value; } }
+        
         /// <summary>
         /// Die Datei, welche Informationen für die Lokalisierung enthält.
         /// </summary>
@@ -55,7 +55,6 @@ namespace Knot3.Framework.Storage
             Code = Path.GetFileNameWithoutExtension (file).ToLower ();
             file = Localizer.LanguageDirectory + Code + ".ini";
             Localization = new ConfigFile (file);
-            DisplayName = Localization ["language", "displayname", Code];
         }
 
         public static bool operator != (Language a, Language b)

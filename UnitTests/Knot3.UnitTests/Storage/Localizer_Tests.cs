@@ -50,9 +50,11 @@ namespace Knot3.UnitTests.Storage
         public void Init ()
         {
             lang1 = new Language (file: Localizer.LanguageDirectory + "xx.ini");
+            lang1.DisplayName = "XX";
             lang1.Localization["text", "new game", ""] = "Neues Spiel";
 
             lang2 = new Language (file: Localizer.LanguageDirectory + "xy.ini");
+            lang2.DisplayName = "XY";
             lang2.Localization["text", "new game", ""] = "New Game";
 
             languageOption = new LanguageOption (
@@ -77,6 +79,23 @@ namespace Knot3.UnitTests.Storage
             Assert.AreNotEqual (lang1, lang2);
             Assert.AreEqual (lang1, lang1);
         }
+
+        [Test]
+        public void Language_DisplayName_Tests () {
+
+            SetLanguage (lang1);
+
+            Assert.AreNotEqual (languageOption.DisplayValue, lang2.DisplayName);
+            Assert.AreEqual (languageOption.DisplayValue, lang1.DisplayName);
+
+
+            Language lang3 = new Language (file: Localizer.LanguageDirectory + "xz.ini");
+            Assert.AreEqual (lang3.Localization ["language", "displayname", ""], lang3.DisplayName);
+            lang3.DisplayName = "XZ";
+
+            Assert.AreEqual (lang3.Localization ["language", "displayname", ""], lang3.DisplayName);
+            Assert.AreEqual (lang3.Localization ["language", "displayname", ""], "XZ");
+                }
 
         public void SetLanguage (Language lang) {
             languageOption.Value = lang;
