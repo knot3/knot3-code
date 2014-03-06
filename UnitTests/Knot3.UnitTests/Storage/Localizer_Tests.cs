@@ -42,28 +42,46 @@ namespace Knot3.UnitTests.Storage
     [TestFixture]
     public class Localizer_Tests
     {
+        private Language lang1;
+        private Language lang2;
+        private LanguageOption languageOption;
+
         [SetUp]
         public void Init ()
         {
-            Language lang1 = new Language (file: Localizer.LanguageDirectory + "xx.ini");
+            lang1 = new Language (file: Localizer.LanguageDirectory + "xx.ini");
             lang1.Localization["text", "new game", ""] = "Neues Spiel";
 
-            Language lang2 = new Language (file: Localizer.LanguageDirectory + "xy.ini");
+            lang2 = new Language (file: Localizer.LanguageDirectory + "xy.ini");
             lang2.Localization["text", "new game", ""] = "New Game";
+
+
+            languageOption = new LanguageOption (
+                section: "language",
+                name: "current",
+                configFile: Config.Default
+            );
         }
 
         [Test]
         public void Localizer_String_Tests ()
         {
-            SetLanguage ("xx");
+            SetLanguage (lang1);
             Assert.AreEqual (Localizer.Localize ("new game"), "Neues Spiel");
-            SetLanguage ("xy");
+            SetLanguage (lang2);
             Assert.AreNotEqual (Localizer.Localize ("new game"), "Neues Spiel");
             Assert.AreEqual (Localizer.Localize ("new game"), "New Game");
         }
 
-        public void SetLanguage (string code) {
-            Config.Default ["language", "current", "xx"] = code;
+        [Test]
+        public void Language_Equals_Tests() {
+            Assert.AreNotEqual (lang1, lang2);
+            Assert.AreEqual (lang1, lang1);
+        }
+
+        public void SetLanguage(Language lang) {
+            languageOption.Value = lang;
+            //Config.Default ["language", "current", "xx"] = code;
         }
     }
 }
