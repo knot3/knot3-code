@@ -51,7 +51,7 @@ namespace Knot3.Framework.Utilities
                 if (screen.InputManager.CurrentKeyboardState.IsKeyUp (lastKey)) {
                     lastKey = Keys.None;
                 }
-                else if ((time.TotalGameTime.TotalMilliseconds - lastMillis) > 100) {
+                else if ((time.TotalGameTime.TotalMilliseconds - lastMillis) > 200) {
                     lastKey = Keys.None;
                 }
             }
