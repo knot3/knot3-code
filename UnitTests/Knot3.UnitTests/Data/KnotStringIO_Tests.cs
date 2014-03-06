@@ -91,7 +91,7 @@ namespace Knot3.UnitTests.Data
           String content_rectangle = "Start\nY#FF0000#1000#\nZ#FF0000#1000\ny#FF0000#1000\nz#FF0000#1000";
           KnotStringIO rgba = new KnotStringIO (content_rgba);
           KnotStringIO rgb = new KnotStringIO (content_rgb);
-          KnotStringIO rectangle = new KnotStringIO(content_rectangle);
+          KnotStringIO rectangle = new KnotStringIO (content_rectangle);
           List<Edge> squaredEdges = complexKnotStringIO.Edges.ToList ();
           List<Edge> allEdges = complexKnotStringIO.Edges.ToList ();
           List<Edge> coloredRGBAEdges = rgba.Edges.ToList (); 

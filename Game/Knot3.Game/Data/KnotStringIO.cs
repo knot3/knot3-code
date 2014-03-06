@@ -79,9 +79,9 @@ namespace Knot3.Game.Data
                     if (line.StartsWith ("#")) {
                         line = line.Substring (1);
                     }
-                    if (line.IndexOf("#") > -1)
+                    if (line.IndexOf ("#") > -1)
                     {
-                        line = line.Substring(0, line.IndexOf("#"));
+                        line = line.Substring (0, line.IndexOf ("#"));
                     }
                     if (line.Length > 0) {
                         foreach (int rect in line.Split (',').Select (int.Parse).ToList ()) {
