@@ -31,6 +31,7 @@
 using System.Diagnostics.CodeAnalysis;
 
 using NUnit.Framework;
+
 using Knot3.Framework.Storage;
 
 namespace Knot3.UnitTests.Storage
@@ -61,7 +62,7 @@ namespace Knot3.UnitTests.Storage
             Assert.AreEqual (Localizer.Localize ("new game"), "New Game");
         }
 
-        public void SetLanguage(string code) {
+        public void SetLanguage (string code) {
             Config.Default ["language", "current", "xx"] = code;
         }
     }
