@@ -39,7 +39,7 @@ namespace Knot3.Game.Audio
     public class Knot3AudioManager : AudioManager
     {
         public Knot3AudioManager (GameCore game)
-            : base (game)
+        : base (game)
         {
         }
 

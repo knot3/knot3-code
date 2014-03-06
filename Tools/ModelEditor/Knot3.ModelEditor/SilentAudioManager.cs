@@ -39,7 +39,7 @@ namespace Knot3.ModelEditor
     public class SilentAudioManager : AudioManager
     {
         public SilentAudioManager (GameCore game)
-            : base (game)
+        : base (game)
         {
         }
 

@@ -54,7 +54,8 @@ namespace Knot3.Game.Data
 
         private IEnumerable<string> edgeLines;
 
-        public static Dictionary<char, Direction> DirectionCodeMap = new Dictionary<char,Direction>() {
+        public static Dictionary<char, Direction> DirectionCodeMap = new Dictionary<char,Direction>()
+        {
             { 'X', Edge.Right },
             { 'x', Edge.Left },
             { 'Y', Edge.Up },
@@ -77,7 +78,7 @@ namespace Knot3.Game.Data
                     if (line.StartsWith ("#")) {
                         line = line.Substring (1);
                     }
-                    if (line.IndexOf ("#") > -1) {   
+                    if (line.IndexOf ("#") > -1) {
                         edge.Color = DecodeColor (line.Substring (0, line.IndexOf ("#")));
                         line = line.Substring (line.IndexOf ("#"));
                     }
@@ -85,12 +86,11 @@ namespace Knot3.Game.Data
                         edge.Color = DecodeColor (line);
                         line = "";
                     }
-                    
+
                     if (line.StartsWith ("#")) {
                         line = line.Substring (1);
                     }
-                    if (line.IndexOf ("#") > -1)
-                    {
+                    if (line.IndexOf ("#") > -1) {
                         line = line.Substring (0, line.IndexOf ("#"));
                     }
                     if (line.Length > 0) {
@@ -179,10 +179,12 @@ namespace Knot3.Game.Data
 
         private static Edge DecodeEdge (char c)
         {
-            if (DirectionCodeMap.ContainsKey (c))
+            if (DirectionCodeMap.ContainsKey (c)) {
                 return new Edge (DirectionCodeMap [c]);
-            else
+            }
+            else {
                 throw new IOException ("Failed to decode Edge: '" + c + "'!");
+            }
         }
 
         private static char EncodeEdge (Edge edge)

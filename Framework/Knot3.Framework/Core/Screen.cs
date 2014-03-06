@@ -78,7 +78,7 @@ namespace Knot3.Framework.Core
         /// Der nächste Spielstand, der von Knot3Game gesetzt werden soll.
         /// </summary>
         public IScreen NextScreen { get; set; }
-        
+
         /// <summary>
         /// Der GraphicsDeviceManager von XNA.
         /// </summary>
@@ -88,7 +88,7 @@ namespace Knot3.Framework.Core
         /// Das GraphicsDevice von XNA.
         /// </summary>
         public GraphicsDevice GraphicsDevice { get { return Game.GraphicsDevice; } }
-        
+
         /// <summary>
         /// Der aktuelle Viewport.
         /// </summary>

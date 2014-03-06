@@ -54,11 +54,11 @@ namespace Knot3.Framework.Audio
         {
             Name = name;
             string cachefile = SystemInfo.DecodedMusicCache
-                + SystemInfo.PathSeparator.ToString ()
-                + soundType.ToString ()
-                + "_"
-                + name.GetHashCode ().ToString ()
-                + ".wav";
+                               + SystemInfo.PathSeparator.ToString ()
+                               + soundType.ToString ()
+                               + "_"
+                               + name.GetHashCode ().ToString ()
+                               + ".wav";
 
             Log.BlockList (id: 33, before: "  - ", after: "", begin: "Load ogg audio files:", end: "");
             Log.BlockList (id: 34, before: "  - ", after: "", begin: "Decode ogg audio files:", end: "");

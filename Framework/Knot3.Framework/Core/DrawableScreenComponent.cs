@@ -80,7 +80,7 @@ namespace Knot3.Framework.Core
             yield break;
         }
     }
-    
+
     [ExcludeFromCodeCoverage]
     public static class DrawableGameComponentExtensions
     {

@@ -82,7 +82,7 @@ namespace Knot3.ModelEditor
 
         public JunctionEditorNodeMap ()
         {
- IndexRebuilt = () => {};
+            IndexRebuilt = () => {};
         }
 
         public void Render (Direction[] directions)
