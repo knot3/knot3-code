@@ -82,12 +82,10 @@ namespace Knot3.UnitTests.Storage
 
         [Test]
         public void Language_DisplayName_Tests () {
-
             SetLanguage (lang1);
 
             Assert.AreNotEqual (languageOption.DisplayValue, lang2.DisplayName);
             Assert.AreEqual (languageOption.DisplayValue, lang1.DisplayName);
-
 
             Language lang3 = new Language (file: Localizer.LanguageDirectory + "xz.ini");
             Assert.AreEqual (lang3.Localization ["language", "displayname", ""], lang3.DisplayName);
