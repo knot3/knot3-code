@@ -86,12 +86,15 @@ namespace Knot3.UnitTests.Data
         [Test]
         public void KnotStringIO_Decode_Test ()
         {
-            String content = "Start\nY#FF0000FF#\nZ#FF0000FF#\ny#FF0000FF#\nz#FF0000FF#";
-
-          KnotStringIO other = new KnotStringIO (content);
+          String content_rgba = "Start\nY#FF0000FF#\nZ#FF0000FF#\ny#FF0000FF#\nz#FF0000FF#";
+          String content_rgb = "Start\nY#FF0000#\nZ#FF0000#\ny#FF0000#\nz#FF0000#";
+          KnotStringIO rgba = new KnotStringIO (content_rgba);
+          KnotStringIO rgb = new KnotStringIO (content_rgb); 
           List<Edge> squaredEdges = complexKnotStringIO.Edges.ToList ();
           List<Edge> allEdges = complexKnotStringIO.Edges.ToList ();
-          List<Edge> coloredEdges = other.Edges.ToList (); 
+          List<Edge> coloredRGBAEdges = rgba.Edges.ToList (); 
+          List<Edge> coloredRGBEdges = rgb.Edges.ToList ();
+         //Assert.AreEqual(coloredRGBAEdges, coloredRGBEdges, "RGBA = RGB");
         }
     }
 }
