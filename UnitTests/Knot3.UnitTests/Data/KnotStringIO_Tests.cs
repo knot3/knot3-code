@@ -94,7 +94,7 @@ namespace Knot3.UnitTests.Data
           List<Edge> allEdges = complexKnotStringIO.Edges.ToList ();
           List<Edge> coloredRGBAEdges = rgba.Edges.ToList (); 
           List<Edge> coloredRGBEdges = rgb.Edges.ToList ();
-         //Assert.AreEqual(coloredRGBAEdges, coloredRGBEdges, "RGBA = RGB");
+         //Assert.AreEqual (coloredRGBAEdges, coloredRGBEdges, "RGBA = RGB");
         }
     }
 }
