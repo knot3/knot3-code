@@ -30,7 +30,7 @@
 
 using System.Diagnostics.CodeAnalysis;
 
-namespace Knot3.Framework.Audio
+namespace Knot3.Game.Audio
 {
     public static class Knot3Sound {
         public static readonly Sound CreativeMusic = new Sound ("CreativeMusic");
