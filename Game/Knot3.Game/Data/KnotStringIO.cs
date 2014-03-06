@@ -179,7 +179,7 @@ namespace Knot3.Game.Data
 
         private static Edge DecodeEdge (char c)
         {
-            if (DirectionCodeMap.ContainsKey(c))
+            if (DirectionCodeMap.ContainsKey (c))
                 return new Edge (DirectionCodeMap [c]);
             else
                 throw new IOException ("Failed to decode Edge: '" + c + "'!");
@@ -187,8 +187,8 @@ namespace Knot3.Game.Data
 
         private static char EncodeEdge (Edge edge)
         {
-            Dictionary<Direction, char> reversed = DirectionCodeMap.ReverseDictionary();
-            if (reversed.ContainsKey(edge.Direction)) {
+            Dictionary<Direction, char> reversed = DirectionCodeMap.ReverseDictionary ();
+            if (reversed.ContainsKey (edge.Direction)) {
                 return reversed[edge.Direction];
             }
             else {
