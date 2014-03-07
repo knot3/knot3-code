@@ -35,74 +35,21 @@ using System.Linq;
 
 namespace Knot3.Framework.Audio
 {
-    public class Sound : IEquatable<Sound>
+    public class Sound : TypesafeEnum<Sound>
     {
         /// <summary>
         /// Gibt alle Sound-Werte zurück.
         /// </summary>
-        public static Sound[] Values { get { return _values.Select (name => new Sound (name)).ToArray (); } }
-
-        private static HashSet<string> _values = new HashSet<string> ();
+        public static Sound[] Values { get { return TypesafeEnum<Sound>.Values.Select (name => new Sound (name)).ToArray (); } }
 
         /// <summary>
         /// Kein Sound.
         /// </summary>
         public static readonly Sound None = new Sound ("None");
 
-        public string Name { get; private set; }
-
         public Sound (string name)
+            : base (name)
         {
-            Name = name;
-            _values.Add (name);
-        }
-
-        [ExcludeFromCodeCoverageAttribute]
-        public override string ToString ()
-        {
-            return Name;
-        }
-
-        public static implicit operator string (Sound layer)
-        {
-            return layer.Name;
-        }
-
-        public static bool operator == (Sound a, Sound b)
-        {
-            // If both are null, or both are same instance, return true.
-            if (System.Object.ReferenceEquals (a, b)) {
-                return true;
-            }
-
-            // If one is null, but not both, return false.
-            if (((object)a == null) || ((object)b == null)) {
-                return false;
-            }
-
-            // Return true if the fields match:
-            return a.Name == b.Name;
-        }
-
-        public static bool operator != (Sound d1, Sound d2)
-        {
-            return !(d1 == d2);
-        }
-
-        public bool Equals (Sound other)
-        {
-            return other != null && Name == other.Name;
-        }
-
-        public override bool Equals (object other)
-        {
-            return other != null && Equals (other as Sound);
-        }
-
-        [ExcludeFromCodeCoverageAttribute]
-        public override int GetHashCode ()
-        {
-            return Name.GetHashCode ();
         }
     }
 }

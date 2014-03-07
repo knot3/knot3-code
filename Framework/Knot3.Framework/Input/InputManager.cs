@@ -45,7 +45,7 @@ namespace Knot3.Framework.Input
     /// Stellt für jeden Frame die Maus- und Tastatureingaben bereit. Daraus werden die nicht von XNA bereitgestellten Mauseingaben berechnet. Zusätzlich wird die aktuelle Eingabeaktion berechnet.
     /// </summary>
     [ExcludeFromCodeCoverageAttribute]
-    public sealed class InputManager : ScreenComponent
+    public sealed class InputManager : KeyBindingListener<InputManager>
     {
         /// <summary>
         /// Enthält den Klickzustand der rechten Maustaste.
@@ -101,7 +101,28 @@ namespace Knot3.Framework.Input
         private static double RightButtonClickTimer;
         private static MouseState PreviousClickMouseState;
 
+        /// <summary>
+        /// Gibt an, ob der Vollbildmodus in diesem (oder dem vorherigen?! irgendwie sowas!) Frame getoggelt wurde.
+        /// </summary>
         public static bool FullscreenToggled { get; set; }
+
+        /// <summary>
+        /// Zeigt an, ob die Klasse zur Zeit auf Tastatureingaben reagiert.
+        /// </summary>
+        public override bool IsKeyEventEnabled { get { return true; } }
+
+        /// <summary>
+        /// Zeigt an, ob die Klasse modal ist.
+        /// </summary>
+        public override bool IsModal { get { return false; } }
+        
+        /// <summary>
+        /// Der statische Initialisierer legt die Standard-Tastenbelegung fest.
+        /// </summary>
+        static InputManager ()
+        {
+            DefaultKeyAssignment [Keys.F11] = PlayerAction.ToggleFullscreen;
+        }
 
         /// <summary>
         /// Erstellt ein neues InputManager-Objekt, das an den übergebenen Spielzustand gebunden ist.
@@ -113,6 +134,9 @@ namespace Knot3.Framework.Input
 
             PreviousKeyboardState = CurrentKeyboardState = Keyboard.GetState ();
             PreviousMouseState = CurrentMouseState = Mouse.GetState ();
+
+            // Lege die Bedeutungen der Aktionen fest
+            ActionBindings [PlayerAction.ToggleFullscreen] = (time) => toggleFullscreen (time);
         }
 
         /// <summary>
@@ -159,6 +183,14 @@ namespace Knot3.Framework.Input
                 else {
                     RightMouseButton = ClickState.None;
                 }
+            }
+        }
+
+        private void toggleFullscreen (GameTime time)
+        {
+            if (KeyPressed (LookupKey (PlayerAction.ToggleFullscreen))) {
+                Screen.Game.IsFullScreen = !Screen.Game.IsFullScreen;
+                FullscreenToggled = true;
             }
         }
 

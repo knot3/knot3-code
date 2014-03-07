@@ -134,6 +134,7 @@
     <Compile Include="Knot3.Game\Widgets\KeyInputItem.cs" />
     <Compile Include="Knot3.Game\Widgets\TextInputDialog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Knot3.Game\Input\Knot3PlayerAction.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

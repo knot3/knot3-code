@@ -44,6 +44,8 @@ using Knot3.Framework.Widgets;
 
 using Knot3.Game.Input;
 using Knot3.Game.Widgets;
+using Knot3.Framework.Platform;
+using System.Runtime.CompilerServices;
 
 namespace Knot3.Game.Screens
 {
@@ -82,41 +84,41 @@ namespace Knot3.Game.Screens
             );
             settingsMenu.Add (moveToCenter);
 
+            // Make sure that the static initializers for the key binding listeners are called!!
+            KeyBindingListener.InitializeListeners (typeof(InputManager), typeof(KnotInputHandler));
+
             // Lade die Standardbelegung
-            Dictionary<PlayerActions, Keys> defaultReversed = KnotInputHandler.DefaultKeyAssignment.ReverseDictionary ();
+            Dictionary<PlayerAction, Keys> defaultReversed = KeyBindingListener.DefaultKeyAssignment.ReverseDictionary ();
 
             // Iteriere dazu über alle gültigen PlayerActions...
-            foreach (PlayerActions action in typeof (PlayerActions).ToEnumValues<PlayerActions>()) {
-                string actionName = action.ToEnumDescription ();
+            foreach (PlayerAction action in PlayerAction.Values) {
+                string actionName = action.Name;
 
-                // Erstelle das dazugehörige Options-Objekt...
-                KeyOption option = new KeyOption (
-                    section: "controls",
-                    name: actionName,
-                    defaultValue: defaultReversed [action],
-                    configFile: Config.Default
-                );
+                if (defaultReversed.ContainsKey (action)) {
+                    // Erstelle das dazugehörige Options-Objekt...
+                    KeyOption option = new KeyOption (
+                        section: "controls",
+                        name: actionName,
+                        defaultValue: defaultReversed [action],
+                        configFile: Config.Default
+                    );
 
-                // Erstelle ein KeyInputItem zum Festlegen der Tastenbelegung
-                KeyInputItem item = new KeyInputItem (
-                    screen: this,
-                    drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
-                    text: actionName,
-                    option: option
-                );
-                item.OnValueChanged += () => ControlSettingsChanged ();
+                    // Erstelle ein KeyInputItem zum Festlegen der Tastenbelegung
+                    KeyInputItem item = new KeyInputItem (
+                        screen: this,
+                        drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
+                        text: actionName,
+                        option: option
+                    );
+                    item.OnValueChanged += () => ControlSettingsChanged ();
 
-                // Füge es in das Menü ein
-                settingsMenu.Add (item);
+                    // Füge es in das Menü ein
+                    settingsMenu.Add (item);
+                }
+                else {
+                    Log.Debug ("Key binding ", actionName, " not found!");
+                }
             }
-        }
-
-        /// <summary>
-        /// Wird für jeden Frame aufgerufen.
-        /// </summary>
-        [ExcludeFromCodeCoverageAttribute]
-        public override void Update (GameTime time)
-        {
         }
 
         /// <summary>

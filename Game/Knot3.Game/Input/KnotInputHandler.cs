@@ -27,15 +27,12 @@
  * 
  * See the LICENSE file for full license details of the Knot3 project.
  */
-
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
-
 using Knot3.Framework.Core;
 using Knot3.Framework.Development;
 using Knot3.Framework.Input;
@@ -44,7 +41,6 @@ using Knot3.Framework.Models;
 using Knot3.Framework.Platform;
 using Knot3.Framework.Storage;
 using Knot3.Framework.Utilities;
-
 using Knot3.Game.Data;
 using Knot3.Game.Screens;
 
@@ -55,7 +51,7 @@ namespace Knot3.Game.Input
     /// und das Kamera-Ziel.
     /// </summary>
     [ExcludeFromCodeCoverageAttribute]
-    public sealed class KnotInputHandler : ScreenComponent, IKeyEventListener, IMouseMoveEventListener, IMouseScrollEventListener
+    public sealed class KnotInputHandler : KeyBindingListener<KnotInputHandler>, IMouseMoveEventListener, IMouseScrollEventListener
     {
         /// <summary>
         /// Die Spielwelt.
@@ -63,9 +59,9 @@ namespace Knot3.Game.Input
         private World world;
 
         /// <summary>
-        /// Die Tasten, auf die die Klasse reagiert. Wird aus der aktuellen Tastenbelegung berechnet.
+        /// Die Kamera.
         /// </summary>
-        public List<Keys> ValidKeys { get; private set; }
+        private Camera camera { get { return world.Camera; } }
 
         /// <summary>
         /// Zeigt an, ob die Klasse zur Zeit auf Eingaben reagiert.
@@ -75,7 +71,7 @@ namespace Knot3.Game.Input
         /// <summary>
         /// Zeigt an, ob die Klasse zur Zeit auf Tastatureingaben reagiert.
         /// </summary>
-        public bool IsKeyEventEnabled { get { return IsEnabled; } }
+        public override bool IsKeyEventEnabled { get { return IsEnabled; } }
 
         /// <summary>
         /// Zeigt an, ob die Klasse zur Zeit auf Mausbewegungen reagiert.
@@ -88,44 +84,35 @@ namespace Knot3.Game.Input
         public bool IsMouseScrollEventEnabled { get { return IsEnabled; } }
 
         /// <summary>
-        /// Die aktuelle Tastenbelegung
+        /// Zeigt an, ob die Klasse modal ist.
         /// </summary>
-        public static Dictionary<Keys, PlayerActions> CurrentKeyAssignment = new Dictionary<Keys, PlayerActions> ();
-        public static Dictionary<PlayerActions, Keys> CurrentKeyAssignmentReversed = new Dictionary<PlayerActions, Keys> ();
-        /// <summary>
-        /// Die Standard-Tastenbelegung.
-        /// </summary>
-        public static readonly Dictionary<Keys, PlayerActions> DefaultKeyAssignment
-        = new Dictionary<Keys, PlayerActions> {
-            { Keys.W, 				PlayerActions.MoveForward },
-            { Keys.S, 				PlayerActions.MoveBackward },
-            { Keys.A, 				PlayerActions.MoveLeft },
-            { Keys.D, 				PlayerActions.MoveRight },
-            { Keys.LeftShift,		PlayerActions.MoveUp },
-            { Keys.LeftControl,		PlayerActions.MoveDown },
-            { Keys.Up, 				PlayerActions.RotateUp },
-            { Keys.Down, 			PlayerActions.RotateDown },
-            { Keys.Left, 			PlayerActions.RotateLeft },
-            { Keys.Right, 			PlayerActions.RotateRight },
-            { Keys.Q, 				PlayerActions.ZoomIn },
-            { Keys.E, 				PlayerActions.ZoomOut },
-            { Keys.Enter, 			PlayerActions.ResetCamera },
-            { Keys.Space,			PlayerActions.MoveToCenter },
-            { Keys.LeftAlt,			PlayerActions.ToggleMouseLock },
-            { Keys.RightControl,	PlayerActions.AddToEdgeSelection },
-            { Keys.RightShift,		PlayerActions.AddRangeToEdgeSelection },
-            { Keys.C,               PlayerActions.EdgeColoring },
-            { Keys.N,               PlayerActions.EdgeRectangles },
-            { Keys.F11,             PlayerActions.ToggleFullscreen }
-        };
-        /// <summary>
-        /// Was bei den jeweiligen Aktionen ausgeführt wird.
-        /// </summary>
-        private static Dictionary<PlayerActions, Action<GameTime>> ActionBindings;
+        public override bool IsModal { get { return false; } }
 
-        private Camera camera { get { return world.Camera; } }
-
-        public bool IsModal { get { return false; } }
+        /// <summary>
+        /// Der statische Initialisierer legt die Standard-Tastenbelegung fest.
+        /// </summary>
+        static KnotInputHandler ()
+        {
+            DefaultKeyAssignment [Keys.W] = Knot3PlayerAction.MoveForward;
+            DefaultKeyAssignment [Keys.S] = Knot3PlayerAction.MoveBackward;
+            DefaultKeyAssignment [Keys.A] = Knot3PlayerAction.MoveLeft;
+            DefaultKeyAssignment [Keys.D] = Knot3PlayerAction.MoveRight;
+            DefaultKeyAssignment [Keys.LeftShift] = Knot3PlayerAction.MoveUp;
+            DefaultKeyAssignment [Keys.LeftControl] = Knot3PlayerAction.MoveDown;
+            DefaultKeyAssignment [Keys.Up] = Knot3PlayerAction.RotateUp;
+            DefaultKeyAssignment [Keys.Down] = Knot3PlayerAction.RotateDown;
+            DefaultKeyAssignment [Keys.Left] = Knot3PlayerAction.RotateLeft;
+            DefaultKeyAssignment [Keys.Right] = Knot3PlayerAction.RotateRight;
+            DefaultKeyAssignment [Keys.Q] = Knot3PlayerAction.ZoomIn;
+            DefaultKeyAssignment [Keys.E] = Knot3PlayerAction.ZoomOut;
+            DefaultKeyAssignment [Keys.Enter] = Knot3PlayerAction.ResetCamera;
+            DefaultKeyAssignment [Keys.Space] = Knot3PlayerAction.MoveToCenter;
+            DefaultKeyAssignment [Keys.LeftAlt] = Knot3PlayerAction.ToggleMouseLock;
+            DefaultKeyAssignment [Keys.RightControl] = Knot3PlayerAction.AddToEdgeSelection;
+            DefaultKeyAssignment [Keys.RightShift] = Knot3PlayerAction.AddRangeToEdgeSelection;
+            DefaultKeyAssignment [Keys.C] = Knot3PlayerAction.EdgeColoring;
+            DefaultKeyAssignment [Keys.N] = Knot3PlayerAction.EdgeRectangles;
+        }
 
         /// <summary>
         /// Erstellt einen neuen KnotInputHandler für den angegebenen Spielzustand und die angegebene Spielwelt.
@@ -145,31 +132,26 @@ namespace Knot3.Game.Input
             ResetMousePosition ();
 
             // Tasten
-            ValidKeys = new List<Keys> ();
-            OnControlSettingsChanged ();
             ControlSettingsScreen.ControlSettingsChanged += OnControlSettingsChanged;
 
-            // Lege die Bedeutungen der PlayerActions fest
-            ActionBindings = new Dictionary<PlayerActions, Action<GameTime>> {
-                { PlayerActions.MoveUp,                  (time) => MoveCameraAndTarget (Vector3.Up, time) },
-                { PlayerActions.MoveDown,                (time) => MoveCameraAndTarget (Vector3.Down, time) },
-                { PlayerActions.MoveLeft,                (time) => MoveCameraAndTarget (Vector3.Left, time) },
-                { PlayerActions.MoveRight,               (time) => MoveCameraAndTarget (Vector3.Right, time) },
-                { PlayerActions.MoveForward,             (time) => MoveCameraAndTarget (Vector3.Forward, time) },
-                { PlayerActions.MoveBackward,            (time) => MoveCameraAndTarget (Vector3.Backward, time) },
-                { PlayerActions.RotateUp,                (time) => rotate (-Vector2.UnitY * 4, time) },
-                { PlayerActions.RotateDown,              (time) => rotate (Vector2.UnitY * 4, time) },
-                { PlayerActions.RotateLeft,              (time) => rotate (-Vector2.UnitX * 4, time) },
-                { PlayerActions.RotateRight,             (time) => rotate (Vector2.UnitX * 4, time) },
-                { PlayerActions.ZoomIn,                  (time) => zoom (-1, time) },
-                { PlayerActions.ZoomOut,                 (time) => zoom (+1, time) },
-                { PlayerActions.ResetCamera,             (time) => resetCamera (time) },
-                { PlayerActions.MoveToCenter,            (time) => moveToCenter (time) },
-                { PlayerActions.ToggleMouseLock,         (time) => toggleMouseLock (time) },
-                { PlayerActions.ToggleFullscreen,        (time) => toggleFullscreen (time) }
-            };
+            // Lege die Bedeutungen der Aktionen fest
+            ActionBindings [Knot3PlayerAction.MoveUp] = (time) => MoveCameraAndTarget (Vector3.Up, time);
+            ActionBindings [Knot3PlayerAction.MoveDown] = (time) => MoveCameraAndTarget (Vector3.Down, time);
+            ActionBindings [Knot3PlayerAction.MoveLeft] = (time) => MoveCameraAndTarget (Vector3.Left, time);
+            ActionBindings [Knot3PlayerAction.MoveRight] = (time) => MoveCameraAndTarget (Vector3.Right, time);
+            ActionBindings [Knot3PlayerAction.MoveForward] = (time) => MoveCameraAndTarget (Vector3.Forward, time);
+            ActionBindings [Knot3PlayerAction.MoveBackward] = (time) => MoveCameraAndTarget (Vector3.Backward, time);
+            ActionBindings [Knot3PlayerAction.RotateUp] = (time) => rotate (-Vector2.UnitY * 4, time);
+            ActionBindings [Knot3PlayerAction.RotateDown] = (time) => rotate (Vector2.UnitY * 4, time);
+            ActionBindings [Knot3PlayerAction.RotateLeft] = (time) => rotate (-Vector2.UnitX * 4, time);
+            ActionBindings [Knot3PlayerAction.RotateRight] = (time) => rotate (Vector2.UnitX * 4, time);
+            ActionBindings [Knot3PlayerAction.ZoomIn] = (time) => zoom (-1, time);
+            ActionBindings [Knot3PlayerAction.ZoomOut] = (time) => zoom (+1, time);
+            ActionBindings [Knot3PlayerAction.ResetCamera] = (time) => resetCamera (time);
+            ActionBindings [Knot3PlayerAction.MoveToCenter] = (time) => moveToCenter (time);
+            ActionBindings [Knot3PlayerAction.ToggleMouseLock] = (time) => toggleMouseLock (time);
 
-            foreach (PlayerActions action in EnumHelper.ToEnumValues<PlayerActions>()) {
+            foreach (PlayerAction action in PlayerAction.Values) {
                 if (!ActionBindings.ContainsKey (action)) {
                     ActionBindings [action] = (time) => {};
                 }
@@ -433,7 +415,7 @@ namespace Knot3.Game.Input
                 Vector3 targetDirection = camera.PositionToTargetDirection;
                 Vector3 up = camera.UpVector;
                 camera.Position = camera.Target
-                                  + (camera.Position - camera.Target).ArcBallMove (move, up, targetDirection);
+                    + (camera.Position - camera.Target).ArcBallMove (move, up, targetDirection);
                 camera.Position = camera.Position.SetDistanceTo (camera.Target, oldDistance);
             }
         }
@@ -451,73 +433,6 @@ namespace Knot3.Game.Input
             }
         }
 
-        public void OnKeyEvent (List<Keys> keys, KeyEvent keyEvent, GameTime time)
-        {
-            Profiler.ProfileDelegate ["OnKey"] = () => {
-                if (IsEnabled) {
-                    // Bei einem Tastendruck wird die Spielwelt auf jeden Fall neu gezeichnet.
-                    world.Redraw = true;
-
-                    // Iteriere über alle gedrückten Tasten
-                    foreach (Keys key in keys) {
-                        // Ist der Taste eine Aktion zugeordnet?
-                        if (CurrentKeyAssignment.ContainsKey (key)) {
-                            // Während die Taste gedrückt gehalten ist...
-                            if (Screen.InputManager.KeyHeldDown (key)) {
-                                // führe die entsprechende Aktion aus!
-                                PlayerActions action = CurrentKeyAssignment [key];
-                                Action<GameTime> binding = ActionBindings [action];
-                                binding (time);
-                            }
-                        }
-                    }
-                }
-            };
-        }
-
-        /// <summary>
-        /// Wird ausgeführt, sobald ein KnotInputHandler erstellt wird und danach,
-        /// wenn sich die Tastenbelegung geändert hat.
-        /// </summary>
-        public static void ReadKeyAssignments ()
-        {
-            // Drehe die Zuordnung um; von (Taste -> Aktion) zu (Aktion -> Taste)
-            Dictionary<PlayerActions, Keys> defaultReversed = DefaultKeyAssignment.ReverseDictionary ();
-
-            // Leere die aktuelle Zuordnung
-            CurrentKeyAssignment.Clear ();
-
-            // Fülle die aktuelle Zuordnung mit aus der Einstellungsdatei gelesenen werten.
-            // Iteriere dazu über alle gültigen PlayerActions...
-            foreach (PlayerActions action in typeof (PlayerActions).ToEnumValues<PlayerActions>()) {
-                string actionName = action.ToEnumDescription ();
-
-                // Erstelle eine Option...
-                KeyOption option = new KeyOption (
-                    section: "controls",
-                    name: actionName,
-                    defaultValue: defaultReversed [action],
-                    configFile: Config.Default
-                );
-                // und lese den Wert aus und speichere ihn in der Zuordnung.
-                CurrentKeyAssignment [option.Value] = action;
-            }
-            CurrentKeyAssignmentReversed = CurrentKeyAssignment.ReverseDictionary ();
-        }
-
-        /// <summary>
-        /// Wird ausgeführt, sobald ein KnotInputHandler erstellt wird und danach,
-        /// wenn sich die Tastenbelegung geändert hat.
-        /// </summary>
-        public void OnControlSettingsChanged ()
-        {
-            ReadKeyAssignments ();
-
-            // Aktualisiere die Liste von Tasten, zu denen wir als IKeyEventListener benachrichtigt werden
-            ValidKeys.Clear ();
-            ValidKeys.AddRange (CurrentKeyAssignment.Keys.AsEnumerable ());
-        }
-
         public void OnStartEdgeChanged (Vector3 direction)
         {
             Log.Debug ("OnStartEdgeChanged: ", direction);
@@ -528,27 +443,30 @@ namespace Knot3.Game.Input
 
         private void toggleMouseLock (GameTime time)
         {
-            if (Screen.InputManager.KeyPressed (CurrentKeyAssignmentReversed [PlayerActions.ToggleMouseLock])) {
+            if (Screen.InputManager.KeyPressed (CurrentKeyAssignmentReversed [Knot3PlayerAction.ToggleMouseLock])) {
                 Screen.InputManager.GrabMouseMovement = !Screen.InputManager.GrabMouseMovement;
             }
         }
 
         private void resetCamera (GameTime time)
         {
-            if (Screen.InputManager.KeyPressed (CurrentKeyAssignmentReversed [PlayerActions.ResetCamera])) {
+            if (Screen.InputManager.KeyPressed (CurrentKeyAssignmentReversed [Knot3PlayerAction.ResetCamera])) {
                 camera.ResetCamera ();
             }
-        }
-
-        private void toggleFullscreen (GameTime time)
-        {
-            Screen.Game.IsFullScreen = !Screen.Game.IsFullScreen;
-            InputManager.FullscreenToggled = true;
         }
 
         private void moveToCenter (GameTime time)
         {
             camera.StartSmoothMove (target: camera.ArcballTarget, time: time);
+        }
+
+        public override void OnKeyEvent (List<Keys> keys, KeyEvent keyEvent, GameTime time)
+        {
+            // bei einem Tastendruck wird die Spielwelt auf jeden Fall neu gezeichnet.
+            world.Redraw = true;
+
+            // rufe die Basismethode von KeyBindingListener auf
+            base.OnKeyEvent (keys, keyEvent, time);
         }
 
         public Bounds MouseMoveBounds { get { return world.Bounds; } }
