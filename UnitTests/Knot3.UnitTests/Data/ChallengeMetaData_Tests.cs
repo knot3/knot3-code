@@ -28,8 +28,8 @@
  * See the LICENSE file for full license details of the Knot3 project.
  */
 
-using System.Diagnostics.CodeAnalysis;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 using NUnit.Framework;
 
@@ -43,39 +43,35 @@ namespace Knot3.UnitTests.Data
     [TestFixture]
     public class ChallengeMetaData_Tests
     {
-        
         [Test]
-        public void ChallengeMetaDataHighscore_Test()
+        public void ChallengeMetaDataHighscore_Test ()
         {
-            ChallengeFileIO file = new ChallengeFileIO();
-            ChallengeMetaData meta = file.LoadMetaData(TestHelper.TestResourcesDirectory + "TestChallenge.challenge");
-            Assert.AreEqual(meta.AvgTime, 7.666666f, 0.0001f);
-            Assert.AreEqual(ChallengeMetaData.formatTime(1337f), "00h:22m:17s");
-            Assert.AreEqual(meta.FormatedAvgTime, "00h:00m:07s");
+            ChallengeFileIO file = new ChallengeFileIO ();
+            ChallengeMetaData meta = file.LoadMetaData (TestHelper.TestResourcesDirectory + "TestChallenge.challenge");
+            Assert.AreEqual (meta.AvgTime, 7.666666f, 0.0001f);
+            Assert.AreEqual (ChallengeMetaData.formatTime (1337f), "00h:22m:17s");
+            Assert.AreEqual (meta.FormatedAvgTime, "00h:00m:07s");
             {
                 string[] names = { "Erster", "Dritter", "Zweiter" };
                 int[] times = { 1, 15, 7 };
                 int position = 0;
-                foreach (KeyValuePair<string, int> entry in meta.Highscore)
-                {
-                    Assert.AreEqual(entry.Key, names[position]);
-                    Assert.AreEqual(entry.Value, times[position]);
+                foreach (KeyValuePair<string, int> entry in meta.Highscore) {
+                    Assert.AreEqual (entry.Key, names[position]);
+                    Assert.AreEqual (entry.Value, times[position]);
                     position++;
                 }
             }
-            meta.AddToHighscore("Noob", 1337);
+            meta.AddToHighscore ("Noob", 1337);
             {
                 string[] names = { "Erster", "Dritter", "Zweiter", "Noob"};
                 int[] times = { 1, 15, 7, 1337 };
                 int position = 0;
-                foreach (KeyValuePair<string, int> entry in meta.Highscore)
-                {
-                    Assert.AreEqual(entry.Key, names[position]);
-                    Assert.AreEqual(entry.Value, times[position]);
+                foreach (KeyValuePair<string, int> entry in meta.Highscore) {
+                    Assert.AreEqual (entry.Key, names[position]);
+                    Assert.AreEqual (entry.Value, times[position]);
                     position++;
                 }
             }
-
         }
     }
 }
