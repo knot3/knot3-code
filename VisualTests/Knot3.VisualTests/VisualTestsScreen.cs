@@ -112,7 +112,7 @@ namespace Knot3.VisualTests
                 defaultValue: validEdgeCounts.At (1),
                 validValues: validEdgeCounts,
                 configFile: Config.Default
-            );
+            ) { Verbose = false };
             optionEdgeCount.Value = validEdgeCounts.At (1);
             itemEdgeCount = new DropDownMenuItem (
                 screen: this,
@@ -157,9 +157,13 @@ namespace Knot3.VisualTests
         public override void Draw (GameTime time)
         {
             base.Draw (time);
+            
+            // World neu zeichnen
+            world.Redraw = true;
 
             // Hier könnte man die Zeit von world.Draw () messen
             world.Draw (time);
+            world.SubComponents (time).OfType<DrawableScreenComponent> ().ForEach (comp => comp.Draw (time));
 
             // und itemDisplayTime.InputText zuweisen zum darstellen
             itemDisplayTime.InputText = "blubb";
@@ -177,10 +181,9 @@ namespace Knot3.VisualTests
             world.Camera.Position = (Vector3.Backward * Node.Scale * EdgeCount / 5)
                                     .RotateX (rotation.X).RotateY (rotation.Y).RotateZ (rotation.Z);
 
-            // World neu zeichnen
-            world.Redraw = true;
-
+            // Update auf der World
             world.Update (time);
+            world.SubComponents (time).OfType<ScreenComponent> ().ForEach (comp => comp.Update (time));
         }
 
         /// <summary>
