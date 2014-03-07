@@ -79,6 +79,7 @@ namespace Knot3.VisualTests
         private DropDownMenuItem itemEdgeCount;
         private Menu settingsMenu;
         private InputItem itemDisplayTime;
+        private InputItem itemFPS;
 
         private int EdgeCount { get { return (int)optionEdgeCount.Value; } }
 
@@ -127,7 +128,14 @@ namespace Knot3.VisualTests
                 drawOrder: DisplayLayer.Overlay + DisplayLayer.MenuItem,
                 text: "Time:",
                 inputText: ""
-            );
+                );
+
+            itemFPS = new InputItem (
+                screen: this,
+                drawOrder: DisplayLayer.Overlay + DisplayLayer.MenuItem,
+                text: "FPS:",
+                inputText: ""
+                );
 
             OnEdgeCountChanged (null);
         }
@@ -139,6 +147,8 @@ namespace Knot3.VisualTests
             }
             settingsMenu.Clear ();
             settingsMenu.Add (itemEdgeCount);
+            settingsMenu.Add (itemDisplayTime);
+            settingsMenu.Add (itemFPS);
             if (time != null) {
                 AddGameComponents (time, settingsMenu);
             }
@@ -173,6 +183,9 @@ namespace Knot3.VisualTests
         {
             base.Draw (time);
 
+            // FPS
+            DrawFPS (time);
+
             // World neu zeichnen
             world.Redraw = true;
 
@@ -182,6 +195,7 @@ namespace Knot3.VisualTests
 
             // und itemDisplayTime.InputText zuweisen zum darstellen
             itemDisplayTime.InputText = "blubb";
+            itemFPS.InputText = FPS.ToString();
         }
 
         public override void Update (GameTime time)
@@ -198,7 +212,34 @@ namespace Knot3.VisualTests
             // Update auf der World
             world.Update (time);
             world.SubComponents (time).OfType<ScreenComponent> ().ForEach (comp => comp.Update (time));
+
+            // FPS
+            UpdateFPS (time);
         }
+
+
+        // FPS
+        int _total_frames = 0;
+        float _elapsed_time = 0.0f;
+        int _fps = 0;
+
+        private void UpdateFPS (GameTime time)
+        {
+            _elapsed_time += (float)time.ElapsedGameTime.TotalMilliseconds;
+
+            if (_elapsed_time >= 1000.0f) {
+                _fps = (int)(_total_frames * 1000.0f / _elapsed_time);
+                _total_frames = 0;
+                _elapsed_time = 0;
+            }
+        }
+
+        private void DrawFPS (GameTime time)
+        {
+            _total_frames++;
+        }
+
+        private float FPS { get { return _fps; } }
 
         /// <summary>
         /// Fügt die 3D-Welt und den Inputhandler in die Spielkomponentenliste ein.
@@ -207,7 +248,9 @@ namespace Knot3.VisualTests
         {
             base.Entered (previousScreen, time);
             AddGameComponents (time, settingsMenu);
-            AudioManager.BackgroundMusic = Knot3Sound.CreativeMusic;
+            
+            Config.Default ["video", "camera-overlay", true] = false;
+            Config.Default ["video", "profiler-overlay", true] = false;
         }
     }
 }
