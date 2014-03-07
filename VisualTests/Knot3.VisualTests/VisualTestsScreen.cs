@@ -78,6 +78,7 @@ namespace Knot3.VisualTests
         private FloatOption optionEdgeCount;
         private DropDownMenuItem itemEdgeCount;
         private Menu settingsMenu;
+        private InputItem itemDisplayTime;
 
         private int EdgeCount { get { return (int)optionEdgeCount.Value; } }
 
@@ -116,10 +117,17 @@ namespace Knot3.VisualTests
             itemEdgeCount = new DropDownMenuItem (
                 screen: this,
                 drawOrder: DisplayLayer.Overlay + DisplayLayer.MenuItem,
-                text: "Edges"
+                text: "Edges:"
             );
             itemEdgeCount.AddEntries (optionEdgeCount);
             itemEdgeCount.ValueChanged += OnEdgeCountChanged;
+
+            itemDisplayTime = new InputItem (
+                screen: this,
+                drawOrder: DisplayLayer.Overlay + DisplayLayer.MenuItem,
+                text: "Time:",
+                inputText: ""
+            );
 
             OnEdgeCountChanged (null);
         }
@@ -146,15 +154,33 @@ namespace Knot3.VisualTests
 
         private Angles3 rotation = Angles3.Zero;
 
+        public override void Draw (GameTime time)
+        {
+            base.Draw (time);
+
+            // Hier könnte man die Zeit von world.Draw () messen
+            world.Draw (time);
+
+            // und itemDisplayTime.InputText zuweisen zum darstellen
+            itemDisplayTime.InputText = "blubb";
+        }
+
         public override void Update (GameTime time)
         {
-            world.Camera.Target = Vector3.Zero;
+            base.Update (time);
+
+            // Kamera
             rotation.X += 0.005f;
             rotation.Y += 0.001f;
             rotation.Z += 0.0005f;
+            world.Camera.Target = Vector3.Zero;
             world.Camera.Position = (Vector3.Backward * Node.Scale * EdgeCount / 5)
                                     .RotateX (rotation.X).RotateY (rotation.Y).RotateZ (rotation.Z);
+
+            // World neu zeichnen
             world.Redraw = true;
+
+            world.Update (time);
         }
 
         /// <summary>
@@ -163,7 +189,7 @@ namespace Knot3.VisualTests
         public override void Entered (IScreen previousScreen, GameTime time)
         {
             base.Entered (previousScreen, time);
-            AddGameComponents (time, world, settingsMenu);
+            AddGameComponents (time, settingsMenu);
             AudioManager.BackgroundMusic = Knot3Sound.CreativeMusic;
         }
     }
