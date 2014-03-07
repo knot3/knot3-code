@@ -38,10 +38,11 @@ using Knot3.Framework.Utilities;
 namespace Knot3.Framework
 {
     public abstract class TypesafeEnum<T> : IEquatable<T>, IEquatable<TypesafeEnum<T>>
+        where T : class
     {
-        private static Dictionary<string, ISet<string>> _values = new Dictionary<string, ISet<string>> ();
+        private static Dictionary<string, ISet<TypesafeEnum<T>>> _values = new Dictionary<string, ISet<TypesafeEnum<T>>> ();
 
-        public static string[] Values { get { return _values [Typename].ToArray (); } }
+        public static T[] Values { get { return _values [Typename].Select(value => value as T).ToArray (); } }
 
         private static string Typename { get { return typeof (T).ToString (); } }
 
@@ -50,7 +51,7 @@ namespace Knot3.Framework
         public TypesafeEnum (string name)
         {
             Name = name;
-            _values.Add (Typename, name);
+            _values.Add (Typename, this);
         }
 
         [ExcludeFromCodeCoverageAttribute]

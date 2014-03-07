@@ -38,11 +38,6 @@ namespace Knot3.Framework.Audio
     public class Sound : TypesafeEnum<Sound>
     {
         /// <summary>
-        /// Gibt alle Sound-Werte zurück.
-        /// </summary>
-        public static Sound[] Values { get { return TypesafeEnum<Sound>.Values.Select (name => new Sound (name)).ToArray (); } }
-
-        /// <summary>
         /// Kein Sound.
         /// </summary>
         public static readonly Sound None = new Sound ("None");

@@ -40,11 +40,6 @@ namespace Knot3.Framework.Input
     /// </summary>
     public class PlayerAction : TypesafeEnum<PlayerAction>
     {
-        /// <summary>
-        /// Gibt alle PlayerAction-Werte zurück.
-        /// </summary>
-        public static PlayerAction[] Values { get { return TypesafeEnum<PlayerAction>.Values.Select (name => new PlayerAction (name)).ToArray (); } }
-
         public PlayerAction (string name)
         : base (name)
         {
