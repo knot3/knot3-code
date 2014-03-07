@@ -79,6 +79,8 @@ namespace Knot3.VisualTests
         private DropDownMenuItem itemEdgeCount;
         private Menu settingsMenu;
 
+        private int EdgeCount { get { return (int)optionEdgeCount.Value; } }
+
         /// <summary>
         /// Erzeugt eine neue Instanz eines CreativeModeScreen-Objekts und initialisiert diese mit einem Knot3Game-Objekt game, sowie einem Knoten knot.
         /// </summary>
@@ -114,7 +116,7 @@ namespace Knot3.VisualTests
             itemEdgeCount = new DropDownMenuItem (
                 screen: this,
                 drawOrder: DisplayLayer.Overlay + DisplayLayer.MenuItem,
-                text: "Junctions #"
+                text: "Edges"
             );
             itemEdgeCount.AddEntries (optionEdgeCount);
             itemEdgeCount.ValueChanged += OnEdgeCountChanged;
@@ -140,17 +142,18 @@ namespace Knot3.VisualTests
         {
             Knot knot = KnotGenerator.generateSquareKnot (EdgeCount, "VisualTest-Knot");
             knotRenderer.Knot = knot;
-
-            world.Camera.PositionToTargetDistance = 100 * EdgeCount;
         }
 
-        private int EdgeCount { get { return (int)optionEdgeCount.Value; } }
+        private Angles3 rotation = Angles3.Zero;
 
         public override void Update (GameTime time)
         {
-            world.Camera.Rotation.X += 0.01f;
-            world.Camera.Rotation.Y += 0.005f;
-            world.Camera.Rotation.Z += 0.002f;
+            world.Camera.Target = Vector3.Zero;
+            rotation.X += 0.005f;
+            rotation.Y += 0.001f;
+            rotation.Z += 0.0005f;
+            world.Camera.Position = (Vector3.Backward * Node.Scale * EdgeCount / 5)
+                .RotateX (rotation.X).RotateY (rotation.Y).RotateZ (rotation.Z);
             world.Redraw = true;
         }
 
