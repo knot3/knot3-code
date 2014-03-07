@@ -45,24 +45,24 @@ namespace Knot3.UnitTests.Data
     public class KnotFileIO_Tests
     {
         [Test]
-        public void KnotStringIO_Test ()
+        public void KnotFileO_Test ()
         {
-            KnotStringIO knotStringIO = new KnotStringIO (KnotGenerator.generateSquareKnot (10, KnotGenerator.FakeName));
-            KnotStringIO other = new KnotStringIO (knotStringIO.Content);
+            Random random = new Random ();
+            String randomname = random.Next (100000).ToString ();
 
-            Assert.AreEqual (knotStringIO.Content, other.Content, "Content equal");
-            KnotStringIO invalidContent = null;
+            Knot testKnot = KnotGenerator.coloredKnot (randomname);
 
-            invalidContent = new KnotStringIO ("Name \n" + "Invalid Line \n");
-            Assert.Catch<IOException> (() => {
-                // damit der Compiler den Aufruf der Decode...-Methoden nicht wegoptimiert,
-                // muss man zurück zum Konstruktur noch das eigentlich dort abgespeicherte
-                // Attribut Edges abrufen (das ist ein Iterator mit lazy evaluation)
-                // und das dann in eine Liste umwandeln
-                Console.WriteLine (invalidContent.Edges.ToList ());
-            }
-                                      );
-            Assert.AreEqual (knotStringIO.Content, other.Content, "Contetnt equal");
+            KnotFileIO fileIO = new KnotFileIO ();
+            fileIO.Save (testKnot);
+
+            Assert.IsTrue (testKnot.Equals (fileIO.Load (testKnot.MetaData.Filename)));
+            Assert.IsTrue (testKnot.MetaData.Equals (fileIO.LoadMetaData (testKnot.MetaData.Filename)));
+
+            //Sollte nun im Cache sein
+            Assert.IsTrue (testKnot.Equals (fileIO.Load (testKnot.MetaData.Filename)));
+            Assert.Catch (() => {
+                fileIO.Save (KnotGenerator.noMetadataKnot ("test"));
+            });
         }
         [Test]
         public void KnotFileLoad_Test()
