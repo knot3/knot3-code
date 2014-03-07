@@ -32,13 +32,13 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Windows.Forms;
 
 using Knot3.Framework.Core;
 using Knot3.Framework.Development;
 using Knot3.Framework.Input;
 using Knot3.Framework.Platform;
 using Knot3.Framework.Utilities;
-using System.Windows.Forms;
 
 namespace Knot3.VisualTests
 {
@@ -58,8 +58,6 @@ namespace Knot3.VisualTests
             Log.Message ("Knot" + Char.ConvertFromUtf32 ('\u00B3').ToString () + " " + Version);
             Log.Message ("Visual Tests");
 
-
-
             try {
                 GameLoop ();
             }
@@ -78,7 +76,6 @@ namespace Knot3.VisualTests
                     }
                 }
             }
-
         }
 
         private static void GameLoop ()
