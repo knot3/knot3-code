@@ -57,6 +57,10 @@
       <Project>{C19C58CE-8C63-4F7F-A38C-D8B204AA21F2}</Project>
       <Name>Knot3.UnitTests-MG</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Framework\Knot3.Framework-MG.csproj">
+      <Project>{C2868E88-721C-40EB-863B-E9272F95DAF1}</Project>
+      <Name>Knot3.Framework-MG</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
