@@ -33,6 +33,7 @@ using System.Diagnostics.CodeAnalysis;
 using NUnit.Framework;
 
 using Knot3.Framework.Audio;
+using Knot3.Framework.Platform;
 
 using Knot3.Game.Audio;
 
@@ -43,22 +44,32 @@ namespace Knot3.UnitTests.Audio
     [TestFixture]
     public class Audio_Tests
     {
+        AudioManager audio;
+
         [SetUp]
         public void Audio_Setup ()
         {
-            AudioManager audio = new Knot3AudioManager (game: null);
+            audio = new Knot3AudioManager (game: null);
             audio.Reset ();
             audio.Initialize (TestHelper.TestResourcesDirectory);
         }
 
         [Test]
-        public void Audio_Volume_Tests ()
+        public void Audio_Initialize_Test ()
+        {
+            Log.Debug ("Initialize AudioManager: directory=", TestHelper.TestResourcesDirectory);
+            audio.Reset ();
+            audio.Initialize (TestHelper.TestResourcesDirectory);
+        }
+
+        [Test]
+        public void Audio_Volume_Test ()
         {
             AudioManager.SetVolume (Knot3Sound.PipeMoveSound, 1f);
         }
 
         [Test]
-        public void Audio_Load_Tests ()
+        public void Audio_Load_Test ()
         {
             string[] filenames = new string[] { "sound1.ogg", "invalid.ogg" };
             foreach (string filename in filenames) {
@@ -66,8 +77,22 @@ namespace Knot3.UnitTests.Audio
         }
 
         [Test]
-        public void Audio_LoopPlaylist_Tests ()
+        public void Audio_LoopPlaylist_Test ()
         {
+            audio.Update (null);
+            audio.BackgroundMusic = Knot3Sound.MenuMusic;
+            audio.Update (null);
+            audio.Update (null);
+            audio.Update (null);
+            audio.BackgroundMusic = Knot3Sound.ChallengeMusic;
+            audio.Update (null);
+            audio.Update (null);
+            audio.Update (null);
+            audio.BackgroundMusic = Knot3Sound.CreativeMusic;
+            audio.Update (null);
+
+            audio.PlaySound (Knot3Sound.PipeMoveSound);
+            audio.PlaySound (Knot3Sound.PipeInvalidMoveSound);
         }
     }
 }

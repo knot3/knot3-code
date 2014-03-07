@@ -40,6 +40,7 @@ namespace Knot3.Framework.Audio
     /// <summary>
     /// Ein Wrapper um die SoundEffect-Klasse des XNA-Frameworks.
     /// </summary>
+    [ExcludeFromCodeCoverageAttribute]
     public class SoundEffectFile : IAudioFile
     {
         /// <summary>

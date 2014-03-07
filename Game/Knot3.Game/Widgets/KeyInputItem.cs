@@ -92,12 +92,9 @@ namespace Knot3.Game.Widgets
         {
             if (keys.Count > 0) {
                 Keys key = keys [0];
-                if (KnotInputHandler.CurrentKeyAssignment.Count == 0) {
-                    KnotInputHandler.ReadKeyAssignments ();
-                }
                 Log.Debug ("Trying to assign key: ", key);
-                if (KnotInputHandler.CurrentKeyAssignment.ContainsKey (key) && option.Value != key) {
-                    Log.Debug ("Key ", key, " is already assigned to: ", KnotInputHandler.CurrentKeyAssignment [key]);
+                if (KeyBindingListener.ContainsKey (key) && option.Value != key) {
+                    Log.Debug ("Key ", key, " is already assigned to: ", KeyBindingListener.LookupAction (key));
                 }
                 else {
                     Log.Debug ("Key ", key, " => ", option.Name);

@@ -32,6 +32,8 @@ using System.Diagnostics.CodeAnalysis;
 
 using NUnit.Framework;
 
+using Knot3.Game.Utilities;
+
 namespace Knot3.UnitTests.Utilities
 {
     /// <summary>
@@ -40,14 +42,30 @@ namespace Knot3.UnitTests.Utilities
     [TestFixture]
     public class FileIndex_Tests
     {
+        private string teststring1;
+        private string teststring2;
+        private string testfilename;
         [SetUp]
         public void Init ()
         {
+            teststring1 = "hallo";
+            teststring2 = "tschüss";
+            testfilename = "Test";
         }
 
         [Test]
         public void Test ()
         {
+            FileIndex index1 = new FileIndex (testfilename);
+            index1.Add (teststring1);
+            index1.Add (teststring2);
+            Assert.IsTrue (index1.Contains (teststring1), "contains teststring1");
+            Assert.IsTrue (index1.Contains (teststring2), "contains teststring2");
+            index1.Remove (teststring2);
+            Assert.IsTrue (index1.Contains (teststring1), "still contains teststring1");
+            Assert.IsFalse (index1.Contains (teststring2), "not containing teststring2 anymore");
+            FileIndex index2 = new FileIndex (testfilename);
+            Assert.IsTrue (index2.Contains (teststring1), "index loads right file");
         }
     }
 }

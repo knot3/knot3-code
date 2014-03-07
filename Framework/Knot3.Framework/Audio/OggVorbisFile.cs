@@ -89,6 +89,7 @@ namespace Knot3.Framework.Audio
             }
         }
 
+        [ExcludeFromCodeCoverageAttribute]
         public void Play ()
         {
             internalFile.Play ();

@@ -195,7 +195,7 @@ namespace Knot3.Game.Screens
             onClick: (time) => {
                 // erstelle einen neuen Pausedialog
                 knotInput.IsEnabled = false;
-                Dialog pauseDialog = new CreativePauseDialog (screen: this, drawOrder: DisplayLayer.Dialog, knot: knot);
+                Dialog pauseDialog = new CreativePauseDialog (screen: this, drawOrder: DisplayLayer.Dialog, knot: Knot);
                 // füge ihn in die Spielkomponentenliste hinzu
                 pauseDialog.Close += (t) => knotInput.IsEnabled = true;
                 AddGameComponents (time, pauseDialog);

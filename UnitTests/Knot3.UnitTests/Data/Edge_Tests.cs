@@ -71,14 +71,14 @@ namespace Knot3.UnitTests.Data
             Assert.False (Edge.Zero.Equals ((object)Color.LemonChiffon));
             Assert.False (Edge.Zero.Equals ((object)Direction.Down));
             Assert.False (Edge.Zero.Equals ((object)Direction.Down.Vector));
-            Assert.False (Edge.Zero.Equals ((object)Direction.Down.Description));
+            Assert.False (Edge.Zero.Equals ((object)Direction.Down.Name));
 
             Assert.False (Direction.Zero.Equals ((object)null));
             Assert.False (Direction.Zero.Equals ((object)0f));
             Assert.False (Direction.Zero.Equals ((object)new Quaternion (0, 0, 0, 0)));
             Assert.False (Direction.Zero.Equals ((object)Direction.Down));
             Assert.False (Direction.Zero.Equals ((object)Direction.Down.Vector));
-            Assert.False (Direction.Zero.Equals ((object)Direction.Down.Description));
+            Assert.False (Direction.Zero.Equals ((object)Direction.Down.Name));
             Assert.False (Direction.Zero.Equals ((object)""));
         }
 

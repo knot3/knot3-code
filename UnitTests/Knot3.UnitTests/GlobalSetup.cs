@@ -46,19 +46,31 @@ namespace Knot3.UnitTests
         {
             Log.Message ("Start Unit Tests...");
 
-            Directory.Delete (TestHelper.TempDirectory, true);
-            Directory.CreateDirectory (TestHelper.TempDirectory);
+            TestHelper.TestResourcesDirectory = SystemInfo.RelativeBaseDirectory + "Resources" + SystemInfo.PathSeparator;
+            Directory.Delete (TempDirectory, true);
+            Directory.CreateDirectory (TempDirectory);
 
             // Temporäre Verzeichnisse nur für die Tests zuweisen!
-            SystemInfo.RelativeBaseDirectory = TestHelper.TempDirectory;
-            SystemInfo.SettingsDirectory = TestHelper.TempDirectory;
-            Config.Default = new ConfigFile (TestHelper.TempDirectory + "knot3.ini");
+            SystemInfo.RelativeBaseDirectory = TempDirectory;
+            SystemInfo.SettingsDirectory = TempDirectory;
+            SystemInfo.DecodedMusicCache = TempDirectory;
+            Config.Default = new ConfigFile (TempDirectory + "knot3.ini");
         }
 
         [TearDown]
         public void RunAfterAnyTests ()
         {
             Log.Message ("Stop Unit Tests...");
+        }
+
+        public static string TempDirectory
+        {
+            get {
+                string directory;
+                directory = "tmp" + SystemInfo.PathSeparator;
+                Directory.CreateDirectory (directory);
+                return directory;
+            }
         }
     }
 }

@@ -28,23 +28,23 @@
  * See the LICENSE file for full license details of the Knot3 project.
  */
 
+using System;
 using System.Diagnostics.CodeAnalysis;
 
-using Microsoft.Xna.Framework;
+using Knot3.Framework.Core;
 
 namespace Knot3.Game.Data
 {
-    [ExcludeFromCodeCoverageAttribute]
-    public static class DirectionHelper
+    public class Axis : TypesafeEnum<Axis>
     {
-        public static Direction ToDirection (this Vector3 vector)
+        public static readonly Axis X = new Axis ("X");
+        public static readonly Axis Y = new Axis ("Y");
+        public static readonly Axis Z = new Axis ("Z");
+        public static readonly Axis Zero = new Axis ("Zero");
+
+        private Axis (string name)
+        : base (name)
         {
-            foreach (Direction direction in Direction.Values) {
-                if (direction.Vector == vector) {
-                    return direction;
-                }
-            }
-            return Direction.Zero;
         }
     }
 }

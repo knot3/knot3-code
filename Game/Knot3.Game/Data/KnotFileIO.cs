@@ -63,6 +63,12 @@ namespace Knot3.Game.Data
         {
         }
 
+        public void ResetCache ()
+        {
+            KnotCache.Clear ();
+            KnotMetaDataCache.Clear ();
+        }
+
         /// <summary>
         /// Speichert einen Knoten in dem Dateinamen, der in dem Knot-Objekt enthalten ist.
         /// </summary>

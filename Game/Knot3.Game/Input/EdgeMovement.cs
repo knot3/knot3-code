@@ -140,11 +140,11 @@ namespace Knot3.Game.Input
                         Log.Debug ("knot.Count () = ", Knot.Count ());
 
                         // Ctrl gedrückt
-                        if (Screen.InputManager.KeyHeldDown (KnotInputHandler.CurrentKeyAssignmentReversed [PlayerActions.AddToEdgeSelection])) {
+                        if (Screen.InputManager.KeyHeldDown (KnotInputHandler.LookupKey (Knot3PlayerAction.AddToEdgeSelection))) {
                             Knot.AddToSelection (selectedEdge);
                         }
                         // Shift gedrückt
-                        else if (Screen.InputManager.KeyHeldDown (KnotInputHandler.CurrentKeyAssignmentReversed [PlayerActions.AddRangeToEdgeSelection])) {
+                        else if (Screen.InputManager.KeyHeldDown (KnotInputHandler.LookupKey (Knot3PlayerAction.AddRangeToEdgeSelection))) {
                             Knot.AddRangeToSelection (selectedEdge);
                         }
                         // keine Taste gedrückt

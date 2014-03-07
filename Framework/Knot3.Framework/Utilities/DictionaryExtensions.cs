@@ -38,10 +38,19 @@ namespace Knot3.Framework.Utilities
     {
         public static void Add<KeyType, ListType, ValueType> (this Dictionary<KeyType, ListType> dict,
                 KeyType key, ValueType value)
-        where ListType : IList<ValueType>, new ()
+        where ListType : IList<ValueType> , new ()
         {
             if (!dict.ContainsKey (key)) {
                 dict.Add (key, new ListType ());
+            }
+            dict [key].Add (value);
+        }
+
+        public static void Add<KeyType, ValueType> (this Dictionary<KeyType, ISet<ValueType>> dict,
+                KeyType key, ValueType value)
+        {
+            if (!dict.ContainsKey (key)) {
+                dict.Add (key, new HashSet<ValueType> ());
             }
             dict [key].Add (value);
         }

@@ -56,7 +56,7 @@ namespace Knot3.Game.Input
 
         public override void Update (GameTime time)
         {
-            Keys key = KnotInputHandler.CurrentKeyAssignmentReversed [PlayerActions.EdgeColoring];
+            Keys key = KnotInputHandler.LookupKey (Knot3PlayerAction.EdgeColoring);
             // Soll sich die Farbe geändert wurde?
             if (Knot.SelectedEdges.Any () && Screen.InputManager.KeyPressed (key)) {
                 Color currentColor = Knot.SelectedEdges.ElementAt (0);

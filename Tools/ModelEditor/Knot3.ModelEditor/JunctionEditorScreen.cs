@@ -154,7 +154,7 @@ namespace Knot3.ModelEditor
                     section: "debug",
                     name: "debug_junction_direction" + i.ToString (),
                     defaultValue: validDirections [i * 2],
-                    validValues: validDirections.Select (d => d.Description),
+                    validValues: validDirections.Select (d => d.Name),
                     configFile: Config.Default
                 );
                 DropDownMenuItem item = new DropDownMenuItem (

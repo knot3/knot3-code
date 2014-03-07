@@ -136,7 +136,8 @@ namespace Knot3.Framework.Storage
         public static string ToUnicode (string text)
         {
             return text.Replace ("&auml;", "\u00E4").Replace ("&ouml;", "\u00F6").Replace ("&uuml;", "\u00FC")
-                   .Replace ("&Auml;", "\u00C4").Replace ("&Ouml;", "\u00D6").Replace ("&Uuml;", "\u00DC");
+                   .Replace ("&Auml;", "\u00C4").Replace ("&Ouml;", "\u00D6").Replace ("&Uuml;", "\u00DC")
+                   .Replace ("&szlig;", "\u00DF");
         }
     }
 }
