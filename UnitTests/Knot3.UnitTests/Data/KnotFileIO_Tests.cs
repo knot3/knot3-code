@@ -56,6 +56,7 @@ namespace Knot3.UnitTests.Data
             fileIO.Save (testKnot);
 
             Assert.IsTrue (testKnot.Equals (fileIO.Load (testKnot.MetaData.Filename)));
+            Assert.IsTrue(testKnot.MetaData.Equals(fileIO.LoadMetaData(testKnot.MetaData.Filename)));
         }
     }
 }
