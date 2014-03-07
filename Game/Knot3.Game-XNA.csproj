@@ -152,6 +152,7 @@
     <Compile Include="Knot3.Game\Input\EdgeColoring.cs" />
     <Compile Include="Knot3.Game\Input\EdgeMovement.cs" />
     <Compile Include="Knot3.Game\Input\EdgeRectangles.cs" />
+    <Compile Include="Knot3.Game\Input\Knot3PlayerAction.cs" />
     <Compile Include="Knot3.Game\Input\KnotInputHandler.cs" />
     <Compile Include="Knot3.Game\Models\Arrow.cs" />
     <Compile Include="Knot3.Game\Models\ArrowModel.cs" />

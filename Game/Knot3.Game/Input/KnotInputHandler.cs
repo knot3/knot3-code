@@ -27,12 +27,15 @@
  * 
  * See the LICENSE file for full license details of the Knot3 project.
  */
+
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+
 using Knot3.Framework.Core;
 using Knot3.Framework.Development;
 using Knot3.Framework.Input;
@@ -41,6 +44,7 @@ using Knot3.Framework.Models;
 using Knot3.Framework.Platform;
 using Knot3.Framework.Storage;
 using Knot3.Framework.Utilities;
+
 using Knot3.Game.Data;
 using Knot3.Game.Screens;
 
@@ -415,7 +419,7 @@ namespace Knot3.Game.Input
                 Vector3 targetDirection = camera.PositionToTargetDirection;
                 Vector3 up = camera.UpVector;
                 camera.Position = camera.Target
-                    + (camera.Position - camera.Target).ArcBallMove (move, up, targetDirection);
+                                  + (camera.Position - camera.Target).ArcBallMove (move, up, targetDirection);
                 camera.Position = camera.Position.SetDistanceTo (camera.Target, oldDistance);
             }
         }

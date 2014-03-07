@@ -115,7 +115,7 @@ namespace Knot3.Framework.Input
         /// Zeigt an, ob die Klasse modal ist.
         /// </summary>
         public override bool IsModal { get { return false; } }
-        
+
         /// <summary>
         /// Der statische Initialisierer legt die Standard-Tastenbelegung fest.
         /// </summary>

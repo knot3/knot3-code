@@ -48,7 +48,7 @@ namespace Knot3.Framework.Audio
         public static readonly Sound None = new Sound ("None");
 
         public Sound (string name)
-            : base (name)
+        : base (name)
         {
         }
     }

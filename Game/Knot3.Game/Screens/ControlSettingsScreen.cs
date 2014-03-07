@@ -31,6 +31,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Runtime.CompilerServices;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
@@ -38,14 +39,13 @@ using Microsoft.Xna.Framework.Input;
 using Knot3.Framework.Core;
 using Knot3.Framework.Input;
 using Knot3.Framework.Math;
+using Knot3.Framework.Platform;
 using Knot3.Framework.Storage;
 using Knot3.Framework.Utilities;
 using Knot3.Framework.Widgets;
 
 using Knot3.Game.Input;
 using Knot3.Game.Widgets;
-using Knot3.Framework.Platform;
-using System.Runtime.CompilerServices;
 
 namespace Knot3.Game.Screens
 {
@@ -85,7 +85,7 @@ namespace Knot3.Game.Screens
             settingsMenu.Add (moveToCenter);
 
             // Make sure that the static initializers for the key binding listeners are called!!
-            KeyBindingListener.InitializeListeners (typeof(InputManager), typeof(KnotInputHandler));
+            KeyBindingListener.InitializeListeners (typeof (InputManager), typeof (KnotInputHandler));
 
             // Lade die Standardbelegung
             Dictionary<PlayerAction, Keys> defaultReversed = KeyBindingListener.DefaultKeyAssignment.ReverseDictionary ();

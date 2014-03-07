@@ -64,6 +64,7 @@
     <Compile Include="Knot3.Framework\Core\IScreenComponent.cs" />
     <Compile Include="Knot3.Framework\Core\Screen.cs" />
     <Compile Include="Knot3.Framework\Core\ScreenComponent.cs" />
+    <Compile Include="Knot3.Framework\Core\TypesafeEnum.cs" />
     <Compile Include="Knot3.Framework\Core\World.cs" />
     <Compile Include="Knot3.Framework\Development\DebugBoundings.cs" />
     <Compile Include="Knot3.Framework\Development\Profiler.cs" />
@@ -80,8 +81,10 @@
     <Compile Include="Knot3.Framework\Input\IMouseScrollEventListener.cs" />
     <Compile Include="Knot3.Framework\Input\InputAction.cs" />
     <Compile Include="Knot3.Framework\Input\InputManager.cs" />
+    <Compile Include="Knot3.Framework\Input\KeyBindingListener.cs" />
     <Compile Include="Knot3.Framework\Input\KeyEvent.cs" />
     <Compile Include="Knot3.Framework\Input\MousePointer.cs" />
+    <Compile Include="Knot3.Framework\Input\PlayerAction.cs" />
     <Compile Include="Knot3.Framework\Input\WidgetKeyHandler.cs" />
     <Compile Include="Knot3.Framework\Input\WidgetMouseHandler.cs" />
     <Compile Include="Knot3.Framework\Math\Angles3.cs" />
@@ -142,9 +145,6 @@
     <Compile Include="Knot3.Framework\Widgets\VerticalAlignment.cs" />
     <Compile Include="Knot3.Framework\Widgets\Widget.cs" />
     <Compile Include="Knot3.Framework\Widgets\WidgetState.cs" />
-    <Compile Include="Knot3.Framework\Core\TypesafeEnum.cs" />
-    <Compile Include="Knot3.Framework\Input\PlayerAction.cs" />
-    <Compile Include="Knot3.Framework\Input\KeyBindingListener.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
