@@ -101,17 +101,27 @@ namespace Knot3.Framework.Platform
         public static string DecodedMusicCache
         {
             get {
-                string directory;
-                if (SystemInfo.IsRunningOnLinux ()) {
-                    directory = "/var/tmp/knot3/";
+                if (decodedMusicCache != null) {
+                    return decodedMusicCache;
                 }
                 else {
-                    directory = Environment.GetFolderPath (System.Environment.SpecialFolder.MyMusic) + "\\Knot3\\";
+                    string directory;
+                    if (SystemInfo.IsRunningOnLinux ()) {
+                        directory = "/var/tmp/knot3/";
+                    }
+                    else {
+                        directory = Environment.GetFolderPath (System.Environment.SpecialFolder.MyMusic) + "\\Knot3\\";
+                    }
+                    Directory.CreateDirectory (directory);
+                    return decodedMusicCache = directory;
                 }
-                Directory.CreateDirectory (directory);
-                return directory;
+            }
+            set {
+                decodedMusicCache = value;
             }
         }
+
+        private static string decodedMusicCache = null;
 
         [ExcludeFromCodeCoverageAttribute]
         public static string BaseDirectory

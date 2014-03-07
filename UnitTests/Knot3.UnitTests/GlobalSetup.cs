@@ -53,6 +53,7 @@ namespace Knot3.UnitTests
             // Temporäre Verzeichnisse nur für die Tests zuweisen!
             SystemInfo.RelativeBaseDirectory = TempDirectory;
             SystemInfo.SettingsDirectory = TempDirectory;
+            SystemInfo.DecodedMusicCache = TempDirectory;
             Config.Default = new ConfigFile (TempDirectory + "knot3.ini");
         }
 
