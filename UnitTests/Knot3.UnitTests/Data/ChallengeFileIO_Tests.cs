@@ -29,8 +29,12 @@
  */
 
 using System.Diagnostics.CodeAnalysis;
+using System.IO;
 
 using NUnit.Framework;
+
+using Knot3.Game.Data;
+
 
 namespace Knot3.UnitTests.Data
 {
@@ -40,14 +44,35 @@ namespace Knot3.UnitTests.Data
     [TestFixture]
     public class ChallengeFileIO_Tests
     {
-        [SetUp]
-        public void Init ()
+        private string filename;
+
+        [TearDown]
+        public void TearDown()
         {
+            File.Delete(filename);
+        }
+
+        [SetUp]
+        public void Init()
+        {
+            filename = TestHelper.RandomFilename("challenge");
+            File.Copy(TestHelper.TestResourcesDirectory + "TestChallenge.challenge", filename);
         }
 
         [Test]
-        public void Test ()
+        public void ChallengeFileIO_Test ()
         {
+            ChallengeFileIO fileIO = new ChallengeFileIO();
+            Assert.DoesNotThrow(() => { Challenge challenge = fileIO.Load(filename); });
+            Assert.DoesNotThrow(() => { ChallengeMetaData meta = fileIO.LoadMetaData(filename); });
+            Assert.Throws<FileNotFoundException>(() => { Challenge challenge = fileIO.Load(TestHelper.TestResourcesDirectory + "DoesNotExist.challenge"); });
+            Assert.Throws<InvalidDataException>(() => { Challenge challenge = fileIO.Load(TestHelper.TestResourcesDirectory + "invalid.challenge"); });
+            Challenge tempChallenge = fileIO.Load(filename);
+            File.Delete(filename);
+            tempChallenge.Save();
+            Challenge tempChallenge2 = fileIO.Load(filename);
+            Assert.AreEqual(tempChallenge.MetaData, tempChallenge2.MetaData);
+            
         }
     }
 }

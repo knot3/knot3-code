@@ -29,6 +29,7 @@
  */
 
 using System.Diagnostics.CodeAnalysis;
+using System.IO;
 
 using NUnit.Framework;
 
@@ -40,6 +41,21 @@ namespace Knot3.UnitTests.Data
     [TestFixture]
     public class Challenge_Tests
     {
+        private string filename;
+
+        [TearDown]
+        public void TearDown()
+        {
+            File.Delete(filename);
+        }
+
+        [SetUp]
+        public void Init()
+        {
+            filename = TestHelper.RandomFilename("challenge");
+            File.Copy(TestHelper.TestResourcesDirectory + "TestChallenge.challenge", filename);
+        }
+
         [Test]
         public void Challenge_Constructor_Tests ()
         {
