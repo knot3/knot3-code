@@ -42,7 +42,7 @@ namespace Knot3.Framework
     {
         private static Dictionary<string, ISet<TypesafeEnum<T>>> _values = new Dictionary<string, ISet<TypesafeEnum<T>>> ();
 
-        public static T[] Values { get { return _values [Typename].Select(value => value as T).ToArray (); } }
+        public static T[] Values { get { return _values [Typename].Select (value => value as T).ToArray (); } }
 
         private static string Typename { get { return typeof (T).ToString (); } }
 
