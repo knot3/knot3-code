@@ -175,20 +175,20 @@ namespace Knot3.Framework.Input
         {
             // Tasten
             ValidKeys = new List<Keys> ();
-            OnControlSettingsChanged ();
+            UpdateKeyBindings ();
         }
 
         /// <summary>
         /// Wird ausgeführt, sobald ein KeyBindingListener erstellt wird und danach,
         /// wenn sich die Tastenbelegung geändert hat.
         /// </summary>
-        protected void OnControlSettingsChanged ()
+        protected void UpdateKeyBindings ()
         {
             ReadKeyAssignments ();
 
             // Aktualisiere die Liste von Tasten, zu denen wir als IKeyEventListener benachrichtigt werden
             ValidKeys.Clear ();
-            ValidKeys.AddRange (CurrentKeyAssignment.Keys.AsEnumerable ());
+            ValidKeys.AddRange (from binding in ActionBindings.Keys select CurrentKeyAssignmentReversed[binding]);
         }
 
         public virtual void OnKeyEvent (List<Keys> keys, KeyEvent keyEvent, GameTime time)

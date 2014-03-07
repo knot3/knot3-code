@@ -137,6 +137,7 @@ namespace Knot3.Framework.Input
 
             // Lege die Bedeutungen der Aktionen fest
             ActionBindings [PlayerAction.ToggleFullscreen] = (time) => toggleFullscreen (time);
+            UpdateKeyBindings ();
         }
 
         /// <summary>

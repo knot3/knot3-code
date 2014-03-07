@@ -136,7 +136,7 @@ namespace Knot3.Game.Input
             ResetMousePosition ();
 
             // Tasten
-            ControlSettingsScreen.ControlSettingsChanged += OnControlSettingsChanged;
+            ControlSettingsScreen.ControlSettingsChanged += UpdateKeyBindings;
 
             // Lege die Bedeutungen der Aktionen fest
             ActionBindings [Knot3PlayerAction.MoveUp] = (time) => MoveCameraAndTarget (Vector3.Up, time);
@@ -154,12 +154,7 @@ namespace Knot3.Game.Input
             ActionBindings [Knot3PlayerAction.ResetCamera] = (time) => resetCamera (time);
             ActionBindings [Knot3PlayerAction.MoveToCenter] = (time) => moveToCenter (time);
             ActionBindings [Knot3PlayerAction.ToggleMouseLock] = (time) => toggleMouseLock (time);
-
-            foreach (PlayerAction action in PlayerAction.Values) {
-                if (!ActionBindings.ContainsKey (action)) {
-                    ActionBindings [action] = (time) => {};
-                }
-            }
+            UpdateKeyBindings ();
         }
 
         /// <summary>
