@@ -157,7 +157,7 @@ namespace Knot3.VisualTests
         public override void Draw (GameTime time)
         {
             base.Draw (time);
-            
+
             // World neu zeichnen
             world.Redraw = true;
 
