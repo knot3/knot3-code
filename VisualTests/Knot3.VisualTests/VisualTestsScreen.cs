@@ -110,6 +110,7 @@ namespace Knot3.VisualTests
                 validValues: validEdgeCounts,
                 configFile: Config.Default
             );
+            optionEdgeCount.Value = validEdgeCounts.At (1);
             itemEdgeCount = new DropDownMenuItem (
                 screen: this,
                 drawOrder: DisplayLayer.Overlay + DisplayLayer.MenuItem,
