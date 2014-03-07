@@ -81,6 +81,7 @@ namespace Knot3.Framework.Storage
         /// <summary>
         /// Erstellt ein neues OptionsInfo-Objekt aus den übergegebenen Werten.
         /// </summary>
+        [ExcludeFromCodeCoverage]
         public Option (string section, string name, string defaultValue, ConfigFile configFile)
         {
             Section = section;
