@@ -27,16 +27,19 @@
  * 
  * See the LICENSE file for full license details of the Knot3 project.
  */
+
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
+
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+
 using Knot3.Framework.Audio;
 using Knot3.Framework.Core;
 using Knot3.Framework.Development;
@@ -46,6 +49,7 @@ using Knot3.Framework.Platform;
 using Knot3.Framework.Storage;
 using Knot3.Framework.Utilities;
 using Knot3.Framework.Widgets;
+
 using Knot3.Game.Audio;
 using Knot3.Game.Core;
 using Knot3.Game.Data;
@@ -55,6 +59,7 @@ using Knot3.Game.Models;
 using Knot3.Game.Screens;
 using Knot3.Game.Utilities;
 using Knot3.Game.Widgets;
+
 using Knot3.MockObjects;
 
 namespace Knot3.VisualTests
@@ -136,7 +141,6 @@ namespace Knot3.VisualTests
             knotRenderer.Knot = knot;
 
             world.Camera.PositionToTargetDistance = 100 * EdgeCount;
-
         }
 
         private int EdgeCount { get { return (int)optionEdgeCount.Value; } }
