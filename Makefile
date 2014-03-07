@@ -35,6 +35,7 @@ build: clean
 	xbuild $(SOLUTION)
 	$(CPR) $(LIB_DIR)/*.dll.config $(CODE_DIR)/bin/Debug/
 	$(CPR) $(LIB_DIR)/*.dll.config $(TOOL_MODELEDITOR_DIR)/bin/Debug/
+	$(CPR) $(LIB_DIR)/*.dll.config $(TEST_DIR)/bin/Debug/
 
 install: build
 	$(MKDIR) $(BINDIR)
