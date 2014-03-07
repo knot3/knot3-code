@@ -65,19 +65,19 @@ namespace Knot3.UnitTests.Data
             });
         }
         [Test]
-        public void KnotFileLoad_Test()
+        public void KnotFileLoad_Test ()
         {
-            KnotFileIO fileIO = new KnotFileIO();
-            Assert.DoesNotThrow(() => { Knot knot = fileIO.Load(TestHelper.TestResourcesDirectory + "AllDir.knot"); });
-            Assert.Throws<FileNotFoundException>(() => { Knot knot = fileIO.Load(TestHelper.TestResourcesDirectory + "NotExistent.knot"); });
+            KnotFileIO fileIO = new KnotFileIO ();
+            Assert.DoesNotThrow (() => { Knot knot = fileIO.Load (TestHelper.TestResourcesDirectory + "AllDir.knot"); });
+            Assert.Throws<FileNotFoundException>(() => { Knot knot = fileIO.Load (TestHelper.TestResourcesDirectory + "NotExistent.knot"); });
         }
         [Test]
-        public void KnotFileIOContent_Test()
+        public void KnotFileIOContent_Test ()
         {
-            KnotFileIO fileIO = new KnotFileIO();
-            Knot knot = fileIO.Load(TestHelper.TestResourcesDirectory + "AllDir.knot");
-            Assert.AreEqual(knot.MetaData.Name, "AllDir");
-            Assert.AreEqual(knot.Count(), 6);
+            KnotFileIO fileIO = new KnotFileIO ();
+            Knot knot = fileIO.Load (TestHelper.TestResourcesDirectory + "AllDir.knot");
+            Assert.AreEqual (knot.MetaData.Name, "AllDir");
+            Assert.AreEqual (knot.Count (), 6);
         }
     }
 }
