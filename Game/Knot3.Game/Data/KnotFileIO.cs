@@ -27,9 +27,11 @@
  * 
  * See the LICENSE file for full license details of the Knot3 project.
  */
+
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
+
 using Knot3.Framework.Platform;
 using Knot3.Framework.Storage;
 
