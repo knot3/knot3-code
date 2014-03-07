@@ -89,7 +89,6 @@ namespace Knot3.ExtremeTests
 
         public static void LoadSquareKnot (string knotName)
         {
-            ResetCache();
             KnotFileIO knotFileIO = new KnotFileIO ();
             knot = knotFileIO.Load (knotName);
         }
