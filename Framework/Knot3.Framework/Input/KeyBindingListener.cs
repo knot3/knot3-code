@@ -45,6 +45,7 @@ using Knot3.Framework.Utilities;
 
 namespace Knot3.Framework.Input
 {
+    [ExcludeFromCodeCoverageAttribute]
     public abstract class KeyBindingListener : ScreenComponent
     {
         /// <summary>
@@ -137,7 +138,8 @@ namespace Knot3.Framework.Input
             }
         }
     }
-
+    
+    [ExcludeFromCodeCoverageAttribute]
     public abstract class KeyBindingListener<T> : KeyBindingListener, IKeyEventListener
     {
         /// <summary>

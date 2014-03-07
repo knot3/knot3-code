@@ -40,6 +40,7 @@ namespace Knot3.Framework.Input
     /// Die Aktionen, für die der Spieler die zugewiesene Taste festlegen kann.
     /// Sie können in den Controls-Einstellungen verändert werden.
     /// </summary>
+    [ExcludeFromCodeCoverageAttribute]
     public class PlayerAction : TypesafeEnum<PlayerAction>
     {
         public PlayerAction (string name)

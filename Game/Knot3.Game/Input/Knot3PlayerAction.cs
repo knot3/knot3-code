@@ -35,6 +35,7 @@ using Knot3.Framework.Input;
 
 namespace Knot3.Game.Input
 {
+    [ExcludeFromCodeCoverageAttribute]
     public static class Knot3PlayerAction
     {
         public static readonly PlayerAction MoveUp = new PlayerAction ("Move Up");
