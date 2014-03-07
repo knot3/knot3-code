@@ -45,7 +45,7 @@ namespace Knot3.UnitTests
         public void RunBeforeAnyTests ()
         {
             Log.Message ("Start Unit Tests...");
-            
+
             TestHelper.TestResourcesDirectory = SystemInfo.RelativeBaseDirectory + "Resources" + SystemInfo.PathSeparator;
             Directory.Delete (TempDirectory, true);
             Directory.CreateDirectory (TempDirectory);

@@ -33,11 +33,11 @@ using System.Diagnostics.CodeAnalysis;
 using NUnit.Framework;
 
 using Knot3.Framework.Audio;
+using Knot3.Framework.Platform;
 
 using Knot3.Game.Audio;
 
 using Knot3.MockObjects;
-using Knot3.Framework.Platform;
 
 namespace Knot3.UnitTests.Audio
 {
