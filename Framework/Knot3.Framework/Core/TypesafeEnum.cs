@@ -51,7 +51,7 @@ namespace Knot3.Framework.Core
         public TypesafeEnum (string name)
         {
             Name = name;
-            if (!string.IsNullOrWhiteSpace(name) && name != "Zero" && name != "Null" && name != "Empty") {
+            if (!string.IsNullOrWhiteSpace (name) && name != "Zero" && name != "Null" && name != "Empty") {
                 _values.Add (Typename, this);
             }
         }
@@ -112,7 +112,7 @@ namespace Knot3.Framework.Core
             }
             return null;
         }
-        
+
         [ExcludeFromCodeCoverageAttribute]
         public override int GetHashCode ()
         {

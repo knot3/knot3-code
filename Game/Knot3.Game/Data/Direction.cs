@@ -33,6 +33,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 
 using Microsoft.Xna.Framework;
+
 using Knot3.Framework.Core;
 
 namespace Knot3.Game.Data
@@ -105,7 +106,7 @@ namespace Knot3.Game.Data
         public Axis Axis { get { return AxisMap[this]; } }
 
         private Direction (Vector3 vector, string description)
-            : base (description)
+        : base (description)
         {
             Vector = vector;
         }
@@ -173,7 +174,7 @@ namespace Knot3.Game.Data
                 return Vector.Equals ((Vector3)other);
             }
             else {
-                return base.Equals(other);
+                return base.Equals (other);
             }
         }
 
