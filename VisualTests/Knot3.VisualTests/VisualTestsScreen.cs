@@ -27,19 +27,16 @@
  * 
  * See the LICENSE file for full license details of the Knot3 project.
  */
-
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
-
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-
 using Knot3.Framework.Audio;
 using Knot3.Framework.Core;
 using Knot3.Framework.Development;
@@ -49,7 +46,6 @@ using Knot3.Framework.Platform;
 using Knot3.Framework.Storage;
 using Knot3.Framework.Utilities;
 using Knot3.Framework.Widgets;
-
 using Knot3.Game.Audio;
 using Knot3.Game.Core;
 using Knot3.Game.Data;
@@ -59,7 +55,6 @@ using Knot3.Game.Models;
 using Knot3.Game.Screens;
 using Knot3.Game.Utilities;
 using Knot3.Game.Widgets;
-
 using Knot3.MockObjects;
 
 namespace Knot3.VisualTests
@@ -150,6 +145,21 @@ namespace Knot3.VisualTests
         {
             Knot knot = KnotGenerator.generateSquareKnot (EdgeCount, "VisualTest-Knot");
             knotRenderer.Knot = knot;
+            
+            world.Camera.Target = KnotCenter(knot);
+        }
+
+        private Vector3 KnotCenter (Knot knot)
+        {
+            NodeMap nodeMap = new NodeMap ();
+            nodeMap.Edges = knot;
+            nodeMap.OnEdgesChanged ();
+            Vector3 center = Vector3.Zero;
+            foreach (Edge edge in knot) {
+                center += nodeMap.NodeBeforeEdge (edge);
+            }
+            center /= knot.Count();
+            return center;
         }
 
         private Angles3 rotation = Angles3.Zero;
@@ -177,7 +187,6 @@ namespace Knot3.VisualTests
             rotation.X += 0.005f;
             rotation.Y += 0.001f;
             rotation.Z += 0.0005f;
-            world.Camera.Target = Vector3.Zero;
             world.Camera.Position = (Vector3.Backward * Node.Scale * EdgeCount / 5)
                                     .RotateX (rotation.X).RotateY (rotation.Y).RotateZ (rotation.Z);
 
