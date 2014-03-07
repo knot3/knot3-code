@@ -44,16 +44,16 @@ namespace Knot3.UnitTests.Data
         private string filename;
 
         [TearDown]
-        public void TearDown()
+        public void TearDown ()
         {
-            File.Delete(filename);
+            File.Delete (filename);
         }
 
         [SetUp]
-        public void Init()
+        public void Init ()
         {
-            filename = TestHelper.RandomFilename("challenge");
-            File.Copy(TestHelper.TestResourcesDirectory + "TestChallenge.challenge", filename);
+            filename = TestHelper.RandomFilename ("challenge");
+            File.Copy (TestHelper.TestResourcesDirectory + "TestChallenge.challenge", filename);
         }
 
         [Test]

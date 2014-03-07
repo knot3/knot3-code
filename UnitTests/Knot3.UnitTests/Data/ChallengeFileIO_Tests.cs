@@ -35,7 +35,6 @@ using NUnit.Framework;
 
 using Knot3.Game.Data;
 
-
 namespace Knot3.UnitTests.Data
 {
     /// <summary>
@@ -47,32 +46,31 @@ namespace Knot3.UnitTests.Data
         private string filename;
 
         [TearDown]
-        public void TearDown()
+        public void TearDown ()
         {
-            File.Delete(filename);
+            File.Delete (filename);
         }
 
         [SetUp]
-        public void Init()
+        public void Init ()
         {
-            filename = TestHelper.RandomFilename("challenge");
-            File.Copy(TestHelper.TestResourcesDirectory + "TestChallenge.challenge", filename);
+            filename = TestHelper.RandomFilename ("challenge");
+            File.Copy (TestHelper.TestResourcesDirectory + "TestChallenge.challenge", filename);
         }
 
         [Test]
         public void ChallengeFileIO_Test ()
         {
-            ChallengeFileIO fileIO = new ChallengeFileIO();
-            Assert.DoesNotThrow(() => { Challenge challenge = fileIO.Load(filename); });
-            Assert.DoesNotThrow(() => { ChallengeMetaData meta = fileIO.LoadMetaData(filename); });
-            Assert.Throws<FileNotFoundException>(() => { Challenge challenge = fileIO.Load(TestHelper.TestResourcesDirectory + "DoesNotExist.challenge"); });
-            Assert.Throws<InvalidDataException>(() => { Challenge challenge = fileIO.Load(TestHelper.TestResourcesDirectory + "invalid.challenge"); });
-            Challenge tempChallenge = fileIO.Load(filename);
-            File.Delete(filename);
-            tempChallenge.Save();
-            Challenge tempChallenge2 = fileIO.Load(filename);
-            Assert.AreEqual(tempChallenge.MetaData, tempChallenge2.MetaData);
-            
+            ChallengeFileIO fileIO = new ChallengeFileIO ();
+            Assert.DoesNotThrow (() => { Challenge challenge = fileIO.Load (filename); });
+            Assert.DoesNotThrow (() => { ChallengeMetaData meta = fileIO.LoadMetaData (filename); });
+            Assert.Throws<FileNotFoundException>(() => { Challenge challenge = fileIO.Load (TestHelper.TestResourcesDirectory + "DoesNotExist.challenge"); });
+            Assert.Throws<InvalidDataException>(() => { Challenge challenge = fileIO.Load (TestHelper.TestResourcesDirectory + "invalid.challenge"); });
+            Challenge tempChallenge = fileIO.Load (filename);
+            File.Delete (filename);
+            tempChallenge.Save ();
+            Challenge tempChallenge2 = fileIO.Load (filename);
+            Assert.AreEqual (tempChallenge.MetaData, tempChallenge2.MetaData);
         }
     }
 }
