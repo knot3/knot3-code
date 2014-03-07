@@ -94,5 +94,18 @@ namespace Knot3.MockObjects
             Knot coloredKnot = new Knot (metaData, stringIO.Edges.ToList ());
             return coloredKnot;
         }
+
+        public static Knot noMetadataKnot(string name)
+        {
+            string content = "\nY#FF0000FF#\nZ#FF0000FF#\ny#FF0000FF#\nz#FF0000FF#";
+            content = name + content;
+
+            KnotStringIO stringIO = new KnotStringIO(content);
+
+            KnotMetaData metaData = null;
+            Knot noMeta = new Knot(metaData, stringIO.Edges.ToList());
+            return noMeta;
+        }
+
     }
 }

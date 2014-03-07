@@ -57,6 +57,13 @@ namespace Knot3.UnitTests.Data
 
             Assert.IsTrue (testKnot.Equals (fileIO.Load (testKnot.MetaData.Filename)));
             Assert.IsTrue (testKnot.MetaData.Equals (fileIO.LoadMetaData (testKnot.MetaData.Filename)));
+
+            //Sollte nun im Cache sein
+            Assert.IsTrue(testKnot.Equals(fileIO.Load(testKnot.MetaData.Filename)));
+            Assert.Catch(() =>
+            {
+                fileIO.Save(KnotGenerator.noMetadataKnot("test"));
+            });
         }
     }
 }
