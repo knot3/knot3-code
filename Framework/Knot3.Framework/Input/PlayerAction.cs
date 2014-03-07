@@ -31,6 +31,7 @@
 using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Knot3.Framework.Core;
 
 namespace Knot3.Framework.Input
 {

@@ -35,10 +35,10 @@ using System.Linq;
 
 using Knot3.Framework.Utilities;
 
-namespace Knot3.Framework
+namespace Knot3.Framework.Core
 {
     public abstract class TypesafeEnum<T> : IEquatable<T>, IEquatable<TypesafeEnum<T>>
-        where T : class
+        where T : TypesafeEnum<T>
     {
         private static Dictionary<string, ISet<TypesafeEnum<T>>> _values = new Dictionary<string, ISet<TypesafeEnum<T>>> ();
 
@@ -51,7 +51,9 @@ namespace Knot3.Framework
         public TypesafeEnum (string name)
         {
             Name = name;
-            _values.Add (Typename, this);
+            if (!string.IsNullOrWhiteSpace(name) && name != "Zero" && name != "Null" && name != "Empty") {
+                _values.Add (Typename, this);
+            }
         }
 
         [ExcludeFromCodeCoverageAttribute]
@@ -101,6 +103,16 @@ namespace Knot3.Framework
             return other != null && Equals (other as TypesafeEnum<T>);
         }
 
+        public static T FromString (string str)
+        {
+            foreach (T value in Values) {
+                if (str.ToLower () == value.Name.ToLower ()) {
+                    return value;
+                }
+            }
+            return null;
+        }
+        
         [ExcludeFromCodeCoverageAttribute]
         public override int GetHashCode ()
         {

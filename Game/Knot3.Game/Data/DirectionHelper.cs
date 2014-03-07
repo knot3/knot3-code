@@ -46,7 +46,5 @@ namespace Knot3.Game.Data
             }
             return Direction.Zero;
         }
-
-        public static Axis[] Axes = new Axis[] { Axis.X, Axis.Y, Axis.Z };
     }
 }

@@ -33,6 +33,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 
 using Microsoft.Xna.Framework;
+using Knot3.Framework.Core;
 
 namespace Knot3.Game.Data
 {
@@ -42,7 +43,7 @@ namespace Knot3.Game.Data
     /// Dies ist eine Klasse und kein Enum, kann aber
     /// uneingeschränkt wie eines benutzt werden (Typesafe Enum Pattern).
     /// </summary>
-    public sealed class Direction : IEquatable<Direction>
+    public sealed class Direction : TypesafeEnum<Direction>
     {
         /// <summary>
         /// Links.
@@ -73,7 +74,10 @@ namespace Knot3.Game.Data
         /// </summary>
         public static readonly Direction Zero = new Direction (Vector3.Zero, "Zero");
 
-        public static readonly Direction[] Values = {
+        /// <summary>
+        /// Gibt alle Richtungswerte zurück.
+        /// </summary>
+        public new static readonly Direction[] Values = {
             Left, Right, Up, Down, Forward,	Backward
         };
         private static readonly Dictionary<Direction, Direction> ReverseMap
@@ -96,37 +100,19 @@ namespace Knot3.Game.Data
 
         public Vector3 Vector { get; private set; }
 
-        public string Description { get; private set; }
-
         public Direction Reverse { get { return ReverseMap [this]; } }
 
         public Axis Axis { get { return AxisMap[this]; } }
 
-        private Direction (Vector3 vector, string desciption)
+        private Direction (Vector3 vector, string description)
+            : base (description)
         {
             Vector = vector;
-            Description = desciption;
         }
 
         public static Direction FromAxis (Axis axis)
         {
             return axis == Axis.X ? Right : axis == Axis.Y ? Up : axis == Axis.Z ? Backward : Zero;
-        }
-
-        public static Direction FromString (string str)
-        {
-            foreach (Direction direction in Values) {
-                if (str.ToLower () == direction.Description.ToLower ()) {
-                    return direction;
-                }
-            }
-            return null;
-        }
-
-        [ExcludeFromCodeCoverageAttribute]
-        public override string ToString ()
-        {
-            return Description;
         }
 
         public static Vector3 operator + (Vector3 v, Direction d)
@@ -186,32 +172,14 @@ namespace Knot3.Game.Data
             else if (other is Vector3) {
                 return Vector.Equals ((Vector3)other);
             }
-            else if (other is string) {
-                return Description.Equals ((string)other);
-            }
             else {
-                return false;
+                return base.Equals(other);
             }
-        }
-
-        public static implicit operator string (Direction direction)
-        {
-            return direction.Description;
         }
 
         public static implicit operator Vector3 (Direction direction)
         {
             return direction.Vector;
         }
-
-        [ExcludeFromCodeCoverageAttribute]
-        public override int GetHashCode ()
-        {
-            return Description.GetHashCode ();
-        }
-    }
-
-    public enum Axis {
-        X, Y, Z, Zero
     }
 }
