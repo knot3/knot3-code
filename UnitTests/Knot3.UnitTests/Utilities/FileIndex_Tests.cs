@@ -31,6 +31,7 @@
 using System.Diagnostics.CodeAnalysis;
 
 using NUnit.Framework;
+
 using Knot3.Game.Utilities;
 
 namespace Knot3.UnitTests.Utilities
@@ -60,11 +61,11 @@ namespace Knot3.UnitTests.Utilities
             index1.Add (teststring2);
             Assert.IsTrue (index1.Contains (teststring1), "contains teststring1");
             Assert.IsTrue (index1.Contains (teststring2), "contains teststring2");
-            index1.Remove(teststring2);
-            Assert.IsTrue (index1.Contains (teststring1), "still contains teststring1"); 
+            index1.Remove (teststring2);
+            Assert.IsTrue (index1.Contains (teststring1), "still contains teststring1");
             Assert.IsFalse (index1.Contains (teststring2), "not containing teststring2 anymore");
             FileIndex index2 = new FileIndex (testfilename);
-            Assert.IsTrue(index2.Contains(teststring1), "index loads right file");
+            Assert.IsTrue (index2.Contains (teststring1), "index loads right file");
         }
     }
 }
