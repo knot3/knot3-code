@@ -37,7 +37,6 @@ using NUnit.Framework;
 
 using Knot3.Game.Data;
 
-
 using Knot3.MockObjects;
 
 namespace Knot3.UnitTests.Data
@@ -47,21 +46,16 @@ namespace Knot3.UnitTests.Data
     {
         [Test]
         public void KnotFileO_Test ()
-        { 
-            Random random = new Random();
-            String randomname = random.Next(100000).ToString();
+        {
+            Random random = new Random ();
+            String randomname = random.Next (100000).ToString ();
 
+            Knot testKnot = KnotGenerator.coloredKnot (randomname);
 
-            Knot testKnot = KnotGenerator.coloredKnot(randomname);           
-            
-            KnotFileIO fileIO = new KnotFileIO();
-            fileIO.Save(testKnot);
+            KnotFileIO fileIO = new KnotFileIO ();
+            fileIO.Save (testKnot);
 
-            Assert.IsTrue(testKnot.Equals(fileIO.Load(testKnot.MetaData.Filename)));
-            
-            
-
-
+            Assert.IsTrue (testKnot.Equals (fileIO.Load (testKnot.MetaData.Filename)));
         }
     }
 }
