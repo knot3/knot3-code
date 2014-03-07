@@ -28,6 +28,7 @@
  * See the LICENSE file for full license details of the Knot3 project.
  */
 
+using Knot3.Game.Data;
 using System;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
@@ -150,10 +151,10 @@ namespace Knot3.ExtremeTests
             Console.Write (
                 // "Name: "
                 description + "\n"
-                + "max = " + maxNanos + " NS >= " + maxMilis + " MS >= " + maxSecs + "\n"
-                + "min = " + minNanos + " NS >= " + minMilis + " MS >= " + minSecs + "\n"
-                + "avg = " + avgNanos + " NS >= " + avgMilis + " MS >= " + avgSecs + "\n"
-                + "out = " + outNanos + " NS >= " + outMilis + " MS >= " + outSecs + "\n"
+                + "max = " + maxNanos + " NS >= " + maxMilis + " MS >= " + maxSecs + "S\n"
+                + "min = " + minNanos + " NS >= " + minMilis + " MS >= " + minSecs + "S\n"
+                + "avg = " + avgNanos + " NS >= " + avgMilis + " MS >= " + avgSecs + "S\n"
+                + "out = " + outNanos + " NS >= " + outMilis + " MS >= " + outSecs + "S\n"
             );
         }
 
@@ -172,12 +173,32 @@ namespace Knot3.ExtremeTests
             PrintTimerProperties ();
 
             foreach (int length in ExtremeKnots.SquareKnot_TestLengths) {
-                description = "Knoten-Laden: Knoten mit 100 Kanten, 100 WH:";
-                test = () => ExtremeKnots.LoadSquareKnot ("Square-Knot_" + length);
+
+                /*
+                description = "Knoten-Erzeugen: Knoten mit 100 Kanten, 100 WH:";
+                test = () => ExtremeKnots.CreateSquareKnot(100, "");
                 timeStatistics = StopTime (test, 100, timeStatistics);
                 PrintTimeStatistics (timeStatistics, description);
-            }
-            // ...
+                */
+
+
+           }
+
+
+                int my_length = 100;
+
+                description = "Knoten-Erzeugen: Knoten mit " + my_length + " Kanten, " + my_length + " WH:";
+                test = () => ExtremeKnots.CreateSquareKnot(my_length, "");
+                timeStatistics = StopTime(test, my_length, timeStatistics);
+                PrintTimeStatistics(timeStatistics, description);
+
+
+
+
+
+                System.Console.Write(ExtremeKnots.knot);
+
+ 
         }
     }
 }
