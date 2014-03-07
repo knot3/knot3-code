@@ -153,7 +153,7 @@ namespace Knot3.VisualTests
             rotation.Y += 0.001f;
             rotation.Z += 0.0005f;
             world.Camera.Position = (Vector3.Backward * Node.Scale * EdgeCount / 5)
-                .RotateX (rotation.X).RotateY (rotation.Y).RotateZ (rotation.Z);
+                                    .RotateX (rotation.X).RotateY (rotation.Y).RotateZ (rotation.Z);
             world.Redraw = true;
         }
 
