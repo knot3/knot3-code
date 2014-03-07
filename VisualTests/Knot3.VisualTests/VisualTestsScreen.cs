@@ -27,16 +27,19 @@
  * 
  * See the LICENSE file for full license details of the Knot3 project.
  */
+
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
+
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+
 using Knot3.Framework.Audio;
 using Knot3.Framework.Core;
 using Knot3.Framework.Development;
@@ -46,6 +49,7 @@ using Knot3.Framework.Platform;
 using Knot3.Framework.Storage;
 using Knot3.Framework.Utilities;
 using Knot3.Framework.Widgets;
+
 using Knot3.Game.Audio;
 using Knot3.Game.Core;
 using Knot3.Game.Data;
@@ -55,6 +59,7 @@ using Knot3.Game.Models;
 using Knot3.Game.Screens;
 using Knot3.Game.Utilities;
 using Knot3.Game.Widgets;
+
 using Knot3.MockObjects;
 
 namespace Knot3.VisualTests
@@ -145,8 +150,8 @@ namespace Knot3.VisualTests
         {
             Knot knot = KnotGenerator.generateSquareKnot (EdgeCount, "VisualTest-Knot");
             knotRenderer.Knot = knot;
-            
-            world.Camera.Target = KnotCenter(knot);
+
+            world.Camera.Target = KnotCenter (knot);
         }
 
         private Vector3 KnotCenter (Knot knot)
@@ -158,7 +163,7 @@ namespace Knot3.VisualTests
             foreach (Edge edge in knot) {
                 center += nodeMap.NodeBeforeEdge (edge);
             }
-            center /= knot.Count();
+            center /= knot.Count ();
             return center;
         }
 
