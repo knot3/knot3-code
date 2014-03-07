@@ -28,10 +28,11 @@
  * See the LICENSE file for full license details of the Knot3 project.
  */
 
-using Knot3.Game.Data;
 using System;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
+
+using Knot3.Game.Data;
 
 namespace Knot3.ExtremeTests
 {
@@ -173,32 +174,22 @@ namespace Knot3.ExtremeTests
             PrintTimerProperties ();
 
             foreach (int length in ExtremeKnots.SquareKnot_TestLengths) {
-
                 /*
                 description = "Knoten-Erzeugen: Knoten mit 100 Kanten, 100 WH:";
-                test = () => ExtremeKnots.CreateSquareKnot(100, "");
+                test = () => ExtremeKnots.CreateSquareKnot (100, "");
                 timeStatistics = StopTime (test, 100, timeStatistics);
                 PrintTimeStatistics (timeStatistics, description);
                 */
+            }
 
+            int my_length = 100;
 
-           }
+            description = "Knoten-Erzeugen: Knoten mit " + my_length + " Kanten, " + my_length + " WH:";
+            test = () => ExtremeKnots.CreateSquareKnot (my_length, "");
+            timeStatistics = StopTime (test, my_length, timeStatistics);
+            PrintTimeStatistics (timeStatistics, description);
 
-
-                int my_length = 100;
-
-                description = "Knoten-Erzeugen: Knoten mit " + my_length + " Kanten, " + my_length + " WH:";
-                test = () => ExtremeKnots.CreateSquareKnot(my_length, "");
-                timeStatistics = StopTime(test, my_length, timeStatistics);
-                PrintTimeStatistics(timeStatistics, description);
-
-
-
-
-
-                System.Console.Write(ExtremeKnots.knot);
-
- 
+            System.Console.Write (ExtremeKnots.knot);
         }
     }
 }

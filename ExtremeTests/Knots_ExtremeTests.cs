@@ -43,9 +43,7 @@ namespace Knot3.ExtremeTests
         // public static List<string> testKnotNames;
         public static int[] SquareKnot_TestLengths = new int[] {100};
 
-
         public static Knot knot; // hold knot static, no GC?
-
 
         static ExtremeKnots ()
         {
@@ -70,12 +68,10 @@ namespace Knot3.ExtremeTests
             //knotFileIO.Save (knot);
         }
 
-        public static void CreateSquareKnot(int numberOfEdges, string knotName)
+        public static void CreateSquareKnot (int numberOfEdges, string knotName)
         {
-            knot = KnotGenerator.generateSquareKnot(numberOfEdges / 4, knotName);
+            knot = KnotGenerator.generateSquareKnot (numberOfEdges / 4, knotName);
         }
-
-
 
         public static void SaveSquareKnot (int numberOfEdges, string knotName)
         {
@@ -89,7 +85,7 @@ namespace Knot3.ExtremeTests
 
         public static void LoadSquareKnot (string knotName)
         {
-            ResetCache();
+            ResetCache ();
             KnotFileIO knotFileIO = new KnotFileIO ();
             knot = knotFileIO.Load (knotName);
         }
