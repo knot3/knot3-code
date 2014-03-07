@@ -40,7 +40,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-using Knot3.Framework.Audio;
+using Knot3.Framework;
 using Knot3.Framework.Core;
 using Knot3.Framework.Development;
 using Knot3.Framework.Effects;
@@ -50,24 +50,28 @@ using Knot3.Framework.Screens;
 using Knot3.Framework.Utilities;
 
 using Knot3.Game.Widgets;
+using Knot3.Framework.Audio;
 
-namespace Knot3.ModelEditor
+namespace Knot3.VisualTests
 {
     /// <summary>
     /// Die zentrale Spielklasse, die von der \glqq Game\grqq~-Klasse des XNA-Frameworks erbt.
     /// </summary>
     [ExcludeFromCodeCoverageAttribute]
-    public class ModelEditorGame : GameCore
+    public class VisualTestsGame : GameCore
     {
         /// <summary>
         /// Erstellt ein neues zentrales Spielobjekt und setzt die Auflösung des BackBuffers auf
         /// die in der Einstellungsdatei gespeicherte Auflösung oder falls nicht vorhanden auf die aktuelle
         /// Bildschirmauflösung und wechselt in den Vollbildmodus.
         /// </summary>
-        public ModelEditorGame ()
+        public VisualTestsGame ()
         : base ()
         {
-            Window.Title = "Knot3 Model Editor " + Program.Version;
+            Window.Title = "Knot3 Visual Tests " + Program.Version;
+
+            IsMouseVisible = true;
+            System.Windows.Forms.Cursor.Show ();
         }
 
         /// <summary>
@@ -91,7 +95,7 @@ namespace Knot3.ModelEditor
 
             // screens
             Screens = new Stack<IScreen> ();
-            Screens.Push (new JunctionEditorScreen (this));
+            Screens.Push (new VisualTestsScreen (this));
             Screens.Peek ().Entered (null, null);
 
             // base method
@@ -162,6 +166,11 @@ namespace Knot3.ModelEditor
                     next.NextScreen = next;
                     Screens.Push (next);
                     next.Entered (current, time);
+                }
+
+                if (current.InputManager.KeyPressed (Keys.F8)) {
+                    this.Exit ();
+                    return;
                 }
 
                 // Rufe Update () auf dem aktuellen Screen auf

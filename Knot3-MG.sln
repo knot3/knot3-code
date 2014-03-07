@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Knot3.Content-MG", "Content
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Knot3.ModelEditor-MG", "Tools\ModelEditor\Knot3.ModelEditor-MG.csproj", "{A48CC175-E2A7-4F17-8126-93A8B3C90936}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Knot3.VisualTests-MG", "VisualTests\Knot3.VisualTests-MG.csproj", "{C19C58CE-8C63-4F7F-A38C-D8B204AA21F4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -45,13 +47,17 @@ Global
 		{C19C58CE-8C63-4F7F-A38C-D8B204AA21F3}.Debug|x86.Build.0 = Debug|Any CPU
 		{C19C58CE-8C63-4F7F-A38C-D8B204AA21F3}.Release|x86.ActiveCfg = Release|Any CPU
 		{C19C58CE-8C63-4F7F-A38C-D8B204AA21F3}.Release|x86.Build.0 = Release|Any CPU
+		{C19C58CE-8C63-4F7F-A38C-D8B204AA21F4}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C19C58CE-8C63-4F7F-A38C-D8B204AA21F4}.Debug|x86.Build.0 = Debug|Any CPU
+		{C19C58CE-8C63-4F7F-A38C-D8B204AA21F4}.Release|x86.ActiveCfg = Release|Any CPU
+		{C19C58CE-8C63-4F7F-A38C-D8B204AA21F4}.Release|x86.Build.0 = Release|Any CPU
 		{C2868E88-721C-40EB-863B-E9272F95DAF1}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{C2868E88-721C-40EB-863B-E9272F95DAF1}.Debug|x86.Build.0 = Debug|Any CPU
 		{C2868E88-721C-40EB-863B-E9272F95DAF1}.Release|x86.ActiveCfg = Release|Any CPU
 		{C2868E88-721C-40EB-863B-E9272F95DAF1}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = Game\Knot3.Game-MG.csproj
+		StartupItem = VisualTests\Knot3.VisualTests-MG.csproj
 		Policies = $0
 		$0.TextStylePolicy = $1
 		$1.inheritsSet = null

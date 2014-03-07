@@ -29,25 +29,47 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 
-using Knot3.Framework.Audio;
 using Knot3.Framework.Core;
+using Knot3.Framework.Development;
+using Knot3.Framework.Input;
+using Knot3.Framework.Platform;
+using Knot3.Framework.Utilities;
 
-namespace Knot3.ModelEditor
+namespace Knot3.VisualTests
 {
-    public class SilentAudioManager : AudioManager
+    [ExcludeFromCodeCoverageAttribute]
+    static class Program
     {
-        public SilentAudioManager (GameCore game)
-        : base (game)
+        private static VisualTestsGame game;
+
+        /// <summary>
+        /// The main entry point for the application.
+        ///
+        /// </summary>
+        ///
+        [STAThread]
+        static void Main ()
         {
+            Log.Message ("Knot" + Char.ConvertFromUtf32 ('\u00B3').ToString () + " " + Version);
+            Log.Message ("Visual Tests");
+
+            game = new VisualTestsGame ();
+            game.Run ();
         }
 
-        public override void Initialize (string directory)
+        /// <summary>
+        /// Gibt die Versionsnummer zurück.
+        /// </summary>
+        /// <returns></returns>
+        public static string Version
         {
-            // no directories are initialized -> no audio files will be detected
-
-            base.Initialize (directory);
+            get {
+                return System.Reflection.Assembly.GetExecutingAssembly ().GetName ().Version.ToString ();
+            }
         }
     }
 }

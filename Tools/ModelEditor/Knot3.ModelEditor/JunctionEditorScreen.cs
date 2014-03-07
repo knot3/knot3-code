@@ -78,14 +78,14 @@ namespace Knot3.ModelEditor
         private ModelMouseHandler modelMouseHandler;
         private MousePointer pointer;
         private DebugBoundings debugBoundings;
-        private MenuEntry backButton;
         private Menu settingsMenu;
+        private MenuEntry backButton;
         private FloatOption optionJunctionCount;
+        private DropDownMenuItem itemJunctionCount;
         private DistinctOption[] optionJuctionDirection;
         private DropDownMenuItem[] itemJunctionDirection;
         private DropDownMenuItem[] itemBumpRotation;
         private DropDownMenuItem[] itemModels;
-        private DropDownMenuItem itemJunctionCount;
 
         /// <summary>
         /// Erzeugt eine neue Instanz eines CreativeModeScreen-Objekts und initialisiert diese mit einem Knot3Game-Objekt game, sowie einem Knoten knot.
