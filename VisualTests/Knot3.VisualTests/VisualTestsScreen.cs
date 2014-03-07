@@ -186,7 +186,7 @@ namespace Knot3.VisualTests
             // FPS
             DrawFPS (time);
 
-            // World neu zeichnen beim nächsten Draw()-Aufruf
+            // World neu zeichnen beim nächsten Draw ()-Aufruf
             world.Redraw = true;
 
             // Hier könnte man die Zeit von world.Draw () messen
@@ -198,7 +198,7 @@ namespace Knot3.VisualTests
 
             // und itemDisplayTime.InputText zuweisen zum darstellen
             itemDisplayTime.InputText = drawWorldTime.Milliseconds + " ms";
-            itemFPS.InputText = FPS.ToString();
+            itemFPS.InputText = FPS.ToString ();
         }
 
         public override void Update (GameTime time)
