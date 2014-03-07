@@ -110,11 +110,11 @@ namespace Knot3.VisualTests
             optionEdgeCount = new FloatOption (
                 section: "visualtests",
                 name: "edgecount",
-                defaultValue: validEdgeCounts.At (1),
+                defaultValue: validEdgeCounts.At (0),
                 validValues: validEdgeCounts,
                 configFile: Config.Default
             ) { Verbose = false };
-            optionEdgeCount.Value = validEdgeCounts.At (1);
+            optionEdgeCount.Value = validEdgeCounts.At (0);
             itemEdgeCount = new DropDownMenuItem (
                 screen: this,
                 drawOrder: DisplayLayer.Overlay + DisplayLayer.MenuItem,
@@ -186,16 +186,19 @@ namespace Knot3.VisualTests
             // FPS
             DrawFPS (time);
 
-            // World neu zeichnen
+            // World neu zeichnen beim nächsten Draw()-Aufruf
             world.Redraw = true;
 
             // Hier könnte man die Zeit von world.Draw () messen
-            world.Draw (time);
-            world.SubComponents (time).OfType<DrawableScreenComponent> ().ForEach (comp => comp.Draw (time));
+            Action drawWorldAction = () => {
+                world.Draw (time);
+                world.SubComponents (time).OfType<DrawableScreenComponent> ().ForEach (comp => comp.Draw (time));
+            };
+            TimeSpan drawWorldTime = Profiler.Time (drawWorldAction);
 
             // und itemDisplayTime.InputText zuweisen zum darstellen
-            itemDisplayTime.InputText = "blubb";
-            itemFPS.InputText = FPS.ToString ();
+            itemDisplayTime.InputText = drawWorldTime.Milliseconds + " ms";
+            itemFPS.InputText = FPS.ToString();
         }
 
         public override void Update (GameTime time)
@@ -226,8 +229,8 @@ namespace Knot3.VisualTests
         {
             _elapsed_time += (float)time.ElapsedGameTime.TotalMilliseconds;
 
-            if (_elapsed_time >= 1000.0f) {
-                _fps = (int)(_total_frames * 1000.0f / _elapsed_time);
+            if (_elapsed_time >= 500.0f) {
+                _fps = (int)(_total_frames * 500.0f / _elapsed_time);
                 _total_frames = 0;
                 _elapsed_time = 0;
             }
