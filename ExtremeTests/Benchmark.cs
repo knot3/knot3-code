@@ -33,6 +33,8 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 
 using Knot3.Game.Data;
+using Knot3.MockObjects;
+using Knot3.Framework.Platform;
 
 namespace Knot3.ExtremeTests
 {
@@ -152,10 +154,10 @@ namespace Knot3.ExtremeTests
             Console.Write (
                 // "Name: "
                 description + "\n"
-                + "max = " + maxNanos + " NS >= " + maxMilis + " MS >= " + maxSecs + "S\n"
-                + "min = " + minNanos + " NS >= " + minMilis + " MS >= " + minSecs + "S\n"
-                + "avg = " + avgNanos + " NS >= " + avgMilis + " MS >= " + avgSecs + "S\n"
-                + "out = " + outNanos + " NS >= " + outMilis + " MS >= " + outSecs + "S\n"
+                + "max = " + maxNanos + " NS >= " + maxMilis + " MS >= " + maxSecs + " S\n"
+                + "min = " + minNanos + " NS >= " + minMilis + " MS >= " + minSecs + " S\n"
+                + "avg = " + avgNanos + " NS >= " + avgMilis + " MS >= " + avgSecs + " S\n"
+                + "out = " + outNanos + " NS >= " + outMilis + " MS >= " + outSecs + " S\n"
             );
         }
 
@@ -173,21 +175,34 @@ namespace Knot3.ExtremeTests
             // setUp ();
             PrintTimerProperties ();
 
-            foreach (int length in ExtremeKnots.SquareKnot_TestLengths) {
+            //foreach (int length in ExtremeKnots.SquareKnot_TestLengths) {
                 /*
                 description = "Knoten-Erzeugen: Knoten mit 100 Kanten, 100 WH:";
                 test = () => ExtremeKnots.CreateSquareKnot (100, "");
                 timeStatistics = StopTime (test, 100, timeStatistics);
                 PrintTimeStatistics (timeStatistics, description);
                 */
-            }
-
+           // }
+            /*
             int my_length = 100;
 
             description = "Knoten-Erzeugen: Knoten mit " + my_length + " Kanten, " + my_length + " WH:";
             test = () => ExtremeKnots.CreateSquareKnot (my_length, "");
             timeStatistics = StopTime (test, my_length, timeStatistics);
             PrintTimeStatistics (timeStatistics, description);
+           */
+            
+            description = "Knoten-Laden: Knoten mit 10000 Kanten, 100 WH:";
+            test = () => ExtremeKnots.LoadSquareKnot(SystemInfo.SavegameDirectory + "\\SquareKnot10000.knot");
+            timeStatistics = StopTime(test, 100, timeStatistics);
+            PrintTimeStatistics(timeStatistics, description);
+            
+
+            /*
+           Knot knot = KnotGenerator.generateSquareKnot(10000 / 4, "SquareKnot10000");
+           KnotFileIO knotFileIO = new KnotFileIO ();
+          knotFileIO.Save (knot);
+            */
 
             System.Console.Write (ExtremeKnots.knot);
         }
