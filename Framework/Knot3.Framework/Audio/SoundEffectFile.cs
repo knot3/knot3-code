@@ -40,6 +40,7 @@ namespace Knot3.Framework.Audio
     /// <summary>
     /// Ein Wrapper um die SoundEffect-Klasse des XNA-Frameworks.
     /// </summary>
+    [ExcludeFromCodeCoverageAttribute]
     public class SoundEffectFile : IAudioFile
     {
         /// <summary>
@@ -69,14 +70,14 @@ namespace Knot3.Framework.Audio
             Instance = soundEffect.CreateInstance ();
             SoundType = soundType;
         }
-
+        
         public void Play ()
         {
             Log.Debug ("Play: ", Name);
             Instance.Volume = volume = AudioManager.Volume (SoundType);
             Instance.Play ();
         }
-
+        
         public void Stop ()
         {
             Log.Debug ("Stop: ", Name);

@@ -47,6 +47,7 @@ namespace Knot3.Framework.Core
     /// <summary>
     /// Repräsentiert eine Spielwelt, in der sich 3D-Modelle befinden und gezeichnet werden können.
     /// </summary>
+    [ExcludeFromCodeCoverageAttribute]
     public sealed class World : DrawableScreenComponent, IEnumerable<IGameObject>
     {
         /// <summary>

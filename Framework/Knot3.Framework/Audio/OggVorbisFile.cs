@@ -88,7 +88,8 @@ namespace Knot3.Framework.Audio
                 internalFile = new SoundEffectFile (name, soundEffect, soundType);
             }
         }
-
+        
+        [ExcludeFromCodeCoverageAttribute]
         public void Play ()
         {
             internalFile.Play ();
