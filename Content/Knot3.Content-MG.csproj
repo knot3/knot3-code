@@ -93,10 +93,12 @@
   <Target Name="AfterBuild">
     <Copy DestinationFolder="$(GameContentDest)\%(None.RelativeDir)" SourceFiles="@(None)" SkipUnchangedFiles="true" />
     <Copy DestinationFolder="$(ModelEditorContentDest)\%(None.RelativeDir)" SourceFiles="@(None)" SkipUnchangedFiles="true" />
+    <Copy DestinationFolder="$(VisualTestsContentDest)\%(None.RelativeDir)" SourceFiles="@(None)" SkipUnchangedFiles="true" />
   </Target>
   <PropertyGroup>
     <GameContentDest>..\Game\bin\$(Configuration)\Content</GameContentDest>
     <ModelEditorContentDest>..\Tools\ModelEditor\bin\$(Configuration)\Content</ModelEditorContentDest>
+    <VisualTestsContentDest>..\VisualTests\bin\$(Configuration)\Content</VisualTestsContentDest>
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="Textures\" />

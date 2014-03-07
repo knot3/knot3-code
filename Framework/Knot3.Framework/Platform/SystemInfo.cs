@@ -170,6 +170,7 @@ namespace Knot3.Framework.Platform
                 "Game",
                 "ModelEditor",
                 "Tools",
+                "VisualTests",
             };
             foreach (string dir in binDirectories) {
                 if (baseDir.ToLower ().EndsWith (dir.ToLower ())) {

@@ -5,10 +5,10 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.0</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{C19C58CE-8C63-4F7F-A38C-D8B204AA21F3}</ProjectGuid>
+    <ProjectGuid>{C19C58CE-8C63-4F7F-A38C-D8B204AA21F4}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Knot3.ExtremeTests</RootNamespace>
-    <AssemblyName>Knot3.ExtremeTests</AssemblyName>
+    <RootNamespace>Knot3.VisualTests</RootNamespace>
+    <AssemblyName>Knot3.VisualTests</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -19,6 +19,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
@@ -40,13 +41,12 @@
     <Reference Include="SDL2-CS">
       <HintPath>..\lib\SDL2-CS.dll</HintPath>
     </Reference>
+    <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Benchmark.cs" />
-    <Compile Include="Challenges_ExtremeTests.cs" />
-    <Compile Include="Input_ExtremeTests.cs" />
-    <Compile Include="Knots_ExtremeTests.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Knot3.VisualTests\VisualTestsGame.cs" />
+    <Compile Include="Knot3.VisualTests\VisualTestsScreen.cs" />
+    <Compile Include="Knot3.VisualTests\Program.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Game\Knot3.Game-MG.csproj">
@@ -57,10 +57,21 @@
       <Project>{C19C58CE-8C63-4F7F-A38C-D8B204AA21F2}</Project>
       <Name>Knot3.UnitTests-MG</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ExtremeTests\Knot3.ExtremeTests-MG.csproj">
+      <Project>{C19C58CE-8C63-4F7F-A38C-D8B204AA21F3}</Project>
+      <Name>Knot3.ExtremeTests-MG</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Framework\Knot3.Framework-MG.csproj">
       <Project>{C2868E88-721C-40EB-863B-E9272F95DAF1}</Project>
       <Name>Knot3.Framework-MG</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Content\Knot3.Content-MG.csproj">
+      <Project>{0EFA2EF3-DEB0-44E3-BE88-722866A5D511}</Project>
+      <Name>Knot3.Content-MG</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="Knot3.VisualTests\" />
+  </ItemGroup>
 </Project>

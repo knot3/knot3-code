@@ -34,7 +34,7 @@ using System.Diagnostics.CodeAnalysis;
 using Knot3.Framework.Audio;
 using Knot3.Framework.Core;
 
-namespace Knot3.ModelEditor
+namespace Knot3.Framework.Audio
 {
     public class SilentAudioManager : AudioManager
     {

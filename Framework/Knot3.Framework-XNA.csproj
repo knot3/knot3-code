@@ -55,6 +55,7 @@
     <Compile Include="Knot3.Framework\Audio\IPlaylist.cs" />
     <Compile Include="Knot3.Framework\Audio\LoopPlaylist.cs" />
     <Compile Include="Knot3.Framework\Audio\OggVorbisFile.cs" />
+    <Compile Include="Knot3.Framework\Audio\SilentAudioManager.cs" />
     <Compile Include="Knot3.Framework\Audio\Sound.cs" />
     <Compile Include="Knot3.Framework\Audio\SoundEffectFile.cs" />
     <Compile Include="Knot3.Framework\Core\Camera.cs" />
