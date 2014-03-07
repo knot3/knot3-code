@@ -29,9 +29,12 @@
  */
 
 using System.Diagnostics.CodeAnalysis;
+using System.Collections.Generic;
 using System.IO;
 
 using NUnit.Framework;
+
+using Knot3.Game.Data;
 
 namespace Knot3.UnitTests.Data
 {
@@ -57,8 +60,24 @@ namespace Knot3.UnitTests.Data
         }
 
         [Test]
-        public void Challenge_Constructor_Tests ()
+        public void Challenge_Test ()
         {
+            ChallengeFileIO file = new ChallengeFileIO();
+            ChallengeMetaData meta = file.LoadMetaData(filename);
+            Challenge challenge = file.Load(filename);
+            Challenge secondChallenge = new Challenge(meta, challenge.Start, challenge.Target);
+            challenge.Name = "other";
+            Assert.AreEqual(challenge.Name, "other");
+            challenge.AddToHighscore("Noob", 1337);
+            string[] names = { "Erster", "Dritter", "Zweiter", "Noob" };
+            int[] times = { 1, 15, 7, 1337 };
+            int position = 0;
+            foreach (KeyValuePair<string, int> entry in challenge.Highscore)
+            {
+                Assert.AreEqual(entry.Key, names[position]);
+                Assert.AreEqual(entry.Value, times[position]);
+                position++;
+            }
         }
     }
 }
