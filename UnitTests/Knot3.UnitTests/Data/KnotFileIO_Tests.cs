@@ -37,6 +37,7 @@ using NUnit.Framework;
 
 using Knot3.Game.Data;
 
+
 using Knot3.MockObjects;
 
 namespace Knot3.UnitTests.Data
@@ -45,24 +46,22 @@ namespace Knot3.UnitTests.Data
     public class KnotFileIO_Tests
     {
         [Test]
-        public void KnotStringIO_Test ()
-        {
-            KnotStringIO knotStringIO = new KnotStringIO (KnotGenerator.generateSquareKnot (10, KnotGenerator.FakeName));
-            KnotStringIO other = new KnotStringIO (knotStringIO.Content);
+        public void KnotFileO_Test ()
+        { 
+            Random random = new Random();
+            String randomname = random.Next(100000).ToString();
 
-            Assert.AreEqual (knotStringIO.Content, other.Content, "Content equal");
-            KnotStringIO invalidContent = null;
 
-            invalidContent = new KnotStringIO ("Name \n" + "Invalid Line \n");
-            Assert.Catch<IOException> (() => {
-                // damit der Compiler den Aufruf der Decode...-Methoden nicht wegoptimiert,
-                // muss man zurück zum Konstruktur noch das eigentlich dort abgespeicherte
-                // Attribut Edges abrufen (das ist ein Iterator mit lazy evaluation)
-                // und das dann in eine Liste umwandeln
-                Console.WriteLine (invalidContent.Edges.ToList ());
-            }
-                                      );
-            Assert.AreEqual (knotStringIO.Content, other.Content, "Contetnt equal");
+            Knot testKnot = KnotGenerator.coloredKnot(randomname);           
+            
+            KnotFileIO fileIO = new KnotFileIO();
+            fileIO.Save(testKnot);
+
+            Assert.IsTrue(testKnot.Equals(fileIO.Load(testKnot.MetaData.Filename)));
+            
+            
+
+
         }
     }
 }
