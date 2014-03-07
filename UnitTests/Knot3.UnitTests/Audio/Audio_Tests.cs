@@ -79,6 +79,8 @@ namespace Knot3.UnitTests.Audio
         [Test]
         public void Audio_LoopPlaylist_Test ()
         {
+            audio.BackgroundMusic = Knot3Sound.MenuMusic;
+            audio.BackgroundMusic = Knot3Sound.ChallengeMusic;
         }
     }
 }
