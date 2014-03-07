@@ -209,7 +209,7 @@ namespace Knot3.Game.Models
             nodeMap.Offset = Info.Position + knot.OffSet;
             nodeMap.OnEdgesChanged ();
 
-            Log.Debug ("=> render Knot #", knot.Count (), " = ", string.Join (", ", from c in knot select c.Direction));
+            //Log.Debug ("=> render Knot #", knot.Count (), " = ", string.Join (", ", from c in knot select c.Direction));
 
             CreatePipes (knot);
             if (Config.Default ["debug", "show-startedge-direction", false]) {
