@@ -90,7 +90,7 @@ namespace Knot3.UnitTests.Audio
             audio.Update (null);
             audio.BackgroundMusic = Knot3Sound.CreativeMusic;
             audio.Update (null);
-            
+
             audio.PlaySound (Knot3Sound.PipeMoveSound);
             audio.PlaySound (Knot3Sound.PipeInvalidMoveSound);
         }
