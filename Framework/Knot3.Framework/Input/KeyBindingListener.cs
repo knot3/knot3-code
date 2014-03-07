@@ -138,7 +138,7 @@ namespace Knot3.Framework.Input
             }
         }
     }
-    
+
     [ExcludeFromCodeCoverageAttribute]
     public abstract class KeyBindingListener<T> : KeyBindingListener, IKeyEventListener
     {
