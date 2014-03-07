@@ -44,9 +44,9 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Knot3.VisualTests\Program.cs" />
     <Compile Include="Knot3.VisualTests\VisualTestsGame.cs" />
     <Compile Include="Knot3.VisualTests\VisualTestsScreen.cs" />
-    <Compile Include="Knot3.VisualTests\Program.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Game\Knot3.Game-MG.csproj">
