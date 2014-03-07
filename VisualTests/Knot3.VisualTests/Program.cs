@@ -38,6 +38,7 @@ using Knot3.Framework.Development;
 using Knot3.Framework.Input;
 using Knot3.Framework.Platform;
 using Knot3.Framework.Utilities;
+using System.Windows.Forms;
 
 namespace Knot3.VisualTests
 {
@@ -57,10 +58,35 @@ namespace Knot3.VisualTests
             Log.Message ("Knot" + Char.ConvertFromUtf32 ('\u00B3').ToString () + " " + Version);
             Log.Message ("Visual Tests");
 
-            game = new VisualTestsGame ();
-            game.Run ();
+
+
+            try {
+                GameLoop ();
+            }
+            catch (DllNotFoundException ex) {
+                Log.Message ();
+                Log.Error (ex);
+                Log.Message ();
+                if (ex.ToString ().ToLower ().Contains ("sdl2.dll")) {
+                    Log.ShowMessageBox ("This game requires SDL2. It will be downloaded now.", "Dependency missing");
+                    if (Dependencies.DownloadSDL2 ()) {
+                        System.Diagnostics.Process.Start (Application.ExecutablePath); // to start new instance of application
+                        Application.Exit ();
+                    }
+                    else {
+                        Log.ShowMessageBox ("SDL2 could not be downloaded.", "Dependency missing");
+                    }
+                }
+            }
+
         }
 
+        private static void GameLoop ()
+        {
+            using ( game = new VisualTestsGame ()) {
+                game.Run ();
+            }
+        }
         /// <summary>
         /// Gibt die Versionsnummer zurück.
         /// </summary>
