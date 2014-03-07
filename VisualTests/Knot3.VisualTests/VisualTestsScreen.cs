@@ -128,14 +128,14 @@ namespace Knot3.VisualTests
                 drawOrder: DisplayLayer.Overlay + DisplayLayer.MenuItem,
                 text: "Time:",
                 inputText: ""
-                );
+            );
 
             itemFPS = new InputItem (
                 screen: this,
                 drawOrder: DisplayLayer.Overlay + DisplayLayer.MenuItem,
                 text: "FPS:",
                 inputText: ""
-                );
+            );
 
             OnEdgeCountChanged (null);
         }
@@ -195,7 +195,7 @@ namespace Knot3.VisualTests
 
             // und itemDisplayTime.InputText zuweisen zum darstellen
             itemDisplayTime.InputText = "blubb";
-            itemFPS.InputText = FPS.ToString();
+            itemFPS.InputText = FPS.ToString ();
         }
 
         public override void Update (GameTime time)
@@ -216,7 +216,6 @@ namespace Knot3.VisualTests
             // FPS
             UpdateFPS (time);
         }
-
 
         // FPS
         int _total_frames = 0;
@@ -248,7 +247,7 @@ namespace Knot3.VisualTests
         {
             base.Entered (previousScreen, time);
             AddGameComponents (time, settingsMenu);
-            
+
             Config.Default ["video", "camera-overlay", true] = false;
             Config.Default ["video", "profiler-overlay", true] = false;
         }
