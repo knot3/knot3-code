@@ -65,7 +65,7 @@ namespace Knot3.UnitTests.Data
             Assert.DoesNotThrow (() => { Challenge challenge = fileIO.Load (filename); });
             Assert.DoesNotThrow (() => { ChallengeMetaData meta = fileIO.LoadMetaData (filename); });
             Assert.Throws<FileNotFoundException>(() => { Challenge challenge = fileIO.Load (TestHelper.TestResourcesDirectory + "DoesNotExist.challenge"); });
-            Assert.Throws<InvalidDataException>(() => { Challenge challenge = fileIO.Load (TestHelper.TestResourcesDirectory + "invalid.challenge"); });
+            Assert.Throws<IOException>(() => { Challenge challenge = fileIO.Load(TestHelper.TestResourcesDirectory + "invalid.challenge"); });
             Challenge tempChallenge = fileIO.Load (filename);
             File.Delete (filename);
             tempChallenge.Save ();
