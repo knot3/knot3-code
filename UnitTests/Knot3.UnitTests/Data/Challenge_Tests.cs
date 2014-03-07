@@ -28,8 +28,8 @@
  * See the LICENSE file for full license details of the Knot3 project.
  */
 
-using System.Diagnostics.CodeAnalysis;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 
 using NUnit.Framework;
@@ -62,20 +62,19 @@ namespace Knot3.UnitTests.Data
         [Test]
         public void Challenge_Test ()
         {
-            ChallengeFileIO file = new ChallengeFileIO();
-            ChallengeMetaData meta = file.LoadMetaData(filename);
-            Challenge challenge = file.Load(filename);
-            Challenge secondChallenge = new Challenge(meta, challenge.Start, challenge.Target);
+            ChallengeFileIO file = new ChallengeFileIO ();
+            ChallengeMetaData meta = file.LoadMetaData (filename);
+            Challenge challenge = file.Load (filename);
+            Challenge secondChallenge = new Challenge (meta, challenge.Start, challenge.Target);
             challenge.Name = "other";
-            Assert.AreEqual(challenge.Name, "other");
-            challenge.AddToHighscore("Noob", 1337);
+            Assert.AreEqual (challenge.Name, "other");
+            challenge.AddToHighscore ("Noob", 1337);
             string[] names = { "Erster", "Dritter", "Zweiter", "Noob" };
             int[] times = { 1, 15, 7, 1337 };
             int position = 0;
-            foreach (KeyValuePair<string, int> entry in challenge.Highscore)
-            {
-                Assert.AreEqual(entry.Key, names[position]);
-                Assert.AreEqual(entry.Value, times[position]);
+            foreach (KeyValuePair<string, int> entry in challenge.Highscore) {
+                Assert.AreEqual (entry.Key, names[position]);
+                Assert.AreEqual (entry.Value, times[position]);
                 position++;
             }
         }
