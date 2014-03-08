@@ -40,8 +40,8 @@ using Knot3.Framework.Input;
 using Knot3.Framework.Platform;
 
 using Knot3.Game.Data;
-using Knot3.Game.Widgets;
 using Knot3.Game.Screens;
+using Knot3.Game.Widgets;
 
 namespace Knot3.Game.Input
 {
@@ -52,12 +52,12 @@ namespace Knot3.Game.Input
         /// Der Knoten.
         /// </summary>
         public Knot Knot { get; set; }
-        
+
         /// <summary>
         /// Zeigt an, ob die Klasse modal ist.
         /// </summary>
         public override bool IsModal { get { return false; } }
-        
+
         /// <summary>
         /// Zeigt an, ob die Klasse zur Zeit auf Tastatureingaben reagiert.
         /// </summary>
@@ -75,7 +75,7 @@ namespace Knot3.Game.Input
         : base (screen, DisplayLayer.None)
         {
             // Lege die Bedeutungen der Aktionen fest
-            ActionBindings [Knot3PlayerAction.EdgeColoring] = (time) => OnEdgeColoring(time);
+            ActionBindings [Knot3PlayerAction.EdgeColoring] = (time) => OnEdgeColoring (time);
             UpdateKeyBindings ();
         }
 

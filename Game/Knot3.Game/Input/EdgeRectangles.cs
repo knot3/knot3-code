@@ -52,17 +52,17 @@ namespace Knot3.Game.Input
         /// Der Knoten.
         /// </summary>
         public Knot Knot { get; set; }
-        
+
         /// <summary>
         /// Ein Zufallsgenerator.
         /// </summary>
         private Random random = new Random ();
-        
+
         /// <summary>
         /// Zeigt an, ob die Klasse modal ist.
         /// </summary>
         public override bool IsModal { get { return false; } }
-        
+
         /// <summary>
         /// Zeigt an, ob die Klasse zur Zeit auf Tastatureingaben reagiert.
         /// </summary>
@@ -80,7 +80,7 @@ namespace Knot3.Game.Input
         : base (screen, DisplayLayer.None)
         {
             // Lege die Bedeutungen der Aktionen fest
-            ActionBindings [Knot3PlayerAction.EdgeRectangles] = (time) => OnEdgeRectangles(time);
+            ActionBindings [Knot3PlayerAction.EdgeRectangles] = (time) => OnEdgeRectangles (time);
             UpdateKeyBindings ();
         }
 
