@@ -258,7 +258,7 @@ namespace Knot3.Game.Development
         {
             spriteBatch.Begin ();
             int height = (int)(90 * scale);
-            foreach (string name in Profiler.ProfilerMap.Keys.Cast<string>().OrderBy(key => key)) {
+            foreach (string name in Profiler.ProfilerMap.Keys.Cast<string>().OrderBy (key => key)) {
                 DrawString (name + ": " + Profiler.ProfilerMap [name], (int)(Screen.Viewport.Width / Config.Default ["video", "Supersamples", 1]) - (int)(170 * scale), height, Color.White);
                 height += lineHeight;
             }
