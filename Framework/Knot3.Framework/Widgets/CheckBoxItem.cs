@@ -113,7 +113,7 @@ namespace Knot3.Framework.Widgets
         {
             currentValue = option.Value = !option.Value;
             Log.Debug ("option: ", option, " := ", currentValue);
-            OnValueChanged();
+            OnValueChanged ();
         }
 
         /// <summary>
