@@ -71,6 +71,9 @@ namespace Knot3.Game.Core
         /// </summary>
         protected override void Initialize ()
         {
+            // base method
+            base.Initialize ();
+
             // vsync
             VSync = true;
 
@@ -105,9 +108,6 @@ namespace Knot3.Game.Core
             Screens = new Stack<IScreen> ();
             Screens.Push (new StartScreen (this));
             Screens.Peek ().Entered (null, null);
-
-            // base method
-            base.Initialize ();
         }
 
         /// <summary>

@@ -148,7 +148,6 @@ namespace Knot3.Framework.Core
             Graphics.PreferredBackBufferHeight = (int)defaultSize.Y;
 
             Graphics.IsFullScreen = false;
-            isFullscreen = Config.Default["video","fullscreen",false];
             Graphics.ApplyChanges ();
 
             if (SystemInfo.IsRunningOnLinux ()) {
@@ -166,6 +165,11 @@ namespace Knot3.Framework.Core
             Window.Title = "";
 
             FullScreenChanged = () => {};
+        }
+
+        protected override void Initialize ()
+        {
+            IsFullScreen = Config.Default["video","fullscreen",false];
         }
 
         protected void updateResolution ()
