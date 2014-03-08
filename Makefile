@@ -69,13 +69,13 @@ test: build
 
 build-windows: clean
 	$(MKDIR) $(CODE_DIR)/bin/Release/ || true
-	$(UNZIP) -o -d $(CODE_DIR)/bin/Release/ $(LIB_MG_WINDOWS)
+	$(UNZIP) -o -d $(CODE_DIR)/bin/Release/ $(LIB_MG_WINDOWS) || true
 	$(MKDIR) $(FRAMEWORK_DIR)/bin/Release/ || true
-	$(UNZIP) -o -d $(FRAMEWORK_DIR)/bin/Release/ $(LIB_MG_WINDOWS)
+	$(UNZIP) -o -d $(FRAMEWORK_DIR)/bin/Release/ $(LIB_MG_WINDOWS) || true
 	$(MKDIR) $(TEST_DIR)/bin/Release/ || true
-	$(UNZIP) -o -d $(TEST_DIR)/bin/Release/ $(LIB_MG_WINDOWS)
+	$(UNZIP) -o -d $(TEST_DIR)/bin/Release/ $(LIB_MG_WINDOWS) || true
 	$(MKDIR) $(TOOL_MODELEDITOR_DIR)/bin/Release/ || true
-	$(UNZIP) -o -d $(TOOL_MODELEDITOR_DIR)/bin/Release/ $(LIB_MG_WINDOWS)
+	$(UNZIP) -o -d $(TOOL_MODELEDITOR_DIR)/bin/Release/ $(LIB_MG_WINDOWS) || true
 	xbuild /p:Configuration=Release $(SOLUTION)
 
 package-windows: build-windows
