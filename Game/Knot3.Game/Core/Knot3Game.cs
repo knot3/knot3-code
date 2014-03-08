@@ -73,7 +73,6 @@ namespace Knot3.Game.Core
         {
             // vsync
             VSync = true;
-        
 
             // design
             new HfGDesign ().Apply ();
@@ -165,7 +164,6 @@ namespace Knot3.Game.Core
         protected override void Update (GameTime time)
         {
             try {
-              
                 updateResolution ();
                 // falls der Screen gewechselt werden soll...
                 IScreen current = Screens.Peek ();
