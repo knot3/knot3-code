@@ -24,7 +24,7 @@
  *   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  *   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  *   SOFTWARE.
- *
+ * 
  * See the LICENSE file for full license details of the Knot3 project.
  */
 
@@ -66,5 +66,5 @@ using System.Runtime.InteropServices;
 // übernehmen, indem Sie "*" eingeben:
 // [assembly: AssemblyVersion ("1.0.*")]
 
-[assembly: AssemblyVersion ("1.3.163.0")]
-[assembly: AssemblyFileVersion ("1.3.163.0")]
+[assembly: AssemblyVersion ("1.3.165.0")]
+[assembly: AssemblyFileVersion ("1.3.165.0")]
