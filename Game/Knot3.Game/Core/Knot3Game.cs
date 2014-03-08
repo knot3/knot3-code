@@ -39,6 +39,7 @@ using Knot3.Framework.Core;
 using Knot3.Framework.Effects;
 using Knot3.Framework.Input;
 using Knot3.Framework.Screens;
+using Knot3.Framework.Storage;
 
 using Knot3.Game.Audio;
 using Knot3.Game.Effects;
@@ -72,10 +73,7 @@ namespace Knot3.Game.Core
         {
             // vsync
             VSync = true;
-
-            // anti aliasing
-            Graphics.GraphicsDevice.PresentationParameters.MultiSampleCount = 8;
-            Graphics.PreferMultiSampling = true;
+        
 
             // design
             new HfGDesign ().Apply ();
@@ -167,6 +165,7 @@ namespace Knot3.Game.Core
         protected override void Update (GameTime time)
         {
             try {
+              
                 updateResolution ();
                 // falls der Screen gewechselt werden soll...
                 IScreen current = Screens.Peek ();

@@ -169,6 +169,16 @@ namespace Knot3.Game.Screens
             renderEffectItem.AddEntries (renderEffectOption);
             settingsMenu.Add (renderEffectItem);
 
+            //fullscreen
+
+            CheckBoxItem fullscreen = new CheckBoxItem (
+                screen: this,
+                drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
+                text: "Fullscreen",
+                option: new BooleanOption ("video", "fullscreen", false, Config.Default)
+            );
+            settingsMenu.Add (fullscreen);
+
             // Languages
             LanguageOption languageOption = new LanguageOption (
                 section: "language",
