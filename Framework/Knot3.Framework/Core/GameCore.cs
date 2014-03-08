@@ -33,11 +33,11 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 using Knot3.Framework.Audio;
 using Knot3.Framework.Platform;
 using Knot3.Framework.Storage;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace Knot3.Framework.Core
 {
@@ -45,7 +45,7 @@ namespace Knot3.Framework.Core
     public abstract class GameCore : Microsoft.Xna.Framework.Game
     {
         private static readonly Point defaultSize = SystemInfo.IsRunningOnLinux ()
-            ? new Point (1024, 600) : new Point (1280, 720);
+                ? new Point (1024, 600) : new Point (1280, 720);
 
         public Action FullScreenChanged { get; set; }
 
@@ -73,13 +73,15 @@ namespace Knot3.Framework.Core
             }
         }
 
-        protected Point ScreenResolution {
+        protected Point ScreenResolution
+        {
             get {
                 return new Point (GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height);
             }
         }
 
-        protected Point WindowResolution {
+        protected Point WindowResolution
+        {
             get {
                 String strReso = Config.Default ["video", "resolution", defaultSize.X+"x"+defaultSize.Y];
                 string[] reso = strReso.Split ('x');
@@ -89,7 +91,8 @@ namespace Knot3.Framework.Core
             }
         }
 
-        protected Point BackbufferResolution {
+        protected Point BackbufferResolution
+        {
             get {
                 return new Point (Graphics.PreferredBackBufferWidth, Graphics.PreferredBackBufferHeight);
             }
