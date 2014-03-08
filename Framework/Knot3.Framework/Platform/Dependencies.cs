@@ -154,7 +154,7 @@ namespace Knot3.Framework.Platform
                 Log.Message ();
                 if (ex.ToString ().ToLower ().Contains ("sdl2.dll")) {
                     Log.ShowMessageBox ("This game requires SDL2. It will be downloaded now.", "Dependency missing");
-                    if (Dependencies.DownloadSDL2 ()) {
+                    if (Dependencies.DownloadSDL2 () && Dependencies.DownloadSDL2_image ()) {
                         System.Diagnostics.Process.Start (Application.ExecutablePath); // to start new instance of application
                         Application.Exit ();
                     }
