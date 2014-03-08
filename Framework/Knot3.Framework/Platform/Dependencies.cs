@@ -34,6 +34,7 @@ using System.IO;
 using System.Net;
 
 using Ionic.Zip;
+using System.Windows.Forms;
 
 namespace Knot3.Framework.Platform
 {
@@ -41,6 +42,8 @@ namespace Knot3.Framework.Platform
     public static class Dependencies
     {
         public static string DOWNLOAD_URL_SDL2 = "http://www.libsdl.org/release/SDL2-2.0.1-win32-x86.zip";
+
+        public static string DOWNLOAD_URL_SDL2_image = "https://www.libsdl.org/projects/SDL_image/release/SDL2_image-2.0.0-win32-x86.zip";
 
         public static bool DownloadSDL2 ()
         {
@@ -50,6 +53,47 @@ namespace Knot3.Framework.Platform
                 int extractedFiles = 0;
                 // try to download the zip file
                 if (Download (DOWNLOAD_URL_SDL2, zipFilename)) {
+                    // read the zip file
+                    using (ZipFile zip = ZipFile.Read (zipFilename)) {
+                        // iterate over files in the zip file
+                        foreach (ZipEntry entry in zip) {
+                            // extract the file to the current directory
+                            entry.Extract (".", ExtractExistingFileAction.OverwriteSilently);
+                            // downloading was obviously sucessful
+                            ++ extractedFiles;
+                        }
+                    }
+                }
+
+                // if all files were extracted
+                success = extractedFiles > 0;
+            }
+            catch (Exception ex) {
+                // an error occurred
+                Log.Error (ex);
+                success = false;
+            }
+
+            // remove the zip file
+            try {
+                File.Delete (zipFilename);
+            }
+            catch (Exception ex) {
+                Log.Error (ex);
+            }
+
+            return success;
+        }
+
+
+        public static bool DownloadSDL2_image ()
+        {
+            string zipFilename = "SDL2_image.zip";
+            bool success = false;
+            try {
+                int extractedFiles = 0;
+                // try to download the zip file
+                if (Download (DOWNLOAD_URL_SDL2_image, zipFilename)) {
                     // read the zip file
                     using (ZipFile zip = ZipFile.Read (zipFilename)) {
                         // iterate over files in the zip file
@@ -99,5 +143,36 @@ namespace Knot3.Framework.Platform
                 return false;
             }
         }
+
+        public static void CatchDllExceptions(Action action)  {
+
+        try {
+                action ();
+        }
+        catch (DllNotFoundException ex) {
+            Log.Message ();
+            Log.Error (ex);
+            Log.Message ();
+            if (ex.ToString ().ToLower ().Contains ("sdl2.dll")) {
+                Log.ShowMessageBox ("This game requires SDL2. It will be downloaded now.", "Dependency missing");
+                if (Dependencies.DownloadSDL2 ()) {
+                    System.Diagnostics.Process.Start (Application.ExecutablePath); // to start new instance of application
+                    Application.Exit ();
+                }
+                else {
+                    Log.ShowMessageBox ("SDL2 could not be downloaded.", "Dependency missing");
+                }
+            }
+            if (ex.ToString ().ToLower ().Contains ("sdl2_image.dll")) {
+                Log.ShowMessageBox ("This game requires SDL2_image. It will be downloaded now.", "Dependency missing");
+                    if (Dependencies.DownloadSDL2_image ()) {
+                    System.Diagnostics.Process.Start (Application.ExecutablePath); // to start new instance of application
+                    Application.Exit ();
+                }
+                else {
+                    Log.ShowMessageBox ("SDL2_image could not be downloaded.", "Dependency missing");
+                }
+            }
+            }}
     }
 }

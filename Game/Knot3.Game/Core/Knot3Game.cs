@@ -46,6 +46,7 @@ using Knot3.Game.Effects;
 using Knot3.Game.Input;
 using Knot3.Game.Screens;
 using Knot3.Game.Widgets;
+using Knot3.Framework.Platform;
 
 namespace Knot3.Game.Core
 {
@@ -124,11 +125,13 @@ namespace Knot3.Game.Core
                 Graphics.GraphicsDevice.Clear (current.BackgroundColor);
 
                 try {
-                    // Rufe Draw () auf dem aktuellen Screen auf
-                    current.Draw (time);
+                    Dependencies.CatchDllExceptions (()=>{
+                        // Rufe Draw () auf dem aktuellen Screen auf
+                        current.Draw (time);
 
-                    // Rufe Draw () auf den Spielkomponenten auf
-                    base.Draw (time);
+                        // Rufe Draw () auf den Spielkomponenten auf
+                        base.Draw (time);
+                    });
                 }
                 catch (Exception ex) {
                     // Error Screen
@@ -164,6 +167,7 @@ namespace Knot3.Game.Core
         protected override void Update (GameTime time)
         {
             try {
+                Dependencies.CatchDllExceptions (()=>{
                 updateResolution ();
                 // falls der Screen gewechselt werden soll...
                 IScreen current = Screens.Peek ();
@@ -196,7 +200,8 @@ namespace Knot3.Game.Core
                 Screens.Peek ().Update (time);
 
                 // base method
-                base.Update (time);
+                    base.Update (time);
+                });
             }
             catch (Exception ex) {
                 // Error Screen

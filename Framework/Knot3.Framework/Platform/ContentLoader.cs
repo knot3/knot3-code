@@ -156,9 +156,13 @@ namespace Knot3.Framework.Platform
         private static Texture2D LoadTextureFromFile (IScreen screen, string name)
         {
             try {
-                string filename = SystemInfo.RelativeContentDirectory + "Textures" + SystemInfo.PathSeparator + name;
-                FileStream stream = new FileStream (filename, FileMode.Open);
-                return Texture2D.FromStream (screen.GraphicsDevice, stream);
+                Texture2D texture = null;
+                Dependencies.CatchDllExceptions (()=>{
+                    string filename = SystemInfo.RelativeContentDirectory + "Textures" + SystemInfo.PathSeparator + name;
+                    FileStream stream = new FileStream (filename, FileMode.Open);
+                    texture = Texture2D.FromStream (screen.GraphicsDevice, stream);
+                });
+                return texture;
             }
             catch (Exception ex) {
                 // hier kommen bei indexierten Bitmaps nur "Exception"-Objekte,

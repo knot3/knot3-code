@@ -56,24 +56,7 @@ namespace Knot3.Game
                         );
             Log.Message ();
 
-            try {
-                GameLoop ();
-            }
-            catch (DllNotFoundException ex) {
-                Log.Message ();
-                Log.Error (ex);
-                Log.Message ();
-                if (ex.ToString ().ToLower ().Contains ("sdl2.dll")) {
-                    Log.ShowMessageBox ("This game requires SDL2. It will be downloaded now.", "Dependency missing");
-                    if (Dependencies.DownloadSDL2 ()) {
-                        System.Diagnostics.Process.Start (Application.ExecutablePath); // to start new instance of application
-                        Application.Exit ();
-                    }
-                    else {
-                        Log.ShowMessageBox ("SDL2 could not be downloaded.", "Dependency missing");
-                    }
-                }
-            }
+            Dependencies.CatchDllExceptions (GameLoop);
         }
 
         private static void GameLoop ()
