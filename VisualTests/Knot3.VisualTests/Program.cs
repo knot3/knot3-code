@@ -45,8 +45,6 @@ namespace Knot3.VisualTests
     [ExcludeFromCodeCoverageAttribute]
     static class Program
     {
-        private static VisualTestsGame game;
-
         /// <summary>
         /// The main entry point for the application.
         ///
@@ -58,32 +56,16 @@ namespace Knot3.VisualTests
             Log.Message ("Knot" + Char.ConvertFromUtf32 ('\u00B3').ToString () + " " + Version);
             Log.Message ("Visual Tests");
 
-            try {
-                GameLoop ();
-            }
-            catch (DllNotFoundException ex) {
-                Log.Message ();
-                Log.Error (ex);
-                Log.Message ();
-                if (ex.ToString ().ToLower ().Contains ("sdl2.dll")) {
-                    Log.ShowMessageBox ("This game requires SDL2. It will be downloaded now.", "Dependency missing");
-                    if (Dependencies.DownloadSDL2 ()) {
-                        System.Diagnostics.Process.Start (Application.ExecutablePath); // to start new instance of application
-                        Application.Exit ();
-                    }
-                    else {
-                        Log.ShowMessageBox ("SDL2 could not be downloaded.", "Dependency missing");
-                    }
-                }
-            }
+            Dependencies.CatchDllExceptions (GameLoop);
         }
 
         private static void GameLoop ()
         {
-            using ( game = new VisualTestsGame ()) {
+            using (VisualTestsGame game = new VisualTestsGame ()) {
                 game.Run ();
             }
         }
+
         /// <summary>
         /// Gibt die Versionsnummer zurück.
         /// </summary>

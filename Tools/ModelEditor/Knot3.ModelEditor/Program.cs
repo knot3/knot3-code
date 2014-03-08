@@ -44,8 +44,6 @@ namespace Knot3.ModelEditor
     [ExcludeFromCodeCoverageAttribute]
     static class Program
     {
-        private static ModelEditorGame game;
-
         /// <summary>
         /// The main entry point for the application.
         ///
@@ -57,8 +55,14 @@ namespace Knot3.ModelEditor
             Log.Message ("Knot" + Char.ConvertFromUtf32 ('\u00B3').ToString () + " " + Version);
             Log.Message ("Model Editor");
 
-            game = new ModelEditorGame ();
-            game.Run ();
+            Dependencies.CatchDllExceptions (GameLoop);
+        }
+
+        private static void GameLoop ()
+        {
+            using (ModelEditorGame game = new ModelEditorGame ()) {
+                game.Run ();
+            }
         }
 
         /// <summary>
