@@ -41,24 +41,52 @@ using Knot3.Framework.Input;
 using Knot3.Framework.Platform;
 
 using Knot3.Game.Data;
+using Knot3.Game.Screens;
 
 namespace Knot3.Game.Input
 {
     [ExcludeFromCodeCoverageAttribute]
-    public class EdgeRectangles : ScreenComponent
+    public class EdgeRectangles : KeyBindingListener<EdgeRectangles>
     {
+        /// <summary>
+        /// Der Knoten.
+        /// </summary>
         public Knot Knot { get; set; }
-
+        
+        /// <summary>
+        /// Ein Zufallsgenerator.
+        /// </summary>
         private Random random = new Random ();
+        
+        /// <summary>
+        /// Zeigt an, ob die Klasse modal ist.
+        /// </summary>
+        public override bool IsModal { get { return false; } }
+        
+        /// <summary>
+        /// Zeigt an, ob die Klasse zur Zeit auf Tastatureingaben reagiert.
+        /// </summary>
+        public override bool IsKeyEventEnabled { get { return true; } }
+
+        /// <summary>
+        /// Der statische Initialisierer legt die Standard-Tastenbelegung fest.
+        /// </summary>
+        static EdgeRectangles ()
+        {
+            DefaultKeyAssignment [Keys.N] = Knot3PlayerAction.EdgeRectangles;
+        }
 
         public EdgeRectangles (Screen screen)
         : base (screen, DisplayLayer.None)
         {
+            // Lege die Bedeutungen der Aktionen fest
+            ActionBindings [Knot3PlayerAction.EdgeRectangles] = (time) => OnEdgeRectangles(time);
+            UpdateKeyBindings ();
         }
 
-        public override void Update (GameTime time)
+        public void OnEdgeRectangles (GameTime time)
         {
-            Keys key = KnotInputHandler.LookupKey (Knot3PlayerAction.EdgeColoring);
+            Keys key = KnotInputHandler.LookupKey (Knot3PlayerAction.EdgeRectangles);
             // Soll sich die Rechteck geändert wurde?
             if (Knot.SelectedEdges.Any () && Screen.InputManager.KeyPressed (key)) {
                 int rectId = random.Next ();
@@ -69,7 +97,5 @@ namespace Knot3.Game.Input
                 Knot.EdgesChanged ();
             }
         }
-
-        public bool IsModal { get { return false; } }
     }
 }

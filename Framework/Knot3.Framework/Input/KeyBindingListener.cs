@@ -63,6 +63,11 @@ namespace Knot3.Framework.Input
         /// </summary>
         protected internal static Dictionary<PlayerAction, Keys> CurrentKeyAssignmentReversed { get; protected set; }
 
+        /// <summary>
+        /// Wird ausgelöst, wenn sich die Tastenbelegungen in der Konfigurationsdatei geändert haben.
+        /// </summary>
+        public static Action ControlSettingsChanged = () => {};
+
         static KeyBindingListener ()
         {
             Log.Message ("Static constructor of KeyBindingListener (non-generic) called!");
@@ -76,6 +81,13 @@ namespace Knot3.Framework.Input
         {
         }
 
+        /// <summary>
+        /// Führt die statischen Initialierer der angegebenen Typen aus. Dies kann zum Beispiel verwendet werden,
+        /// um sicherzustellen, dass die Standardtastenbelegungen, die in den statischen Initialierern der von
+        /// KeyBindingListener&lt;T&gt; erbenden Klassen gesetzt werden, gesetzt sind, obwohl die jeweiligen
+        /// von KeyBindingListener erbenden Klassen zur Laufzeit bisher noch nie verwendet wurden und daher
+        /// auch nicht initialiert wurden.
+        /// </summary>
         public static void InitializeListeners (params Type[] types)
         {
             foreach (Type type in types) {
@@ -99,16 +111,17 @@ namespace Knot3.Framework.Input
             // Iteriere dazu über alle gültigen PlayerActions...
             foreach (PlayerAction action in PlayerAction.Values) {
                 string actionName = action.Name;
-
-                // Erstelle eine Option...
-                KeyOption option = new KeyOption (
-                    section: "controls",
-                    name: actionName,
-                    defaultValue: defaultReversed [action],
-                    configFile: Config.Default
-                );
-                // und lese den Wert aus und speichere ihn in der Zuordnung.
-                CurrentKeyAssignment [option.Value] = action;
+                if (defaultReversed.ContainsKey (action)) {
+                    // Erstelle eine Option...
+                    KeyOption option = new KeyOption (
+                        section: "controls",
+                        name: actionName,
+                        defaultValue: defaultReversed [action],
+                        configFile: Config.Default
+                    );
+                    // und lese den Wert aus und speichere ihn in der Zuordnung.
+                    CurrentKeyAssignment [option.Value] = action;
+                }
             }
             CurrentKeyAssignmentReversed = CurrentKeyAssignment.ReverseDictionary ();
         }
@@ -175,6 +188,7 @@ namespace Knot3.Framework.Input
         {
             // Tasten
             ValidKeys = new List<Keys> ();
+            KeyBindingListener.ControlSettingsChanged += UpdateKeyBindings;
             UpdateKeyBindings ();
         }
 

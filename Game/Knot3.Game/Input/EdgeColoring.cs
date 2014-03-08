@@ -41,20 +41,45 @@ using Knot3.Framework.Platform;
 
 using Knot3.Game.Data;
 using Knot3.Game.Widgets;
+using Knot3.Game.Screens;
 
 namespace Knot3.Game.Input
 {
     [ExcludeFromCodeCoverageAttribute]
-    public class EdgeColoring : ScreenComponent
+    public class EdgeColoring : KeyBindingListener<EdgeColoring>
     {
+        /// <summary>
+        /// Der Knoten.
+        /// </summary>
         public Knot Knot { get; set; }
+        
+        /// <summary>
+        /// Zeigt an, ob die Klasse modal ist.
+        /// </summary>
+        public override bool IsModal { get { return false; } }
+        
+        /// <summary>
+        /// Zeigt an, ob die Klasse zur Zeit auf Tastatureingaben reagiert.
+        /// </summary>
+        public override bool IsKeyEventEnabled { get { return true; } }
+
+        /// <summary>
+        /// Der statische Initialisierer legt die Standard-Tastenbelegung fest.
+        /// </summary>
+        static EdgeColoring ()
+        {
+            DefaultKeyAssignment [Keys.C] = Knot3PlayerAction.EdgeColoring;
+        }
 
         public EdgeColoring (Screen screen)
         : base (screen, DisplayLayer.None)
         {
+            // Lege die Bedeutungen der Aktionen fest
+            ActionBindings [Knot3PlayerAction.EdgeColoring] = (time) => OnEdgeColoring(time);
+            UpdateKeyBindings ();
         }
 
-        public override void Update (GameTime time)
+        public void OnEdgeColoring (GameTime time)
         {
             Keys key = KnotInputHandler.LookupKey (Knot3PlayerAction.EdgeColoring);
             // Soll sich die Farbe geändert wurde?
@@ -74,7 +99,5 @@ namespace Knot3.Game.Input
                 Screen.AddGameComponents (time, picker);
             }
         }
-
-        public bool IsModal { get { return false; } }
     }
 }

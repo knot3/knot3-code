@@ -101,8 +101,8 @@ namespace Knot3.Game.Input
             DefaultKeyAssignment [Keys.S] = Knot3PlayerAction.MoveBackward;
             DefaultKeyAssignment [Keys.A] = Knot3PlayerAction.MoveLeft;
             DefaultKeyAssignment [Keys.D] = Knot3PlayerAction.MoveRight;
-            DefaultKeyAssignment [Keys.LeftShift] = Knot3PlayerAction.MoveUp;
-            DefaultKeyAssignment [Keys.LeftControl] = Knot3PlayerAction.MoveDown;
+            DefaultKeyAssignment [Keys.R] = Knot3PlayerAction.MoveUp;
+            DefaultKeyAssignment [Keys.F] = Knot3PlayerAction.MoveDown;
             DefaultKeyAssignment [Keys.Up] = Knot3PlayerAction.RotateUp;
             DefaultKeyAssignment [Keys.Down] = Knot3PlayerAction.RotateDown;
             DefaultKeyAssignment [Keys.Left] = Knot3PlayerAction.RotateLeft;
@@ -111,11 +111,9 @@ namespace Knot3.Game.Input
             DefaultKeyAssignment [Keys.E] = Knot3PlayerAction.ZoomOut;
             DefaultKeyAssignment [Keys.Enter] = Knot3PlayerAction.ResetCamera;
             DefaultKeyAssignment [Keys.Space] = Knot3PlayerAction.MoveToCenter;
-            DefaultKeyAssignment [Keys.LeftAlt] = Knot3PlayerAction.ToggleMouseLock;
-            DefaultKeyAssignment [Keys.RightControl] = Knot3PlayerAction.AddToEdgeSelection;
-            DefaultKeyAssignment [Keys.RightShift] = Knot3PlayerAction.AddRangeToEdgeSelection;
-            DefaultKeyAssignment [Keys.C] = Knot3PlayerAction.EdgeColoring;
-            DefaultKeyAssignment [Keys.N] = Knot3PlayerAction.EdgeRectangles;
+            DefaultKeyAssignment [Keys.M] = Knot3PlayerAction.ToggleMouseLock;
+            DefaultKeyAssignment [Keys.LeftControl] = Knot3PlayerAction.AddToEdgeSelection;
+            DefaultKeyAssignment [Keys.LeftShift] = Knot3PlayerAction.AddRangeToEdgeSelection;
         }
 
         /// <summary>
@@ -134,9 +132,6 @@ namespace Knot3.Game.Input
             // Setze die Standardwerte für die Mausposition
             screen.InputManager.GrabMouseMovement = false;
             ResetMousePosition ();
-
-            // Tasten
-            ControlSettingsScreen.ControlSettingsChanged += UpdateKeyBindings;
 
             // Lege die Bedeutungen der Aktionen fest
             ActionBindings [Knot3PlayerAction.MoveUp] = (time) => MoveCameraAndTarget (Vector3.Up, time);

@@ -59,7 +59,6 @@ namespace Knot3.Game.Screens
         /// Das Menü, das die Einstellungen enthält.
         /// </summary>
         private Menu settingsMenu;
-        public static Action ControlSettingsChanged = () => {};
 
         /// <summary>
         /// Erzeugt ein neues ControlSettingsScreen-Objekt und initialisiert dieses mit einem Knot3Game-Objekt.
@@ -84,8 +83,19 @@ namespace Knot3.Game.Screens
             );
             settingsMenu.Add (moveToCenter);
 
-            // Make sure that the static initializers for the key binding listeners are called!!
-            KeyBindingListener.InitializeListeners (typeof (InputManager), typeof (KnotInputHandler));
+            // Die statischen Initialierer der folgenden Inputhandler müssen geladen sein, egal, ob der User bereits
+            // im Spiel war oder nicht, denn davon hängt es ab, ob sie bereits auf natürliche Weise initialiert wurden.
+            // Falls das nicht der Fall ist, rufen wir über Reflection den statischen Initialierer auf, ohne die Klassen
+            // sonst irgendwie anzutasten. Das ist sauberer als eine statische Methode statt des Initialierers zu verwenden,
+            // da man diese an vielen Stellen aufrufen müsste, nur um den sehr unwahrscheinlichen Fall, dass noch nichts
+            // initialisiert ist, abzudecken. Die statischen Initialisierer hingegen werden von der Laufzeitumgebung
+            // in allen Fällen bis auf genau diesen hier im Einstellungsmenü automatisch aufgerufen.
+            KeyBindingListener.InitializeListeners (
+                typeof (InputManager),
+                typeof (KnotInputHandler),
+                typeof (EdgeColoring),
+                typeof (EdgeRectangles)
+            );
 
             // Lade die Standardbelegung
             Dictionary<PlayerAction, Keys> defaultReversed = KeyBindingListener.DefaultKeyAssignment.ReverseDictionary ();
@@ -110,7 +120,7 @@ namespace Knot3.Game.Screens
                         text: actionName,
                         option: option
                     );
-                    item.OnValueChanged += () => ControlSettingsChanged ();
+                    item.OnValueChanged += () => KeyBindingListener.ControlSettingsChanged ();
 
                     // Füge es in das Menü ein
                     settingsMenu.Add (item);
