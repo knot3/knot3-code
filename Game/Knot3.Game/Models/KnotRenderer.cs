@@ -246,12 +246,13 @@ namespace Knot3.Game.Models
             World.Redraw = true;
         }
 
-        private void CreatePipes (IEnumerable<Edge> edges)
+        private void CreatePipes (Knot knot)
         {
             pipes.Clear ();
-            foreach (Edge edge in edges) {
+            foreach (Edge edge in knot) {
                 Pipe info = new Pipe (nodeMap, knot, edge);
                 PipeModel pipe = pipeFactory [screen, info] as PipeModel;
+                pipe.Info.Knot = knot;
                 pipe.Info.IsVisible = true;
                 pipe.IsVirtual = !knot.Contains (edge);
                 pipe.World = World;
@@ -458,6 +459,19 @@ namespace Knot3.Game.Models
             }
             foreach (TexturedRectangle rectangle in rectangles) {
                 rectangle.Update (time);
+            }
+
+            if (time.TotalGameTime.Seconds % 10 == 0) {
+                int count = pipeFactory.Count + nodeFactory.Count + arrowFactory.Count;
+                if (count > 0) {
+                    Profiler.Values ["# Cached Models"] = count;
+                    if (time.TotalGameTime.Seconds % 120 == 0) {
+                        Log.Debug ("Clear Model Cache: ", count, " Models deleted");
+                        pipeFactory.Clear ();
+                        nodeFactory.Clear ();
+                        arrowFactory.Clear ();
+                    }
+                }
             }
         }
 

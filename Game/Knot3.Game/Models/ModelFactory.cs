@@ -27,11 +27,9 @@
  * 
  * See the LICENSE file for full license details of the Knot3 project.
  */
-
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-
 using Knot3.Framework.Core;
 using Knot3.Framework.Models;
 
@@ -76,6 +74,13 @@ namespace Knot3.Game.Models
                     return cache [info] = createModel (screen, info);
                 }
             }
+        }
+
+        public int Count { get { return cache.Count; } }
+
+        public void Clear ()
+        {
+            cache.Clear ();
         }
     }
 }
