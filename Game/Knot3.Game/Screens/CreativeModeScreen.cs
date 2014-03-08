@@ -215,8 +215,8 @@ namespace Knot3.Game.Screens
 
         private void OnKnotMoved (Knot newKnot)
         {
-            OnEdgesChanged ();
             knot = newKnot;
+            OnEdgesChanged ();
             Log.Debug ("=> set Knot #", knot.Count (), " = ", string.Join (", ", from c in knot select c.Direction));
             registerCurrentKnot ();
         }
