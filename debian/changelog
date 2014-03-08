@@ -1,2470 +1,6754 @@
-knot3 (2.0-beta-66-g79ab080) unstable; urgency=low
+knot3 (1.3-165-g7d9c49b) unstable; urgency=low
+
+  * Code Format
+
+ -- Tobias Schulz <tobias@freehal.net>  Sat, 8 Mar 2014 19:48:08 +0100
+
+knot3 (1.3-164-gdfa5ba8) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Sat, 8 Mar 2014 19:47:36 +0100
+
+knot3 (1.3-163-gc191758) unstable; urgency=low
+
+  * Code Format
+
+ -- Tobias Schulz <tobias@freehal.net>  Sat, 8 Mar 2014 19:47:08 +0100
+
+knot3 (1.3-162-gec77bb8) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Sat, 8 Mar 2014 19:46:02 +0100
+
+knot3 (1.3-161-gd020708) unstable; urgency=low
+
+  * this simply change unbreaks our undo/redo
+
+ -- Maximilian-Reuter <maximilian.reuter@t-online.de>  Sat, 8 Mar 2014 19:32:36 +0100
+
+knot3 (1.3-160-g46b7435) unstable; urgency=low
+
+  * fullscreen
+
+ -- Tobias Schulz <tobias@freehal.net>  Sat, 8 Mar 2014 18:57:01 +0100
+
+knot3 (1.3-159-g851632a) unstable; urgency=low
+
+  * test
+
+ -- Tobias Schulz <tobias@freehal.net>  Sat, 8 Mar 2014 18:51:09 +0100
+
+knot3 (1.3-158-g27a9ce3) unstable; urgency=low
+
+  * Code Format
+
+ -- Maximilian-Reuter <maximilian.reuter@t-online.de>  Sat, 8 Mar 2014 18:47:07 +0100
+
+knot3 (1.3-157-g8058b46) unstable; urgency=low
+
+  * i accidently implemented borderless fullscreen
+
+ -- Maximilian-Reuter <maximilian.reuter@t-online.de>  Sat, 8 Mar 2014 18:46:09 +0100
+
+knot3 (1.3-156-ga368510) unstable; urgency=low
+
+  * Code Format
+
+ -- Maximilian-Reuter <maximilian.reuter@t-online.de>  Sat, 8 Mar 2014 18:23:08 +0100
+
+knot3 (1.3-155-g214a6c1) unstable; urgency=low
+
+  * fullscreen button in grafik optionen
+
+ -- Maximilian-Reuter <maximilian.reuter@t-online.de>  Sat, 8 Mar 2014 18:22:38 +0100
+
+knot3 (1.3-154-g28dde73) unstable; urgency=low
+
+  * Code Format
+
+ -- Tobias Schulz <tobias@freehal.net>  Sat, 8 Mar 2014 15:26:08 +0100
+
+knot3 (1.3-153-gd9b8e15) unstable; urgency=low
+
+  * Macht das einen Unterschied? knot3/knot3#158
+
+ -- Tobias Schulz <tobias@freehal.net>  Sat, 8 Mar 2014 15:25:35 +0100
+
+knot3 (1.3-152-g6bdc3ee) unstable; urgency=low
+
+  * Code Format
+
+ -- Tobias Schulz <tobias@freehal.net>  Sat, 8 Mar 2014 15:00:09 +0100
+
+knot3 (1.3-151-g0d5df41) unstable; urgency=low
+
+  * Fixed Fullscreen
+
+ -- Tobias Schulz <tobias@freehal.net>  Sat, 8 Mar 2014 14:59:17 +0100
+
+knot3 (1.3-150-gacc2aa8) unstable; urgency=low
+
+  * Code Format
+
+ -- Tobias Schulz <tobias@freehal.net>  Sat, 8 Mar 2014 14:34:09 +0100
+
+knot3 (1.3-149-gc52bf7c) unstable; urgency=low
+
+  * Fixes knot3/knot3#160
+
+ -- Tobias Schulz <tobias@freehal.net>  Sat, 8 Mar 2014 14:33:17 +0100
+
+knot3 (1.3-148-gb06b647) unstable; urgency=low
+
+  * Level Cleanup
+
+ -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Sat, 8 Mar 2014 02:46:00 +0100
+
+knot3 (1.3-147-ga2128c5) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 7 Mar 2014 23:04:41 +0100
+
+knot3 (1.3-146-g515ea97) unstable; urgency=low
+
+  * Code Format
+
+ -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Fri, 7 Mar 2014 20:26:08 +0100
+
+knot3 (1.3-145-g264b934) unstable; urgency=low
+
+  * Merge branch 'master' of https://github.com/knot3/knot3
+
+ -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Fri, 7 Mar 2014 20:25:02 +0100
+
+knot3 (1.3-142-gad1f606) unstable; urgency=low
+
+  * Challenge
+
+ -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Fri, 7 Mar 2014 20:24:54 +0100
+
+knot3 (1.3-143-g34a417f) unstable; urgency=low
+
+  * Code Format
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 7 Mar 2014 20:06:08 +0100
+
+knot3 (1.3-142-gb3c7c7c) unstable; urgency=low
+
+  * ms anzeige
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 7 Mar 2014 20:05:51 +0100
+
+knot3 (1.3-141-g85e52ec) unstable; urgency=low
+
+  * Code Format
+
+ -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Fri, 7 Mar 2014 20:04:08 +0100
+
+knot3 (1.3-140-g7e3cd2c) unstable; urgency=low
+
+  * Merge branch 'master' of https://github.com/knot3/knot3
+
+ -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Fri, 7 Mar 2014 20:03:06 +0100
+
+knot3 (1.3-131-g7390c27) unstable; urgency=low
+
+  * ChallengeMetaDataTest
+
+ -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Fri, 7 Mar 2014 20:02:58 +0100
+
+knot3 (1.3-138-ge36d8ec) unstable; urgency=low
+
+  * Code Format
+
+ -- Maximilian-Reuter <maximilian.reuter@t-online.de>  Fri, 7 Mar 2014 19:57:08 +0100
+
+knot3 (1.3-137-g361bc94) unstable; urgency=low
+
+  * ...
+
+ -- Maximilian-Reuter <maximilian.reuter@t-online.de>  Fri, 7 Mar 2014 19:56:32 +0100
+
+knot3 (1.3-136-g87fead2) unstable; urgency=low
+
+  * FPS-Counter in den Visual Tests
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 7 Mar 2014 19:56:03 +0100
+
+knot3 (1.3-135-gcfaf294) unstable; urgency=low
+
+  * Code Format
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 7 Mar 2014 19:45:08 +0100
+
+knot3 (1.3-134-g7811552) unstable; urgency=low
+
+  * uraghsefvd
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 7 Mar 2014 19:44:54 +0100
+
+knot3 (1.3-133-gec056b7) unstable; urgency=low
+
+  * Code Format
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 7 Mar 2014 19:33:08 +0100
+
+knot3 (1.3-132-g4e8f87c) unstable; urgency=low
+
+  * SubComponents
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 7 Mar 2014 19:32:16 +0100
+
+knot3 (1.3-131-gb1935b2) unstable; urgency=low
+
+  * Code Format
+
+ -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Fri, 7 Mar 2014 19:20:08 +0100
+
+knot3 (1.3-130-g699aca1) unstable; urgency=low
+
+  * Merge branch 'master' of https://github.com/knot3/knot3
+
+ -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Fri, 7 Mar 2014 19:19:16 +0100
+
+knot3 (1.3-128-g60070b6) unstable; urgency=low
+
+  * Code Format
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 7 Mar 2014 19:19:08 +0100
+
+knot3 (1.3-127-gced07c8) unstable; urgency=low
+
+  * Der Rest von ChallengeFileIO lässt sich nicht erreichen
+
+ -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Fri, 7 Mar 2014 19:19:06 +0100
+
+knot3 (1.3-127-gf45f976) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 7 Mar 2014 19:18:57 +0100
+
+knot3 (1.3-126-g7dcc49b) unstable; urgency=low
+
+  * Code Format
+
+ -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Fri, 7 Mar 2014 19:10:07 +0100
+
+knot3 (1.3-125-g589c316) unstable; urgency=low
+
+  * Merge branch 'master' of https://github.com/knot3/knot3
+
+ -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Fri, 7 Mar 2014 19:09:54 +0100
+
+knot3 (1.3-110-g2ebbc66) unstable; urgency=low
+
+  * ChallangeIO
+
+ -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Fri, 7 Mar 2014 19:09:44 +0100
+
+knot3 (1.3-123-g38e4a1f) unstable; urgency=low
+
+  * Code Format
+
+ -- Maximilian-Reuter <maximilian.reuter@t-online.de>  Fri, 7 Mar 2014 19:09:08 +0100
+
+knot3 (1.3-122-ga8de21f) unstable; urgency=low
+
+  * fix for windows
+
+ -- Maximilian-Reuter <maximilian.reuter@t-online.de>  Fri, 7 Mar 2014 19:08:40 +0100
+
+knot3 (1.3-121-g01e9b64) unstable; urgency=low
+
+  * Revert "..."
+
+ -- Tobias Schulz <tobias.schulz186@gmail.com>  Fri, 7 Mar 2014 19:07:07 +0100
+
+knot3 (1.3-120-g31b40c0) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 7 Mar 2014 19:03:25 +0100
+
+knot3 (1.3-119-g737c5a9) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 7 Mar 2014 18:57:22 +0100
+
+knot3 (1.3-118-g3473d65) unstable; urgency=low
+
+  * Code Format
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 7 Mar 2014 18:56:07 +0100
+
+knot3 (1.3-117-g5bdbfa2) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 7 Mar 2014 18:55:47 +0100
+
+knot3 (1.3-116-g5a9475b) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 7 Mar 2014 18:45:28 +0100
+
+knot3 (1.3-115-g740edbb) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 7 Mar 2014 18:44:33 +0100
+
+knot3 (1.3-114-g24c4c6d) unstable; urgency=low
+
+  * Code Format
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 7 Mar 2014 18:43:10 +0100
+
+knot3 (1.3-113-g9ee29a0) unstable; urgency=low
+
+  * Grafusche Tests
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 7 Mar 2014 18:42:56 +0100
+
+knot3 (1.3-112-g8f02296) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Fri, 7 Mar 2014 18:03:08 +0100
+
+knot3 (1.3-111-gaae2fdd) unstable; urgency=low
+
+  * Merge branch 'master' of https://github.com/knot3/knot3
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Fri, 7 Mar 2014 18:03:06 +0100
+
+knot3 (1.3-109-g3c9a0a5) unstable; urgency=low
+
+  * ...
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Fri, 7 Mar 2014 18:03:00 +0100
+
+knot3 (1.3-109-g48d22b4) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 7 Mar 2014 17:23:28 +0100
+
+knot3 (1.3-108-g3179588) unstable; urgency=low
+
+  * Merge branch 'master' of https://github.com/knot3/knot3
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Fri, 7 Mar 2014 17:21:05 +0100
+
+knot3 (1.3-106-g681643a) unstable; urgency=low
+
+  * ...
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Fri, 7 Mar 2014 17:20:34 +0100
+
+knot3 (1.3-106-g874c5a0) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Fri, 7 Mar 2014 17:20:08 +0100
+
+knot3 (1.3-105-gd306410) unstable; urgency=low
+
+  * Merge branch 'master' of https://github.com/knot3/knot3
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Fri, 7 Mar 2014 17:19:39 +0100
+
+knot3 (1.3-66-gf9fc14d) unstable; urgency=low
+
+  * Naives Benchmarking
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Fri, 7 Mar 2014 17:19:33 +0100
+
+knot3 (1.3-103-g2bb6120) unstable; urgency=low
+
+  * Code Format
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 7 Mar 2014 17:17:08 +0100
+
+knot3 (1.3-102-gc20960a) unstable; urgency=low
+
+  * reset cache
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 7 Mar 2014 17:16:27 +0100
+
+knot3 (1.3-101-g8cb1f48) unstable; urgency=low
+
+  * Code Format
+
+ -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Fri, 7 Mar 2014 17:08:07 +0100
+
+knot3 (1.3-100-gf4c740f) unstable; urgency=low
+
+  * Merge branch 'master' of https://github.com/knot3/knot3
+
+ -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Fri, 7 Mar 2014 17:07:10 +0100
+
+knot3 (1.3-93-gd2dbc2c) unstable; urgency=low
+
+  * kleine tests
+
+ -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Fri, 7 Mar 2014 17:06:59 +0100
+
+knot3 (1.3-98-g8291fa2) unstable; urgency=low
+
+  * Code Format
+
+ -- Daniel Warzel <wudi_mail@gmx.de>  Fri, 7 Mar 2014 16:30:12 +0100
+
+knot3 (1.3-97-ga22e398) unstable; urgency=low
+
+  * KnotFileIO_test
+
+ -- Daniel Warzel <wudi_mail@gmx.de>  Fri, 7 Mar 2014 16:29:17 +0100
+
+knot3 (1.3-96-g432e62a) unstable; urgency=low
+
+  * Code Format
+
+ -- Daniel Warzel <wudi_mail@gmx.de>  Fri, 7 Mar 2014 16:20:07 +0100
+
+knot3 (1.3-95-g80164d9) unstable; urgency=low
+
+  * KnotFileIO_test
+
+ -- Daniel Warzel <wudi_mail@gmx.de>  Fri, 7 Mar 2014 16:19:11 +0100
+
+knot3 (1.3-94-gb9af75c) unstable; urgency=low
+
+  * Code Format
+
+ -- Daniel Warzel <wudi_mail@gmx.de>  Fri, 7 Mar 2014 16:15:08 +0100
+
+knot3 (1.3-93-g5964c58) unstable; urgency=low
+
+  * KnotFileIO_Test
+
+ -- Daniel Warzel <wudi_mail@gmx.de>  Fri, 7 Mar 2014 16:14:29 +0100
+
+knot3 (1.3-92-g01a5cc4) unstable; urgency=low
+
+  * Fixes knot3/knot3#157
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 7 Mar 2014 16:03:06 +0100
+
+knot3 (1.3-91-gf396445) unstable; urgency=low
+
+  * Knoten wird im Creative abgespeichert
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 7 Mar 2014 15:52:29 +0100
+
+knot3 (1.3-90-g2cebe8b) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 7 Mar 2014 15:34:33 +0100
+
+knot3 (1.3-89-g8c5e187) unstable; urgency=low
+
+  * Code Format
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 7 Mar 2014 15:32:06 +0100
+
+knot3 (1.3-88-g1b67448) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 7 Mar 2014 15:31:14 +0100
+
+knot3 (1.3-87-g4e565c7) unstable; urgency=low
+
+  * Code Format
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 7 Mar 2014 15:17:09 +0100
+
+knot3 (1.3-86-g34732df) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 7 Mar 2014 15:16:28 +0100
+
+knot3 (1.3-85-g163dea8) unstable; urgency=low
+
+  * DecodedMusicCache
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 7 Mar 2014 15:09:08 +0100
+
+knot3 (1.3-84-ge8dead0) unstable; urgency=low
+
+  * ...
+
+ -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Fri, 7 Mar 2014 14:59:56 +0100
+
+knot3 (1.3-83-gb89735a) unstable; urgency=low
+
+  * hängt sich auf
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 7 Mar 2014 14:56:15 +0100
+
+knot3 (1.3-82-ga60ff1d) unstable; urgency=low
+
+  * Invalide ogg-datei
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 7 Mar 2014 14:46:58 +0100
+
+knot3 (1.3-81-g755898c) unstable; urgency=low
+
+  * makefile
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 7 Mar 2014 14:42:18 +0100
+
+knot3 (1.3-80-g16519e7) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 7 Mar 2014 14:36:05 +0100
+
+knot3 (1.3-79-g1522985) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 7 Mar 2014 14:33:43 +0100
+
+knot3 (1.3-78-g096c9c6) unstable; urgency=low
+
+  * Code Format
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 7 Mar 2014 14:29:08 +0100
+
+knot3 (1.3-77-gb990c07) unstable; urgency=low
+
+  * Audio Tests
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 7 Mar 2014 14:28:12 +0100
+
+knot3 (1.3-76-gdfac5be) unstable; urgency=low
+
+  * Fixes knot3/knot3#155
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 7 Mar 2014 14:10:09 +0100
+
+knot3 (1.3-75-ge676033) unstable; urgency=low
+
+  * Code Format
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 7 Mar 2014 13:57:08 +0100
+
+knot3 (1.3-74-g8b16bd2) unstable; urgency=low
+
+  * wird nicht getestet
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 7 Mar 2014 13:56:35 +0100
+
+knot3 (1.3-73-g2e04591) unstable; urgency=low
+
+  * Code Format
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 7 Mar 2014 13:55:08 +0100
+
+knot3 (1.3-72-gfdba1de) unstable; urgency=low
+
+  * Code sparen
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 7 Mar 2014 13:54:41 +0100
+
+knot3 (1.3-71-g490a5a7) unstable; urgency=low
+
+  * Code Format
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 7 Mar 2014 13:43:06 +0100
+
+knot3 (1.3-70-g2432605) unstable; urgency=low
+
+  * Typesafe-Enums erweitert
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 7 Mar 2014 13:42:21 +0100
+
+knot3 (1.3-69-g288357d) unstable; urgency=low
+
+  * Code Format
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 7 Mar 2014 13:13:09 +0100
+
+knot3 (1.3-68-gbe103f0) unstable; urgency=low
+
+  * Tastenbelegungen refactored, mit Typesafe-Enums, besserer Trennung zwischen Framework und Spiel, weniger doppelter Code
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 7 Mar 2014 13:12:50 +0100
+
+knot3 (1.3-67-g105fd37) unstable; urgency=low
+
+  * Code Format
+
+ -- Daniel Warzel <wudi_mail@gmx.de>  Fri, 7 Mar 2014 13:05:07 +0100
+
+knot3 (1.3-66-g3de641f) unstable; urgency=low
+
+  * FileIndex_Test
+
+ -- Daniel Warzel <wudi_mail@gmx.de>  Fri, 7 Mar 2014 13:04:30 +0100
+
+knot3 (1.3-65-g2b4ee62) unstable; urgency=low
+
+  * Code Format
+
+ -- Daniel Warzel <wudi_mail@gmx.de>  Thu, 6 Mar 2014 19:49:06 +0100
+
+knot3 (1.3-64-gc369f7b) unstable; urgency=low
+
+  * Code Format
+
+ -- PSE Knot³ <uaeti@student.kit.edu>  Thu, 6 Mar 2014 19:48:53 +0100
+
+knot3 (1.3-63-g6805bb8) unstable; urgency=low
+
+  * Code Format
+
+ -- Daniel Warzel <wudi_mail@gmx.de>  Thu, 6 Mar 2014 19:48:06 +0100
+
+knot3 (1.3-62-gf075519) unstable; urgency=low
+
+  * Merge branch 'master' of https://github.com/knot3/knot3
+
+ -- Daniel Warzel <wudi_mail@gmx.de>  Thu, 6 Mar 2014 19:47:49 +0100
+
+knot3 (1.3-60-g8515949) unstable; urgency=low
+
+  * fixed knot3/knot3#94
+
+ -- Daniel Warzel <wudi_mail@gmx.de>  Thu, 6 Mar 2014 19:47:40 +0100
+
+knot3 (1.3-60-gcf96a7c) unstable; urgency=low
+
+  * Code Format
+
+ -- Daniel Warzel <wudi_mail@gmx.de>  Thu, 6 Mar 2014 19:47:07 +0100
+
+knot3 (1.3-59-g1289759) unstable; urgency=low
+
+  * Merge branch 'master' of https://github.com/knot3/knot3
+
+ -- Daniel Warzel <wudi_mail@gmx.de>  Thu, 6 Mar 2014 19:46:00 +0100
+
+knot3 (1.3-53-gac87fc7) unstable; urgency=low
+
+  * Save and Exit fix
+
+ -- Daniel Warzel <wudi_mail@gmx.de>  Thu, 6 Mar 2014 19:45:51 +0100
+
+knot3 (1.3-57-g8ea9e95) unstable; urgency=low
+
+  * Code Format
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 6 Mar 2014 19:36:07 +0100
+
+knot3 (1.3-56-gcb9548d) unstable; urgency=low
+
+  * fix
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 6 Mar 2014 19:34:54 +0100
+
+knot3 (1.3-55-gd56b9e6) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Thu, 6 Mar 2014 19:18:12 +0100
+
+knot3 (1.3-54-g9290a20) unstable; urgency=low
+
+  * Merge branch 'master' of https://github.com/knot3/knot3
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Thu, 6 Mar 2014 19:18:08 +0100
+
+knot3 (1.3-51-g7ec7fa3) unstable; urgency=low
+
+  * F11 Fullscreen (InGame)
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Thu, 6 Mar 2014 19:18:00 +0100
+
+knot3 (1.3-52-g4599251) unstable; urgency=low
+
+  * Code Format
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 6 Mar 2014 19:04:08 +0100
+
+knot3 (1.3-51-ge47e15e) unstable; urgency=low
+
+  * Challange mit zwei gleichen Knoten nicht mehr möglich.
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 6 Mar 2014 19:03:25 +0100
+
+knot3 (1.3-50-gfbf1345) unstable; urgency=low
+
+  * Code Format
+
+ -- Daniel Warzel <wudi_mail@gmx.de>  Thu, 6 Mar 2014 18:50:09 +0100
+
+knot3 (1.3-49-g0b2ef43) unstable; urgency=low
+
+  * Tasten für Einfärbung und Flächen sind konfigurierbar
+
+ -- Daniel Warzel <wudi_mail@gmx.de>  Thu, 6 Mar 2014 18:49:31 +0100
+
+knot3 (1.3-48-ge66245b) unstable; urgency=low
+
+  * Code Format
+
+ -- Daniel Warzel <wudi_mail@gmx.de>  Thu, 6 Mar 2014 17:42:08 +0100
+
+knot3 (1.3-47-gf2ecf12) unstable; urgency=low
+
+  * language tests
+
+ -- Daniel Warzel <wudi_mail@gmx.de>  Thu, 6 Mar 2014 17:41:17 +0100
+
+knot3 (1.3-46-g8e3d615) unstable; urgency=low
+
+  * Code Format
+
+ -- Daniel Warzel <wudi_mail@gmx.de>  Thu, 6 Mar 2014 17:34:08 +0100
+
+knot3 (1.3-45-g9eecd3d) unstable; urgency=low
+
+  * Langfuge Tests
+
+ -- Daniel Warzel <wudi_mail@gmx.de>  Thu, 6 Mar 2014 17:33:19 +0100
+
+knot3 (1.3-44-g4150054) unstable; urgency=low
+
+  * Code Format
+
+ -- Daniel Warzel <wudi_mail@gmx.de>  Thu, 6 Mar 2014 17:17:08 +0100
+
+knot3 (1.3-43-g9a0ae2c) unstable; urgency=low
+
+  * LanguageOption
+
+ -- Daniel Warzel <wudi_mail@gmx.de>  Thu, 6 Mar 2014 17:16:00 +0100
+
+knot3 (1.3-42-gc593760) unstable; urgency=low
+
+  * Code Format
+
+ -- Daniel Warzel <wudi_mail@gmx.de>  Thu, 6 Mar 2014 17:07:07 +0100
+
+knot3 (1.3-41-g0009d13) unstable; urgency=low
+
+  * Localizer TEst
+
+ -- Daniel Warzel <wudi_mail@gmx.de>  Thu, 6 Mar 2014 17:06:18 +0100
+
+knot3 (1.3-40-g3327bc1) unstable; urgency=low
+
+  * Code Format
+
+ -- Daniel Warzel <wudi_mail@gmx.de>  Thu, 6 Mar 2014 16:51:10 +0100
+
+knot3 (1.3-39-g156f1c6) unstable; urgency=low
+
+  * Encode if else block durch Directory ersetzt
+
+ -- Daniel Warzel <wudi_mail@gmx.de>  Thu, 6 Mar 2014 16:50:07 +0100
+
+knot3 (1.3-38-g3436771) unstable; urgency=low
+
+  * ..
+
+ -- Daniel Warzel <wudi_mail@gmx.de>  Thu, 6 Mar 2014 16:41:13 +0100
+
+knot3 (1.3-37-g3e86909) unstable; urgency=low
+
+  * Code Format
+
+ -- Daniel Warzel <wudi_mail@gmx.de>  Thu, 6 Mar 2014 16:38:07 +0100
+
+knot3 (1.3-36-g28fa83b) unstable; urgency=low
+
+  * KnotStringIO Test fertig
+
+ -- Daniel Warzel <wudi_mail@gmx.de>  Thu, 6 Mar 2014 16:37:04 +0100
+
+knot3 (1.3-35-g5ff3624) unstable; urgency=low
+
+  * Fix Eingabe
+
+ -- Daniel Warzel <wudi_mail@gmx.de>  Thu, 6 Mar 2014 16:29:11 +0100
+
+knot3 (1.3-34-g822b21a) unstable; urgency=low
+
+  * Code Format
+
+ -- Daniel Warzel <wudi_mail@gmx.de>  Thu, 6 Mar 2014 16:01:08 +0100
+
+knot3 (1.3-33-g8d285d8) unstable; urgency=low
+
+  * Merge
+
+ -- Daniel Warzel <wudi_mail@gmx.de>  Thu, 6 Mar 2014 15:58:04 +0100
+
+knot3 (1.3-32-g5054354) unstable; urgency=low
+
+  * Code Format
+
+ -- Daniel Warzel <wudi_mail@gmx.de>  Thu, 6 Mar 2014 15:47:07 +0100
+
+knot3 (1.3-31-g5431c05) unstable; urgency=low
+
+  * KnotStringIO
+
+ -- Daniel Warzel <wudi_mail@gmx.de>  Thu, 6 Mar 2014 15:46:13 +0100
+
+knot3 (1.3-30-g04f07d3) unstable; urgency=low
+
+  * Code Format
+
+ -- Daniel Warzel <wudi_mail@gmx.de>  Thu, 6 Mar 2014 15:33:08 +0100
+
+knot3 (1.3-29-g07081ac) unstable; urgency=low
+
+  * fix
+
+ -- Daniel Warzel <wudi_mail@gmx.de>  Thu, 6 Mar 2014 15:32:44 +0100
+
+knot3 (1.3-28-g971e0a0) unstable; urgency=low
+
+  * Code Format
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 6 Mar 2014 15:24:06 +0100
+
+knot3 (1.3-27-g2c8c3f6) unstable; urgency=low
+
+  * fix
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 6 Mar 2014 15:23:36 +0100
+
+knot3 (1.3-26-g2744ebf) unstable; urgency=low
+
+  * Code Format
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 6 Mar 2014 15:19:07 +0100
+
+knot3 (1.3-25-g2d21e5f) unstable; urgency=low
+
+  * fix
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 6 Mar 2014 15:18:28 +0100
+
+knot3 (1.3-24-g9be7eae) unstable; urgency=low
+
+  * Code Format
+
+ -- Daniel Warzel <wudi_mail@gmx.de>  Thu, 6 Mar 2014 15:16:07 +0100
+
+knot3 (1.3-23-g576002c) unstable; urgency=low
+
+  * ...
+
+ -- Daniel Warzel <wudi_mail@gmx.de>  Thu, 6 Mar 2014 15:15:28 +0100
+
+knot3 (1.3-22-g1b12334) unstable; urgency=low
+
+  * logging über Log-Klasse
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 6 Mar 2014 15:05:42 +0100
+
+knot3 (1.3-21-g978cd81) unstable; urgency=low
+
+  * Code Format
+
+ -- Daniel Warzel <wudi_mail@gmx.de>  Thu, 6 Mar 2014 15:00:09 +0100
+
+knot3 (1.3-20-g27f31a8) unstable; urgency=low
+
+  * KnotStringIO verbessert
+
+ -- Daniel Warzel <wudi_mail@gmx.de>  Thu, 6 Mar 2014 14:59:24 +0100
+
+knot3 (1.3-19-gd24e727) unstable; urgency=low
+
+  * namespace
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 6 Mar 2014 14:48:16 +0100
+
+knot3 (1.3-18-g6ad8b8c) unstable; urgency=low
+
+  * i, OpenCover.bat (Pfade)
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Thu, 6 Mar 2014 13:08:34 +0100
+
+knot3 (1.3-17-g26b052a) unstable; urgency=low
+
+  * fix
+
+ -- Tobias Schulz <tobias@freehal.net>  Tue, 4 Mar 2014 22:57:43 +0100
+
+knot3 (1.3-16-gd21b1fa) unstable; urgency=low
+
+  * Code Format
+
+ -- Tobias Schulz <tobias@freehal.net>  Tue, 4 Mar 2014 22:51:06 +0100
+
+knot3 (1.3-15-g09875b8) unstable; urgency=low
+
+  * fix
+
+ -- Tobias Schulz <tobias@freehal.net>  Tue, 4 Mar 2014 22:50:06 +0100
+
+knot3 (1.3-14-g4a93722) unstable; urgency=low
+
+  * Code Format
+
+ -- Daniel Warzel <wudi_mail@gmx.de>  Tue, 4 Mar 2014 21:28:07 +0100
+
+knot3 (1.3-13-gec87438) unstable; urgency=low
+
+  * KnotStringIO_Test erweitert
+
+ -- Daniel Warzel <wudi_mail@gmx.de>  Tue, 4 Mar 2014 21:26:44 +0100
+
+knot3 (1.3-12-g475c54a) unstable; urgency=low
+
+  * Code Format
+
+ -- Tobias Schulz <tobias@freehal.net>  Tue, 4 Mar 2014 00:16:07 +0100
+
+knot3 (1.3-11-g68a9444) unstable; urgency=low
+
+  * Model-Editor funktioniert jetzt
+
+ -- Tobias Schulz <tobias@freehal.net>  Tue, 4 Mar 2014 00:14:44 +0100
+
+knot3 (1.3-10-g4df196c) unstable; urgency=low
+
+  * fix model editor
+
+ -- Tobias Schulz <tobias@freehal.net>  Mon, 3 Mar 2014 10:42:10 +0100
+
+knot3 (1.3-9-ga49f173) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Sun, 2 Mar 2014 19:45:54 +0100
+
+knot3 (1.3-8-gc680a22) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Sun, 2 Mar 2014 19:41:30 +0100
+
+knot3 (1.3-7-gc947017) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Sun, 2 Mar 2014 19:03:21 +0100
+
+knot3 (1.3-6-ge276e89) unstable; urgency=low
+
+  * Code Format
+
+ -- Tobias Schulz <tobias@freehal.net>  Sun, 2 Mar 2014 19:00:10 +0100
+
+knot3 (1.3-5-g9fdeda4) unstable; urgency=low
+
+  * test
+
+ -- Tobias Schulz <tobias@freehal.net>  Sun, 2 Mar 2014 18:58:59 +0100
+
+knot3 (1.3-4-gc05a100) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Sun, 2 Mar 2014 18:41:43 +0100
+
+knot3 (1.3-3-g351ca1f) unstable; urgency=low
+
+  * Code Format
+
+ -- Christina <Elaine10j@aol.com>  Sun, 2 Mar 2014 18:27:06 +0100
+
+knot3 (1.3-2-ge380f05) unstable; urgency=low
+
+  * Bounds - Test
+
+ -- Christina <Elaine10j@aol.com>  Sun, 2 Mar 2014 18:26:29 +0100
+
+knot3 (1.3-1-g9446ebc) unstable; urgency=low
+
+  * displayname en
+
+ -- Tobias Schulz <tobias.schulz186@gmail.com>  Sat, 1 Mar 2014 08:44:12 +0100
+
+knot3 (1.3) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 27 Feb 2014 07:09:51 +0100
+
+knot3 (1.2-614-ge02a7c3) unstable; urgency=low
+
+  * Code Format
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 27 Feb 2014 06:19:07 +0100
+
+knot3 (1.2-613-g9c474a0) unstable; urgency=low
+
+  * fix
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 27 Feb 2014 06:17:53 +0100
+
+knot3 (1.2-612-g2f56a11) unstable; urgency=low
+
+  * refactoring
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 27 Feb 2014 05:45:09 +0100
+
+knot3 (1.2-611-gcbc0a6d) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 27 Feb 2014 05:34:10 +0100
+
+knot3 (1.2-610-gc2c4cd0) unstable; urgency=low
+
+  * audio fixes
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 27 Feb 2014 05:34:10 +0100
+
+knot3 (1.2-609-g9238434) unstable; urgency=low
+
+  * Code Format
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 27 Feb 2014 03:52:07 +0100
+
+knot3 (1.2-608-gda2b2af) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 27 Feb 2014 03:50:59 +0100
+
+knot3 (1.2-607-gd0a640d) unstable; urgency=low
+
+  * bugfix in ScreenPoint!!
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 27 Feb 2014 03:48:40 +0100
+
+knot3 (1.2-606-gc8ad712) unstable; urgency=low
+
+  * Code Format
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 27 Feb 2014 03:38:08 +0100
+
+knot3 (1.2-605-g7177dac) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 27 Feb 2014 03:36:56 +0100
+
+knot3 (1.2-604-gea71806) unstable; urgency=low
+
+  * fix
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 27 Feb 2014 01:23:09 +0100
+
+knot3 (1.2-603-g6465a62) unstable; urgency=low
+
+  * Code Format
+
+ -- Tobias Schulz <tobias.schulz186@gmail.com>  Thu, 27 Feb 2014 01:21:09 +0100
+
+knot3 (1.2-602-g234b660) unstable; urgency=low
+
+  * Code Format
+
+ -- Tobias Schulz <tobias.schulz186@gmail.com>  Thu, 27 Feb 2014 01:20:08 +0100
+
+knot3 (1.2-601-g51dec8d) unstable; urgency=low
+
+  * Code Format
+
+ -- Tobias Schulz <tobias.schulz186@gmail.com>  Thu, 27 Feb 2014 01:04:08 +0100
+
+knot3 (1.2-600-gfe1fe0a) unstable; urgency=low
+
+  * usings
+
+ -- Tobias Schulz <tobias.schulz186@gmail.com>  Thu, 27 Feb 2014 01:03:16 +0100
+
+knot3 (1.2-599-g7889793) unstable; urgency=low
+
+  * refactoring
+
+ -- Tobias Schulz <tobias@freehal.net>  Wed, 26 Feb 2014 23:49:11 +0100
+
+knot3 (1.2-598-g4af46ad) unstable; urgency=low
+
+  * font fix
+
+ -- Tobias Schulz <tobias.schulz186@gmail.com>  Wed, 26 Feb 2014 03:37:40 +0100
+
+knot3 (1.2-597-g496c87d) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Wed, 26 Feb 2014 02:30:39 +0100
+
+knot3 (1.2-596-gde4cf43) unstable; urgency=low
+
+  * Code Format
+
+ -- Tobias Schulz <tobias@freehal.net>  Wed, 26 Feb 2014 02:30:08 +0100
+
+knot3 (1.2-595-g251e820) unstable; urgency=low
+
+  * fix
+
+ -- Tobias Schulz <tobias@freehal.net>  Wed, 26 Feb 2014 02:29:17 +0100
+
+knot3 (1.2-594-gabb06f7) unstable; urgency=low
+
+  * Code Format
+
+ -- Tobias Schulz <tobias@freehal.net>  Wed, 26 Feb 2014 02:18:07 +0100
+
+knot3 (1.2-593-g0d98b20) unstable; urgency=low
+
+  * Code Format
+
+ -- Tobias Schulz <tobias@freehal.net>  Wed, 26 Feb 2014 02:17:10 +0100
+
+knot3 (1.2-592-g4ab3f2b) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Wed, 26 Feb 2014 01:55:04 +0100
+
+knot3 (1.2-591-g4a0345e) unstable; urgency=low
+
+  * Code Format
+
+ -- Tobias Schulz <tobias@freehal.net>  Wed, 26 Feb 2014 01:50:10 +0100
+
+knot3 (1.2-590-g1e2e5da) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Wed, 26 Feb 2014 01:47:28 +0100
+
+knot3 (1.2-589-g9292072) unstable; urgency=low
+
+  * Code Format
+
+ -- Tobias Schulz <tobias@freehal.net>  Wed, 26 Feb 2014 01:21:10 +0100
+
+knot3 (1.2-588-ga7cff5a) unstable; urgency=low
+
+  * logging
+
+ -- Tobias Schulz <tobias@freehal.net>  Wed, 26 Feb 2014 01:20:17 +0100
+
+knot3 (1.2-587-gac11eb2) unstable; urgency=low
+
+  * Code Format
+
+ -- Tobias Schulz <tobias@freehal.net>  Tue, 25 Feb 2014 23:49:08 +0100
+
+knot3 (1.2-586-g7a43ebc) unstable; urgency=low
+
+  * SetUpFixture
+
+ -- Tobias Schulz <tobias@freehal.net>  Tue, 25 Feb 2014 23:48:32 +0100
+
+knot3 (1.2-585-ge65a3e6) unstable; urgency=low
+
+  * Code Format
+
+ -- Tobias Schulz <tobias@freehal.net>  Tue, 25 Feb 2014 22:25:08 +0100
+
+knot3 (1.2-584-g171ed45) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Tue, 25 Feb 2014 22:23:57 +0100
+
+knot3 (1.2-583-gfc74616) unstable; urgency=low
+
+  * fix
+
+ -- Tobias Schulz <tobias@freehal.net>  Tue, 25 Feb 2014 21:07:29 +0100
+
+knot3 (1.2-582-g0ef46fc) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Tue, 25 Feb 2014 21:05:44 +0100
+
+knot3 (1.2-581-g46c6fe5) unstable; urgency=low
+
+  * Update de.ini
+
+ -- Tobias Schulz <tobiasschulz@users.noreply.github.com>  Tue, 25 Feb 2014 19:03:43 +0100
+
+knot3 (1.2-580-g3012a86) unstable; urgency=low
+
+  * Code Format
+
+ -- Tobias Schulz <tobias.schulz186@gmail.com>  Tue, 25 Feb 2014 18:37:09 +0100
+
+knot3 (1.2-579-g591a4b6) unstable; urgency=low
+
+  * Umlaute
+
+ -- Tobias Schulz <tobias.schulz186@gmail.com>  Tue, 25 Feb 2014 18:36:13 +0100
+
+knot3 (1.2-578-g97baf27) unstable; urgency=low
+
+  * Code Format
+
+ -- Tobias Schulz <tobias@freehal.net>  Tue, 25 Feb 2014 05:45:07 +0100
+
+knot3 (1.2-577-gcaa7ae1) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Tue, 25 Feb 2014 05:44:46 +0100
+
+knot3 (1.2-576-gca8a686) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Tue, 25 Feb 2014 04:50:30 +0100
+
+knot3 (1.2-575-gb824e5b) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Tue, 25 Feb 2014 02:32:54 +0100
+
+knot3 (1.2-574-g46246d8) unstable; urgency=low
+
+  * Code Format
+
+ -- Tobias Schulz <tobias@freehal.net>  Tue, 25 Feb 2014 02:17:07 +0100
+
+knot3 (1.2-573-g3d9f50b) unstable; urgency=low
+
+  * Fixed Textbox-Skalierung
+
+ -- Tobias Schulz <tobias@freehal.net>  Tue, 25 Feb 2014 02:15:57 +0100
+
+knot3 (1.2-572-g087656f) unstable; urgency=low
+
+  * Update de.ini
+
+ -- Tobias Schulz <tobiasschulz@users.noreply.github.com>  Mon, 24 Feb 2014 23:55:40 +0100
+
+knot3 (1.2-571-g76eb0f3) unstable; urgency=low
+
+  * Update de.ini
+
+ -- Maximilian-Reuter <maximilian.reuter@t-online.de>  Mon, 24 Feb 2014 23:14:37 +0100
+
+knot3 (1.2-570-g5e81b41) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Mon, 24 Feb 2014 22:18:03 +0100
+
+knot3 (1.2-569-gfd301c3) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Mon, 24 Feb 2014 22:17:29 +0100
+
+knot3 (1.2-568-g37171a5) unstable; urgency=low
+
+  * fix contentproj
+
+ -- Tobias Schulz <tobias.schulz186@gmail.com>  Mon, 24 Feb 2014 22:08:00 +0100
+
+knot3 (1.2-567-gd76f05f) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Mon, 24 Feb 2014 20:29:06 +0100
+
+knot3 (1.2-566-gda019b9) unstable; urgency=low
+
+  * fix
+
+ -- Tobias Schulz <tobias@freehal.net>  Mon, 24 Feb 2014 20:24:01 +0100
+
+knot3 (1.2-565-g0c335e5) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Mon, 24 Feb 2014 20:20:46 +0100
+
+knot3 (1.2-564-g721dcda) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Mon, 24 Feb 2014 20:20:46 +0100
+
+knot3 (1.2-563-g53c7f5f) unstable; urgency=low
+
+  * Code Format
+
+ -- Tobias Schulz <tobias@freehal.net>  Mon, 24 Feb 2014 20:20:08 +0100
+
+knot3 (1.2-562-gcf8f94b) unstable; urgency=low
+
+  * fix
+
+ -- Tobias Schulz <tobias@freehal.net>  Mon, 24 Feb 2014 20:19:19 +0100
+
+knot3 (1.2-561-g42b08e0) unstable; urgency=low
+
+  * Lokalisierung ist abschaltbar, z.b. bei Spielstände-Menüeinträgen
+
+ -- Tobias Schulz <tobias@freehal.net>  Mon, 24 Feb 2014 20:19:18 +0100
+
+knot3 (1.2-560-g73c62f9) unstable; urgency=low
+
+  * Merge pull request #1 from waffleio/master
+
+ -- Tobias Schulz <tobiasschulz@users.noreply.github.com>  Mon, 24 Feb 2014 20:16:09 +0100
+
+knot3 (1.2-559-g988e665) unstable; urgency=low
+
+  * add waffle.io badge
+
+ -- waffle.io <team@waffle.io>  Mon, 24 Feb 2014 12:15:31 -0700
+
+knot3 (1.2-558-gefa2c86) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Mon, 24 Feb 2014 08:16:03 +0100
+
+knot3 (1.2-557-g41c5fe8) unstable; urgency=low
+
+  * fix contentproj
+
+ -- Tobias Schulz <tobias@freehal.net>  Mon, 24 Feb 2014 08:14:05 +0100
+
+knot3 (1.2-556-g3acb37b) unstable; urgency=low
+
+  * fix
+
+ -- Tobias Schulz <tobias@freehal.net>  Mon, 24 Feb 2014 08:13:24 +0100
+
+knot3 (1.2-555-g8961921) unstable; urgency=low
+
+  * Code Format
+
+ -- Tobias Schulz <tobias@freehal.net>  Mon, 24 Feb 2014 08:09:07 +0100
+
+knot3 (1.2-554-gbfb9b46) unstable; urgency=low
+
+  * fix
+
+ -- Tobias Schulz <tobias@freehal.net>  Mon, 24 Feb 2014 08:08:53 +0100
+
+knot3 (1.2-553-g8e6cb51) unstable; urgency=low
+
+  * Code Format
+
+ -- Tobias Schulz <tobias@freehal.net>  Mon, 24 Feb 2014 07:58:06 +0100
+
+knot3 (1.2-552-gf1e5301) unstable; urgency=low
+
+  * fix
+
+ -- Tobias Schulz <tobias@freehal.net>  Mon, 24 Feb 2014 07:57:35 +0100
+
+knot3 (1.2-551-g5c0def8) unstable; urgency=low
+
+  * Code Format
+
+ -- Tobias Schulz <tobias@freehal.net>  Mon, 24 Feb 2014 07:50:07 +0100
+
+knot3 (1.2-550-ge89af3b) unstable; urgency=low
+
+  * DE
+
+ -- Tobias Schulz <tobias@freehal.net>  Mon, 24 Feb 2014 07:49:47 +0100
+
+knot3 (1.2-549-g629a6eb) unstable; urgency=low
+
+  * fix
+
+ -- Tobias Schulz <tobias@freehal.net>  Mon, 24 Feb 2014 07:23:01 +0100
+
+knot3 (1.2-548-gff91474) unstable; urgency=low
+
+  * EN
+
+ -- Tobias Schulz <tobias@freehal.net>  Mon, 24 Feb 2014 06:56:37 +0100
+
+knot3 (1.2-547-g95b685a) unstable; urgency=low
+
+  * Localization Fixes
+
+ -- Tobias Schulz <tobias@freehal.net>  Mon, 24 Feb 2014 06:55:40 +0100
+
+knot3 (1.2-546-gcf1e009) unstable; urgency=low
+
+  * Localization
+
+ -- Tobias Schulz <tobias@freehal.net>  Mon, 24 Feb 2014 06:55:40 +0100
+
+knot3 (1.2-545-g2515146) unstable; urgency=low
+
+  * Code Format
+
+ -- Tobias Schulz <tobias@freehal.net>  Mon, 24 Feb 2014 05:11:08 +0100
+
+knot3 (1.2-544-g5469469) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Mon, 24 Feb 2014 05:10:32 +0100
+
+knot3 (1.2-543-gcbb31b8) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Mon, 24 Feb 2014 02:15:58 +0100
+
+knot3 (1.2-542-g6fe2772) unstable; urgency=low
+
+  * Code Format
+
+ -- Tobias Schulz <tobias@freehal.net>  Mon, 24 Feb 2014 01:56:07 +0100
+
+knot3 (1.2-541-g0994431) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Mon, 24 Feb 2014 01:55:45 +0100
+
+knot3 (1.2-540-g922eda4) unstable; urgency=low
+
+  * fix
+
+ -- Tobias Schulz <tobias@freehal.net>  Mon, 24 Feb 2014 01:23:53 +0100
+
+knot3 (1.2-539-g72c4fab) unstable; urgency=low
+
+  * fix
+
+ -- Tobias Schulz <tobias@freehal.net>  Mon, 24 Feb 2014 01:21:14 +0100
+
+knot3 (1.2-538-g7a6026a) unstable; urgency=low
+
+  * Code Format
+
+ -- Tobias Schulz <tobias@freehal.net>  Mon, 24 Feb 2014 00:54:07 +0100
+
+knot3 (1.2-537-g464b33c) unstable; urgency=low
+
+  * fix
+
+ -- Tobias Schulz <tobias@freehal.net>  Mon, 24 Feb 2014 00:53:44 +0100
+
+knot3 (1.2-536-g6defa9a) unstable; urgency=low
+
+  * Code Format
+
+ -- Tobias Schulz <tobias@freehal.net>  Mon, 24 Feb 2014 00:35:07 +0100
+
+knot3 (1.2-535-g5630421) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Mon, 24 Feb 2014 00:34:25 +0100
+
+knot3 (1.2-534-g70c8b18) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Mon, 24 Feb 2014 00:11:16 +0100
+
+knot3 (1.2-533-gd1dc231) unstable; urgency=low
+
+  * Code Format
+
+ -- Tobias Schulz <tobias@freehal.net>  Mon, 24 Feb 2014 00:05:07 +0100
+
+knot3 (1.2-532-ga4e8f13) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Mon, 24 Feb 2014 00:04:05 +0100
+
+knot3 (1.2-531-ga909c42) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Sun, 23 Feb 2014 23:31:15 +0100
+
+knot3 (1.2-530-g5269ec5) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Sun, 23 Feb 2014 20:30:15 +0100
+
+knot3 (1.2-529-g78c6e47) unstable; urgency=low
+
+  * Code Format
+
+ -- Tobias Schulz <tobias.schulz186@gmail.com>  Sun, 23 Feb 2014 04:07:53 +0100
+
+knot3 (1.2-528-g2acea5a) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias.schulz186@gmail.com>  Sun, 23 Feb 2014 04:04:33 +0100
+
+knot3 (1.2-527-g7a46438) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Sun, 23 Feb 2014 04:00:03 +0100
+
+knot3 (1.2-526-gf8a672b) unstable; urgency=low
+
+  * Code Format
+
+ -- Tobias Schulz <tobias@freehal.net>  Sun, 23 Feb 2014 03:54:08 +0100
+
+knot3 (1.2-525-gd8c3cbd) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Sun, 23 Feb 2014 03:53:14 +0100
+
+knot3 (1.2-524-gfdb9f8b) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Sun, 23 Feb 2014 03:04:28 +0100
+
+knot3 (1.2-523-g360a3b8) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Sun, 23 Feb 2014 00:51:26 +0100
+
+knot3 (1.2-522-gf18ec4f) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Sat, 22 Feb 2014 02:19:51 +0100
+
+knot3 (1.2-521-g20fef43) unstable; urgency=low
+
+  * cleaner nunit usage
+
+ -- Maximilian-Reuter <maximilian.reuter@t-online.de>  Sat, 22 Feb 2014 02:03:07 +0100
+
+knot3 (1.2-520-gf51f2c8) unstable; urgency=low
+
+  * Code Format
+
+ -- Maximilian-Reuter <maximilian.reuter@t-online.de>  Sat, 22 Feb 2014 01:59:07 +0100
+
+knot3 (1.2-519-g5919b8a) unstable; urgency=low
+
+  * catched right exception
+
+ -- Maximilian-Reuter <maximilian.reuter@t-online.de>  Sat, 22 Feb 2014 01:58:11 +0100
+
+knot3 (1.2-518-g76e6793) unstable; urgency=low
+
+  * nunit
+
+ -- Tobias Schulz <tobias@freehal.net>  Sat, 22 Feb 2014 01:51:32 +0100
+
+knot3 (1.2-517-g9221908) unstable; urgency=low
+
+  * readme
+
+ -- Tobias Schulz <tobias@freehal.net>  Sat, 22 Feb 2014 01:00:00 +0100
+
+knot3 (1.2-516-gf04b42f) unstable; urgency=low
+
+  * Code Format
+
+ -- Tobias Schulz <tobias@freehal.net>  Sat, 22 Feb 2014 00:58:07 +0100
+
+knot3 (1.2-515-g788ce2f) unstable; urgency=low
+
+  * Abhängigkeiten werden automatisch heruntergeladen
+
+ -- Tobias Schulz <tobias@freehal.net>  Sat, 22 Feb 2014 00:57:17 +0100
+
+knot3 (1.2-514-g1ec8993) unstable; urgency=low
+
+  * fix
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 21 Feb 2014 22:57:07 +0100
+
+knot3 (1.2-513-g6a4f97d) unstable; urgency=low
+
+  * windows
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 21 Feb 2014 22:38:37 +0100
+
+knot3 (1.2-512-g5484d6d) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 21 Feb 2014 22:16:33 +0100
+
+knot3 (1.2-511-ga649abb) unstable; urgency=low
+
+  * https://github.com/flibitijibibo/MonoGame/issues/133
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 21 Feb 2014 22:09:59 +0100
+
+knot3 (1.2-510-g83c7a7d) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Fri, 21 Feb 2014 14:01:09 +0100
+
+knot3 (1.2-509-g989fe83) unstable; urgency=low
+
+  * Icon, StartScreen/Button
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Fri, 21 Feb 2014 14:00:21 +0100
+
+knot3 (1.2-508-ge144b46) unstable; urgency=low
+
+  * Code Format
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 21 Feb 2014 07:41:09 +0100
+
+knot3 (1.2-507-g1a4845d) unstable; urgency=low
+
+  * makefile fix
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 21 Feb 2014 07:39:41 +0100
+
+knot3 (1.2-506-ge29263d) unstable; urgency=low
+
+  * Utilities aufgeräumt
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 21 Feb 2014 07:39:41 +0100
+
+knot3 (1.2-505-g6589eb8) unstable; urgency=low
+
+  * fix
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 21 Feb 2014 07:39:11 +0100
+
+knot3 (1.2-504-g81d0ecc) unstable; urgency=low
+
+  * shader fix
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 21 Feb 2014 07:38:29 +0100
+
+knot3 (1.2-503-g36d42ad) unstable; urgency=low
+
+  * fix
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 21 Feb 2014 07:38:29 +0100
+
+knot3 (1.2-502-gc71afed) unstable; urgency=low
+
+  * libs
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 21 Feb 2014 07:38:29 +0100
+
+knot3 (1.2-501-g290a774) unstable; urgency=low
+
+  * fix
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 21 Feb 2014 07:38:29 +0100
+
+knot3 (1.2-500-g87df5fe) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 21 Feb 2014 07:38:29 +0100
+
+knot3 (1.2-499-g2109e7f) unstable; urgency=low
+
+  * Code Format
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 21 Feb 2014 06:39:08 +0100
+
+knot3 (1.2-498-g1cd6270) unstable; urgency=low
+
+  * fix
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 21 Feb 2014 06:38:31 +0100
+
+knot3 (1.2-497-gffd2788) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 21 Feb 2014 03:31:53 +0100
+
+knot3 (1.2-496-gf201548) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 21 Feb 2014 03:28:11 +0100
+
+knot3 (1.2-495-g9f468c9) unstable; urgency=low
+
+  * fix
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 21 Feb 2014 02:55:37 +0100
+
+knot3 (1.2-494-g6278af4) unstable; urgency=low
+
+  * readme
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 21 Feb 2014 02:50:42 +0100
+
+knot3 (1.2-493-g6ac4db2) unstable; urgency=low
+
+  * travis ci
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 21 Feb 2014 02:47:33 +0100
+
+knot3 (1.2-492-gc468761) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 21 Feb 2014 02:43:08 +0100
+
+knot3 (1.2-491-g2383d30) unstable; urgency=low
+
+  * travis ci
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 21 Feb 2014 02:36:13 +0100
+
+knot3 (1.2-490-gfa5fc74) unstable; urgency=low
+
+  * travis ci
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 21 Feb 2014 02:26:00 +0100
+
+knot3 (1.2-489-g0087f66) unstable; urgency=low
+
+  * makefile
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 21 Feb 2014 02:23:18 +0100
+
+knot3 (1.2-488-g83ff225) unstable; urgency=low
+
+  * travis ci
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 21 Feb 2014 02:09:30 +0100
+
+knot3 (1.2-487-gfe275fd) unstable; urgency=low
+
+  * travis ci
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 21 Feb 2014 02:06:33 +0100
+
+knot3 (1.2-486-g0fe2e6b) unstable; urgency=low
+
+  * travis ci
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 21 Feb 2014 02:04:51 +0100
+
+knot3 (1.2-485-g72f661d) unstable; urgency=low
+
+  * makefile
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 21 Feb 2014 01:49:39 +0100
+
+knot3 (1.2-484-ge2149f0) unstable; urgency=low
+
+  * travis ci
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 21 Feb 2014 01:34:07 +0100
+
+knot3 (1.2-483-gfaf449d) unstable; urgency=low
+
+  * Code Format
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 21 Feb 2014 01:29:07 +0100
+
+knot3 (1.2-482-g903c4f5) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 21 Feb 2014 01:28:11 +0100
+
+knot3 (1.2-481-gc48d2a3) unstable; urgency=low
+
+  * Code Format
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 21 Feb 2014 01:19:08 +0100
+
+knot3 (1.2-480-g1fe5dd9) unstable; urgency=low
+
+  * MonoGame-SDL2 support
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 21 Feb 2014 01:17:18 +0100
+
+knot3 (1.2-479-gfb9dec7) unstable; urgency=low
+
+  * Code Format
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 20 Feb 2014 23:12:07 +0100
+
+knot3 (1.2-478-g35ce44f) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 20 Feb 2014 23:08:24 +0100
+
+knot3 (1.2-477-g6c747c3) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 20 Feb 2014 23:01:48 +0100
+
+knot3 (1.2-476-g8a1846f) unstable; urgency=low
+
+  * fix
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 20 Feb 2014 23:01:17 +0100
+
+knot3 (1.2-475-g32a23f7) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 20 Feb 2014 22:55:30 +0100
+
+knot3 (1.2-474-gb6f5ef1) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 20 Feb 2014 22:51:21 +0100
+
+knot3 (1.2-473-g539b529) unstable; urgency=low
+
+  * Code Format
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 20 Feb 2014 22:51:08 +0100
+
+knot3 (1.2-472-g86ebeef) unstable; urgency=low
+
+  * fix
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 20 Feb 2014 22:49:59 +0100
+
+knot3 (1.2-471-gf8214db) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 20 Feb 2014 22:18:46 +0100
+
+knot3 (1.2-470-g71e1d52) unstable; urgency=low
+
+  * debian
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 20 Feb 2014 22:12:52 +0100
+
+knot3 (1.2-469-gd29b4f8) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias.schulz186@gmail.com>  Thu, 20 Feb 2014 22:10:51 +0100
+
+knot3 (1.2-468-g6f1f4b8) unstable; urgency=low
+
+  * Code Format
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 20 Feb 2014 22:08:07 +0100
+
+knot3 (1.2-467-g07d8450) unstable; urgency=low
+
+  * keine XNB's mehr für Texturen
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 20 Feb 2014 22:07:28 +0100
+
+knot3 (1.2-466-g90fbfac) unstable; urgency=low
+
+  * makefile
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 20 Feb 2014 21:27:46 +0100
+
+knot3 (1.2-465-geb382ad) unstable; urgency=low
+
+  * Code Format
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 20 Feb 2014 21:25:07 +0100
+
+knot3 (1.2-464-gb9bc4a3) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 20 Feb 2014 21:24:33 +0100
+
+knot3 (1.2-463-ga3077e5) unstable; urgency=low
+
+  * Code Format
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 20 Feb 2014 21:20:08 +0100
+
+knot3 (1.2-462-gc81dbd2) unstable; urgency=low
+
+  * Code Format
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 20 Feb 2014 21:19:07 +0100
+
+knot3 (1.2-461-g38f7571) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 20 Feb 2014 21:17:17 +0100
+
+knot3 (1.2-460-g6964237) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 20 Feb 2014 21:11:16 +0100
+
+knot3 (1.2-459-g3b41b45) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 20 Feb 2014 21:09:14 +0100
+
+knot3 (1.2-458-g91304eb) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 20 Feb 2014 21:01:29 +0100
+
+knot3 (1.2-457-g8d7806b) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 20 Feb 2014 21:01:14 +0100
+
+knot3 (1.2-456-g885af62) unstable; urgency=low
+
+  * fix
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 20 Feb 2014 20:58:51 +0100
+
+knot3 (1.2-455-g7677864) unstable; urgency=low
+
+  * makefile
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 20 Feb 2014 20:56:42 +0100
+
+knot3 (1.2-454-g61de1de) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 20 Feb 2014 20:38:03 +0100
+
+knot3 (1.2-453-ga4b6bc1) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 20 Feb 2014 20:32:41 +0100
+
+knot3 (1.2-452-g4edf56b) unstable; urgency=low
+
+  * doxygen
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 20 Feb 2014 20:21:04 +0100
+
+knot3 (1.2-451-ga812c62) unstable; urgency=low
+
+  * content
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 20 Feb 2014 20:19:06 +0100
+
+knot3 (1.2-450-g946cacf) unstable; urgency=low
+
+  * ModelEditor
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 20 Feb 2014 20:13:06 +0100
+
+knot3 (1.2-449-gd7ba11a) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 20 Feb 2014 19:03:55 +0100
+
+knot3 (1.2-448-g9dce067) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 20 Feb 2014 18:31:57 +0100
+
+knot3 (1.2-447-g2122979) unstable; urgency=low
+
+  * content test
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 20 Feb 2014 17:59:55 +0100
+
+knot3 (1.2-446-g25cb3ff) unstable; urgency=low
+
+  * Code Format
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 20 Feb 2014 17:56:07 +0100
+
+knot3 (1.2-445-g7dfb7a9) unstable; urgency=low
+
+  * test
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 20 Feb 2014 17:55:18 +0100
+
+knot3 (1.2-444-gb1ebb01) unstable; urgency=low
+
+  * test
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 20 Feb 2014 17:53:55 +0100
+
+knot3 (1.2-443-gd84bcf3) unstable; urgency=low
+
+  * ...
+
+ -- PSE Knot³ <uaeti@student.kit.edu>  Thu, 20 Feb 2014 17:12:31 +0100
+
+knot3 (1.2-442-g39cdc96) unstable; urgency=low
+
+  * ...
+
+ -- PSE Knot³ <uaeti@student.kit.edu>  Thu, 20 Feb 2014 17:03:37 +0100
+
+knot3 (1.2-441-gdccfe6a) unstable; urgency=low
+
+  * debian
+
+ -- PSE Knot³ <uaeti@student.kit.edu>  Thu, 20 Feb 2014 16:53:12 +0100
+
+knot3 (1.2-440-gf04ba69) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias.schulz186@gmail.com>  Thu, 20 Feb 2014 16:43:38 +0100
+
+knot3 (1.2-439-gad91e63) unstable; urgency=low
+
+  * ...
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Thu, 20 Feb 2014 11:59:40 +0100
+
+knot3 (1.2-438-g96f7902) unstable; urgency=low
+
+  * ...
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Thu, 20 Feb 2014 11:41:48 +0100
+
+knot3 (1.2-437-g55f824f) unstable; urgency=low
+
+  * Icon
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Thu, 20 Feb 2014 11:33:21 +0100
+
+knot3 (1.2-436-g1d1970f) unstable; urgency=low
+
+  * bugfix
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 20 Feb 2014 10:44:01 +0100
+
+knot3 (1.2-435-g345eb34) unstable; urgency=low
+
+  * Code Format
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 20 Feb 2014 04:33:06 +0100
+
+knot3 (1.2-434-ga202d96) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 20 Feb 2014 04:32:15 +0100
+
+knot3 (1.2-433-g46799fa) unstable; urgency=low
+
+  * Code Format
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 20 Feb 2014 04:21:07 +0100
+
+knot3 (1.2-432-gafa97db) unstable; urgency=low
+
+  * fix
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 20 Feb 2014 04:20:12 +0100
+
+knot3 (1.2-431-g5e6a188) unstable; urgency=low
+
+  * Code Format
+
+ -- Tobias Schulz <tobias.schulz186@gmail.com>  Thu, 20 Feb 2014 03:16:06 +0100
+
+knot3 (1.2-430-gcca0af4) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias.schulz186@gmail.com>  Thu, 20 Feb 2014 01:52:29 +0100
+
+knot3 (1.2-429-gca2e27e) unstable; urgency=low
+
+  * fix
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 20 Feb 2014 01:41:51 +0100
+
+knot3 (1.2-428-gaee4d2e) unstable; urgency=low
+
+  * Code Format
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 20 Feb 2014 01:35:07 +0100
+
+knot3 (1.2-427-g0bb0d2a) unstable; urgency=low
+
+  * Merge branch 'framework'
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 20 Feb 2014 01:33:30 +0100
+
+knot3 (1.2-423-g998704c) unstable; urgency=low
+
+  * fix windows csproj
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 20 Feb 2014 01:29:10 +0100
+
+knot3 (1.2-422-g0419d9a) unstable; urgency=low
+
+  * fix
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 20 Feb 2014 01:28:18 +0100
+
+knot3 (1.2-421-gfaeff6a) unstable; urgency=low
+
+  * travis ci
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 20 Feb 2014 01:27:01 +0100
+
+knot3 (1.2-420-gbf483e7) unstable; urgency=low
+
+  * makefile fix
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 20 Feb 2014 01:26:29 +0100
+
+knot3 (1.2-419-g4150f63) unstable; urgency=low
+
+  * makefile fix
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 20 Feb 2014 01:25:58 +0100
+
+knot3 (1.2-418-g2852e1f) unstable; urgency=low
+
+  * makefile fix
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 20 Feb 2014 01:23:29 +0100
+
+knot3 (1.2-417-g9eee2a1) unstable; urgency=low
+
+  * fix
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 20 Feb 2014 01:13:12 +0100
+
+knot3 (1.2-416-ge46c736) unstable; urgency=low
+
+  * fox
+
+ -- Tobias Schulz <tobias.schulz186@gmail.com>  Thu, 20 Feb 2014 01:04:21 +0100
+
+knot3 (1.2-415-g63b25b0) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 20 Feb 2014 01:02:17 +0100
+
+knot3 (1.2-414-gc751cc3) unstable; urgency=low
+
+  * fix windows csproj's
+
+ -- Tobias Schulz <tobias.schulz186@gmail.com>  Thu, 20 Feb 2014 01:01:39 +0100
+
+knot3 (1.2-413-gdbf8198) unstable; urgency=low
+
+  * Refactoring
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 20 Feb 2014 00:56:02 +0100
+
+knot3 (1.2-412-g0b5d87b) unstable; urgency=low
+
+  * Refactoring...
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 20 Feb 2014 00:55:09 +0100
+
+knot3 (1.2-411-g09f93cd) unstable; urgency=low
+
+  * csproj
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 20 Feb 2014 00:47:44 +0100
+
+knot3 (1.2-410-gde1f9a4) unstable; urgency=low
+
+  * Framework Refactoring
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 20 Feb 2014 00:47:12 +0100
+
+knot3 (1.2-409-gedfa4bb) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Wed, 19 Feb 2014 23:40:44 +0100
+
+knot3 (1.2-408-g1ddca42) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Wed, 19 Feb 2014 23:33:44 +0100
+
+knot3 (1.2-407-gac4e1c1) unstable; urgency=low
+
+  * framework
+
+ -- Tobias Schulz <tobias@freehal.net>  Wed, 19 Feb 2014 23:33:13 +0100
+
+knot3 (1.2-406-g12390a2) unstable; urgency=low
+
+  * csproj
+
+ -- Tobias Schulz <tobias.schulz186@gmail.com>  Wed, 19 Feb 2014 23:09:59 +0100
+
+knot3 (1.2-405-g36196f5) unstable; urgency=low
+
+  * ... noch in grün (b4ff00)
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Wed, 19 Feb 2014 23:00:03 +0100
+
+knot3 (1.2-404-g23e49c1) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Wed, 19 Feb 2014 22:58:09 +0100
+
+knot3 (1.2-398-g9282e06) unstable; urgency=low
+
+  * ... noch in grün (b4ff00)
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Wed, 19 Feb 2014 22:55:39 +0100
+
+knot3 (1.2-403-g2499e38) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Wed, 19 Feb 2014 22:51:53 +0100
+
+knot3 (1.2-402-gfc5ac8f) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Wed, 19 Feb 2014 22:47:18 +0100
+
+knot3 (1.2-397-g25ba62c) unstable; urgency=low
+
+  * Merge branch 'master' of https://github.com/knot3/knot3
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Wed, 19 Feb 2014 22:46:54 +0100
+
+knot3 (1.2-401-gf4a91c3) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Wed, 19 Feb 2014 22:45:47 +0100
+
+knot3 (1.2-393-gdcc9e82) unstable; urgency=low
+
+  * knot3 primitives Logo/Icon + PSD
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Wed, 19 Feb 2014 22:44:55 +0100
+
+knot3 (1.2-400-g89b7935) unstable; urgency=low
+
+  * framework
+
+ -- Tobias Schulz <tobias@freehal.net>  Wed, 19 Feb 2014 22:41:24 +0100
+
+knot3 (1.2-399-ga28bf67) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Wed, 19 Feb 2014 22:26:59 +0100
+
+knot3 (1.2-398-g556dc3b) unstable; urgency=low
+
+  * csproj's für windows
+
+ -- Tobias Schulz <tobias.schulz186@gmail.com>  Wed, 19 Feb 2014 22:26:03 +0100
+
+knot3 (1.2-397-g46661e0) unstable; urgency=low
+
+  * csproj umbenannt
+
+ -- Tobias Schulz <tobias@freehal.net>  Wed, 19 Feb 2014 22:19:54 +0100
+
+knot3 (1.2-396-gb9e4100) unstable; urgency=low
+
+  * Content project for MonoGame
+
+ -- Tobias Schulz <tobias@freehal.net>  Wed, 19 Feb 2014 22:14:14 +0100
+
+knot3 (1.2-395-gbed0aeb) unstable; urgency=low
+
+  * Code Format
+
+ -- Tobias Schulz <tobias@freehal.net>  Wed, 19 Feb 2014 21:38:07 +0100
+
+knot3 (1.2-394-ge8f4cdf) unstable; urgency=low
+
+  * Überleger Fixes knot3/knot3#147
+
+ -- Tobias Schulz <tobias@freehal.net>  Wed, 19 Feb 2014 21:35:48 +0100
+
+knot3 (1.2-393-gf81fcb3) unstable; urgency=low
+
+  * ico
+
+ -- Tobias Schulz <tobias@freehal.net>  Wed, 19 Feb 2014 21:28:00 +0100
+
+knot3 (1.2-392-gb412a75) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Wed, 19 Feb 2014 10:52:22 +0100
+
+knot3 (1.2-391-g91df7e1) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Wed, 19 Feb 2014 10:50:40 +0100
+
+knot3 (1.2-390-g112805c) unstable; urgency=low
+
+  * Code Format
+
+ -- Tobias Schulz <tobias@freehal.net>  Wed, 19 Feb 2014 10:47:06 +0100
+
+knot3 (1.2-389-g5896ffa) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Wed, 19 Feb 2014 10:46:10 +0100
+
+knot3 (1.2-388-gd55c8d7) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Tue, 18 Feb 2014 23:41:33 +0100
+
+knot3 (1.2-387-g8abc1b6) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Tue, 18 Feb 2014 23:40:42 +0100
+
+knot3 (1.2-386-g98a5173) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Tue, 18 Feb 2014 23:38:06 +0100
+
+knot3 (1.2-385-g14ca44e) unstable; urgency=low
+
+  * keyoptioninfo
+
+ -- Tobias Schulz <tobias@freehal.net>  Tue, 18 Feb 2014 23:37:16 +0100
+
+knot3 (1.2-384-gaab0fc2) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Tue, 18 Feb 2014 22:19:06 +0100
+
+knot3 (1.2-383-g48d7e4a) unstable; urgency=low
+
+  * float
+
+ -- Tobias Schulz <tobias@freehal.net>  Tue, 18 Feb 2014 22:18:17 +0100
+
+knot3 (1.2-382-g2492be7) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Tue, 18 Feb 2014 22:13:09 +0100
+
+knot3 (1.2-381-ge443fde) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Tue, 18 Feb 2014 22:12:02 +0100
+
+knot3 (1.2-380-g78af3de) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Tue, 18 Feb 2014 21:52:14 +0100
+
+knot3 (1.2-379-gfc485b2) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Tue, 18 Feb 2014 21:51:48 +0100
+
+knot3 (1.2-378-g1757aac) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Tue, 18 Feb 2014 21:48:09 +0100
+
+knot3 (1.2-377-g6b84055) unstable; urgency=low
+
+  * DistinctOptionInfo wird von Boolean-, Float- und Key-OptionInfo abgedeckt
+
+ -- Tobias Schulz <tobias@freehal.net>  Tue, 18 Feb 2014 21:46:57 +0100
+
+knot3 (1.2-376-g0e71289) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Tue, 18 Feb 2014 20:28:07 +0100
+
+knot3 (1.2-375-gfd9f65d) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Tue, 18 Feb 2014 20:27:36 +0100
+
+knot3 (1.2-374-g96e2f20) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Tue, 18 Feb 2014 20:09:06 +0100
+
+knot3 (1.2-373-gf854685) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Tue, 18 Feb 2014 20:08:10 +0100
+
+knot3 (1.2-372-g75760a7) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Tue, 18 Feb 2014 19:54:07 +0100
+
+knot3 (1.2-371-g8f80f5d) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Tue, 18 Feb 2014 19:53:25 +0100
+
+knot3 (1.2-370-gf206b24) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Tue, 18 Feb 2014 19:52:08 +0100
+
+knot3 (1.2-369-g6c86bb3) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Tue, 18 Feb 2014 19:50:59 +0100
+
+knot3 (1.2-368-g04f8b0f) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Tue, 18 Feb 2014 17:14:49 +0100
+
+knot3 (1.2-367-ga3941cd) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Tue, 18 Feb 2014 17:12:07 +0100
+
+knot3 (1.2-366-gdb29c38) unstable; urgency=low
+
+  * fix
+
+ -- Tobias Schulz <tobias@freehal.net>  Tue, 18 Feb 2014 17:10:58 +0100
+
+knot3 (1.2-365-g713b810) unstable; urgency=low
+
+  * Diese Funktion zum Test-Dateinamen generieren verwenden!
+
+ -- Tobias Schulz <tobias@freehal.net>  Tue, 18 Feb 2014 17:10:36 +0100
+
+knot3 (1.2-364-ga126ba8) unstable; urgency=low
+
+  * filename generation
+
+ -- Tobias Schulz <tobias@freehal.net>  Tue, 18 Feb 2014 17:09:20 +0100
+
+knot3 (1.2-363-g67ba81d) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Tue, 18 Feb 2014 16:48:06 +0100
+
+knot3 (1.2-362-g271c348) unstable; urgency=low
+
+  * ...
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Tue, 18 Feb 2014 16:47:19 +0100
+
+knot3 (1.2-361-gffe0ecf) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Tue, 18 Feb 2014 16:33:07 +0100
+
+knot3 (1.2-360-g9dc138a) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Tue, 18 Feb 2014 16:32:07 +0100
+
+knot3 (1.2-359-g39ce7d9) unstable; urgency=low
+
+  * ..._Tests
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Tue, 18 Feb 2014 16:31:25 +0100
+
+knot3 (1.2-358-g6e89ca8) unstable; urgency=low
+
+  * ...
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Tue, 18 Feb 2014 13:35:21 +0100
+
+knot3 (1.2-357-ga0f54c1) unstable; urgency=low
+
+  * OpenCover.bat
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Tue, 18 Feb 2014 11:36:08 +0100
+
+knot3 (1.2-356-g6fcbc34) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Tue, 18 Feb 2014 03:03:34 +0100
+
+knot3 (1.2-355-g822d37e) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Tue, 18 Feb 2014 01:36:59 +0100
+
+knot3 (1.2-354-g7701b9a) unstable; urgency=low
+
+  * nur noch Attribute
+
+ -- Tobias Schulz <tobias.schulz186@gmail.com>  Tue, 18 Feb 2014 00:44:35 +0100
+
+knot3 (1.2-353-g251fd3c) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Tue, 18 Feb 2014 00:29:48 +0100
+
+knot3 (1.2-352-gaa7368d) unstable; urgency=low
+
+  * Attribute
+
+ -- Tobias Schulz <tobias@freehal.net>  Tue, 18 Feb 2014 00:26:10 +0100
+
+knot3 (1.2-351-g9c6608d) unstable; urgency=low
+
+  * Attribute
+
+ -- Tobias Schulz <tobias@freehal.net>  Tue, 18 Feb 2014 00:22:50 +0100
+
+knot3 (1.2-350-g7a0d538) unstable; urgency=low
+
+  * Attribute
+
+ -- Tobias Schulz <tobias@freehal.net>  Tue, 18 Feb 2014 00:18:58 +0100
+
+knot3 (1.2-349-gc948bef) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Tue, 18 Feb 2014 00:10:08 +0100
+
+knot3 (1.2-348-g03dfe54) unstable; urgency=low
+
+  * Attribute
+
+ -- Tobias Schulz <tobias@freehal.net>  Tue, 18 Feb 2014 00:09:48 +0100
+
+knot3 (1.2-347-g3ea6a4a) unstable; urgency=low
+
+  * Attribut
+
+ -- Tobias Schulz <tobias@freehal.net>  Tue, 18 Feb 2014 00:09:48 +0100
+
+knot3 (1.2-346-g9f778cb) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 17 Feb 2014 23:06:06 +0100
+
+knot3 (1.2-345-g951ab8f) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias.schulz186@gmail.com>  Mon, 17 Feb 2014 23:05:34 +0100
+
+knot3 (1.2-344-g797f818) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 17 Feb 2014 22:37:06 +0100
+
+knot3 (1.2-343-ge5fb82b) unstable; urgency=low
+
+  * ExcludeFromCodeCoverageAttribute bei Methoden.
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 17 Feb 2014 22:36:48 +0100
+
+knot3 (1.2-342-g0c4c760) unstable; urgency=low
+
+  * ...
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 17 Feb 2014 22:16:23 +0100
+
+knot3 (1.2-341-g61548af) unstable; urgency=low
+
+  * Merge branch 'master' of https://github.com/knot3/knot3
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 17 Feb 2014 22:14:28 +0100
+
+knot3 (1.2-337-gfc16502) unstable; urgency=low
+
+  * OpenCover.bat
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 17 Feb 2014 22:13:54 +0100
+
+knot3 (1.2-339-gd0b50ce) unstable; urgency=low
+
+  * test
+
+ -- Tobias Schulz <tobias.schulz186@gmail.com>  Mon, 17 Feb 2014 22:10:15 +0100
+
+knot3 (1.2-338-g4753dab) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 17 Feb 2014 22:09:06 +0100
+
+knot3 (1.2-337-g31863d8) unstable; urgency=low
+
+  * code coverage exclude test
+
+ -- Tobias Schulz <tobias@freehal.net>  Mon, 17 Feb 2014 22:08:14 +0100
+
+knot3 (1.2-336-g30943f2) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 17 Feb 2014 21:31:07 +0100
+
+knot3 (1.2-335-gd779679) unstable; urgency=low
+
+  * Erstellung von Dateien mit Test-Knoten, Fortsetzung ...
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 17 Feb 2014 21:30:34 +0100
+
+knot3 (1.2-334-gbcdf280) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Mon, 17 Feb 2014 20:26:56 +0100
+
+knot3 (1.2-333-ga341dfc) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Mon, 17 Feb 2014 20:25:45 +0100
+
+knot3 (1.2-332-g34d6b5d) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 17 Feb 2014 20:11:08 +0100
+
+knot3 (1.2-331-g21e2c51) unstable; urgency=low
+
+  * SkyCube texture cache
+
+ -- Tobias Schulz <tobias@freehal.net>  Mon, 17 Feb 2014 20:10:19 +0100
+
+knot3 (1.2-330-gbab9bc0) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Mon, 17 Feb 2014 19:37:21 +0100
+
+knot3 (1.2-329-g376552b) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Mon, 17 Feb 2014 19:23:10 +0100
+
+knot3 (1.2-328-geeb20bc) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 17 Feb 2014 15:09:06 +0100
+
+knot3 (1.2-327-g7dcf4df) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Mon, 17 Feb 2014 15:08:21 +0100
+
+knot3 (1.2-326-gf1badca) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Mon, 17 Feb 2014 14:58:45 +0100
+
+knot3 (1.2-325-gedfafae) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Mon, 17 Feb 2014 14:57:47 +0100
+
+knot3 (1.2-324-gf670e47) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 17 Feb 2014 13:54:06 +0100
+
+knot3 (1.2-323-g7db3873) unstable; urgency=low
+
+  * ...
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 17 Feb 2014 13:52:50 +0100
+
+knot3 (1.2-322-g2e9f613) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 17 Feb 2014 13:39:06 +0100
+
+knot3 (1.2-321-gdff7402) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 17 Feb 2014 13:38:06 +0100
+
+knot3 (1.2-320-g4114b17) unstable; urgency=low
+
+  * Tests, KnotGenerator, Extremtests
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 17 Feb 2014 13:37:03 +0100
+
+knot3 (1.2-319-g5609d52) unstable; urgency=low
+
+  * ...
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 17 Feb 2014 12:25:58 +0100
+
+knot3 (1.2-318-g0705170) unstable; urgency=low
+
+  * ...
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 17 Feb 2014 11:58:33 +0100
+
+knot3 (1.2-317-g4df9724) unstable; urgency=low
+
+  * OpenCover.bat veranlasst jetzt zusätzlich, dass LaTeX für den QS-Bericht generiert wird.
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 17 Feb 2014 11:53:57 +0100
+
+knot3 (1.2-316-gd22fd98) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Mon, 17 Feb 2014 07:06:40 +0100
+
+knot3 (1.2-315-g036cf7a) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Sun, 16 Feb 2014 23:45:12 +0100
+
+knot3 (1.2-314-gca2a709) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Sun, 16 Feb 2014 23:40:07 +0100
+
+knot3 (1.2-313-g47b6770) unstable; urgency=low
+
+  * audio tests
+
+ -- Tobias Schulz <tobias@freehal.net>  Sun, 16 Feb 2014 23:39:30 +0100
+
+knot3 (1.2-312-gaa341aa) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Sun, 16 Feb 2014 22:59:53 +0100
+
+knot3 (1.2-311-gbc6aeb0) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Sun, 16 Feb 2014 22:41:07 +0100
+
+knot3 (1.2-310-g8458c1c) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Sun, 16 Feb 2014 22:40:44 +0100
+
+knot3 (1.2-309-g5b8e967) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Sun, 16 Feb 2014 22:39:06 +0100
+
+knot3 (1.2-308-g6a0c704) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Sun, 16 Feb 2014 22:37:59 +0100
+
+knot3 (1.2-307-g8fd6c3b) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Sun, 16 Feb 2014 22:34:07 +0100
+
+knot3 (1.2-306-gab6c28a) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Sun, 16 Feb 2014 22:33:41 +0100
+
+knot3 (1.2-305-g1013a44) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Sun, 16 Feb 2014 22:23:06 +0100
+
+knot3 (1.2-304-gbffad22) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Sun, 16 Feb 2014 22:22:03 +0100
+
+knot3 (1.2-303-g68ed8ae) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Sun, 16 Feb 2014 22:11:07 +0100
+
+knot3 (1.2-302-g38929ff) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Sun, 16 Feb 2014 22:10:38 +0100
+
+knot3 (1.2-301-g3933434) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Sun, 16 Feb 2014 22:07:03 +0100
+
+knot3 (1.2-300-g4e4f0a9) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Sun, 16 Feb 2014 21:46:07 +0100
+
+knot3 (1.2-299-g7489279) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Sun, 16 Feb 2014 21:45:12 +0100
+
+knot3 (1.2-298-g7acbe4a) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Sun, 16 Feb 2014 21:36:20 +0100
+
+knot3 (1.2-297-g0ed6321) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Sun, 16 Feb 2014 21:33:59 +0100
+
+knot3 (1.2-296-g33bac5b) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Sun, 16 Feb 2014 21:32:27 +0100
+
+knot3 (1.2-295-ge2eaae3) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Sun, 16 Feb 2014 21:31:06 +0100
+
+knot3 (1.2-294-g351dfa9) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Sun, 16 Feb 2014 21:30:10 +0100
+
+knot3 (1.2-293-g9f94c4e) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Sun, 16 Feb 2014 21:28:06 +0100
+
+knot3 (1.2-292-ga6d8feb) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Sun, 16 Feb 2014 21:26:53 +0100
+
+knot3 (1.2-291-g2371066) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Sun, 16 Feb 2014 21:24:07 +0100
+
+knot3 (1.2-290-gbdd2381) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Sun, 16 Feb 2014 21:23:25 +0100
+
+knot3 (1.2-289-g8263472) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Sun, 16 Feb 2014 21:12:06 +0100
+
+knot3 (1.2-288-gfe4bfc6) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Sun, 16 Feb 2014 21:11:49 +0100
+
+knot3 (1.2-287-g23b9581) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Sun, 16 Feb 2014 21:00:08 +0100
+
+knot3 (1.2-286-g65bff31) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Sun, 16 Feb 2014 20:59:27 +0100
+
+knot3 (1.2-285-g349259c) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Sun, 16 Feb 2014 20:54:07 +0100
+
+knot3 (1.2-284-g12ab7f7) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Sun, 16 Feb 2014 20:53:35 +0100
+
+knot3 (1.2-283-ga92a4fe) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Sun, 16 Feb 2014 20:50:08 +0100
+
+knot3 (1.2-282-g2362c1d) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Sun, 16 Feb 2014 20:49:42 +0100
+
+knot3 (1.2-281-g36b13d4) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Sun, 16 Feb 2014 20:41:10 +0100
+
+knot3 (1.2-280-g88e1831) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Sun, 16 Feb 2014 20:40:07 +0100
+
+knot3 (1.2-279-gd3bf79c) unstable; urgency=low
+
+  * plattform
+
+ -- Tobias Schulz <tobias.schulz186@gmail.com>  Sun, 16 Feb 2014 20:39:22 +0100
+
+knot3 (1.2-278-g9a34bc1) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Sun, 16 Feb 2014 20:39:07 +0100
+
+knot3 (1.2-277-gb70e1a2) unstable; urgency=low
+
+  * dix
+
+ -- Tobias Schulz <tobias@freehal.net>  Sun, 16 Feb 2014 20:37:59 +0100
+
+knot3 (1.2-276-gbd3c0b8) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Sun, 16 Feb 2014 20:36:07 +0100
+
+knot3 (1.2-275-gb69fde8) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Sun, 16 Feb 2014 20:35:07 +0100
+
+knot3 (1.2-274-gf0e7c41) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Sun, 16 Feb 2014 20:33:07 +0100
+
+knot3 (1.2-273-g4d64fd0) unstable; urgency=low
+
+  * configfile tests
+
+ -- Tobias Schulz <tobias@freehal.net>  Sun, 16 Feb 2014 20:32:16 +0100
+
+knot3 (1.2-272-g7ccda66) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Sun, 16 Feb 2014 17:58:09 +0100
+
+knot3 (1.2-271-gb570784) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Sun, 16 Feb 2014 17:57:09 +0100
+
+knot3 (1.2-270-g600a0b2) unstable; urgency=low
+
+  * Benchmark, "Stopwatch-Zeitmessung" via Actions
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Sun, 16 Feb 2014 17:56:24 +0100
+
+knot3 (1.2-269-g5a427dc) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Sun, 16 Feb 2014 05:08:06 +0100
+
+knot3 (1.2-268-g1873b80) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Sun, 16 Feb 2014 05:07:50 +0100
+
+knot3 (1.2-267-g83cb8cf) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Sun, 16 Feb 2014 05:07:07 +0100
+
+knot3 (1.2-266-gb18cfdd) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Sun, 16 Feb 2014 05:06:20 +0100
+
+knot3 (1.2-265-g29e355b) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Sun, 16 Feb 2014 03:53:06 +0100
+
+knot3 (1.2-264-g2a334ee) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Sun, 16 Feb 2014 03:52:11 +0100
+
+knot3 (1.2-263-g9fd8201) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Sun, 16 Feb 2014 03:49:06 +0100
+
+knot3 (1.2-262-gdd9762f) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Sun, 16 Feb 2014 03:48:00 +0100
+
+knot3 (1.2-261-gf37cf6c) unstable; urgency=low
+
+  * fix
+
+ -- Tobias Schulz <tobias@freehal.net>  Sun, 16 Feb 2014 03:46:10 +0100
+
+knot3 (1.2-260-g19fe8db) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Sun, 16 Feb 2014 03:33:07 +0100
+
+knot3 (1.2-259-g23f4be5) unstable; urgency=low
+
+  * platform
+
+ -- Tobias Schulz <tobias.schulz186@gmail.com>  Sun, 16 Feb 2014 03:31:47 +0100
+
+knot3 (1.2-258-ga641d4c) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Sun, 16 Feb 2014 03:27:06 +0100
+
+knot3 (1.2-257-g168dfa0) unstable; urgency=low
+
+  * Pascal ^^
+
+ -- Tobias Schulz <tobias@freehal.net>  Sun, 16 Feb 2014 03:26:26 +0100
+
+knot3 (1.2-256-g425ac5a) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Sun, 16 Feb 2014 03:23:37 +0100
+
+knot3 (1.2-255-g500d9a0) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Sun, 16 Feb 2014 03:20:07 +0100
+
+knot3 (1.2-254-g2bcaa7d) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Sun, 16 Feb 2014 03:19:01 +0100
+
+knot3 (1.2-253-gf7a82ce) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Sun, 16 Feb 2014 03:17:41 +0100
+
+knot3 (1.2-252-g299d1e0) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Sun, 16 Feb 2014 02:17:39 +0100
+
+knot3 (1.2-251-g2e34ef2) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Sun, 16 Feb 2014 02:15:46 +0100
+
+knot3 (1.2-250-ge133017) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Sun, 16 Feb 2014 02:15:04 +0100
+
+knot3 (1.2-249-gc23c005) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Sun, 16 Feb 2014 02:12:18 +0100
+
+knot3 (1.2-248-ge66d5d5) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Sun, 16 Feb 2014 02:11:30 +0100
+
+knot3 (1.2-247-g03c1cd6) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Sun, 16 Feb 2014 02:07:07 +0100
+
+knot3 (1.2-246-g7a1496a) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Sun, 16 Feb 2014 02:06:10 +0100
+
+knot3 (1.2-245-g425db7c) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Sun, 16 Feb 2014 02:01:06 +0100
+
+knot3 (1.2-244-g1f22556) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Sun, 16 Feb 2014 02:00:50 +0100
+
+knot3 (1.2-243-g3fcd559) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Sun, 16 Feb 2014 01:54:06 +0100
+
+knot3 (1.2-242-gea27cd4) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Sun, 16 Feb 2014 01:53:18 +0100
+
+knot3 (1.2-241-g088e387) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Sun, 16 Feb 2014 01:20:06 +0100
+
+knot3 (1.2-240-g72e55e0) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Sun, 16 Feb 2014 01:19:56 +0100
+
+knot3 (1.2-239-g8e0f210) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Sun, 16 Feb 2014 01:19:06 +0100
+
+knot3 (1.2-238-g7360b9f) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Sun, 16 Feb 2014 01:18:14 +0100
+
+knot3 (1.2-237-gcff73c1) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Sun, 16 Feb 2014 01:05:58 +0100
+
+knot3 (1.2-236-g601a653) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Sun, 16 Feb 2014 01:00:06 +0100
+
+knot3 (1.2-235-gf531ebd) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Sun, 16 Feb 2014 00:59:31 +0100
+
+knot3 (1.2-234-g4a1aa8d) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Sun, 16 Feb 2014 00:51:06 +0100
+
+knot3 (1.2-233-g6405fc1) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Sun, 16 Feb 2014 00:50:32 +0100
+
+knot3 (1.2-232-g99f11a7) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Sun, 16 Feb 2014 00:48:06 +0100
+
+knot3 (1.2-231-g688f510) unstable; urgency=low
+
+  * circletstets
+
+ -- Tobias Schulz <tobias@freehal.net>  Sun, 16 Feb 2014 00:47:00 +0100
+
+knot3 (1.2-230-g8bbd0b8) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Sun, 16 Feb 2014 00:34:06 +0100
+
+knot3 (1.2-229-gbda345a) unstable; urgency=low
+
+  * cirlcel
+
+ -- Tobias Schulz <tobias@freehal.net>  Sun, 16 Feb 2014 00:33:37 +0100
+
+knot3 (1.2-228-gd622671) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Sun, 16 Feb 2014 00:18:06 +0100
+
+knot3 (1.2-227-g63f35f6) unstable; urgency=low
+
+  * CircleTests
+
+ -- Tobias Schulz <tobias@freehal.net>  Sun, 16 Feb 2014 00:17:45 +0100
+
+knot3 (1.2-226-g8318234) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Sat, 15 Feb 2014 23:13:07 +0100
+
+knot3 (1.2-225-gf32e716) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Sat, 15 Feb 2014 23:12:39 +0100
+
+knot3 (1.2-224-ge9a5552) unstable; urgency=low
+
+  * ?
+
+ -- Tobias Schulz <tobias@freehal.net>  Sat, 15 Feb 2014 23:12:15 +0100
+
+knot3 (1.2-223-g7764d5a) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Sat, 15 Feb 2014 23:09:02 +0100
+
+knot3 (1.2-222-gf7acfc4) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Sat, 15 Feb 2014 23:08:00 +0100
+
+knot3 (1.2-221-g925f5b4) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Sat, 15 Feb 2014 23:07:08 +0100
+
+knot3 (1.2-220-g8201325) unstable; urgency=low
+
+  * Merge branch 'master' of https://github.com/knot3/knot3
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Sat, 15 Feb 2014 23:06:17 +0100
+
+knot3 (1.2-217-gf01e17e) unstable; urgency=low
+
+  * ExtremeKnots (Anfang)
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Sat, 15 Feb 2014 23:05:24 +0100
+
+knot3 (1.2-218-g3be5da8) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Sat, 15 Feb 2014 22:49:06 +0100
+
+knot3 (1.2-217-gb4ca560) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Sat, 15 Feb 2014 22:48:06 +0100
+
+knot3 (1.2-216-g0bf02df) unstable; urgency=low
+
+  * Merge branch 'master' of https://github.com/knot3/knot3
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Sat, 15 Feb 2014 22:47:06 +0100
+
+knot3 (1.2-213-g0661bd9) unstable; urgency=low
+
+  * ...
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Sat, 15 Feb 2014 22:46:52 +0100
+
+knot3 (1.2-212-g8f6537c) unstable; urgency=low
+
+  * ...
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Sat, 15 Feb 2014 22:43:25 +0100
+
+knot3 (1.2-213-g5123397) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Sat, 15 Feb 2014 22:43:06 +0100
+
+knot3 (1.2-212-g17405a5) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Sat, 15 Feb 2014 22:42:06 +0100
+
+knot3 (1.2-211-g465df38) unstable; urgency=low
+
+  * Tests, Extremtests
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Sat, 15 Feb 2014 22:40:54 +0100
+
+knot3 (1.2-210-ga40e74e) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Sat, 15 Feb 2014 22:05:06 +0100
+
+knot3 (1.2-209-g9c514cc) unstable; urgency=low
+
+  * Grundlegende Klassen für Pflichtenheft-vorspezifizierte Extremtests.
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Sat, 15 Feb 2014 22:04:11 +0100
+
+knot3 (1.2-208-ge0e192e) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Sat, 15 Feb 2014 21:55:06 +0100
+
+knot3 (1.2-207-g90bdeeb) unstable; urgency=low
+
+  * ExtremeTests Start-Projekt.
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Sat, 15 Feb 2014 21:54:12 +0100
+
+knot3 (1.2-206-g4968386) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Sat, 15 Feb 2014 21:21:06 +0100
+
+knot3 (1.2-205-g0991ff9) unstable; urgency=low
+
+  * Namespaces der Tests aufgeräumt
+
+ -- Tobias Schulz <tobias@freehal.net>  Sat, 15 Feb 2014 21:20:40 +0100
+
+knot3 (1.2-204-g90dafa3) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Sat, 15 Feb 2014 06:00:07 +0100
+
+knot3 (1.2-203-g80d520a) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Sat, 15 Feb 2014 05:59:05 +0100
+
+knot3 (1.2-202-gbdb64a4) unstable; urgency=low
+
+  * travis ci
+
+ -- Tobias Schulz <tobias@freehal.net>  Sat, 15 Feb 2014 05:52:29 +0100
+
+knot3 (1.2-201-g9a2e868) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Sat, 15 Feb 2014 05:51:06 +0100
+
+knot3 (1.2-200-g4602ded) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Sat, 15 Feb 2014 05:49:58 +0100
+
+knot3 (1.2-199-g42cf1ee) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Sat, 15 Feb 2014 05:46:47 +0100
+
+knot3 (1.2-198-g58e609d) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Sat, 15 Feb 2014 05:44:06 +0100
+
+knot3 (1.2-197-gc39823f) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Sat, 15 Feb 2014 05:43:38 +0100
+
+knot3 (1.2-196-g6cf017f) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Sat, 15 Feb 2014 05:34:13 +0100
+
+knot3 (1.2-195-gdc59f4a) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Sat, 15 Feb 2014 05:31:07 +0100
+
+knot3 (1.2-194-g7e49eb4) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Sat, 15 Feb 2014 05:30:47 +0100
+
+knot3 (1.2-193-gad43fb4) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Sat, 15 Feb 2014 04:22:00 +0100
+
+knot3 (1.2-192-g441a613) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Sat, 15 Feb 2014 00:57:53 +0100
+
+knot3 (1.2-191-g3b021c6) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 14 Feb 2014 23:38:37 +0100
+
+knot3 (1.2-190-g7dffd13) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Fri, 14 Feb 2014 22:07:06 +0100
+
+knot3 (1.2-189-ga2470e2) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 14 Feb 2014 22:06:41 +0100
+
+knot3 (1.2-188-gc0e6167) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 14 Feb 2014 22:01:24 +0100
+
+knot3 (1.2-187-g1bda7a4) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Fri, 14 Feb 2014 19:34:06 +0100
+
+knot3 (1.2-186-gca19a46) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 14 Feb 2014 19:33:34 +0100
+
+knot3 (1.2-185-gbc3193f) unstable; urgency=low
+
+  * [ci skip]
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 14 Feb 2014 19:27:43 +0100
+
+knot3 (1.2-184-gf2fe3b2) unstable; urgency=low
+
+  * ... [ci skip]
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 14 Feb 2014 19:22:30 +0100
+
+knot3 (1.2-183-g8f29af4) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Fri, 14 Feb 2014 19:22:06 +0100
+
+knot3 (1.2-182-g3bdab8b) unstable; urgency=low
+
+  * ... [ci skip]
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 14 Feb 2014 19:20:50 +0100
+
+knot3 (1.2-181-gb9fcabb) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 14 Feb 2014 18:28:18 +0100
+
+knot3 (1.2-180-g2bff500) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 14 Feb 2014 18:22:37 +0100
+
+knot3 (1.2-179-g0b13832) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Fri, 14 Feb 2014 18:16:06 +0100
+
+knot3 (1.2-178-g7dec083) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Fri, 14 Feb 2014 18:14:08 +0100
+
+knot3 (1.2-177-g83ffa5e) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 14 Feb 2014 18:13:49 +0100
+
+knot3 (1.2-176-g6c553a9) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Fri, 14 Feb 2014 18:01:06 +0100
+
+knot3 (1.2-175-gb34d368) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 14 Feb 2014 18:00:21 +0100
+
+knot3 (1.2-174-g5712f61) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Fri, 14 Feb 2014 18:00:06 +0100
+
+knot3 (1.2-173-g528bfbe) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 14 Feb 2014 17:59:03 +0100
+
+knot3 (1.2-172-g3000ed6) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Fri, 14 Feb 2014 17:36:06 +0100
+
+knot3 (1.2-171-g60b9d0b) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 14 Feb 2014 17:35:09 +0100
+
+knot3 (1.2-170-g916f26b) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Fri, 14 Feb 2014 17:33:07 +0100
+
+knot3 (1.2-169-g8727055) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 14 Feb 2014 17:32:22 +0100
+
+knot3 (1.2-168-g18b533d) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias.schulz186@gmail.com>  Fri, 14 Feb 2014 17:25:49 +0100
+
+knot3 (1.2-167-g01c0aef) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Fri, 14 Feb 2014 15:31:07 +0100
+
+knot3 (1.2-166-g9982fb7) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 14 Feb 2014 15:30:44 +0100
+
+knot3 (1.2-165-g76abe68) unstable; urgency=low
+
+  * ... Filter: Development, einzelne Klassen
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Fri, 14 Feb 2014 12:41:01 +0100
+
+knot3 (1.2-164-g1255863) unstable; urgency=low
+
+  * ... Filter: GameObjects
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Fri, 14 Feb 2014 12:35:01 +0100
+
+knot3 (1.2-163-g33fa46d) unstable; urgency=low
+
+  * Skript f. Testabdeckung: Rendereffects-Filter hinzugefügt.
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Fri, 14 Feb 2014 11:52:15 +0100
+
+knot3 (1.2-162-g29e71b0) unstable; urgency=low
+
+  * *Screen-Filter hinzugefügt.
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Fri, 14 Feb 2014 11:44:23 +0100
+
+knot3 (1.2-161-g4cd9dad) unstable; urgency=low
+
+  * Filter arbeiten jetzt. Erste Filtereinstellungen getroffen.
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Fri, 14 Feb 2014 11:33:19 +0100
+
+knot3 (1.2-160-g42f3261) unstable; urgency=low
+
+  * Filter laufen immer noch nicht ...
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Fri, 14 Feb 2014 11:21:56 +0100
+
+knot3 (1.2-159-gc3e87d9) unstable; urgency=low
+
+  * fixed challenge
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 14 Feb 2014 01:50:00 +0100
+
+knot3 (1.2-158-g3ecac7c) unstable; urgency=low
+
+  * makefile
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 14 Feb 2014 01:10:04 +0100
+
+knot3 (1.2-157-gdcd5481) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Fri, 14 Feb 2014 00:45:53 +0100
+
+knot3 (1.2-156-g85ab253) unstable; urgency=low
+
+  * Externes Tool zum Config resetten (knot3/knot3#145)
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 14 Feb 2014 00:19:53 +0100
+
+knot3 (1.2-155-g59caab7) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 14 Feb 2014 00:05:04 +0100
+
+knot3 (1.2-154-g141732e) unstable; urgency=low
+
+  * ConfigReset
+
+ -- Tobias Schulz <tobias@freehal.net>  Fri, 14 Feb 2014 00:04:07 +0100
+
+knot3 (1.2-153-gca33304) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 13 Feb 2014 23:59:23 +0100
+
+knot3 (1.2-152-g7e9ebe2) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Thu, 13 Feb 2014 23:58:12 +0100
+
+knot3 (1.2-151-g2955a11) unstable; urgency=low
+
+  * csproj
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 13 Feb 2014 23:57:25 +0100
+
+knot3 (1.2-150-g01c7279) unstable; urgency=low
+
+  * csproj
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 13 Feb 2014 23:56:49 +0100
+
+knot3 (1.2-149-gc9b3ff3) unstable; urgency=low
+
+  * rewrite csproj
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 13 Feb 2014 23:46:05 +0100
+
+knot3 (1.2-148-gf885aee) unstable; urgency=low
+
+  * rewrite-csproj
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 13 Feb 2014 23:46:05 +0100
+
+knot3 (1.2-147-g321b8d7) unstable; urgency=low
+
+  * moved scripts
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 13 Feb 2014 23:46:05 +0100
+
+knot3 (1.2-146-g968485f) unstable; urgency=low
+
+  * Code Format
+
+ -- PSE Knot³ <uaeti@student.kit.edu>  Thu, 13 Feb 2014 20:17:13 +0100
+
+knot3 (1.2-145-ge1f535c) unstable; urgency=low
+
+  * Code Format
+
+ -- PSE Knot³ <uaeti@student.kit.edu>  Thu, 13 Feb 2014 20:15:12 +0100
+
+knot3 (1.2-144-gcd4e261) unstable; urgency=low
+
+  * Code Format
+
+ -- PSE Knot³ <uaeti@student.kit.edu>  Thu, 13 Feb 2014 20:13:12 +0100
+
+knot3 (1.2-143-g62b4ec8) unstable; urgency=low
+
+  * Code Format
+
+ -- PSE Knot³ <uaeti@student.kit.edu>  Thu, 13 Feb 2014 20:11:12 +0100
+
+knot3 (1.2-142-g688c4b3) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 13 Feb 2014 19:04:05 +0100
+
+knot3 (1.2-141-g9a00cb2) unstable; urgency=low
+
+  * Filter für OpenCover
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Thu, 13 Feb 2014 18:18:15 +0100
+
+knot3 (1.2-140-g05cbe1a) unstable; urgency=low
+
+  * Code Format
+
+ -- Daniel Warzel <daniel.warzel@gmx.de>  Thu, 13 Feb 2014 18:17:14 +0100
+
+knot3 (1.2-139-g677a572) unstable; urgency=low
+
+  * KnotStringIO Invalid Content
+
+ -- Daniel Warzel <daniel.warzel@gmx.de>  Thu, 13 Feb 2014 18:16:44 +0100
+
+knot3 (1.2-138-g058e72c) unstable; urgency=low
+
+  * Bounds und ScreenPoint in Core verschoben
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 13 Feb 2014 18:03:45 +0100
+
+knot3 (1.2-137-g9efcd49) unstable; urgency=low
+
+  * Code Format
+
+ -- Daniel Warzel <daniel.warzel@gmx.de>  Thu, 13 Feb 2014 17:55:12 +0100
+
+knot3 (1.2-136-g162de5e) unstable; urgency=low
+
+  * Invalid Knots
+
+ -- Daniel Warzel <daniel.warzel@gmx.de>  Thu, 13 Feb 2014 17:53:38 +0100
+
+knot3 (1.2-135-ge1506ab) unstable; urgency=low
+
+  * Code Format
+
+ -- Gerd Augsburg <g.augsburg@gmx.net>  Thu, 13 Feb 2014 17:47:13 +0100
+
+knot3 (1.2-134-g578b217) unstable; urgency=low
+
+  * Start to center
+
+ -- Gerd Augsburg <g.augsburg@gmx.net>  Thu, 13 Feb 2014 17:45:56 +0100
+
+knot3 (1.2-133-g6674ecc) unstable; urgency=low
+
+  * Code Format
+
+ -- Daniel Warzel <daniel.warzel@gmx.de>  Thu, 13 Feb 2014 17:27:12 +0100
+
+knot3 (1.2-132-g19e7001) unstable; urgency=low
+
+  * KnotStringIO Setter Content gefixed
+
+ -- Daniel Warzel <daniel.warzel@gmx.de>  Thu, 13 Feb 2014 17:26:07 +0100
+
+knot3 (1.2-131-g4ce33a1) unstable; urgency=low
+
+  * Code Format
+
+ -- Daniel Warzel <daniel.warzel@gmx.de>  Thu, 13 Feb 2014 17:07:14 +0100
+
+knot3 (1.2-130-gf81243a) unstable; urgency=low
+
+  * KnotStringIO
+
+ -- Daniel Warzel <daniel.warzel@gmx.de>  Thu, 13 Feb 2014 17:06:00 +0100
+
+knot3 (1.2-129-g86e9913) unstable; urgency=low
+
+  * fix linux.csproj
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 13 Feb 2014 17:05:06 +0100
+
+knot3 (1.2-128-ge5b9d77) unstable; urgency=low
+
+  * Code Format
+
+ -- Daniel Warzel <daniel.warzel@gmx.de>  Thu, 13 Feb 2014 17:03:14 +0100
+
+knot3 (1.2-127-gece042e) unstable; urgency=low
+
+  * World refactored, Anwendung der Rendereffektänderungen auf die aktuelle World
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 13 Feb 2014 17:02:37 +0100
+
+knot3 (1.2-126-g3c89f44) unstable; urgency=low
+
+  * Code Format
+
+ -- Daniel Warzel <daniel.warzel@gmx.de>  Thu, 13 Feb 2014 17:01:12 +0100
+
+knot3 (1.2-125-g13bd530) unstable; urgency=low
+
+  * KnotGenerator
+
+ -- Daniel Warzel <daniel.warzel@gmx.de>  Thu, 13 Feb 2014 16:59:15 +0100
+
+knot3 (1.2-124-gd435302) unstable; urgency=low
+
+  * Offset
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 13 Feb 2014 16:50:22 +0100
+
+knot3 (1.2-123-g899cfa3) unstable; urgency=low
+
+  * keine ToString-tests
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 13 Feb 2014 16:45:19 +0100
+
+knot3 (1.2-122-g712601b) unstable; urgency=low
+
+  * Coverage-Report Build-Skript (Windows, V. 1.1)
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Thu, 13 Feb 2014 16:40:12 +0100
+
+knot3 (1.2-121-gbea9be0) unstable; urgency=low
+
+  * Code Format
+
+ -- Gerd Augsburg <g.augsburg@gmx.net>  Thu, 13 Feb 2014 16:37:12 +0100
+
+knot3 (1.2-120-g1c2a9e0) unstable; urgency=low
+
+  * OffSet
+
+ -- Gerd Augsburg <g.augsburg@gmx.net>  Thu, 13 Feb 2014 16:35:21 +0100
+
+knot3 (1.2-119-g8a1b69b) unstable; urgency=low
+
+  * Code Format
+
+ -- Daniel Warzel <daniel.warzel@gmx.de>  Thu, 13 Feb 2014 16:27:14 +0100
+
+knot3 (1.2-118-gb97635c) unstable; urgency=low
+
+  * Neues Equals in Screenpoints und BoundsTest verbessert
+
+ -- Daniel Warzel <daniel.warzel@gmx.de>  Thu, 13 Feb 2014 16:26:43 +0100
+
+knot3 (1.2-117-gf408e87) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Thu, 13 Feb 2014 16:17:14 +0100
+
+knot3 (1.2-116-g11f2299) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 13 Feb 2014 16:16:58 +0100
+
+knot3 (1.2-115-g9b4049c) unstable; urgency=low
+
+  * Code Format
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Thu, 13 Feb 2014 16:11:15 +0100
+
+knot3 (1.2-114-gd999f1b) unstable; urgency=low
+
+  * IsValidMove ohne StructuredSelection
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 13 Feb 2014 16:10:10 +0100
+
+knot3 (1.2-113-g980daa2) unstable; urgency=low
+
+  * doppelter code entfernt
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 13 Feb 2014 16:10:10 +0100
+
+knot3 (1.2-112-g11c147f) unstable; urgency=low
+
+  * Coverage-Report Build-Skript.
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Thu, 13 Feb 2014 15:54:55 +0100
+
+knot3 (1.2-111-gfabd0c1) unstable; urgency=low
+
+  * Laufwerkbuchstabe :)
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Thu, 13 Feb 2014 15:43:49 +0100
+
+knot3 (1.2-110-ga0bcbb5) unstable; urgency=low
+
+  * Verbessertes Skript für die lokalen Test-Tools unter Windows.
+
+ -- Pascal Knodel <pascal.knodel@student.kit.edu>  Thu, 13 Feb 2014 15:36:59 +0100
+
+knot3 (1.2-109-g576f33f) unstable; urgency=low
+
+  * count unnötig
+
+ -- Gerd Augsburg <g.augsburg@gmx.net>  Thu, 13 Feb 2014 15:19:33 +0100
+
+knot3 (1.2-108-g18ebbed) unstable; urgency=low
+
+  * Keine List mehr in TryMove(...)
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 13 Feb 2014 15:04:38 +0100
+
+knot3 (1.2-107-gf310669) unstable; urgency=low
+
+  * Code Format
+
+ -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Thu, 13 Feb 2014 04:01:12 +0100
+
+knot3 (1.2-106-g7677d88) unstable; urgency=low
+
+  * CircleEntry ist IList und ICollection
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 13 Feb 2014 04:00:20 +0100
+
+knot3 (1.2-105-gb788304) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 13 Feb 2014 02:36:26 +0100
+
+knot3 (1.2-104-g74e4acc) unstable; urgency=low
+
+  * Code Format
+
+ -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Thu, 13 Feb 2014 01:27:13 +0100
+
+knot3 (1.2-103-g8b512c4) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 13 Feb 2014 01:25:47 +0100
+
+knot3 (1.2-102-g89ca105) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 13 Feb 2014 01:16:38 +0100
+
+knot3 (1.2-101-gcc64610) unstable; urgency=low
+
+  * Code Format
+
+ -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Thu, 13 Feb 2014 01:15:14 +0100
+
+knot3 (1.2-100-g40ee546) unstable; urgency=low
+
+  * fix
+
+ -- Tobias Schulz <tobias@freehal.net>  Thu, 13 Feb 2014 01:14:22 +0100
+
+knot3 (1.2-99-g6f9ab32) unstable; urgency=low
+
+  * Code Format
+
+ -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Wed, 12 Feb 2014 22:59:12 +0100
+
+knot3 (1.2-98-g4e0f1d4) unstable; urgency=low
+
+  * Move als aufruf von TryMove implementiert (für move gibt es unittests)
+
+ -- Tobias Schulz <tobias@freehal.net>  Wed, 12 Feb 2014 22:58:40 +0100
+
+knot3 (1.2-97-g713af8a) unstable; urgency=low
+
+  * Code Format
+
+ -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Wed, 12 Feb 2014 22:53:12 +0100
+
+knot3 (1.2-96-g187e727) unstable; urgency=low
+
+  * move
+
+ -- Tobias Schulz <tobias@freehal.net>  Wed, 12 Feb 2014 22:52:01 +0100
+
+knot3 (1.2-95-g3617da3) unstable; urgency=low
+
+  * Code Format
+
+ -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Wed, 12 Feb 2014 22:25:12 +0100
+
+knot3 (1.2-94-gb287feb) unstable; urgency=low
+
+  * Bug gefixt
+
+ -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Wed, 12 Feb 2014 22:23:19 +0100
+
+knot3 (1.2-93-g085caa7) unstable; urgency=low
+
+  * Code Format
+
+ -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Wed, 12 Feb 2014 22:15:12 +0100
+
+knot3 (1.2-92-g8ea0f33) unstable; urgency=low
+
+  * Merge branch 'master' of https://github.com/knot3/knot3
+
+ -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Wed, 12 Feb 2014 22:13:56 +0100
+
+knot3 (1.2-90-g57d666b) unstable; urgency=low
+
+  * merge
+
+ -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Wed, 12 Feb 2014 22:11:31 +0100
+
+knot3 (1.2-89-g2612c6c) unstable; urgency=low
+
+  * bug fast gefixt
+
+ -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Wed, 12 Feb 2014 22:09:48 +0100
+
+knot3 (1.2-89-ga45b337) unstable; urgency=low
+
+  * Code Format
+
+ -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Wed, 12 Feb 2014 22:07:12 +0100
+
+knot3 (1.2-88-g569a599) unstable; urgency=low
+
+  * Merge branch 'master' of https://github.com/knot3/knot3
+
+ -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Wed, 12 Feb 2014 22:06:55 +0100
+
+knot3 (1.2-86-ga56b4ff) unstable; urgency=low
+
+  * Bugfix... nicht ganz
+
+ -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Wed, 12 Feb 2014 22:06:48 +0100
+
+knot3 (1.2-86-g8164a33) unstable; urgency=low
+
+  * einfacherer startknoten
+
+ -- Tobias Schulz <tobias@freehal.net>  Wed, 12 Feb 2014 22:01:42 +0100
+
+knot3 (1.2-85-ge2e9924) unstable; urgency=low
+
+  * Merge branch 'master' of https://github.com/knot3/knot3
+
+ -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Wed, 12 Feb 2014 21:55:10 +0100
+
+knot3 (1.2-79-gc3edaaf) unstable; urgency=low
+
+  * ...
+
+ -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Wed, 12 Feb 2014 21:55:01 +0100
+
+knot3 (1.2-83-gd85a166) unstable; urgency=low
+
+  * Code Format
+
+ -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Wed, 12 Feb 2014 21:53:12 +0100
+
+knot3 (1.2-82-gfd6d76b) unstable; urgency=low
+
+  * debug
+
+ -- Tobias Schulz <tobias@freehal.net>  Wed, 12 Feb 2014 21:52:55 +0100
+
+knot3 (1.2-81-gd200f39) unstable; urgency=low
+
+  * debug messages
+
+ -- Tobias Schulz <tobias@freehal.net>  Wed, 12 Feb 2014 21:51:03 +0100
+
+knot3 (1.2-80-g08a00ae) unstable; urgency=low
+
+  * test
+
+ -- Tobias Schulz <tobias@freehal.net>  Wed, 12 Feb 2014 21:40:34 +0100
+
+knot3 (1.2-79-gc482bc7) unstable; urgency=low
+
+  * Code Format
+
+ -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Wed, 12 Feb 2014 21:39:12 +0100
+
+knot3 (1.2-78-g4f3ab8c) unstable; urgency=low
+
+  * nullaufruf
+
+ -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Wed, 12 Feb 2014 21:37:58 +0100
+
+knot3 (1.2-77-g1248f9c) unstable; urgency=low
+
+  * Code Format
+
+ -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Wed, 12 Feb 2014 21:17:12 +0100
+
+knot3 (1.2-76-g651329e) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Wed, 12 Feb 2014 21:15:52 +0100
+
+knot3 (1.2-75-g16e2e90) unstable; urgency=low
+
+  * ...
+
+ -- Tobias Schulz <tobias@freehal.net>  Wed, 12 Feb 2014 21:11:54 +0100
+
+knot3 (1.2-74-g0fc9121) unstable; urgency=low
+
+  * Code Format
+
+ -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Wed, 12 Feb 2014 21:09:12 +0100
+
+knot3 (1.2-73-g76ad389) unstable; urgency=low
+
+  * hmmm
+
+ -- Tobias Schulz <tobias@freehal.net>  Wed, 12 Feb 2014 21:07:05 +0100
+
+knot3 (1.2-72-gce31bf5) unstable; urgency=low
+
+  * makefiles
+
+ -- Tobias Schulz <tobias@freehal.net>  Wed, 12 Feb 2014 20:28:49 +0100
+
+knot3 (1.2-71-g8716ccb) unstable; urgency=low
+
+  * Code Format
+
+ -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Wed, 12 Feb 2014 19:41:15 +0100
+
+knot3 (1.2-70-gbb6fbc8) unstable; urgency=low
+
+  * fix
+
+ -- Tobias Schulz <tobias@freehal.net>  Wed, 12 Feb 2014 19:40:57 +0100
+
+knot3 (1.2-69-g30dd62e) unstable; urgency=low
+
+  * Code Format
+
+ -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Wed, 12 Feb 2014 17:43:18 +0100
+
+knot3 (1.2-68-g264e644) unstable; urgency=low
+
+  * Fix Kante zu viel
+
+ -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Wed, 12 Feb 2014 17:42:38 +0100
+
+knot3 (1.2-67-g7b540b9) unstable; urgency=low
+
+  * ...
+
+ -- PSE Knot³ <uaeti@student.kit.edu>  Wed, 12 Feb 2014 14:36:19 +0100
+
+knot3 (1.2-66-g79ab080) unstable; urgency=low
 
   * Code Format
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Wed, 12 Feb 2014 11:59:12 +0100
 
-knot3 (2.0-beta-65-g0a558b0) unstable; urgency=low
+knot3 (1.2-65-g0a558b0) unstable; urgency=low
 
   * Nachtrag v. gestern (Angles3-Test, !=).
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Wed, 12 Feb 2014 11:58:44 +0100
 
-knot3 (2.0-beta-64-gb5b527e) unstable; urgency=low
+knot3 (1.2-64-gb5b527e) unstable; urgency=low
 
   * ...
 
  -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Wed, 12 Feb 2014 04:36:47 +0100
 
-knot3 (2.0-beta-63-g6e79064) unstable; urgency=low
+knot3 (1.2-63-g6e79064) unstable; urgency=low
 
   * Code Format
 
  -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Wed, 12 Feb 2014 04:35:12 +0100
 
-knot3 (2.0-beta-62-g2d0fa0d) unstable; urgency=low
+knot3 (1.2-62-g2d0fa0d) unstable; urgency=low
 
   * Merge branch 'master' of https://github.com/knot3/knot3.git
 
  -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Wed, 12 Feb 2014 04:33:51 +0100
 
-knot3 (2.0-beta-58-g95b6b72) unstable; urgency=low
+knot3 (1.2-58-g95b6b72) unstable; urgency=low
 
   * Try move
 
  -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Wed, 12 Feb 2014 03:54:17 +0100
 
-knot3 (2.0-beta-60-g3bd06c6) unstable; urgency=low
+knot3 (1.2-60-g3bd06c6) unstable; urgency=low
 
   * readme
 
  -- Tobias Schulz <tobias@freehal.net>  Wed, 12 Feb 2014 02:16:51 +0100
 
-knot3 (2.0-beta-59-ge56d92b) unstable; urgency=low
+knot3 (1.2-59-ge56d92b) unstable; urgency=low
 
   * Code Format
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Wed, 12 Feb 2014 01:33:12 +0100
 
-knot3 (2.0-beta-58-g9ec981a) unstable; urgency=low
+knot3 (1.2-58-g9ec981a) unstable; urgency=low
 
   * knot
 
  -- Tobias Schulz <tobias@freehal.net>  Wed, 12 Feb 2014 01:32:46 +0100
 
-knot3 (2.0-beta-57-g7e64301) unstable; urgency=low
+knot3 (1.2-57-g7e64301) unstable; urgency=low
 
   * ...
 
  -- Tobias Schulz <tobias@freehal.net>  Wed, 12 Feb 2014 01:20:10 +0100
 
-knot3 (2.0-beta-56-g7a8f83b) unstable; urgency=low
+knot3 (1.2-56-g7a8f83b) unstable; urgency=low
 
   * ...
 
  -- Tobias Schulz <tobias@freehal.net>  Wed, 12 Feb 2014 01:16:37 +0100
 
-knot3 (2.0-beta-55-g67cb01f) unstable; urgency=low
+knot3 (1.2-55-g67cb01f) unstable; urgency=low
 
   * Circle.Pairs
 
  -- Tobias Schulz <tobias@freehal.net>  Tue, 11 Feb 2014 16:12:41 +0100
 
-knot3 (2.0-beta-54-g56b0a4a) unstable; urgency=low
+knot3 (1.2-54-g56b0a4a) unstable; urgency=low
 
   * Code Format
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Tue, 11 Feb 2014 16:07:16 +0100
 
-knot3 (2.0-beta-53-g4ffb9ab) unstable; urgency=low
+knot3 (1.2-53-g4ffb9ab) unstable; urgency=low
 
   * GetHashCode nicht testen\!
 
  -- Tobias Schulz <tobias@freehal.net>  Tue, 11 Feb 2014 16:05:12 +0100
 
-knot3 (2.0-beta-52-gc20e836) unstable; urgency=low
+knot3 (1.2-52-gc20e836) unstable; urgency=low
 
   * Code Format
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Tue, 11 Feb 2014 16:01:16 +0100
 
-knot3 (2.0-beta-51-g5af4106) unstable; urgency=low
+knot3 (1.2-51-g5af4106) unstable; urgency=low
 
   * bugfix errordialog
 
  -- Tobias Schulz <tobias@freehal.net>  Tue, 11 Feb 2014 16:00:39 +0100
 
-knot3 (2.0-beta-50-g9beb857) unstable; urgency=low
+knot3 (1.2-50-g9beb857) unstable; urgency=low
 
   * Bounds Contains Test.
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Tue, 11 Feb 2014 16:00:29 +0100
 
-knot3 (2.0-beta-49-g3721753) unstable; urgency=low
+knot3 (1.2-49-g3721753) unstable; urgency=low
 
   * Code Format
 
  -- Gerd Augsburg <g.augsburg@gmx.net>  Tue, 11 Feb 2014 15:59:16 +0100
 
-knot3 (2.0-beta-48-g1832624) unstable; urgency=low
+knot3 (1.2-48-g1832624) unstable; urgency=low
 
   * new TryMove first try
 
  -- Gerd Augsburg <g.augsburg@gmx.net>  Tue, 11 Feb 2014 15:58:04 +0100
 
-knot3 (2.0-beta-47-gc42f33e) unstable; urgency=low
+knot3 (1.2-47-gc42f33e) unstable; urgency=low
 
   * Code Format
 
  -- Gerd Augsburg <g.augsburg@gmx.net>  Tue, 11 Feb 2014 15:55:17 +0100
 
-knot3 (2.0-beta-46-g1eb4ff0) unstable; urgency=low
+knot3 (1.2-46-g1eb4ff0) unstable; urgency=low
 
   * bugfix errordialog
 
  -- Tobias Schulz <tobias@freehal.net>  Tue, 11 Feb 2014 15:54:11 +0100
 
-knot3 (2.0-beta-45-g28be7e7) unstable; urgency=low
+knot3 (1.2-45-g28be7e7) unstable; urgency=low
 
   * ...
 
  -- Tobias Schulz <tobias@freehal.net>  Tue, 11 Feb 2014 15:15:53 +0100
 
-knot3 (2.0-beta-44-g21e6b79) unstable; urgency=low
+knot3 (1.2-44-g21e6b79) unstable; urgency=low
 
   * ...
 
  -- Tobias Schulz <tobias@freehal.net>  Tue, 11 Feb 2014 15:10:11 +0100
 
-knot3 (2.0-beta-43-g8d0d8a8) unstable; urgency=low
+knot3 (1.2-43-g8d0d8a8) unstable; urgency=low
 
   * bugfixes
 
  -- Tobias Schulz <tobias@freehal.net>  Tue, 11 Feb 2014 15:04:39 +0100
 
-knot3 (2.0-beta-42-g841bda7) unstable; urgency=low
+knot3 (1.2-42-g841bda7) unstable; urgency=low
 
   * Code Format
 
  -- Gerd Augsburg <g.augsburg@gmx.net>  Tue, 11 Feb 2014 15:00:16 +0100
 
-knot3 (2.0-beta-41-g6b8aa6d) unstable; urgency=low
+knot3 (1.2-41-g6b8aa6d) unstable; urgency=low
 
   * TextBox Fixes knot3/knot3#141
 
  -- Tobias Schulz <tobias@freehal.net>  Tue, 11 Feb 2014 15:00:02 +0100
 
-knot3 (2.0-beta-40-gae630f1) unstable; urgency=low
+knot3 (1.2-40-gae630f1) unstable; urgency=low
 
   * Code Format
 
  -- Gerd Augsburg <g.augsburg@gmx.net>  Tue, 11 Feb 2014 14:46:15 +0100
 
-knot3 (2.0-beta-39-g4d1dc4e) unstable; urgency=low
+knot3 (1.2-39-g4d1dc4e) unstable; urgency=low
 
   * new method
 
  -- Gerd Augsburg <g.augsburg@gmx.net>  Tue, 11 Feb 2014 14:45:13 +0100
 
-knot3 (2.0-beta-38-gc733728) unstable; urgency=low
+knot3 (1.2-38-gc733728) unstable; urgency=low
 
   * Code Format
 
  -- Gerd Augsburg <g.augsburg@gmx.net>  Tue, 11 Feb 2014 13:13:15 +0100
 
-knot3 (2.0-beta-37-gc65fcc4) unstable; urgency=low
+knot3 (1.2-37-gc65fcc4) unstable; urgency=low
 
   * Vorbereitungen für neue TryMove-Methode
 
  -- Tobias Schulz <tobias@freehal.net>  Tue, 11 Feb 2014 13:12:12 +0100
 
-knot3 (2.0-beta-36-g979e408) unstable; urgency=low
+knot3 (1.2-36-g979e408) unstable; urgency=low
 
   * bugfix
 
  -- Tobias Schulz <tobias@freehal.net>  Tue, 11 Feb 2014 12:40:45 +0100
 
-knot3 (2.0-beta-35-gd983fcd) unstable; urgency=low
+knot3 (1.2-35-gd983fcd) unstable; urgency=low
 
   * License
 
  -- Gerd Augsburg <g.augsburg@gmx.net>  Tue, 11 Feb 2014 12:32:27 +0100
 
-knot3 (2.0-beta-34-g6243e1c) unstable; urgency=low
+knot3 (1.2-34-g6243e1c) unstable; urgency=low
 
   * Code Format
 
  -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Tue, 11 Feb 2014 12:31:12 +0100
 
-knot3 (2.0-beta-33-g3867a93) unstable; urgency=low
+knot3 (1.2-33-g3867a93) unstable; urgency=low
 
   * bugfix
 
  -- Tobias Schulz <tobias@freehal.net>  Tue, 11 Feb 2014 12:30:38 +0100
 
-knot3 (2.0-beta-32-g4b2dd42) unstable; urgency=low
+knot3 (1.2-32-g4b2dd42) unstable; urgency=low
 
   * Code Format
 
  -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Tue, 11 Feb 2014 12:29:12 +0100
 
-knot3 (2.0-beta-31-g6373947) unstable; urgency=low
+knot3 (1.2-31-g6373947) unstable; urgency=low
 
   * bugfix
 
  -- Tobias Schulz <tobias@freehal.net>  Tue, 11 Feb 2014 12:28:52 +0100
 
-knot3 (2.0-beta-30-gc61b651) unstable; urgency=low
+knot3 (1.2-30-gc61b651) unstable; urgency=low
 
   * Code Format
 
  -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Tue, 11 Feb 2014 09:41:12 +0100
 
-knot3 (2.0-beta-29-g2a9ec6d) unstable; urgency=low
+knot3 (1.2-29-g2a9ec6d) unstable; urgency=low
 
   * Eine Absturzuhrsache behoben
 
  -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Tue, 11 Feb 2014 09:39:18 +0100
 
-knot3 (2.0-beta-28-gf8f4ca7) unstable; urgency=low
+knot3 (1.2-28-gf8f4ca7) unstable; urgency=low
 
   * Code Format
 
  -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Tue, 11 Feb 2014 08:47:11 +0100
 
-knot3 (2.0-beta-27-gd445694) unstable; urgency=low
+knot3 (1.2-27-gd445694) unstable; urgency=low
 
   * Not Equal Knot
 
  -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Tue, 11 Feb 2014 08:46:39 +0100
 
-knot3 (2.0-beta-26-g51a26da) unstable; urgency=low
+knot3 (1.2-26-g51a26da) unstable; urgency=low
 
   * Code Format
 
  -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Tue, 11 Feb 2014 08:31:12 +0100
 
-knot3 (2.0-beta-25-gb9b7249) unstable; urgency=low
+knot3 (1.2-25-gb9b7249) unstable; urgency=low
 
   * Insert Test
 
  -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Tue, 11 Feb 2014 08:29:10 +0100
 
-knot3 (2.0-beta-24-g6f68638) unstable; urgency=low
+knot3 (1.2-24-g6f68638) unstable; urgency=low
 
   * cam test
 
  -- Tobias Schulz <tobias@freehal.net>  Mon, 10 Feb 2014 23:36:34 +0100
 
-knot3 (2.0-beta-23-ge5bb79a) unstable; urgency=low
+knot3 (1.2-23-ge5bb79a) unstable; urgency=low
 
   * Code Format
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 10 Feb 2014 23:29:19 +0100
 
-knot3 (2.0-beta-22-g768f7c2) unstable; urgency=low
+knot3 (1.2-22-g768f7c2) unstable; urgency=low
 
   * cam tests
 
  -- Tobias Schulz <tobias@freehal.net>  Mon, 10 Feb 2014 23:28:06 +0100
 
-knot3 (2.0-beta-21-gcadc6d2) unstable; urgency=low
+knot3 (1.2-21-gcadc6d2) unstable; urgency=low
 
   * Code Format
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 10 Feb 2014 23:05:18 +0100
 
-knot3 (2.0-beta-20-gc34438e) unstable; urgency=low
+knot3 (1.2-20-gc34438e) unstable; urgency=low
 
   * tests
 
  -- Tobias Schulz <tobias@freehal.net>  Mon, 10 Feb 2014 23:03:53 +0100
 
-knot3 (2.0-beta-19-gd2d0e90) unstable; urgency=low
+knot3 (1.2-19-gd2d0e90) unstable; urgency=low
 
   * ...
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 10 Feb 2014 16:04:13 +0100
 
-knot3 (2.0-beta-18-g4d597d8) unstable; urgency=low
+knot3 (1.2-18-g4d597d8) unstable; urgency=low
 
   * ...
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 10 Feb 2014 16:00:44 +0100
 
-knot3 (2.0-beta-17-gd835a94) unstable; urgency=low
+knot3 (1.2-17-gd835a94) unstable; urgency=low
 
   * Code Format
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 10 Feb 2014 15:57:13 +0100
 
-knot3 (2.0-beta-16-g51ecfb8) unstable; urgency=low
+knot3 (1.2-16-g51ecfb8) unstable; urgency=low
 
   * Code Format
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 10 Feb 2014 15:55:13 +0100
 
-knot3 (2.0-beta-15-gf355616) unstable; urgency=low
+knot3 (1.2-15-gf355616) unstable; urgency=low
 
   * Node Testklasse und einfache Tests.
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 10 Feb 2014 15:53:28 +0100
 
-knot3 (2.0-beta-14-gda508b3) unstable; urgency=low
+knot3 (1.2-14-gda508b3) unstable; urgency=low
 
   * Code Format
 
  -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Mon, 10 Feb 2014 12:16:57 +0100
 
-knot3 (2.0-beta-13-g8ef3d5e) unstable; urgency=low
+knot3 (1.2-13-g8ef3d5e) unstable; urgency=low
 
   * Merge branch 'master' of https://github.com/knot3/knot3.git
 
  -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Mon, 10 Feb 2014 12:16:12 +0100
 
-knot3 (2.0-beta-11-gcdd330f) unstable; urgency=low
+knot3 (1.2-11-gcdd330f) unstable; urgency=low
 
   * knot
 
  -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Mon, 10 Feb 2014 12:16:06 +0100
 
-knot3 (2.0-beta-11-g3ac0bbe) unstable; urgency=low
+knot3 (1.2-11-g3ac0bbe) unstable; urgency=low
 
   * Code Format
 
  -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Mon, 10 Feb 2014 11:47:12 +0100
 
-knot3 (2.0-beta-10-g92a1661) unstable; urgency=low
+knot3 (1.2-10-g92a1661) unstable; urgency=low
 
   * ...
 
  -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Mon, 10 Feb 2014 11:45:07 +0100
 
-knot3 (2.0-beta-9-g8c7dfea) unstable; urgency=low
+knot3 (1.2-9-g8c7dfea) unstable; urgency=low
 
   * Code Format
 
  -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Mon, 10 Feb 2014 11:07:22 +0100
 
-knot3 (2.0-beta-8-g4695124) unstable; urgency=low
+knot3 (1.2-8-g4695124) unstable; urgency=low
 
   * CircleEntry Random Access
 
  -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Mon, 10 Feb 2014 11:06:47 +0100
 
-knot3 (2.0-beta-7-gcae81f7) unstable; urgency=low
+knot3 (1.2-7-gcae81f7) unstable; urgency=low
 
   * ...
 
  -- Tobias Schulz <tobias@freehal.net>  Mon, 10 Feb 2014 08:07:13 +0100
 
-knot3 (2.0-beta-6-gec727fa) unstable; urgency=low
+knot3 (1.2-6-gec727fa) unstable; urgency=low
 
   * ...
 
  -- Tobias Schulz <tobias@freehal.net>  Mon, 10 Feb 2014 00:33:03 +0100
 
-knot3 (2.0-beta-5-g3ca565f) unstable; urgency=low
+knot3 (1.2-5-g3ca565f) unstable; urgency=low
 
   * ...
 
  -- Tobias Schulz <tobias@freehal.net>  Sun, 9 Feb 2014 23:57:09 +0100
 
-knot3 (2.0-beta-4-g053ffca) unstable; urgency=low
+knot3 (1.2-4-g053ffca) unstable; urgency=low
 
   * ...
 
  -- Tobias Schulz <tobias@freehal.net>  Sun, 9 Feb 2014 23:53:39 +0100
 
-knot3 (2.0-beta-3-gc8dc942) unstable; urgency=low
+knot3 (1.2-3-gc8dc942) unstable; urgency=low
 
   * ...
 
  -- Tobias Schulz <tobias@freehal.net>  Sun, 9 Feb 2014 23:53:39 +0100
 
-knot3 (2.0-beta-2-g0dd67ce) unstable; urgency=low
+knot3 (1.2-2-g0dd67ce) unstable; urgency=low
 
   * merge
 
  -- PSE Knot³ <uaeti@student.kit.edu>  Sun, 9 Feb 2014 23:14:20 +0100
 
-knot3 (2.0-beta-1-g5be0bb4) unstable; urgency=low
+knot3 (1.2-1-g5be0bb4) unstable; urgency=low
 
   * merge
 
  -- PSE Knot³ <uaeti@student.kit.edu>  Sun, 9 Feb 2014 23:09:20 +0100
 
-knot3 (2.0-beta) unstable; urgency=low
+knot3 (1.2) unstable; urgency=low
 
   * Lokale Coverage
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Sun, 9 Feb 2014 21:50:29 +0100
 
-knot3 (initial-1186-g3b70406) unstable; urgency=low
+knot3 (1.1-168-g3b70406) unstable; urgency=low
 
   * ...
 
  -- Tobias Schulz <tobias.schulz186@gmail.com>  Sun, 9 Feb 2014 21:41:27 +0100
 
-knot3 (initial-1185-gfe39fb4) unstable; urgency=low
+knot3 (1.1-167-gfe39fb4) unstable; urgency=low
 
   * merge
 
  -- PSE Knot³ <uaeti@student.kit.edu>  Sun, 9 Feb 2014 21:30:28 +0100
 
-knot3 (initial-1184-geaaec7e) unstable; urgency=low
+knot3 (1.1-166-geaaec7e) unstable; urgency=low
 
   * Code Format
 
  -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Sun, 9 Feb 2014 21:29:55 +0100
 
-knot3 (initial-1183-gde44475) unstable; urgency=low
+knot3 (1.1-165-gde44475) unstable; urgency=low
 
   * ...
 
  -- Tobias Schulz <tobias@freehal.net>  Sun, 9 Feb 2014 21:29:10 +0100
 
-knot3 (initial-1182-gab6cba8) unstable; urgency=low
+knot3 (1.1-164-gab6cba8) unstable; urgency=low
 
   * merge
 
  -- Tobias Schulz <tobias@freehal.net>  Sun, 9 Feb 2014 21:28:29 +0100
 
-knot3 (initial-1181-g60e1de2) unstable; urgency=low
+knot3 (1.1-163-g60e1de2) unstable; urgency=low
 
   * merge
 
  -- PSE Knot³ <uaeti@student.kit.edu>  Sun, 9 Feb 2014 21:27:57 +0100
 
-knot3 (initial-1180-g6e78375) unstable; urgency=low
+knot3 (1.1-162-g6e78375) unstable; urgency=low
 
   * Code Format
 
  -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Sun, 9 Feb 2014 21:16:19 +0100
 
-knot3 (initial-1179-g1941e07) unstable; urgency=low
+knot3 (1.1-161-g1941e07) unstable; urgency=low
 
   * merge
 
  -- PSE Knot³ <uaeti@student.kit.edu>  Sun, 9 Feb 2014 20:59:20 +0100
 
-knot3 (initial-1178-g8c985fb) unstable; urgency=low
+knot3 (1.1-160-g8c985fb) unstable; urgency=low
 
   * merge
 
  -- PSE Knot³ <uaeti@student.kit.edu>  Sun, 9 Feb 2014 20:51:59 +0100
 
-knot3 (initial-1177-g0f74d68) unstable; urgency=low
+knot3 (1.1-159-g0f74d68) unstable; urgency=low
 
   * merge
 
  -- PSE Knot³ <uaeti@student.kit.edu>  Sun, 9 Feb 2014 20:51:49 +0100
 
-knot3 (initial-1176-gf006660) unstable; urgency=low
+knot3 (1.1-158-gf006660) unstable; urgency=low
 
   * merge
 
  -- PSE Knot³ <uaeti@student.kit.edu>  Sun, 9 Feb 2014 20:51:13 +0100
 
-knot3 (initial-1175-g615e8e0) unstable; urgency=low
+knot3 (1.1-157-g615e8e0) unstable; urgency=low
 
   * merge
 
  -- PSE Knot³ <uaeti@student.kit.edu>  Sun, 9 Feb 2014 20:47:12 +0100
 
-knot3 (initial-1174-gc561522) unstable; urgency=low
+knot3 (1.1-156-gc561522) unstable; urgency=low
 
   * ...
 
  -- Tobias Schulz <tobias@freehal.net>  Sun, 9 Feb 2014 19:22:37 +0100
 
-knot3 (initial-1173-gffdd157) unstable; urgency=low
+knot3 (1.1-155-gffdd157) unstable; urgency=low
 
   * ...
 
  -- Tobias Schulz <tobias@freehal.net>  Sun, 9 Feb 2014 17:20:21 +0100
 
-knot3 (initial-1172-gd33da16) unstable; urgency=low
+knot3 (1.1-154-gd33da16) unstable; urgency=low
 
   * Code Format
 
  -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Sun, 9 Feb 2014 16:55:08 +0100
 
-knot3 (initial-1171-gd441b9a) unstable; urgency=low
+knot3 (1.1-153-gd441b9a) unstable; urgency=low
 
   * CircleEntry Constructor
 
  -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Sun, 9 Feb 2014 16:52:49 +0100
 
-knot3 (initial-1170-g310297a) unstable; urgency=low
+knot3 (1.1-152-g310297a) unstable; urgency=low
 
   * ...
 
  -- Tobias Schulz <tobias@freehal.net>  Sun, 9 Feb 2014 16:39:30 +0100
 
-knot3 (initial-1169-g4e87ffa) unstable; urgency=low
+knot3 (1.1-151-g4e87ffa) unstable; urgency=low
 
   * Code Format
 
  -- Christina <Elaine10j@aol.com>  Sun, 9 Feb 2014 11:25:06 +0100
 
-knot3 (initial-1168-g3071a1b) unstable; urgency=low
+knot3 (1.1-150-g3071a1b) unstable; urgency=low
 
   * angle test
 
  -- Christina <Elaine10j@aol.com>  Sun, 9 Feb 2014 11:24:28 +0100
 
-knot3 (initial-1167-g1d289aa) unstable; urgency=low
+knot3 (1.1-149-g1d289aa) unstable; urgency=low
 
   * Code Format
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Sun, 9 Feb 2014 01:17:06 +0100
 
-knot3 (initial-1166-g52892d7) unstable; urgency=low
+knot3 (1.1-148-g52892d7) unstable; urgency=low
 
   * ...
 
  -- Tobias Schulz <tobias@freehal.net>  Sun, 9 Feb 2014 01:16:04 +0100
 
-knot3 (initial-1165-g3f878f8) unstable; urgency=low
+knot3 (1.1-147-g3f878f8) unstable; urgency=low
 
   * Code Format
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Sat, 8 Feb 2014 23:51:06 +0100
 
-knot3 (initial-1164-g605b524) unstable; urgency=low
+knot3 (1.1-146-g605b524) unstable; urgency=low
 
   * ...
 
  -- Tobias Schulz <tobias@freehal.net>  Sat, 8 Feb 2014 23:49:47 +0100
 
-knot3 (initial-1163-g3f5c8e2) unstable; urgency=low
+knot3 (1.1-145-g3f5c8e2) unstable; urgency=low
 
   * Code Format
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Sat, 8 Feb 2014 22:17:06 +0100
 
-knot3 (initial-1162-g346672c) unstable; urgency=low
+knot3 (1.1-144-g346672c) unstable; urgency=low
 
   * ...
 
  -- Tobias Schulz <tobias@freehal.net>  Sat, 8 Feb 2014 22:16:31 +0100
 
-knot3 (initial-1161-gcf69222) unstable; urgency=low
+knot3 (1.1-143-gcf69222) unstable; urgency=low
 
   * ...
 
  -- Tobias Schulz <tobias@freehal.net>  Sat, 8 Feb 2014 19:30:05 +0100
 
-knot3 (initial-1160-g65d2d64) unstable; urgency=low
+knot3 (1.1-142-g65d2d64) unstable; urgency=low
 
   * OpenCover
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Sat, 8 Feb 2014 19:26:21 +0100
 
-knot3 (initial-1159-gc14f183) unstable; urgency=low
+knot3 (1.1-141-gc14f183) unstable; urgency=low
 
   * ...
 
  -- Tobias Schulz <tobias@freehal.net>  Sat, 8 Feb 2014 18:39:11 +0100
 
-knot3 (initial-1158-g563f044) unstable; urgency=low
+knot3 (1.1-140-g563f044) unstable; urgency=low
 
   * Code Format
 
  -- Christina <Elaine10j@aol.com>  Sat, 8 Feb 2014 17:17:08 +0100
 
-knot3 (initial-1157-gd640d0b) unstable; urgency=low
+knot3 (1.1-139-gd640d0b) unstable; urgency=low
 
   * ...
 
  -- Christina <Elaine10j@aol.com>  Sat, 8 Feb 2014 17:15:25 +0100
 
-knot3 (initial-1156-g8cc6433) unstable; urgency=low
+knot3 (1.1-138-g8cc6433) unstable; urgency=low
 
   * Code Format
 
  -- Christina <Elaine10j@aol.com>  Sat, 8 Feb 2014 17:03:09 +0100
 
-knot3 (initial-1155-g97fd10d) unstable; urgency=low
+knot3 (1.1-137-g97fd10d) unstable; urgency=low
 
   * angles...mal wieder :D
 
  -- Christina <Elaine10j@aol.com>  Sat, 8 Feb 2014 17:00:37 +0100
 
-knot3 (initial-1154-gb90a52c) unstable; urgency=low
+knot3 (1.1-136-gb90a52c) unstable; urgency=low
 
   * ...
 
  -- Tobias Schulz <tobias@freehal.net>  Sat, 8 Feb 2014 16:53:08 +0100
 
-knot3 (initial-1153-gcb9835d) unstable; urgency=low
+knot3 (1.1-135-gcb9835d) unstable; urgency=low
 
   * ...
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Sat, 8 Feb 2014 16:06:01 +0100
 
-knot3 (initial-1152-g9767bb8) unstable; urgency=low
+knot3 (1.1-134-g9767bb8) unstable; urgency=low
 
   * Lokales Coverage-Tool "fast" funktionsfähig.
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Sat, 8 Feb 2014 16:00:07 +0100
 
-knot3 (initial-1151-g84c466d) unstable; urgency=low
+knot3 (1.1-133-g84c466d) unstable; urgency=low
 
   * Code Format
 
  -- Christina <Elaine10j@aol.com>  Sat, 8 Feb 2014 15:47:08 +0100
 
-knot3 (initial-1150-g5358f66) unstable; urgency=low
+knot3 (1.1-132-g5358f66) unstable; urgency=low
 
   * angles
 
  -- Christina <Elaine10j@aol.com>  Sat, 8 Feb 2014 15:46:19 +0100
 
-knot3 (initial-1149-g2fd96b4) unstable; urgency=low
+knot3 (1.1-131-g2fd96b4) unstable; urgency=low
 
   * Code Format
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Sat, 8 Feb 2014 15:11:08 +0100
 
-knot3 (initial-1148-gd8ce4be) unstable; urgency=low
+knot3 (1.1-130-gd8ce4be) unstable; urgency=low
 
   * Coverage (lokal) ...
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Sat, 8 Feb 2014 15:09:17 +0100
 
-knot3 (initial-1147-ga72544e) unstable; urgency=low
+knot3 (1.1-129-ga72544e) unstable; urgency=low
 
   * ...
 
  -- Tobias Schulz <tobias.schulz186@gmail.com>  Sat, 8 Feb 2014 15:01:58 +0100
 
-knot3 (initial-1146-g99f4de5) unstable; urgency=low
+knot3 (1.1-128-g99f4de5) unstable; urgency=low
 
   * Code Format
 
  -- Christina <Elaine10j@aol.com>  Sat, 8 Feb 2014 14:45:08 +0100
 
-knot3 (initial-1145-g3bde710) unstable; urgency=low
+knot3 (1.1-127-g3bde710) unstable; urgency=low
 
   * ...
 
  -- Christina <Elaine10j@aol.com>  Sat, 8 Feb 2014 14:43:01 +0100
 
-knot3 (initial-1144-g39355fb) unstable; urgency=low
+knot3 (1.1-126-g39355fb) unstable; urgency=low
 
   * Code Format
 
  -- Christina <Elaine10j@aol.com>  Sat, 8 Feb 2014 14:23:08 +0100
 
-knot3 (initial-1143-gb114747) unstable; urgency=low
+knot3 (1.1-125-gb114747) unstable; urgency=low
 
   * ...
 
  -- Christina <Elaine10j@aol.com>  Sat, 8 Feb 2014 14:21:56 +0100
 
-knot3 (initial-1142-g5093448) unstable; urgency=low
+knot3 (1.1-124-g5093448) unstable; urgency=low
 
   * Code Format
 
  -- Christina <Elaine10j@aol.com>  Sat, 8 Feb 2014 14:17:09 +0100
 
-knot3 (initial-1141-g0a62a8d) unstable; urgency=low
+knot3 (1.1-123-g0a62a8d) unstable; urgency=low
 
   * angle
 
  -- Christina <Elaine10j@aol.com>  Sat, 8 Feb 2014 14:16:23 +0100
 
-knot3 (initial-1140-gd96001c) unstable; urgency=low
+knot3 (1.1-122-gd96001c) unstable; urgency=low
 
   * Code Format
 
  -- Christina <Elaine10j@aol.com>  Sat, 8 Feb 2014 14:07:08 +0100
 
-knot3 (initial-1139-gc46d515) unstable; urgency=low
+knot3 (1.1-121-gc46d515) unstable; urgency=low
 
   * angle
 
  -- Christina <Elaine10j@aol.com>  Sat, 8 Feb 2014 14:06:31 +0100
 
-knot3 (initial-1138-g4636d2f) unstable; urgency=low
+knot3 (1.1-120-g4636d2f) unstable; urgency=low
 
   * Code Format
 
  -- Christina <Elaine10j@aol.com>  Sat, 8 Feb 2014 13:39:07 +0100
 
-knot3 (initial-1137-g24560a4) unstable; urgency=low
+knot3 (1.1-119-g24560a4) unstable; urgency=low
 
   * angle
 
  -- Christina <Elaine10j@aol.com>  Sat, 8 Feb 2014 13:38:32 +0100
 
-knot3 (initial-1136-g351d8fc) unstable; urgency=low
+knot3 (1.1-118-g351d8fc) unstable; urgency=low
 
   * Code Format
 
  -- Christina <Elaine10j@aol.com>  Sat, 8 Feb 2014 13:17:08 +0100
 
-knot3 (initial-1135-g3941af3) unstable; urgency=low
+knot3 (1.1-117-g3941af3) unstable; urgency=low
 
   * angles
 
  -- Christina <Elaine10j@aol.com>  Sat, 8 Feb 2014 13:16:05 +0100
 
-knot3 (initial-1134-gc9c0391) unstable; urgency=low
+knot3 (1.1-116-gc9c0391) unstable; urgency=low
 
   * Bericht-Nachtrag, Auflösung Exit-Buttons (Fixes #78)
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Sat, 8 Feb 2014 13:12:51 +0100
 
-knot3 (initial-1133-gb9e70fd) unstable; urgency=low
+knot3 (1.1-115-gb9e70fd) unstable; urgency=low
 
   * Code Format
 
  -- Daniel Warzel <daniel.warzel@gmx.de>  Sat, 8 Feb 2014 13:01:08 +0100
 
-knot3 (initial-1132-g054338a) unstable; urgency=low
+knot3 (1.1-114-g054338a) unstable; urgency=low
 
   * Bounds_Test erweitert
 
  -- Daniel Warzel <daniel.warzel@gmx.de>  Sat, 8 Feb 2014 12:58:54 +0100
 
-knot3 (initial-1131-ga05eabe) unstable; urgency=low
+knot3 (1.1-113-ga05eabe) unstable; urgency=low
 
   * Code Format
 
  -- Christina <Elaine10j@aol.com>  Sat, 8 Feb 2014 10:17:06 +0100
 
-knot3 (initial-1130-g2d8b9ba) unstable; urgency=low
+knot3 (1.1-112-g2d8b9ba) unstable; urgency=low
 
   * Angles Test
 
  -- Christina <Elaine10j@aol.com>  Sat, 8 Feb 2014 10:15:21 +0100
 
-knot3 (initial-1129-g10380f3) unstable; urgency=low
+knot3 (1.1-111-g10380f3) unstable; urgency=low
 
   * ...
 
  -- Tobias Schulz <tobias@freehal.net>  Sat, 8 Feb 2014 01:33:25 +0100
 
-knot3 (initial-1128-g0f4c11a) unstable; urgency=low
+knot3 (1.1-110-g0f4c11a) unstable; urgency=low
 
   * Code Format
 
  -- Daniel Warzel <daniel.warzel@gmx.de>  Sat, 8 Feb 2014 01:32:22 +0100
 
-knot3 (initial-1127-gfba5de0) unstable; urgency=low
+knot3 (1.1-109-gfba5de0) unstable; urgency=low
 
   * Code Format
 
  -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Sat, 8 Feb 2014 01:28:06 +0100
 
-knot3 (initial-1126-g9f9a662) unstable; urgency=low
+knot3 (1.1-108-g9f9a662) unstable; urgency=low
 
   * Code Format
 
  -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Sat, 8 Feb 2014 01:26:05 +0100
 
-knot3 (initial-1125-g6fa90c8) unstable; urgency=low
+knot3 (1.1-107-g6fa90c8) unstable; urgency=low
 
   * Code Format
 
  -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Sat, 8 Feb 2014 01:24:05 +0100
 
-knot3 (initial-1124-gb46c948) unstable; urgency=low
+knot3 (1.1-106-gb46c948) unstable; urgency=low
 
   * Code Format
 
  -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Sat, 8 Feb 2014 01:22:06 +0100
 
-knot3 (initial-1123-g9cbc1c4) unstable; urgency=low
+knot3 (1.1-105-g9cbc1c4) unstable; urgency=low
 
   * Code Format
 
  -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Sat, 8 Feb 2014 01:20:06 +0100
 
-knot3 (initial-1122-g7b569a1) unstable; urgency=low
+knot3 (1.1-104-g7b569a1) unstable; urgency=low
 
   * Code Format
 
  -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Sat, 8 Feb 2014 01:18:06 +0100
 
-knot3 (initial-1121-g6d1d4fb) unstable; urgency=low
+knot3 (1.1-103-g6d1d4fb) unstable; urgency=low
 
   * Code Format
 
  -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Sat, 8 Feb 2014 01:16:05 +0100
 
-knot3 (initial-1120-gfb0c085) unstable; urgency=low
+knot3 (1.1-102-gfb0c085) unstable; urgency=low
 
   * Code Format
 
  -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Sat, 8 Feb 2014 01:14:06 +0100
 
-knot3 (initial-1119-gc30f9c1) unstable; urgency=low
+knot3 (1.1-101-gc30f9c1) unstable; urgency=low
 
   * Code Format
 
  -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Sat, 8 Feb 2014 01:12:05 +0100
 
-knot3 (initial-1118-g3d88f06) unstable; urgency=low
+knot3 (1.1-100-g3d88f06) unstable; urgency=low
 
   * Code Format
 
  -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Sat, 8 Feb 2014 01:10:07 +0100
 
-knot3 (initial-1117-g22a85d4) unstable; urgency=low
+knot3 (1.1-99-g22a85d4) unstable; urgency=low
 
   * Code Format
 
  -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Sat, 8 Feb 2014 01:08:06 +0100
 
-knot3 (initial-1116-g2c59d64) unstable; urgency=low
+knot3 (1.1-98-g2c59d64) unstable; urgency=low
 
   * Code Format
 
  -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Sat, 8 Feb 2014 01:06:06 +0100
 
-knot3 (initial-1115-ga2fe94e) unstable; urgency=low
+knot3 (1.1-97-ga2fe94e) unstable; urgency=low
 
   * Code Format
 
  -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Sat, 8 Feb 2014 01:04:06 +0100
 
-knot3 (initial-1114-gb520913) unstable; urgency=low
+knot3 (1.1-96-gb520913) unstable; urgency=low
 
   * Code Format
 
  -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Sat, 8 Feb 2014 01:02:06 +0100
 
-knot3 (initial-1113-gd27d728) unstable; urgency=low
+knot3 (1.1-95-gd27d728) unstable; urgency=low
 
   * Code Format
 
  -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Sat, 8 Feb 2014 01:00:06 +0100
 
-knot3 (initial-1112-gdd13a27) unstable; urgency=low
+knot3 (1.1-94-gdd13a27) unstable; urgency=low
 
   * Code Format
 
  -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Sat, 8 Feb 2014 00:58:06 +0100
 
-knot3 (initial-1111-gd5e1c3d) unstable; urgency=low
+knot3 (1.1-93-gd5e1c3d) unstable; urgency=low
 
   * Code Format
 
  -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Sat, 8 Feb 2014 00:56:05 +0100
 
-knot3 (initial-1110-gad84642) unstable; urgency=low
+knot3 (1.1-92-gad84642) unstable; urgency=low
 
   * Code Format
 
  -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Sat, 8 Feb 2014 00:54:06 +0100
 
-knot3 (initial-1109-gfacfa8d) unstable; urgency=low
+knot3 (1.1-91-gfacfa8d) unstable; urgency=low
 
   * Code Format
 
  -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Sat, 8 Feb 2014 00:52:05 +0100
 
-knot3 (initial-1108-g39534ae) unstable; urgency=low
+knot3 (1.1-90-g39534ae) unstable; urgency=low
 
   * Code Format
 
  -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Sat, 8 Feb 2014 00:50:06 +0100
 
-knot3 (initial-1107-g4276396) unstable; urgency=low
+knot3 (1.1-89-g4276396) unstable; urgency=low
 
   * Code Format
 
  -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Sat, 8 Feb 2014 00:48:05 +0100
 
-knot3 (initial-1106-g5b30ca9) unstable; urgency=low
+knot3 (1.1-88-g5b30ca9) unstable; urgency=low
 
   * Code Format
 
  -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Sat, 8 Feb 2014 00:46:06 +0100
 
-knot3 (initial-1105-g67838d6) unstable; urgency=low
+knot3 (1.1-87-g67838d6) unstable; urgency=low
 
   * Code Format
 
  -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Sat, 8 Feb 2014 00:44:06 +0100
 
-knot3 (initial-1104-gd50bd5f) unstable; urgency=low
+knot3 (1.1-86-gd50bd5f) unstable; urgency=low
 
   * Code Format
 
  -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Sat, 8 Feb 2014 00:42:06 +0100
 
-knot3 (initial-1103-ge5c9ca9) unstable; urgency=low
+knot3 (1.1-85-ge5c9ca9) unstable; urgency=low
 
   * Code Format
 
  -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Sat, 8 Feb 2014 00:40:06 +0100
 
-knot3 (initial-1102-g5822b50) unstable; urgency=low
+knot3 (1.1-84-g5822b50) unstable; urgency=low
 
   * Code Format
 
  -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Sat, 8 Feb 2014 00:38:06 +0100
 
-knot3 (initial-1101-gb5c8a9b) unstable; urgency=low
+knot3 (1.1-83-gb5c8a9b) unstable; urgency=low
 
   * Code Format
 
  -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Sat, 8 Feb 2014 00:36:06 +0100
 
-knot3 (initial-1100-g597fb39) unstable; urgency=low
+knot3 (1.1-82-g597fb39) unstable; urgency=low
 
   * Code Format
 
  -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Sat, 8 Feb 2014 00:34:06 +0100
 
-knot3 (initial-1099-g83c89f3) unstable; urgency=low
+knot3 (1.1-81-g83c89f3) unstable; urgency=low
 
   * Code Format
 
  -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Sat, 8 Feb 2014 00:32:06 +0100
 
-knot3 (initial-1098-g7b1ca69) unstable; urgency=low
+knot3 (1.1-80-g7b1ca69) unstable; urgency=low
 
   * Code Format
 
  -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Sat, 8 Feb 2014 00:30:06 +0100
 
-knot3 (initial-1097-g1f0269b) unstable; urgency=low
+knot3 (1.1-79-g1f0269b) unstable; urgency=low
 
   * Code Format
 
  -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Sat, 8 Feb 2014 00:28:06 +0100
 
-knot3 (initial-1096-g1e0d192) unstable; urgency=low
+knot3 (1.1-78-g1e0d192) unstable; urgency=low
 
   * Code Format
 
  -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Sat, 8 Feb 2014 00:26:06 +0100
 
-knot3 (initial-1095-gdafadde) unstable; urgency=low
+knot3 (1.1-77-gdafadde) unstable; urgency=low
 
   * Code Format
 
  -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Sat, 8 Feb 2014 00:24:05 +0100
 
-knot3 (initial-1094-ga9cfb04) unstable; urgency=low
+knot3 (1.1-76-ga9cfb04) unstable; urgency=low
 
   * Code Format
 
  -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Sat, 8 Feb 2014 00:22:06 +0100
 
-knot3 (initial-1093-g111e969) unstable; urgency=low
+knot3 (1.1-75-g111e969) unstable; urgency=low
 
   * more models
 
  -- Gerd Augsburg <gerd.augsburg@student.kit.edu>  Sat, 8 Feb 2014 00:20:15 +0100
 
-knot3 (initial-1092-g46f20d7) unstable; urgency=low
+knot3 (1.1-74-g46f20d7) unstable; urgency=low
 
   * Code Format
 
  -- Daniel Warzel <daniel.warzel@gmx.de>  Fri, 7 Feb 2014 21:06:06 +0100
 
-knot3 (initial-1091-gb01c887) unstable; urgency=low
+knot3 (1.1-73-gb01c887) unstable; urgency=low
 
   * Code Format
 
  -- Daniel Warzel <daniel.warzel@gmx.de>  Fri, 7 Feb 2014 21:04:06 +0100
 
-knot3 (initial-1090-g30b19d9) unstable; urgency=low
+knot3 (1.1-72-g30b19d9) unstable; urgency=low
 
   * Code Format
 
  -- Daniel Warzel <daniel.warzel@gmx.de>  Fri, 7 Feb 2014 21:02:07 +0100
 
-knot3 (initial-1089-gc915324) unstable; urgency=low
+knot3 (1.1-71-gc915324) unstable; urgency=low
 
   * Delete Target.cs
 
  -- Tobias Schulz <tobiasschulz@users.noreply.github.com>  Fri, 7 Feb 2014 21:00:16 +0100
 
-knot3 (initial-1088-g8238fd6) unstable; urgency=low
+knot3 (1.1-70-g8238fd6) unstable; urgency=low
 
   * Code Format
 
  -- Daniel Warzel <daniel.warzel@gmx.de>  Fri, 7 Feb 2014 21:00:06 +0100
 
-knot3 (initial-1087-gdc5741a) unstable; urgency=low
+knot3 (1.1-69-gdc5741a) unstable; urgency=low
 
   * Code Format
 
  -- Daniel Warzel <daniel.warzel@gmx.de>  Fri, 7 Feb 2014 20:58:07 +0100
 
-knot3 (initial-1086-g0a3e593) unstable; urgency=low
+knot3 (1.1-68-g0a3e593) unstable; urgency=low
 
   * Code Format
 
  -- Daniel Warzel <daniel.warzel@gmx.de>  Fri, 7 Feb 2014 20:56:42 +0100
 
-knot3 (initial-1085-g8148ec4) unstable; urgency=low
+knot3 (1.1-67-g8148ec4) unstable; urgency=low
 
   * readme
 
  -- PSE Knot³ <uaeti@student.kit.edu>  Fri, 7 Feb 2014 20:37:12 +0100
 
-knot3 (initial-1084-gbc6389e) unstable; urgency=low
+knot3 (1.1-66-gbc6389e) unstable; urgency=low
 
   * Bounds_Test erweitert
 
  -- Daniel Warzel <daniel.warzel@gmx.de>  Fri, 7 Feb 2014 20:29:20 +0100
 
-knot3 (initial-1083-g140c20a) unstable; urgency=low
+knot3 (1.1-65-g140c20a) unstable; urgency=low
 
   * fixes #108
 
  -- Tobias Schulz <tobias@freehal.net>  Fri, 7 Feb 2014 20:07:58 +0100
 
-knot3 (initial-1082-g3eda201) unstable; urgency=low
+knot3 (1.1-64-g3eda201) unstable; urgency=low
 
   * z.b. #134
 
  -- Tobias Schulz <tobias@freehal.net>  Fri, 7 Feb 2014 18:01:42 +0100
 
-knot3 (initial-1081-gc1ded29) unstable; urgency=low
+knot3 (1.1-63-gc1ded29) unstable; urgency=low
 
   * Code Format
 
  -- Maximilian-Reuter <maximilian.reuter@t-online.de>  Fri, 7 Feb 2014 17:17:08 +0100
 
-knot3 (initial-1080-gf5079c8) unstable; urgency=low
+knot3 (1.1-62-gf5079c8) unstable; urgency=low
 
   * Bug #104
 
  -- Tobias Schulz <tobias@freehal.net>  Fri, 7 Feb 2014 17:14:42 +0100
 
-knot3 (initial-1079-g2f1b20c) unstable; urgency=low
+knot3 (1.1-61-g2f1b20c) unstable; urgency=low
 
   * Code Format
 
  -- Maximilian-Reuter <maximilian.reuter@t-online.de>  Fri, 7 Feb 2014 16:05:08 +0100
 
-knot3 (initial-1078-g30382a0) unstable; urgency=low
+knot3 (1.1-60-g30382a0) unstable; urgency=low
 
   * ...
 
  -- Tobias Schulz <tobias@freehal.net>  Fri, 7 Feb 2014 16:03:52 +0100
 
-knot3 (initial-1077-g1eba042) unstable; urgency=low
+knot3 (1.1-59-g1eba042) unstable; urgency=low
 
   * Fixes #105
 
  -- Tobias Schulz <tobias@freehal.net>  Fri, 7 Feb 2014 15:28:48 +0100
 
-knot3 (initial-1076-g6365e5e) unstable; urgency=low
+knot3 (1.1-58-g6365e5e) unstable; urgency=low
 
   * Code Format
 
  -- Maximilian-Reuter <maximilian.reuter@t-online.de>  Fri, 7 Feb 2014 02:31:06 +0100
 
-knot3 (initial-1075-g5f8c1e9) unstable; urgency=low
+knot3 (1.1-57-g5f8c1e9) unstable; urgency=low
 
   * test
 
  -- Tobias Schulz <tobias@freehal.net>  Fri, 7 Feb 2014 02:29:11 +0100
 
-knot3 (initial-1074-g55a7751) unstable; urgency=low
+knot3 (1.1-56-g55a7751) unstable; urgency=low
 
   * interaktion mit dem linken splitscreen möglich fixes #114
 
  -- Tobias Schulz <tobias@freehal.net>  Thu, 6 Feb 2014 23:48:04 +0100
 
-knot3 (initial-1073-g5d4c3eb) unstable; urgency=low
+knot3 (1.1-55-g5d4c3eb) unstable; urgency=low
 
   * Code Format
 
  -- Maximilian-Reuter <maximilian.reuter@t-online.de>  Thu, 6 Feb 2014 22:51:05 +0100
 
-knot3 (initial-1072-gd9a46cb) unstable; urgency=low
+knot3 (1.1-54-gd9a46cb) unstable; urgency=low
 
   * Merge branch 'master' of https://github.com/knot3/knot3
 
  -- Maximilian-Reuter <maximilian.reuter@t-online.de>  Thu, 6 Feb 2014 22:49:39 +0100
 
-knot3 (initial-1069-g77d0a81) unstable; urgency=low
+knot3 (1.1-51-g77d0a81) unstable; urgency=low
 
   * Code Format
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Thu, 6 Feb 2014 22:49:07 +0100
 
-knot3 (initial-1068-g99c5279) unstable; urgency=low
+knot3 (1.1-50-g99c5279) unstable; urgency=low
 
   * Neuer Exit-Button
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Thu, 6 Feb 2014 22:48:53 +0100
 
-knot3 (initial-1069-gea230fd) unstable; urgency=low
+knot3 (1.1-51-gea230fd) unstable; urgency=low
 
   * better zoom
 
  -- Maximilian-Reuter <maximilian.reuter@t-online.de>  Thu, 6 Feb 2014 22:48:25 +0100
 
-knot3 (initial-1067-g1b10968) unstable; urgency=low
+knot3 (1.1-49-g1b10968) unstable; urgency=low
 
   * zoom better
 
  -- Maximilian-Reuter <maximilian.reuter@t-online.de>  Thu, 6 Feb 2014 22:45:37 +0100
 
-knot3 (initial-1067-gec9833d) unstable; urgency=low
+knot3 (1.1-49-gec9833d) unstable; urgency=low
 
   * Code Format
 
  -- Maximilian-Reuter <maximilian.reuter@t-online.de>  Thu, 6 Feb 2014 22:27:06 +0100
 
-knot3 (initial-1066-g02b9fa0) unstable; urgency=low
+knot3 (1.1-48-g02b9fa0) unstable; urgency=low
 
   * Überzoomen fixed
 
  -- Maximilian-Reuter <maximilian.reuter@t-online.de>  Thu, 6 Feb 2014 22:26:11 +0100
 
-knot3 (initial-1065-g0a8b29a) unstable; urgency=low
+knot3 (1.1-47-g0a8b29a) unstable; urgency=low
 
   * lokales openCover ... Fortschritt v. Treffen
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Thu, 6 Feb 2014 19:28:20 +0100
 
-knot3 (initial-1064-g361e87c) unstable; urgency=low
+knot3 (1.1-46-g361e87c) unstable; urgency=low
 
   * ...
 
  -- Tobias Schulz <tobias@freehal.net>  Thu, 6 Feb 2014 18:56:35 +0100
 
-knot3 (initial-1063-g1f2ae19) unstable; urgency=low
+knot3 (1.1-45-g1f2ae19) unstable; urgency=low
 
   * ...
 
  -- Tobias Schulz <tobias@freehal.net>  Thu, 6 Feb 2014 18:42:43 +0100
 
-knot3 (initial-1062-g8d9b7c8) unstable; urgency=low
+knot3 (1.1-44-g8d9b7c8) unstable; urgency=low
 
   * tests umbenannt
 
  -- Tobias Schulz <tobias@freehal.net>  Thu, 6 Feb 2014 18:38:31 +0100
 
-knot3 (initial-1061-gbb4e268) unstable; urgency=low
+knot3 (1.1-43-gbb4e268) unstable; urgency=low
 
   * Code Format
 
  -- Daniel Warzel <daniel.warzel@gmx.de>  Thu, 6 Feb 2014 18:35:07 +0100
 
-knot3 (initial-1060-gb7c0332) unstable; urgency=low
+knot3 (1.1-42-gb7c0332) unstable; urgency=low
 
   * Merge branch 'master' of https://github.com/knot3/knot3
 
  -- Daniel Warzel <daniel.warzel@gmx.de>  Thu, 6 Feb 2014 18:33:17 +0100
 
-knot3 (initial-1058-g47d9e05) unstable; urgency=low
+knot3 (1.1-40-g47d9e05) unstable; urgency=low
 
   * Code Format
 
  -- Gerd Augsburg <g.augsburg@gmx.net>  Thu, 6 Feb 2014 18:33:07 +0100
 
-knot3 (initial-1057-ga553667) unstable; urgency=low
+knot3 (1.1-39-ga553667) unstable; urgency=low
 
   * ...
 
  -- Daniel Warzel <daniel.warzel@gmx.de>  Thu, 6 Feb 2014 18:32:55 +0100
 
-knot3 (initial-1057-gedd2190) unstable; urgency=low
+knot3 (1.1-39-gedd2190) unstable; urgency=low
 
   * First circle test
 
  -- Gerd Augsburg <g.augsburg@gmx.net>  Thu, 6 Feb 2014 18:32:48 +0100
 
-knot3 (initial-1056-g84cb2a7) unstable; urgency=low
+knot3 (1.1-38-g84cb2a7) unstable; urgency=low
 
   * Code Format
 
  -- Daniel Warzel <daniel.warzel@gmx.de>  Thu, 6 Feb 2014 18:29:06 +0100
 
-knot3 (initial-1055-gf6d12fd) unstable; urgency=low
+knot3 (1.1-37-gf6d12fd) unstable; urgency=low
 
   * obvious Test deletet
 
  -- Daniel Warzel <daniel.warzel@gmx.de>  Thu, 6 Feb 2014 18:27:32 +0100
 
-knot3 (initial-1054-g126b146) unstable; urgency=low
+knot3 (1.1-36-g126b146) unstable; urgency=low
 
   * Knot3Game in tests vermeiden!
 
  -- Tobias Schulz <tobias@freehal.net>  Thu, 6 Feb 2014 18:24:50 +0100
 
-knot3 (initial-1053-gf57b31c) unstable; urgency=low
+knot3 (1.1-35-gf57b31c) unstable; urgency=low
 
   * Code Format
 
  -- Daniel Warzel <daniel.warzel@gmx.de>  Thu, 6 Feb 2014 18:21:07 +0100
 
-knot3 (initial-1052-g4bda737) unstable; urgency=low
+knot3 (1.1-34-g4bda737) unstable; urgency=low
 
   * copyright
 
  -- Tobias Schulz <tobias@freehal.net>  Thu, 6 Feb 2014 18:20:43 +0100
 
-knot3 (initial-1051-gd669fed) unstable; urgency=low
+knot3 (1.1-33-gd669fed) unstable; urgency=low
 
   * Code Format
 
  -- Daniel Warzel <daniel.warzel@gmx.de>  Thu, 6 Feb 2014 18:15:07 +0100
 
-knot3 (initial-1050-gc4dcdb6) unstable; urgency=low
+knot3 (1.1-32-gc4dcdb6) unstable; urgency=low
 
   * BoundsTest
 
  -- Daniel Warzel <daniel.warzel@gmx.de>  Thu, 6 Feb 2014 18:12:56 +0100
 
-knot3 (initial-1049-g396a12f) unstable; urgency=low
+knot3 (1.1-31-g396a12f) unstable; urgency=low
 
   * tests
 
  -- Tobias Schulz <tobias@freehal.net>  Thu, 6 Feb 2014 17:53:28 +0100
 
-knot3 (initial-1048-g95a271d) unstable; urgency=low
+knot3 (1.1-30-g95a271d) unstable; urgency=low
 
   * Profiler abschaltbar
 
  -- Tobias Schulz <tobias@freehal.net>  Thu, 6 Feb 2014 17:53:28 +0100
 
-knot3 (initial-1047-gd9870fb) unstable; urgency=low
+knot3 (1.1-29-gd9870fb) unstable; urgency=low
 
   * Präsentation Update
 
  -- Tobias Schulz <tobias@freehal.net>  Thu, 6 Feb 2014 13:16:59 +0100
 
-knot3 (initial-1046-gaaa5473) unstable; urgency=low
+knot3 (1.1-28-gaaa5473) unstable; urgency=low
 
   * Code Format
 
  -- Maximilian-Reuter <maximilian.reuter@t-online.de>  Thu, 6 Feb 2014 12:09:06 +0100
 
-knot3 (initial-1045-gf69ba56) unstable; urgency=low
+knot3 (1.1-27-gf69ba56) unstable; urgency=low
 
   * Fixes #119
 
  -- Tobias Schulz <tobias@freehal.net>  Thu, 6 Feb 2014 12:06:47 +0100
 
-knot3 (initial-1044-g91ebdb1) unstable; urgency=low
+knot3 (1.1-26-g91ebdb1) unstable; urgency=low
 
   * ...
 
  -- Tobias Schulz <tobias.schulz186@gmail.com>  Wed, 5 Feb 2014 23:16:08 +0100
 
-knot3 (initial-1043-gccb925e) unstable; urgency=low
+knot3 (1.1-25-gccb925e) unstable; urgency=low
 
   * ...
 
  -- Tobias Schulz <tobias@freehal.net>  Wed, 5 Feb 2014 23:11:53 +0100
 
-knot3 (initial-1042-ga75eed6) unstable; urgency=low
+knot3 (1.1-24-ga75eed6) unstable; urgency=low
 
   * Code Format
 
  -- Maximilian-Reuter <maximilian.reuter@t-online.de>  Wed, 5 Feb 2014 22:35:05 +0100
 
-knot3 (initial-1041-g87ee5bf) unstable; urgency=low
+knot3 (1.1-23-g87ee5bf) unstable; urgency=low
 
   * Code Format
 
  -- Maximilian-Reuter <maximilian.reuter@t-online.de>  Wed, 5 Feb 2014 22:33:42 +0100
 
-knot3 (initial-1040-g5134541) unstable; urgency=low
+knot3 (1.1-22-g5134541) unstable; urgency=low
 
   * Code Format
 
  -- Maximilian-Reuter <maximilian.reuter@t-online.de>  Wed, 5 Feb 2014 22:29:06 +0100
 
-knot3 (initial-1039-gc0f6419) unstable; urgency=low
+knot3 (1.1-21-gc0f6419) unstable; urgency=low
 
   * Never change a running system .....
 
  -- Maximilian-Reuter <maximilian.reuter@t-online.de>  Wed, 5 Feb 2014 21:28:08 +0100
 
-knot3 (initial-1038-g4c7f164) unstable; urgency=low
+knot3 (1.1-20-g4c7f164) unstable; urgency=low
 
   * Code Format
 
  -- Maximilian-Reuter <maximilian.reuter@t-online.de>  Wed, 5 Feb 2014 22:23:06 +0100
 
-knot3 (initial-1037-ge3adba9) unstable; urgency=low
+knot3 (1.1-19-ge3adba9) unstable; urgency=low
 
   * CLickhandler im Menu gefixt
 
  -- Tobias Schulz <tobias@freehal.net>  Wed, 5 Feb 2014 22:21:22 +0100
 
-knot3 (initial-1036-g8ae3050) unstable; urgency=low
+knot3 (1.1-18-g8ae3050) unstable; urgency=low
 
   * ...
 
  -- Maximilian-Reuter <maximilian.reuter@t-online.de>  Wed, 5 Feb 2014 21:17:06 +0100
 
-knot3 (initial-1035-gc692794) unstable; urgency=low
+knot3 (1.1-17-gc692794) unstable; urgency=low
 
   * Code Format
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Wed, 5 Feb 2014 20:17:06 +0100
 
-knot3 (initial-1034-g5635eaf) unstable; urgency=low
+knot3 (1.1-16-g5635eaf) unstable; urgency=low
 
   * Undo-/Redo-Button nach bestandener Challenge weg.
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Wed, 5 Feb 2014 20:15:47 +0100
 
-knot3 (initial-1033-g46b9718) unstable; urgency=low
+knot3 (1.1-15-g46b9718) unstable; urgency=low
 
   * Code Format
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Wed, 5 Feb 2014 19:41:06 +0100
 
-knot3 (initial-1032-g9b5726e) unstable; urgency=low
+knot3 (1.1-14-g9b5726e) unstable; urgency=low
 
   * Kein "Whitespace"-Highscore-Name.
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Wed, 5 Feb 2014 19:38:44 +0100
 
-knot3 (initial-1031-g0b1c177) unstable; urgency=low
+knot3 (1.1-13-g0b1c177) unstable; urgency=low
 
   * flag
 
  -- Tobias Schulz <tobias@freehal.net>  Wed, 5 Feb 2014 19:19:14 +0100
 
-knot3 (initial-1030-g5083cca) unstable; urgency=low
+knot3 (1.1-12-g5083cca) unstable; urgency=low
 
   * Code Format
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Wed, 5 Feb 2014 15:59:07 +0100
 
-knot3 (initial-1029-g8fd24fa) unstable; urgency=low
+knot3 (1.1-11-g8fd24fa) unstable; urgency=low
 
   * ...
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Wed, 5 Feb 2014 15:57:19 +0100
 
-knot3 (initial-1028-g97f6a2a) unstable; urgency=low
+knot3 (1.1-10-g97f6a2a) unstable; urgency=low
 
   * Code Format
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Wed, 5 Feb 2014 15:51:07 +0100
 
-knot3 (initial-1027-g1f402c3) unstable; urgency=low
+knot3 (1.1-9-g1f402c3) unstable; urgency=low
 
   * Fokus. (manchmal)
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Wed, 5 Feb 2014 15:48:49 +0100
 
-knot3 (initial-1026-g2020f21) unstable; urgency=low
+knot3 (1.1-8-g2020f21) unstable; urgency=low
 
   * Code Format
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Wed, 5 Feb 2014 15:33:07 +0100
 
-knot3 (initial-1025-g76acce5) unstable; urgency=low
+knot3 (1.1-7-g76acce5) unstable; urgency=low
 
   * Leere Eingabe oder Whitespace verboten
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Wed, 5 Feb 2014 15:31:42 +0100
 
-knot3 (initial-1024-g6be478c) unstable; urgency=low
+knot3 (1.1-6-g6be478c) unstable; urgency=low
 
   * ...
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Wed, 5 Feb 2014 15:30:10 +0100
 
-knot3 (initial-1023-gb464412) unstable; urgency=low
+knot3 (1.1-5-gb464412) unstable; urgency=low
 
   * ...
 
  -- PSE Knot³ <uaeti@student.kit.edu>  Wed, 5 Feb 2014 14:59:24 +0100
 
-knot3 (initial-1022-g800bb6b) unstable; urgency=low
+knot3 (1.1-4-g800bb6b) unstable; urgency=low
 
   * Code Format
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Wed, 5 Feb 2014 14:43:05 +0100
 
-knot3 (initial-1021-g4515ca9) unstable; urgency=low
+knot3 (1.1-3-g4515ca9) unstable; urgency=low
 
   * Eingabe filtern, KnotSaveDialog veraltet
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Wed, 5 Feb 2014 14:42:23 +0100
 
-knot3 (initial-1020-g5626d8c) unstable; urgency=low
+knot3 (1.1-2-g5626d8c) unstable; urgency=low
 
   * Code Format
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Wed, 5 Feb 2014 13:09:06 +0100
 
-knot3 (initial-1019-g44066ef) unstable; urgency=low
+knot3 (1.1-1-g44066ef) unstable; urgency=low
 
   * ...
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Wed, 5 Feb 2014 13:08:03 +0100
 
-knot3 (initial-1018-g5393e4f) unstable; urgency=low
+knot3 (1.1) unstable; urgency=low
 
   * revert
 
  -- Tobias Schulz <tobias@freehal.net>  Wed, 5 Feb 2014 12:54:07 +0100
 
-knot3 (initial-1017-g6516743) unstable; urgency=low
+knot3 (1.0-175-g6516743) unstable; urgency=low
 
   * Code Format
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Wed, 5 Feb 2014 12:49:06 +0100
 
-knot3 (initial-1016-g8881f49) unstable; urgency=low
+knot3 (1.0-174-g8881f49) unstable; urgency=low
 
   * Revert "Falsches Template ..."
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Wed, 5 Feb 2014 12:48:26 +0100
 
-knot3 (initial-1015-g1a9c6bb) unstable; urgency=low
+knot3 (1.0-173-g1a9c6bb) unstable; urgency=low
 
   * Merge branch 'master' of https://github.com/knot3/knot3
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Wed, 5 Feb 2014 12:41:26 +0100
 
-knot3 (initial-1010-g699e57d) unstable; urgency=low
+knot3 (1.0-168-g699e57d) unstable; urgency=low
 
   * Falsches Template ...
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Wed, 5 Feb 2014 12:39:12 +0100
 
-knot3 (initial-1013-ga66cba5) unstable; urgency=low
+knot3 (1.0-171-ga66cba5) unstable; urgency=low
 
   * vs->nunit
 
  -- Tobias Schulz <tobias@freehal.net>  Wed, 5 Feb 2014 12:30:09 +0100
 
-knot3 (initial-1012-gfbb24a0) unstable; urgency=low
+knot3 (1.0-170-gfbb24a0) unstable; urgency=low
 
   * Code Format
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Wed, 5 Feb 2014 12:25:06 +0100
 
-knot3 (initial-1011-g3c2b81d) unstable; urgency=low
+knot3 (1.0-169-g3c2b81d) unstable; urgency=low
 
   * Code Format
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Wed, 5 Feb 2014 12:13:06 +0100
 
-knot3 (initial-1010-g7e1fe17) unstable; urgency=low
+knot3 (1.0-168-g7e1fe17) unstable; urgency=low
 
   * Code Format
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Wed, 5 Feb 2014 12:11:06 +0100
 
-knot3 (initial-1009-g3c8db74) unstable; urgency=low
+knot3 (1.0-167-g3c8db74) unstable; urgency=low
 
   * Klassen, zu denen Tests geschrieben werden müssen!
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Wed, 5 Feb 2014 12:10:09 +0100
 
-knot3 (initial-1008-gc106b5f) unstable; urgency=low
+knot3 (1.0-166-gc106b5f) unstable; urgency=low
 
   * Menü bugfix
 
  -- Tobias Schulz <tobias@freehal.net>  Wed, 5 Feb 2014 04:53:40 +0100
 
-knot3 (initial-1007-gec1eb6d) unstable; urgency=low
+knot3 (1.0-165-gec1eb6d) unstable; urgency=low
 
   * license
 
  -- Tobias Schulz <tobias@freehal.net>  Wed, 5 Feb 2014 00:49:33 +0100
 
-knot3 (initial-1006-g3356815) unstable; urgency=low
+knot3 (1.0-164-g3356815) unstable; urgency=low
 
   * ...
 
  -- PSE Knot³ <uaeti@student.kit.edu>  Tue, 4 Feb 2014 22:23:21 +0100
 
-knot3 (initial-1005-gc59934a) unstable; urgency=low
+knot3 (1.0-163-gc59934a) unstable; urgency=low
 
   * Update AUTHORS
 
  -- Tobias Schulz <tobiasschulz@users.noreply.github.com>  Tue, 4 Feb 2014 22:19:16 +0100
 
-knot3 (initial-1004-g8bb2de1) unstable; urgency=low
+knot3 (1.0-162-g8bb2de1) unstable; urgency=low
 
   * AUTHORS Menümusik hinzugefügt
 
  -- Christina <Elaine10j@aol.com>  Tue, 4 Feb 2014 21:34:27 +0100
 
-knot3 (initial-1003-gbdcd90f) unstable; urgency=low
+knot3 (1.0-161-gbdcd90f) unstable; urgency=low
 
   * Code Format
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Tue, 4 Feb 2014 21:06:05 +0100
 
-knot3 (initial-1002-g73035b0) unstable; urgency=low
+knot3 (1.0-160-g73035b0) unstable; urgency=low
 
   * Button BackgroundTexture
 
  -- Tobias Schulz <tobias@freehal.net>  Tue, 4 Feb 2014 21:05:27 +0100
 
-knot3 (initial-1001-g8c4c7c8) unstable; urgency=low
+knot3 (1.0-159-g8c4c7c8) unstable; urgency=low
 
   * ...
 
  -- Tobias Schulz <tobias@freehal.net>  Tue, 4 Feb 2014 20:42:56 +0100
 
-knot3 (initial-1000-g642d0bf) unstable; urgency=low
+knot3 (1.0-158-g642d0bf) unstable; urgency=low
 
   * Code Format
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Tue, 4 Feb 2014 20:38:06 +0100
 
-knot3 (initial-999-gc0eec98) unstable; urgency=low
+knot3 (1.0-157-gc0eec98) unstable; urgency=low
 
   * Merge branch 'master' of https://github.com/knot3/knot3
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Tue, 4 Feb 2014 20:37:39 +0100
 
-knot3 (initial-997-gd141982) unstable; urgency=low
+knot3 (1.0-155-gd141982) unstable; urgency=low
 
   * Exit-Button-Symbol Version 0.85
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Tue, 4 Feb 2014 20:37:11 +0100
 
-knot3 (initial-997-gd6e18fe) unstable; urgency=low
+knot3 (1.0-155-gd6e18fe) unstable; urgency=low
 
   * ...
 
  -- Tobias Schulz <tobias.schulz186@gmail.com>  Tue, 4 Feb 2014 20:24:55 +0100
 
-knot3 (initial-996-gd9cc931) unstable; urgency=low
+knot3 (1.0-154-gd9cc931) unstable; urgency=low
 
   * ...
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Tue, 4 Feb 2014 20:17:55 +0100
 
-knot3 (initial-995-g48bcb65) unstable; urgency=low
+knot3 (1.0-153-g48bcb65) unstable; urgency=low
 
   * Merge branch 'master' of https://github.com/knot3/knot3
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Tue, 4 Feb 2014 20:14:03 +0100
 
-knot3 (initial-990-g497d550) unstable; urgency=low
+knot3 (1.0-148-g497d550) unstable; urgency=low
 
   * Exit Button PNG
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Tue, 4 Feb 2014 20:13:37 +0100
 
-knot3 (initial-993-gba6e71b) unstable; urgency=low
+knot3 (1.0-151-gba6e71b) unstable; urgency=low
 
   * ...
 
  -- Tobias Schulz <tobias@freehal.net>  Tue, 4 Feb 2014 19:57:32 +0100
 
-knot3 (initial-992-g78b5cd4) unstable; urgency=low
+knot3 (1.0-150-g78b5cd4) unstable; urgency=low
 
   * license
 
  -- Tobias Schulz <tobias@freehal.net>  Tue, 4 Feb 2014 19:56:09 +0100
 
-knot3 (initial-991-ga5c04c7) unstable; urgency=low
+knot3 (1.0-149-ga5c04c7) unstable; urgency=low
 
   * ...
 
  -- Tobias Schulz <tobias@freehal.net>  Tue, 4 Feb 2014 19:54:16 +0100
 
-knot3 (initial-990-gf0ec460) unstable; urgency=low
+knot3 (1.0-148-gf0ec460) unstable; urgency=low
 
   * Code Format
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Tue, 4 Feb 2014 19:48:06 +0100
 
-knot3 (initial-989-g1280f44) unstable; urgency=low
+knot3 (1.0-147-g1280f44) unstable; urgency=low
 
   * Merge branch 'master' of https://github.com/knot3/knot3
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Tue, 4 Feb 2014 19:46:05 +0100
 
-knot3 (initial-976-g326971d) unstable; urgency=low
+knot3 (1.0-134-g326971d) unstable; urgency=low
 
   * Exit / StartScreen
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Tue, 4 Feb 2014 19:45:20 +0100
 
-knot3 (initial-987-g42082e2) unstable; urgency=low
+knot3 (1.0-145-g42082e2) unstable; urgency=low
 
   * Update AUTHORS
 
  -- Maximilian-Reuter <maximilian.reuter@t-online.de>  Tue, 4 Feb 2014 19:43:14 +0100
 
-knot3 (initial-986-g9e3abbd) unstable; urgency=low
+knot3 (1.0-144-g9e3abbd) unstable; urgency=low
 
   * ...
 
  -- Tobias Schulz <tobias@freehal.net>  Tue, 4 Feb 2014 19:18:26 +0100
 
-knot3 (initial-985-ge29aa63) unstable; urgency=low
+knot3 (1.0-143-ge29aa63) unstable; urgency=low
 
   * ...
 
  -- Tobias Schulz <tobias@freehal.net>  Tue, 4 Feb 2014 19:14:38 +0100
 
-knot3 (initial-984-g9122dee) unstable; urgency=low
+knot3 (1.0-142-g9122dee) unstable; urgency=low
 
   * ...
 
  -- Tobias Schulz <tobias@freehal.net>  Tue, 4 Feb 2014 19:11:42 +0100
 
-knot3 (initial-983-gd203a26) unstable; urgency=low
+knot3 (1.0-141-gd203a26) unstable; urgency=low
 
   * ...
 
  -- Tobias Schulz <tobias@freehal.net>  Tue, 4 Feb 2014 19:10:00 +0100
 
-knot3 (initial-982-g1bb7d7e) unstable; urgency=low
+knot3 (1.0-140-g1bb7d7e) unstable; urgency=low
 
   * Lizenz
 
  -- Tobias Schulz <tobias@freehal.net>  Tue, 4 Feb 2014 19:08:39 +0100
 
-knot3 (initial-981-gbf13b84) unstable; urgency=low
+knot3 (1.0-139-gbf13b84) unstable; urgency=low
 
   * Code Format
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Tue, 4 Feb 2014 19:06:14 +0100
 
-knot3 (initial-980-g404ed5d) unstable; urgency=low
+knot3 (1.0-138-g404ed5d) unstable; urgency=low
 
   * Soundeffekt Lizenz
 
  -- Tobias Schulz <tobias@freehal.net>  Tue, 4 Feb 2014 19:05:08 +0100
 
-knot3 (initial-979-g4acbfae) unstable; urgency=low
+knot3 (1.0-137-g4acbfae) unstable; urgency=low
 
   * Lizenz
 
  -- PSE Knot³ <uaeti@student.kit.edu>  Tue, 4 Feb 2014 19:00:44 +0100
 
-knot3 (initial-978-g74db720) unstable; urgency=low
+knot3 (1.0-136-g74db720) unstable; urgency=low
 
   * Code Format
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Tue, 4 Feb 2014 19:00:14 +0100
 
-knot3 (initial-977-ge345cfb) unstable; urgency=low
+knot3 (1.0-135-ge345cfb) unstable; urgency=low
 
   * Code Format
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Tue, 4 Feb 2014 18:58:15 +0100
 
-knot3 (initial-976-g1e07eb4) unstable; urgency=low
+knot3 (1.0-134-g1e07eb4) unstable; urgency=low
 
   * Code Format
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Tue, 4 Feb 2014 18:38:14 +0100
 
-knot3 (initial-975-g57cf2a7) unstable; urgency=low
+knot3 (1.0-133-g57cf2a7) unstable; urgency=low
 
   * Code Format
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Tue, 4 Feb 2014 16:42:14 +0100
 
-knot3 (initial-974-g30cd550) unstable; urgency=low
+knot3 (1.0-132-g30cd550) unstable; urgency=low
 
   * Code Format
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Tue, 4 Feb 2014 16:42:03 +0100
 
-knot3 (initial-973-g876bf43) unstable; urgency=low
+knot3 (1.0-131-g876bf43) unstable; urgency=low
 
   * bugfix bounds tostring
 
  -- Tobias Schulz <tobias@freehal.net>  Tue, 4 Feb 2014 16:39:40 +0100
 
-knot3 (initial-972-gebd37c3) unstable; urgency=low
+knot3 (1.0-130-gebd37c3) unstable; urgency=low
 
   * tests bugfix
 
  -- Tobias Schulz <tobias@freehal.net>  Tue, 4 Feb 2014 16:37:54 +0100
 
-knot3 (initial-971-g12e4369) unstable; urgency=low
+knot3 (1.0-129-g12e4369) unstable; urgency=low
 
   * Verbesserungen nach Gendarme Report
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Tue, 4 Feb 2014 16:22:43 +0100
 
-knot3 (initial-970-g095872e) unstable; urgency=low
+knot3 (1.0-128-g095872e) unstable; urgency=low
 
   * ...
 
  -- Tobias Schulz <tobias@freehal.net>  Tue, 4 Feb 2014 15:41:18 +0100
 
-knot3 (initial-969-g5230037) unstable; urgency=low
+knot3 (1.0-127-g5230037) unstable; urgency=low
 
   * Code Format
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Tue, 4 Feb 2014 15:38:15 +0100
 
-knot3 (initial-968-g98aae7a) unstable; urgency=low
+knot3 (1.0-126-g98aae7a) unstable; urgency=low
 
   * String Issues (Gendarme Report: AvoidConcatenatingCharsRule )
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Tue, 4 Feb 2014 15:35:45 +0100
 
-knot3 (initial-967-gba1521f) unstable; urgency=low
+knot3 (1.0-125-gba1521f) unstable; urgency=low
 
   * Merge branch 'master' of https://github.com/knot3/knot3
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Tue, 4 Feb 2014 15:28:52 +0100
 
-knot3 (initial-965-gdc66389) unstable; urgency=low
+knot3 (1.0-123-gdc66389) unstable; urgency=low
 
   * Initialisierung
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Tue, 4 Feb 2014 15:28:22 +0100
 
-knot3 (initial-965-g62987fe) unstable; urgency=low
+knot3 (1.0-123-g62987fe) unstable; urgency=low
 
   * Code Format
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Tue, 4 Feb 2014 15:26:14 +0100
 
-knot3 (initial-964-g1ac43b4) unstable; urgency=low
+knot3 (1.0-122-g1ac43b4) unstable; urgency=low
 
   * ...
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Tue, 4 Feb 2014 15:25:18 +0100
 
-knot3 (initial-963-gdac9bcb) unstable; urgency=low
+knot3 (1.0-121-gdac9bcb) unstable; urgency=low
 
   * Merge branch 'master' of https://github.com/knot3/knot3
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Tue, 4 Feb 2014 15:24:46 +0100
 
-knot3 (initial-961-g70b9dde) unstable; urgency=low
+knot3 (1.0-119-g70b9dde) unstable; urgency=low
 
   * ...
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Tue, 4 Feb 2014 15:24:32 +0100
 
-knot3 (initial-961-g66d6d1a) unstable; urgency=low
+knot3 (1.0-119-g66d6d1a) unstable; urgency=low
 
   * Code Format
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Tue, 4 Feb 2014 15:18:14 +0100
 
-knot3 (initial-960-ge9374e7) unstable; urgency=low
+knot3 (1.0-118-ge9374e7) unstable; urgency=low
 
   * Merge branch 'master' of https://github.com/knot3/knot3
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Tue, 4 Feb 2014 15:16:02 +0100
 
-knot3 (initial-958-g9ea0aaf) unstable; urgency=low
+knot3 (1.0-116-g9ea0aaf) unstable; urgency=low
 
   * ...
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Tue, 4 Feb 2014 15:15:28 +0100
 
-knot3 (initial-958-g2f40758) unstable; urgency=low
+knot3 (1.0-116-g2f40758) unstable; urgency=low
 
   * Code Format
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Tue, 4 Feb 2014 15:10:14 +0100
 
-knot3 (initial-957-gbd45e9e) unstable; urgency=low
+knot3 (1.0-115-gbd45e9e) unstable; urgency=low
 
   * ...
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Tue, 4 Feb 2014 15:07:45 +0100
 
-knot3 (initial-956-g8473535) unstable; urgency=low
+knot3 (1.0-114-g8473535) unstable; urgency=low
 
   * Performance (Gendarme Report).
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Tue, 4 Feb 2014 15:01:36 +0100
 
-knot3 (initial-955-gb85b447) unstable; urgency=low
+knot3 (1.0-113-gb85b447) unstable; urgency=low
 
   * Merge branch 'master' of https://github.com/knot3/knot3
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Tue, 4 Feb 2014 14:22:58 +0100
 
-knot3 (initial-953-gc8494ff) unstable; urgency=low
+knot3 (1.0-111-gc8494ff) unstable; urgency=low
 
   * ...
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Tue, 4 Feb 2014 14:22:27 +0100
 
-knot3 (initial-953-gecee390) unstable; urgency=low
+knot3 (1.0-111-gecee390) unstable; urgency=low
 
   * Code Format
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Tue, 4 Feb 2014 14:16:14 +0100
 
-knot3 (initial-952-gd8a2c94) unstable; urgency=low
+knot3 (1.0-110-gd8a2c94) unstable; urgency=low
 
   * ... OpenCover
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Tue, 4 Feb 2014 14:15:01 +0100
 
-knot3 (initial-951-gfb721c8) unstable; urgency=low
+knot3 (1.0-109-gfb721c8) unstable; urgency=low
 
   * Code Format
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Tue, 4 Feb 2014 11:30:14 +0100
 
-knot3 (initial-950-gb53d868) unstable; urgency=low
+knot3 (1.0-108-gb53d868) unstable; urgency=low
 
   * Code Format
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Tue, 4 Feb 2014 11:20:14 +0100
 
-knot3 (initial-949-g4976e04) unstable; urgency=low
+knot3 (1.0-107-g4976e04) unstable; urgency=low
 
   * Code Format
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Tue, 4 Feb 2014 11:18:13 +0100
 
-knot3 (initial-948-g1202002) unstable; urgency=low
+knot3 (1.0-106-g1202002) unstable; urgency=low
 
   * Code Format
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Tue, 4 Feb 2014 11:16:14 +0100
 
-knot3 (initial-947-g4fff1a7) unstable; urgency=low
+knot3 (1.0-105-g4fff1a7) unstable; urgency=low
 
   * version
 
  -- Tobias Schulz <tobias@freehal.net>  Tue, 4 Feb 2014 11:15:18 +0100
 
-knot3 (initial-946-gd30cba0) unstable; urgency=low
+knot3 (1.0-104-gd30cba0) unstable; urgency=low
 
   * ach fuck
 
  -- PSE Knot³ <uaeti@student.kit.edu>  Tue, 4 Feb 2014 11:11:26 +0100
 
-knot3 (initial-945-ge972c04) unstable; urgency=low
+knot3 (1.0-103-ge972c04) unstable; urgency=low
 
   * Code Format
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Tue, 4 Feb 2014 11:11:13 +0100
 
-knot3 (initial-944-gad84b33) unstable; urgency=low
+knot3 (1.0-102-gad84b33) unstable; urgency=low
 
   * Code Format
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Tue, 4 Feb 2014 11:09:13 +0100
 
-knot3 (initial-943-g4bbaf7c) unstable; urgency=low
+knot3 (1.0-101-g4bbaf7c) unstable; urgency=low
 
   * Code Format
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Tue, 4 Feb 2014 11:07:14 +0100
 
-knot3 (initial-942-g5ac3691) unstable; urgency=low
+knot3 (1.0-100-g5ac3691) unstable; urgency=low
 
   * ...
 
  -- Tobias Schulz <tobias@freehal.net>  Tue, 4 Feb 2014 11:05:55 +0100
 
-knot3 (initial-941-g0238b90) unstable; urgency=low
+knot3 (1.0-99-g0238b90) unstable; urgency=low
 
   * Code Format
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Tue, 4 Feb 2014 10:59:14 +0100
 
-knot3 (initial-940-g06e34bb) unstable; urgency=low
+knot3 (1.0-98-g06e34bb) unstable; urgency=low
 
   * ...
 
  -- Tobias Schulz <tobias@freehal.net>  Tue, 4 Feb 2014 10:56:47 +0100
 
-knot3 (initial-939-g07de422) unstable; urgency=low
+knot3 (1.0-97-g07de422) unstable; urgency=low
 
   * Refactoring
 
  -- Tobias Schulz <tobias@freehal.net>  Tue, 4 Feb 2014 10:40:10 +0100
 
-knot3 (initial-938-g5b27834) unstable; urgency=low
+knot3 (1.0-96-g5b27834) unstable; urgency=low
 
   * ...
 
  -- Tobias Schulz <tobias@freehal.net>  Tue, 4 Feb 2014 10:20:53 +0100
 
-knot3 (initial-937-gd19ce8b) unstable; urgency=low
+knot3 (1.0-95-gd19ce8b) unstable; urgency=low
 
   * Code Format
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Tue, 4 Feb 2014 10:03:14 +0100
 
-knot3 (initial-936-ga6bdc23) unstable; urgency=low
+knot3 (1.0-94-ga6bdc23) unstable; urgency=low
 
   * Refactoring
 
  -- Tobias Schulz <tobias@freehal.net>  Tue, 4 Feb 2014 10:01:44 +0100
 
-knot3 (initial-935-g9f39832) unstable; urgency=low
+knot3 (1.0-93-g9f39832) unstable; urgency=low
 
   * Code Format
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Tue, 4 Feb 2014 09:33:14 +0100
 
-knot3 (initial-934-ge8ffbde) unstable; urgency=low
+knot3 (1.0-92-ge8ffbde) unstable; urgency=low
 
   * bugfix in move handler and refactoring
 
  -- Tobias Schulz <tobias@freehal.net>  Tue, 4 Feb 2014 09:31:12 +0100
 
-knot3 (initial-933-gdd651dd) unstable; urgency=low
+knot3 (1.0-91-gdd651dd) unstable; urgency=low
 
   * Refactoring
 
  -- Tobias Schulz <tobias@freehal.net>  Tue, 4 Feb 2014 09:19:47 +0100
 
-knot3 (initial-932-gc21fb63) unstable; urgency=low
+knot3 (1.0-90-gc21fb63) unstable; urgency=low
 
   * ...
 
  -- Tobias Schulz <tobias@freehal.net>  Tue, 4 Feb 2014 00:26:25 +0100
 
-knot3 (initial-931-g420127c) unstable; urgency=low
+knot3 (1.0-89-g420127c) unstable; urgency=low
 
   * Code Format
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 3 Feb 2014 23:55:14 +0100
 
-knot3 (initial-930-gb3dd108) unstable; urgency=low
+knot3 (1.0-88-gb3dd108) unstable; urgency=low
 
   * Merge branch 'master' of https://github.com/knot3/knot3
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 3 Feb 2014 23:53:05 +0100
 
-knot3 (initial-927-g0ea9bfd) unstable; urgency=low
+knot3 (1.0-85-g0ea9bfd) unstable; urgency=low
 
   * ...
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 3 Feb 2014 23:51:01 +0100
 
-knot3 (initial-926-geb04eb7) unstable; urgency=low
+knot3 (1.0-84-geb04eb7) unstable; urgency=low
 
   * ...
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 3 Feb 2014 23:49:49 +0100
 
-knot3 (initial-925-g56eb3a8) unstable; urgency=low
+knot3 (1.0-83-g56eb3a8) unstable; urgency=low
 
   * ...
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 3 Feb 2014 23:48:42 +0100
 
-knot3 (initial-926-gf67505a) unstable; urgency=low
+knot3 (1.0-84-gf67505a) unstable; urgency=low
 
   * Code Format
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 3 Feb 2014 23:33:14 +0100
 
-knot3 (initial-925-g389b45e) unstable; urgency=low
+knot3 (1.0-83-g389b45e) unstable; urgency=low
 
   * Code Format
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 3 Feb 2014 23:31:13 +0100
 
-knot3 (initial-924-g1e3393f) unstable; urgency=low
+knot3 (1.0-82-g1e3393f) unstable; urgency=low
 
   * Merge branch 'master' of https://github.com/knot3/knot3
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 3 Feb 2014 23:30:02 +0100
 
-knot3 (initial-921-g8424bac) unstable; urgency=low
+knot3 (1.0-79-g8424bac) unstable; urgency=low
 
   * OpenCover
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 3 Feb 2014 23:29:36 +0100
 
-knot3 (initial-922-g39ea958) unstable; urgency=low
+knot3 (1.0-80-g39ea958) unstable; urgency=low
 
   * Code Format
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 3 Feb 2014 23:09:14 +0100
 
-knot3 (initial-921-gb0c4abf) unstable; urgency=low
+knot3 (1.0-79-gb0c4abf) unstable; urgency=low
 
   * debian package
 
  -- Tobias Schulz <tobias@freehal.net>  Mon, 3 Feb 2014 22:59:36 +0100
 
-knot3 (initial-920-g9ecb88e) unstable; urgency=low
+knot3 (1.0-78-g9ecb88e) unstable; urgency=low
 
   * Code Format
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 3 Feb 2014 22:45:14 +0100
 
-knot3 (initial-919-g123caea) unstable; urgency=low
+knot3 (1.0-77-g123caea) unstable; urgency=low
 
   * Merge branch 'master' of https://github.com/knot3/knot3
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 3 Feb 2014 22:44:52 +0100
 
-knot3 (initial-917-gf0b353c) unstable; urgency=low
+knot3 (1.0-75-gf0b353c) unstable; urgency=low
 
   * ...
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 3 Feb 2014 22:44:16 +0100
 
-knot3 (initial-917-g0180f4e) unstable; urgency=low
+knot3 (1.0-75-g0180f4e) unstable; urgency=low
 
   * Code Format
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 3 Feb 2014 22:25:13 +0100
 
-knot3 (initial-916-g7045f25) unstable; urgency=low
+knot3 (1.0-74-g7045f25) unstable; urgency=low
 
   * Merge branch 'master' of https://github.com/knot3/knot3
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 3 Feb 2014 22:23:07 +0100
 
-knot3 (initial-914-gd463b12) unstable; urgency=low
+knot3 (1.0-72-gd463b12) unstable; urgency=low
 
   * ...
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 3 Feb 2014 22:22:35 +0100
 
-knot3 (initial-914-g6f37f02) unstable; urgency=low
+knot3 (1.0-72-g6f37f02) unstable; urgency=low
 
   * Code Format
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 3 Feb 2014 22:13:14 +0100
 
-knot3 (initial-913-gf24977c) unstable; urgency=low
+knot3 (1.0-71-gf24977c) unstable; urgency=low
 
   * Merge branch 'master' of https://github.com/knot3/knot3
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 3 Feb 2014 22:12:13 +0100
 
-knot3 (initial-911-g9e1d4d0) unstable; urgency=low
+knot3 (1.0-69-g9e1d4d0) unstable; urgency=low
 
   * ...
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 3 Feb 2014 22:11:46 +0100
 
-knot3 (initial-911-g447ee89) unstable; urgency=low
+knot3 (1.0-69-g447ee89) unstable; urgency=low
 
   * Code Format
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 3 Feb 2014 22:07:13 +0100
 
-knot3 (initial-910-g585351f) unstable; urgency=low
+knot3 (1.0-68-g585351f) unstable; urgency=low
 
   * Merge branch 'master' of https://github.com/knot3/knot3
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 3 Feb 2014 22:05:47 +0100
 
-knot3 (initial-908-g863ab51) unstable; urgency=low
+knot3 (1.0-66-g863ab51) unstable; urgency=low
 
   * ...
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 3 Feb 2014 22:05:14 +0100
 
-knot3 (initial-908-gb82515f) unstable; urgency=low
+knot3 (1.0-66-gb82515f) unstable; urgency=low
 
   * Code Format
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 3 Feb 2014 22:01:14 +0100
 
-knot3 (initial-907-gb5fc334) unstable; urgency=low
+knot3 (1.0-65-gb5fc334) unstable; urgency=low
 
   * ...
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 3 Feb 2014 22:00:03 +0100
 
-knot3 (initial-906-gf327749) unstable; urgency=low
+knot3 (1.0-64-gf327749) unstable; urgency=low
 
   * Code Format
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 3 Feb 2014 21:53:13 +0100
 
-knot3 (initial-905-g5aad690) unstable; urgency=low
+knot3 (1.0-63-g5aad690) unstable; urgency=low
 
   * Merge branch 'master' of https://github.com/knot3/knot3
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 3 Feb 2014 21:52:11 +0100
 
-knot3 (initial-901-g69e614d) unstable; urgency=low
+knot3 (1.0-59-g69e614d) unstable; urgency=low
 
   * String Performance ...
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 3 Feb 2014 21:51:44 +0100
 
-knot3 (initial-903-g214464a) unstable; urgency=low
+knot3 (1.0-61-g214464a) unstable; urgency=low
 
   * fix linux.csproj
 
  -- Tobias Schulz <tobias@freehal.net>  Mon, 3 Feb 2014 21:38:24 +0100
 
-knot3 (initial-902-g38835dd) unstable; urgency=low
+knot3 (1.0-60-g38835dd) unstable; urgency=low
 
   * ...
 
  -- Tobias Schulz <tobias@freehal.net>  Mon, 3 Feb 2014 21:38:23 +0100
 
-knot3 (initial-901-gfa4fe6b) unstable; urgency=low
+knot3 (1.0-59-gfa4fe6b) unstable; urgency=low
 
   * Code Format
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 3 Feb 2014 21:37:13 +0100
 
-knot3 (initial-900-g1c5ccc8) unstable; urgency=low
+knot3 (1.0-58-g1c5ccc8) unstable; urgency=low
 
   * Vor Ewigkeiten angesprochene Circle-Namensänderung.
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 3 Feb 2014 21:34:31 +0100
 
-knot3 (initial-899-g01b54c9) unstable; urgency=low
+knot3 (1.0-57-g01b54c9) unstable; urgency=low
 
   * Code Format
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 3 Feb 2014 21:13:58 +0100
 
-knot3 (initial-898-g82baee5) unstable; urgency=low
+knot3 (1.0-56-g82baee5) unstable; urgency=low
 
   * Code Format
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 3 Feb 2014 21:11:41 +0100
 
-knot3 (initial-897-g5190cc3) unstable; urgency=low
+knot3 (1.0-55-g5190cc3) unstable; urgency=low
 
   * ...
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 3 Feb 2014 21:00:29 +0100
 
-knot3 (initial-896-gf6789cb) unstable; urgency=low
+knot3 (1.0-54-gf6789cb) unstable; urgency=low
 
   * Merge branch 'master' of https://github.com/knot3/knot3
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 3 Feb 2014 20:59:34 +0100
 
-knot3 (initial-894-g220ebc7) unstable; urgency=low
+knot3 (1.0-52-g220ebc7) unstable; urgency=low
 
   * Nicht notwendig. Evtl. speziell für Resourcenfressende Klassen, hier aber nicht.
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 3 Feb 2014 20:58:51 +0100
 
-knot3 (initial-894-g395a73e) unstable; urgency=low
+knot3 (1.0-52-g395a73e) unstable; urgency=low
 
   * Code Format
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 3 Feb 2014 20:55:13 +0100
 
-knot3 (initial-893-g7931327) unstable; urgency=low
+knot3 (1.0-51-g7931327) unstable; urgency=low
 
   * Merge branch 'master' of https://github.com/knot3/knot3
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 3 Feb 2014 20:54:04 +0100
 
-knot3 (initial-891-gef6fca5) unstable; urgency=low
+knot3 (1.0-49-gef6fca5) unstable; urgency=low
 
   * Destruktor (formal/Rumpf)
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 3 Feb 2014 20:53:37 +0100
 
-knot3 (initial-891-ga824fd9) unstable; urgency=low
+knot3 (1.0-49-ga824fd9) unstable; urgency=low
 
   * Code Format
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 3 Feb 2014 20:31:14 +0100
 
-knot3 (initial-890-g1902205) unstable; urgency=low
+knot3 (1.0-48-g1902205) unstable; urgency=low
 
   * ...
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 3 Feb 2014 20:29:16 +0100
 
-knot3 (initial-889-gbe3ca7c) unstable; urgency=low
+knot3 (1.0-47-gbe3ca7c) unstable; urgency=low
 
   * ...
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 3 Feb 2014 20:22:45 +0100
 
-knot3 (initial-888-gcaf733e) unstable; urgency=low
+knot3 (1.0-46-gcaf733e) unstable; urgency=low
 
   * ...
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 3 Feb 2014 20:03:22 +0100
 
-knot3 (initial-887-g7cb79b6) unstable; urgency=low
+knot3 (1.0-45-g7cb79b6) unstable; urgency=low
 
   * Merge branch 'master' of https://github.com/knot3/knot3
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 3 Feb 2014 19:59:11 +0100
 
-knot3 (initial-885-g0fa65d8) unstable; urgency=low
+knot3 (1.0-43-g0fa65d8) unstable; urgency=low
 
   * Any () statt Count () > 0
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 3 Feb 2014 19:58:43 +0100
 
-knot3 (initial-885-g90c0537) unstable; urgency=low
+knot3 (1.0-43-g90c0537) unstable; urgency=low
 
   * Code Format
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 3 Feb 2014 19:45:13 +0100
 
-knot3 (initial-884-gc6379bf) unstable; urgency=low
+knot3 (1.0-42-gc6379bf) unstable; urgency=low
 
   * Any () statt Count () > 0
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 3 Feb 2014 19:42:48 +0100
 
-knot3 (initial-883-gdb266a3) unstable; urgency=low
+knot3 (1.0-41-gdb266a3) unstable; urgency=low
 
   * Merge branch 'master' of https://github.com/knot3/knot3
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 3 Feb 2014 19:40:04 +0100
 
-knot3 (initial-881-ga36b2d5) unstable; urgency=low
+knot3 (1.0-39-ga36b2d5) unstable; urgency=low
 
   * Length anstatt Count()
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 3 Feb 2014 19:39:37 +0100
 
-knot3 (initial-881-g4865df0) unstable; urgency=low
+knot3 (1.0-39-g4865df0) unstable; urgency=low
 
   * Code Format
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 3 Feb 2014 19:19:14 +0100
 
-knot3 (initial-880-gdd2b8f7) unstable; urgency=low
+knot3 (1.0-38-gdd2b8f7) unstable; urgency=low
 
   * Merge branch 'master' of https://github.com/knot3/knot3
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 3 Feb 2014 19:17:25 +0100
 
-knot3 (initial-878-gaafb27a) unstable; urgency=low
+knot3 (1.0-36-gaafb27a) unstable; urgency=low
 
   * String Performance ...
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 3 Feb 2014 19:16:43 +0100
 
-knot3 (initial-878-g8f0a403) unstable; urgency=low
+knot3 (1.0-36-g8f0a403) unstable; urgency=low
 
   * Code Format
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 3 Feb 2014 19:11:14 +0100
 
-knot3 (initial-877-g7a6a1e5) unstable; urgency=low
+knot3 (1.0-35-g7a6a1e5) unstable; urgency=low
 
   * "" durch String.Empty ersetzt
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 3 Feb 2014 19:09:27 +0100
 
-knot3 (initial-876-gb035b58) unstable; urgency=low
+knot3 (1.0-34-gb035b58) unstable; urgency=low
 
   * Code Format
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 3 Feb 2014 18:47:13 +0100
 
-knot3 (initial-875-g4321dd6) unstable; urgency=low
+knot3 (1.0-33-g4321dd6) unstable; urgency=low
 
   * Merge branch 'master' of https://github.com/knot3/knot3
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 3 Feb 2014 18:45:47 +0100
 
-knot3 (initial-873-g8fd6d8d) unstable; urgency=low
+knot3 (1.0-31-g8fd6d8d) unstable; urgency=low
 
   * ...
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 3 Feb 2014 18:42:41 +0100
 
-knot3 (initial-873-g60011f7) unstable; urgency=low
+knot3 (1.0-31-g60011f7) unstable; urgency=low
 
   * Code Format
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 3 Feb 2014 18:42:14 +0100
 
-knot3 (initial-872-g18451fa) unstable; urgency=low
+knot3 (1.0-30-g18451fa) unstable; urgency=low
 
   * Merge branch 'master' of https://github.com/knot3/knot3
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 3 Feb 2014 18:41:16 +0100
 
-knot3 (initial-870-g41b391d) unstable; urgency=low
+knot3 (1.0-28-g41b391d) unstable; urgency=low
 
   * ...
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 3 Feb 2014 18:32:42 +0100
 
-knot3 (initial-870-gd215cb6) unstable; urgency=low
+knot3 (1.0-28-gd215cb6) unstable; urgency=low
 
   * Code Format
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 3 Feb 2014 18:30:14 +0100
 
-knot3 (initial-869-g7d41510) unstable; urgency=low
+knot3 (1.0-27-g7d41510) unstable; urgency=low
 
   * Performance-Issues beim String-Vergleich.
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 3 Feb 2014 18:29:55 +0100
 
-knot3 (initial-868-g3560677) unstable; urgency=low
+knot3 (1.0-26-g3560677) unstable; urgency=low
 
   * Code Format
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 3 Feb 2014 18:29:31 +0100
 
-knot3 (initial-867-gc5d57d2) unstable; urgency=low
+knot3 (1.0-25-gc5d57d2) unstable; urgency=low
 
   * Code Format
 
  -- Daniel Warzel <daniel.warzel@gmx.de>  Mon, 3 Feb 2014 18:28:05 +0100
 
-knot3 (initial-866-gaf9eb01) unstable; urgency=low
+knot3 (1.0-24-gaf9eb01) unstable; urgency=low
 
   * Code Format
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 3 Feb 2014 18:27:13 +0100
 
-knot3 (initial-865-g266ebf2) unstable; urgency=low
+knot3 (1.0-23-g266ebf2) unstable; urgency=low
 
   * Code Format
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 3 Feb 2014 18:24:13 +0100
 
-knot3 (initial-864-g223a50d) unstable; urgency=low
+knot3 (1.0-22-g223a50d) unstable; urgency=low
 
   * Refactoring
 
  -- Tobias Schulz <tobias@freehal.net>  Mon, 3 Feb 2014 18:21:29 +0100
 
-knot3 (initial-863-g201de9c) unstable; urgency=low
+knot3 (1.0-21-g201de9c) unstable; urgency=low
 
   * Code Format
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 3 Feb 2014 17:03:13 +0100
 
-knot3 (initial-862-g3a4e458) unstable; urgency=low
+knot3 (1.0-20-g3a4e458) unstable; urgency=low
 
   * Zeitanzeige zentriert.
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 3 Feb 2014 17:01:14 +0100
 
-knot3 (initial-861-gfd3701d) unstable; urgency=low
+knot3 (1.0-19-gfd3701d) unstable; urgency=low
 
   * "Load" zu "Start" beim ChallengeStartScreen
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 3 Feb 2014 15:40:20 +0100
 
-knot3 (initial-860-gcf4ada2) unstable; urgency=low
+knot3 (1.0-18-gcf4ada2) unstable; urgency=low
 
   * "Start" zu "Load" unter "Load Knot".
 
  -- Pascal Knodel <pascal.knodel@student.kit.edu>  Mon, 3 Feb 2014 15:13:15 +0100
 
-knot3 (initial-859-gc78b2fc) unstable; urgency=low
+knot3 (1.0-17-gc78b2fc) unstable; urgency=low
 
   * Code Format
 
  -- Daniel Warzel <daniel.warzel@gmx.de>  Mon, 3 Feb 2014 08:36:13 +0100
 
-knot3 (initial-858-g1fa4f97) unstable; urgency=low
+knot3 (1.0-16-g1fa4f97) unstable; urgency=low
 
   * SkyCube vergrößert sich automatisch #83
 
  -- Tobias Schulz <tobias@freehal.net>  Mon, 3 Feb 2014 08:34:15 +0100
 
-knot3 (initial-857-g2902c42) unstable; urgency=low
+knot3 (1.0-15-g2902c42) unstable; urgency=low
 
   * fixes #96
 
  -- Tobias Schulz <tobias@freehal.net>  Mon, 3 Feb 2014 08:08:46 +0100
 
-knot3 (initial-856-g70fb122) unstable; urgency=low
+knot3 (1.0-14-g70fb122) unstable; urgency=low
 
   * fixes #82
 
  -- Tobias Schulz <tobias@freehal.net>  Mon, 3 Feb 2014 08:00:54 +0100
 
-knot3 (initial-855-g8444fd4) unstable; urgency=low
+knot3 (1.0-13-g8444fd4) unstable; urgency=low
 
   * fixed redo button #101
 
  -- Tobias Schulz <tobias@freehal.net>  Mon, 3 Feb 2014 07:55:19 +0100
 
-knot3 (initial-854-g5d04afb) unstable; urgency=low
+knot3 (1.0-12-g5d04afb) unstable; urgency=low
 
   * Code Format
 
  -- Daniel Warzel <daniel.warzel@gmx.de>  Mon, 3 Feb 2014 07:27:14 +0100
 
-knot3 (initial-853-g376ae78) unstable; urgency=low
+knot3 (1.0-11-g376ae78) unstable; urgency=low
 
   * Code Format
 
  -- Daniel Warzel <daniel.warzel@gmx.de>  Mon, 3 Feb 2014 07:27:03 +0100
 
-knot3 (initial-852-g0dbf922) unstable; urgency=low
+knot3 (1.0-10-g0dbf922) unstable; urgency=low
 
   * Fixes #97
 
  -- Tobias Schulz <tobias@freehal.net>  Mon, 3 Feb 2014 07:23:44 +0100
 
-knot3 (initial-851-g1693521) unstable; urgency=low
+knot3 (1.0-9-g1693521) unstable; urgency=low
 
   * fixes #93
 
  -- Tobias Schulz <tobias@freehal.net>  Mon, 3 Feb 2014 07:22:40 +0100
 
-knot3 (initial-850-g536b57a) unstable; urgency=low
+knot3 (1.0-8-g536b57a) unstable; urgency=low
 
   * Code Format
 
  -- Daniel Warzel <daniel.warzel@gmx.de>  Mon, 3 Feb 2014 07:09:13 +0100
 
-knot3 (initial-849-g628b1f6) unstable; urgency=low
+knot3 (1.0-7-g628b1f6) unstable; urgency=low
 
   * Modale Dialoge (Fixes #102, Fixes #95), verbesserter Widget-Key/Mouse-Handler
 
  -- Tobias Schulz <tobias@freehal.net>  Mon, 3 Feb 2014 07:08:38 +0100
 
-knot3 (initial-848-g3679c53) unstable; urgency=low
+knot3 (1.0-6-g3679c53) unstable; urgency=low
 
   * Code Format
 
  -- Daniel Warzel <daniel.warzel@gmx.de>  Mon, 3 Feb 2014 04:39:33 +0100
 
-knot3 (initial-847-g2ea7016) unstable; urgency=low
+knot3 (1.0-5-g2ea7016) unstable; urgency=low
 
   * Code Format
 
  -- Daniel Warzel <daniel.warzel@gmx.de>  Mon, 3 Feb 2014 03:51:47 +0100
 
-knot3 (initial-846-gfcb46c9) unstable; urgency=low
+knot3 (1.0-4-gfcb46c9) unstable; urgency=low
 
   * Code Format
 
  -- Tobias Schulz <tobias@freehal.net>  Mon, 3 Feb 2014 03:51:11 +0100
 
-knot3 (initial-845-g96f0407) unstable; urgency=low
+knot3 (1.0-3-g96f0407) unstable; urgency=low
 
   * ...
 
  -- Tobias Schulz <tobias@freehal.net>  Mon, 3 Feb 2014 03:44:48 +0100
 
-knot3 (initial-844-g16a6ffc) unstable; urgency=low
+knot3 (1.0-2-g16a6ffc) unstable; urgency=low
 
   * ...
 
  -- Tobias Schulz <tobias@freehal.net>  Mon, 3 Feb 2014 00:47:23 +0100
 
-knot3 (initial-843-gc8caf09) unstable; urgency=low
+knot3 (1.0-1-gc8caf09) unstable; urgency=low
 
   * ...
 
  -- Tobias Schulz <tobias@freehal.net>  Mon, 3 Feb 2014 00:46:19 +0100
 
-knot3 (initial-842-g35dfaad) unstable; urgency=low
+knot3 (1.0) unstable; urgency=low
 
   * overla weg
 
