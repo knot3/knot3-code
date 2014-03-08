@@ -37,18 +37,19 @@ using Microsoft.Xna.Framework;
 using Knot3.Framework.Audio;
 using Knot3.Framework.Platform;
 using Knot3.Framework.Storage;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Knot3.Framework.Core
 {
     [ExcludeFromCodeCoverageAttribute]
     public abstract class GameCore : Microsoft.Xna.Framework.Game
     {
-        private static readonly Vector2 defaultSize = SystemInfo.IsRunningOnLinux ()
-                ? new Vector2 (1024, 600) : new Vector2 (1280, 720);
+        private static readonly Point defaultSize = SystemInfo.IsRunningOnLinux ()
+            ? new Point (1024, 600) : new Point (1280, 720);
 
         public Action FullScreenChanged { get; set; }
 
-        protected string lastResolution;
+        protected Point lastResolution;
         protected bool isFullscreen;
 
         /// <summary>
@@ -64,24 +65,38 @@ namespace Knot3.Framework.Core
             set {
                 if (value != isFullscreen) {
                     Log.Debug ("Fullscreen Toggle");
-                    if (value) {
-                        Graphics.PreferredBackBufferWidth = Graphics.GraphicsDevice.DisplayMode.Width;
-                        Graphics.PreferredBackBufferHeight = Graphics.GraphicsDevice.DisplayMode.Height;
-                    }
-                    else {
-                        string currentResolution = Graphics.GraphicsDevice.DisplayMode.Width.ToString ()
-                                                   + "x"
-                                                   + Graphics.GraphicsDevice.DisplayMode.Height.ToString ();
-
-                        Config.Default ["video", "resolution", currentResolution] = "1280x720";
-                    }
                     Graphics.ToggleFullScreen ();
                     Graphics.ApplyChanges ();
                     isFullscreen = value;
                     Graphics.ApplyChanges ();
-                    FullScreenChanged ();
-                    toDefaultSize (isFullscreen);
                 }
+            }
+        }
+
+        protected Point ScreenResolution {
+            get {
+                return new Point (GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height);
+            }
+        }
+
+        protected Point WindowResolution {
+            get {
+                String strReso = Config.Default ["video", "resolution", defaultSize.X+"x"+defaultSize.Y];
+                string[] reso = strReso.Split ('x');
+                int width = int.Parse (reso [0]);
+                int height = int.Parse (reso [1]);
+                return new Point (width, height);
+            }
+        }
+
+        protected Point BackbufferResolution {
+            get {
+                return new Point (Graphics.PreferredBackBufferWidth, Graphics.PreferredBackBufferHeight);
+            }
+            set {
+                Graphics.PreferredBackBufferWidth = value.X;
+                Graphics.PreferredBackBufferHeight = value.Y;
+                Graphics.ApplyChanges ();
             }
         }
 
@@ -149,32 +164,19 @@ namespace Knot3.Framework.Core
             FullScreenChanged = () => {};
         }
 
-        private void toDefaultSize (bool fullscreen)
-        {
-            if (!fullscreen) {
-                Graphics.PreferredBackBufferWidth = (int)GameCore.defaultSize.X;
-                Graphics.PreferredBackBufferHeight = (int)GameCore.defaultSize.Y;
-                Graphics.ApplyChanges ();
-            }
-        }
-
         protected void updateResolution ()
         {
-            int width;
-            int height;
-            string currentResolution = Graphics.GraphicsDevice.DisplayMode.Width.ToString ()
-                                       + "x"
-                                       + Graphics.GraphicsDevice.DisplayMode.Height.ToString ();
-            if (lastResolution != Config.Default ["video", "resolution", currentResolution] && !isFullscreen) {
-                String strReso = Config.Default ["video", "resolution", currentResolution];
-                string[] reso = strReso.Split ('x');
-                width = int.Parse (reso [0]);
-                height = int.Parse (reso [1]);
-                Graphics.PreferredBackBufferWidth = width;
-                Graphics.PreferredBackBufferHeight = height;
-                Graphics.ApplyChanges ();
+            Point currentResolution = IsFullScreen ? ScreenResolution : WindowResolution;
+            if (lastResolution != currentResolution || BackbufferResolution != currentResolution) {
+                Log.Message ("Resolution (Full Screen Mode): ", ScreenResolution);
+                Log.Message ("Resolution (Window Mode): ", WindowResolution);
+                Log.Message ("Resolution (Current Mode): ", currentResolution);
+                Log.Message ("Resolution (BackBuffer - previously): ", BackbufferResolution);
+                BackbufferResolution = currentResolution;
+                lastResolution = currentResolution;
+                FullScreenChanged ();
+                Log.Message ("Resolution (BackBuffer - now): ", BackbufferResolution);
             }
-            lastResolution = Config.Default ["video", "resolution", currentResolution];
         }
     }
 }
