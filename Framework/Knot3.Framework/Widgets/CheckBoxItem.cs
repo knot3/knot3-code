@@ -74,6 +74,8 @@ namespace Knot3.Framework.Widgets
 
         private bool currentValue;
 
+        public Action OnValueChanged = () => {};
+
         /// <summary>
         /// Erzeugt ein neues CheckBoxItem-Objekt und initialisiert dieses mit dem zugehörigen IGameScreen-Objekt.
         /// Zudem sind Angaben zur Zeichenreihenfolge und der Auswahloption Pflicht.
@@ -111,6 +113,7 @@ namespace Knot3.Framework.Widgets
         {
             currentValue = option.Value = !option.Value;
             Log.Debug ("option: ", option, " := ", currentValue);
+            OnValueChanged();
         }
 
         /// <summary>

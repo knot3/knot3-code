@@ -177,6 +177,7 @@ namespace Knot3.Game.Screens
                 text: "Fullscreen",
                 option: new BooleanOption ("video", "fullscreen", false, Config.Default)
             );
+            fullscreen.OnValueChanged += () => Game.IsFullScreen= !Game.IsFullScreen;
             settingsMenu.Add (fullscreen);
 
             // Languages
