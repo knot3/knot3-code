@@ -41,7 +41,7 @@ namespace Knot3.Framework.Platform
     [ExcludeFromCodeCoverageAttribute]
     public static class Dependencies
     {
-        public static string DOWNLOAD_URL_SDL2 = "http://www.libsdl.org/release/SDL2-2.0.1-win32-x86.zip";
+        public static string DOWNLOAD_URL_SDL2 = "http://www.libsdl.org/release/SDL2-2.0.2-win32-x86.zip";
 
         public static string DOWNLOAD_URL_SDL2_image = "https://www.libsdl.org/projects/SDL_image/release/SDL2_image-2.0.0-win32-x86.zip";
 
