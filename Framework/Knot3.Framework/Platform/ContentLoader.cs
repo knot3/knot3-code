@@ -157,7 +157,7 @@ namespace Knot3.Framework.Platform
         {
             try {
                 Texture2D texture = null;
-                Dependencies.CatchDllExceptions (()=>{
+                Dependencies.CatchDllExceptions (()=> {
                     string filename = SystemInfo.RelativeContentDirectory + "Textures" + SystemInfo.PathSeparator + name;
                     FileStream stream = new FileStream (filename, FileMode.Open);
                     texture = Texture2D.FromStream (screen.GraphicsDevice, stream);

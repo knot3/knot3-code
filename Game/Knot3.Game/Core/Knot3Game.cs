@@ -38,6 +38,7 @@ using Microsoft.Xna.Framework.Input;
 using Knot3.Framework.Core;
 using Knot3.Framework.Effects;
 using Knot3.Framework.Input;
+using Knot3.Framework.Platform;
 using Knot3.Framework.Screens;
 using Knot3.Framework.Storage;
 
@@ -46,7 +47,6 @@ using Knot3.Game.Effects;
 using Knot3.Game.Input;
 using Knot3.Game.Screens;
 using Knot3.Game.Widgets;
-using Knot3.Framework.Platform;
 
 namespace Knot3.Game.Core
 {
@@ -125,7 +125,7 @@ namespace Knot3.Game.Core
                 Graphics.GraphicsDevice.Clear (current.BackgroundColor);
 
                 try {
-                    Dependencies.CatchDllExceptions (()=>{
+                    Dependencies.CatchDllExceptions (()=> {
                         // Rufe Draw () auf dem aktuellen Screen auf
                         current.Draw (time);
 
@@ -167,39 +167,39 @@ namespace Knot3.Game.Core
         protected override void Update (GameTime time)
         {
             try {
-                Dependencies.CatchDllExceptions (()=>{
-                updateResolution ();
-                // falls der Screen gewechselt werden soll...
-                IScreen current = Screens.Peek ();
-                IScreen next = current.NextScreen;
-                if (current != next) {
-                    next.PostProcessingEffect = new FadeEffect (next, current);
-                    current.BeforeExit (next, time);
-                    current.NextScreen = current;
-                    next.NextScreen = next;
-                    Screens.Push (next);
-                    next.Entered (current, time);
-                }
+                Dependencies.CatchDllExceptions (()=> {
+                    updateResolution ();
+                    // falls der Screen gewechselt werden soll...
+                    IScreen current = Screens.Peek ();
+                    IScreen next = current.NextScreen;
+                    if (current != next) {
+                        next.PostProcessingEffect = new FadeEffect (next, current);
+                        current.BeforeExit (next, time);
+                        current.NextScreen = current;
+                        next.NextScreen = next;
+                        Screens.Push (next);
+                        next.Entered (current, time);
+                    }
 
-                if (current.PostProcessingEffect is FadeEffect && (current.PostProcessingEffect as FadeEffect).IsFinished) {
-                    current.PostProcessingEffect = new StandardEffect (current);
-                }
+                    if (current.PostProcessingEffect is FadeEffect && (current.PostProcessingEffect as FadeEffect).IsFinished) {
+                        current.PostProcessingEffect = new StandardEffect (current);
+                    }
 
-                if (current.InputManager.KeyPressed (Keys.F8)) {
-                    this.Exit ();
-                    return;
-                }
+                    if (current.InputManager.KeyPressed (Keys.F8)) {
+                        this.Exit ();
+                        return;
+                    }
 
-                /*if (current.InputManager.KeyPressed (KnotInputHandler.CurrentKeyAssignmentReversed [PlayerActions.ToggleFullscreen]))
-                {
-                    IsFullScreen = !IsFullScreen;
-                    InputManager.FullscreenToggled = true;
-                }*/
+                    /*if (current.InputManager.KeyPressed (KnotInputHandler.CurrentKeyAssignmentReversed [PlayerActions.ToggleFullscreen]))
+                    {
+                        IsFullScreen = !IsFullScreen;
+                        InputManager.FullscreenToggled = true;
+                    }*/
 
-                // Rufe Update () auf dem aktuellen Screen auf
-                Screens.Peek ().Update (time);
+                    // Rufe Update () auf dem aktuellen Screen auf
+                    Screens.Peek ().Update (time);
 
-                // base method
+                    // base method
                     base.Update (time);
                 });
             }
