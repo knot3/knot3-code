@@ -24,7 +24,7 @@
  *   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  *   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  *   SOFTWARE.
- * 
+ *
  * See the LICENSE file for full license details of the Knot3 project.
  */
 
@@ -70,7 +70,7 @@ namespace Knot3.Game.Data
         public IEnumerable<Edge> Edges
         {
             get {
-                Log.Debug ("KnotStringIO.Edges[get] = ", edgeLines.Count ());
+                Log.Debug ("KnotStringIO.Edges [get] = ", edgeLines.Count ());
                 foreach (string _line in edgeLines) {
                     string line = _line;
                     Edge edge = DecodeEdge (line [0]);
@@ -102,7 +102,7 @@ namespace Knot3.Game.Data
                 }
             }
             set {
-                Log.Debug ("KnotStringIO.Edges[set] = #", value.Count ());
+                Log.Debug ("KnotStringIO.Edges [set] = #", value.Count ());
                 try {
                     edgeLines = ToLines (value);
                 }
@@ -191,7 +191,7 @@ namespace Knot3.Game.Data
         {
             Dictionary<Direction, char> reversed = DirectionCodeMap.ReverseDictionary ();
             if (reversed.ContainsKey (edge.Direction)) {
-                return reversed[edge.Direction];
+                return reversed [edge.Direction];
             }
             else {
                 throw new IOException ("Failed to encode Edge: '" + edge + "'!");

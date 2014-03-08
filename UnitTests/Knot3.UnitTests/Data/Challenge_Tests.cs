@@ -24,7 +24,7 @@
  *   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  *   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  *   SOFTWARE.
- * 
+ *
  * See the LICENSE file for full license details of the Knot3 project.
  */
 
@@ -73,8 +73,8 @@ namespace Knot3.UnitTests.Data
             int[] times = { 1, 15, 7, 1337 };
             int position = 0;
             foreach (KeyValuePair<string, int> entry in challenge.Highscore) {
-                Assert.AreEqual (entry.Key, names[position]);
-                Assert.AreEqual (entry.Value, times[position]);
+                Assert.AreEqual (entry.Key, names [position]);
+                Assert.AreEqual (entry.Value, times [position]);
                 position++;
             }
         }

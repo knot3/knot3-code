@@ -24,7 +24,7 @@
  *   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  *   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  *   SOFTWARE.
- * 
+ *
  * See the LICENSE file for full license details of the Knot3 project.
  */
 
@@ -139,7 +139,7 @@ namespace Knot3.Game.Models
             Vector2 textureLowerLeft = new Vector2 (0.0f, 1.0f);
             Vector2 textureLowerRight = new Vector2 (1.0f, 1.0f);
 
-            Vertices = new VertexPositionNormalTexture[4];
+            Vertices = new VertexPositionNormalTexture [4];
             // Provide a normal for each vertex
             for (int i = 0; i < Vertices.Length; i++) {
                 Vertices [i].Normal = Normal;
@@ -157,7 +157,7 @@ namespace Knot3.Game.Models
 
             // Set the index buffer for each vertex, using
             // clockwise winding
-            Indexes = new short[12];
+            Indexes = new short [12];
             Indexes [0] = 0;
             Indexes [1] = 1;
             Indexes [2] = 2;

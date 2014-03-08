@@ -24,7 +24,7 @@
  *   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  *   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  *   SOFTWARE.
- * 
+ *
  * See the LICENSE file for full license details of the Knot3 project.
  */
 
@@ -108,7 +108,7 @@ namespace Knot3.Game.Development
             settingsMenu.Add (showStartEdgeArrow);
 
             string[] unprojectMethods = { "SelectedObject", "NearFarAverage" };
-            DistinctOption unprojectOption = new DistinctOption ("debug", "unproject", unprojectMethods[0], unprojectMethods, Config.Default);
+            DistinctOption unprojectOption = new DistinctOption ("debug", "unproject", unprojectMethods [0], unprojectMethods, Config.Default);
             DropDownMenuItem unprojectItem = new DropDownMenuItem (
                 screen: this,
                 drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,

@@ -24,7 +24,7 @@
  *   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  *   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  *   SOFTWARE.
- * 
+ *
  * See the LICENSE file for full license details of the Knot3 project.
  */
 
@@ -81,14 +81,14 @@ namespace Knot3.Game.Effects
             Camera camera = model.World.Camera;
 
             //lightDirection = new Vector4 (-Vector3.Cross (Vector3.Normalize (camera.TargetDirection), camera.UpVector), 1);
-            pascalEffect.Parameters["World"].SetValue (model.WorldMatrix * camera.WorldMatrix);
-            pascalEffect.Parameters["View"].SetValue (camera.ViewMatrix);
-            pascalEffect.Parameters["Projection"].SetValue (camera.ProjectionMatrix);
+            pascalEffect.Parameters ["World"].SetValue (model.WorldMatrix * camera.WorldMatrix);
+            pascalEffect.Parameters ["View"].SetValue (camera.ViewMatrix);
+            pascalEffect.Parameters ["Projection"].SetValue (camera.ProjectionMatrix);
 
-            pascalEffect.Parameters["color1"].SetValue (Color.Yellow.ToVector4 ());
-            pascalEffect.Parameters["color2"].SetValue (Color.Red.ToVector4 ());
+            pascalEffect.Parameters ["color1"].SetValue (Color.Yellow.ToVector4 ());
+            pascalEffect.Parameters ["color2"].SetValue (Color.Red.ToVector4 ());
 
-            pascalEffect.CurrentTechnique = pascalEffect.Techniques["Technique1"];
+            pascalEffect.CurrentTechnique = pascalEffect.Techniques ["Technique1"];
 
             foreach (ModelMesh mesh in model.Model.Meshes) {
                 mesh.Draw ();

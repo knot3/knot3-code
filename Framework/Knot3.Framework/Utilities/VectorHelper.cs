@@ -24,7 +24,7 @@
  *   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  *   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  *   SOFTWARE.
- * 
+ *
  * See the LICENSE file for full license details of the Knot3 project.
  */
 
@@ -328,10 +328,10 @@ namespace Knot3.Framework.Utilities
         public static BoundingSphere[] CylinderBounds (float length, float radius, Vector3 direction, Vector3 position)
         {
             float distance = radius / 4;
-            BoundingSphere[] bounds = new BoundingSphere[(int)(length / distance)];
+            BoundingSphere[] bounds = new BoundingSphere [(int)(length / distance)];
             for (int offset = 0; offset < (int)(length / distance); ++offset) {
                 bounds [offset] = new BoundingSphere (position + direction * offset * distance, radius);
-                //Log.Debug ("sphere[", offset, "]=", Bounds [offset]);
+                //Log.Debug ("sphere [", offset, "]=", Bounds [offset]);
             }
             return bounds;
         }

@@ -24,7 +24,7 @@
  *   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  *   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  *   SOFTWARE.
- * 
+ *
  * See the LICENSE file for full license details of the Knot3 project.
  */
 
@@ -43,19 +43,19 @@ namespace Knot3.MockObjects
 
         public static Knot generateSquareKnot (int EdgeLength, string name)
         {
-            Edge[] edgeList = new Edge[EdgeLength * 4];
+            Edge[] edgeList = new Edge [EdgeLength * 4];
 
             for (int i = 0; i < EdgeLength; i++) {
-                edgeList[i] = Edge.Up;
+                edgeList [i] = Edge.Up;
             }
             for (int i = EdgeLength; i < EdgeLength*2; i++) {
-                edgeList[i] = Edge.Right;
+                edgeList [i] = Edge.Right;
             }
             for (int i = EdgeLength *2; i < EdgeLength*3; i++) {
-                edgeList[i] = Edge.Down;
+                edgeList [i] = Edge.Down;
             }
             for (int i = EdgeLength *3; i < EdgeLength*4; i++) {
-                edgeList[i] = Edge.Left;
+                edgeList [i] = Edge.Left;
             }
             KnotMetaData metaData = new KnotMetaData (name, edgeList.Count<Edge>, null, null);
             Knot squareKnot = new Knot (metaData, edgeList);

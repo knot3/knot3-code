@@ -24,7 +24,7 @@
  *   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  *   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  *   SOFTWARE.
- * 
+ *
  * See the LICENSE file for full license details of the Knot3 project.
  */
 
@@ -130,7 +130,7 @@ namespace Knot3.Game.Development
         private void DrawCoordinates (GameTime time)
         {
             int length = 2000;
-            var vertices = new VertexPositionColor[6];
+            var vertices = new VertexPositionColor [6];
             vertices [0].Position = new Vector3 (-length, 0, 0);
             vertices [0].Color = Color.Green;
             vertices [1].Position = new Vector3 (+length, 0, 0);

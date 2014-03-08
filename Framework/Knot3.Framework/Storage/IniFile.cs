@@ -24,7 +24,7 @@
  *   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  *   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  *   SOFTWARE.
- * 
+ *
  * See the LICENSE file for full license details of the Knot3 project.
  */
 
@@ -87,7 +87,7 @@ namespace Knot3.Framework.Storage
             using (StreamWriter writer = new StreamWriter (Filename)) {
                 foreach (string section in Data.Keys.OrderBy (x => x)) {
                     writer.WriteLine ("[" + section + "]");
-                    foreach (string key  in Data[section].Keys.OrderBy (x => x)) {
+                    foreach (string key  in Data [section].Keys.OrderBy (x => x)) {
                         writer.WriteLine (Encode (key) + "=" + Encode (Data [section] [key]));
                     }
                 }

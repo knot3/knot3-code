@@ -24,7 +24,7 @@
  *   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  *   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  *   SOFTWARE.
- * 
+ *
  * See the LICENSE file for full license details of the Knot3 project.
  */
 
@@ -103,7 +103,7 @@ namespace Knot3.Game.Data
 
         public Direction Reverse { get { return ReverseMap [this]; } }
 
-        public Axis Axis { get { return AxisMap[this]; } }
+        public Axis Axis { get { return AxisMap [this]; } }
 
         private Direction (Vector3 vector, string description)
         : base (description)

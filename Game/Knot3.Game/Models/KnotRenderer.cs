@@ -24,7 +24,7 @@
  *   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  *   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  *   SOFTWARE.
- * 
+ *
  * See the LICENSE file for full license details of the Knot3 project.
  */
 
@@ -417,7 +417,7 @@ namespace Knot3.Game.Models
             int width = 50;
             int height = 50;
             Texture2D texture = new Texture2D (screen.GraphicsDevice, width, height);
-            Color[] colors = new Color[width * height];
+            Color[] colors = new Color [width * height];
             for (int w = 0; w < width; ++w) {
                 for (int h = 0; h < height; ++h) {
                     colors [h * width + w] = toColor.Mix (fromColor, 0.5f + (float)(width / 2 - w) / (float)(width / 2) * 0.9f);
@@ -432,7 +432,7 @@ namespace Knot3.Game.Models
             int width = 50;
             int height = 50;
             Texture2D texture = new Texture2D (screen.GraphicsDevice, width, height);
-            Color[] colors = new Color[width * height];
+            Color[] colors = new Color [width * height];
             for (int w = 0; w < width; ++w) {
                 for (int h = 0; h < height; ++h) {
                     colors [h * width + w] = toColor.Mix (fromColor, 0.5f + (float)(w - h) / (float)Math.Max (width, height)) * 0.9f;

@@ -24,7 +24,7 @@
  *   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  *   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  *   SOFTWARE.
- * 
+ *
  * See the LICENSE file for full license details of the Knot3 project.
  */
 
@@ -108,11 +108,11 @@ namespace Knot3.Framework.Audio
 
         private static void WriteWave (BinaryWriter writer, int channels, int rate, byte[] data)
         {
-            writer.Write (new char[4] { 'R', 'I', 'F', 'F' });
+            writer.Write (new char [4] { 'R', 'I', 'F', 'F' });
             writer.Write ((int)(36 + data.Length));
-            writer.Write (new char[4] { 'W', 'A', 'V', 'E' });
+            writer.Write (new char [4] { 'W', 'A', 'V', 'E' });
 
-            writer.Write (new char[4] { 'f', 'm', 't', ' ' });
+            writer.Write (new char [4] { 'f', 'm', 't', ' ' });
             writer.Write ((int)16);
             writer.Write ((short)1);
             writer.Write ((short)channels);
@@ -121,7 +121,7 @@ namespace Knot3.Framework.Audio
             writer.Write ((short)((16 * channels) / 8));
             writer.Write ((short)16);
 
-            writer.Write (new char[4] { 'd', 'a', 't', 'a' });
+            writer.Write (new char [4] { 'd', 'a', 't', 'a' });
             writer.Write ((int)data.Length);
             writer.Write (data);
         }

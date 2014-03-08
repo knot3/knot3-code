@@ -24,7 +24,7 @@
  *   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  *   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  *   SOFTWARE.
- * 
+ *
  * See the LICENSE file for full license details of the Knot3 project.
  */
 
@@ -68,7 +68,7 @@ namespace Knot3.Framework.Core
                     Graphics.ToggleFullScreen ();
                     Graphics.ApplyChanges ();
                     isFullscreen = value;
-                    Config.Default["video","fullscreen",false] = value;
+                    Config.Default ["video","fullscreen",false] = value;
                     Graphics.ApplyChanges ();
                 }
             }
@@ -169,7 +169,7 @@ namespace Knot3.Framework.Core
 
         protected override void Initialize ()
         {
-            IsFullScreen = Config.Default["video","fullscreen",false];
+            IsFullScreen = Config.Default ["video","fullscreen",false];
         }
 
         protected void updateResolution ()

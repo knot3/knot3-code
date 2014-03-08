@@ -24,7 +24,7 @@
  *   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  *   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  *   SOFTWARE.
- * 
+ *
  * See the LICENSE file for full license details of the Knot3 project.
  */
 
@@ -111,8 +111,8 @@ namespace Knot3.Game.Data
                                     NodeB = nodeB,
                                     NodeC = nodeC,
                                     NodeD = nodeD,
-                                    Position = pos[first].Position,
-                                    IsVirtual = pos[first].IsVirtual || pos[second].IsVirtual
+                                    Position = pos [first].Position,
+                                    IsVirtual = pos [first].IsVirtual || pos [second].IsVirtual
                                 };
                                 yield return valid;
                             }

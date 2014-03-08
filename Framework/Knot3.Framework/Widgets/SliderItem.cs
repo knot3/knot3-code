@@ -24,7 +24,7 @@
  *   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  *   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  *   SOFTWARE.
- * 
+ *
  * See the LICENSE file for full license details of the Knot3 project.
  */
 
@@ -154,13 +154,13 @@ namespace Knot3.Framework.Widgets
             Texture2D lineTexture = new Texture2D (Screen.GraphicsDevice, lineWidth, lineHeight);
             Texture2D rectangleTexture = new Texture2D (Screen.GraphicsDevice, 1, 1);
 
-            Color[] dataLine = new Color[lineWidth * lineHeight];
+            Color[] dataLine = new Color [lineWidth * lineHeight];
             for (int i = 0; i < dataLine.Length; ++i) {
                 dataLine [i] = Color.White;
             }
             lineTexture.SetData (dataLine);
 
-            Color[] dataRec = new Color[1];
+            Color[] dataRec = new Color [1];
             dataRec [0] = Design.DefaultLineColor;
             rectangleTexture.SetData (dataRec);
 

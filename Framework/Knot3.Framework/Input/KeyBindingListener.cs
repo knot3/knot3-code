@@ -24,7 +24,7 @@
  *   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  *   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  *   SOFTWARE.
- * 
+ *
  * See the LICENSE file for full license details of the Knot3 project.
  */
 
@@ -202,7 +202,7 @@ namespace Knot3.Framework.Input
 
             // Aktualisiere die Liste von Tasten, zu denen wir als IKeyEventListener benachrichtigt werden
             ValidKeys.Clear ();
-            ValidKeys.AddRange (from binding in ActionBindings.Keys select CurrentKeyAssignmentReversed[binding]);
+            ValidKeys.AddRange (from binding in ActionBindings.Keys select CurrentKeyAssignmentReversed [binding]);
         }
 
         public virtual void OnKeyEvent (List<Keys> keys, KeyEvent keyEvent, GameTime time)

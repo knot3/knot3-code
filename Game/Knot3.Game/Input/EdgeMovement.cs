@@ -24,7 +24,7 @@
  *   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  *   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  *   SOFTWARE.
- * 
+ *
  * See the LICENSE file for full license details of the Knot3 project.
  */
 
@@ -336,7 +336,7 @@ namespace Knot3.Game.Input
             if (Config.Default ["video", "auto-camera-move", true]) {
                 ScreenPoint currentPosition = Screen.InputManager.CurrentMousePosition;
                 Bounds worldBounds = World.Bounds;
-                var bounds = new [] {
+                var bounds = new[] {
                     new { Bounds = worldBounds.FromLeft (0.1f), Side = new Vector2 (-1, 0) },
                     new { Bounds = worldBounds.FromRight (0.1f), Side = new Vector2 (1, 0) },
                     new { Bounds = worldBounds.FromTop (0.1f), Side = new Vector2 (0, 1) },

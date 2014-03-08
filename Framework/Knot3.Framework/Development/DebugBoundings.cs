@@ -24,7 +24,7 @@
  *   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  *   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  *   SOFTWARE.
- * 
+ *
  * See the LICENSE file for full license details of the Knot3 project.
  */
 
@@ -62,7 +62,7 @@ namespace Knot3.Framework.Development
             effect.LightingEnabled = false;
             effect.VertexColorEnabled = false;
 
-            VertexPositionColor[] verts = new VertexPositionColor[(sphereResolution + 1) * 3];
+            VertexPositionColor[] verts = new VertexPositionColor [(sphereResolution + 1) * 3];
             int index = 0;
             float step = MathHelper.TwoPi / (float)sphereResolution;
             for (float a = 0f; a <= MathHelper.TwoPi; a += step) {

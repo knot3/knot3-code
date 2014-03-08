@@ -24,7 +24,7 @@
  *   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  *   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  *   SOFTWARE.
- * 
+ *
  * See the LICENSE file for full license details of the Knot3 project.
  */
 
@@ -147,8 +147,8 @@ namespace Knot3.ModelEditor
             itemJunctionCount.ValueChanged += OnJunctionCountChanged;
 
             Direction[] validDirections = Direction.Values;
-            optionJuctionDirection = new DistinctOption[3];
-            itemJunctionDirection = new DropDownMenuItem[3];
+            optionJuctionDirection = new DistinctOption [3];
+            itemJunctionDirection = new DropDownMenuItem [3];
             for (int i = 0; i < 3; ++i) {
                 DistinctOption option = new DistinctOption (
                     section: "debug",
@@ -168,7 +168,7 @@ namespace Knot3.ModelEditor
                 itemJunctionDirection [i] = item;
             }
 
-            itemBumpRotation = new DropDownMenuItem[3];
+            itemBumpRotation = new DropDownMenuItem [3];
             for (int i = 0; i < 3; ++i) {
                 DropDownMenuItem item = new DropDownMenuItem (
                     screen: this,
@@ -179,7 +179,7 @@ namespace Knot3.ModelEditor
                 itemBumpRotation [i] = item;
             }
 
-            itemModels = new DropDownMenuItem[3];
+            itemModels = new DropDownMenuItem [3];
             for (int i = 0; i < 3; ++i) {
                 DropDownMenuItem item = new DropDownMenuItem (
                     screen: this,

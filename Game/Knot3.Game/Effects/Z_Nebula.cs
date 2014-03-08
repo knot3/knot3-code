@@ -24,7 +24,7 @@
  *   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  *   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  *   SOFTWARE.
- * 
+ *
  * See the LICENSE file for full license details of the Knot3 project.
  */
 
@@ -80,11 +80,11 @@ namespace Knot3.Game.Effects
 
             Camera camera = model.World.Camera;
 
-            zNebulaEffect.Parameters["World"].SetValue (model.WorldMatrix * camera.WorldMatrix);
-            zNebulaEffect.Parameters["View"].SetValue (camera.ViewMatrix);
-            zNebulaEffect.Parameters["Projection"].SetValue (camera.ProjectionMatrix);
+            zNebulaEffect.Parameters ["World"].SetValue (model.WorldMatrix * camera.WorldMatrix);
+            zNebulaEffect.Parameters ["View"].SetValue (camera.ViewMatrix);
+            zNebulaEffect.Parameters ["Projection"].SetValue (camera.ProjectionMatrix);
 
-            zNebulaEffect.CurrentTechnique = zNebulaEffect.Techniques["Simplest"];
+            zNebulaEffect.CurrentTechnique = zNebulaEffect.Techniques ["Simplest"];
 
             foreach (ModelMesh mesh in model.Model.Meshes) {
                 mesh.Draw ();

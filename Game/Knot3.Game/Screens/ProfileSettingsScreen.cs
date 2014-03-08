@@ -24,7 +24,7 @@
  *   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  *   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  *   SOFTWARE.
- * 
+ *
  * See the LICENSE file for full license details of the Knot3 project.
  */
 
@@ -70,10 +70,10 @@ namespace Knot3.Game.Screens
                 screen: this,
                 drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
                 text: "Player Name:",
-                inputText: Config.Default["profile", "name", "Player"]
+                inputText: Config.Default ["profile", "name", "Player"]
             );
             playerNameInput.OnValueSubmitted += () => {
-                Config.Default["profile", "name", String.Empty] = playerNameInput.InputText;
+                Config.Default ["profile", "name", String.Empty] = playerNameInput.InputText;
             };
 
             settingsMenu.Add (playerNameInput);

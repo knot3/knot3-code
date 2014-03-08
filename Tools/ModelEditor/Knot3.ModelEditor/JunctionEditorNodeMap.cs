@@ -24,7 +24,7 @@
  *   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  *   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  *   SOFTWARE.
- * 
+ *
  * See the LICENSE file for full license details of the Knot3 project.
  */
 
@@ -87,7 +87,7 @@ namespace Knot3.ModelEditor
 
         public void Render (Direction[] directions)
         {
-            _edges = new Edge[directions.Length * 2];
+            _edges = new Edge [directions.Length * 2];
             directions.Length.Repeat (i => _edges [i * 2] = new Edge (directions [i]));
             directions.Length.Repeat (i => _edges [i * 2 + 1] = new Edge (directions [i]));
             BuildIndex ();

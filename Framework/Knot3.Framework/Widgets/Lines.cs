@@ -24,7 +24,7 @@
  *   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  *   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  *   SOFTWARE.
- * 
+ *
  * See the LICENSE file for full license details of the Knot3 project.
  */
 
@@ -86,7 +86,7 @@ namespace Knot3.Framework.Widgets
                 int scaledLineWidth = (int)new Vector2 (lineWidth, lineWidth).Scale (Screen.Viewport).X;
 
                 if (points.Count >= 2) {
-                    Rectangle[] rects = new Rectangle[points.Count - 1];
+                    Rectangle[] rects = new Rectangle [points.Count - 1];
                     for (int i = 1; i < points.Count; ++i) {
                         Vector2 nodeA = points [i - 1];
                         Vector2 nodeB = points [i];

@@ -24,7 +24,7 @@
  *   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  *   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  *   SOFTWARE.
- * 
+ *
  * See the LICENSE file for full license details of the Knot3 project.
  */
 
@@ -165,7 +165,7 @@ namespace Knot3.Game.Models
             int width = 1000;
             int height = 1000;
             Texture2D texture = new Texture2D (Screen.GraphicsDevice, width, height);
-            Color[] colors = new Color[width * height];
+            Color[] colors = new Color [width * height];
             for (int i = 0; i < colors.Length; i++) {
                 colors [i] = Color.Black;
             }
