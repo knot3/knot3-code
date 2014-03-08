@@ -96,17 +96,7 @@ namespace Knot3.Game.Screens
         /// <summary>
         /// Die Challenge.
         /// </summary>
-        public Challenge Challenge
-        {
-            get {
-                return _challenge;
-            }
-            set {
-                _challenge = value;
-            }
-        }
-
-        private Challenge _challenge;
+        public Challenge Challenge { get; set; }
 
         /// <summary>
         /// Der Spielerknoten, der durch die Transformation des Spielers aus dem Ausgangsknoten entsteht.
@@ -164,6 +154,7 @@ namespace Knot3.Game.Screens
             ChallengeWorld = new World (screen: this, drawOrder: DisplayLayer.GameWorld, bounds: Bounds.FromLeft (percent: 0.5f));
             ChallengeWorld.Camera = PlayerWorld.Camera;
             PlayerWorld.OnRedraw += () => ChallengeWorld.Redraw = true;
+            ChallengeWorld.OnRedraw += () => PlayerWorld.Redraw = true;
             // input
             playerKnotInput = new KnotInputHandler (screen: this, world: PlayerWorld);
             challengeKnotInput = new KnotInputHandler (screen: this, world: ChallengeWorld);
