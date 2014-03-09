@@ -47,8 +47,9 @@ namespace Knot3.Framework.Platform
 
         public static bool DownloadSDL2 ()
         {
-            if (File.Exists ("SDL2.dll"))
+            if (File.Exists ("SDL2.dll")) {
                 return;
+            }
 
             string zipFilename = "SDL2.zip";
             bool success = false;
