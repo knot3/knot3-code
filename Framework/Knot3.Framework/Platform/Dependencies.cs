@@ -152,6 +152,7 @@ namespace Knot3.Framework.Platform
                 Log.Message ();
                 Log.Error (ex);
                 Log.Message ();
+                Application.EnableVisualStyles ();
                 if (ex.ToString ().ToLower ().Contains ("sdl2.dll")) {
                     Log.ShowMessageBox ("This game requires SDL2. It will be downloaded now.", "Dependency missing");
                     if (Dependencies.DownloadSDL2 () && Dependencies.DownloadSDL2_image ()) {
