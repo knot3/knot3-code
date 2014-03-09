@@ -159,8 +159,8 @@ namespace Knot3.Game.Widgets
                     Submit (time);
                 }
             }
-            else if(key.Contains(Keys.Escape)){
-                Close(time);
+            else if (key.Contains (Keys.Escape)) {
+                Close (time);
             }
             base.OnKeyEvent (key, keyEvent, time);
         }
