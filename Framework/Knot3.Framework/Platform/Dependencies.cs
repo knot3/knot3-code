@@ -27,13 +27,11 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
-
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Net;
 using System.Windows.Forms;
-
 using Ionic.Zip;
 
 namespace Knot3.Framework.Platform
@@ -57,15 +55,12 @@ namespace Knot3.Framework.Platform
                     using (ZipFile zip = ZipFile.Read (zipFilename)) {
                         // iterate over files in the zip file
                         foreach (ZipEntry entry in zip) {
-                            try {
+                            CatchExtractExceptions (()=>{
                                 // extract the file to the current directory
                                 entry.Extract (".", ExtractExistingFileAction.OverwriteSilently);
                                 // downloading was obviously sucessful
                                 ++ extractedFiles;
-                            }
-                            catch (UnauthorizedAccessException ex) {
-                                Log.Error (ex);
-                            }
+                            });
                         }
                     }
                 }
@@ -102,15 +97,12 @@ namespace Knot3.Framework.Platform
                     using (ZipFile zip = ZipFile.Read (zipFilename)) {
                         // iterate over files in the zip file
                         foreach (ZipEntry entry in zip) {
-                            try {
+                            CatchExtractExceptions (()=>{
                                 // extract the file to the current directory
                                 entry.Extract (".", ExtractExistingFileAction.OverwriteSilently);
                                 // downloading was obviously sucessful
                                 ++ extractedFiles;
-                            }
-                            catch (UnauthorizedAccessException ex) {
-                                Log.Error (ex);
-                            }
+                            });
                         }
                     }
                 }
@@ -147,15 +139,12 @@ namespace Knot3.Framework.Platform
                     using (ZipFile zip = ZipFile.Read (zipFilename)) {
                         // iterate over files in the zip file
                         foreach (ZipEntry entry in zip) {
-                            try {
+                            CatchExtractExceptions (()=>{
                                 // extract the file to the current directory
                                 entry.Extract (".", ExtractExistingFileAction.OverwriteSilently);
                                 // downloading was obviously sucessful
                                 ++ extractedFiles;
-                            }
-                            catch (UnauthorizedAccessException ex) {
-                                Log.Error (ex);
-                            }
+                            });
                         }
                     }
                 }
@@ -195,6 +184,16 @@ namespace Knot3.Framework.Platform
             catch (Exception ex) {
                 Log.Error (ex);
                 return false;
+            }
+        }
+
+        public static void CatchExtractExceptions (Action action)
+        {
+            try {
+                action ();
+            }
+            catch (Exception ex) {
+                Log.Error (ex);
             }
         }
 
