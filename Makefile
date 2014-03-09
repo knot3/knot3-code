@@ -12,9 +12,10 @@ SOLUTION=Knot3-MG.sln
 
 CODE_DIR = Game
 FRAMEWORK_DIR = Framework
-TEST_DIR = UnitTests
+UNITTESTS_DIR = UnitTests
 TOOL_MODELEDITOR_DIR = Tools/ModelEditor
 TOOL_CONFIGRESET_DIR = Tools/ConfigReset
+VISUALTESTS_DIR = VisualTests
 CONTENT_DIR = Content
 STD_KNOT_DIR = Game/Standard_Knots
 
@@ -35,7 +36,7 @@ build: clean
 	xbuild $(SOLUTION)
 	$(CPR) $(LIB_DIR)/*.dll.config $(CODE_DIR)/bin/Debug/
 	$(CPR) $(LIB_DIR)/*.dll.config $(TOOL_MODELEDITOR_DIR)/bin/Debug/
-	$(CPR) $(LIB_DIR)/*.dll.config $(TEST_DIR)/bin/Debug/
+	$(CPR) $(LIB_DIR)/*.dll.config $(UNITTESTS_DIR)/bin/Debug/
 
 install: build
 	$(MKDIR) $(BINDIR)
@@ -57,25 +58,27 @@ distclean:
 	$(RMR) $(CODE_DIR)/obj
 	$(RMR) $(FRAMEWORK_DIR)/bin
 	$(RMR) $(FRAMEWORK_DIR)/obj
-	$(RMR) $(TEST_DIR)/bin
-	$(RMR) $(TEST_DIR)/obj
+	$(RMR) $(UNITTESTS_DIR)/bin
+	$(RMR) $(UNITTESTS_DIR)/obj
 	$(RMR) $(TOOL_MODELEDITOR_DIR)/bin
 	$(RMR) $(TOOL_MODELEDITOR_DIR)/obj
 	git clean -xdf || true
 
 test: build
-	cd $(TEST_DIR)
-	nunit-console $(TEST_DIR)/bin/Debug/Knot3.UnitTests.dll
+	cd $(UNITTESTS_DIR)
+	nunit-console $(UNITTESTS_DIR)/bin/Debug/Knot3.UnitTests.dll
 
 build-windows: clean
 	$(MKDIR) $(CODE_DIR)/bin/Release/ || true
 	$(UNZIP) -o -d $(CODE_DIR)/bin/Release/ $(LIB_MG_WINDOWS) || true
 	$(MKDIR) $(FRAMEWORK_DIR)/bin/Release/ || true
 	$(UNZIP) -o -d $(FRAMEWORK_DIR)/bin/Release/ $(LIB_MG_WINDOWS) || true
-	$(MKDIR) $(TEST_DIR)/bin/Release/ || true
-	$(UNZIP) -o -d $(TEST_DIR)/bin/Release/ $(LIB_MG_WINDOWS) || true
+	$(MKDIR) $(UNITTESTS_DIR)/bin/Release/ || true
+	$(UNZIP) -o -d $(UNITTESTS_DIR)/bin/Release/ $(LIB_MG_WINDOWS) || true
 	$(MKDIR) $(TOOL_MODELEDITOR_DIR)/bin/Release/ || true
 	$(UNZIP) -o -d $(TOOL_MODELEDITOR_DIR)/bin/Release/ $(LIB_MG_WINDOWS) || true
+	$(MKDIR) $(VISUALTESTS_DIR)/bin/Release/ || true
+	$(UNZIP) -o -d $(VISUALTESTS_DIR)/bin/Release/ $(LIB_MG_WINDOWS) || true
 	xbuild /p:Configuration=Release $(SOLUTION)
 
 package-windows: build-windows
@@ -86,6 +89,7 @@ package-windows: build-windows
 	$(CPR) $(CONTENT_DIR)/* $(DESTDIR)/Content/
 	$(CPR) $(FRAMEWORK_DIR)/bin/Release/* $(DESTDIR)/
 	$(CPR) $(TOOL_MODELEDITOR_DIR)/bin/Release/* $(DESTDIR)/
+	$(CPR) $(VISUALTESTS_DIR)/bin/Release/* $(DESTDIR)/
 	$(CPR) $(CODE_DIR)/bin/Release/* $(DESTDIR)/
 	$(CP) LICENSE $(DESTDIR)/
 	$(CP) debian/changelog $(DESTDIR)/CHANGELOG
