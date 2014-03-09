@@ -27,22 +27,26 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
+
 using System;
 using System.Diagnostics.CodeAnalysis;
+using System.IO;
 using System.Linq;
+
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+
 using Knot3.Framework.Core;
 using Knot3.Framework.Math;
+using Knot3.Framework.Platform;
+using Knot3.Framework.Storage;
 using Knot3.Framework.Utilities;
 using Knot3.Framework.Widgets;
+
 using Knot3.Game.Data;
 using Knot3.Game.Input;
 using Knot3.Game.Models;
 using Knot3.Game.Utilities;
-using Knot3.Framework.Storage;
-using System.IO;
-using Knot3.Framework.Platform;
 
 namespace Knot3.Game.Screens
 {
@@ -179,12 +183,12 @@ namespace Knot3.Game.Screens
                     previewWorld.Camera.ResetCamera ();
                     previewKnotMetaData = meta;
                     startButton.IsVisible = true;
-                    
+
                     MenuEntry countEntry = new MenuEntry (
                         screen: this,
                         drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
                         name: Localizer.Localize ("Knot Count: ") + previewKnotMetaData.CountEdges,
-                        onClick: (t) => {}
+                    onClick: (t) => {}
                     );
                     countEntry.IsSelectable = false;
                     countEntry.Enabled = false;

@@ -30,6 +30,7 @@
 
 using System;
 using System.Diagnostics.CodeAnalysis;
+using System.IO;
 using System.Linq;
 
 using Microsoft.Xna.Framework;
@@ -37,6 +38,8 @@ using Microsoft.Xna.Framework.Input;
 
 using Knot3.Framework.Core;
 using Knot3.Framework.Math;
+using Knot3.Framework.Platform;
+using Knot3.Framework.Storage;
 using Knot3.Framework.Utilities;
 using Knot3.Framework.Widgets;
 
@@ -44,9 +47,6 @@ using Knot3.Game.Data;
 using Knot3.Game.Input;
 using Knot3.Game.Models;
 using Knot3.Game.Utilities;
-using Knot3.Framework.Platform;
-using System.IO;
-using Knot3.Framework.Storage;
 
 namespace Knot3.Game.Screens
 {
@@ -191,8 +191,8 @@ namespace Knot3.Game.Screens
                     MenuEntry countEntry = new MenuEntry (
                         screen: this,
                         drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
-                        name: Localizer.Localize("Knot Count: ") + meta.Target.CountEdges,
-                        onClick: (t) => {}
+                        name: Localizer.Localize ("Knot Count: ") + meta.Target.CountEdges,
+                    onClick: (t) => {}
                     );
                     countEntry.IsSelectable = false;
                     countEntry.Enabled = false;
@@ -201,8 +201,8 @@ namespace Knot3.Game.Screens
                     MenuEntry avgtimeEntry = new MenuEntry (
                         screen: this,
                         drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
-                        name: Localizer.Localize("Avg Time: ") + Localizer.Localize(meta.FormatedAvgTime),
-                        onClick: (t) => {}
+                        name: Localizer.Localize ("Avg Time: ") + Localizer.Localize (meta.FormatedAvgTime),
+                    onClick: (t) => {}
                     );
                     avgtimeEntry.IsSelectable = false;
                     avgtimeEntry.Enabled = false;
