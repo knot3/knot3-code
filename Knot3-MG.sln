@@ -57,7 +57,7 @@ Global
 		{C2868E88-721C-40EB-863B-E9272F95DAF1}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = Game\Knot3.Game-MG.csproj
+		StartupItem = VisualTests\Knot3.VisualTests-MG.csproj
 		Policies = $0
 		$0.TextStylePolicy = $1
 		$1.inheritsSet = null

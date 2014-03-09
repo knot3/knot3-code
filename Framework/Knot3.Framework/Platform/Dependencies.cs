@@ -211,7 +211,9 @@ namespace Knot3.Framework.Platform
                 Application.EnableVisualStyles ();
                 if (ex.ToString ().ToLower ().Contains ("sdl2.dll")) {
                     Log.ShowMessageBox ("This game requires SDL2. It will be downloaded now.", "Dependency missing");
-                    if (Dependencies.DownloadSDL2 () && Dependencies.DownloadSDL2_image ()) {
+                    if (Dependencies.DownloadSDL2 () && (Dependencies.DownloadSDL2_image ()||File.Exists("SDL2_image.dll")) && (Dependencies.DownloadOpenAL () || File.Exists ("oalinst.exe"))) {
+                        if (File.Exists ("oalinst.exe"))
+                            System.Diagnostics.Process.Start ("oalinst.exe");
                         System.Diagnostics.Process.Start (Application.ExecutablePath); // to start new instance of application
                         Application.Exit ();
                     }
