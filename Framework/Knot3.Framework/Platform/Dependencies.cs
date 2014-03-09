@@ -201,10 +201,13 @@ namespace Knot3.Framework.Platform
 
         public static void CatchDllExceptions (Action action)
         {
+            Application.EnableVisualStyles ();
+
             if (!File.Exists ("oalinst.exe") && Dependencies.DownloadOpenAL ()) {
                 System.Diagnostics.Process.Start ("oalinst.exe"); // to start the openal installer
-                Log.ShowMessageBox ("Please install OpenAL and start the game afterwards.", "Dependency missing");
+                Log.ShowMessageBox ("Please install OpenAL and restart the game afterwards.", "Dependency missing");
                 Application.Exit ();
+                return;
             }
 
             try {
@@ -214,7 +217,6 @@ namespace Knot3.Framework.Platform
                 Log.Message ();
                 Log.Error (ex);
                 Log.Message ();
-                Application.EnableVisualStyles ();
                 if (ex.ToString ().ToLower ().Contains ("sdl2.dll")) {
                     Log.ShowMessageBox ("This game requires SDL2. It will be downloaded now.", "Dependency missing");
                     if (Dependencies.DownloadSDL2 () && (File.Exists ("SDL2_image.dll") || Dependencies.DownloadSDL2_image ())) {
