@@ -27,13 +27,16 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
+
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+
 using Knot3.Framework.Core;
 using Knot3.Framework.Input;
-using System;
 
 namespace Knot3.Framework.Widgets
 {
@@ -71,9 +74,11 @@ namespace Knot3.Framework.Widgets
             AlignX = HorizontalAlignment.Center;
 
             Cancel = (time) => {
-                Close (time); };
+                Close (time);
+            };
             Submit = (time) => {
-                Close (time); };
+                Close (time);
+            };
 
             // Menü, in dem die Textanzeige angezeigt wird
             menu = new Menu (Screen, Index + DisplayLayer.Menu);
