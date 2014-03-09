@@ -27,11 +27,13 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
+
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Net;
 using System.Windows.Forms;
+
 using Ionic.Zip;
 
 namespace Knot3.Framework.Platform
@@ -55,7 +57,7 @@ namespace Knot3.Framework.Platform
                     using (ZipFile zip = ZipFile.Read (zipFilename)) {
                         // iterate over files in the zip file
                         foreach (ZipEntry entry in zip) {
-                            CatchExtractExceptions (()=>{
+                            CatchExtractExceptions (()=> {
                                 // extract the file to the current directory
                                 entry.Extract (".", ExtractExistingFileAction.OverwriteSilently);
                                 // downloading was obviously sucessful
@@ -97,7 +99,7 @@ namespace Knot3.Framework.Platform
                     using (ZipFile zip = ZipFile.Read (zipFilename)) {
                         // iterate over files in the zip file
                         foreach (ZipEntry entry in zip) {
-                            CatchExtractExceptions (()=>{
+                            CatchExtractExceptions (()=> {
                                 // extract the file to the current directory
                                 entry.Extract (".", ExtractExistingFileAction.OverwriteSilently);
                                 // downloading was obviously sucessful
@@ -139,7 +141,7 @@ namespace Knot3.Framework.Platform
                     using (ZipFile zip = ZipFile.Read (zipFilename)) {
                         // iterate over files in the zip file
                         foreach (ZipEntry entry in zip) {
-                            CatchExtractExceptions (()=>{
+                            CatchExtractExceptions (()=> {
                                 // extract the file to the current directory
                                 entry.Extract (".", ExtractExistingFileAction.OverwriteSilently);
                                 // downloading was obviously sucessful
