@@ -112,6 +112,7 @@
     <Compile Include="Knot3.Framework\Storage\Config.cs" />
     <Compile Include="Knot3.Framework\Storage\ConfigFile.cs" />
     <Compile Include="Knot3.Framework\Storage\DistinctOption.cs" />
+    <Compile Include="Knot3.Framework\Storage\FileAlreadyExistsException.cs" />
     <Compile Include="Knot3.Framework\Storage\FileUtility.cs" />
     <Compile Include="Knot3.Framework\Storage\FloatOption.cs" />
     <Compile Include="Knot3.Framework\Storage\IniFile.cs" />
@@ -119,6 +120,7 @@
     <Compile Include="Knot3.Framework\Storage\Language.cs" />
     <Compile Include="Knot3.Framework\Storage\LanguageOption.cs" />
     <Compile Include="Knot3.Framework\Storage\Localizer.cs" />
+    <Compile Include="Knot3.Framework\Storage\NoFilenameException.cs" />
     <Compile Include="Knot3.Framework\Storage\Option.cs" />
     <Compile Include="Knot3.Framework\Utilities\ColorHelper.cs" />
     <Compile Include="Knot3.Framework\Utilities\DictionaryExtensions.cs" />
@@ -147,6 +149,7 @@
     <Compile Include="Knot3.Framework\Widgets\VerticalAlignment.cs" />
     <Compile Include="Knot3.Framework\Widgets\Widget.cs" />
     <Compile Include="Knot3.Framework\Widgets\WidgetState.cs" />
+    <Compile Include="obj\Debug\.NETFramework,Version=v4.0.AssemblyAttribute.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
