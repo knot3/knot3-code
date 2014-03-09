@@ -81,6 +81,7 @@ namespace Knot3.Game.Widgets
             }
 
             buttons = new Container (screen, Index + DisplayLayer.Menu);
+            buttons.ItemAlignX = HorizontalAlignment.Center;
 
             // Button zum Neustarten der Challenge
             Action<GameTime> restartAction = (time) => {
