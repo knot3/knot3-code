@@ -58,7 +58,7 @@ namespace Knot3.Framework.Core
         /// Steht für die Ebene in der die Dialoge dargestellt werden.
         /// Dialoge werden vor der Spielwelt gezeichnet, damit der Spieler damit interagieren kann.
         /// </summary>
-        public static readonly DisplayLayer Dialog = new DisplayLayer (50, "Dialog");
+        public static readonly DisplayLayer Dialog = new DisplayLayer (55, "Dialog");
         /// <summary>
         /// Steht für die Ebene in der Menüs gezeichnet werden. Menüs werden innerhalb von Dialogen angezeigt, müssen also davor gezeichnet werden, damit sie nicht vom Hintergrund des Dialogs verdeckt werden.
         /// </summary>

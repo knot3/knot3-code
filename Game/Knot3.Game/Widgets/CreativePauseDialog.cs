@@ -169,7 +169,7 @@ namespace Knot3.Game.Widgets
             saveDialog.NoWhiteSpace = true;
             saveDialog.Text = "Press Enter to save the Knot.";
             Screen.AddGameComponents (null, saveDialog);
-            saveDialog.Close += (t) => {
+            saveDialog.Submit += (t) => {
                 try {
                     knot.Name = saveDialog.InputText;
                     knot.Save ();

@@ -85,6 +85,8 @@ namespace Knot3.Game.Widgets
                 textItem.Text = value;
             }
         }
+
+        public Action<GameTime> Submit;
         /// <summary>
         ///
         /// </summary>
@@ -101,6 +103,11 @@ namespace Knot3.Game.Widgets
         : base (screen, drawOrder, title)
         {
             textItem = new TextItem (screen, drawOrder, String.Empty);
+
+            Submit = (time) => {
+                IsVisible = false;
+                Screen.RemoveGameComponents (time, this);
+            };
 
             Bounds.Size = new ScreenPoint (screen, 0.5f, 0.3f);
             // Der Titel-Text ist mittig ausgerichtet
@@ -149,8 +156,11 @@ namespace Knot3.Game.Widgets
                 }
 
                 if (canClose) {
-                    Close (time);
+                    Submit (time);
                 }
+            }
+            else if(key.Contains(Keys.Escape)){
+                Close(time);
             }
             base.OnKeyEvent (key, keyEvent, time);
         }
