@@ -136,7 +136,7 @@ namespace Knot3.Game.Widgets
         ///
         /// </summary>
         public override void OnKeyEvent (List<Keys> key, KeyEvent keyEvent, GameTime time)
-        {
+        {if (keyEvent == KeyEvent.KeyDown) {
             if (key.Contains (Keys.Enter)) {
                 bool canClose = true;
 
@@ -160,6 +160,7 @@ namespace Knot3.Game.Widgets
 
                 if (canClose) {
                     Submit (time);
+                }
                 }
             }
             else if (key.Contains (Keys.Escape)) {

@@ -144,7 +144,7 @@ namespace Knot3.Framework.Widgets
         /// </summary>
         public override void OnKeyEvent (List<Keys> key, KeyEvent keyEvent, GameTime time)
         {
-            if (Screen.InputManager.KeyPressed (key [0])) {
+            if (keyEvent == KeyEvent.KeyDown) {
                 if (key.Contains (Keys.Enter)) {
                     Submit (time);
                 }
