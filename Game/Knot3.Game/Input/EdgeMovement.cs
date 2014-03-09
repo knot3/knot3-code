@@ -38,6 +38,7 @@ using Microsoft.Xna.Framework;
 
 using Knot3.Framework.Audio;
 using Knot3.Framework.Core;
+using Knot3.Framework.Development;
 using Knot3.Framework.Input;
 using Knot3.Framework.Math;
 using Knot3.Framework.Models;
@@ -48,7 +49,6 @@ using Knot3.Framework.Utilities;
 using Knot3.Game.Audio;
 using Knot3.Game.Data;
 using Knot3.Game.Models;
-using Knot3.Framework.Development;
 
 namespace Knot3.Game.Input
 {
@@ -150,10 +150,10 @@ namespace Knot3.Game.Input
                         }
                         // keine Taste gedrückt
                         else {
-                            if(!Knot.IsSelected(selectedEdge)){
-                            Knot.ClearSelection ();
-                            Knot.AddToSelection (selectedEdge);
-                        }
+                            if (!Knot.IsSelected (selectedEdge)) {
+                                Knot.ClearSelection ();
+                                Knot.AddToSelection (selectedEdge);
+                            }
                         }
                     }
                     catch (ArgumentOutOfRangeException exp) {
@@ -205,7 +205,7 @@ namespace Knot3.Game.Input
                         // Wenn etwas anderes (eine Kante) selektiert wurde,
                         // muss die Verschiebe-Richtung berechnet werden
                         Profiler.ProfileDelegate ["UpdShadowPipes"] = () => {
-                        UpdateShadowPipes (currentMousePosition, time);
+                            UpdateShadowPipes (currentMousePosition, time);
                         };
                     }
 
