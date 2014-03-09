@@ -33,7 +33,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Net;
 using System.Windows.Forms;
-
 using Ionic.Zip;
 
 namespace Knot3.Framework.Platform
@@ -57,11 +56,11 @@ namespace Knot3.Framework.Platform
                     using (ZipFile zip = ZipFile.Read (zipFilename)) {
                         // iterate over files in the zip file
                         foreach (ZipEntry entry in zip) {
-                            CatchExtractExceptions (()=> {
+                            CatchExtractExceptions (() => {
                                 // extract the file to the current directory
                                 entry.Extract (".", ExtractExistingFileAction.OverwriteSilently);
                                 // downloading was obviously sucessful
-                                ++ extractedFiles;
+                                ++extractedFiles;
                             });
                         }
                     }
@@ -99,11 +98,11 @@ namespace Knot3.Framework.Platform
                     using (ZipFile zip = ZipFile.Read (zipFilename)) {
                         // iterate over files in the zip file
                         foreach (ZipEntry entry in zip) {
-                            CatchExtractExceptions (()=> {
+                            CatchExtractExceptions (() => {
                                 // extract the file to the current directory
                                 entry.Extract (".", ExtractExistingFileAction.OverwriteSilently);
                                 // downloading was obviously sucessful
-                                ++ extractedFiles;
+                                ++extractedFiles;
                             });
                         }
                     }
@@ -141,11 +140,11 @@ namespace Knot3.Framework.Platform
                     using (ZipFile zip = ZipFile.Read (zipFilename)) {
                         // iterate over files in the zip file
                         foreach (ZipEntry entry in zip) {
-                            CatchExtractExceptions (()=> {
+                            CatchExtractExceptions (() => {
                                 // extract the file to the current directory
                                 entry.Extract (".", ExtractExistingFileAction.OverwriteSilently);
                                 // downloading was obviously sucessful
-                                ++ extractedFiles;
+                                ++extractedFiles;
                             });
                         }
                     }
@@ -211,7 +210,7 @@ namespace Knot3.Framework.Platform
                 Application.EnableVisualStyles ();
                 if (ex.ToString ().ToLower ().Contains ("sdl2.dll")) {
                     Log.ShowMessageBox ("This game requires SDL2. It will be downloaded now.", "Dependency missing");
-                    if (Dependencies.DownloadSDL2 () && (Dependencies.DownloadSDL2_image ()||File.Exists("SDL2_image.dll")) && (Dependencies.DownloadOpenAL () || File.Exists ("oalinst.exe"))) {
+                    if (Dependencies.DownloadSDL2 () && (Dependencies.DownloadSDL2_image () || File.Exists ("SDL2_image.dll")) && (Dependencies.DownloadOpenAL () || File.Exists ("oalinst.exe"))) {
                         if (File.Exists ("oalinst.exe"))
                             System.Diagnostics.Process.Start ("oalinst.exe");
                         System.Diagnostics.Process.Start (Application.ExecutablePath); // to start new instance of application
