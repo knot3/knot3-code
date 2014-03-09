@@ -27,13 +27,11 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
-
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Net;
 using System.Windows.Forms;
-
 using Ionic.Zip;
 
 namespace Knot3.Framework.Platform
@@ -218,16 +216,21 @@ namespace Knot3.Framework.Platform
             }
         }
 
+        private static string MessageBoxTitle = "Dependency missing";
+
+        private static string DownloadErrorMessage(string package) {
+            return package + " could not be downloaded. Please contact the developers.";
+        }
+
         private static void InstallOpenAL ()
         {
             if (Dependencies.DownloadOpenAL ()) {
                 System.Diagnostics.Process.Start ("oalinst.exe"); // to start the openal installer
-                Log.ShowMessageBox ("Please install OpenAL and restart the game afterwards.", "Dependency missing");
+                Log.ShowMessageBox ("Please install OpenAL and restart the game afterwards.", MessageBoxTitle);
                 Application.Exit ();
-                return;
             }
             else {
-                Log.ShowMessageBox ("OpenAL could not be downloaded.", "Dependency missing");
+                Log.ShowMessageBox (DownloadErrorMessage("OpenAL"), MessageBoxTitle);
             }
         }
 
@@ -236,10 +239,17 @@ namespace Knot3.Framework.Platform
             Application.EnableVisualStyles ();
 
             if (SystemInfo.IsRunningOnWindows ()) {
-                Dependencies.DownloadSDL2 ();
-                Dependencies.DownloadSDL2_image ();
+                if (!Dependencies.DownloadSDL2 ()) {
+                    Log.ShowMessageBox (DownloadErrorMessage("SDL2"), MessageBoxTitle);
+                    return;
+                }
+                if (!Dependencies.DownloadSDL2_image ()) {
+                    Log.ShowMessageBox (DownloadErrorMessage("SDL2_image"), MessageBoxTitle);
+                    return;
+                }
                 if (!IsOpenALInstalled) {
                     InstallOpenAL ();
+                    return;
                 }
             }
 
@@ -250,30 +260,8 @@ namespace Knot3.Framework.Platform
                 Log.Message ();
                 Log.Error (ex);
                 Log.Message ();
-                if (ex.ToString ().ToLower ().Contains ("sdl2.dll")) {
-                    Log.ShowMessageBox ("This game requires SDL2. It will be downloaded now.", "Dependency missing");
-                    if (Dependencies.DownloadSDL2 () && Dependencies.DownloadSDL2_image ()) {
-                        System.Diagnostics.Process.Start (Application.ExecutablePath); // to start new instance of application
-                        Application.Exit ();
-                    }
-                    else {
-                        Log.ShowMessageBox ("SDL2 could not be downloaded.", "Dependency missing");
-                    }
-                }
-                if (ex.ToString ().ToLower ().Contains ("sdl2_image.dll")) {
-                    Log.ShowMessageBox ("This game requires SDL2_image. It will be downloaded now.", "Dependency missing");
-                    if (Dependencies.DownloadSDL2_image ()) {
-                        System.Diagnostics.Process.Start (Application.ExecutablePath); // to start new instance of application
-                        Application.Exit ();
-                    }
-                    else {
-                        Log.ShowMessageBox ("SDL2_image could not be downloaded.", "Dependency missing");
-                    }
-                }
-                if (ex.ToString ().ToLower ().Contains ("openal32.dll")) {
-                    Log.ShowMessageBox ("This game requires OpenAL (openal32.dll). It will be downloaded now. Please restart the Game afterwards.", "Dependency missing");
-                    InstallOpenAL ();
-                }
+                string dllMessage = ex.ToString().Split('(')[0].Split('\n')[0];
+                Log.ShowMessageBox (dllMessage, MessageBoxTitle);
             }
         }
     }
