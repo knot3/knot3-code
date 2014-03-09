@@ -113,7 +113,6 @@ namespace Knot3.Framework.Widgets
                                            - cancelButton.Bounds.Size.OnlyY;
 
             cancelButton.AlignX = HorizontalAlignment.Center;
-          
 
             buttons.Add (cancelButton);
 
