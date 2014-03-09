@@ -44,6 +44,7 @@ using Knot3.Framework.Widgets;
 
 using Knot3.Game.Data;
 using Knot3.Game.Utilities;
+using Knot3.Framework.Storage;
 
 namespace Knot3.Game.Screens
 {
@@ -246,9 +247,18 @@ namespace Knot3.Game.Screens
                     selectedChallenge.Save (false);
                     NextScreen = new ChallengeStartScreen (Game);
                 }
-                catch (Exception ex) {
-                    Dialog errorDialog = new ErrorDialog (this, DisplayLayer.Dialog * 3, ex.ToString ());
-                    AddGameComponents (time, errorDialog);
+                catch (FileAlreadyExistsException){
+                    ConfirmDialog confirm = new ConfirmDialog (
+                        screen: this,
+                        drawOrder: DisplayLayer.Dialog,
+                        title: "Warning",
+                        text:"Do you want to overwrite the existing challenge?"
+                    );
+                    confirm.Submit += (r) => {
+                        selectedChallenge.Save (true);
+                        NextScreen = new ChallengeStartScreen (Game);
+                    };
+                    AddGameComponents (null,confirm);
                 }
             }
         }

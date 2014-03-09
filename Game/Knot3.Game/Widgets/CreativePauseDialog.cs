@@ -192,14 +192,7 @@ namespace Knot3.Game.Widgets
                     };
                     Screen.AddGameComponents (null,confirm);
                 }
-                catch (IOException ex) {
-                    ErrorDialog errorDialog = new ErrorDialog (
-                        screen: Screen,
-                        drawOrder: DisplayLayer.Dialog * 2,
-                        message: "Error in Knot.Save (): " + ex.ToString ()
-                    );
-                    Screen.AddGameComponents (null, errorDialog);
-                }
+              
             };
         }
 
