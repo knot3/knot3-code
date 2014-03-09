@@ -93,7 +93,6 @@ namespace Knot3.Game.Widgets
                 return Color.White;
             }
             return Color.Transparent;
-
         }
 
         private Color MenuItemForegroundColor (WidgetState state)
