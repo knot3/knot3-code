@@ -184,7 +184,7 @@ namespace Knot3.Game.Widgets
                         text:"Do you want to overwrite the existing knot?"
                     );
                     confirm.Cancel += (l) => {
-                        KnotSaveAs(()=>onClose(),time);
+                        KnotSaveAs (()=>onClose (),time);
                     };
                     confirm.Submit += (r) => {
                         knot.Save (true);
@@ -200,7 +200,6 @@ namespace Knot3.Game.Widgets
                     );
                     Screen.AddGameComponents (null, errorDialog);
                 }
-
             };
         }
 
