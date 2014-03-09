@@ -32,10 +32,8 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.RegularExpressions;
-
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
-
 using Knot3.Framework.Core;
 using Knot3.Framework.Input;
 using Knot3.Framework.Math;
@@ -72,8 +70,8 @@ namespace Knot3.Game.Widgets
         /// </summary>
         public bool NoWhiteSpace { get; set; }
 
-        private static readonly Regex Whitespace = new Regex ("^\\s*$"); // Todo: global besser!?
-
+        private static readonly Regex Whitespace = new Regex ("^\\s*$");
+        // Todo: global besser!?
         /// <summary>
         /// Der Text, der über ein Eingabebereich als Erklärung angezeigt wird.
         /// </summary>
@@ -91,12 +89,10 @@ namespace Knot3.Game.Widgets
         /// Wird aufgerufen, wenn der Dialog abgebrochen und geschlossen wird.
         /// </summary>
         public Action<GameTime> Cancel;
-
         /// <summary>
         /// Wird aufgerufen, wenn der Text im Dialog abgesendet werden soll und der Dialog geschlossen wird.
         /// </summary>
         public Action<GameTime> Submit;
-
         private Menu menu;
         private InputItem textInput;
         private TextItem textItem;
@@ -109,8 +105,12 @@ namespace Knot3.Game.Widgets
         {
             textItem = new TextItem (screen, drawOrder, String.Empty);
 
-            Cancel = (time) => { Close (time); };
-            Submit = (time) => { Close (time); };
+            Cancel = (time) => {
+                Close (time);
+            };
+            Submit = (time) => {
+                Close (time);
+            };
 
             Bounds.Size = new ScreenPoint (screen, 0.5f, 0.3f);
             // Der Titel-Text ist mittig ausgerichtet
@@ -137,7 +137,7 @@ namespace Knot3.Game.Widgets
         /// </summary>
         public override void OnKeyEvent (List<Keys> key, KeyEvent keyEvent, GameTime time)
         {
-            if (keyEvent == KeyEvent.KeyDown) {
+
                 if (key.Contains (Keys.Enter)) {
                     bool canClose = true;
 
@@ -162,12 +162,15 @@ namespace Knot3.Game.Widgets
                     if (canClose) {
                         Submit (time);
                     }
+
+            else if (keyEvent == KeyEvent.KeyDown && key.Contains (Keys.Escape)) {
+                    Cancel (time);
+
                 }
             }
-            else if (key.Contains (Keys.Escape)) {
-                Cancel (time);
-            }
+
             base.OnKeyEvent (key, keyEvent, time);
+            
         }
 
         public override IEnumerable<IScreenComponent> SubComponents (GameTime time)
