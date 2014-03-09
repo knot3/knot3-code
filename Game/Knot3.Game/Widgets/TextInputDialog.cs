@@ -86,10 +86,10 @@ namespace Knot3.Game.Widgets
             }
         }
 
-        public Action<GameTime> Submit = (t) => {};
-        /// <summary>
-        ///
-        /// </summary>
+        public Action<GameTime> Cancel;
+
+        public Action<GameTime> Submit;
+
         public Action KeyEvent { get; set; }
 
         private Menu menu;
@@ -104,10 +104,8 @@ namespace Knot3.Game.Widgets
         {
             textItem = new TextItem (screen, drawOrder, String.Empty);
 
-            Submit = (time) => {
-                IsVisible = false;
-                Screen.RemoveGameComponents (time, this);
-            };
+            Cancel = (time) => { Close (time); };
+            Submit = (time) => { Close (time); };
 
             Bounds.Size = new ScreenPoint (screen, 0.5f, 0.3f);
             // Der Titel-Text ist mittig ausgerichtet
