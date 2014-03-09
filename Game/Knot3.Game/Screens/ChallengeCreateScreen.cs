@@ -185,6 +185,8 @@ namespace Knot3.Game.Screens
                 name: name,
                 onClick: SelectTargetKnot
             );
+            buttonStart.IsLocalized = false;
+            buttonTarget.IsLocalized = false;
             buttonStart.SelectedColorBackground = Design.WidgetForeground;
             buttonStart.SelectedColorForeground = Design.WidgetBackground;
             buttonTarget.SelectedColorBackground = Design.WidgetForeground;

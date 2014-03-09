@@ -127,7 +127,7 @@ namespace Knot3.Framework.Storage
                     CurrentLanguageCode.Value = CurrentLanguage.Code;
                 }
 
-                string trimmed = text.Trim ('\r', '\n', ' ', '\t', ':');
+                string trimmed = text.Trim ('\r', '\n', ' ', '\t', ':', '!', '.', '?', ';');
                 string localized = CurrentLanguage.Localization ["text", trimmed, trimmed];
                 return ToUnicode (text.Replace (trimmed, localized));
             }
