@@ -44,6 +44,9 @@ using Knot3.Game.Data;
 using Knot3.Game.Input;
 using Knot3.Game.Models;
 using Knot3.Game.Utilities;
+using Knot3.Framework.Platform;
+using System.IO;
+using Knot3.Framework.Storage;
 
 namespace Knot3.Game.Screens
 {
@@ -86,16 +89,6 @@ namespace Knot3.Game.Screens
             savegameMenu.Bounds.Padding = new ScreenPoint (this, 0.010f, 0.010f);
             savegameMenu.ItemAlignX = HorizontalAlignment.Left;
             savegameMenu.ItemAlignY = VerticalAlignment.Center;
-
-            /*			lines.AddPoints (
-            			   0, 50,
-
-            			    30, 970,
-            			    170, 895,
-            			    270, 970,
-            			    970, 50,
-            			    1000
-            			);*/
 
             lines.AddPoints (.000f, .050f, .030f, .970f, .630f, .895f, .730f, .970f, .770f, .895f, .870f, .970f, .970f, .050f, 1.000f);
 
@@ -169,13 +162,14 @@ namespace Knot3.Game.Screens
             startButton.AlignX = HorizontalAlignment.Center;
         }
 
-        private void UpdateFiles ()
+        private void UpdateFiles (GameTime time)
         {
+            RemoveGameComponents (time, savegameMenu);
             // Leere das Spielstand-Menü
             savegameMenu.Clear ();
-
             // Suche nach Spielständen
             loader.FindSavegames (AddSavegameToList);
+            AddGameComponents (time, savegameMenu);
         }
 
         /// <summary>
@@ -184,8 +178,6 @@ namespace Knot3.Game.Screens
         private void AddSavegameToList (string filename, ChallengeMetaData meta)
         {
             // Erstelle eine Lamdafunktion, die beim Auswählen des Menüeintrags ausgeführt wird
-            Action<GameTime> nullAction = (time) => {
-            };
             Action<GameTime> LoadFile = (time) => {
                 if (previewChallenge == null || previewChallenge.MetaData != meta) {
                     RemoveGameComponents (time, challengeInfo);
@@ -196,24 +188,38 @@ namespace Knot3.Game.Screens
                     previewWorld.Camera.ResetCamera ();
                     startButton.IsVisible = true;
 
-                    MenuEntry count = new MenuEntry (
+                    MenuEntry countEntry = new MenuEntry (
                         screen: this,
                         drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
-                        name: "Knot Count: " + meta.Target.CountEdges,
-                        onClick: nullAction
+                        name: Localizer.Localize("Knot Count: ") + meta.Target.CountEdges,
+                        onClick: (t) => {}
                     );
-                    count.IsSelectable = false;
-                    count.Enabled = false;
-                    challengeInfo.Add (count);
-                    MenuEntry avgtime = new MenuEntry (
+                    countEntry.IsSelectable = false;
+                    countEntry.Enabled = false;
+                    challengeInfo.Add (countEntry);
+
+                    MenuEntry avgtimeEntry = new MenuEntry (
                         screen: this,
                         drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
-                        name: "Avg Time: " + meta.FormatedAvgTime,
-                        onClick: nullAction
+                        name: Localizer.Localize("Avg Time: ") + Localizer.Localize(meta.FormatedAvgTime),
+                        onClick: (t) => {}
                     );
-                    avgtime.IsSelectable = false;
-                    avgtime.Enabled = false;
-                    challengeInfo.Add (avgtime);
+                    avgtimeEntry.IsSelectable = false;
+                    avgtimeEntry.Enabled = false;
+                    challengeInfo.Add (avgtimeEntry);
+
+                    if (filename.Contains (SystemInfo.SavegameDirectory)) {
+                        MenuEntry deleteEntry = new MenuEntry (
+                            screen: this,
+                            drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
+                            name: "Delete",
+                            onClick: (t) => deleteSavegame (filename, t)
+                        );
+                        deleteEntry.AddKey (Keys.Delete);
+                        deleteEntry.AddKey (Keys.Back);
+                        challengeInfo.Add (deleteEntry);
+                    }
+
                     AddGameComponents (time, challengeInfo);
                 }
             };
@@ -234,14 +240,20 @@ namespace Knot3.Game.Screens
             savegameMenu.Add (button);
         }
 
+        private void deleteSavegame (string filename, GameTime time)
+        {
+            File.Delete (filename);
+            UpdateFiles (time);
+        }
+
         /// <summary>
         /// Fügt das Menü mit den Spielständen in die Spielkomponentenliste ein.
         /// </summary>
         public override void Entered (IScreen previousScreen, GameTime time)
         {
-            UpdateFiles ();
+            UpdateFiles (time);
             base.Entered (previousScreen, time);
-            AddGameComponents (time, savegameMenu, title, previewWorld, previewBorder, previewInput, previewMouseHandler, backButton, startButton, infoTitle);
+            AddGameComponents (time, title, previewWorld, previewBorder, previewInput, previewMouseHandler, backButton, startButton, infoTitle);
         }
     }
 }

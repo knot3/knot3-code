@@ -27,23 +27,22 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
-
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
-
 using Knot3.Framework.Core;
 using Knot3.Framework.Math;
 using Knot3.Framework.Utilities;
 using Knot3.Framework.Widgets;
-
 using Knot3.Game.Data;
 using Knot3.Game.Input;
 using Knot3.Game.Models;
 using Knot3.Game.Utilities;
+using Knot3.Framework.Storage;
+using System.IO;
+using Knot3.Framework.Platform;
 
 namespace Knot3.Game.Screens
 {
@@ -152,15 +151,14 @@ namespace Knot3.Game.Screens
             startButton.AlignX = HorizontalAlignment.Center;
         }
 
-        private void UpdateFiles ()
+        private void UpdateFiles (GameTime time)
         {
+            RemoveGameComponents (time, savegameMenu);
             // Leere das Spielstand-Menü
             savegameMenu.Clear ();
-
             // Suche nach Spielständen
             loader.FindSavegames (AddSavegameToList);
-
-            //throw new Exception ("test error");
+            AddGameComponents (time, savegameMenu);
         }
 
         /// <summary>
@@ -170,8 +168,7 @@ namespace Knot3.Game.Screens
         {
             // Finde den Namen des Knotens
             string name = meta.Name.Length > 0 ? meta.Name : filename;
-            Action<GameTime> nullAction = (time) => {
-            };
+
             // Erstelle eine Lamdafunktion, die beim Auswählen des Menüeintrags ausgeführt wird
             Action<GameTime> preview = (time) => {
                 if (previewKnotMetaData != meta) {
@@ -182,17 +179,29 @@ namespace Knot3.Game.Screens
                     previewWorld.Camera.ResetCamera ();
                     previewKnotMetaData = meta;
                     startButton.IsVisible = true;
-
-                    MenuEntry count = new MenuEntry (
+                    
+                    MenuEntry countEntry = new MenuEntry (
                         screen: this,
                         drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
-                        name: "Knot Count: " + previewKnotMetaData.CountEdges,
-                        onClick: nullAction
+                        name: Localizer.Localize ("Knot Count: ") + previewKnotMetaData.CountEdges,
+                        onClick: (t) => {}
                     );
+                    countEntry.IsSelectable = false;
+                    countEntry.Enabled = false;
+                    knotInfo.Add (countEntry);
 
-                    count.IsSelectable = false;
-                    count.Enabled = false;
-                    knotInfo.Add (count);
+                    if (filename.Contains (SystemInfo.SavegameDirectory)) {
+                        MenuEntry deleteEntry = new MenuEntry (
+                            screen: this,
+                            drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
+                            name: "Delete",
+                            onClick: (t) => deleteSavegame (filename, t)
+                        );
+                        deleteEntry.AddKey (Keys.Delete);
+                        deleteEntry.AddKey (Keys.Back);
+                        knotInfo.Add (deleteEntry);
+                    }
+
                     AddGameComponents (time, knotInfo);
                 }
             };
@@ -212,14 +221,20 @@ namespace Knot3.Game.Screens
             savegameMenu.Add (button);
         }
 
+        private void deleteSavegame (string filename, GameTime time)
+        {
+            File.Delete (filename);
+            UpdateFiles (time);
+        }
+
         /// <summary>
         /// Fügt das Menü mit den Spielständen in die Spielkomponentenliste ein.
         /// </summary>
         public override void Entered (IScreen previousScreen, GameTime time)
         {
-            UpdateFiles ();
+            UpdateFiles (time);
             base.Entered (previousScreen, time);
-            AddGameComponents (time, title, savegameMenu, previewBorder, previewWorld, previewInput, previewMouseHandler, backButton, startButton, infoTitle);
+            AddGameComponents (time, title, previewBorder, previewWorld, previewInput, previewMouseHandler, backButton, startButton, infoTitle);
         }
     }
 }
