@@ -86,7 +86,7 @@ namespace Knot3.Game.Widgets
             }
         }
 
-        public Action<GameTime> Submit;
+        public Action<GameTime> Submit = () => {};
         /// <summary>
         ///
         /// </summary>
