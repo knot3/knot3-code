@@ -27,13 +27,11 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
-
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Net;
 using System.Windows.Forms;
-
 using Ionic.Zip;
 
 namespace Knot3.Framework.Platform
@@ -201,6 +199,12 @@ namespace Knot3.Framework.Platform
 
         public static void CatchDllExceptions (Action action)
         {
+            if (!File.Exists ("oalinst.exe") && Dependencies.DownloadOpenAL ()) {
+                System.Diagnostics.Process.Start ("oalinst.exe"); // to start the openal installer
+                Log.ShowMessageBox ("Please install OpenAL and start the game afterwards.", "Dependency missing");
+                Application.Exit ();
+            }
+
             try {
                 action ();
             }
