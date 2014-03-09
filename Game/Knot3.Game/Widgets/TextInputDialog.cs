@@ -62,20 +62,21 @@ namespace Knot3.Game.Widgets
             }
         }
 
-        public bool NoCloseEmpty
-        {
-            get;
-            set;
-        }
-
-        public bool NoWhiteSpace
-        {
-            get;
-            set;
-        }
+        /// <summary>
+        /// Gibt an, ob der Dialog geschlossen werden können soll, wenn der User einen leeren Text absenden will.
+        /// </summary>
+        public bool NoCloseEmpty { get; set; }
+        
+        /// <summary>
+        /// Gibt an, ob der Dialog geschlossen werden können soll, wenn der User einen Text, der nur Leerzeichen enthält, absenden will.
+        /// </summary>
+        public bool NoWhiteSpace { get; set; }
 
         private static readonly Regex Whitespace = new Regex ("^\\s*$"); // Todo: global besser!?
 
+        /// <summary>
+        /// Der Text, der über ein Eingabebereich als Erklärung angezeigt wird.
+        /// </summary>
         public string Text
         {
             get {
@@ -86,18 +87,22 @@ namespace Knot3.Game.Widgets
             }
         }
 
+        /// <summary>
+        /// Wird aufgerufen, wenn der Dialog abgebrochen und geschlossen wird.
+        /// </summary>
         public Action<GameTime> Cancel;
 
+        /// <summary>
+        /// Wird aufgerufen, wenn der Text im Dialog abgesendet werden soll und der Dialog geschlossen wird.
+        /// </summary>
         public Action<GameTime> Submit;
-
-        public Action KeyEvent { get; set; }
 
         private Menu menu;
         private InputItem textInput;
         private TextItem textItem;
 
         /// <summary>
-        ///
+        /// Erstelle einen neuen TextInputDialog.
         /// </summary>
         public TextInputDialog (IScreen screen, DisplayLayer drawOrder, string title, string text, string inputText)
         : base (screen, drawOrder, title)
