@@ -27,14 +27,13 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
-
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Net;
 using System.Windows.Forms;
-
 using Ionic.Zip;
+using Knot3.Framework.Storage;
 
 namespace Knot3.Framework.Platform
 {
@@ -43,32 +42,38 @@ namespace Knot3.Framework.Platform
     {
         public static string DOWNLOAD_URL_SDL2 = "http://www.libsdl.org/release/SDL2-2.0.2-win32-x86.zip";
         public static string DOWNLOAD_URL_SDL2_image = "https://www.libsdl.org/projects/SDL_image/release/SDL2_image-2.0.0-win32-x86.zip";
-        public static string DOWNLOAD_URL_OPENAL_INSTALLER = "https://rallyraid.googlecode.com/files/oalinst.zip";
+        public static string DOWNLOAD_URL_OPENAL_SOFT = "http://kcat.strangesoft.net/openal-soft-1.15.1-bin.zip";
 
-        public static bool DownloadSDL2 ()
+        private static int ExtractZip (string zipFilename)
         {
-            if (File.Exists ("SDL2.dll")) {
+            int extractedFiles = 0;
+            // read the zip file
+            using (ZipFile zip = ZipFile.Read (zipFilename)) {
+                // iterate over files in the zip file
+                foreach (ZipEntry entry in zip) {
+                    CatchExtractExceptions (() => {
+                        // extract the file to the current directory
+                        entry.Extract (".", ExtractExistingFileAction.OverwriteSilently);
+                        // downloading was obviously sucessful
+                        ++ extractedFiles;
+                    });
+                }
+            }
+            return extractedFiles;
+        }
+
+        private static bool DownloadPackage (string dll, string downloadUrl, string zipFilename)
+        {
+            if (File.Exists (dll)) {
                 return true;
             }
 
-            string zipFilename = "SDL2.zip";
             bool success = false;
             try {
                 int extractedFiles = 0;
                 // try to download the zip file
-                if (Download (DOWNLOAD_URL_SDL2, zipFilename)) {
-                    // read the zip file
-                    using (ZipFile zip = ZipFile.Read (zipFilename)) {
-                        // iterate over files in the zip file
-                        foreach (ZipEntry entry in zip) {
-                            CatchExtractExceptions (() => {
-                                // extract the file to the current directory
-                                entry.Extract (".", ExtractExistingFileAction.OverwriteSilently);
-                                // downloading was obviously sucessful
-                                ++ extractedFiles;
-                            });
-                        }
-                    }
+                if (Download (downloadUrl, zipFilename)) {
+                    extractedFiles += ExtractZip (zipFilename);
                 }
 
                 // if all files were extracted
@@ -89,97 +94,36 @@ namespace Knot3.Framework.Platform
             }
 
             return success;
+        }
+
+        public static bool DownloadSDL2 ()
+        {
+            return DownloadPackage (dll: "SDL2.dll", downloadUrl: DOWNLOAD_URL_SDL2, zipFilename: "SDL2.zip");
         }
 
         public static bool DownloadSDL2_image ()
         {
-            if (File.Exists ("SDL2_image.dll")) {
-                return true;
-            }
-
-            string zipFilename = "SDL2_image.zip";
-            bool success = false;
-            try {
-                int extractedFiles = 0;
-                // try to download the zip file
-                if (Download (DOWNLOAD_URL_SDL2_image, zipFilename)) {
-                    // read the zip file
-                    using (ZipFile zip = ZipFile.Read (zipFilename)) {
-                        // iterate over files in the zip file
-                        foreach (ZipEntry entry in zip) {
-                            CatchExtractExceptions (() => {
-                                // extract the file to the current directory
-                                entry.Extract (".", ExtractExistingFileAction.OverwriteSilently);
-                                // downloading was obviously sucessful
-                                ++ extractedFiles;
-                            });
-                        }
-                    }
-                }
-
-                // if all files were extracted
-                success = extractedFiles > 0;
-            }
-            catch (Exception ex) {
-                // an error occurred
-                Log.Error (ex);
-                success = false;
-            }
-
-            // remove the zip file
-            try {
-                File.Delete (zipFilename);
-            }
-            catch (Exception ex) {
-                Log.Error (ex);
-            }
-
-            return success;
+            return DownloadPackage (dll: "SDL2_image.dll", downloadUrl: DOWNLOAD_URL_SDL2_image, zipFilename: "SDL2_image.zip");
         }
 
-        public static bool DownloadOpenAL ()
+        public static bool DownloadOpenALSoft ()
         {
-            if (File.Exists ("oalinst.exe")) {
+            string dllFilename = "soft_oal.dll";
+            if (File.Exists (dllFilename)) {
                 return true;
             }
-
-            string zipFilename = "openal32.zip";
-            bool success = false;
-            try {
-                int extractedFiles = 0;
-                // try to download the zip file
-                if (Download (DOWNLOAD_URL_OPENAL_INSTALLER, zipFilename)) {
-                    // read the zip file
-                    using (ZipFile zip = ZipFile.Read (zipFilename)) {
-                        // iterate over files in the zip file
-                        foreach (ZipEntry entry in zip) {
-                            CatchExtractExceptions (() => {
-                                // extract the file to the current directory
-                                entry.Extract (".", ExtractExistingFileAction.OverwriteSilently);
-                                // downloading was obviously sucessful
-                                ++ extractedFiles;
-                            });
-                        }
+            bool success = DownloadPackage (dll: dllFilename, downloadUrl: DOWNLOAD_URL_OPENAL_SOFT, zipFilename: "openal-soft.zip");
+            if (success) {
+                Action<string> findDll = (filename) => {
+                    if (filename.ToLower ().Contains ("win32") && filename.ToLower ().Contains (dllFilename)) {
+                        Log.Message ("Found OpenAL Soft DLL in zip file: ", filename);
+                        File.Copy (filename, dllFilename, true);
                     }
-                }
-
-                // if all files were extracted
-                success = extractedFiles > 0;
+                };
+                string[] directories = new string[] { "." };
+                string[] extensions = new string[] { "dll" };
+                FileUtility.SearchFiles (directories: directories, extensions: extensions, add: findDll);
             }
-            catch (Exception ex) {
-                // an error occurred
-                Log.Error (ex);
-                success = false;
-            }
-
-            // remove the zip file
-            try {
-                File.Delete (zipFilename);
-            }
-            catch (Exception ex) {
-                Log.Error (ex);
-            }
-
             return success;
         }
 
@@ -211,30 +155,11 @@ namespace Knot3.Framework.Platform
             }
         }
 
-        private static bool IsOpenALInstalled
-        {
-            get {
-                return File.Exists (Environment.SystemDirectory + @"\OpenAL32.dll");
-            }
-        }
-
         private static string MessageBoxTitle = "Dependency missing";
 
         private static string DownloadErrorMessage (string package)
         {
             return package + " could not be downloaded. Please contact the developers.";
-        }
-
-        private static void InstallOpenAL ()
-        {
-            if (Dependencies.DownloadOpenAL ()) {
-                System.Diagnostics.Process.Start ("oalinst.exe"); // to start the openal installer
-                Log.ShowMessageBox ("Please install OpenAL and restart the game afterwards.", MessageBoxTitle);
-                Application.Exit ();
-            }
-            else {
-                Log.ShowMessageBox (DownloadErrorMessage ("OpenAL"), MessageBoxTitle);
-            }
         }
 
         public static void CatchDllExceptions (Action action)
@@ -250,8 +175,19 @@ namespace Knot3.Framework.Platform
                     Log.ShowMessageBox (DownloadErrorMessage ("SDL2_image"), MessageBoxTitle);
                     return;
                 }
-                if (!IsOpenALInstalled) {
-                    InstallOpenAL ();
+                if (!Dependencies.DownloadOpenALSoft ()) {
+                    Log.ShowMessageBox (DownloadErrorMessage ("OpenAL Soft"), MessageBoxTitle);
+                    return;
+                }
+            }
+            else {
+                
+                if (!Dependencies.DownloadSDL2 ()) {
+                    Log.ShowMessageBox (DownloadErrorMessage ("SDL2"), MessageBoxTitle);
+                    return;
+                }
+                if (!Dependencies.DownloadOpenALSoft ()) {
+                    Log.ShowMessageBox (DownloadErrorMessage ("OpenAL Soft"), MessageBoxTitle);
                     return;
                 }
             }
@@ -263,7 +199,7 @@ namespace Knot3.Framework.Platform
                 Log.Message ();
                 Log.Error (ex);
                 Log.Message ();
-                string dllMessage = ex.ToString ().Split ('(')[0].Split ('\n')[0];
+                string dllMessage = ex.ToString ().Split ('(') [0].Split ('\n') [0];
                 Log.ShowMessageBox (dllMessage, MessageBoxTitle);
             }
         }
