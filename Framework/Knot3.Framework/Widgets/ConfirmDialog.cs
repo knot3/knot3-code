@@ -95,8 +95,7 @@ namespace Knot3.Framework.Widgets
             // Button-Container
             buttons = new Container (screen, Index + DisplayLayer.Menu);
             buttons.ItemAlignX = HorizontalAlignment.Center;
-
-            buttons.ItemBackgroundColor=(s) => Design.DialogBackground;
+            buttons.ItemBackgroundColor = (s) => Design.DialogBackground;
 
             // Button zum Canceln
             Action<GameTime> cancelAction = (time) => {
@@ -111,10 +110,6 @@ namespace Knot3.Framework.Widgets
             cancelButton.Bounds.Size = new ScreenPoint (screen, ContentBounds.Size.Relative.X / 2, 0.05f);
             cancelButton.Bounds.Position = ContentBounds.Position + ContentBounds.Size.OnlyY
                                            - cancelButton.Bounds.Size.OnlyY;
-
-            cancelButton.AlignX = HorizontalAlignment.Center;
-          
-
             buttons.Add (cancelButton);
 
             // Button zum Submitten
@@ -130,9 +125,6 @@ namespace Knot3.Framework.Widgets
             submitButton.Bounds.Size = new ScreenPoint (screen, ContentBounds.Size.Relative.X / 2, 0.05f);
             submitButton.Bounds.Position = ContentBounds.Position + ContentBounds.Size.OnlyY
                                            - submitButton.Bounds.Size.OnlyY + ContentBounds.Size.OnlyX / 2;
-
-            submitButton.AlignX = HorizontalAlignment.Center;
-
             buttons.Add (submitButton);
 
             // Buttons zum Menü hinzufügen
