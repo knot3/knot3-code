@@ -76,6 +76,8 @@ namespace Knot3.Framework.Widgets
         public static Color WidgetBackground;
         public static Color WidgetForeground;
         public static Color ScreenBackground;
+        public static Color DialogForeground;
+        public static Color DialogBackground;
         public static Func<WidgetState, Color> WidgetBackgroundColorFunc;
         public static Func<WidgetState, Color> WidgetForegroundColorFunc;
         public static Func<WidgetState, Color> MenuItemBackgroundColorFunc;

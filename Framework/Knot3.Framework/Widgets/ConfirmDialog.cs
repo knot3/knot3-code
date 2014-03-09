@@ -109,6 +109,7 @@ namespace Knot3.Framework.Widgets
             cancelButton.Bounds.Position = ContentBounds.Position + ContentBounds.Size.OnlyY
                                            - cancelButton.Bounds.Size.OnlyY;
             cancelButton.AlignX = HorizontalAlignment.Center;
+            cancelButton.BackgroundColorFunc =(s) => Design.DialogBackground;
             buttons.Add (cancelButton);
 
             // Button zum Submitten
@@ -125,6 +126,7 @@ namespace Knot3.Framework.Widgets
             submitButton.Bounds.Position = ContentBounds.Position + ContentBounds.Size.OnlyY
                                            - submitButton.Bounds.Size.OnlyY + ContentBounds.Size.OnlyX / 2;
             submitButton.AlignX = HorizontalAlignment.Center;
+            submitButton.BackgroundColorFunc =(s) => Design.DialogBackground;
             buttons.Add (submitButton);
 
             // Buttons zum Menü hinzufügen

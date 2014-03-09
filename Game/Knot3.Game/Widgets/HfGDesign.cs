@@ -33,6 +33,7 @@ using System.Diagnostics.CodeAnalysis;
 using Microsoft.Xna.Framework;
 
 using Knot3.Framework.Widgets;
+using Knot3.Framework.Utilities;
 
 namespace Knot3.Game.Widgets
 {
@@ -52,6 +53,8 @@ namespace Knot3.Game.Widgets
             Design.WidgetForeground = Color.White;
             Design.InGameBackground = Color.Black;
             Design.ScreenBackground = Color.Black;
+            Design.DialogBackground = Color.Black.Mix(Color.White,0.05f);
+            Design.DialogForeground = Color.Transparent;
             Design.WidgetBackgroundColorFunc = WidgetBackgroundColor;
             Design.WidgetForegroundColorFunc = WidgetForegroundColor;
             Design.MenuItemBackgroundColorFunc = MenuItemBackgroundColor;

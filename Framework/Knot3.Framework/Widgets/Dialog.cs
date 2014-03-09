@@ -103,8 +103,8 @@ namespace Knot3.Framework.Widgets
             // Der Standardabstand
             Bounds.Padding = new ScreenPoint (screen, 0.010f, 0.010f);
             // Die Standardfarben
-            BackgroundColorFunc = (s) => screen.BackgroundColor.Mix (Design.WidgetForeground, 0.05f);
-            ForegroundColorFunc = (s) => Design.WidgetBackground;
+            BackgroundColorFunc = (s) => Design.DialogBackground;
+            ForegroundColorFunc = (s) => Design.DialogForeground;
             TitleBackgroundColor = () => Design.DefaultLineColor * 0.75f;
 
             // Einen Rahmen um den Titel des Dialogs
