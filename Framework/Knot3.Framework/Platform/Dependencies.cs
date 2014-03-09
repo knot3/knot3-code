@@ -27,11 +27,13 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
+
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Net;
 using System.Windows.Forms;
+
 using Ionic.Zip;
 
 namespace Knot3.Framework.Platform
@@ -218,7 +220,8 @@ namespace Knot3.Framework.Platform
 
         private static string MessageBoxTitle = "Dependency missing";
 
-        private static string DownloadErrorMessage(string package) {
+        private static string DownloadErrorMessage (string package)
+        {
             return package + " could not be downloaded. Please contact the developers.";
         }
 
@@ -230,7 +233,7 @@ namespace Knot3.Framework.Platform
                 Application.Exit ();
             }
             else {
-                Log.ShowMessageBox (DownloadErrorMessage("OpenAL"), MessageBoxTitle);
+                Log.ShowMessageBox (DownloadErrorMessage ("OpenAL"), MessageBoxTitle);
             }
         }
 
@@ -240,11 +243,11 @@ namespace Knot3.Framework.Platform
 
             if (SystemInfo.IsRunningOnWindows ()) {
                 if (!Dependencies.DownloadSDL2 ()) {
-                    Log.ShowMessageBox (DownloadErrorMessage("SDL2"), MessageBoxTitle);
+                    Log.ShowMessageBox (DownloadErrorMessage ("SDL2"), MessageBoxTitle);
                     return;
                 }
                 if (!Dependencies.DownloadSDL2_image ()) {
-                    Log.ShowMessageBox (DownloadErrorMessage("SDL2_image"), MessageBoxTitle);
+                    Log.ShowMessageBox (DownloadErrorMessage ("SDL2_image"), MessageBoxTitle);
                     return;
                 }
                 if (!IsOpenALInstalled) {
@@ -260,7 +263,7 @@ namespace Knot3.Framework.Platform
                 Log.Message ();
                 Log.Error (ex);
                 Log.Message ();
-                string dllMessage = ex.ToString().Split('(')[0].Split('\n')[0];
+                string dllMessage = ex.ToString ().Split ('(')[0].Split ('\n')[0];
                 Log.ShowMessageBox (dllMessage, MessageBoxTitle);
             }
         }
