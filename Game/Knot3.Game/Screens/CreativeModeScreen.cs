@@ -85,8 +85,7 @@ namespace Knot3.Game.Screens
         {
             get {
                 return knot;
-            }
-            set {
+            } set {
                 knot = value;
                 // Undo- und Redo-Stacks neu erstellen
                 Redo = new Stack<Knot> ();

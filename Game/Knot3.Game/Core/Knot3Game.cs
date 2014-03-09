@@ -87,21 +87,21 @@ namespace Knot3.Game.Core
 
             // effects
             RenderEffectLibrary.EffectLibrary.Add (new RenderEffectLibrary.EffectFactory (
-                    name: "celshader",
-                    displayName: "Cel Shading",
-                    createInstance: (screen) => new CelShadingEffect (screen)
+                                                       name: "celshader",
+                                                       displayName: "Cel Shading",
+                                                       createInstance: (screen) => new CelShadingEffect (screen)
                                                    )
                                                   );
             RenderEffectLibrary.EffectLibrary.Add (new RenderEffectLibrary.EffectFactory (
-                    name: "opaque",
-                    displayName: "opaque",
-                    createInstance: (screen) => new OpaqueEffect (screen)
+                                                       name: "opaque",
+                                                       displayName: "opaque",
+                                                       createInstance: (screen) => new OpaqueEffect (screen)
                                                    )
                                                   );
             RenderEffectLibrary.EffectLibrary.Add (new RenderEffectLibrary.EffectFactory (
-                    name: "z-nebula",
-                    displayName: "Z-Nebula",
-                    createInstance: (screen) => new Z_Nebula (screen)
+                                                       name: "z-nebula",
+                                                       displayName: "Z-Nebula",
+                                                       createInstance: (screen) => new Z_Nebula (screen)
                                                    )
                                                   );
 
@@ -132,16 +132,14 @@ namespace Knot3.Game.Core
                         // Rufe Draw () auf den Spielkomponenten auf
                         base.Draw (time);
                     });
-                }
-                catch (Exception ex) {
+                } catch (Exception ex) {
                     // Error Screen
                     ShowError (ex);
                 }
 
                 // Beende den Post-Processing-Effekt des Screens
                 current.PostProcessingEffect.End (time);
-            }
-            catch (Exception ex) {
+            } catch (Exception ex) {
                 // Error Screen
                 ShowError (ex);
             }
@@ -202,8 +200,7 @@ namespace Knot3.Game.Core
                     // base method
                     base.Update (time);
                 });
-            }
-            catch (Exception ex) {
+            } catch (Exception ex) {
                 // Error Screen
                 ShowError (ex);
             }

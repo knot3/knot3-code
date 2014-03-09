@@ -148,8 +148,7 @@ namespace Knot3.ModelEditor
                 if (axes.Contains (direction.Axis)) {
                     valid = false;
                     break;
-                }
-                else {
+                } else {
                     axes.Add (direction.Axis);
                 }
             }
@@ -162,8 +161,7 @@ namespace Knot3.ModelEditor
                 CreateNodes ();
 
                 World.Redraw = true;
-            }
-            else {
+            } else {
                 pipes.Clear ();
                 nodes.Clear ();
 

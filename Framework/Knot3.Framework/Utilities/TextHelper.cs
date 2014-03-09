@@ -50,8 +50,7 @@ namespace Knot3.Framework.Utilities
             if (lastKey != Keys.None) {
                 if (screen.InputManager.CurrentKeyboardState.IsKeyUp (lastKey)) {
                     lastKey = Keys.None;
-                }
-                else if ((time.TotalGameTime.TotalMilliseconds - lastMillis) > 200) {
+                } else if ((time.TotalGameTime.TotalMilliseconds - lastMillis) > 200) {
                     lastKey = Keys.None;
                 }
             }
@@ -68,8 +67,7 @@ namespace Knot3.Framework.Utilities
                             str = str.Substring (0, str.Length - 1);
                         }
                         catched = true;
-                    }
-                    else if (str.Length < 100) {
+                    } else if (str.Length < 100) {
                         char c;
                         if (TryConvertKey (lastKey, screen, out c)) {
                             str += c.ToString ();
@@ -91,8 +89,7 @@ namespace Knot3.Framework.Utilities
             if (c >= 'A' && c <= 'Z') {
                 if (shift) {
                     key = char.ToUpper (c);
-                }
-                else {
+                } else {
                     key = char.ToLower (c);
                 }
                 return true;
@@ -103,80 +100,70 @@ namespace Knot3.Framework.Utilities
             case Keys.D0:
                 if (shift) {
                     key = ')';
-                }
-                else {
+                } else {
                     key = '0';
                 }
                 return true;
             case Keys.D1:
                 if (shift) {
                     key = '!';
-                }
-                else {
+                } else {
                     key = '1';
                 }
                 return true;
             case Keys.D2:
                 if (shift) {
                     key = '@';
-                }
-                else {
+                } else {
                     key = '2';
                 }
                 return true;
             case Keys.D3:
                 if (shift) {
                     key = '#';
-                }
-                else {
+                } else {
                     key = '3';
                 }
                 return true;
             case Keys.D4:
                 if (shift) {
                     key = '$';
-                }
-                else {
+                } else {
                     key = '4';
                 }
                 return true;
             case Keys.D5:
                 if (shift) {
                     key = '%';
-                }
-                else {
+                } else {
                     key = '5';
                 }
                 return true;
             case Keys.D6:
                 if (shift) {
                     key = '^';
-                }
-                else {
+                } else {
                     key = '6';
                 }
                 return true;
             case Keys.D7:
                 if (shift) {
                     key = '&';
-                }
-                else {
+                } else {
                     key = '7';
                 }
                 return true;
             case Keys.D8:
                 if (shift) {
                     key = '*';
-                }
-                else {
+                } else {
                     key = '8';
                 }
                 return true;
             case Keys.D9:
                 if (shift) {
                     key = '(';
-                }
-                else {
+                } else {
                     key = '9';
                 }
                 return true;
@@ -217,88 +204,77 @@ namespace Knot3.Framework.Utilities
             case Keys.OemTilde:
                 if (shift) {
                     key = '~';
-                }
-                else {
+                } else {
                     key = '`';
                 }
                 return true;
             case Keys.OemSemicolon:
                 if (shift) {
                     key = ':';
-                }
-                else {
+                } else {
                     key = ';';
                 }
                 return true;
             case Keys.OemQuotes:
                 if (shift) {
                     key = '"';
-                }
-                else {
+                } else {
                     key = '\'';
                 }
                 return true;
             case Keys.OemQuestion:
                 if (shift) {
                     key = '?';
-                }
-                else {
+                } else {
                     key = '/';
                 }
                 return true;
             case Keys.OemPlus:
                 if (shift) {
                     key = '+';
-                }
-                else {
+                } else {
                     key = '=';
                 }
                 return true;
             case Keys.OemPipe:
                 if (shift) {
                     key = '|';
-                }
-                else {
+                } else {
                     key = '\\';
                 }
                 return true;
             case Keys.OemPeriod:
                 if (shift) {
                     key = '>';
-                }
-                else {
+                } else {
                     key = '.';
                 }
                 return true;
             case Keys.OemOpenBrackets:
                 if (shift) {
                     key = '{';
-                }
-                else {
+                } else {
                     key = '[';
                 }
                 return true;
             case Keys.OemCloseBrackets:
                 if (shift) {
                     key = '}';
-                }
-                else {
+                } else {
                     key = ']';
                 }
                 return true;
             case Keys.OemMinus:
                 if (shift) {
                     key = '_';
-                }
-                else {
+                } else {
                     key = '-';
                 }
                 return true;
             case Keys.OemComma:
                 if (shift) {
                     key = '<';
-                }
-                else {
+                } else {
                     key = ',';
                 }
                 return true;

@@ -48,8 +48,7 @@ namespace ConfigReset
             try {
                 Directory.Delete (SystemInfo.SettingsDirectory, true);
                 Console.WriteLine ("Settings deleted.");
-            }
-            catch (Exception ex) {
+            } catch (Exception ex) {
                 Console.WriteLine ("Error: Could not delete settings!");
                 Console.WriteLine (ex.ToString ());
             }

@@ -79,8 +79,7 @@ namespace Knot3.Game.Models
             Coloring = new SingleColor (Color.Red);
             if (World.SelectedObject == this) {
                 Coloring.Highlight (intensity: 1f, color: Color.Orange);
-            }
-            else {
+            } else {
                 Coloring.Unhighlight ();
             }
 

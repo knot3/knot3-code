@@ -67,8 +67,7 @@ namespace Knot3.Game.Effects
         {
             get {
                 return Color.Red;
-            }
-            set {
+            } set {
             }
         }
 

@@ -154,8 +154,7 @@ namespace Knot3.Framework.Widgets
                 float itemHeight = (Container as Menu).RelativeItemHeight;
                 dropdown.RelativeItemHeight = itemHeight;
                 dropdown.Bounds.Padding = new ScreenPoint (Screen, itemHeight / 5);
-            }
-            else {
+            } else {
                 dropdown.Bounds.Padding = new ScreenPoint (Screen, 0.010f);
             }
 

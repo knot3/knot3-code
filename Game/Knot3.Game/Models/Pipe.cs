@@ -137,12 +137,10 @@ namespace Knot3.Game.Models
             if (other is Pipe) {
                 if (this.Edge == (other as Pipe).Edge && this.Scale == (other as Pipe).Scale && base.Equals (other)) {
                     return true;
-                }
-                else {
+                } else {
                     return false;
                 }
-            }
-            else {
+            } else {
                 return base.Equals (other);
             }
         }

@@ -150,8 +150,7 @@ namespace Knot3.Game.Widgets
         {
             try {
                 knot.Save ();
-            }
-            catch (IOException) {
+            } catch (IOException) {
                 KnotSaveAs (()=> {}, time);
             }
         }
@@ -173,8 +172,7 @@ namespace Knot3.Game.Widgets
                 try {
                     knot.Name = saveDialog.InputText;
                     knot.Save ();
-                }
-                catch (IOException ex) {
+                } catch (IOException ex) {
                     ErrorDialog errorDialog = new ErrorDialog (
                         screen: Screen,
                         drawOrder: DisplayLayer.Dialog * 2,
@@ -191,8 +189,7 @@ namespace Knot3.Game.Widgets
             try {
                 knot.Save ();
                 Screen.NextScreen = new StartScreen (Screen.Game);
-            }
-            catch (IOException) {
+            } catch (IOException) {
                 KnotSaveAs (()=>Screen.NextScreen = new StartScreen (Screen.Game), time);
             }
         }

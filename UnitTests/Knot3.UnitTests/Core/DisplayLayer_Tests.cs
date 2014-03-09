@@ -61,8 +61,7 @@ namespace Knot3.UnitTests
                 foreach (DisplayLayer lay2 in DisplayLayer.Values) {
                     if (lay1.Index == lay2.Index) {
                         Assert.AreEqual (lay1, lay2);
-                    }
-                    else {
+                    } else {
                         Assert.AreNotEqual (lay1, lay2);
                     }
                 }

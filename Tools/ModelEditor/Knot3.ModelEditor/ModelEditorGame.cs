@@ -117,16 +117,14 @@ namespace Knot3.ModelEditor
 
                     // Rufe Draw () auf den Spielkomponenten auf
                     base.Draw (time);
-                }
-                catch (Exception ex) {
+                } catch (Exception ex) {
                     // Error Screen
                     ShowError (ex);
                 }
 
                 // Beende den Post-Processing-Effekt des Screens
                 current.PostProcessingEffect.End (time);
-            }
-            catch (Exception ex) {
+            } catch (Exception ex) {
                 // Error Screen
                 ShowError (ex);
             }
@@ -169,8 +167,7 @@ namespace Knot3.ModelEditor
 
                 // base method
                 base.Update (time);
-            }
-            catch (Exception ex) {
+            } catch (Exception ex) {
                 // Error Screen
                 ShowError (ex);
             }

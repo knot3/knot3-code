@@ -154,8 +154,7 @@ namespace Knot3.Game.Models
             string effectName = Config.Default ["video", "knot-shader", "default"];
             if (effectName == "celshader") {
                 return ContentLoader.CreateTexture (Screen.GraphicsDevice, Color.CornflowerBlue);
-            }
-            else {
+            } else {
                 return CreateSpaceTexture ();
             }
         }

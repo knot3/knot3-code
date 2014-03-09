@@ -96,14 +96,11 @@ namespace Knot3.Framework.Widgets
                             int length = (int)(nodeB - nodeA).Scale (Screen.Viewport).Length ();
                             if (direction.X == 0 && direction.Y > 0) {
                                 rects [i - 1] = VectorHelper.CreateRectangle (scaledLineWidth, position.X, position.Y, 0, length);
-                            }
-                            else if (direction.X == 0 && direction.Y < 0) {
+                            } else if (direction.X == 0 && direction.Y < 0) {
                                 rects [i - 1] = VectorHelper.CreateRectangle (scaledLineWidth, position.X, position.Y - length, 0, length);
-                            }
-                            else if (direction.Y == 0 && direction.X > 0) {
+                            } else if (direction.Y == 0 && direction.X > 0) {
                                 rects [i - 1] = VectorHelper.CreateRectangle (scaledLineWidth, position.X, position.Y, length, 0);
-                            }
-                            else if (direction.Y == 0 && direction.X < 0) {
+                            } else if (direction.Y == 0 && direction.X < 0) {
                                 rects [i - 1] = VectorHelper.CreateRectangle (scaledLineWidth, position.X - length, position.Y, length, 0);
                             }
                         }

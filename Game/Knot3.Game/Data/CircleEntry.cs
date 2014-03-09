@@ -69,8 +69,7 @@ namespace Knot3.Game.Data
                     Value = obj;
                     Previous = this;
                     Next = this;
-                }
-                else {
+                } else {
                     inserted = inserted.InsertAfter (obj);
                 }
                 first = false;
@@ -125,15 +124,13 @@ namespace Knot3.Game.Data
             get {
                 if (IsEmpty) {
                     return 0;
-                }
-                else {
+                } else {
                     CircleEntry<T> current = this;
                     int count = 0;
                     do {
                         ++count;
                         current = current.Next;
-                    }
-                    while (current != this);
+                    } while (current != this);
                     return count;
                 }
             }
@@ -176,8 +173,7 @@ namespace Knot3.Game.Data
                     yield return current;
                 }
                 current = current.Next;
-            }
-            while (current != this);
+            } while (current != this);
             yield break;
         }
 
@@ -196,8 +192,7 @@ namespace Knot3.Game.Data
                 }
                 current = current.Next;
                 ++ i;
-            }
-            while (current != this);
+            } while (current != this);
             return -1;
         }
 
@@ -207,8 +202,7 @@ namespace Knot3.Game.Data
             do {
                 yield return current.Value;
                 current = current.Next;
-            }
-            while (current != other.Next && current != this);
+            } while (current != other.Next && current != this);
         }
 
         public IEnumerable<T> WayTo (T other)
@@ -230,8 +224,7 @@ namespace Knot3.Game.Data
                 do {
                     yield return Tuple.Create (current.Value, current.Next.Value);
                     current = current.Next;
-                }
-                while (current != this);
+                } while (current != this);
             }
         }
 
@@ -242,8 +235,7 @@ namespace Knot3.Game.Data
                 do {
                     yield return Tuple.Create (current.Previous.Value, current.Value, current.Next.Value);
                     current = current.Next;
-                }
-                while (current != this);
+                } while (current != this);
             }
         }
 
@@ -254,8 +246,7 @@ namespace Knot3.Game.Data
                 //Log.Debug (this, " => ", current.Content);
                 yield return current.Value;
                 current = current.Next;
-            }
-            while (current != this);
+            } while (current != this);
         }
 
         // explicit interface implementation for nongeneric interface
@@ -269,8 +260,7 @@ namespace Knot3.Game.Data
         {
             if (IsEmpty) {
                 return "CircleEntry (" + Value.ToString () + ")";
-            }
-            else {
+            } else {
                 return "CircleEntry.Empty";
             }
         }
@@ -293,8 +283,7 @@ namespace Knot3.Game.Data
         {
             get {
                 return (this + index).Value;
-            }
-            set {
+            } set {
                 (this + index).Value = value;
             }
         }
@@ -333,8 +322,7 @@ namespace Knot3.Game.Data
             if (Contains (value, out item)) {
                 item.Remove ();
                 return true;
-            }
-            else {
+            } else {
                 return false;
             }
         }
@@ -353,8 +341,7 @@ namespace Knot3.Game.Data
         {
             if (Value == null) {
                 Value = value;
-            }
-            else {
+            } else {
                 InsertBefore (value);
             }
         }

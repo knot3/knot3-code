@@ -74,8 +74,7 @@ namespace Knot3.Framework.Input
                     if (Screen.InputManager.LeftMouseButton != ClickState.None) {
                         component.OnLeftClick (relativePosition, Screen.InputManager.LeftMouseButton, time);
                         break;
-                    }
-                    else if (Screen.InputManager.RightMouseButton != ClickState.None) {
+                    } else if (Screen.InputManager.RightMouseButton != ClickState.None) {
                         component.OnRightClick (relativePosition, Screen.InputManager.RightMouseButton, time);
                         break;
                     }
@@ -93,8 +92,7 @@ namespace Knot3.Framework.Input
                 if (hovered) {
                     if (Screen.InputManager.CurrentMouseState.ScrollWheelValue > Screen.InputManager.PreviousMouseState.ScrollWheelValue) {
                         component.OnScroll (-1, time);
-                    }
-                    else if (Screen.InputManager.CurrentMouseState.ScrollWheelValue < Screen.InputManager.PreviousMouseState.ScrollWheelValue) {
+                    } else if (Screen.InputManager.CurrentMouseState.ScrollWheelValue < Screen.InputManager.PreviousMouseState.ScrollWheelValue) {
                         component.OnScroll (+1, time);
                     }
                     break;
@@ -114,14 +112,12 @@ namespace Knot3.Framework.Input
             // zuweisen der Positionen beim Drücken der Maus
             if (Screen.InputManager.PreviousMouseState.LeftButton == ButtonState.Released && Screen.InputManager.CurrentMouseState.LeftButton == ButtonState.Pressed) {
                 lastLeftClickPosition = current;
-            }
-            else if (Screen.InputManager.CurrentMouseState.LeftButton == ButtonState.Released) {
+            } else if (Screen.InputManager.CurrentMouseState.LeftButton == ButtonState.Released) {
                 lastLeftClickPosition = null;
             }
             if (Screen.InputManager.PreviousMouseState.RightButton == ButtonState.Released && Screen.InputManager.CurrentMouseState.RightButton == ButtonState.Pressed) {
                 lastRightClickPosition = current;
-            }
-            else if (Screen.InputManager.CurrentMouseState.RightButton == ButtonState.Released) {
+            } else if (Screen.InputManager.CurrentMouseState.RightButton == ButtonState.Released) {
                 lastRightClickPosition = null;
             }
             //Log.Debug ("left=",(lastLeftClickPosition ?? ScreenPoint.Zero (Screen)),"right=",(lastRightClickPosition ?? ScreenPoint.Zero (Screen)));
@@ -167,16 +163,14 @@ namespace Knot3.Framework.Input
                                 move: relativePositionMove,
                                 time: time
                             );
-                        }
-                        else if (Screen.InputManager.CurrentMouseState.RightButton == ButtonState.Pressed) {
+                        } else if (Screen.InputManager.CurrentMouseState.RightButton == ButtonState.Pressed) {
                             component.OnRightMove (
                                 previousPosition: relativePositionPrevious,
                                 currentPosition: relativePositionCurrent,
                                 move: relativePositionMove,
                                 time: time
                             );
-                        }
-                        else {
+                        } else {
                             component.OnMove (
                                 previousPosition: relativePositionPrevious,
                                 currentPosition: relativePositionCurrent,
@@ -185,8 +179,7 @@ namespace Knot3.Framework.Input
                             );
                         }
                         break;
-                    }
-                    else {
+                    } else {
                         component.OnNoMove (
                             currentPosition: relativePositionCurrent,
                             time: time

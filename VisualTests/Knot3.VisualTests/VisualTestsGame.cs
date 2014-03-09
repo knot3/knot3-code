@@ -121,16 +121,14 @@ namespace Knot3.VisualTests
 
                     // Rufe Draw () auf den Spielkomponenten auf
                     base.Draw (time);
-                }
-                catch (Exception ex) {
+                } catch (Exception ex) {
                     // Error Screen
                     ShowError (ex);
                 }
 
                 // Beende den Post-Processing-Effekt des Screens
                 current.PostProcessingEffect.End (time);
-            }
-            catch (Exception ex) {
+            } catch (Exception ex) {
                 // Error Screen
                 ShowError (ex);
             }
@@ -178,8 +176,7 @@ namespace Knot3.VisualTests
 
                 // base method
                 base.Update (time);
-            }
-            catch (Exception ex) {
+            } catch (Exception ex) {
                 // Error Screen
                 ShowError (ex);
             }

@@ -130,8 +130,7 @@ namespace Knot3.Framework.Input
         {
             if (CurrentKeyAssignmentReversed.ContainsKey (action)) {
                 return CurrentKeyAssignmentReversed [action];
-            }
-            else {
+            } else {
                 throw new InvalidOperationException ("There is no action -> key binding for action: " + action);
             }
         }
@@ -145,8 +144,7 @@ namespace Knot3.Framework.Input
         {
             if (CurrentKeyAssignment.ContainsKey (key)) {
                 return CurrentKeyAssignment [key];
-            }
-            else {
+            } else {
                 throw new InvalidOperationException ("There is no key -> action binding for key: " + key);
             }
         }

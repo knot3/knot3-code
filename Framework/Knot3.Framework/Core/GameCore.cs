@@ -45,7 +45,7 @@ namespace Knot3.Framework.Core
     public abstract class GameCore : Microsoft.Xna.Framework.Game
     {
         private static readonly Point defaultSize = SystemInfo.IsRunningOnLinux ()
-                ? new Point (1024, 600) : new Point (1280, 720);
+                                                    ? new Point (1024, 600) : new Point (1280, 720);
 
         public Action FullScreenChanged { get; set; }
 
@@ -61,8 +61,7 @@ namespace Knot3.Framework.Core
         {
             get {
                 return isFullscreen;
-            }
-            set {
+            } set {
                 if (value != isFullscreen) {
                     Log.Debug ("Fullscreen Toggle");
                     Graphics.ToggleFullScreen ();
@@ -96,8 +95,7 @@ namespace Knot3.Framework.Core
         {
             get {
                 return new Point (Graphics.PreferredBackBufferWidth, Graphics.PreferredBackBufferHeight);
-            }
-            set {
+            } set {
                 Graphics.PreferredBackBufferWidth = value.X;
                 Graphics.PreferredBackBufferHeight = value.Y;
                 Graphics.ApplyChanges ();
@@ -117,8 +115,7 @@ namespace Knot3.Framework.Core
         {
             get {
                 return Graphics.SynchronizeWithVerticalRetrace;
-            }
-            set {
+            } set {
                 Graphics.SynchronizeWithVerticalRetrace = value;
                 this.IsFixedTimeStep = value;
                 Graphics.ApplyChanges ();
@@ -152,12 +149,10 @@ namespace Knot3.Framework.Core
 
             if (SystemInfo.IsRunningOnLinux ()) {
                 IsMouseVisible = true;
-            }
-            else if (SystemInfo.IsRunningOnWindows ()) {
+            } else if (SystemInfo.IsRunningOnWindows ()) {
                 IsMouseVisible = false;
                 System.Windows.Forms.Cursor.Hide ();
-            }
-            else {
+            } else {
                 throw new Exception ("Unsupported Plattform Exception");
             }
 

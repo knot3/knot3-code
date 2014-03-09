@@ -48,8 +48,7 @@ namespace Knot3.Framework.Widgets
         {
             get {
                 return menuFontName;
-            }
-            set {
+            } set {
                 menuFontName = value;
                 menuFont = null;
             }
@@ -61,8 +60,7 @@ namespace Knot3.Framework.Widgets
         {
             if (menuFont != null) {
                 return menuFont;
-            }
-            else {
+            } else {
                 // lade die Schriftart der Menüs in das private Attribut
                 menuFont = screen.LoadFont ("font-menu");
                 return menuFont;

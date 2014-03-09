@@ -104,8 +104,7 @@ namespace Knot3.Game.Models
             }
             if (nearest != null) {
                 World.SelectedObject = nearest.Object;
-            }
-            else {
+            } else {
                 World.SelectedObject = null;
             }
         }

@@ -68,8 +68,7 @@ namespace Knot3.Framework.Input
                     if (Screen.InputManager.KeyPressed (key)) {
                         keysInvolved.Add (key);
                         keyEvent = KeyEvent.KeyDown;
-                    }
-                    else if (Screen.InputManager.KeyHeldDown (key)) {
+                    } else if (Screen.InputManager.KeyHeldDown (key)) {
                         keysInvolved.Add (key);
                         keyEvent = KeyEvent.KeyHeldDown;
                     }

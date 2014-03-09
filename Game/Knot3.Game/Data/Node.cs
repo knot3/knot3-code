@@ -171,8 +171,7 @@ namespace Knot3.Game.Data
         {
             if (obj is Node) {
                 return Equals ((Node)obj);
-            }
-            else {
+            } else {
                 return false;
             }
         }

@@ -68,8 +68,7 @@ namespace Knot3.Game.Models
             Coloring = new GradientColor (Info.EdgeFrom, Info.EdgeTo);
             if (IsVirtual) {
                 Coloring.Highlight (intensity: 0.5f, color: Color.White);
-            }
-            else {
+            } else {
                 Coloring.Unhighlight ();
             }
             base.Draw (time);

@@ -62,11 +62,9 @@ namespace Knot3.Game.Widgets
         {
             if (state == WidgetState.None || state == WidgetState.Hovered) {
                 return Color.Transparent;
-            }
-            else if (state == WidgetState.Selected) {
+            } else if (state == WidgetState.Selected) {
                 return Color.Black;
-            }
-            else {
+            } else {
                 return Color.CornflowerBlue;
             }
         }
@@ -75,14 +73,11 @@ namespace Knot3.Game.Widgets
         {
             if (state == WidgetState.Hovered) {
                 return Color.White;
-            }
-            else if (state == WidgetState.None) {
+            } else if (state == WidgetState.None) {
                 return Color.White * 0.7f;
-            }
-            else if (state == WidgetState.Selected) {
+            } else if (state == WidgetState.Selected) {
                 return Color.White;
-            }
-            else {
+            } else {
                 return Color.CornflowerBlue;
             }
         }
@@ -96,8 +91,7 @@ namespace Knot3.Game.Widgets
         {
             if (state == WidgetState.Hovered) {
                 return Color.White;
-            }
-            else {
+            } else {
                 return Color.White * 0.7f;
             }
         }

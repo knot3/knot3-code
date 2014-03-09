@@ -105,8 +105,7 @@ namespace Knot3.Game.Screens
         {
             get {
                 return _playerKnot;
-            }
-            set {
+            } set {
                 _playerKnot = value;
                 // Undo- und Redo-Stacks neu erstellen
                 Redo = new Stack<Knot> ();
@@ -353,8 +352,8 @@ namespace Knot3.Game.Screens
             challengeKnotInput.IsEnabled = false;
             // erstelle einen Dialog zum Eingeben des Spielernamens
             TextInputDialog nameDialog = new TextInputDialog (screen: this, drawOrder: DisplayLayer.Dialog,
-                    title: "Challenge", text: "Your name:",
-                    inputText: Config.Default ["profile", "name", String.Empty]);
+                                                              title: "Challenge", text: "Your name:",
+                                                              inputText: Config.Default ["profile", "name", String.Empty]);
             // füge ihn zur Spielkomponentenliste hinzu
             nameDialog.NoCloseEmpty = true;
             nameDialog.NoWhiteSpace = true;
@@ -367,7 +366,7 @@ namespace Knot3.Game.Screens
                 Challenge.AddToHighscore (name: nameDialog.InputText, time: (int)playTime.TotalSeconds);
                 // erstelle einen Highscoredialog
                 Dialog highscoreDialog = new HighscoreDialog (screen: this, drawOrder: DisplayLayer.Dialog,
-                        challenge: Challenge);
+                                                              challenge: Challenge);
                 // füge ihn zur Spielkomponentenliste hinzu
                 AddGameComponents (time, highscoreDialog);
             };

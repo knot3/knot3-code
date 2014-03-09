@@ -132,8 +132,7 @@ namespace Knot3.Framework.Widgets
         {
             if (Container != null) {
                 Container.OnScroll (scrollValue);
-            }
-            else {
+            } else {
                 Log.Debug ("Warning: MenuItem is not assigned to a menu: ", this);
             }
         }
@@ -156,8 +155,7 @@ namespace Knot3.Framework.Widgets
                 Color foreground = ForegroundColor * (IsEnabled ? 1f : 0.5f);
                 if (IsLocalized) {
                     spriteBatch.DrawStringInRectangle (font, Text.Localize (), foreground, Bounds, AlignX, AlignY);
-                }
-                else {
+                } else {
                     spriteBatch.DrawStringInRectangle (font, Text, foreground, Bounds, AlignX, AlignY);
                 }
 

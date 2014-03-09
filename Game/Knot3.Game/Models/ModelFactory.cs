@@ -71,8 +71,7 @@ namespace Knot3.Game.Models
             get {
                 if (cache.ContainsKey (info)) {
                     return cache [info];
-                }
-                else {
+                } else {
                     return cache [info] = createModel (screen, info);
                 }
             }

@@ -97,8 +97,7 @@ namespace Knot3.Game.Models
         {
             get {
                 return knot;
-            }
-            set {
+            } set {
                 knot = value;
                 knot.EdgesChanged += OnEdgesChanged;
                 knot.SelectionChanged += OnSelectionChanged;
@@ -112,8 +111,7 @@ namespace Knot3.Game.Models
         {
             get {
                 return virtualKnot;
-            }
-            set {
+            } set {
                 virtualKnot = value;
                 OnVirtualKnotAssigned ();
             }
@@ -322,8 +320,7 @@ namespace Knot3.Game.Models
                         arrows.Add (arrow);
                     }
                 }
-            }
-            catch (NullReferenceException ex) {
+            } catch (NullReferenceException ex) {
                 Log.Debug (ex);
             }
         }
@@ -348,8 +345,7 @@ namespace Knot3.Game.Models
                     //Log.Debug ("validPosition=", validPosition);
                     newRectangles += CreateRectangle (validPosition, ref rectMap) ? 1 : 0;
                 }
-            }
-            while (newRectangles > 0);
+            } while (newRectangles > 0);
         }
 
         private bool CreateRectangle (ValidRectanglePosition rect, ref RectangleMap rectMap)
@@ -365,8 +361,7 @@ namespace Knot3.Game.Models
                 Texture2D texture;
                 if (rect.NodeB == rect.NodeC) {
                     texture = CreateDiagonalRectangleTexture (edgeAB.Color, edgeCD.Color);
-                }
-                else {
+                } else {
                     texture = CreateParallelRectangleTexture (edgeAB.Color, edgeCD.Color);
                 }
 
@@ -395,8 +390,7 @@ namespace Knot3.Game.Models
                         if (!rectMap.ContainsEdge (nodeB - edgeAB + edgeCD, nodeB + edgeCD)) {
                             rectMap.AddEdge (edge: edgeAB, nodeA: nodeB - edgeAB + edgeCD, nodeB: nodeB + edgeCD, isVirtual: true);
                         }
-                    }
-                    else {
+                    } else {
                         Edge edgeAC = new Edge ((rect.NodeC - rect.NodeA).ToDirection ());
                         Edge edgeBD = new Edge ((rect.NodeD - rect.NodeB).ToDirection ());
                         if (!rectMap.ContainsEdge (nodeA + edgeAC, nodeC)) {

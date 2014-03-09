@@ -46,11 +46,9 @@ namespace Knot3.Game.Utilities
             this.filename = filename;
             try {
                 hashes = new HashSet<string> (FileUtility.ReadFrom (filename));
-            }
-            catch (System.ArgumentException) {
+            } catch (System.ArgumentException) {
                 hashes = new HashSet<string> ();
-            }
-            catch (IOException) {
+            } catch (IOException) {
                 hashes = new HashSet<string> ();
             }
         }

@@ -152,8 +152,7 @@ namespace Knot3.Game.Input
                             Knot.ClearSelection ();
                             Knot.AddToSelection (selectedEdge);
                         }
-                    }
-                    catch (ArgumentOutOfRangeException exp) {
+                    } catch (ArgumentOutOfRangeException exp) {
                         Log.Debug (exp);
                     }
                 }
@@ -197,8 +196,7 @@ namespace Knot3.Game.Input
                     if (selectedModel is ArrowModel) {
                         // Wenn ein Pfeil selektiert wurde, ist die Verschiebe-Richtung eindeutig festgelegt
                         UpdateShadowPipes (currentMousePosition, (selectedModel as ArrowModel).Info.Direction, time);
-                    }
-                    else {
+                    } else {
                         // Wenn etwas anderes (eine Kante) selektiert wurde,
                         // muss die Verschiebe-Richtung berechnet werden
                         UpdateShadowPipes (currentMousePosition, time);
@@ -214,8 +212,7 @@ namespace Knot3.Game.Input
                     if (selectedModel is ArrowModel) {
                         // Wenn ein Pfeil selektiert wurde, ist die Verschiebe-Richtung eindeutig festgelegt
                         MovePipes (currentMousePosition, (selectedModel as ArrowModel).Info.Direction, time);
-                    }
-                    else {
+                    } else {
                         // Wenn etwas anderes (eine Kante) selektiert wurde,
                         // muss die Verschiebe-Richtung berechnet werden
                         MovePipes (currentMousePosition, time);
@@ -255,14 +252,12 @@ namespace Knot3.Game.Input
                     if (newKnot != null) {
                         KnotMoved (newKnot);
                         Screen.AudioManager.PlaySound (Knot3Sound.PipeMoveSound);
-                    }
-                    else {
+                    } else {
                         KnotMoved (Knot);
                         Screen.AudioManager.PlaySound (Knot3Sound.PipeInvalidMoveSound);
                     }
                     previousMousePosition = currentMousePosition;
-                }
-                catch (ArgumentOutOfRangeException exp) {
+                } catch (ArgumentOutOfRangeException exp) {
                     Log.Debug (exp);
                 }
             }
@@ -359,8 +354,7 @@ namespace Knot3.Game.Input
                 Knot shadowKnot;
                 if (knotCache.ContainsKey (direction * distance)) {
                     shadowKnot = knotCache [direction * distance];
-                }
-                else {
+                } else {
                     Knot.TryMove (direction, distance, out shadowKnot);
                     knotCache [direction * distance] = shadowKnot;
                 }

@@ -236,8 +236,7 @@ namespace Knot3.Game.Models
             nodeMap.IndexRebuilt += () => {
                 try {
                     chooseModel ();
-                }
-                catch (Exception ex) {
+                } catch (Exception ex) {
                     Log.Debug (ex);
                 }
             };
@@ -247,11 +246,9 @@ namespace Knot3.Game.Models
         {
             if (JunctionsAtNode.Count == 1) {
                 chooseModelOneJunction ();
-            }
-            else if (JunctionsAtNode.Count == 2) {
+            } else if (JunctionsAtNode.Count == 2) {
                 chooseModelTwoJunctions ();
-            }
-            else if (JunctionsAtNode.Count == 3) {
+            } else if (JunctionsAtNode.Count == 3) {
                 chooseModelThreeJunctions ();
             }
         }
@@ -269,8 +266,7 @@ namespace Knot3.Game.Models
             if (Type == JunctionType.Angled) {
                 Modelname = Config.Models [NodeConfigKey, "modelname" + JunctionsAtNodeIndex, "pipe-angled"];
                 Rotation = angledJunctionRotationMap [angledJunctionDirectionMap [Tuple.Create (EdgeFrom.Direction, EdgeTo.Direction)]];
-            }
-            else if (Type == JunctionType.Straight) {
+            } else if (Type == JunctionType.Straight) {
                 if (OtherJunctionsAtNode [0].Type == JunctionType.Straight) {
                     // Drehung des Übergangs
                     Modelname = Config.Models [NodeConfigKey, "modelname" + JunctionsAtNodeIndex, "pipe-curved1"];
@@ -297,8 +293,7 @@ namespace Knot3.Game.Models
                         + Angles3.FromDegrees (0, 0, bumpRotationZ)
                     );
                     */
-                }
-                else {
+                } else {
                     Modelname = Config.Models [NodeConfigKey, "modelname" + JunctionsAtNodeIndex, "pipe-straight"];
                     Rotation = straightJunctionRotationMap [EdgeFrom.Direction];
                 }
@@ -310,8 +305,7 @@ namespace Knot3.Game.Models
             if (Type == JunctionType.Angled) {
                 Modelname = Config.Models [NodeConfigKey, "modelname" + JunctionsAtNodeIndex, "pipe-angled"];
                 Rotation = angledJunctionRotationMap [angledJunctionDirectionMap [Tuple.Create (EdgeFrom.Direction, EdgeTo.Direction)]];
-            }
-            else if (Type == JunctionType.Straight) {
+            } else if (Type == JunctionType.Straight) {
                 // Drehung des Übergangs
                 Modelname = Config.Models [NodeConfigKey, "modelname" + JunctionsAtNodeIndex, "pipe-curved1"];
                 Rotation = Angles3.FromDegrees (0, 0, 0) + straightJunctionRotationMap [EdgeFrom.Direction];
@@ -333,12 +327,10 @@ namespace Knot3.Game.Models
                         && this.EdgeTo == (other as Junction).EdgeTo
                         && base.Equals (other)) {
                     return true;
-                }
-                else {
+                } else {
                     return false;
                 }
-            }
-            else {
+            } else {
                 return base.Equals (other);
             }
         }

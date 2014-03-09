@@ -47,8 +47,7 @@ namespace Knot3.Framework.Storage
         {
             get {
                 return stringToFloat (base.Value);
-            }
-            set {
+            } set {
                 base.Value = convertToString (value);
             }
         }
@@ -87,8 +86,7 @@ namespace Knot3.Framework.Storage
             bool result = Int32.TryParse (s, out i);
             if (true == result) {
                 return ((float)i) / 1000f;
-            }
-            else {
+            } else {
                 return 0;
             }
         }

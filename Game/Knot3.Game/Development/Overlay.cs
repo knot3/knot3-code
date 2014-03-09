@@ -80,8 +80,7 @@ namespace Knot3.Game.Development
             // load fonts
             try {
                 font = Screen.LoadFont ("font-overlay");
-            }
-            catch (ContentLoadException ex) {
+            } catch (ContentLoadException ex) {
                 font = null;
                 Log.Debug (ex.Message);
             }
@@ -116,8 +115,7 @@ namespace Knot3.Game.Development
                     World.Add (debugModel);
                     debugModelAdded = true;
                 }
-            }
-            else {
+            } else {
                 if (debugModelAdded) {
                     World.Remove (debugModel);
                     debugModelAdded = false;
@@ -188,8 +186,7 @@ namespace Knot3.Game.Development
                         str += "   #" + pipe.Info.Knot.ToList ().FindIndex (g => g == pipe.Info.Edge).ToString ();
                     }
                     DrawString (str, width2, height, Color.Yellow);
-                }
-                else {
+                } else {
                     height += lineHeight;
                 }
             }
@@ -216,11 +213,9 @@ namespace Knot3.Game.Development
             if (font != null) {
                 try {
                     spriteBatch.DrawString (font, str.Localize (), new Vector2 (width, height) * Config.Default ["video", "Supersamples", 1], color, 0f, Vector2.Zero, scale * Config.Default ["video", "Supersamples", 1], SpriteEffects.None, 0f);
-                }
-                catch (ArgumentException exp) {
+                } catch (ArgumentException exp) {
                     Log.Debug (exp);
-                }
-                catch (InvalidOperationException exp) {
+                } catch (InvalidOperationException exp) {
                     Log.Debug (exp);
                 }
             }

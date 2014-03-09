@@ -74,8 +74,7 @@ namespace Knot3.Framework.Widgets
         {
             get {
                 return isVisible;
-            }
-            set {
+            } set {
                 isVisible = value;
                 if (items != null) {
                     foreach (Widget item in items) {

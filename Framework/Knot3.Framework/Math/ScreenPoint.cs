@@ -47,8 +47,7 @@ namespace Knot3.Framework.Math
         {
             get {
                 return RelativeFunc ();
-            }
-            set {
+            } set {
                 RelativeFunc = () => value;
             }
         }
@@ -251,20 +250,15 @@ namespace Knot3.Framework.Math
         {
             if (other == null) {
                 return false;
-            }
-            else if (other is ScreenPoint) {
+            } else if (other is ScreenPoint) {
                 return Equals ((ScreenPoint)other);
-            }
-            else if (other is Vector2) {
+            } else if (other is Vector2) {
                 return Relative.Equals ((Vector2)other);
-            }
-            else if (other is Point) {
+            } else if (other is Point) {
                 return Absolute.Equals ((Point)other);
-            }
-            else if ((other = other as string) != null) {
+            } else if ((other = other as string) != null) {
                 return ToString ().Equals (other);
-            }
-            else {
+            } else {
                 return false;
             }
         }

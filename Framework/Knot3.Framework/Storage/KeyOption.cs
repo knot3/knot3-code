@@ -46,8 +46,7 @@ namespace Knot3.Framework.Storage
         {
             get {
                 return base.Value.ToEnumValue<Keys> ();
-            }
-            set {
+            } set {
                 base.Value = value.ToEnumDescription<Keys> ();
             }
         }

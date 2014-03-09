@@ -89,8 +89,7 @@ namespace Knot3.Framework.Math
                     return null;
                 }
                 return result;
-            }
-            else {
+            } else {
                 dirAB.Normalize ();
                 dirAB = -dirAB;
                 float? result = ray.Intersects (new Plane (dirAB, Vector3.Dot (dirAB, cylinder.SideB)));

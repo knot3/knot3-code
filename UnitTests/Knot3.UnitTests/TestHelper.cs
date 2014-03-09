@@ -48,8 +48,7 @@ namespace Knot3.UnitTests
 
             try {
                 File.Delete (filename);
-            }
-            catch (IOException) {
+            } catch (IOException) {
             }
 
             return filename;

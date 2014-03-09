@@ -80,8 +80,7 @@ namespace Knot3.ExtremeTests
 
                 if (stopwatch.ElapsedTicks > timeStatistics.slowest) {
                     timeStatistics.slowest = stopwatch.ElapsedTicks;
-                }
-                else if (stopwatch.ElapsedTicks < timeStatistics.fastest) {
+                } else if (stopwatch.ElapsedTicks < timeStatistics.fastest) {
                     timeStatistics.fastest = stopwatch.ElapsedTicks;
                 }
 

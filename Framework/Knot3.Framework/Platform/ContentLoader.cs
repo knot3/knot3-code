@@ -51,8 +51,7 @@ namespace Knot3.Framework.Platform
         {
             if (SystemInfo.IsRunningOnMono () || SystemInfo.IsRunningOnMonogame ()) {
                 return LoadEffectMono (screen, name);
-            }
-            else {
+            } else {
                 return LoadEffectDotnet (screen, name);
             }
         }
@@ -69,8 +68,7 @@ namespace Knot3.Framework.Platform
                 try {
                     Effect effect = new Effect (screen.GraphicsDevice, System.IO.File.ReadAllBytes (filename));
                     return effect;
-                }
-                catch (Exception ex) {
+                } catch (Exception ex) {
                     lastException = ex;
                 }
             }
@@ -90,8 +88,7 @@ namespace Knot3.Framework.Platform
             ContentManager content;
             if (contentManagers.ContainsKey (screen.CurrentRenderEffects.CurrentEffect.ToString ())) {
                 content = contentManagers [screen.CurrentRenderEffects.CurrentEffect.ToString ()];
-            }
-            else {
+            } else {
                 contentManagers [screen.CurrentRenderEffects.CurrentEffect.ToString ()] = content = new ContentManager (screen.Game.Content.ServiceProvider, screen.Game.Content.RootDirectory);
             }
 
@@ -103,14 +100,12 @@ namespace Knot3.Framework.Platform
         {
             if (invalidModels.Contains (name)) {
                 return null;
-            }
-            else {
+            } else {
                 try {
                     Model model = content.Load<Model> ("Models/" + name);
                     pp.RemapModel (model);
                     return model;
-                }
-                catch (ContentLoadException) {
+                } catch (ContentLoadException) {
                     Log.Debug ("Warning: Model ", name, " does not exist!");
                     invalidModels.Add (name);
                     return null;
@@ -125,8 +120,7 @@ namespace Knot3.Framework.Platform
             string key = "Content_" + name;
             if (textureCache.ContainsKey (key)) {
                 return textureCache [key];
-            }
-            else {
+            } else {
                 Texture2D tex = null;
                 if (tex == null) {
                     tex = LoadTextureFromFile (screen, name + ".png");
@@ -142,12 +136,10 @@ namespace Knot3.Framework.Platform
         {
             try {
                 return screen.Game.Content.Load<Texture2D> ("Textures/" + name);
-            }
-            catch (IOException ex) {
+            } catch (IOException ex) {
                 Log.Debug (ex);
                 return null;
-            }
-            catch (ContentLoadException ex) {
+            } catch (ContentLoadException ex) {
                 Log.Debug (ex);
                 return null;
             }
@@ -163,8 +155,7 @@ namespace Knot3.Framework.Platform
                     texture = Texture2D.FromStream (screen.GraphicsDevice, stream);
                 });
                 return texture;
-            }
-            catch (Exception ex) {
+            } catch (Exception ex) {
                 // hier kommen bei indexierten Bitmaps nur "Exception"-Objekte,
                 // keine IOException oder ContentLoadException, daher die allgemeine Abfrage nach Exception!
                 Log.Debug (ex);
@@ -176,8 +167,7 @@ namespace Knot3.Framework.Platform
         {
             try {
                 return screen.Game.Content.Load<SpriteFont> ("Fonts/" + name);
-            }
-            catch (ContentLoadException ex) {
+            } catch (ContentLoadException ex) {
                 Log.Debug (ex);
                 return null;
             }
@@ -193,8 +183,7 @@ namespace Knot3.Framework.Platform
             string key = color.ToString () + width.ToString () + "x" + height.ToString ();
             if (textureCache.ContainsKey (key)) {
                 return textureCache [key];
-            }
-            else {
+            } else {
                 // create a texture with the specified size
                 Texture2D texture = new Texture2D (graphicsDevice, width, height);
 
@@ -214,8 +203,7 @@ namespace Knot3.Framework.Platform
             string key = color1.ToString () + color2.ToString () + "gradient";
             if (textureCache.ContainsKey (key)) {
                 return textureCache [key];
-            }
-            else {
+            } else {
                 // create a texture with the specified size
                 Texture2D texture = new Texture2D (graphicsDevice, 2, 2);
 
@@ -245,18 +233,16 @@ namespace Knot3.Framework.Platform
             try {
                 // zeichne die Schrift
                 spriteBatch.DrawString (font, text, position.AbsoluteVector, color, 0, Vector2.Zero, scale, SpriteEffects.None, 0.6f);
-            }
-            catch (ArgumentException exp) {
+            } catch (ArgumentException exp) {
                 Log.Debug (exp);
-            }
-            catch (InvalidOperationException exp) {
+            } catch (InvalidOperationException exp) {
                 Log.Debug (exp);
             }
         }
 
         public static void DrawStringInRectangle (this SpriteBatch spriteBatch, SpriteFont font,
-                string text, Color color, Bounds bounds,
-                HorizontalAlignment alignX, VerticalAlignment alignY)
+                                                  string text, Color color, Bounds bounds,
+                                                  HorizontalAlignment alignX, VerticalAlignment alignY)
         {
             Vector2 scaledPosition = bounds.Position.AbsoluteVector;
             Vector2 scaledSize = bounds.Size.AbsoluteVector;
@@ -273,18 +259,16 @@ namespace Knot3.Framework.Platform
 
                 // zeichne die Schrift
                 spriteBatch.DrawString (font, text, textPosition, color, 0, Vector2.Zero, scale, SpriteEffects.None, 0.6f);
-            }
-            catch (ArgumentException exp) {
+            } catch (ArgumentException exp) {
                 Log.Debug (exp);
-            }
-            catch (InvalidOperationException exp) {
+            } catch (InvalidOperationException exp) {
                 Log.Debug (exp);
             }
         }
 
         public static Vector2 ScaleStringInRectangle (this SpriteBatch spriteBatch, SpriteFont font,
-                string text, Color color, Rectangle bounds,
-                HorizontalAlignment alignX, VerticalAlignment alignY)
+                                                      string text, Color color, Rectangle bounds,
+                                                      HorizontalAlignment alignX, VerticalAlignment alignY)
         {
             Vector2 scaledSize = new Vector2 (bounds.Width, bounds.Height);
             try {
@@ -294,8 +278,7 @@ namespace Knot3.Framework.Platform
                     scale.Y = scale.X = MathHelper.Min (scale.X, scale.Y);
                 }
                 return scale;
-            }
-            catch (Exception exp) {
+            } catch (Exception exp) {
                 Log.Debug (exp);
                 return Vector2.One;
             }

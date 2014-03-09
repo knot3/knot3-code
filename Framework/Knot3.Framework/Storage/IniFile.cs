@@ -55,8 +55,7 @@ namespace Knot3.Framework.Storage
                             if (!Data.ContainsKey (section)) {
                                 Data [section] = new Dictionary<string,string> ();
                             }
-                        }
-                        else if (line.Contains ("=")) {
+                        } else if (line.Contains ("=")) {
                             string[] parts = line.Split ('=');
                             if (section != null) {
                                 Data [section] [Decode (parts [0].Trim ())] = Decode (parts [1].Trim ());
@@ -117,8 +116,7 @@ namespace Knot3.Framework.Storage
                 }
                 string value = Data [section] [key];
                 return value;
-            }
-            set {
+            } set {
                 if (!Data.ContainsKey (section)) {
                     Data [section] = new Dictionary<string,string> ();
                 }

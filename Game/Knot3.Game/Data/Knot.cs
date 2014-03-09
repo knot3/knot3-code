@@ -183,8 +183,7 @@ namespace Knot3.Game.Data
             foreach (Direction peek in knot) {
                 if (occupancy.Contains (position3D + (peek / 2))) {
                     return false;
-                }
-                else {
+                } else {
                     occupancy.Add (position3D + (peek / 2));
                     position3D += peek;
                 }
@@ -247,8 +246,7 @@ namespace Knot3.Game.Data
                     if (newCircle == current - 1) {
                         localOffset += (current - 1).Value;
                         newCircle = current;
-                    }
-                    else if (newCircle == current - 2) {
+                    } else if (newCircle == current - 2) {
                         localOffset += (current - 1).Value.Direction + (current - 1).Value.Direction;
                         newCircle = current;
                     }
@@ -256,8 +254,7 @@ namespace Knot3.Game.Data
                     (current - 1).Remove ();
                 }
                 ++ current;
-            }
-            while (current != newCircle);
+            } while (current != newCircle);
 
             Log.Debug ("New Knot after Remove #", newCircle.Count, " = ", string.Join (", ", from c in newCircle select c.Direction));
 
@@ -312,8 +309,7 @@ namespace Knot3.Game.Data
                 startElement = newKnot.startElement;
                 selectedEdges = newKnot.selectedEdges;
                 return true;
-            }
-            else {
+            } else {
                 return false;
             }
         }
@@ -383,11 +379,9 @@ namespace Knot3.Game.Data
         {
             if (MetaData.Format == null) {
                 throw new IOException ("Error: Knot: MetaData.Format is null!");
-            }
-            else if (MetaData.Filename == null) {
+            } else if (MetaData.Filename == null) {
                 throw new IOException ("Error: Knot: MetaData.Filename is null!");
-            }
-            else {
+            } else {
                 MetaData.Format.Save (this);
             }
         }
@@ -475,8 +469,7 @@ namespace Knot3.Game.Data
                             selectedEdges.Add (e);
                         }
                     }
-                }
-                else {
+                } else {
                     foreach (Edge e in backward) {
                         if (!selectedEdges.Contains (e)) {
                             selectedEdges.Add (e);
@@ -552,8 +545,7 @@ namespace Knot3.Game.Data
                     currentOtherElement++;
                 }
                 return true;
-            }
-            else {
+            } else {
                 return false;
             }
         }

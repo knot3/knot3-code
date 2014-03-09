@@ -87,11 +87,9 @@ namespace Knot3.Framework.Storage
         {
             if (other == null) {
                 return false;
-            }
-            else if (other is Language) {
+            } else if (other is Language) {
                 return Equals (other as Language);
-            }
-            else {
+            } else {
                 return false;
             }
         }
