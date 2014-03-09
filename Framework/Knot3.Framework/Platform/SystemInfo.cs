@@ -27,19 +27,19 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
-
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 
 namespace Knot3.Framework.Platform
 {
+    [ExcludeFromCodeCoverageAttribute]
     public static partial class SystemInfo
     {
         /// <summary>
         /// Das Einstellungsverzeichnis.
         /// </summary>
-        [ExcludeFromCodeCoverageAttribute]
+
         public static string SettingsDirectory
         {
             get {
@@ -68,7 +68,6 @@ namespace Knot3.Framework.Platform
         /// <summary>
         /// Das Spielstandverzeichnis.
         /// </summary>
-        [ExcludeFromCodeCoverageAttribute]
         public static string SavegameDirectory
         {
             get {
@@ -81,7 +80,6 @@ namespace Knot3.Framework.Platform
         /// <summary>
         /// Das Bildschirmfotoverzeichnis.
         /// </summary>
-        [ExcludeFromCodeCoverageAttribute]
         public static string ScreenshotDirectory
         {
             get {
@@ -97,7 +95,6 @@ namespace Knot3.Framework.Platform
             }
         }
 
-        [ExcludeFromCodeCoverageAttribute]
         public static string DecodedMusicCache
         {
             get {
@@ -123,7 +120,6 @@ namespace Knot3.Framework.Platform
 
         private static string decodedMusicCache = null;
 
-        [ExcludeFromCodeCoverageAttribute]
         public static string BaseDirectory
         {
             get {
@@ -137,7 +133,6 @@ namespace Knot3.Framework.Platform
             }
         }
 
-        [ExcludeFromCodeCoverageAttribute]
         public static string RelativeBaseDirectory
         {
             get {
@@ -188,7 +183,6 @@ namespace Knot3.Framework.Platform
         private static string baseDirectory = null;
         public readonly static char PathSeparator = Path.DirectorySeparatorChar;
 
-        [ExcludeFromCodeCoverageAttribute]
         public static string RelativeContentDirectory
         {
             get {

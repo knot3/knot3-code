@@ -37,6 +37,7 @@ namespace Knot3.Framework.Storage
     /// <summary>
     /// Eine statische Klasse, die eine Referenz auf die zentrale Einstellungsdatei des Spiels enthält.
     /// </summary>
+    [ExcludeFromCodeCoverageAttribute]
     public static class Config
     {
         /// <summary>

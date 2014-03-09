@@ -38,6 +38,7 @@ using Knot3.Framework.Utilities;
 
 namespace Knot3.Game.Data
 {
+    [ExcludeFromCodeCoverageAttribute]
     public sealed class RectangleMap
     {
         private INodeMap NodeMap;
