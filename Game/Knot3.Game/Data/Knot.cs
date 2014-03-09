@@ -39,6 +39,7 @@ using Microsoft.Xna.Framework;
 
 using Knot3.Framework.Platform;
 using Knot3.Framework.Utilities;
+using Knot3.Framework.Storage;
 
 namespace Knot3.Game.Data
 {
@@ -385,7 +386,7 @@ namespace Knot3.Game.Data
                 throw new IOException ("Error: Knot: MetaData.Format is null!");
             }
             else if (MetaData.Filename == null) {
-                throw new IOException ("Error: Knot: MetaData.Filename is null!");
+                throw new NoFilenameException ("Error: Knot: MetaData.Filename is null!");
             }
             else {
                 MetaData.Format.Save (this,force);
