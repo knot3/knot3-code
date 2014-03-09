@@ -48,6 +48,7 @@ using Knot3.Framework.Utilities;
 using Knot3.Game.Audio;
 using Knot3.Game.Data;
 using Knot3.Game.Models;
+using Knot3.Framework.Development;
 
 namespace Knot3.Game.Input
 {
@@ -149,8 +150,10 @@ namespace Knot3.Game.Input
                         }
                         // keine Taste gedrückt
                         else {
+                            if(!Knot.IsSelected(selectedEdge)){
                             Knot.ClearSelection ();
                             Knot.AddToSelection (selectedEdge);
+                        }
                         }
                     }
                     catch (ArgumentOutOfRangeException exp) {
@@ -190,7 +193,7 @@ namespace Knot3.Game.Input
                     if (previousMousePosition == Vector3.Zero) {
                         previousMousePosition = currentMousePosition;
                         // dann erstelle die Shadowobjekte und fülle die Liste
-                        CreateShadowModels ();
+                        // CreateShadowModels ();
                     }
 
                     // Setze die Positionen der Shadowobjekte abhängig von der Mausposition
@@ -201,7 +204,9 @@ namespace Knot3.Game.Input
                     else {
                         // Wenn etwas anderes (eine Kante) selektiert wurde,
                         // muss die Verschiebe-Richtung berechnet werden
+                        Profiler.ProfileDelegate ["UpdShadowPipes"] = () => {
                         UpdateShadowPipes (currentMousePosition, time);
+                        };
                     }
 
                     // Zeichne im nächsten Frame auf jeden Fall neu
@@ -220,7 +225,7 @@ namespace Knot3.Game.Input
                         // muss die Verschiebe-Richtung berechnet werden
                         MovePipes (currentMousePosition, time);
                     }
-                    DestroyShadowModels ();
+                    //DestroyShadowModels ();
                     // Zeichne im nächsten Frame auf jeden Fall neu
                     World.Redraw = true;
                 }
@@ -304,7 +309,7 @@ namespace Knot3.Game.Input
             foreach (PipeModel pipe in World.OfType<PipeModel>()) {
                 if (Knot.SelectedEdges.Contains (pipe.Info.Edge)) {
                     pipe.Info.IsVisible = false;
-                    shadowModels.Add (new ShadowModel (Screen, pipe));
+                    // shadowModels.Add (new ShadowModel (Screen, pipe));
                 }
             }
             foreach (ArrowModel arrow in World.OfType<ArrowModel>()) {
