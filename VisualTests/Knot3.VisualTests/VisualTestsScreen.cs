@@ -106,7 +106,7 @@ namespace Knot3.VisualTests
             settingsMenu.Bounds.Padding = new ScreenPoint (this, 0.010f, 0.010f);
             settingsMenu.RelativeItemHeight = 0.030f;
 
-            float[] validEdgeCounts = new float[] { 500, 1000, 500, 10000, 15000 };
+            float[] validEdgeCounts = new float[] { 500, 1000, 5000, 7500,10000, 15000 };
             optionEdgeCount = new FloatOption (
                 section: "visualtests",
                 name: "edgecount",
