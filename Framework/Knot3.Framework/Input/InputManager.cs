@@ -157,7 +157,8 @@ namespace Knot3.Framework.Input
                     // mouse movements
                     Vector2 mouseMove = (CurrentMousePosition - PreviousClickMouseState.ToScreenPoint (Screen)).AbsoluteVector;
                     mouseMoved = mouseMove.Length () > 3;
-                } else {
+                }
+                else {
                     mouseMoved = false;
                 }
 
@@ -168,7 +169,8 @@ namespace Knot3.Framework.Input
                     LeftButtonClickTimer = 0;
                     PreviousClickMouseState = PreviousMouseState;
                     Log.Debug ("LeftButton=", LeftMouseButton);
-                } else {
+                }
+                else {
                     LeftMouseButton = ClickState.None;
                 }
                 RightButtonClickTimer += time.ElapsedGameTime.TotalMilliseconds;
@@ -178,7 +180,8 @@ namespace Knot3.Framework.Input
                     RightButtonClickTimer = 0;
                     PreviousClickMouseState = PreviousMouseState;
                     Log.Debug ("RightButton=", RightMouseButton);
-                } else {
+                }
+                else {
                     RightMouseButton = ClickState.None;
                 }
             }

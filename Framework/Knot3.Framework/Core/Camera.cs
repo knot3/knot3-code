@@ -179,7 +179,8 @@ namespace Knot3.Framework.Core
         {
             get {
                 return Position.DistanceTo (Target);
-            } set {
+            }
+            set {
                 Position = Position.SetDistanceTo (Target, value);
             }
         }
@@ -188,7 +189,8 @@ namespace Knot3.Framework.Core
         {
             get {
                 return Position.DistanceTo (ArcballTarget);
-            } set {
+            }
+            set {
                 Position = Position.SetDistanceTo (ArcballTarget, value);
             }
         }
@@ -247,7 +249,8 @@ namespace Knot3.Framework.Core
             get {
                 if (World.SelectedObject != null) {
                     return World.SelectedObject.Center ();
-                } else {
+                }
+                else {
                     return Vector3.Zero;
                 }
             }
@@ -317,7 +320,8 @@ namespace Knot3.Framework.Core
                 float zFactor = -nearWorldPoint.Y / direction.Y;
                 Vector3 zeroWorldPoint = nearWorldPoint + direction * zFactor;
                 return zeroWorldPoint;
-            } else {
+            }
+            else {
                 Vector3 screenLocation = World.Viewport.Project (
                                              source: nearTo,
                                              projection: World.Camera.ProjectionMatrix,

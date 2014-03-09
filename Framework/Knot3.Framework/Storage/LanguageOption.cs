@@ -46,7 +46,8 @@ namespace Knot3.Framework.Storage
                     }
                 }
                 return Localizer.CurrentLanguage;
-            } set {
+            }
+            set {
                 base.Value = value.Code;
             }
         }

@@ -78,7 +78,8 @@ namespace Knot3.Game.Data
             Log.Debug ("KnotFileIO.Save (", knot, ") = #", parser.Content.Length);
             if (knot.MetaData.Filename == null) {
                 throw new IOException ("Error! knot has no filename: " + knot);
-            } else {
+            }
+            else {
                 File.WriteAllText (knot.MetaData.Filename, parser.Content);
             }
         }
@@ -90,7 +91,8 @@ namespace Knot3.Game.Data
         {
             if (KnotCache.ContainsKey (filename)) {
                 return KnotCache [filename];
-            } else {
+            }
+            else {
                 Log.Debug ("Load knot from ", filename);
                 KnotStringIO parser = new KnotStringIO (content: string.Join ("\n", FileUtility.ReadFrom (filename)));
                 return KnotCache [filename] = new Knot (
@@ -107,7 +109,8 @@ namespace Knot3.Game.Data
         {
             if (KnotMetaDataCache.ContainsKey (filename)) {
                 return KnotMetaDataCache [filename];
-            } else {
+            }
+            else {
                 KnotStringIO parser = new KnotStringIO (content: string.Join ("\n", FileUtility.ReadFrom (filename)));
                 return KnotMetaDataCache [filename] = new KnotMetaData (
                     name: parser.Name,

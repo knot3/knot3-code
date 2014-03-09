@@ -166,11 +166,14 @@ namespace Knot3.Game.Data
         {
             if (other == null) {
                 return false;
-            } else if (other is Direction) {
+            }
+            else if (other is Direction) {
                 return Equals (other as Direction);
-            } else if (other is Vector3) {
+            }
+            else if (other is Vector3) {
                 return Vector.Equals ((Vector3)other);
-            } else {
+            }
+            else {
                 return base.Equals (other);
             }
         }

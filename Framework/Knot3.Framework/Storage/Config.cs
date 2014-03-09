@@ -50,7 +50,8 @@ namespace Knot3.Framework.Storage
                     _default = new ConfigFile (SystemInfo.SettingsDirectory + "knot3.ini");
                 }
                 return _default;
-            } set {
+            }
+            set {
                 _default = value;
             }
         }

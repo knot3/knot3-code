@@ -61,7 +61,8 @@ namespace Knot3.Framework.Audio
         {
             get {
                 return _backgroundMusic;
-            } set {
+            }
+            set {
                 if (value != Sound.None && value != _backgroundMusic) {
                     _backgroundMusic = value;
                     StartBackgroundMusic ();
@@ -137,7 +138,8 @@ namespace Knot3.Framework.Audio
             try {
                 // erstelle ein OggVorbisFile-Objekt
                 AudioFiles [soundType].Add (new OggVorbisFile (name, filepath, soundType));
-            } catch (Exception ex) {
+            }
+            catch (Exception ex) {
                 // egal, warum das laden nicht klappt; mehr als die Fehlermeldung anzeigen
                 // macht wegen einer fehlenden Musikdatei keinen Sinn
                 Log.Debug ("Failed to load ogg audio file (", soundType, "): ", filepath);
@@ -155,7 +157,8 @@ namespace Knot3.Framework.Audio
                 Playlist = new LoopPlaylist (AudioFiles [BackgroundMusic]);
                 Playlist.Shuffle ();
                 Playlist.Start ();
-            } else {
+            }
+            else {
                 Log.Message ("Warning: ", BackgroundMusic, ": no sound files available!");
             }
         }
@@ -165,7 +168,8 @@ namespace Knot3.Framework.Audio
             Log.Debug ("Sound: ", sound);
             if (AudioFiles [sound].Count > 0) {
                 AudioFiles [sound].RandomElement ().Play ();
-            } else {
+            }
+            else {
                 Log.Debug ("There are no audio files for: ", sound);
             }
         }

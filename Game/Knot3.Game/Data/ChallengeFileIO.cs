@@ -122,7 +122,8 @@ namespace Knot3.Game.Data
 
             if (meta != null && start != null && target != null) {
                 return new Challenge (meta, start, target);
-            } else {
+            }
+            else {
                 throw new IOException (
                     "Error! Invalid challenge file: " + filename
                     + " (meta=" + meta + ",start=" + start + ",target=" + target + ")"
@@ -176,7 +177,8 @@ namespace Knot3.Game.Data
                            format: this,
                            highscore: highscore
                        );
-            } else {
+            }
+            else {
                 throw new IOException (
                     "Error! Invalid challenge file: " + filename
                     + " (name=" + name + ",start=" + start + ",target=" + target + ",highscore=" + highscore + ")"

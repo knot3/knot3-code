@@ -67,7 +67,8 @@ namespace Knot3.Framework.Platform
 
                 // if all files were extracted
                 success = extractedFiles > 0;
-            } catch (Exception ex) {
+            }
+            catch (Exception ex) {
                 // an error occurred
                 Log.Error (ex);
                 success = false;
@@ -76,7 +77,8 @@ namespace Knot3.Framework.Platform
             // remove the zip file
             try {
                 File.Delete (zipFilename);
-            } catch (Exception ex) {
+            }
+            catch (Exception ex) {
                 Log.Error (ex);
             }
 
@@ -105,7 +107,8 @@ namespace Knot3.Framework.Platform
 
                 // if all files were extracted
                 success = extractedFiles > 0;
-            } catch (Exception ex) {
+            }
+            catch (Exception ex) {
                 // an error occurred
                 Log.Error (ex);
                 success = false;
@@ -114,7 +117,8 @@ namespace Knot3.Framework.Platform
             // remove the zip file
             try {
                 File.Delete (zipFilename);
-            } catch (Exception ex) {
+            }
+            catch (Exception ex) {
                 Log.Error (ex);
             }
 
@@ -132,7 +136,8 @@ namespace Knot3.Framework.Platform
                 webClient.DownloadFile (httpUrl, saveAs);
 
                 return true;
-            } catch (Exception ex) {
+            }
+            catch (Exception ex) {
                 Log.Error (ex);
                 return false;
             }
@@ -142,7 +147,8 @@ namespace Knot3.Framework.Platform
         {
             try {
                 action ();
-            } catch (DllNotFoundException ex) {
+            }
+            catch (DllNotFoundException ex) {
                 Log.Message ();
                 Log.Error (ex);
                 Log.Message ();
@@ -152,7 +158,8 @@ namespace Knot3.Framework.Platform
                     if (Dependencies.DownloadSDL2 () && Dependencies.DownloadSDL2_image ()) {
                         System.Diagnostics.Process.Start (Application.ExecutablePath); // to start new instance of application
                         Application.Exit ();
-                    } else {
+                    }
+                    else {
                         Log.ShowMessageBox ("SDL2 could not be downloaded.", "Dependency missing");
                     }
                 }
@@ -161,7 +168,8 @@ namespace Knot3.Framework.Platform
                     if (Dependencies.DownloadSDL2_image ()) {
                         System.Diagnostics.Process.Start (Application.ExecutablePath); // to start new instance of application
                         Application.Exit ();
-                    } else {
+                    }
+                    else {
                         Log.ShowMessageBox ("SDL2_image could not be downloaded.", "Dependency missing");
                     }
                 }

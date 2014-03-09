@@ -135,7 +135,8 @@ namespace Knot3.Framework.Widgets
                 Color foreground = ForegroundColor * (IsEnabled ? 1f : 0.5f);
                 if (IsLocalized) {
                     spriteBatch.DrawStringInRectangle (font, name.Localize (), foreground, Bounds, AlignX, AlignY);
-                } else {
+                }
+                else {
                     spriteBatch.DrawStringInRectangle (font, name, foreground, Bounds, AlignX, AlignY);
                 }
 

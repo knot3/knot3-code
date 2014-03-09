@@ -54,7 +54,8 @@ namespace Knot3.Framework.Widgets
         {
             get {
                 return base.IsEnabled;
-            } set {
+            }
+            set {
                 base.IsEnabled = value;
                 lines.IsEnabled = value;
             }

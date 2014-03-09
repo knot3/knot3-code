@@ -53,7 +53,8 @@ namespace Knot3.MockObjects
             get {
                 if (stack.Count > 0) {
                     return stack.Peek ();
-                } else {
+                }
+                else {
                     return defaultEffect;
                 }
             }

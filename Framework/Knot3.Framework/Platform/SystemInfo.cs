@@ -46,17 +46,20 @@ namespace Knot3.Framework.Platform
             get {
                 if (settingsDirectory != null) {
                     return settingsDirectory;
-                } else {
+                }
+                else {
                     string directory;
                     if (SystemInfo.IsRunningOnLinux ()) {
                         directory = Environment.GetEnvironmentVariable ("HOME") + "/.knot3/";
-                    } else {
+                    }
+                    else {
                         directory = Environment.GetFolderPath (System.Environment.SpecialFolder.Personal) + "\\Knot3\\";
                     }
                     Directory.CreateDirectory (directory);
                     return settingsDirectory = directory;
                 }
-            } set {
+            }
+            set {
                 settingsDirectory = value;
             }
         }
@@ -84,7 +87,8 @@ namespace Knot3.Framework.Platform
                 string directory;
                 if (SystemInfo.IsRunningOnLinux ()) {
                     directory = Environment.GetEnvironmentVariable ("HOME");
-                } else {
+                }
+                else {
                     directory = Environment.GetFolderPath (System.Environment.SpecialFolder.MyPictures) + "\\Knot3\\";
                 }
                 Directory.CreateDirectory (directory);
@@ -97,17 +101,20 @@ namespace Knot3.Framework.Platform
             get {
                 if (decodedMusicCache != null) {
                     return decodedMusicCache;
-                } else {
+                }
+                else {
                     string directory;
                     if (SystemInfo.IsRunningOnLinux ()) {
                         directory = "/var/tmp/knot3/";
-                    } else {
+                    }
+                    else {
                         directory = Environment.GetFolderPath (System.Environment.SpecialFolder.MyMusic) + "\\Knot3\\";
                     }
                     Directory.CreateDirectory (directory);
                     return decodedMusicCache = directory;
                 }
-            } set {
+            }
+            set {
                 decodedMusicCache = value;
             }
         }
@@ -119,7 +126,8 @@ namespace Knot3.Framework.Platform
             get {
                 if (baseDirectory != null) {
                     return baseDirectory;
-                } else {
+                }
+                else {
                     findBaseDirectory ();
                     return baseDirectory;
                 }
@@ -131,11 +139,13 @@ namespace Knot3.Framework.Platform
             get {
                 if (relativeBaseDirectory != null) {
                     return relativeBaseDirectory;
-                } else {
+                }
+                else {
                     findBaseDirectory ();
                     return relativeBaseDirectory;
                 }
-            } set {
+            }
+            set {
                 Log.Debug ("Set Base directory: ", value);
                 baseDirectory = value;
                 Log.Debug ("Set Base directory (relative): ", value);

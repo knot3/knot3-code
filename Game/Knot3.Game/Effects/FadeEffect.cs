@@ -66,7 +66,8 @@ namespace Knot3.Game.Effects
             if (oldScreen != null) {
                 PreviousRenderTarget = oldScreen.PostProcessingEffect.RenderTarget;
                 alpha = 1.0f;
-            } else {
+            }
+            else {
                 alpha = 0.0f;
             }
             SelectiveRendering = false;

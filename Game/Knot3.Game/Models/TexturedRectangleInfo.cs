@@ -78,10 +78,12 @@ namespace Knot3.Game.Models
             if (other is GameModelInfo) {
                 if (this.Texturename == (other as GameModelInfo).Modelname && base.Equals (other)) {
                     return true;
-                } else {
+                }
+                else {
                     return false;
                 }
-            } else {
+            }
+            else {
                 return base.Equals (other);
             }
         }

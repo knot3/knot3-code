@@ -52,10 +52,12 @@ namespace Knot3.Framework.Storage
         {
             get {
                 return base.Value;
-            } set {
+            }
+            set {
                 if (ValidValues.Contains (value)) {
                     base.Value = value;
-                } else {
+                }
+                else {
                     base.Value = DefaultValue;
                 }
             }

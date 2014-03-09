@@ -229,7 +229,8 @@ namespace Knot3.Game.Screens
                     start: selectedStartKnot,
                     target: selectedTargetKnot
                 );
-            } else {
+            }
+            else {
                 selectedChallenge = null;
             }
 
@@ -246,7 +247,8 @@ namespace Knot3.Game.Screens
                 try {
                     selectedChallenge.Save ();
                     NextScreen = new ChallengeStartScreen (Game);
-                } catch (Exception ex) {
+                }
+                catch (Exception ex) {
                     Dialog errorDialog = new ErrorDialog (this, DisplayLayer.Dialog * 3, ex.ToString ());
                     AddGameComponents (time, errorDialog);
                 }

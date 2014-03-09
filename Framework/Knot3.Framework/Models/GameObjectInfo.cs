@@ -81,7 +81,8 @@ namespace Knot3.Framework.Models
 
             if (this.Position == other.Position) {
                 return true;
-            } else {
+            }
+            else {
                 return false;
             }
         }

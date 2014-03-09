@@ -81,7 +81,8 @@ namespace Knot3.Game.Data
                     if (line.IndexOf ("#") > -1) {
                         edge.Color = DecodeColor (line.Substring (0, line.IndexOf ("#")));
                         line = line.Substring (line.IndexOf ("#"));
-                    } else {
+                    }
+                    else {
                         edge.Color = DecodeColor (line);
                         line = "";
                     }
@@ -99,11 +100,13 @@ namespace Knot3.Game.Data
                     }
                     yield return edge;
                 }
-            } set {
+            }
+            set {
                 Log.Debug ("KnotStringIO.Edges [set] = #", value.Count ());
                 try {
                     edgeLines = ToLines (value);
-                } catch (Exception ex) {
+                }
+                catch (Exception ex) {
                     Log.Debug (ex);
                 }
             }
@@ -127,12 +130,14 @@ namespace Knot3.Game.Data
         {
             get {
                 return Name + "\n" + string.Join ("\n", edgeLines);
-            } set {
+            }
+            set {
                 if (value.Trim ().Contains ("\n")) {
                     string[] parts = value.Split (new char[] {'\r','\n'}, StringSplitOptions.RemoveEmptyEntries);
                     Name = parts [0];
                     edgeLines = parts.Skip (1);
-                } else {
+                }
+                else {
                     Name = value;
                     edgeLines = new string[] {};
                 }
@@ -158,7 +163,8 @@ namespace Knot3.Game.Data
             Name = knot.Name;
             try {
                 edgeLines = ToLines (knot);
-            } catch (Exception ex) {
+            }
+            catch (Exception ex) {
                 Log.Debug (ex);
             }
         }
@@ -175,7 +181,8 @@ namespace Knot3.Game.Data
         {
             if (DirectionCodeMap.ContainsKey (c)) {
                 return new Edge (DirectionCodeMap [c]);
-            } else {
+            }
+            else {
                 throw new IOException ("Failed to decode Edge: '" + c + "'!");
             }
         }
@@ -185,7 +192,8 @@ namespace Knot3.Game.Data
             Dictionary<Direction, char> reversed = DirectionCodeMap.ReverseDictionary ();
             if (reversed.ContainsKey (edge.Direction)) {
                 return reversed [edge.Direction];
-            } else {
+            }
+            else {
                 throw new IOException ("Failed to encode Edge: '" + edge + "'!");
             }
         }
@@ -211,13 +219,15 @@ namespace Knot3.Game.Data
                     color.B = (byte)(hex >> 8);
                     color.A = (byte)(hex);
                 }
-            } else if (hexString.Length == 6) {
+            }
+            else if (hexString.Length == 6) {
                 unchecked {
                     color.R = (byte)(hex >> 16);
                     color.G = (byte)(hex >> 8);
                     color.B = (byte)(hex);
                 }
-            } else {
+            }
+            else {
                 throw new IOException ("Invalid hex representation of an ARGB or RGB color value.");
             }
             return color;

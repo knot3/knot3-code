@@ -131,9 +131,11 @@ namespace Knot3.Framework.Widgets
         {
             if (itemOrder < currentScrollPosition) {
                 return Vector2.Zero;
-            } else if (itemOrder > currentScrollPosition + pageScrollPosition - 1) {
+            }
+            else if (itemOrder > currentScrollPosition + pageScrollPosition - 1) {
                 return Vector2.Zero;
-            } else {
+            }
+            else {
                 float itemHeight = RelativeItemHeight + Bounds.Padding.Relative.Y;
                 return Bounds.Position.Relative + new Vector2 (0, itemHeight * (itemOrder - currentScrollPosition));
             }
@@ -143,9 +145,11 @@ namespace Knot3.Framework.Widgets
         {
             if (itemOrder < currentScrollPosition) {
                 return Vector2.Zero;
-            } else if (itemOrder > currentScrollPosition + pageScrollPosition - 1) {
+            }
+            else if (itemOrder > currentScrollPosition + pageScrollPosition - 1) {
                 return Vector2.Zero;
-            } else {
+            }
+            else {
                 return new Vector2 (Bounds.Size.Relative.X, RelativeItemHeight);
             }
         }
@@ -183,7 +187,8 @@ namespace Knot3.Framework.Widgets
         {
             get {
                 return _currentScrollPosition;
-            } set {
+            }
+            set {
                 _currentScrollPosition = MathHelper.Clamp (value, 0, maxScrollPosition - pageScrollPosition);
             }
         }

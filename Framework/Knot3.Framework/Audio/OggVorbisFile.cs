@@ -67,7 +67,8 @@ namespace Knot3.Framework.Audio
             try {
                 Log.ListElement (33, "[", soundType, "] ", name);
                 data = File.ReadAllBytes (cachefile);
-            } catch (Exception) {
+            }
+            catch (Exception) {
                 Log.ListElement (34, "[", soundType, "] ", name);
                 OggDecoder decoder = new OggDecoder ();
                 decoder.Initialize (TitleContainer.OpenStream (filepath));

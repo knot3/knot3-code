@@ -152,7 +152,8 @@ namespace Knot3.Game.Effects
         {
             get {
                 return new Color (celShader.Parameters ["Color"].GetValueVector4 ());
-            } set {
+            }
+            set {
                 celShader.Parameters ["Color"].SetValue (value.ToVector4 ());
             }
         }

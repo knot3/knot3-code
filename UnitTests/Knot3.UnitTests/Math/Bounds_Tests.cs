@@ -127,7 +127,8 @@ namespace Knot3.UnitTests.Math
         {
             if (a.Position.Equals (b.Position) && a.Size.Equals (b.Size)) {
                 return true;
-            } else {
+            }
+            else {
                 return false;
             }
         }

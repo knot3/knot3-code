@@ -78,7 +78,8 @@ namespace Knot3.Framework.Input
                             && (Screen.InputManager.CurrentMouseState.LeftButton == ButtonState.Pressed
                                 || Screen.InputManager.CurrentMouseState.RightButton == ButtonState.Pressed))) {
                     //spriteBatch.Draw (cursorTex, Screen.Device.Viewport.Center (), Color.White);
-                } else {
+                }
+                else {
                     spriteBatch.Draw (
                         cursorTex,
                         Screen.InputManager.CurrentMousePosition.AbsoluteVector * Config.Default ["video", "Supersamples", 1],

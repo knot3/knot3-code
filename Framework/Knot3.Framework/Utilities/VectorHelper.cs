@@ -147,9 +147,11 @@ namespace Knot3.Framework.Utilities
         {
             if (v.Length () < minLength) {
                 return v * minLength / v.Length ();
-            } else if (v.Length () > maxLength) {
+            }
+            else if (v.Length () > maxLength) {
                 return v * maxLength / v.Length ();
-            } else {
+            }
+            else {
                 return v;
             }
         }
@@ -158,9 +160,11 @@ namespace Knot3.Framework.Utilities
         {
             if (v.X.Abs () > v.Y.Abs ()) {
                 return new Vector2 (v.X, 0);
-            } else if (v.Y.Abs () > v.X.Abs ()) {
+            }
+            else if (v.Y.Abs () > v.X.Abs ()) {
                 return new Vector2 (0, v.Y);
-            } else {
+            }
+            else {
                 return new Vector2 (v.X, 0);
             }
         }
@@ -169,11 +173,14 @@ namespace Knot3.Framework.Utilities
         {
             if (v.X.Abs () > v.Y.Abs () && v.X.Abs () > v.Z.Abs ()) {
                 return new Vector3 (v.X, 0, 0);
-            } else if (v.Y.Abs () > v.X.Abs () && v.Y.Abs () > v.Z.Abs ()) {
+            }
+            else if (v.Y.Abs () > v.X.Abs () && v.Y.Abs () > v.Z.Abs ()) {
                 return new Vector3 (0, v.Y, 0);
-            } else if (v.Z.Abs () > v.Y.Abs () && v.Z.Abs () > v.X.Abs ()) {
+            }
+            else if (v.Z.Abs () > v.Y.Abs () && v.Z.Abs () > v.X.Abs ()) {
                 return new Vector3 (0, 0, v.Z);
-            } else {
+            }
+            else {
                 return new Vector3 (v.X, 0, 0);
             }
         }
@@ -195,9 +202,11 @@ namespace Knot3.Framework.Utilities
             Vector3 copy = v;
             if (wrongDirection.X != 0) {
                 copy.X = 0;
-            } else if (wrongDirection.Y != 0) {
+            }
+            else if (wrongDirection.Y != 0) {
                 copy.Y = 0;
-            } else if (wrongDirection.Z != 0) {
+            }
+            else if (wrongDirection.Z != 0) {
                 copy.Z = 0;
             }
             return copy.PrimaryDirection ();
@@ -280,7 +289,8 @@ namespace Knot3.Framework.Utilities
             Vector2 max = viewport.Size ();
             if (v.X > 1 || v.Y > 1) {
                 return v / 1000f * max;
-            } else {
+            }
+            else {
                 return v * max;
             }
         }
@@ -340,9 +350,11 @@ namespace Knot3.Framework.Utilities
         {
             if (w == 0) {
                 return new Rectangle ((int)x - lineWidth / 2, (int)y - lineWidth / 2, lineWidth, (int)h + lineWidth);
-            } else if (h == 0) {
+            }
+            else if (h == 0) {
                 return new Rectangle ((int)x - lineWidth / 2, (int)y - lineWidth / 2, (int)w + lineWidth, lineWidth);
-            } else {
+            }
+            else {
                 return new Rectangle ((int)x, (int)y, (int)w, (int)h);
             }
         }
@@ -351,7 +363,8 @@ namespace Knot3.Framework.Utilities
         {
             if (list.Count == 0) {
                 return default (T);
-            } else {
+            }
+            else {
                 while (index < 0) {
                     index += list.Count;
                 }
@@ -367,7 +380,8 @@ namespace Knot3.Framework.Utilities
             int count = list.Count ();
             if (count == 0) {
                 return default (T);
-            } else {
+            }
+            else {
                 while (index < 0) {
                     index += count;
                 }
@@ -438,7 +452,8 @@ namespace Knot3.Framework.Utilities
             double scale = (double)distance / (double)to.Length ();
             if (System.Math.Abs (oldDistance) > 1 && System.Math.Abs (oldDistance - distance) > 1 && System.Math.Abs (distance) > 1) {
                 return target + to * (float)scale;
-            } else {
+            }
+            else {
                 return origin;
             }
         }

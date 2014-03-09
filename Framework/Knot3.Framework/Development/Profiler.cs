@@ -58,7 +58,8 @@ namespace Knot3.Framework.Development
             {
                 get {
                     return (double)ProfilerMap [str];
-                } set {
+                }
+                set {
                     ProfilerMap [str] = value;
                 }
             }

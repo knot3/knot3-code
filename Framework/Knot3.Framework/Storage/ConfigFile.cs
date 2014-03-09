@@ -116,7 +116,8 @@ namespace Knot3.Framework.Storage
             bool result = Int32.TryParse (s, out i);
             if (true == result) {
                 return ((float)i) / 1000f;
-            } else {
+            }
+            else {
                 return 0;
             }
         }
@@ -125,7 +126,8 @@ namespace Knot3.Framework.Storage
         {
             get {
                 return GetOption (section, option, defaultValue);
-            } set {
+            }
+            set {
                 SetOption (section, option, value);
             }
         }
@@ -134,7 +136,8 @@ namespace Knot3.Framework.Storage
         {
             get {
                 return GetOption (section, option, defaultValue);
-            } set {
+            }
+            set {
                 SetOption (section, option, value);
             }
         }
@@ -143,7 +146,8 @@ namespace Knot3.Framework.Storage
         {
             get {
                 return GetOption (section, option, defaultValue);
-            } set {
+            }
+            set {
                 SetOption (section, option, value);
             }
         }

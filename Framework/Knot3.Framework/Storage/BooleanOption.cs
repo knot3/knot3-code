@@ -44,7 +44,8 @@ namespace Knot3.Framework.Storage
         {
             get {
                 return base.Value == ConfigFile.True ? true : false;
-            } set {
+            }
+            set {
                 base.Value = value ? ConfigFile.True : ConfigFile.False;
             }
         }

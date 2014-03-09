@@ -95,7 +95,8 @@ namespace Knot3.Game.Widgets
                 Log.Debug ("Trying to assign key: ", key);
                 if (KeyBindingListener.ContainsKey (key) && option.Value != key) {
                     Log.Debug ("Key ", key, " is already assigned to: ", KeyBindingListener.LookupAction (key));
-                } else {
+                }
+                else {
                     Log.Debug ("Key ", key, " => ", option.Name);
                     option.Value = key;
                     InputText = (option as DistinctOption).Value;
@@ -115,7 +116,8 @@ namespace Knot3.Game.Widgets
             if (IsInputEnabled) {
                 ValidKeys.Clear ();
                 IsInputEnabled = false;
-            } else {
+            }
+            else {
                 ValidKeys.AddRange (typeof (Keys).ToEnumValues<Keys> ());
                 IsInputEnabled = true;
                 InputText = String.Empty;

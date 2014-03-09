@@ -305,7 +305,8 @@ namespace Knot3.ModelEditor
             get {
                 if (_availableModels != null) {
                     return _availableModels;
-                } else {
+                }
+                else {
                     List<string> modelnames = new List<string> ();
                     Action<string> fileFound = (file) => {
                         string name = Path.GetFileNameWithoutExtension (file);

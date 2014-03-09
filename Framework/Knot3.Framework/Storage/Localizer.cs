@@ -82,14 +82,16 @@ namespace Knot3.Framework.Storage
             get {
                 if (_validLanguages != null) {
                     return _validLanguages;
-                } else {
+                }
+                else {
                     string[] files = Directory.GetFiles (LanguageDirectory);
                     List<Language> languages = new List<Language> ();
                     foreach (string file in files) {
                         try {
                             Log.Debug ("Language file: ", file);
                             languages.Add (new Language (file: file));
-                        } catch (Exception ex) {
+                        }
+                        catch (Exception ex) {
                             Log.Error (ex);
                         }
                     }
@@ -110,9 +112,11 @@ namespace Knot3.Framework.Storage
         {
             if (text == null) {
                 return "";
-            } else if (text == string.Empty || text.Contains ("Exception") || text.Any (char.IsDigit)) {
+            }
+            else if (text == string.Empty || text.Contains ("Exception") || text.Any (char.IsDigit)) {
                 return text;
-            } else {
+            }
+            else {
                 if (CurrentLanguage == null || CurrentLanguage.Code != CurrentLanguageCode.Value) {
                     _validLanguages = null;
                     foreach (Language lang in ValidLanguages) {

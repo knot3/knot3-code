@@ -90,7 +90,8 @@ namespace Knot3.Game.Utilities
                     // Keine Exceptions? Dann ist enthält die Datei einen gültigen Knoten!
                     isValid = true;
                     fileIndex.Add (hashcode);
-                } catch (Exception ex) {
+                }
+                catch (Exception ex) {
                     // Es ist eine Exception aufgetreten, der Knoten ist offenbar ungültig.
                     Log.Debug (ex);
                     isValid = false;

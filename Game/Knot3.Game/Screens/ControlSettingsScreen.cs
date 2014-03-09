@@ -124,7 +124,8 @@ namespace Knot3.Game.Screens
 
                     // Füge es in das Menü ein
                     settingsMenu.Add (item);
-                } else {
+                }
+                else {
                     Log.Debug ("Key binding ", actionName, " not found!");
                 }
             }

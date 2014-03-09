@@ -54,7 +54,8 @@ namespace Knot3.Framework.Effects
             get {
                 if (stack.Count > 0) {
                     return stack.Peek ();
-                } else {
+                }
+                else {
                     return defaultEffect;
                 }
             }
@@ -84,11 +85,13 @@ namespace Knot3.Framework.Effects
                 IRenderEffect removed = stack.Pop ();
                 if (stack.Count > 0) {
                     screen.GraphicsDevice.SetRenderTarget (CurrentEffect.RenderTarget);
-                } else {
+                }
+                else {
                     screen.GraphicsDevice.SetRenderTarget (null);
                 }
                 return removed;
-            } else {
+            }
+            else {
                 return defaultEffect;
             }
         }

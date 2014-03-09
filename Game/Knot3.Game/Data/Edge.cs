@@ -111,15 +111,20 @@ namespace Knot3.Game.Data
         {
             if (other == null) {
                 return false;
-            } else if (other is Edge) {
+            }
+            else if (other is Edge) {
                 return Equals (other as Edge);
-            } else if (other is Direction) {
+            }
+            else if (other is Direction) {
                 return Direction.Equals (other as Direction);
-            } else if (other is Vector3) {
+            }
+            else if (other is Vector3) {
                 return Direction.Vector.Equals ((Vector3)other);
-            } else if (other is Color) {
+            }
+            else if (other is Color) {
                 return Color.Equals ((Color)other);
-            } else {
+            }
+            else {
                 return false;
             }
         }

@@ -57,7 +57,8 @@ namespace Knot3.Framework.Core
         {
             get {
                 return _camera;
-            } set {
+            }
+            set {
                 _camera = value;
                 useInternalCamera = false;
             }
@@ -80,7 +81,8 @@ namespace Knot3.Framework.Core
         {
             get {
                 return _selectedObject;
-            } set {
+            }
+            set {
                 if (_selectedObject != value) {
                     _selectedObject = value;
                     SelectionChanged (_selectedObject);
@@ -99,7 +101,8 @@ namespace Knot3.Framework.Core
                 if (SelectedObject != null) {
                     Vector3 toTarget = SelectedObject.Center () - Camera.Position;
                     return toTarget.Length ();
-                } else {
+                }
+                else {
                     return 0;
                 }
             }
@@ -275,7 +278,8 @@ namespace Knot3.Framework.Core
 
                 // end of the knot render effect
                 CurrentEffect.End (time);
-            } else {
+            }
+            else {
                 CurrentEffect.DrawLastFrame (time);
             }
         }
@@ -298,7 +302,8 @@ namespace Knot3.Framework.Core
                     foreach (IGameObject subobj in flat (obj as IEnumerable<IGameObject>)) {
                         yield return subobj;
                     }
-                } else {
+                }
+                else {
                     yield return obj;
                 }
             }
@@ -345,7 +350,8 @@ namespace Knot3.Framework.Core
                     yield return distances [where];
                     // Log.Debug ("where=", where, " = ", distances [where].Center ());
                 }
-            } else {
+            }
+            else {
                 yield break;
             }
         }
@@ -369,7 +375,8 @@ namespace Knot3.Framework.Core
                 foreach (float where in sorted) {
                     yield return distances [where];
                 }
-            } else {
+            }
+            else {
                 yield break;
             }
         }

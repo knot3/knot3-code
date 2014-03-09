@@ -52,7 +52,8 @@ namespace Knot3.Framework.Platform
             EndList ();
             if (SystemInfo.IsRunningOnLinux ()) {
                 DebugLinux (message);
-            } else {
+            }
+            else {
                 DebugWindows (message);
             }
         }
@@ -73,7 +74,8 @@ namespace Knot3.Framework.Platform
                     Console.WriteLine ("[" + lastDebugTimes + "x] " + lastDebugStr);
                     lastDebugTimes = 0;
                 }
-            } else {
+            }
+            else {
                 if (lastDebugTimes > 0) {
                     Console.WriteLine (lastDebugTimes + "x " + lastDebugStr);
                 }
@@ -147,7 +149,8 @@ namespace Knot3.Framework.Platform
                 Console.Write (def.After);
 
                 lastListId = id.ToString ();
-            } else {
+            }
+            else {
                 Message ("Error! Invalid list ID in ListElement (", id, ", ", element, ")");
             }
         }

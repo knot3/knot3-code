@@ -82,11 +82,14 @@ namespace Knot3.Game.Models
             Coloring = new SingleColor (Info.Edge);
             if (World.SelectedObject == this) {
                 Coloring.Highlight (intensity: 0.40f, color: Color.White);
-            } else if (IsVirtual) {
+            }
+            else if (IsVirtual) {
                 Coloring.Highlight (intensity: 0.5f, color: Color.White);
-            } else if (Info.Knot != null && Info.Knot.SelectedEdges.Contains (Info.Edge)) {
+            }
+            else if (Info.Knot != null && Info.Knot.SelectedEdges.Contains (Info.Edge)) {
                 Coloring.Highlight (intensity: 0.80f, color: Color.White);
-            } else {
+            }
+            else {
                 Coloring.Unhighlight ();
             }
 

@@ -78,7 +78,8 @@ namespace Knot3.Game.Models
             basicEffect = new BasicEffect (screen.GraphicsDevice);
             if (info.Texture != null) {
                 texture = info.Texture;
-            } else {
+            }
+            else {
                 texture = screen.LoadTexture (info.Texturename);
             }
             if (texture != null) {
@@ -261,7 +262,8 @@ namespace Knot3.Game.Models
         {
             if (obj is Node) {
                 return Equals ((Node)obj);
-            } else {
+            }
+            else {
                 return false;
             }
         }

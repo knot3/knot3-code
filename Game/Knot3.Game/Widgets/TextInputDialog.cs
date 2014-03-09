@@ -56,7 +56,8 @@ namespace Knot3.Game.Widgets
         {
             get {
                 return textInput.InputText;
-            } set {
+            }
+            set {
                 textInput.InputText = value;
             }
         }
@@ -79,7 +80,8 @@ namespace Knot3.Game.Widgets
         {
             get {
                 return textItem.Text;
-            } set {
+            }
+            set {
                 textItem.Text = value;
             }
         }

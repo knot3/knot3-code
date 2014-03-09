@@ -57,7 +57,8 @@ namespace Knot3.Game.Data
         {
             get {
                 return name;
-            } set {
+            }
+            set {
                 name = value;
                 if (Format == null) {
                     Format = new KnotFileIO ();
@@ -66,7 +67,8 @@ namespace Knot3.Game.Data
                     string extension;
                     if (Format.FileExtensions.Any ()) {
                         extension = Format.FileExtensions.ElementAt (0);
-                    } else {
+                    }
+                    else {
                         throw new ArgumentException ("Every implementation of IKnotIO must have at least one file extension.");
                     }
                     Filename = SystemInfo.SavegameDirectory + SystemInfo.PathSeparator + FileUtility.ConvertToFileName (name) + extension;

@@ -95,7 +95,8 @@ namespace Knot3.Framework.Utilities
 
             if (attributes != null && attributes.Length > 0) {
                 return attributes [0].Description;
-            } else {
+            }
+            else {
                 return value.ToString ();
             }
         }

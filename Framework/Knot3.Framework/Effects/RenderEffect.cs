@@ -148,7 +148,8 @@ namespace Knot3.Framework.Effects
             // lighting
             if (screen.InputManager.KeyHeldDown (Keys.L)) {
                 effect.LightingEnabled = false;
-            } else {
+            }
+            else {
                 effect.EnableDefaultLighting ();  // Beleuchtung aktivieren
             }
 
@@ -227,11 +228,13 @@ namespace Knot3.Framework.Effects
                             false, SurfaceFormat.Color, DepthFormat.Depth24, 1, RenderTargetUsage.PreserveContents
                         );
                         break;
-                    } catch (NotSupportedException ex) {
+                    }
+                    catch (NotSupportedException ex) {
                         Log.Debug (ex);
                         if (Config.Default ["video", "Supersamples", 1] > 1) {
                             Config.Default ["video", "Supersamples", 1] *= 0.8f;
-                        } else {
+                        }
+                        else {
                             throw;
                         }
                         continue;

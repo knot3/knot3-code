@@ -71,7 +71,8 @@ namespace Knot3.Framework.Storage
                     Log.Debug ("Option: ", Section, ".", Name, " => ", ConfigFile [Section, Name, DefaultValue]);
                 }
                 return ConfigFile [Section, Name, DefaultValue];
-            } set {
+            }
+            set {
                 Log.Debug ("Option: ", Section, ".", Name, " <= ", value);
                 ConfigFile [Section, Name, DefaultValue] = value;
             }
