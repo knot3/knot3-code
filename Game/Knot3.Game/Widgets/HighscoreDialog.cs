@@ -27,14 +27,18 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
+
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+
 using Microsoft.Xna.Framework;
+
 using Knot3.Framework.Core;
 using Knot3.Framework.Math;
 using Knot3.Framework.Widgets;
+
 using Knot3.Game.Data;
 using Knot3.Game.Screens;
 
@@ -96,7 +100,7 @@ namespace Knot3.Game.Widgets
             );
             restartButton.Bounds.Size = new ScreenPoint (screen, ContentBounds.Size.Relative.X / 2, 0.05f);
             restartButton.Bounds.Position = ContentBounds.Position + ContentBounds.Size.OnlyY
-                - restartButton.Bounds.Size.OnlyY;
+                                            - restartButton.Bounds.Size.OnlyY;
             buttons.Add (restartButton);
 
             // Button für die Rückkehr zum StartScreen
@@ -112,7 +116,7 @@ namespace Knot3.Game.Widgets
             );
             returnButton.Bounds.Size = new ScreenPoint (screen, ContentBounds.Size.Relative.X / 2, 0.05f);
             returnButton.Bounds.Position = ContentBounds.Position + ContentBounds.Size.OnlyY
-                - returnButton.Bounds.Size.OnlyY + ContentBounds.Size.OnlyX / 2;
+                                           - returnButton.Bounds.Size.OnlyY + ContentBounds.Size.OnlyX / 2;
             buttons.Add (returnButton);
         }
 
