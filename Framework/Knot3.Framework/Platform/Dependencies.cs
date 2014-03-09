@@ -27,13 +27,11 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
-
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Net;
 using System.Windows.Forms;
-
 using Ionic.Zip;
 
 namespace Knot3.Framework.Platform
@@ -61,7 +59,7 @@ namespace Knot3.Framework.Platform
                                 // extract the file to the current directory
                                 entry.Extract (".", ExtractExistingFileAction.OverwriteSilently);
                                 // downloading was obviously sucessful
-                                ++extractedFiles;
+                                ++ extractedFiles;
                             });
                         }
                     }
@@ -103,7 +101,7 @@ namespace Knot3.Framework.Platform
                                 // extract the file to the current directory
                                 entry.Extract (".", ExtractExistingFileAction.OverwriteSilently);
                                 // downloading was obviously sucessful
-                                ++extractedFiles;
+                                ++ extractedFiles;
                             });
                         }
                     }
@@ -145,7 +143,7 @@ namespace Knot3.Framework.Platform
                                 // extract the file to the current directory
                                 entry.Extract (".", ExtractExistingFileAction.OverwriteSilently);
                                 // downloading was obviously sucessful
-                                ++extractedFiles;
+                                ++ extractedFiles;
                             });
                         }
                     }
@@ -212,8 +210,14 @@ namespace Knot3.Framework.Platform
                 if (ex.ToString ().ToLower ().Contains ("sdl2.dll")) {
                     Log.ShowMessageBox ("This game requires SDL2. It will be downloaded now.", "Dependency missing");
                     if (Dependencies.DownloadSDL2 () && (File.Exists ("SDL2_image.dll") || Dependencies.DownloadSDL2_image ())) {
-                        System.Diagnostics.Process.Start (Application.ExecutablePath); // to start new instance of application
-                        Application.Exit ();
+                        if (!File.Exists ("oalinst.exe") && Dependencies.DownloadOpenAL ()) {
+                            System.Diagnostics.Process.Start ("oalinst.exe"); // to start the openal installer
+                            Application.Exit ();
+                        }
+                        else {
+                            System.Diagnostics.Process.Start (Application.ExecutablePath); // to start new instance of application
+                            Application.Exit ();
+                        }
                     }
                     else {
                         Log.ShowMessageBox ("SDL2 could not be downloaded.", "Dependency missing");
