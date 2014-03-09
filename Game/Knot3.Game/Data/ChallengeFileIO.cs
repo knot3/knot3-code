@@ -56,6 +56,9 @@ namespace Knot3.Game.Data
                 yield return ".chn";
                 yield return ".chg";
                 yield return ".chlng";
+                yield return ".chal";
+                yield return ".chall";
+                yield return ".chllng";
             }
         }
 
