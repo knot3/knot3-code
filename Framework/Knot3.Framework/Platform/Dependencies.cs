@@ -183,16 +183,6 @@ namespace Knot3.Framework.Platform
                     return;
                 }
             }
-            else {
-                if (!Dependencies.DownloadSDL2 ()) {
-                    Log.ShowMessageBox (DownloadErrorMessage ("SDL2"), MessageBoxTitle);
-                    return;
-                }
-                if (!Dependencies.DownloadOpenALSoft ()) {
-                    Log.ShowMessageBox (DownloadErrorMessage ("OpenAL Soft"), MessageBoxTitle);
-                    return;
-                }
-            }
 
             try {
                 action ();
