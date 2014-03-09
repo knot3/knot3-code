@@ -188,7 +188,7 @@ namespace Knot3.Game.Screens
                         screen: this,
                         drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
                         name: Localizer.Localize ("Edge Count: ") + previewKnotMetaData.CountEdges,
-                        onClick: (t) => {}
+                    onClick: (t) => {}
                     );
                     countEntry.IsSelectable = false;
                     countEntry.Enabled = false;

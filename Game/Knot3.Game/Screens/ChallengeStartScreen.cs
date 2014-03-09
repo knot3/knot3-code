@@ -191,8 +191,8 @@ namespace Knot3.Game.Screens
                     MenuEntry countEntry = new MenuEntry (
                         screen: this,
                         drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
-                        name: Localizer.Localize("Edge Count: ") + meta.Target.CountEdges,
-                        onClick: (t) => {}
+                        name: Localizer.Localize ("Edge Count: ") + meta.Target.CountEdges,
+                    onClick: (t) => {}
                     );
                     countEntry.IsSelectable = false;
                     countEntry.Enabled = false;
@@ -201,8 +201,8 @@ namespace Knot3.Game.Screens
                     MenuEntry avgtimeEntry = new MenuEntry (
                         screen: this,
                         drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
-                        name: ("Avg Time: ").Localize() + (meta.FormatedAvgTime).Localize(),
-                        onClick: (t) => {}
+                        name: ("Avg Time: ").Localize () + (meta.FormatedAvgTime).Localize (),
+                    onClick: (t) => {}
                     );
                     avgtimeEntry.IsLocalized = false;
                     avgtimeEntry.IsSelectable = false;
