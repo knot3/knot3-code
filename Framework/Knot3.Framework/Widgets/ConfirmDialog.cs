@@ -27,16 +27,14 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
-
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
-
 using Knot3.Framework.Core;
 using Knot3.Framework.Input;
+using Knot3.Framework.Math;
 
 namespace Knot3.Framework.Widgets
 {
@@ -58,7 +56,7 @@ namespace Knot3.Framework.Widgets
         /// <summary>
         /// Das Menü, das Schaltflächen enthält.
         /// </summary>
-        private Container buttons { get; set; }
+        private Container buttons;
 
         protected Menu menu;
 
@@ -80,6 +78,9 @@ namespace Knot3.Framework.Widgets
                 Close (time);
             };
 
+            // Keys
+            ValidKeys.AddRange (new Keys[] { Keys.Enter, Keys.Escape });
+
             // Menü, in dem die Textanzeige angezeigt wird
             menu = new Menu (Screen, Index + DisplayLayer.Menu);
             menu.Bounds = ContentBounds;
@@ -88,14 +89,50 @@ namespace Knot3.Framework.Widgets
             menu.ItemAlignX = HorizontalAlignment.Left;
             menu.ItemAlignY = VerticalAlignment.Center;
 
-            ValidKeys.AddRange (new Keys[] { Keys.Enter, Keys.Escape });
+            // Button-Container
+            buttons = new Container (screen, Index + DisplayLayer.Menu);
+
+            // Button zum Canceln
+            Action<GameTime> cancelAction = (time) => {
+                Cancel (time);
+            };
+            MenuEntry cancelButton = new MenuEntry (
+                screen: Screen,
+                drawOrder: Index + DisplayLayer.MenuItem,
+                name: "Cancel",
+                onClick: cancelAction
+            );
+            cancelButton.Bounds.Size = new ScreenPoint (screen, ContentBounds.Size.Relative.X / 2, 0.05f);
+            cancelButton.Bounds.Position = ContentBounds.Position + ContentBounds.Size.OnlyY
+                - cancelButton.Bounds.Size.OnlyY;
+            cancelButton.AlignX = HorizontalAlignment.Center;
+            buttons.Add (cancelButton);
+
+            // Button zum Submitten
+            Action<GameTime> submitAction = (time) => {
+                Submit (time);
+            };
+            MenuEntry submitButton = new MenuEntry (
+                screen: Screen,
+                drawOrder: Index + DisplayLayer.MenuItem,
+                name: "Return to menu",
+                onClick: submitAction
+            );
+            submitButton.Bounds.Size = new ScreenPoint (screen, ContentBounds.Size.Relative.X / 2, 0.05f);
+            submitButton.Bounds.Position = ContentBounds.Position + ContentBounds.Size.OnlyY
+                - submitButton.Bounds.Size.OnlyY + ContentBounds.Size.OnlyX / 2;
+            submitButton.AlignX = HorizontalAlignment.Center;
+            buttons.Add (submitButton);
+
+            // Buttons zum Menü hinzufügen
+            menu.Add (buttons);
         }
 
         public ConfirmDialog (IScreen screen, DisplayLayer drawOrder, string title, string text)
         : this (screen, drawOrder, title)
         {
             // Die Textanzeige
-            TextItem displayText= new TextItem (Screen, Index + DisplayLayer.MenuItem, text);
+            TextItem displayText = new TextItem (Screen, Index + DisplayLayer.MenuItem, text);
             menu.Add (displayText);
         }
 

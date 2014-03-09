@@ -78,9 +78,7 @@ namespace Knot3.ExtremeTests
             Knot knot = null;
             KnotFileIO knotFileIO = new KnotFileIO ();
 
-            // todo
-
-            knotFileIO.Save (knot);
+            knotFileIO.Save (knot, true);
         }
 
         public static void LoadSquareKnot (string knotName)

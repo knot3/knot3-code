@@ -68,7 +68,7 @@ namespace Knot3.UnitTests.Data
             Assert.Throws<IOException>(() => { Challenge challenge = fileIO.Load (TestHelper.TestResourcesDirectory + "invalid.challenge"); });
             Challenge tempChallenge = fileIO.Load (filename);
             File.Delete (filename);
-            tempChallenge.Save ();
+            tempChallenge.Save (true);
             Challenge tempChallenge2 = fileIO.Load (filename);
             Assert.AreEqual (tempChallenge.MetaData, tempChallenge2.MetaData);
         }
