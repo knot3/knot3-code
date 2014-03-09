@@ -48,7 +48,6 @@
     <Compile Include="Knot3.VisualTests\Program.cs" />
     <Compile Include="Knot3.VisualTests\VisualTestsGame.cs" />
     <Compile Include="Knot3.VisualTests\VisualTestsScreen.cs" />
-    <Compile Include="obj\Debug\.NETFramework,Version=v4.0.AssemblyAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Game\Knot3.Game-MG.csproj">
