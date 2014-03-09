@@ -37,6 +37,7 @@ using System.IO;
 using Ionic.Zip;
 
 using Knot3.Framework.Platform;
+using Knot3.Framework.Storage;
 
 namespace Knot3.Game.Data
 {
@@ -71,6 +72,11 @@ namespace Knot3.Game.Data
         /// </summary>
         public void Save (Challenge challenge, bool force)
         {
+            if (!force && File.Exists (challenge.MetaData.Filename)) {
+                throw new FileAlreadyExistsException ("Error! Challenge already exists!");
+            }
+            else{
+            
             using (ZipFile zip = new ZipFile ()) {
                 // Namen
                 zip.AddEntry ("name.txt", challenge.Name);
@@ -84,6 +90,7 @@ namespace Knot3.Game.Data
                 zip.AddEntry ("highscore.txt", string.Join ("\n", printHighscore (challenge.Highscore)));
                 // ZIP-Datei speichern
                 zip.Save (challenge.MetaData.Filename);
+            }
             }
         }
 
