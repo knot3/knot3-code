@@ -47,6 +47,9 @@ namespace Knot3.Framework.Platform
 
         public static bool DownloadSDL2 ()
         {
+            if (File.Exists ("SDL2.dll"))
+                return;
+
             string zipFilename = "SDL2.zip";
             bool success = false;
             try {
@@ -232,6 +235,8 @@ namespace Knot3.Framework.Platform
             Application.EnableVisualStyles ();
 
             if (SystemInfo.IsRunningOnWindows ()) {
+                Dependencies.DownloadSDL2 ();
+                Dependencies.DownloadSDL2_image ();
                 if (!IsOpenALInstalled) {
                     InstallOpenAL ();
                 }
