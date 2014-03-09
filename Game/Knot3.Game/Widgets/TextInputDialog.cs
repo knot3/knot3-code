@@ -32,8 +32,10 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.RegularExpressions;
+
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+
 using Knot3.Framework.Core;
 using Knot3.Framework.Input;
 using Knot3.Framework.Math;
@@ -137,40 +139,37 @@ namespace Knot3.Game.Widgets
         /// </summary>
         public override void OnKeyEvent (List<Keys> key, KeyEvent keyEvent, GameTime time)
         {
+            if (key.Contains (Keys.Enter)) {
+                bool canClose = true;
 
-                if (key.Contains (Keys.Enter)) {
-                    bool canClose = true;
-
-                    if (NoCloseEmpty) {
-                        if (textInput.InputText == null || textInput.InputText.Length == 0) {
-                            canClose = false;
-                            textInput.InputText = String.Empty;
-                            textInput.IsInputEnabled = true; // Fokus
-                            // FIX: bekommt bei schnellem ENTER dr�cken nicht wieder den Fokus.
-                        }
+                if (NoCloseEmpty) {
+                    if (textInput.InputText == null || textInput.InputText.Length == 0) {
+                        canClose = false;
+                        textInput.InputText = String.Empty;
+                        textInput.IsInputEnabled = true; // Fokus
+                        // FIX: bekommt bei schnellem ENTER dr�cken nicht wieder den Fokus.
                     }
+                }
 
-                    if (NoWhiteSpace) {
-                        if (Whitespace.IsMatch (textInput.InputText)) {
-                            canClose = false;
-                            textInput.InputText = String.Empty;
-                            textInput.IsInputEnabled = true; // Fokus
-                            // FIX: bekommt bei schnellem ENTER dr�cken nicht wieder den Fokus.
-                        }
+                if (NoWhiteSpace) {
+                    if (Whitespace.IsMatch (textInput.InputText)) {
+                        canClose = false;
+                        textInput.InputText = String.Empty;
+                        textInput.IsInputEnabled = true; // Fokus
+                        // FIX: bekommt bei schnellem ENTER dr�cken nicht wieder den Fokus.
                     }
+                }
 
-                    if (canClose) {
-                        Submit (time);
-                    }
+                if (canClose) {
+                    Submit (time);
+                }
 
-            else if (keyEvent == KeyEvent.KeyDown && key.Contains (Keys.Escape)) {
+                else if (keyEvent == KeyEvent.KeyDown && key.Contains (Keys.Escape)) {
                     Cancel (time);
-
                 }
             }
 
             base.OnKeyEvent (key, keyEvent, time);
-            
         }
 
         public override IEnumerable<IScreenComponent> SubComponents (GameTime time)
