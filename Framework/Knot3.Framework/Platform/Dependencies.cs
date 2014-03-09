@@ -214,6 +214,7 @@ namespace Knot3.Framework.Platform
                     if (Dependencies.DownloadSDL2 () && (File.Exists ("SDL2_image.dll") || Dependencies.DownloadSDL2_image ())) {
                         if (!File.Exists ("oalinst.exe") && Dependencies.DownloadOpenAL ()) {
                             System.Diagnostics.Process.Start ("oalinst.exe"); // to start the openal installer
+                            Log.ShowMessageBox ("Please install OpenAL and start the game afterwards.", "Dependency missing");
                             Application.Exit ();
                         }
                         else {
@@ -236,7 +237,7 @@ namespace Knot3.Framework.Platform
                     }
                 }
                 if (ex.ToString ().ToLower ().Contains ("openal32.dll")) {
-                    Log.ShowMessageBox ("This game requires OpenAL (openal32.dll). It will be downloaded now. Please restart the Game afterwards", "Dependency missing");
+                    Log.ShowMessageBox ("This game requires OpenAL (openal32.dll). It will be downloaded now. Please restart the Game afterwards.", "Dependency missing");
                     if (File.Exists ("oalinst.exe") || Dependencies.DownloadOpenAL ()) {
                         System.Diagnostics.Process.Start ("oalinst.exe"); // to start the openal installer
                         Application.Exit ();
