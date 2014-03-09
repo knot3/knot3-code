@@ -48,7 +48,7 @@ namespace Knot3.Framework.Platform
         public static bool DownloadSDL2 ()
         {
             if (File.Exists ("SDL2.dll")) {
-                return;
+                return true;
             }
 
             string zipFilename = "SDL2.zip";
@@ -94,7 +94,7 @@ namespace Knot3.Framework.Platform
         public static bool DownloadSDL2_image ()
         {
             if (File.Exists ("SDL2_image.dll")) {
-                return;
+                return true;
             }
 
             string zipFilename = "SDL2_image.zip";
@@ -140,7 +140,7 @@ namespace Knot3.Framework.Platform
         public static bool DownloadOpenAL ()
         {
             if (File.Exists ("oalinst.exe")) {
-                return;
+                return true;
             }
 
             string zipFilename = "openal32.zip";
