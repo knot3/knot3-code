@@ -136,31 +136,32 @@ namespace Knot3.Game.Widgets
         ///
         /// </summary>
         public override void OnKeyEvent (List<Keys> key, KeyEvent keyEvent, GameTime time)
-        {if (keyEvent == KeyEvent.KeyDown) {
-            if (key.Contains (Keys.Enter)) {
-                bool canClose = true;
+        {
+            if (keyEvent == KeyEvent.KeyDown) {
+                if (key.Contains (Keys.Enter)) {
+                    bool canClose = true;
 
-                if (NoCloseEmpty) {
-                    if (textInput.InputText == null || textInput.InputText.Length == 0) {
-                        canClose = false;
-                        textInput.InputText = String.Empty;
-                        textInput.IsInputEnabled = true; // Fokus
-                        // FIX: bekommt bei schnellem ENTER dr�cken nicht wieder den Fokus.
+                    if (NoCloseEmpty) {
+                        if (textInput.InputText == null || textInput.InputText.Length == 0) {
+                            canClose = false;
+                            textInput.InputText = String.Empty;
+                            textInput.IsInputEnabled = true; // Fokus
+                            // FIX: bekommt bei schnellem ENTER dr�cken nicht wieder den Fokus.
+                        }
                     }
-                }
 
-                if (NoWhiteSpace) {
-                    if (Whitespace.IsMatch (textInput.InputText)) {
-                        canClose = false;
-                        textInput.InputText = String.Empty;
-                        textInput.IsInputEnabled = true; // Fokus
-                        // FIX: bekommt bei schnellem ENTER dr�cken nicht wieder den Fokus.
+                    if (NoWhiteSpace) {
+                        if (Whitespace.IsMatch (textInput.InputText)) {
+                            canClose = false;
+                            textInput.InputText = String.Empty;
+                            textInput.IsInputEnabled = true; // Fokus
+                            // FIX: bekommt bei schnellem ENTER dr�cken nicht wieder den Fokus.
+                        }
                     }
-                }
 
-                if (canClose) {
-                    Submit (time);
-                }
+                    if (canClose) {
+                        Submit (time);
+                    }
                 }
             }
             else if (key.Contains (Keys.Escape)) {
