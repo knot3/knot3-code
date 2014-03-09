@@ -94,6 +94,7 @@ namespace Knot3.Framework.Widgets
 
             // Button-Container
             buttons = new Container (screen, Index + DisplayLayer.Menu);
+            buttons.ItemAlignX = HorizontalAlignment.Center;
 
             // Button zum Canceln
             Action<GameTime> cancelAction = (time) => {
