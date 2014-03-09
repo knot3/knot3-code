@@ -365,7 +365,7 @@ namespace Knot3.Game.Screens
             Action<GameTime> openHighscoreDialog = (t) => {
                 // erstelle einen Highscoredialog
                 Dialog highscoreDialog = new HighscoreDialog (screen: this, drawOrder: DisplayLayer.Dialog,
-                                                              challenge: Challenge);
+                        challenge: Challenge);
                 // füge ihn zur Spielkomponentenliste hinzu
                 AddGameComponents (time, highscoreDialog);
             };
@@ -373,10 +373,10 @@ namespace Knot3.Game.Screens
             // wenn der Dialog geschlossen wird...
             nameDialog.Submit += (t) => {
                 Challenge.AddToHighscore (name: nameDialog.InputText, time: (int)playTime.TotalSeconds);
-                openHighscoreDialog(t);
+                openHighscoreDialog (t);
             };
             nameDialog.Cancel += (t) => {
-                openHighscoreDialog(t);
+                openHighscoreDialog (t);
             };
 
             Undo.Clear ();
