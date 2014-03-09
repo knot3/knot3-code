@@ -27,13 +27,11 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
-
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Net;
 using System.Windows.Forms;
-
 using Ionic.Zip;
 
 namespace Knot3.Framework.Platform
@@ -42,8 +40,8 @@ namespace Knot3.Framework.Platform
     public static class Dependencies
     {
         public static string DOWNLOAD_URL_SDL2 = "http://www.libsdl.org/release/SDL2-2.0.2-win32-x86.zip";
-
         public static string DOWNLOAD_URL_SDL2_image = "https://www.libsdl.org/projects/SDL_image/release/SDL2_image-2.0.0-win32-x86.zip";
+        public static string DOWNLOAD_URL_OPENAL_INSTALLER = "https://rallyraid.googlecode.com/files/oalinst.zip";
 
         public static bool DownloadSDL2 ()
         {
@@ -125,6 +123,46 @@ namespace Knot3.Framework.Platform
             return success;
         }
 
+        public static bool DownloadOpenAL ()
+        {
+            string zipFilename = "openal32.zip";
+            bool success = false;
+            try {
+                int extractedFiles = 0;
+                // try to download the zip file
+                if (Download (DOWNLOAD_URL_OPENAL_INSTALLER, zipFilename)) {
+                    // read the zip file
+                    using (ZipFile zip = ZipFile.Read (zipFilename)) {
+                        // iterate over files in the zip file
+                        foreach (ZipEntry entry in zip) {
+                            // extract the file to the current directory
+                            entry.Extract (".", ExtractExistingFileAction.OverwriteSilently);
+                            // downloading was obviously sucessful
+                            ++ extractedFiles;
+                        }
+                    }
+                }
+
+                // if all files were extracted
+                success = extractedFiles > 0;
+            }
+            catch (Exception ex) {
+                // an error occurred
+                Log.Error (ex);
+                success = false;
+            }
+
+            // remove the zip file
+            try {
+                File.Delete (zipFilename);
+            }
+            catch (Exception ex) {
+                Log.Error (ex);
+            }
+
+            return success;
+        }
+
         private static bool Download (string httpUrl, string saveAs)
         {
             try {
@@ -171,6 +209,16 @@ namespace Knot3.Framework.Platform
                     }
                     else {
                         Log.ShowMessageBox ("SDL2_image could not be downloaded.", "Dependency missing");
+                    }
+                }
+                if (ex.ToString ().ToLower ().Contains ("openal32.dll")) {
+                    Log.ShowMessageBox ("This game requires OpenAL (openal32.dll). It will be downloaded now. Please restart the Game afterwards", "Dependency missing");
+                    if (Dependencies.DownloadSDL2_image ()) {
+                        System.Diagnostics.Process.Start ("oalinst.exe"); // to start the openal installer
+                        Application.Exit ();
+                    }
+                    else {
+                        Log.ShowMessageBox ("OpenAL could not be downloaded.", "Dependency missing");
                     }
                 }
             }
