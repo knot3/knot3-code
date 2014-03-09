@@ -27,11 +27,13 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
+
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Net;
 using System.Windows.Forms;
+
 using Ionic.Zip;
 
 namespace Knot3.Framework.Platform
@@ -87,8 +89,9 @@ namespace Knot3.Framework.Platform
 
         public static bool DownloadSDL2_image ()
         {
-            if (File.Exists ("SDL2_image.dll"))
+            if (File.Exists ("SDL2_image.dll")) {
                 return;
+            }
 
             string zipFilename = "SDL2_image.zip";
             bool success = false;
@@ -132,8 +135,9 @@ namespace Knot3.Framework.Platform
 
         public static bool DownloadOpenAL ()
         {
-            if (File.Exists ("oalinst.exe"))
+            if (File.Exists ("oalinst.exe")) {
                 return;
+            }
 
             string zipFilename = "openal32.zip";
             bool success = false;
