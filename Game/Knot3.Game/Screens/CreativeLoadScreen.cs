@@ -187,8 +187,8 @@ namespace Knot3.Game.Screens
                     MenuEntry countEntry = new MenuEntry (
                         screen: this,
                         drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
-                        name: Localizer.Localize ("Knot Count: ") + previewKnotMetaData.CountEdges,
-                    onClick: (t) => {}
+                        name: Localizer.Localize ("Edge Count: ") + previewKnotMetaData.CountEdges,
+                        onClick: (t) => {}
                     );
                     countEntry.IsSelectable = false;
                     countEntry.Enabled = false;
