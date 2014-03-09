@@ -27,18 +27,14 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
-
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-
 using Microsoft.Xna.Framework;
-
 using Knot3.Framework.Core;
 using Knot3.Framework.Math;
 using Knot3.Framework.Widgets;
-
 using Knot3.Game.Data;
 using Knot3.Game.Screens;
 
@@ -71,7 +67,9 @@ namespace Knot3.Game.Widgets
                 //sotiert die Highscoreliste wird nach der Zeit sotiert
                 int highscoreCounter = 0;
                 foreach (KeyValuePair<string, int> entry in challenge.Highscore.OrderBy (key => key.Value)) {
-                    TextItem firstScore = new TextItem (screen, drawOrder, entry.Value + " " + entry.Key);
+                    TimeSpan playTime = TimeSpan.FromSeconds (entry.Value);
+                    string formattedPlayTime = (playTime.Hours * 60 + playTime.Minutes).ToString ("D2") + "m " + playTime.Seconds.ToString ("D2") + "s";
+                    TextItem firstScore = new TextItem (screen, drawOrder, formattedPlayTime + "    " + entry.Key);
                     highscoreList.Add (firstScore);
                     highscoreCounter++;
                     if (highscoreCounter > 8) {
@@ -97,7 +95,7 @@ namespace Knot3.Game.Widgets
             );
             restartButton.Bounds.Size = new ScreenPoint (screen, ContentBounds.Size.Relative.X / 2, 0.05f);
             restartButton.Bounds.Position = ContentBounds.Position + ContentBounds.Size.OnlyY
-                                            - restartButton.Bounds.Size.OnlyY;
+                - restartButton.Bounds.Size.OnlyY;
             buttons.Add (restartButton);
 
             // Button für die Rückkehr zum StartScreen
@@ -113,7 +111,7 @@ namespace Knot3.Game.Widgets
             );
             returnButton.Bounds.Size = new ScreenPoint (screen, ContentBounds.Size.Relative.X / 2, 0.05f);
             returnButton.Bounds.Position = ContentBounds.Position + ContentBounds.Size.OnlyY
-                                           - returnButton.Bounds.Size.OnlyY + ContentBounds.Size.OnlyX / 2;
+                - returnButton.Bounds.Size.OnlyY + ContentBounds.Size.OnlyX / 2;
             buttons.Add (returnButton);
         }
 
