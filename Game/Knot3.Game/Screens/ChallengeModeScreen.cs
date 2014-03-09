@@ -99,7 +99,7 @@ namespace Knot3.Game.Screens
         public Challenge Challenge { get; set; }
 
         /// <summary>
-        /// Der Spielerknoten, der durch die Transformation des Spielers aus dem Ausgangsknoten entsteht.
+        /// Der Spielerknoten, der durch die Tranformatsion des Spielers aus dem Ausgangsknoten entsteht.
         /// </summary>
         public Knot PlayerKnot
         {
