@@ -66,7 +66,7 @@ namespace Knot3.Game.Widgets
         /// Gibt an, ob der Dialog geschlossen werden können soll, wenn der User einen leeren Text absenden will.
         /// </summary>
         public bool NoCloseEmpty { get; set; }
-        
+
         /// <summary>
         /// Gibt an, ob der Dialog geschlossen werden können soll, wenn der User einen Text, der nur Leerzeichen enthält, absenden will.
         /// </summary>
