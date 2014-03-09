@@ -79,8 +79,8 @@ namespace Knot3.Game.Data
             if (knot.MetaData.Filename == null) {
                 throw new NoFilenameException ("Error! knot has no filename: " + knot);
             }
-            else if(!force || File.Exists(knot.MetaData.Filename)){
-                throw new FileAlreadyExistsException("Error! Knot already exists!");
+            else if (!force || File.Exists (knot.MetaData.Filename)) {
+                throw new FileAlreadyExistsException ("Error! Knot already exists!");
             }
             else {
                 File.WriteAllText (knot.MetaData.Filename, parser.Content);
