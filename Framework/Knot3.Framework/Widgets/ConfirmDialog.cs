@@ -44,7 +44,7 @@ namespace Knot3.Framework.Widgets
     /// Ein Dialog, der Schaltflächen zum Bestätigen einer Aktion anzeigt.
     /// </summary>
     [ExcludeFromCodeCoverageAttribute]
-    public abstract class ConfirmDialog : Dialog
+    public class ConfirmDialog : Dialog
     {
         /// <summary>
         /// Wird aufgerufen, wenn der Dialog abgebrochen und geschlossen wird.

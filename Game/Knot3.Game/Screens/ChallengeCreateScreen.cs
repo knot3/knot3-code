@@ -247,7 +247,7 @@ namespace Knot3.Game.Screens
             if (TryConstructChallenge ()) {
                 Log.Debug ("Save Challenge: ", selectedChallenge);
                 try {
-                    selectedChallenge.Save ();
+                    selectedChallenge.Save (false);
                     NextScreen = new ChallengeStartScreen (Game);
                 }
                 catch (Exception ex) {

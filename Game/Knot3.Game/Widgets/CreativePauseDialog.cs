@@ -150,9 +150,9 @@ namespace Knot3.Game.Widgets
         private void KnotSave (GameTime time)
         {
             try {
-                knot.Save ();
+                knot.Save (true);
             }
-            catch (IOException) {
+            catch (NoFilenameException) {
                 KnotSaveAs (()=> {}, time);
             }
         }
@@ -173,15 +173,23 @@ namespace Knot3.Game.Widgets
             saveDialog.Submit += (t) => {
                 try {
                     knot.Name = saveDialog.InputText;
-                    knot.Save ();
+                    knot.Save (false);
+                    onClose ();
                 }
                 catch (FileAlreadyExistsException) {
                     ConfirmDialog confirm = new ConfirmDialog (
                         screen: Screen,
-                        drawOrder: DisplayLayer.Dialog +1,
+                        drawOrder: DisplayLayer.Dialog,
                         title: "Warning",
                         text:"Do you want to overwrite the existing knot?"
                     );
+                    confirm.Cancel += (l) => {
+                        KnotSaveAs(()=>onClose(),time);
+                    };
+                    confirm.Submit += (r) => {
+                        knot.Save (true);
+                        onClose ();
+                    };
                     Screen.AddGameComponents (null,confirm);
                 }
                 catch (IOException ex) {
@@ -192,17 +200,17 @@ namespace Knot3.Game.Widgets
                     );
                     Screen.AddGameComponents (null, errorDialog);
                 }
-                onClose ();
+
             };
         }
 
         private void KnotSaveExit (GameTime time)
         {
             try {
-                knot.Save ();
+                knot.Save (true);
                 Screen.NextScreen = new StartScreen (Screen.Game);
             }
-            catch (IOException) {
+            catch (NoFilenameException) {
                 KnotSaveAs (()=>Screen.NextScreen = new StartScreen (Screen.Game), time);
             }
         }

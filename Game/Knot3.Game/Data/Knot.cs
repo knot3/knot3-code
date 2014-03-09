@@ -513,7 +513,7 @@ namespace Knot3.Game.Data
         {
             KnotMetaData metaData = new KnotMetaData (MetaData.Name, () => MetaData.CountEdges, format, filename);
             Knot knotToSave = new Knot (metaData, startElement);
-            format.Save (knotToSave);
+            format.Save (knotToSave,false);
         }
 
         /// <summary>

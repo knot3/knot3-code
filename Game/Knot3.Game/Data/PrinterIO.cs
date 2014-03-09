@@ -55,7 +55,7 @@ namespace Knot3.Game.Data
         /// <summary>
         /// Exportiert den Knoten in einem gültigen 3D-Drucker-Format.
         /// </summary>
-        public virtual void Save (Knot knot)
+        public virtual void Save (Knot knot,bool force)
         {
             throw new System.NotImplementedException ();
         }

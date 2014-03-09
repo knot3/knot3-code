@@ -43,7 +43,7 @@ namespace Knot3.Game.Data
         /// <summary>
         /// Speichert einen Spielstand.
         /// </summary>
-        void Save (Savegame knot);
+        void Save (Savegame knot,bool force);
 
         /// <summary>
         /// Lädt einen Spielstand.

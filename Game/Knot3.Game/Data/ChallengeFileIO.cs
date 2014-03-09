@@ -69,7 +69,7 @@ namespace Knot3.Game.Data
         /// <summary>
         /// Speichert eine Challenge in dem Dateinamen, der in dem Challenge-Objekt enthalten ist.
         /// </summary>
-        public void Save (Challenge challenge)
+        public void Save (Challenge challenge, bool force)
         {
             using (ZipFile zip = new ZipFile ()) {
                 // Namen

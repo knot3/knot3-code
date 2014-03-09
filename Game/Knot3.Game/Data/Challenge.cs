@@ -89,15 +89,15 @@ namespace Knot3.Game.Data
         public void AddToHighscore (string name, int time)
         {
             MetaData.AddToHighscore (name, time);
-            Save ();
+            Save (true);
         }
 
         /// <summary>
         /// Speichert die Challenge.
         /// </summary>
-        public void Save ()
+        public void Save (bool force)
         {
-            MetaData.Format.Save (this);
+            MetaData.Format.Save (this,force);
         }
     }
 }
