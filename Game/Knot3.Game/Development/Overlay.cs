@@ -93,13 +93,13 @@ namespace Knot3.Game.Development
             if (Config.Default ["video", "debug-coordinates", false]) {
                 DrawCoordinates (time);
             }
-            if (Config.Default ["video", "camera-overlay", true]) {
+            if (Config.Default ["video", "camera-overlay", false]) {
                 DrawOverlay (time);
             }
             if (Config.Default ["video", "fps-overlay", true]) {
                 DrawFPS (time);
             }
-            if (Config.Default ["video", "profiler-overlay", true]) {
+            if (Config.Default ["video", "profiler-overlay", false]) {
                 DrawProfiler (time);
             }
             base.Draw (time);
