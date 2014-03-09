@@ -95,8 +95,8 @@ namespace Knot3.Framework.Widgets
             items = new List<Widget> ();
             ItemAlignX = HorizontalAlignment.Left;
             ItemAlignY = VerticalAlignment.Center;
-            ItemForegroundColor = (state) => Design.WidgetForeground;
-            ItemBackgroundColor = (state) => Design.WidgetBackground;
+            ItemForegroundColor = Design.MenuItemForegroundColorFunc;
+            ItemBackgroundColor = Design.MenuItemBackgroundColorFunc;
         }
 
         /// <summary>
