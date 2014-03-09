@@ -192,7 +192,6 @@ namespace Knot3.Game.Widgets
                     };
                     Screen.AddGameComponents (null,confirm);
                 }
-              
             };
         }
 
