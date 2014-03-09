@@ -215,7 +215,7 @@ namespace Knot3.Framework.Platform
                 }
                 if (ex.ToString ().ToLower ().Contains ("openal32.dll")) {
                     Log.ShowMessageBox ("This game requires OpenAL (openal32.dll). It will be downloaded now. Please restart the Game afterwards", "Dependency missing");
-                    if (Dependencies.DownloadSDL2_image ()) {
+                    if (Dependencies.DownloadOpenAL ()) {
                         System.Diagnostics.Process.Start ("oalinst.exe"); // to start the openal installer
                         Application.Exit ();
                     }
