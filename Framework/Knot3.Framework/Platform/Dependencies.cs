@@ -211,10 +211,7 @@ namespace Knot3.Framework.Platform
                 Application.EnableVisualStyles ();
                 if (ex.ToString ().ToLower ().Contains ("sdl2.dll")) {
                     Log.ShowMessageBox ("This game requires SDL2. It will be downloaded now.", "Dependency missing");
-                    if (Dependencies.DownloadSDL2 () && (Dependencies.DownloadSDL2_image () || File.Exists ("SDL2_image.dll")) && (Dependencies.DownloadOpenAL () || File.Exists ("oalinst.exe"))) {
-                        if (File.Exists ("oalinst.exe")) {
-                            System.Diagnostics.Process.Start ("oalinst.exe");
-                        }
+                    if (Dependencies.DownloadSDL2 () && (File.Exists ("SDL2_image.dll") || Dependencies.DownloadSDL2_image ())) {
                         System.Diagnostics.Process.Start (Application.ExecutablePath); // to start new instance of application
                         Application.Exit ();
                     }
@@ -234,7 +231,7 @@ namespace Knot3.Framework.Platform
                 }
                 if (ex.ToString ().ToLower ().Contains ("openal32.dll")) {
                     Log.ShowMessageBox ("This game requires OpenAL (openal32.dll). It will be downloaded now. Please restart the Game afterwards", "Dependency missing");
-                    if (Dependencies.DownloadOpenAL () || File.Exists ("oalinst.exe")) {
+                    if (File.Exists ("oalinst.exe") || Dependencies.DownloadOpenAL ()) {
                         System.Diagnostics.Process.Start ("oalinst.exe"); // to start the openal installer
                         Application.Exit ();
                     }
