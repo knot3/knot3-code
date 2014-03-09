@@ -146,6 +146,8 @@
     <Compile Include="Knot3.Framework\Widgets\VerticalAlignment.cs" />
     <Compile Include="Knot3.Framework\Widgets\Widget.cs" />
     <Compile Include="Knot3.Framework\Widgets\WidgetState.cs" />
+    <Compile Include="Knot3.Framework\Storage\FileAlreadyExistsException.cs" />
+    <Compile Include="Knot3.Framework\Storage\NoFilenameException.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

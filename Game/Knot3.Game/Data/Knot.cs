@@ -379,7 +379,7 @@ namespace Knot3.Game.Data
         /// Enthalten entweder die Dateiname-Eigenschaft, die Dateiformat-Eigenschaft
         /// oder beide den Wert \glqq null\grqq, dann wird eine IOException geworfen.
         /// </summary>
-        public void Save ()
+        public void Save (bool force)
         {
             if (MetaData.Format == null) {
                 throw new IOException ("Error: Knot: MetaData.Format is null!");
@@ -388,7 +388,7 @@ namespace Knot3.Game.Data
                 throw new IOException ("Error: Knot: MetaData.Filename is null!");
             }
             else {
-                MetaData.Format.Save (this);
+                MetaData.Format.Save (this,force);
             }
         }
 

@@ -39,6 +39,7 @@ using Microsoft.Xna.Framework.Input;
 using Knot3.Framework.Core;
 using Knot3.Framework.Math;
 using Knot3.Framework.Widgets;
+using Knot3.Framework.Storage;
 
 using Knot3.Game.Data;
 using Knot3.Game.Screens;
@@ -173,6 +174,17 @@ namespace Knot3.Game.Widgets
                 try {
                     knot.Name = saveDialog.InputText;
                     knot.Save ();
+                }
+                catch (FileAlreadyExistsException){
+                    ConfirmDialog confirm = new ConfirmDialog(
+                        screen: Screen,
+                        drawOrder: DisplayLayer.Dialog +1,
+                        title: "Warning",
+                        text:"Do you want to overwrite the existing knot?"
+                        
+                    
+                    );
+                    Screen.AddGameComponents(null,confirm);
                 }
                 catch (IOException ex) {
                     ErrorDialog errorDialog = new ErrorDialog (

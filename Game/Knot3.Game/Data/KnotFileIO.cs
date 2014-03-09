@@ -72,12 +72,15 @@ namespace Knot3.Game.Data
         /// <summary>
         /// Speichert einen Knoten in dem Dateinamen, der in dem Knot-Objekt enthalten ist.
         /// </summary>
-        public void Save (Knot knot)
+        public void Save (Knot knot,bool force)
         {
             KnotStringIO parser = new KnotStringIO (knot);
             Log.Debug ("KnotFileIO.Save (", knot, ") = #", parser.Content.Length);
             if (knot.MetaData.Filename == null) {
-                throw new IOException ("Error! knot has no filename: " + knot);
+                throw new NoFilenameException ("Error! knot has no filename: " + knot);
+            }
+            else if(!force || File.Exists(knot.MetaData.Filename)){
+                throw new FileAlreadyExistsException("Error! Knot already exists!");
             }
             else {
                 File.WriteAllText (knot.MetaData.Filename, parser.Content);

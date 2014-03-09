@@ -95,8 +95,8 @@ namespace Knot3.Framework.Widgets
         : this (screen, drawOrder, title)
         {
             // Die Textanzeige
-            TextItem textInput = new TextItem (Screen, Index + DisplayLayer.MenuItem, text);
-            menu.Add (textInput);
+            TextItem displayText= new TextItem (Screen, Index + DisplayLayer.MenuItem, text);
+            menu.Add (displayText);
         }
 
         /// <summary>
