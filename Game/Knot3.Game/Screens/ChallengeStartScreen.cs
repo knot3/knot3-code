@@ -236,8 +236,6 @@ namespace Knot3.Game.Screens
                 onClick: LoadFile
             );
             button.IsLocalized = false;
-            button.SelectedColorBackground = Design.WidgetForeground;
-            button.SelectedColorForeground = Design.WidgetBackground;
             savegameMenu.Add (button);
         }
 

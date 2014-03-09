@@ -89,13 +89,20 @@ namespace Knot3.Game.Widgets
 
         private Color MenuItemBackgroundColor (WidgetState state)
         {
+            if (state == WidgetState.Selected) {
+                return Color.White;
+            }
             return Color.Transparent;
+
         }
 
         private Color MenuItemForegroundColor (WidgetState state)
         {
             if (state == WidgetState.Hovered) {
                 return Color.White;
+            }
+            else if (state == WidgetState.Selected) {
+                return Color.Black;
             }
             else {
                 return Color.White * 0.7f;
