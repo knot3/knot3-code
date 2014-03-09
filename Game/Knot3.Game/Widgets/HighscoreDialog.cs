@@ -81,6 +81,7 @@ namespace Knot3.Game.Widgets
             }
 
             buttons = new Container (screen, Index + DisplayLayer.Menu);
+            buttons.ItemBackgroundColor =(s) => Design.DialogBackground;
             buttons.ItemAlignX = HorizontalAlignment.Center;
 
             // Button zum Neustarten der Challenge
