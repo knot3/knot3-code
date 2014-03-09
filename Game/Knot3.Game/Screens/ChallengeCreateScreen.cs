@@ -187,10 +187,6 @@ namespace Knot3.Game.Screens
             );
             buttonStart.IsLocalized = false;
             buttonTarget.IsLocalized = false;
-            buttonStart.SelectedColorBackground = Design.WidgetForeground;
-            buttonStart.SelectedColorForeground = Design.WidgetBackground;
-            buttonTarget.SelectedColorBackground = Design.WidgetForeground;
-            buttonTarget.SelectedColorForeground = Design.WidgetBackground;
 
             startKnotMenu.Add (buttonStart);
             targetKnotMenu.Add (buttonTarget);

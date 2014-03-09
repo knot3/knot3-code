@@ -94,8 +94,6 @@ namespace Knot3.Framework.Widgets
             ItemOrder = -1;
             State = WidgetState.None;
             spriteBatch = new SpriteBatch (screen.GraphicsDevice);
-            SelectedColorBackground = Color.Transparent;
-            SelectedColorForeground = Color.White;
         }
 
         /// <summary>
