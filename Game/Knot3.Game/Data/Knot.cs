@@ -38,8 +38,8 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 
 using Knot3.Framework.Platform;
-using Knot3.Framework.Utilities;
 using Knot3.Framework.Storage;
+using Knot3.Framework.Utilities;
 
 namespace Knot3.Game.Data
 {
