@@ -27,11 +27,14 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
+
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+
 using Knot3.Framework.Core;
 using Knot3.Framework.Input;
 using Knot3.Framework.Math;
@@ -104,7 +107,7 @@ namespace Knot3.Framework.Widgets
             );
             cancelButton.Bounds.Size = new ScreenPoint (screen, ContentBounds.Size.Relative.X / 2, 0.05f);
             cancelButton.Bounds.Position = ContentBounds.Position + ContentBounds.Size.OnlyY
-                - cancelButton.Bounds.Size.OnlyY;
+                                           - cancelButton.Bounds.Size.OnlyY;
             cancelButton.AlignX = HorizontalAlignment.Center;
             buttons.Add (cancelButton);
 
@@ -120,7 +123,7 @@ namespace Knot3.Framework.Widgets
             );
             submitButton.Bounds.Size = new ScreenPoint (screen, ContentBounds.Size.Relative.X / 2, 0.05f);
             submitButton.Bounds.Position = ContentBounds.Position + ContentBounds.Size.OnlyY
-                - submitButton.Bounds.Size.OnlyY + ContentBounds.Size.OnlyX / 2;
+                                           - submitButton.Bounds.Size.OnlyY + ContentBounds.Size.OnlyX / 2;
             submitButton.AlignX = HorizontalAlignment.Center;
             buttons.Add (submitButton);
 
