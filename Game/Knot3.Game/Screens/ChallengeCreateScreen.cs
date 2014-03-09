@@ -39,12 +39,12 @@ using Microsoft.Xna.Framework.Input;
 using Knot3.Framework.Core;
 using Knot3.Framework.Math;
 using Knot3.Framework.Platform;
+using Knot3.Framework.Storage;
 using Knot3.Framework.Utilities;
 using Knot3.Framework.Widgets;
 
 using Knot3.Game.Data;
 using Knot3.Game.Utilities;
-using Knot3.Framework.Storage;
 
 namespace Knot3.Game.Screens
 {
@@ -247,7 +247,7 @@ namespace Knot3.Game.Screens
                     selectedChallenge.Save (false);
                     NextScreen = new ChallengeStartScreen (Game);
                 }
-                catch (FileAlreadyExistsException){
+                catch (FileAlreadyExistsException) {
                     ConfirmDialog confirm = new ConfirmDialog (
                         screen: this,
                         drawOrder: DisplayLayer.Dialog,

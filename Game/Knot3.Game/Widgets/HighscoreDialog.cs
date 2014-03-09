@@ -73,6 +73,7 @@ namespace Knot3.Game.Widgets
                 foreach (KeyValuePair<string, int> entry in challenge.Highscore.OrderBy (key => key.Value)) {
                     TimeSpan playTime = TimeSpan.FromSeconds (entry.Value);
                     string formattedPlayTime = (playTime.Hours * 60 + playTime.Minutes).ToString ("D2") + "m " + playTime.Seconds.ToString ("D2") + "s";
+
                     TextItem firstScore = new TextItem (screen, drawOrder, formattedPlayTime + "    " + entry.Key);
                     highscoreList.Add (firstScore);
                     highscoreCounter++;
