@@ -118,7 +118,7 @@ namespace Knot3.Framework.Widgets
             MenuEntry submitButton = new MenuEntry (
                 screen: Screen,
                 drawOrder: Index + DisplayLayer.MenuItem,
-                name: "Return to menu",
+                name: "Confirm",
                 onClick: submitAction
             );
             submitButton.Bounds.Size = new ScreenPoint (screen, ContentBounds.Size.Relative.X / 2, 0.05f);
