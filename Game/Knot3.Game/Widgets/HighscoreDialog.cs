@@ -97,7 +97,6 @@ namespace Knot3.Game.Widgets
             restartButton.Bounds.Size = new ScreenPoint (screen, ContentBounds.Size.Relative.X / 2, 0.05f);
             restartButton.Bounds.Position = ContentBounds.Position + ContentBounds.Size.OnlyY
                                             - restartButton.Bounds.Size.OnlyY;
-            restartButton.AlignX = HorizontalAlignment.Center;
             buttons.Add (restartButton);
 
             // Button für die Rückkehr zum StartScreen
@@ -114,7 +113,6 @@ namespace Knot3.Game.Widgets
             returnButton.Bounds.Size = new ScreenPoint (screen, ContentBounds.Size.Relative.X / 2, 0.05f);
             returnButton.Bounds.Position = ContentBounds.Position + ContentBounds.Size.OnlyY
                                            - returnButton.Bounds.Size.OnlyY + ContentBounds.Size.OnlyX / 2;
-            returnButton.AlignX = HorizontalAlignment.Center;
             buttons.Add (returnButton);
         }
 
