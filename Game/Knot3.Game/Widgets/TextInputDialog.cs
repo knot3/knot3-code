@@ -156,17 +156,16 @@ namespace Knot3.Game.Widgets
                         canClose = false;
                         textInput.InputText = String.Empty;
                         textInput.IsInputEnabled = true; // Fokus
-                        // FIX: bekommt bei schnellem ENTER dr�cken nicht wieder den Fokus.
+                        // FIX: bekommt bei schnellem ENTER druecken nicht wieder den Fokus.
                     }
                 }
 
                 if (canClose) {
                     Submit (time);
                 }
-
-                else if (keyEvent == KeyEvent.KeyDown && key.Contains (Keys.Escape)) {
-                    Cancel (time);
-                }
+            }
+            else if (keyEvent == KeyEvent.KeyDown && key.Contains (Keys.Escape)) {
+                Cancel (time);
             }
 
             base.OnKeyEvent (key, keyEvent, time);

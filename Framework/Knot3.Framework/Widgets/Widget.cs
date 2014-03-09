@@ -131,10 +131,6 @@ namespace Knot3.Framework.Widgets
 
         public virtual WidgetState State { get; set; }
 
-        public virtual Color SelectedColorBackground { get; set; }
-
-        public virtual Color SelectedColorForeground { get; set; }
-
         public bool IsModal { get; set; }
 
         public bool IsLocalized { get; set; }
@@ -157,8 +153,6 @@ namespace Knot3.Framework.Widgets
             IsModal = false;
             IsLocalized = true;
             State = WidgetState.None;
-            SelectedColorBackground = Design.WidgetForeground;
-            SelectedColorForeground = Design.WidgetBackground;
         }
     }
 }
