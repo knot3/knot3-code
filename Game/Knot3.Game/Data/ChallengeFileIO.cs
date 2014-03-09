@@ -78,22 +78,21 @@ namespace Knot3.Game.Data
             if (!force && File.Exists (challenge.MetaData.Filename)) {
                 throw new FileAlreadyExistsException ("Error! Challenge already exists!");
             }
-            else{
-            
-            using (ZipFile zip = new ZipFile ()) {
-                // Namen
-                zip.AddEntry ("name.txt", challenge.Name);
-                // Startknoten
-                KnotStringIO parser = new KnotStringIO (challenge.Start);
-                zip.AddEntry ("start.knot", parser.Content);
-                // Zielknoten
-                parser = new KnotStringIO (challenge.Target);
-                zip.AddEntry ("target.knot", parser.Content);
-                // Highscore
-                zip.AddEntry ("highscore.txt", string.Join ("\n", printHighscore (challenge.Highscore)));
-                // ZIP-Datei speichern
-                zip.Save (challenge.MetaData.Filename);
-            }
+            else {
+                using (ZipFile zip = new ZipFile ()) {
+                    // Namen
+                    zip.AddEntry ("name.txt", challenge.Name);
+                    // Startknoten
+                    KnotStringIO parser = new KnotStringIO (challenge.Start);
+                    zip.AddEntry ("start.knot", parser.Content);
+                    // Zielknoten
+                    parser = new KnotStringIO (challenge.Target);
+                    zip.AddEntry ("target.knot", parser.Content);
+                    // Highscore
+                    zip.AddEntry ("highscore.txt", string.Join ("\n", printHighscore (challenge.Highscore)));
+                    // ZIP-Datei speichern
+                    zip.Save (challenge.MetaData.Filename);
+                }
             }
         }
 
