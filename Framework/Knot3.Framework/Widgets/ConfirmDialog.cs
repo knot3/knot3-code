@@ -27,15 +27,13 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
-
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
-
 using Knot3.Framework.Core;
 using Knot3.Framework.Input;
+using System;
 
 namespace Knot3.Framework.Widgets
 {
@@ -45,6 +43,15 @@ namespace Knot3.Framework.Widgets
     [ExcludeFromCodeCoverageAttribute]
     public abstract class ConfirmDialog : Dialog
     {
+        /// <summary>
+        /// Wird aufgerufen, wenn der Dialog abgebrochen und geschlossen wird.
+        /// </summary>
+        public Action<GameTime> Cancel;
+        /// <summary>
+        /// Wird aufgerufen, wenn der Text im Dialog abgesendet werden soll und der Dialog geschlossen wird.
+        /// </summary>
+        public Action<GameTime> Submit;
+
         /// <summary>
         /// Das Menü, das Schaltflächen enthält.
         /// </summary>
@@ -62,6 +69,11 @@ namespace Knot3.Framework.Widgets
         {
             // Der Titel-Text ist mittig ausgerichtet
             AlignX = HorizontalAlignment.Center;
+
+            Cancel = (time) => {
+                Close (time); };
+            Submit = (time) => {
+                Close (time); };
 
             // Menü, in dem die Textanzeige angezeigt wird
             menu = new Menu (Screen, Index + DisplayLayer.Menu);
@@ -88,8 +100,11 @@ namespace Knot3.Framework.Widgets
         public override void OnKeyEvent (List<Keys> key, KeyEvent keyEvent, GameTime time)
         {
             if (keyEvent == KeyEvent.KeyDown) {
-                if (key.Contains (Keys.Enter) || key.Contains (Keys.Escape)) {
-                    Close (time);
+                if (key.Contains (Keys.Enter)) {
+                    Submit (time);
+                }
+                if (key.Contains (Keys.Escape)) {
+                    Cancel (time);
                 }
             }
             base.OnKeyEvent (key, keyEvent, time);
