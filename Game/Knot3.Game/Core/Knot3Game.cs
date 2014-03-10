@@ -103,7 +103,7 @@ namespace Knot3.Game.Core
                     displayName: "Z-Nebula",
                     createInstance: (screen) => new Z_Nebula (screen)
                                                    )
-                                                   );
+                                                  );
 
             ScreenTransitionEffect = (previous, next) => new FadeEffect (next, previous);
         }
