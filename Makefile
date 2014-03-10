@@ -7,6 +7,7 @@ MKDIR = mkdir -p
 UNZIP = unzip
 BINDIR = $(DESTDIR)/usr/games
 GAMEDIR = $(DESTDIR)/usr/share/knot3
+DOCDIR = $(DESTDIR)/usr/share/doc/knot3
 NAME = knot3
 SOLUTION=Knot3-MG.sln
 
@@ -23,6 +24,7 @@ LIB_DIR = lib
 #LIB_MG_LINUX = $(LIB_DIR)/MonoGame-Linux-3.1.2.zip
 #LIB_MG_LINUX = $(LIB_DIR)/MonoGame-Linux-SDL2.zip
 LIB_MG_WINDOWS = $(LIB_DIR)/Dependencies-Windows.zip
+DOC_PDF = doc/Spielanleitung.pdf
 
 .PHONY: project_code
 
@@ -48,6 +50,8 @@ install: build
 	$(CPR) $(STD_KNOT_DIR) $(GAMEDIR)/
 	$(CP) LICENSE $(GAMEDIR)/
 	$(CP) debian/changelog $(GAMEDIR)/CHANGELOG
+	$(MKDIR) $(DOCDIR)
+	$(CP) $(DOC_PDF) $(DOCDIR)/
 
 uninstall:
 	$(RM) $(BINDIR)/$(NAME)
@@ -95,6 +99,7 @@ package-windows: build-windows
 	$(CP) debian/changelog $(DESTDIR)/CHANGELOG
 	$(CP) README.md $(DESTDIR)/README
 	$(RM) $(DESTDIR)/*.pdb
+	$(CP) $(DOC_PDF) $(DESTDIR)/
 
 dep-ubuntu-saucy:
 	sudo apt-get -q -y install mono-devel mono-dmcs nunit-console libopenal1
