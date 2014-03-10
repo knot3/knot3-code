@@ -10,5 +10,6 @@ notifications:
     on_failure: always
 language: c
 script:
+  - git submodule update --init --recursive
   - make dep-ubuntu-precise
   - make test

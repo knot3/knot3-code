@@ -1,6 +1,6 @@
 [submodule "ThirdParty/MonoGame-SDL2"]
 	path = ThirdParty/MonoGame-SDL2
-	url = git@github.com:tobiasschulz/MonoGame.git
+	url = https://github.com/tobiasschulz/MonoGame.git
 [submodule "ThirdParty/OggSharp"]
 	path = ThirdParty/OggSharp
-	url = git@github.com:knot3/OggSharp.git
+	url = https://github.com/knot3/OggSharp.git
