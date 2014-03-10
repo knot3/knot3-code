@@ -33,15 +33,6 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="Lidgren.Network">
-      <HintPath>..\lib\Lidgren.Network.dll</HintPath>
-    </Reference>
-    <Reference Include="MonoGame.Framework">
-      <HintPath>..\lib\MonoGame.Framework.dll</HintPath>
-    </Reference>
-    <Reference Include="SDL2-CS">
-      <HintPath>..\lib\SDL2-CS.dll</HintPath>
-    </Reference>
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
@@ -69,6 +60,14 @@
     <ProjectReference Include="..\Content\Knot3.Content-MG.csproj">
       <Project>{0EFA2EF3-DEB0-44E3-BE88-722866A5D511}</Project>
       <Name>Knot3.Content-MG</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ThirdParty\OggSharp\OggSharp\OggSharp.csproj">
+      <Project>{F8C66EB3-E81D-45FB-B28E-747BE332230F}</Project>
+      <Name>OggSharp</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ThirdParty\MonoGame-SDL2\MonoGame.Framework\MonoGame.Framework.SDL2.csproj">
+      <Project>{35253CE1-C864-4CD3-8249-4D1319748E8F}</Project>
+      <Name>MonoGame.Framework.SDL2</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

@@ -4,6 +4,14 @@ Bei Knot3 handelt es sich um ein innovatives Spiel bei dem man Knoten im dreidim
 
 ##Installation
 
+This project uses git submodules, so you need to close it with the --recursive parameter to clone all the dependencies too (otherwise it won't build):
+
+    git clone --recursive https://github.com/pse-knot/knot3-code.git
+
+Run the following command to update all submodules:
+
+    git submodule update --init --recursive
+
 ###Debian 8.0+ / Ubuntu 13.10+ / SteamOS
 
 Recent versions of Debian and its derivates contain packages for SDL 2.0. If you are using one of the following distributions, you'll probably have SDL2:
