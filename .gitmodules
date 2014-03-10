@@ -1,6 +1,9 @@
 [submodule "ThirdParty/MonoGame-SDL2"]
 	path = ThirdParty/MonoGame-SDL2
 	url = https://github.com/tobiasschulz/MonoGame.git
+        ignore = dirty
 [submodule "ThirdParty/OggSharp"]
 	path = ThirdParty/OggSharp
 	url = https://github.com/knot3/OggSharp.git
+        ignore = dirty
+
