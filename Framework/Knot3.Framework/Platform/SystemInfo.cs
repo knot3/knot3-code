@@ -169,7 +169,7 @@ namespace Knot3.Framework.Platform
                 "VisualTests",
             };
             foreach (string dir in binDirectories) {
-                if (Path.GetFileName(baseDir).ToLower () == dir.ToLower ()) {
+                if (Path.GetFileName (baseDir).ToLower () == dir.ToLower ()) {
                     baseDir = baseDir.Substring (0, baseDir.Length - dir.Length - 1);
                     relBaseDir += ".." + PathSeparator;
                 }
