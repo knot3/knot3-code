@@ -103,47 +103,27 @@ namespace Knot3.Game.Core
                     displayName: "Z-Nebula",
                     createInstance: (screen) => new Z_Nebula (screen)
                                                    )
-                                                  );
+                                                   );
 
-            // screens
-            Screens = new Stack<IScreen> ();
-            Screens.Push (new StartScreen (this));
-            Screens.Peek ().Entered (null, null);
+            ScreenTransitionEffect = (previous, next) => new FadeEffect (next, previous);
         }
 
+        public override IScreen DefaultScreen { get { return new StartScreen (this); } }
+
         /// <summary>
-        /// Ruft die Draw ()-Methode des aktuellen Spielzustands auf.
+        /// Wird für jeden Frame aufgerufen.
         /// </summary>
-        protected override void Draw (GameTime time)
+        protected override void Update (GameTime time)
         {
-            try {
-                // Lade den aktuellen Screen
-                IScreen current = Screens.Peek ();
+            base.Update (time);
 
-                // Starte den Post-Processing-Effekt des Screens
-                current.PostProcessingEffect.Begin (time);
-                Graphics.GraphicsDevice.Clear (current.BackgroundColor);
-
-                try {
-                    Dependencies.CatchDllExceptions (()=> {
-                        // Rufe Draw () auf dem aktuellen Screen auf
-                        current.Draw (time);
-
-                        // Rufe Draw () auf den Spielkomponenten auf
-                        base.Draw (time);
-                    });
-                }
-                catch (Exception ex) {
-                    // Error Screen
-                    ShowError (ex);
-                }
-
-                // Beende den Post-Processing-Effekt des Screens
-                current.PostProcessingEffect.End (time);
+            if (CurrentScreen.InputManager.KeyPressed (Keys.F8)) {
+                this.Exit ();
+                return;
             }
-            catch (Exception ex) {
-                // Error Screen
-                ShowError (ex);
+
+            if (CurrentScreen.PostProcessingEffect is FadeEffect && (CurrentScreen.PostProcessingEffect as FadeEffect).IsFinished) {
+                CurrentScreen.PostProcessingEffect = new StandardEffect (CurrentScreen);
             }
         }
 
@@ -152,61 +132,7 @@ namespace Knot3.Game.Core
         /// </summary>
         protected override void UnloadContent ()
         {
-        }
-
-        public void ShowError (Exception ex)
-        {
-            Screens = new Stack<IScreen> ();
-            Screens.Push (new ErrorScreen (this, ex));
-            Screens.Peek ().Entered (null, null);
-        }
-
-        /// <summary>
-        /// Wird für jeden Frame aufgerufen.
-        /// </summary>
-        protected override void Update (GameTime time)
-        {
-            try {
-                Dependencies.CatchDllExceptions (()=> {
-                    updateResolution ();
-                    // falls der Screen gewechselt werden soll...
-                    IScreen current = Screens.Peek ();
-                    IScreen next = current.NextScreen;
-                    if (current != next) {
-                        next.PostProcessingEffect = new FadeEffect (next, current);
-                        current.BeforeExit (next, time);
-                        current.NextScreen = current;
-                        next.NextScreen = next;
-                        Screens.Push (next);
-                        next.Entered (current, time);
-                    }
-
-                    if (current.PostProcessingEffect is FadeEffect && (current.PostProcessingEffect as FadeEffect).IsFinished) {
-                        current.PostProcessingEffect = new StandardEffect (current);
-                    }
-
-                    if (current.InputManager.KeyPressed (Keys.F8)) {
-                        this.Exit ();
-                        return;
-                    }
-
-                    /*if (current.InputManager.KeyPressed (KnotInputHandler.CurrentKeyAssignmentReversed [PlayerActions.ToggleFullscreen]))
-                    {
-                        IsFullScreen = !IsFullScreen;
-                        InputManager.FullscreenToggled = true;
-                    }*/
-
-                    // Rufe Update () auf dem aktuellen Screen auf
-                    Screens.Peek ().Update (time);
-
-                    // base method
-                    base.Update (time);
-                });
-            }
-            catch (Exception ex) {
-                // Error Screen
-                ShowError (ex);
-            }
+            base.UnloadContent ();
         }
     }
 }

@@ -38,6 +38,8 @@ using Microsoft.Xna.Framework.Graphics;
 using Knot3.Framework.Audio;
 using Knot3.Framework.Platform;
 using Knot3.Framework.Storage;
+using Knot3.Framework.Screens;
+using Knot3.Framework.Effects;
 
 namespace Knot3.Framework.Core
 {
@@ -169,7 +171,23 @@ namespace Knot3.Framework.Core
 
         protected override void Initialize ()
         {
+            base.Initialize ();
+
             IsFullScreen = Config.Default ["video","fullscreen",false];
+        }
+
+        public abstract IScreen DefaultScreen { get; }
+
+        public Func<IScreen, IScreen, IRenderEffect> ScreenTransitionEffect;
+
+        public IScreen CurrentScreen { get { return Screens.Peek (); } }
+
+        private void InitializeScreens ()
+        {
+            // screens
+            Screens = new Stack<IScreen> ();
+            Screens.Push (DefaultScreen);
+            Screens.Peek ().Entered (null, null);
         }
 
         protected void updateResolution ()
@@ -185,6 +203,100 @@ namespace Knot3.Framework.Core
                 FullScreenChanged ();
                 Log.Message ("Resolution (BackBuffer - now): ", BackbufferResolution);
             }
+        }
+
+        public void ShowError (Exception ex)
+        {
+            Screens = new Stack<IScreen> ();
+            Screens.Push (new ErrorScreen (this, ex));
+            Screens.Peek ().Entered (null, null);
+        }
+
+        /// <summary>
+        /// Ruft die Draw ()-Methode des aktuellen Spielzustands auf.
+        /// </summary>
+        protected override void Draw (GameTime time)
+        {
+            if (Screens == null) {
+                InitializeScreens ();
+            }
+
+            try {
+                // Lade den aktuellen Screen
+                IScreen current = Screens.Peek ();
+
+                // Starte den Post-Processing-Effekt des Screens
+                current.PostProcessingEffect.Begin (time);
+                Graphics.GraphicsDevice.Clear (current.BackgroundColor);
+
+                try {
+                    Dependencies.CatchDllExceptions (()=> {
+                        // Rufe Draw () auf dem aktuellen Screen auf
+                        current.Draw (time);
+
+                        // Rufe Draw () auf den Spielkomponenten auf
+                        base.Draw (time);
+                    });
+                }
+                catch (Exception ex) {
+                    // Error Screen
+                    ShowError (ex);
+                }
+
+                // Beende den Post-Processing-Effekt des Screens
+                current.PostProcessingEffect.End (time);
+            }
+            catch (Exception ex) {
+                // Error Screen
+                ShowError (ex);
+            }
+        }
+
+        /// <summary>
+        /// Wird für jeden Frame aufgerufen.
+        /// </summary>
+        protected override void Update (GameTime time)
+        {
+            if (Screens == null) {
+                InitializeScreens ();
+            }
+
+            try {
+                Dependencies.CatchDllExceptions (()=> {
+                    updateResolution ();
+                    // falls der Screen gewechselt werden soll...
+                    IScreen current = Screens.Peek ();
+                    IScreen next = current.NextScreen;
+                    if (current != next) {
+                        if (ScreenTransitionEffect != null) {
+                            next.PostProcessingEffect = ScreenTransitionEffect (current, next);
+                        }
+                        current.BeforeExit (next, time);
+                        current.NextScreen = current;
+                        next.NextScreen = next;
+                        Screens.Push (next);
+                        next.Entered (current, time);
+                    }
+
+                    // Rufe Update () auf dem aktuellen Screen auf
+                    Screens.Peek ().Update (time);
+
+                    // base method
+                    base.Update (time);
+                });
+            }
+            catch (Exception ex) {
+                // Error Screen
+                ShowError (ex);
+            }
+        }
+
+        /// <summary>
+        /// Macht nichts. Das Freigeben aller Objekte wird von der automatischen Speicherbereinigung übernommen.
+        /// </summary>
+        protected override void UnloadContent ()
+        {
+            base.UnloadContent ();
         }
     }
 }

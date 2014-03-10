@@ -75,6 +75,9 @@ namespace Knot3.ModelEditor
         /// </summary>
         protected override void Initialize ()
         {
+            // base method
+            base.Initialize ();
+
             // vsync
             VSync = true;
 
@@ -88,92 +91,8 @@ namespace Knot3.ModelEditor
             // audio
             AudioManager = new SilentAudioManager (game: this);
             AudioManager.Initialize ();
-
-            // screens
-            Screens = new Stack<IScreen> ();
-            Screens.Push (new JunctionEditorScreen (this));
-            Screens.Peek ().Entered (null, null);
-
-            // base method
-            base.Initialize ();
         }
 
-        /// <summary>
-        /// Ruft die Draw ()-Methode des aktuellen Spielzustands auf.
-        /// </summary>
-        protected override void Draw (GameTime time)
-        {
-            try {
-                // Lade den aktuellen Screen
-                IScreen current = Screens.Peek ();
-
-                // Starte den Post-Processing-Effekt des Screens
-                current.PostProcessingEffect.Begin (time);
-                Graphics.GraphicsDevice.Clear (current.BackgroundColor);
-
-                try {
-                    // Rufe Draw () auf dem aktuellen Screen auf
-                    current.Draw (time);
-
-                    // Rufe Draw () auf den Spielkomponenten auf
-                    base.Draw (time);
-                }
-                catch (Exception ex) {
-                    // Error Screen
-                    ShowError (ex);
-                }
-
-                // Beende den Post-Processing-Effekt des Screens
-                current.PostProcessingEffect.End (time);
-            }
-            catch (Exception ex) {
-                // Error Screen
-                ShowError (ex);
-            }
-        }
-
-        /// <summary>
-        /// Macht nichts. Das Freigeben aller Objekte wird von der automatischen Speicherbereinigung übernommen.
-        /// </summary>
-        protected override void UnloadContent ()
-        {
-        }
-
-        public void ShowError (Exception ex)
-        {
-            Screens = new Stack<IScreen> ();
-            Screens.Push (new ErrorScreen (this, ex));
-            Screens.Peek ().Entered (null, null);
-        }
-
-        /// <summary>
-        /// Wird für jeden Frame aufgerufen.
-        /// </summary>
-        protected override void Update (GameTime time)
-        {
-            try {
-                updateResolution ();
-                // falls der Screen gewechselt werden soll...
-                IScreen current = Screens.Peek ();
-                IScreen next = current.NextScreen;
-                if (current != next) {
-                    current.BeforeExit (next, time);
-                    current.NextScreen = current;
-                    next.NextScreen = next;
-                    Screens.Push (next);
-                    next.Entered (current, time);
-                }
-
-                // Rufe Update () auf dem aktuellen Screen auf
-                Screens.Peek ().Update (time);
-
-                // base method
-                base.Update (time);
-            }
-            catch (Exception ex) {
-                // Error Screen
-                ShowError (ex);
-            }
-        }
+        public override IScreen DefaultScreen { get { return new JunctionEditorScreen (this); } }
     }
 }
