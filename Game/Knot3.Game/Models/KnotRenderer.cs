@@ -114,8 +114,10 @@ namespace Knot3.Game.Models
                 return virtualKnot;
             }
             set {
-                virtualKnot = value;
-                OnVirtualKnotAssigned ();
+                if (virtualKnot != value) {
+                    virtualKnot = value;
+                    OnVirtualKnotAssigned ();
+                }
             }
         }
 
