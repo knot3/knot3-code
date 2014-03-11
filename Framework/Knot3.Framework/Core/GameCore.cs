@@ -27,14 +27,11 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
-
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-
 using Knot3.Framework.Audio;
 using Knot3.Framework.Effects;
 using Knot3.Framework.Platform;
@@ -59,8 +56,7 @@ namespace Knot3.Framework.Core
         /// ob sich das Spiel im Vollbildmodus befindet. Wird dieses Attribut auf einen Wert gesetzt,
         /// dann wird der Modus entweder gewechselt oder beibehalten, falls es auf denselben Wert gesetzt wird.
         /// </summary>
-        public bool IsFullScreen
-        {
+        public bool IsFullScreen {
             get {
                 return isFullscreen;
             }
@@ -70,23 +66,21 @@ namespace Knot3.Framework.Core
                     Graphics.ToggleFullScreen ();
                     Graphics.ApplyChanges ();
                     isFullscreen = value;
-                    Config.Default ["video","fullscreen",false] = value;
+                    Config.Default ["video", "fullscreen", false] = value;
                     Graphics.ApplyChanges ();
                 }
             }
         }
 
-        protected Point ScreenResolution
-        {
+        protected Point ScreenResolution {
             get {
                 return new Point (GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height);
             }
         }
 
-        protected Point WindowResolution
-        {
+        protected Point WindowResolution {
             get {
-                String strReso = Config.Default ["video", "resolution", defaultSize.X+"x"+defaultSize.Y];
+                String strReso = Config.Default ["video", "resolution", defaultSize.X + "x" + defaultSize.Y];
                 string[] reso = strReso.Split ('x');
                 int width = int.Parse (reso [0]);
                 int height = int.Parse (reso [1]);
@@ -94,8 +88,7 @@ namespace Knot3.Framework.Core
             }
         }
 
-        protected Point BackbufferResolution
-        {
+        protected Point BackbufferResolution {
             get {
                 return new Point (Graphics.PreferredBackBufferWidth, Graphics.PreferredBackBufferHeight);
             }
@@ -115,8 +108,7 @@ namespace Knot3.Framework.Core
         /// Dieses Attribut dient sowohl zum Setzen des Aktivierungszustandes der vertikalen Synchronisation,
         /// als auch zum Auslesen dieses Zustandes.
         /// </summary>
-        public bool VSync
-        {
+        public bool VSync {
             get {
                 return Graphics.SynchronizeWithVerticalRetrace;
             }
@@ -154,12 +146,10 @@ namespace Knot3.Framework.Core
 
             if (SystemInfo.IsRunningOnLinux ()) {
                 IsMouseVisible = true;
-            }
-            else if (SystemInfo.IsRunningOnWindows ()) {
+            } else if (SystemInfo.IsRunningOnWindows ()) {
                 IsMouseVisible = false;
                 System.Windows.Forms.Cursor.Hide ();
-            }
-            else {
+            } else {
                 throw new Exception ("Unsupported Plattform Exception");
             }
 
@@ -167,13 +157,15 @@ namespace Knot3.Framework.Core
             Window.Title = "";
 
             FullScreenChanged = () => {};
+
+            ErrorScreenEnabled = true;
         }
 
         protected override void Initialize ()
         {
             base.Initialize ();
 
-            IsFullScreen = Config.Default ["video","fullscreen",false];
+            IsFullScreen = Config.Default ["video", "fullscreen", false];
         }
 
         public abstract IScreen DefaultScreen { get; }
@@ -205,6 +197,8 @@ namespace Knot3.Framework.Core
             }
         }
 
+        public bool ErrorScreenEnabled { get; protected set; }
+
         public void ShowError (Exception ex)
         {
             Screens = new Stack<IScreen> ();
@@ -230,25 +224,31 @@ namespace Knot3.Framework.Core
                 Graphics.GraphicsDevice.Clear (current.BackgroundColor);
 
                 try {
-                    Dependencies.CatchDllExceptions (()=> {
+                    Dependencies.CatchDllExceptions (() => {
                         // Rufe Draw () auf dem aktuellen Screen auf
                         current.Draw (time);
 
                         // Rufe Draw () auf den Spielkomponenten auf
                         base.Draw (time);
                     });
-                }
-                catch (Exception ex) {
-                    // Error Screen
-                    ShowError (ex);
+                } catch (Exception ex) {
+                    if (ErrorScreenEnabled) {
+                        // Error Screen
+                        ShowError (ex);
+                    } else {
+                        throw;
+                    }
                 }
 
                 // Beende den Post-Processing-Effekt des Screens
                 current.PostProcessingEffect.End (time);
-            }
-            catch (Exception ex) {
-                // Error Screen
-                ShowError (ex);
+            } catch (Exception ex) {
+                if (ErrorScreenEnabled) {
+                    // Error Screen
+                    ShowError (ex);
+                } else {
+                    throw;
+                }
             }
         }
 
@@ -262,7 +262,7 @@ namespace Knot3.Framework.Core
             }
 
             try {
-                Dependencies.CatchDllExceptions (()=> {
+                Dependencies.CatchDllExceptions (() => {
                     updateResolution ();
                     // falls der Screen gewechselt werden soll...
                     IScreen current = Screens.Peek ();
@@ -284,10 +284,13 @@ namespace Knot3.Framework.Core
                     // base method
                     base.Update (time);
                 });
-            }
-            catch (Exception ex) {
-                // Error Screen
-                ShowError (ex);
+            } catch (Exception ex) {
+                if (ErrorScreenEnabled) {
+                    // Error Screen
+                    ShowError (ex);
+                } else {
+                    throw;
+                }
             }
         }
 
