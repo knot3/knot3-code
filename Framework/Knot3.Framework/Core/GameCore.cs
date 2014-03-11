@@ -27,11 +27,14 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
+
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+
 using Knot3.Framework.Audio;
 using Knot3.Framework.Effects;
 using Knot3.Framework.Platform;
@@ -56,7 +59,8 @@ namespace Knot3.Framework.Core
         /// ob sich das Spiel im Vollbildmodus befindet. Wird dieses Attribut auf einen Wert gesetzt,
         /// dann wird der Modus entweder gewechselt oder beibehalten, falls es auf denselben Wert gesetzt wird.
         /// </summary>
-        public bool IsFullScreen {
+        public bool IsFullScreen
+        {
             get {
                 return isFullscreen;
             }
@@ -72,13 +76,15 @@ namespace Knot3.Framework.Core
             }
         }
 
-        protected Point ScreenResolution {
+        protected Point ScreenResolution
+        {
             get {
                 return new Point (GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height);
             }
         }
 
-        protected Point WindowResolution {
+        protected Point WindowResolution
+        {
             get {
                 String strReso = Config.Default ["video", "resolution", defaultSize.X + "x" + defaultSize.Y];
                 string[] reso = strReso.Split ('x');
@@ -88,7 +94,8 @@ namespace Knot3.Framework.Core
             }
         }
 
-        protected Point BackbufferResolution {
+        protected Point BackbufferResolution
+        {
             get {
                 return new Point (Graphics.PreferredBackBufferWidth, Graphics.PreferredBackBufferHeight);
             }
@@ -108,7 +115,8 @@ namespace Knot3.Framework.Core
         /// Dieses Attribut dient sowohl zum Setzen des Aktivierungszustandes der vertikalen Synchronisation,
         /// als auch zum Auslesen dieses Zustandes.
         /// </summary>
-        public bool VSync {
+        public bool VSync
+        {
             get {
                 return Graphics.SynchronizeWithVerticalRetrace;
             }
@@ -146,10 +154,12 @@ namespace Knot3.Framework.Core
 
             if (SystemInfo.IsRunningOnLinux ()) {
                 IsMouseVisible = true;
-            } else if (SystemInfo.IsRunningOnWindows ()) {
+            }
+            else if (SystemInfo.IsRunningOnWindows ()) {
                 IsMouseVisible = false;
                 System.Windows.Forms.Cursor.Hide ();
-            } else {
+            }
+            else {
                 throw new Exception ("Unsupported Plattform Exception");
             }
 
@@ -231,22 +241,26 @@ namespace Knot3.Framework.Core
                         // Rufe Draw () auf den Spielkomponenten auf
                         base.Draw (time);
                     });
-                } catch (Exception ex) {
+                }
+                catch (Exception ex) {
                     if (ErrorScreenEnabled) {
                         // Error Screen
                         ShowError (ex);
-                    } else {
+                    }
+                    else {
                         throw;
                     }
                 }
 
                 // Beende den Post-Processing-Effekt des Screens
                 current.PostProcessingEffect.End (time);
-            } catch (Exception ex) {
+            }
+            catch (Exception ex) {
                 if (ErrorScreenEnabled) {
                     // Error Screen
                     ShowError (ex);
-                } else {
+                }
+                else {
                     throw;
                 }
             }
@@ -284,11 +298,13 @@ namespace Knot3.Framework.Core
                     // base method
                     base.Update (time);
                 });
-            } catch (Exception ex) {
+            }
+            catch (Exception ex) {
                 if (ErrorScreenEnabled) {
                     // Error Screen
                     ShowError (ex);
-                } else {
+                }
+                else {
                     throw;
                 }
             }
