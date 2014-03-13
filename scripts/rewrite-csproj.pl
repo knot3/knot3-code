@@ -8,7 +8,7 @@ sub find_cs_files {
 
 	return
 		grep { my $file = $_; scalar (grep { $file =~ /$_/i } @$exclude) ? 0 : 1 }
-		map { s/$dir//; $_ } split(/[\r\n]+/, `find $dir -name "*.cs"`);
+		map { s/$dir//; $_ } split(/[\r\n]+/, `find $dir -name "*.cs" | grep -v obj/`);
 }
 
 sub format_cs_files {
