@@ -45,43 +45,8 @@ using Knot3.Framework.Widgets;
 namespace Knot3.Framework.Platform
 {
     [ExcludeFromCodeCoverageAttribute]
-    public static class ContentLoader
+    public static partial class ContentLoader
     {
-        public static Effect LoadEffect (this IScreen screen, string name)
-        {
-            if (SystemInfo.IsRunningOnMono () || SystemInfo.IsRunningOnMonogame ()) {
-                return LoadEffectMono (screen, name);
-            }
-            else {
-                return LoadEffectDotnet (screen, name);
-            }
-        }
-
-        private static Effect LoadEffectMono (IScreen screen, string name)
-        {
-            string[] filenames = {
-                SystemInfo.RelativeContentDirectory + "Shader/" + name + ".mgfx",
-                SystemInfo.RelativeContentDirectory + "Shader/" + name + "_3.0.mgfx",
-                SystemInfo.RelativeContentDirectory + "Shader/" + name + "_3.1.mgfx"
-            };
-            Exception lastException = new Exception ("Could not find shader: " + name);
-            foreach (string filename in filenames) {
-                try {
-                    Effect effect = new Effect (screen.GraphicsDevice, System.IO.File.ReadAllBytes (filename));
-                    return effect;
-                }
-                catch (Exception ex) {
-                    lastException = ex;
-                }
-            }
-            throw lastException;
-        }
-
-        private static Effect LoadEffectDotnet (IScreen screen, string name)
-        {
-            return screen.Game.Content.Load<Effect> ("Shader/" + name);
-        }
-
         private static Dictionary<string, ContentManager> contentManagers = new Dictionary<string, ContentManager> ();
         private static HashSet<string> invalidModels = new HashSet<string> ();
 

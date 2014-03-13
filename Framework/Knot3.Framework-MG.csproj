@@ -30,10 +30,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="Ionic.Zip">
-      <HintPath>..\lib\Ionic.Zip.dll</HintPath>
-    </Reference>
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="Ionic.Zip">
+      <HintPath>..\ThirdParty\Ionic.Zip.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
@@ -89,6 +89,7 @@
     <Compile Include="Knot3.Framework\Models\GameObjectInfo.cs" />
     <Compile Include="Knot3.Framework\Models\IGameObject.cs" />
     <Compile Include="Knot3.Framework\Models\ModelColoring.cs" />
+    <Compile Include="Knot3.Framework\Platform\ContentLoader-MG.cs" />
     <Compile Include="Knot3.Framework\Platform\ContentLoader.cs" />
     <Compile Include="Knot3.Framework\Platform\Dependencies.cs" />
     <Compile Include="Knot3.Framework\Platform\Log.cs" />
@@ -136,6 +137,7 @@
     <Compile Include="Knot3.Framework\Widgets\VerticalAlignment.cs" />
     <Compile Include="Knot3.Framework\Widgets\Widget.cs" />
     <Compile Include="Knot3.Framework\Widgets\WidgetState.cs" />
+    <Compile Include="obj\Debug\.NETFramework,Version=v4.0.AssemblyAttribute.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
