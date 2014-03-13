@@ -41,7 +41,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Ionic.Zip">
-      <HintPath>..\lib\Ionic.Zip.dll</HintPath>
+      <HintPath>..\ThirdParty\Ionic.Zip.dll</HintPath>
     </Reference>
     <Reference Include="OggSharp">
       <HintPath>..\lib\OggSharp.dll</HintPath>
