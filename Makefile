@@ -20,8 +20,6 @@ VISUALTESTS_DIR = VisualTests
 CONTENT_DIR = Content
 STD_KNOT_DIR = Game/Standard_Knots
 
-LIB_DIR = lib
-LIB_MG_WINDOWS = $(LIB_DIR)/Dependencies-Windows.zip
 DOC_PDF = doc/Spielanleitung.pdf
 
 .PHONY: project_code
@@ -34,9 +32,6 @@ all: build
 
 build: clean
 	xbuild $(SOLUTION)
-	$(CPR) $(LIB_DIR)/*.dll.config $(CODE_DIR)/bin/Debug/
-	$(CPR) $(LIB_DIR)/*.dll.config $(TOOL_MODELEDITOR_DIR)/bin/Debug/
-	$(CPR) $(LIB_DIR)/*.dll.config $(UNITTESTS_DIR)/bin/Debug/
 
 install: build
 	$(MKDIR) $(BINDIR)
@@ -72,15 +67,10 @@ test: build
 
 build-windows: clean
 	$(MKDIR) $(CODE_DIR)/bin/Release/ || true
-	$(UNZIP) -o -d $(CODE_DIR)/bin/Release/ $(LIB_MG_WINDOWS) || true
 	$(MKDIR) $(FRAMEWORK_DIR)/bin/Release/ || true
-	$(UNZIP) -o -d $(FRAMEWORK_DIR)/bin/Release/ $(LIB_MG_WINDOWS) || true
 	$(MKDIR) $(UNITTESTS_DIR)/bin/Release/ || true
-	$(UNZIP) -o -d $(UNITTESTS_DIR)/bin/Release/ $(LIB_MG_WINDOWS) || true
 	$(MKDIR) $(TOOL_MODELEDITOR_DIR)/bin/Release/ || true
-	$(UNZIP) -o -d $(TOOL_MODELEDITOR_DIR)/bin/Release/ $(LIB_MG_WINDOWS) || true
 	$(MKDIR) $(VISUALTESTS_DIR)/bin/Release/ || true
-	$(UNZIP) -o -d $(VISUALTESTS_DIR)/bin/Release/ $(LIB_MG_WINDOWS) || true
 	xbuild /p:Configuration=Release $(SOLUTION)
 
 package-windows: build-windows
