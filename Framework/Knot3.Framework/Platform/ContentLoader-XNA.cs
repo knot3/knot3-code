@@ -36,9 +36,8 @@ using Microsoft.Xna.Framework.Graphics;
 using Knot3.Framework.Core;
 using Knot3.Framework.Platform;
 
-namespace Knot3.Framework
+namespace Knot3.Framework.Platform
 {
-    [ExcludeFromCodeCoverageAttribute]
     public static partial class ContentLoader
     {
         public static Effect LoadEffect (this IScreen screen, string name)

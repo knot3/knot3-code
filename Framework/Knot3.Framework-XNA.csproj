@@ -43,9 +43,6 @@
     <Reference Include="Ionic.Zip">
       <HintPath>..\ThirdParty\Ionic.Zip.dll</HintPath>
     </Reference>
-    <Reference Include="OggSharp">
-      <HintPath>..\lib\OggSharp.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
@@ -203,5 +200,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="..\knot3.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ThirdParty\OggSharp\OggSharp\OggSharp.csproj">
+      <Project>{f8c66eb3-e81d-45fb-b28e-747be332230f}</Project>
+      <Name>OggSharp</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>

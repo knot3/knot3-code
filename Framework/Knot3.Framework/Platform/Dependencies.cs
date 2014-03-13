@@ -169,7 +169,8 @@ namespace Knot3.Framework.Platform
         {
             Application.EnableVisualStyles ();
 
-            if (SystemInfo.IsRunningOnWindows ()) {
+            if (SystemInfo.IsRunningOnWindows() && SystemInfo.IsRunningOnMonogame())
+            {
                 if (!Dependencies.DownloadSDL2 ()) {
                     Log.ShowMessageBox (DownloadErrorMessage ("SDL2"), MessageBoxTitle);
                     return;

@@ -20,6 +20,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Knot3.ExtremeTests-XNA", "E
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Knot3.Framework-XNA", "Framework\Knot3.Framework-XNA.csproj", "{C81CB812-BF24-4DE2-A551-AA4B79CD9490}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OggSharp", "ThirdParty\OggSharp\OggSharp\OggSharp.csproj", "{F8C66EB3-E81D-45FB-B28E-747BE332230F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -102,6 +104,18 @@ Global
 		{C81CB812-BF24-4DE2-A551-AA4B79CD9490}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{C81CB812-BF24-4DE2-A551-AA4B79CD9490}.Release|Win32.ActiveCfg = Release|Any CPU
 		{C81CB812-BF24-4DE2-A551-AA4B79CD9490}.Release|x86.ActiveCfg = Release|Any CPU
+		{F8C66EB3-E81D-45FB-B28E-747BE332230F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8C66EB3-E81D-45FB-B28E-747BE332230F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8C66EB3-E81D-45FB-B28E-747BE332230F}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{F8C66EB3-E81D-45FB-B28E-747BE332230F}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{F8C66EB3-E81D-45FB-B28E-747BE332230F}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{F8C66EB3-E81D-45FB-B28E-747BE332230F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F8C66EB3-E81D-45FB-B28E-747BE332230F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8C66EB3-E81D-45FB-B28E-747BE332230F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8C66EB3-E81D-45FB-B28E-747BE332230F}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{F8C66EB3-E81D-45FB-B28E-747BE332230F}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{F8C66EB3-E81D-45FB-B28E-747BE332230F}.Release|Win32.ActiveCfg = Release|Any CPU
+		{F8C66EB3-E81D-45FB-B28E-747BE332230F}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

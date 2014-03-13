@@ -61,8 +61,7 @@
     <XnaCompressContent>true</XnaCompressContent>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Ionic.Zip, Version=1.9.1.8, Culture=neutral, PublicKeyToken=edbe51ad942a3f5c, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Ionic.Zip">
       <HintPath>..\ThirdParty\Ionic.Zip.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
@@ -95,10 +94,6 @@
     </Reference>
     <Reference Include="mscorlib">
       <Private>False</Private>
-    </Reference>
-    <Reference Include="OggSharp, Version=1.0.5134.12044, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\lib\OggSharp.dll</HintPath>
     </Reference>
     <Reference Include="System">
       <Private>False</Private>
@@ -228,6 +223,10 @@
       <Project>{CD33049E-0B5F-42BA-B816-658DEDF50DEA}</Project>
       <Name>Knot3.Content-XNA</Name>
       <XnaReferenceType>Content</XnaReferenceType>
+    </ProjectReference>
+    <ProjectReference Include="..\ThirdParty\OggSharp\OggSharp\OggSharp.csproj">
+      <Project>{f8c66eb3-e81d-45fb-b28e-747be332230f}</Project>
+      <Name>OggSharp</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
