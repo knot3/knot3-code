@@ -48,12 +48,9 @@ namespace Knot3.Game.Models
         /// </summary>
         public new Pipe Info { get { return base.Info as Pipe; } set { base.Info = value; } }
 
-        private BoundingSphere[] _bounds;
+        public override BoundingSphere[] Bounds { get { return _bounds; } }
 
-        public override BoundingSphere[] Bounds
-        {
-            get { return _bounds; }
-        }
+        private BoundingSphere[] _bounds;
 
         public bool IsVirtual { get; set; }
 

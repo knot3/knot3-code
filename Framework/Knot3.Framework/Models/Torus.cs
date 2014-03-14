@@ -5,12 +5,11 @@
  * and binary forms, with or without modification, are permitted provided
  * that the conditions of the MIT license are met.
  */
-
 using System;
 using System.Diagnostics.CodeAnalysis;
-
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Knot3.Framework.Math;
 
 namespace Primitives
 {
@@ -21,14 +20,18 @@ namespace Primitives
         {
         }
 
-        public Torus (GraphicsDevice device, float diameter, float thickness, int tessellation, float circlePercent = 1f)
+        public Torus (GraphicsDevice device, float diameter, float thickness, int tessellation, float circlePercent = 1f,
+                      Vector3 translation = default(Vector3), Angles3 rotation = default(Angles3))
+            : base (translation: translation, rotation: rotation)
         {
             if (tessellation < 3) {
                 throw new ArgumentOutOfRangeException ("cylinder tessellation");
             }
+
+            if (circlePercent < 1f)
+                circlePercent += 1f / tessellation;
             
-            for (int i = 0; i < tessellation*circlePercent; i++)
-            {
+            for (int i = 0; i < tessellation*circlePercent; i++) {
                 float outerAngle = i * MathHelper.TwoPi / tessellation;
                 float textureU = (float)i / (float)tessellation;
 
@@ -36,8 +39,7 @@ namespace Primitives
                     Matrix.CreateRotationY (outerAngle);
 
                 // Now we loop along the other axis, around the side of the tube.
-                for (int j = 0; j < tessellation; j++)
-                {
+                for (int j = 0; j < tessellation; j++) {
                     float innerAngle = j * MathHelper.TwoPi / tessellation;
                     float textureV = (float)j / (float)tessellation;
 
@@ -57,8 +59,7 @@ namespace Primitives
                     int nextI = (i + 1) % tessellation;
                     int nextJ = (j + 1) % tessellation;
 
-                    if (nextI < tessellation*circlePercent)
-                    {
+                    if (nextI < tessellation * circlePercent) {
                         AddIndex (i * tessellation + j);
                         AddIndex (i * tessellation + nextJ);
                         AddIndex (nextI * tessellation + j);

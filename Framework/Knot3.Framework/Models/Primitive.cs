@@ -5,27 +5,40 @@
  * and binary forms, with or without modification, are permitted provided
  * that the conditions of the MIT license are met.
  */
-
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Knot3.Framework.Math;
 
 namespace Primitives
 {
     public abstract class Primitive : IDisposable
     {
-        List<VertexPositionNormalTexture> vertices = new List<VertexPositionNormalTexture>();
-        List<ushort> indices = new List<ushort>();
-        VertexBuffer vertexBuffer;
-        IndexBuffer indexBuffer;
+        private List<VertexPositionNormalTexture> vertices = new List<VertexPositionNormalTexture> ();
+        private List<ushort> indices = new List<ushort> ();
+        private VertexBuffer vertexBuffer;
+        private IndexBuffer indexBuffer;
+        protected Matrix vertexTransform = Matrix.Identity;
 
         public Vector3 Center { get; protected set; }
 
+        public Primitive (Vector3 translation, Angles3 rotation)
+        {
+            rotation = rotation ?? Angles3.Zero;
+            vertexTransform = Matrix.CreateTranslation (translation) * Matrix.CreateFromYawPitchRoll (rotation.Y, rotation.X, rotation.Z);
+        }
+
+        public Primitive ()
+        : this (translation: Vector3.Zero, rotation: Angles3.Zero)
+        {
+        }
+
         protected void AddVertex (Vector3 position, Vector3 normal, Vector2 texCoord)
         {
+            position = Vector3.Transform (position, vertexTransform);
+            normal = Vector3.TransformNormal (normal, vertexTransform);
             vertices.Add (new VertexPositionNormalTexture (position, normal, texCoord));
         }
 
@@ -42,9 +55,9 @@ namespace Primitives
 
         protected void InitializePrimitive (GraphicsDevice device)
         {
-            vertexBuffer = new VertexBuffer (device, typeof (VertexPositionNormalTexture), vertices.Count, BufferUsage.None);
+            vertexBuffer = new VertexBuffer (device, typeof(VertexPositionNormalTexture), vertices.Count, BufferUsage.None);
             vertexBuffer.SetData (vertices.ToArray ());
-            indexBuffer = new IndexBuffer (device, typeof (ushort), indices.Count, BufferUsage.None);
+            indexBuffer = new IndexBuffer (device, typeof(ushort), indices.Count, BufferUsage.None);
             indexBuffer.SetData (indices.ToArray ());
         }
 
