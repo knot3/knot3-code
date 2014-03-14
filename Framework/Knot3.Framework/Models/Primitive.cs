@@ -55,10 +55,13 @@ namespace Primitives
 
         protected void InitializePrimitive (GraphicsDevice device)
         {
-            vertexBuffer = new VertexBuffer (device, typeof(VertexPositionNormalTexture), vertices.Count, BufferUsage.None);
-            vertexBuffer.SetData (vertices.ToArray ());
-            indexBuffer = new IndexBuffer (device, typeof(ushort), indices.Count, BufferUsage.None);
-            indexBuffer.SetData (indices.ToArray ());
+            // the graphics device is null during the unit tests
+            if (device != null) {
+                vertexBuffer = new VertexBuffer (device, typeof(VertexPositionNormalTexture), vertices.Count, BufferUsage.None);
+                vertexBuffer.SetData (vertices.ToArray ());
+                indexBuffer = new IndexBuffer (device, typeof(ushort), indices.Count, BufferUsage.None);
+                indexBuffer.SetData (indices.ToArray ());
+            }
         }
 
         ~Primitive ()
