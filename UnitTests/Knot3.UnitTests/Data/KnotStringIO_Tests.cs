@@ -104,11 +104,11 @@ namespace Knot3.UnitTests.Data
 
             KnotStringIO rectangle = new KnotStringIO (content_rectangle);
             Assert.DoesNotThrow (() => {
-                List<Edge> squaredEdges = complexKnotStringIO.Edges.ToList ();
-                List<Edge> allEdges = complexKnotStringIO.Edges.ToList ();
-                List<Edge> coloredRGBAEdges = rgba.Edges.ToList ();
-                List<Edge> coloredRGBEdges = rgb.Edges.ToList ();
-                List<Edge> rectangleEdges = rectangle.Edges.ToList ();
+                complexKnotStringIO.Edges.ToList ();
+                complexKnotStringIO.Edges.ToList ();
+                rgba.Edges.ToList ();
+                rgb.Edges.ToList ();
+                rectangle.Edges.ToList ();
             }, " Erstellung");
         }
 
@@ -122,11 +122,11 @@ namespace Knot3.UnitTests.Data
             KnotStringIO rgb = new KnotStringIO (content_rgb);
             KnotStringIO rectangle = new KnotStringIO (content_rectangle);
             Assert.Catch ( () => {
-                List<Edge> squaredEdges = complexKnotStringIO.Edges.ToList ();
-                List<Edge> allEdges = complexKnotStringIO.Edges.ToList ();
-                List<Edge> coloredRGBAEdges = rgba.Edges.ToList ();
-                List<Edge> coloredRGBEdges = rgb.Edges.ToList ();
-                List<Edge> rectangleEdges = rectangle.Edges.ToList ();
+                complexKnotStringIO.Edges.ToList ();
+                complexKnotStringIO.Edges.ToList ();
+                rgba.Edges.ToList ();
+                rgb.Edges.ToList ();
+                rectangle.Edges.ToList ();
             }, " Erstellung");
         }
     }

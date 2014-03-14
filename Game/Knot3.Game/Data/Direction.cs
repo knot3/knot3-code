@@ -157,18 +157,10 @@ namespace Knot3.Game.Data
             return !(d1 == d2);
         }
 
-        public bool Equals (Direction other)
-        {
-            return other != null && Vector == other.Vector;
-        }
-
         public override bool Equals (object other)
         {
             if (other == null) {
                 return false;
-            }
-            else if (other is Direction) {
-                return Equals (other as Direction);
             }
             else if (other is Vector3) {
                 return Vector.Equals ((Vector3)other);
@@ -176,6 +168,12 @@ namespace Knot3.Game.Data
             else {
                 return base.Equals (other);
             }
+        }
+
+        [ExcludeFromCodeCoverageAttribute]
+        public override int GetHashCode ()
+        {
+            return base.GetHashCode ();
         }
 
         public static implicit operator Vector3 (Direction direction)

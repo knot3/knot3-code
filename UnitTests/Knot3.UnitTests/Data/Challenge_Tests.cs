@@ -68,6 +68,7 @@ namespace Knot3.UnitTests.Data
             Challenge secondChallenge = new Challenge (meta, challenge.Start, challenge.Target);
             challenge.Name = "other";
             Assert.AreEqual (challenge.Name, "other");
+            Assert.AreNotEqual (secondChallenge.Name, "other");
             challenge.AddToHighscore ("Noob", 1337);
             string[] names = { "Erster", "Dritter", "Zweiter", "Noob" };
             int[] times = { 1, 15, 7, 1337 };

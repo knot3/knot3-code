@@ -68,8 +68,8 @@ namespace Knot3.UnitTests.Data
         public void KnotFileLoad_Test ()
         {
             KnotFileIO fileIO = new KnotFileIO ();
-            Assert.DoesNotThrow (() => { Knot knot = fileIO.Load (TestHelper.TestResourcesDirectory + "AllDir.knot"); });
-            Assert.Throws<FileNotFoundException>(() => { Knot knot = fileIO.Load (TestHelper.TestResourcesDirectory + "NotExistent.knot"); });
+            Assert.DoesNotThrow (() => { fileIO.Load (TestHelper.TestResourcesDirectory + "AllDir.knot"); });
+            Assert.Throws<FileNotFoundException>(() => { fileIO.Load (TestHelper.TestResourcesDirectory + "NotExistent.knot"); });
         }
         [Test]
         public void KnotFileIOContent_Test ()
