@@ -27,14 +27,11 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
-
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-
 using Microsoft.Xna.Framework;
-
 using Knot3.Framework.Core;
 using Knot3.Framework.Math;
 using Knot3.Framework.Utilities;
@@ -200,13 +197,8 @@ namespace Knot3.Framework.Models
             if (Info.Scale != _scale || Info.Rotation != _rotation || Info.Position != _position) {
                 // world matrix
                 _worldMatrix = Matrix.CreateScale (Info.Scale)
-                               * Matrix.CreateFromYawPitchRoll (Info.Rotation.Y, Info.Rotation.X, Info.Rotation.Z)
-                               * Matrix.CreateTranslation (Info.Position);
-
-                // bounding sphere for view frustum intersects check
-                Vector3 frustumBoundsMin = Info.Position + Vector3.One;
-                Vector3 frustumBoundsMax = Info.Position - Vector3.One;
-                _frustumBoundingBox = new BoundingBox (frustumBoundsMin, frustumBoundsMax);
+                    * Matrix.CreateFromYawPitchRoll (Info.Rotation.Y, Info.Rotation.X, Info.Rotation.Z)
+                    * Matrix.CreateTranslation (Info.Position);
 
                 // attrs
                 _scale = Info.Scale;
@@ -217,9 +209,15 @@ namespace Knot3.Framework.Models
 
         private void OnViewChanged ()
         {
-            // camera frustum
             UpdatePrecomputed ();
 
+            // bounding sphere for view frustum intersects check
+            Vector3 frustumBoundsMin = Info.Position + Vector3.One;
+            Vector3 frustumBoundsMax = Info.Position - Vector3.One;
+            Vector3 toCameraTarget = World.Camera.Target - Info.Position;
+            frustumBoundsMin += Vector3.Normalize (toCameraTarget) * MathHelper.Min (200, toCameraTarget.Length ());
+            frustumBoundsMax += Vector3.Normalize (toCameraTarget) * MathHelper.Min (200, toCameraTarget.Length ());
+            _frustumBoundingBox = new BoundingBox (frustumBoundsMin, frustumBoundsMax);
             _inFrustum = World.Camera.ViewFrustum.FastIntersects (ref _frustumBoundingBox);
         }
     }
