@@ -200,6 +200,7 @@ namespace Knot3.Framework.Core
         {
             if (obj != null) {
                 Objects.Remove (obj);
+                obj.World = null;
             }
             Redraw = true;
         }

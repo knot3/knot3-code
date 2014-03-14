@@ -466,7 +466,7 @@ namespace Knot3.Game.Models
                 int count = pipeFactory.Count + nodeFactory.Count + arrowFactory.Count;
                 if (count > 0) {
                     Profiler.Values ["# Cached Models"] = count;
-                    if (time.TotalGameTime.Seconds % 120 == 0) {
+                    if (time.TotalGameTime.Seconds % 20 == 0) {
                         Log.Debug ("Clear Model Cache: ", count, " Models deleted");
                         pipeFactory.Clear ();
                         nodeFactory.Clear ();

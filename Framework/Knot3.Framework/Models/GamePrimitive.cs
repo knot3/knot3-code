@@ -84,8 +84,10 @@ namespace Knot3.Framework.Models
             set {
                 _world = value;
                 _world.Camera.OnViewChanged -= OnViewChanged;
-                _world.Camera.OnViewChanged += OnViewChanged;
-                OnViewChanged ();
+                if (value != null) {
+                    _world.Camera.OnViewChanged += OnViewChanged;
+                    OnViewChanged ();
+                }
             }
         }
 
