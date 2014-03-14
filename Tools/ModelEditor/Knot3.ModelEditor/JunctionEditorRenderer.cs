@@ -73,6 +73,8 @@ namespace Knot3.ModelEditor
         /// </summary>
         public World World { get; set; }
 
+        public Matrix WorldMatrix { get { return Matrix.Identity; } }
+
         /// <summary>
         /// Die Liste der 3D-Modelle der Kantenübergänge.
         /// </summary>

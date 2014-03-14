@@ -68,6 +68,8 @@ namespace Knot3.Game.Models
         /// </summary>
         public World World { get; set; }
 
+        public Matrix WorldMatrix { get { return Matrix.Identity; } }
+
         /// <summary>
         /// Die Liste der 3D-Modelle der Pfeile,
         /// die nach einer Auswahl von Kanten durch den Spieler angezeigt werden.

@@ -66,6 +66,8 @@ namespace Knot3.Game.Models
             set {}
         }
 
+        public Matrix WorldMatrix { get { return DecoratedModel.WorldMatrix; } }
+
         /// <summary>
         /// Die Position, an der das Vorschau-Spielobjekt gezeichnet werden soll.
         /// </summary>

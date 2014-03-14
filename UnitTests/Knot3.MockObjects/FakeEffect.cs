@@ -96,6 +96,21 @@ namespace Knot3.MockObjects
             screen.Viewport = original;
         }
 
+        /// <summary>
+        /// Zeichnet das Spielprimitiv primitive mit diesem Rendereffekt.
+        /// </summary>
+        public virtual void DrawPrimitive (GamePrimitive primitive, GameTime time)
+        {
+            // Setze den Viewport auf den der aktuellen Spielwelt
+            Viewport original = screen.Viewport;
+            screen.Viewport = primitive.World.Viewport;
+
+            // hier würde das Modell gezeichnet werden
+
+            // Setze den Viewport wieder auf den ganzen Screen
+            screen.Viewport = original;
+        }
+
         protected void ModifyBasicEffect (BasicEffect effect, GameModel model)
         {
         }

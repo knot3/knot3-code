@@ -27,15 +27,12 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
-
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-
 using Knot3.Framework.Core;
 using Knot3.Framework.Models;
 using Knot3.Framework.Platform;
@@ -143,7 +140,25 @@ namespace Knot3.Framework.Effects
             screen.Viewport = original;
         }
 
-        protected void ModifyBasicEffect (BasicEffect effect, GameModel model)
+        private BasicEffect basicEffectForPrimitives;
+
+        /// <summary>
+        /// Zeichnet das Spielmodell model mit diesem Rendereffekt.
+        /// </summary>
+        public virtual void DrawPrimitive (GamePrimitive primitive, GameTime time)
+        {
+            // Setze den Viewport auf den der aktuellen Spielwelt
+            Viewport original = screen.Viewport;
+            screen.Viewport = primitive.World.Viewport;
+
+            ModifyBasicEffect (effect: basicEffectForPrimitives, obj: primitive);
+            primitive.Primitive.Draw (effect: basicEffectForPrimitives);
+
+            // Setze den Viewport wieder auf den ganzen Screen
+            screen.Viewport = original;
+        }
+
+        protected void ModifyBasicEffect (BasicEffect effect, IGameObject obj)
         {
             // lighting
             if (screen.InputManager.KeyHeldDown (Keys.L)) {
@@ -154,19 +169,23 @@ namespace Knot3.Framework.Effects
             }
 
             // matrices
-            effect.World = model.WorldMatrix * model.World.Camera.WorldMatrix;
-            effect.View = model.World.Camera.ViewMatrix;
-            effect.Projection = model.World.Camera.ProjectionMatrix;
+            effect.World = obj.WorldMatrix * obj.World.Camera.WorldMatrix;
+            effect.View = obj.World.Camera.ViewMatrix;
+            effect.Projection = obj.World.Camera.ProjectionMatrix;
+            
 
-            // colors
-            if (!model.Coloring.IsTransparent) {
-                effect.DiffuseColor = model.Coloring.MixedColor.ToVector3 ();
+            if (obj is GameModel) {
+                GameModel model = obj as GameModel;
+                // colors
+                if (!model.Coloring.IsTransparent) {
+                    effect.DiffuseColor = model.Coloring.MixedColor.ToVector3 ();
+                }
+
+                //effect.TextureEnabled = true;
+                //effect.Texture = TextureHelper.CreateGradient (screen.Device, model.BaseColor, Color.White.Mix (_Color.Black, 0.2f));
+
+                effect.Alpha = model.Coloring.Alpha;
             }
-
-            //effect.TextureEnabled = true;
-            //effect.Texture = TextureHelper.CreateGradient (screen.Device, model.BaseColor, Color.White.Mix (_Color.Black, 0.2f));
-
-            effect.Alpha = model.Coloring.Alpha;
             effect.FogEnabled = false;
         }
 

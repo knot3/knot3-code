@@ -77,6 +77,8 @@ namespace Knot3.Game.Input
         /// </summary>
         public World World { get; set; }
 
+        public Matrix WorldMatrix { get { return Matrix.Identity; } }
+
         private Vector3 previousMousePosition = Vector3.Zero;
         private List<ShadowModel> shadowModels;
         private KnotRenderer knotRenderer;

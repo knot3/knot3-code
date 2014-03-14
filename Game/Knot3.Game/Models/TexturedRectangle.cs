@@ -59,6 +59,8 @@ namespace Knot3.Game.Models
 
         public World World { get; set; }
 
+        public Matrix WorldMatrix { get { return Matrix.Identity; } }
+
         private Vector3 UpperLeft;
         private Vector3 LowerLeft;
         private Vector3 UpperRight;

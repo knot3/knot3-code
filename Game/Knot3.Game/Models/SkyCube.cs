@@ -72,6 +72,8 @@ namespace Knot3.Game.Models
 
         private World _world;
 
+        public Matrix WorldMatrix { get { return Matrix.Identity; } }
+
         /// <summary>
         /// Die Distanz zu den Wänden vom Ursprung aus.
         /// </summary>
