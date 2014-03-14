@@ -37,6 +37,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Knot3.Framework.Math;
 using Knot3.Framework.Storage;
 using Knot3.Framework.Utilities;
+using Knot3.Framework.Development;
 
 namespace Knot3.Framework.Core
 {
@@ -58,7 +59,8 @@ namespace Knot3.Framework.Core
         {
             get { return _position; }
             set {
-                OnViewChanged ();
+                Profiler.ProfileDelegate ["OnViewChanged"] = () => {
+                    OnViewChanged ();};
                 if ((value.X.Abs () <= MaxPositionDistance && value.Y.Abs () <= MaxPositionDistance
                         && value.Z.Abs () <= MaxPositionDistance) || MaxPositionDistance == 0) {
                     _position = value;
