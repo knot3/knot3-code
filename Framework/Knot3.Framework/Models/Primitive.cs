@@ -134,7 +134,7 @@ namespace Knot3.Framework.Models
                                                  section: "video",
                                                  name: "model-quality",
                                                  defaultValue: 0.200f,
-                                                 validValues: 1f.Range (step: 0.001f),
+                                                 validValues: 1.001f.Range (step: 0.001f),
                                                  configFile: Config.Default
                 ) { Verbose = false };
             }
