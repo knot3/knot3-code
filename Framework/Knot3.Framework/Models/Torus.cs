@@ -11,7 +11,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Knot3.Framework.Math;
 
-namespace Primitives
+namespace Knot3.Framework.Models
 {
     public class Torus : Primitive
     {
@@ -28,25 +28,23 @@ namespace Primitives
                 throw new ArgumentOutOfRangeException ("cylinder tessellation");
             }
 
-            if (circlePercent < 1f)
-                circlePercent += 1f / tessellation;
-            
-            for (int i = 0; i < tessellation*circlePercent; i++) {
-                float outerAngle = i * MathHelper.TwoPi / tessellation;
-                float textureU = (float)i / (float)(tessellation * circlePercent - 1);
+            circlePercent = MathHelper.Clamp (circlePercent, 0f, 1f);
+
+            for (int i = 0; i < tessellation; i++) {
+                float outerAngle = i * MathHelper.TwoPi * circlePercent / (tessellation-1);
+                float textureU = (float)i / (float)(tessellation - 1);
                 if (circlePercent < 1f)
                     textureU = MathHelper.Clamp (textureU, 0.25f, 0.75f);
 
-                Matrix transform = Matrix.CreateTranslation (diameter / 2, 0, 0) *
-                    Matrix.CreateRotationY (outerAngle);
+                Matrix transform = Matrix.CreateTranslation (diameter / 2, 0, 0) * Matrix.CreateRotationY (outerAngle);
 
                 // Now we loop along the other axis, around the side of the tube.
                 for (int j = 0; j < tessellation; j++) {
                     float innerAngle = j * MathHelper.TwoPi / tessellation;
                     float textureV = 0;//(float)j / (float)tessellation;
 
-                    float dx = (float)Math.Cos (innerAngle);
-                    float dy = (float)Math.Sin (innerAngle);
+                    float dx = (float)System.Math.Cos (innerAngle);
+                    float dy = (float)System.Math.Sin (innerAngle);
 
                     // Create a vertex.
                     Vector3 normal = new Vector3 (dx, dy, 0);
@@ -58,17 +56,19 @@ namespace Primitives
                     AddVertex (position: position, normal: normal, texCoord: new Vector2 (textureU, textureV));
 
                     // And create indices for two triangles.
-                    int nextI = (i + 1) % tessellation;
-                    int nextJ = (j + 1) % tessellation;
+                    if (i + 1 < tessellation || circlePercent == 1f) {
+                        int nextI = (i + 1) % tessellation;
+                        int nextJ = (j + 1) % tessellation;
 
-                    if (nextI < tessellation * circlePercent) {
-                        AddIndex (i * tessellation + j);
-                        AddIndex (i * tessellation + nextJ);
-                        AddIndex (nextI * tessellation + j);
+                        if (nextI < tessellation) {
+                            AddIndex (i * tessellation + j);
+                            AddIndex (i * tessellation + nextJ);
+                            AddIndex (nextI * tessellation + j);
 
-                        AddIndex (i * tessellation + nextJ);
-                        AddIndex (nextI * tessellation + nextJ);
-                        AddIndex (nextI * tessellation + j);
+                            AddIndex (i * tessellation + nextJ);
+                            AddIndex (nextI * tessellation + nextJ);
+                            AddIndex (nextI * tessellation + j);
+                        }
                     }
                 }
             }

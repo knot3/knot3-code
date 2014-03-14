@@ -11,8 +11,10 @@ using System.Diagnostics.CodeAnalysis;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Knot3.Framework.Math;
+using Knot3.Framework.Storage;
+using Knot3.Framework.Utilities;
 
-namespace Primitives
+namespace Knot3.Framework.Models
 {
     public abstract class Primitive : IDisposable
     {
@@ -97,6 +99,29 @@ namespace Primitives
                 effectPass.Apply ();
                 int primitiveCount = indices.Count / 3;
                 device.DrawIndexedPrimitives (PrimitiveType.TriangleList, 0, 0, vertices.Count, 0, primitiveCount);
+            }
+        }
+
+        public static FloatOption ModelQualityOption
+        {
+            get {
+                return _modelQualityOption = _modelQualityOption ?? new FloatOption (
+                    section: "video",
+                    name: "model-quality",
+                    defaultValue: 0.200f,
+                    validValues: 1f.Range (step: 0.001f),
+                    configFile: Config.Default
+                ) { Verbose = false };
+            }
+        }
+
+        private static FloatOption _modelQualityOption;
+        public static Action<GameTime> OnModelQualityChanged = (time) => {};
+
+        public static int CurrentCircleTessellation
+        {
+            get {
+                return 3 + (int)(ModelQualityOption.Value * 64);
             }
         }
     }

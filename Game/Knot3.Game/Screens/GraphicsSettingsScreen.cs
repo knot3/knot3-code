@@ -27,20 +27,19 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
-
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-
 using Knot3.Framework.Core;
 using Knot3.Framework.Effects;
 using Knot3.Framework.Math;
 using Knot3.Framework.Storage;
 using Knot3.Framework.Widgets;
+using Knot3.Framework.Utilities;
+using Knot3.Framework.Models;
 
 namespace Knot3.Game.Screens
 {
@@ -104,8 +103,8 @@ namespace Knot3.Game.Screens
 
             // Resolutions
             string currentResolution = GraphicsManager.GraphicsDevice.DisplayMode.Width.ToString ()
-                                       + "x"
-                                       + GraphicsManager.GraphicsDevice.DisplayMode.Height.ToString ();
+                + "x"
+                + GraphicsManager.GraphicsDevice.DisplayMode.Height.ToString ();
 
             DisplayModeCollection modes = GraphicsAdapter.DefaultAdapter.SupportedDisplayModes;
             HashSet<string> reso = new HashSet<string> ();
@@ -148,6 +147,23 @@ namespace Knot3.Game.Screens
             );
             supersamplesItem.AddEntries (supersamplesOption);
             settingsMenu.Add (supersamplesItem);
+
+            // Model quality
+            SliderItem sliderModelQuality = new SliderItem (
+                screen: this,
+                drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
+                text: "Model Quality",
+                max: 1000,
+                min: 0,
+                value: 0
+            );
+            sliderModelQuality.Value = (int)(Primitive.ModelQualityOption.Value * 1000f);
+            sliderModelQuality.OnValueChanged = (time) => {
+                float quality = (float)sliderModelQuality.Value / 1000f;
+                Primitive.ModelQualityOption.Value = quality;
+                Primitive.OnModelQualityChanged (time);
+            };
+            settingsMenu.Add (sliderModelQuality);
 
             // Rendereffects
             string[] validRenderEffects = RenderEffectLibrary.Names.ToArray ();

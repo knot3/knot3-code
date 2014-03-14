@@ -11,7 +11,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Knot3.Framework.Utilities;
 
-namespace Primitives
+namespace Knot3.Framework.Models
 {
     public class CurvedCylinder : Primitive
     {
@@ -85,8 +85,8 @@ namespace Primitives
         static Vector3 GetCircleVector (int i, int tessellation)
         {
             float angle = i * MathHelper.TwoPi / tessellation;
-            float dx = (float)Math.Cos (angle);
-            float dz = (float)Math.Sin (angle);
+            float dx = (float)System.Math.Cos (angle);
+            float dz = (float)System.Math.Sin (angle);
             return new Vector3 (dx, dz, 0);
         }
     }

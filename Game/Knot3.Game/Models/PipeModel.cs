@@ -33,7 +33,6 @@ using Microsoft.Xna.Framework;
 using Knot3.Framework.Core;
 using Knot3.Framework.Models;
 using Knot3.Framework.Utilities;
-using Primitives;
 
 namespace Knot3.Game.Models
 {
@@ -54,14 +53,12 @@ namespace Knot3.Game.Models
 
         public bool IsVirtual { get; set; }
 
-        private static Cylinder _primitiveSingleton;
-
         /// <summary>
         /// Erstellt ein neues 3D-Modell mit dem angegebenen Spielzustand und den angegebenen Spielinformationen.
         /// [base=screen, info]
         /// </summary>
         public PipeModel (IScreen screen, Pipe info)
-            : base (screen, info, PrimitiveSingleton(screen))
+            : base (screen, info, () => PrimitiveSingleton(screen))
         {
             float length = (info.PositionTo - info.PositionFrom).Length ();
             float radius = 5.1f;
@@ -75,11 +72,12 @@ namespace Knot3.Game.Models
 
         private static Cylinder PrimitiveSingleton (IScreen screen)
         {
-            return _primitiveSingleton = _primitiveSingleton ?? new Cylinder (
+            int tessellation = Primitive.CurrentCircleTessellation;
+            return new Cylinder (
                 device: screen.GraphicsDevice,
                 height: 1f,
                 diameter: 1f,
-                tessellation: 64
+                tessellation: tessellation
             );
         }
 

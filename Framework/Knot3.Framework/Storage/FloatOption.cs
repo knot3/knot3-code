@@ -27,7 +27,6 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
-
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -63,7 +62,7 @@ namespace Knot3.Framework.Storage
         public override Dictionary<string,string> DisplayValidValues
         {
             get {
-                return new Dictionary<string, string>(base.ValidValues.ToDictionary (s => String.Empty + stringToFloat (s), s => s));
+                return new Dictionary<string, string> (base.ValidValues.ToDictionary (s => String.Empty + stringToFloat (s), s => s));
             }
         }
 
@@ -73,7 +72,7 @@ namespace Knot3.Framework.Storage
         /// [base=section, name, defaultValue?ConfigFile.True:ConfigFile.False, ValidValues, configFile]
         /// </summary>
         public FloatOption (string section, string name, float defaultValue, IEnumerable<float> validValues, ConfigFile configFile)
-        : base (section, name, convertToString ( defaultValue),validValues.Select (convertToString), configFile)
+            : base (section, name, convertToString (defaultValue),validValues.Select (convertToString), configFile)
         {
         }
 
@@ -81,6 +80,7 @@ namespace Knot3.Framework.Storage
         {
             return (String.Empty + (int)(f * 1000f));
         }
+
         private static float stringToFloat (string s)
         {
             int i;

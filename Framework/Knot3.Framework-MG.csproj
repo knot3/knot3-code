@@ -158,4 +158,7 @@
       <Name>OggSharp</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Knot3.Framework\Primitives\" />
+  </ItemGroup>
 </Project>

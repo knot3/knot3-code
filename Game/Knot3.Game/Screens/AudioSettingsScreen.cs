@@ -99,10 +99,9 @@ namespace Knot3.Game.Screens
                     text: volumeName,
                     max: 100,
                     min: 0,
-                    step: 1,
                     value: 50
                 );
-                slider.OnValueChanged = () => {
+                slider.OnValueChanged = (time) => {
                     float volume = (float)slider.Value / 100f;
                     foreach (Sound sound in sounds) {
                         AudioManager.SetVolume (soundType: sound, volume: volume);

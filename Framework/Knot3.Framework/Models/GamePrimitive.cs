@@ -1,11 +1,11 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
-using Primitives;
 using Knot3.Framework.Core;
 using Microsoft.Xna.Framework;
 using Knot3.Framework.Math;
 using System.Linq;
 using Knot3.Framework.Utilities;
+using System.Collections.Generic;
 
 namespace Knot3.Framework.Models
 {
@@ -13,7 +13,7 @@ namespace Knot3.Framework.Models
     public abstract class GamePrimitive : IGameObject
     {
         GameObjectInfo IGameObject.Info { get { return Info; } }
-        
+
         /// <summary>
         /// Die Farbe des Modells.
         /// </summary>
@@ -25,9 +25,21 @@ namespace Knot3.Framework.Models
         public GameModelInfo Info { get; protected set; }
 
         /// <summary>
-        /// Die Klasse des XNA-Frameworks, die ein 3D-Modell repräsentiert.
+        /// Die Klasse des XNA-Frameworks, die ein automatisch generiertes 3D-Modell repräsentiert.
         /// </summary>
-        public Primitive Primitive { get; private set; }
+        public Primitive Primitive
+        {
+            get {
+                string key = this.GetType ().Name + ":" + Info.Modelname;
+                if (_primitiveCache.ContainsKey (key))
+                    return _primitiveCache [key];
+                else
+                    Console.WriteLine (key);
+                return _primitiveCache [key] = PrimitiveFunc ();
+            }
+        }
+
+        private Func<Primitive> PrimitiveFunc;
 
         /// <summary>
         /// Die Spielwelt, in der sich das 3D-Modell befindet.
@@ -57,15 +69,26 @@ namespace Knot3.Framework.Models
         }
 
         protected IScreen Screen;
+        private static Dictionary<string, Primitive> _primitiveCache = new Dictionary<string, Primitive> ();
+
+        static GamePrimitive ()
+        {
+            Primitive.OnModelQualityChanged += (time) => {
+                foreach (Primitive primitive in _primitiveCache.Values) {
+                    primitive.Dispose ();
+                }
+                _primitiveCache.Clear ();
+            };
+        }
 
         /// <summary>
         /// Erstellt ein neues 3D-Modell in dem angegebenen Spielzustand mit den angegebenen Modellinformationen.
         /// </summary>
-        public GamePrimitive (IScreen screen, GameModelInfo info, Primitive primitive)
+        public GamePrimitive (IScreen screen, GameModelInfo info, Func<Primitive> primitiveFunc)
         {
             Screen = screen;
             Info = info;
-            Primitive = primitive;
+            PrimitiveFunc = primitiveFunc;
 
             // default values
             Coloring = new SingleColor (Color.Transparent);
@@ -143,7 +166,7 @@ namespace Knot3.Framework.Models
                 // world matrix
                 _worldMatrix = Matrix.CreateScale (Info.Scale)
                     * Matrix.CreateFromYawPitchRoll (Info.Rotation.Y, Info.Rotation.X, Info.Rotation.Z)
-                        * Matrix.CreateTranslation (Info.Position);
+                    * Matrix.CreateTranslation (Info.Position);
 
                 // attrs
                 _scale = Info.Scale;
