@@ -82,9 +82,6 @@ namespace Knot3.Game.Models
 
         public void Clear ()
         {
-            foreach (IGameObject obj in cache.Values) {
-                obj.World = null;
-            }
             cache.Clear ();
         }
     }

@@ -249,6 +249,9 @@ namespace Knot3.Game.Models
 
         private void CreatePipes (Knot knot)
         {
+            foreach (PipeModel pipemodel in pipes){
+                pipemodel.World=null;
+            }
             pipes.Clear ();
             foreach (Edge edge in knot) {
                 Pipe info = new Pipe (nodeMap, knot, edge);
@@ -277,6 +280,9 @@ namespace Knot3.Game.Models
 
         private void CreateNodes ()
         {
+            foreach (JunctionModel junctionmodel in nodes){
+                junctionmodel.World=null;
+            }
             nodes.Clear ();
 
             foreach (Node node in nodeMap.Nodes) {
@@ -298,6 +304,9 @@ namespace Knot3.Game.Models
 
         private void CreateArrows ()
         {
+            foreach (ArrowModel arrowmodel in arrows){
+                arrowmodel.World=null;
+            }
             arrows.Clear ();
             int selectedEdgesCount = knot.SelectedEdges.Count ();
             if (selectedEdgesCount > 0) {
