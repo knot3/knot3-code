@@ -178,7 +178,6 @@ namespace Knot3.Game.Input
             // Wenn die Maus über einer Kante oder einem Pfeil liegt
             IGameObject selectedObject = World.SelectedObject;
             if (World.SelectedObject is PipeModel || World.SelectedObject is ArrowModel) {
-
                 // Berechne die Mausposition in 3D
                 Vector3 currentMousePosition = World.Camera.To3D (position: Screen.InputManager.CurrentMousePosition, nearTo: selectedObject.Center);
 

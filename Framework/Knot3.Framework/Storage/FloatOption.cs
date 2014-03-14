@@ -27,6 +27,7 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
+
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -72,7 +73,7 @@ namespace Knot3.Framework.Storage
         /// [base=section, name, defaultValue?ConfigFile.True:ConfigFile.False, ValidValues, configFile]
         /// </summary>
         public FloatOption (string section, string name, float defaultValue, IEnumerable<float> validValues, ConfigFile configFile)
-            : base (section, name, convertToString (defaultValue),validValues.Select (convertToString), configFile)
+        : base (section, name, convertToString (defaultValue),validValues.Select (convertToString), configFile)
         {
         }
 

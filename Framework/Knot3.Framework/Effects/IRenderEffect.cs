@@ -67,7 +67,7 @@ namespace Knot3.Framework.Effects
         /// Zeichnet das Spielmodell model mit diesem Rendereffekt.
         /// </summary>
         void DrawModel (GameModel model, GameTime time);
-        
+
         /// <summary>
         /// Zeichnet das Spielprimitiv primitive mit diesem Rendereffekt.
         /// </summary>

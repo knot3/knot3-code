@@ -27,9 +27,12 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
+
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+
 using Microsoft.Xna.Framework;
+
 using Knot3.Framework.Core;
 using Knot3.Framework.Models;
 using Knot3.Framework.Utilities;
@@ -58,27 +61,27 @@ namespace Knot3.Game.Models
         /// [base=screen, info]
         /// </summary>
         public PipeModel (IScreen screen, Pipe info)
-            : base (screen, info, () => PrimitiveSingleton(screen))
+        : base (screen, info, () => PrimitiveSingleton (screen))
         {
             float length = (info.PositionTo - info.PositionFrom).Length ();
             float radius = 5.1f;
             _bounds = VectorHelper.CylinderBounds (
-                length: length,
-                radius: radius,
-                direction: Info.Edge.Direction.Vector,
-                position: info.PositionFrom
-            );
+                          length: length,
+                          radius: radius,
+                          direction: Info.Edge.Direction.Vector,
+                          position: info.PositionFrom
+                      );
         }
 
         private static Cylinder PrimitiveSingleton (IScreen screen)
         {
             int tessellation = Primitive.CurrentCircleTessellation;
             return new Cylinder (
-                device: screen.GraphicsDevice,
-                height: 1f,
-                diameter: 1f,
-                tessellation: tessellation
-            );
+                       device: screen.GraphicsDevice,
+                       height: 1f,
+                       diameter: 1f,
+                       tessellation: tessellation
+                   );
         }
 
         [ExcludeFromCodeCoverageAttribute]

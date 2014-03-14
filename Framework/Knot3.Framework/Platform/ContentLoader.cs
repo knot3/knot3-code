@@ -40,8 +40,8 @@ using Microsoft.Xna.Framework.Graphics;
 using Knot3.Framework.Core;
 using Knot3.Framework.Effects;
 using Knot3.Framework.Math;
-using Knot3.Framework.Widgets;
 using Knot3.Framework.Models;
+using Knot3.Framework.Widgets;
 
 namespace Knot3.Framework.Platform
 {
@@ -177,12 +177,12 @@ namespace Knot3.Framework.Platform
 
         public static Texture2D CreateGradient (GraphicsDevice graphicsDevice, GradientColor coloring)
         {
-            return CreateGradient(graphicsDevice: graphicsDevice, topLeft: coloring.Color1, topRight: coloring.Color2, bottomLeft: coloring.Color1, bottomRight: coloring.Color2);
+            return CreateGradient (graphicsDevice: graphicsDevice, topLeft: coloring.Color1, topRight: coloring.Color2, bottomLeft: coloring.Color1, bottomRight: coloring.Color2);
         }
 
         public static Texture2D CreateGradient (GraphicsDevice graphicsDevice, Color color1, Color color2)
         {
-            return CreateGradient(graphicsDevice: graphicsDevice, topLeft: color1, topRight: color2, bottomLeft: color2, bottomRight: color1);
+            return CreateGradient (graphicsDevice: graphicsDevice, topLeft: color1, topRight: color2, bottomLeft: color2, bottomRight: color1);
         }
 
         public static Texture2D CreateGradient (GraphicsDevice graphicsDevice, Color topLeft, Color topRight, Color bottomLeft, Color bottomRight)

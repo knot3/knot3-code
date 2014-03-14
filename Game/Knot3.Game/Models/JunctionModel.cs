@@ -27,12 +27,15 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
-using System.Diagnostics.CodeAnalysis;
-using Microsoft.Xna.Framework;
-using Knot3.Framework.Core;
-using Knot3.Framework.Models;
+
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+
+using Microsoft.Xna.Framework;
+
+using Knot3.Framework.Core;
 using Knot3.Framework.Math;
+using Knot3.Framework.Models;
 
 namespace Knot3.Game.Models
 {
@@ -58,9 +61,9 @@ namespace Knot3.Game.Models
         /// [base=screen, info]
         /// </summary>
         public JunctionModel (IScreen screen, Junction info)
-        : base (screen: screen, info: info, primitiveFunc: () => PrimitiveSingleton(screen: screen, info: info))
+        : base (screen: screen, info: info, primitiveFunc: () => PrimitiveSingleton (screen: screen, info: info))
         {
-            _bounds = new BoundingSphere[] { new BoundingSphere(Info.Position, radius: 100f) };
+            _bounds = new BoundingSphere[] { new BoundingSphere (Info.Position, radius: 100f) };
         }
 
         private static Primitive PrimitiveSingleton (IScreen screen, Junction info)
@@ -69,30 +72,30 @@ namespace Knot3.Game.Models
             int tessellation = Primitive.CurrentCircleTessellation;
             if (name == "pipe-angled") {
                 return new Torus (
-                    device: screen.GraphicsDevice,
-                    diameter: 4f,
-                    thickness: 1f,
-                    tessellation: tessellation,
-                    circlePercent: 0.25f,
-                    translation: Vector3.Left * 2 + Vector3.Backward * 2,
-                    rotation: Angles3.FromDegrees (90, 0, 90)
-                );
+                           device: screen.GraphicsDevice,
+                           diameter: 4f,
+                           thickness: 1f,
+                           tessellation: tessellation,
+                           circlePercent: 0.25f,
+                           translation: Vector3.Left * 2 + Vector3.Backward * 2,
+                           rotation: Angles3.FromDegrees (90, 0, 90)
+                       );
             }
             else if (name == "pipe-straight") {
                 return new Cylinder (
-                    device: screen.GraphicsDevice,
-                    height: 1f,
-                    diameter: 1f,
-                    tessellation: tessellation
-                );
+                           device: screen.GraphicsDevice,
+                           height: 1f,
+                           diameter: 1f,
+                           tessellation: tessellation
+                       );
             }
             else {
                 return new CurvedCylinder (
-                    device: screen.GraphicsDevice,
-                    height: 1f,
-                    diameter: 1f,
-                    tessellation: tessellation
-                );
+                           device: screen.GraphicsDevice,
+                           height: 1f,
+                           diameter: 1f,
+                           tessellation: tessellation
+                       );
             }
         }
 

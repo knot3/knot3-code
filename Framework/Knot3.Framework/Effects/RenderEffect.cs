@@ -27,12 +27,15 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
+
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+
 using Knot3.Framework.Core;
 using Knot3.Framework.Models;
 using Knot3.Framework.Platform;
@@ -151,8 +154,9 @@ namespace Knot3.Framework.Effects
             Viewport original = screen.Viewport;
             screen.Viewport = primitive.World.Viewport;
 
-            if (basicEffectForPrimitives == null)
+            if (basicEffectForPrimitives == null) {
                 basicEffectForPrimitives = new BasicEffect (screen.GraphicsDevice);
+            }
 
             ModifyBasicEffect (effect: basicEffectForPrimitives, primitive: primitive);
             primitive.Primitive.Draw (effect: basicEffectForPrimitives);

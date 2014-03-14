@@ -27,19 +27,22 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
+
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+
 using Knot3.Framework.Core;
 using Knot3.Framework.Effects;
 using Knot3.Framework.Math;
-using Knot3.Framework.Storage;
-using Knot3.Framework.Widgets;
-using Knot3.Framework.Utilities;
 using Knot3.Framework.Models;
+using Knot3.Framework.Storage;
+using Knot3.Framework.Utilities;
+using Knot3.Framework.Widgets;
 
 namespace Knot3.Game.Screens
 {
@@ -103,8 +106,8 @@ namespace Knot3.Game.Screens
 
             // Resolutions
             string currentResolution = GraphicsManager.GraphicsDevice.DisplayMode.Width.ToString ()
-                + "x"
-                + GraphicsManager.GraphicsDevice.DisplayMode.Height.ToString ();
+                                       + "x"
+                                       + GraphicsManager.GraphicsDevice.DisplayMode.Height.ToString ();
 
             DisplayModeCollection modes = GraphicsAdapter.DefaultAdapter.SupportedDisplayModes;
             HashSet<string> reso = new HashSet<string> ();
