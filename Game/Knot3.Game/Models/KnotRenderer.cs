@@ -249,7 +249,7 @@ namespace Knot3.Game.Models
 
         private void CreatePipes (Knot knot)
         {
-            foreach (PipeModel pipemodel in pipes){
+            foreach (PipeModel pipemodel in pipes) {
                 pipemodel.World=null;
             }
             pipes.Clear ();
@@ -280,7 +280,7 @@ namespace Knot3.Game.Models
 
         private void CreateNodes ()
         {
-            foreach (JunctionModel junctionmodel in nodes){
+            foreach (JunctionModel junctionmodel in nodes) {
                 junctionmodel.World=null;
             }
             nodes.Clear ();
@@ -304,7 +304,7 @@ namespace Knot3.Game.Models
 
         private void CreateArrows ()
         {
-            foreach (ArrowModel arrowmodel in arrows){
+            foreach (ArrowModel arrowmodel in arrows) {
                 arrowmodel.World=null;
             }
             arrows.Clear ();

@@ -201,7 +201,6 @@ namespace Knot3.Framework.Models
 
         private void UpdatePrecomputed ()
         {
-
             if (Info.Scale != _scale || Info.Rotation != _rotation || Info.Position != _position) {
                 // world matrix
                 _worldMatrix = Matrix.CreateScale (Info.Scale)
