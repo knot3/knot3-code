@@ -93,6 +93,7 @@
     <Compile Include="Knot3.Framework\Math\ModelExtensions.cs" />
     <Compile Include="Knot3.Framework\Math\RayExtensions.cs" />
     <Compile Include="Knot3.Framework\Math\ScreenPoint.cs" />
+    <Compile Include="Knot3.Framework\Models\CurvedCylinder.cs" />
     <Compile Include="Knot3.Framework\Models\Cylinder.cs" />
     <Compile Include="Knot3.Framework\Models\GameModel.cs" />
     <Compile Include="Knot3.Framework\Models\GameModelInfo.cs" />

@@ -80,13 +80,21 @@ namespace Knot3.Game.Models
                     rotation: Angles3.FromDegrees(90, 0, 90)
                 );
             }
-            else {
+            else if (name == "pipe-straight") {
                 return _primitiveSingleton [name] = _primitiveSingleton.ContainsKey (name) ? _primitiveSingleton [name] : new Cylinder (
                     device: screen.GraphicsDevice,
                     height: 1f,
                     diameter: 1f,
                     tessellation: 64
-                );
+                    );
+            }
+            else {
+                return _primitiveSingleton [name] = _primitiveSingleton.ContainsKey (name) ? _primitiveSingleton [name] : new CurvedCylinder (
+                    device: screen.GraphicsDevice,
+                    height: 1f,
+                    diameter: 1f,
+                    tessellation: 64
+                    );
             }
         }
 

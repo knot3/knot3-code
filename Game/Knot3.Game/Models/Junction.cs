@@ -27,21 +27,17 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-
 using Microsoft.Xna.Framework;
-
 using Knot3.Framework.Math;
 using Knot3.Framework.Models;
 using Knot3.Framework.Platform;
 using Knot3.Framework.Storage;
 using Knot3.Framework.Utilities;
-
 using Knot3.Game.Data;
 
 namespace Knot3.Game.Models
@@ -112,8 +108,7 @@ namespace Knot3.Game.Models
         }
 
         private static Dictionary<Tuple<Direction, Direction>, JunctionDirection> angledJunctionDirectionMap
-            = new Dictionary<Tuple<Direction, Direction>, JunctionDirection> ()
-        {
+            = new Dictionary<Tuple<Direction, Direction>, JunctionDirection> () {
             { Tuple.Create (Direction.Up, Direction.Up),             JunctionDirection.UpUp },
             { Tuple.Create (Direction.Up, Direction.Left),             JunctionDirection.UpLeft },
             { Tuple.Create (Direction.Up, Direction.Right),             JunctionDirection.UpRight },
@@ -151,8 +146,7 @@ namespace Knot3.Game.Models
             { Tuple.Create (Direction.Backward, Direction.Down),     JunctionDirection.UpForward },
         };
         private static Dictionary<JunctionDirection, Angles3> angledJunctionRotationMap
-            = new Dictionary<JunctionDirection, Angles3> ()
-        {
+            = new Dictionary<JunctionDirection, Angles3> () {
             { JunctionDirection.UpForward,             Angles3.FromDegrees (0, 0, 0) },
             { JunctionDirection.UpBackward,         Angles3.FromDegrees (0, 180, 0) },
             { JunctionDirection.UpLeft,             Angles3.FromDegrees (0, 90, 0) },
@@ -170,8 +164,7 @@ namespace Knot3.Game.Models
             { JunctionDirection.BackwardBackward,     Angles3.FromDegrees (0, 0, 0) },
         };
         private static Dictionary<Direction, Angles3> straightJunctionRotationMap
-            = new Dictionary<Direction, Angles3> ()
-        {
+            = new Dictionary<Direction, Angles3> () {
             { Direction.Up,            Angles3.FromDegrees (90, 0, 0) },
             { Direction.Down,        Angles3.FromDegrees (270, 0, 0) },
             { Direction.Left,        Angles3.FromDegrees (0, 90, 0) },
@@ -180,8 +173,7 @@ namespace Knot3.Game.Models
             { Direction.Backward,    Angles3.FromDegrees (0, 0, 180) },
         };
         private static Dictionary<Tuple<Direction, Direction>, Tuple<float, float>> curvedJunctionBumpRotationMap
-            = new Dictionary<Tuple<Direction, Direction>, Tuple<float, float>> ()
-        {
+            = new Dictionary<Tuple<Direction, Direction>, Tuple<float, float>> () {
             { Tuple.Create (Direction.Up, Direction.Left),            Tuple.Create (90f, 0f) }, // works
             { Tuple.Create (Direction.Up, Direction.Right),           Tuple.Create (-90f, 0f) }, // works
             { Tuple.Create (Direction.Up, Direction.Forward),         Tuple.Create (0f, 180f) }, // works
@@ -218,7 +210,7 @@ namespace Knot3.Game.Models
         /// [base="node1", Angles3.Zero, new Vector3 (1,1,1)]
         /// </summary>
         public Junction (INodeMap nodeMap, Edge from, Edge to, Node node, int index)
-        : base ("pipe-straight", Angles3.Zero, Vector3.One * 12.5f)
+        : base ("pipe-straight", Angles3.Zero, Vector3.One)
         {
             EdgeFrom = from;
             EdgeTo = to;
@@ -241,6 +233,13 @@ namespace Knot3.Game.Models
                     Log.Debug (ex);
                 }
             };
+            
+            if (Type == JunctionType.Angled) {
+                Scale = new Vector3 (12.5f, 12.5f, 12.5f);
+            }
+            else {
+                Scale = new Vector3 (12.5f, 12.5f, 50f);
+            }
         }
 
         private void chooseModel ()
@@ -330,8 +329,8 @@ namespace Knot3.Game.Models
 
             if (other is Junction) {
                 if (this.EdgeFrom == (other as Junction).EdgeFrom
-                        && this.EdgeTo == (other as Junction).EdgeTo
-                        && base.Equals (other)) {
+                    && this.EdgeTo == (other as Junction).EdgeTo
+                    && base.Equals (other)) {
                     return true;
                 }
                 else {
@@ -344,7 +343,8 @@ namespace Knot3.Game.Models
         }
     }
 
-    enum JunctionDirection {
+    enum JunctionDirection
+    {
         UpForward,
         UpBackward,
         UpLeft,
