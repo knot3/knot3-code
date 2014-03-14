@@ -27,13 +27,10 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
-
 using System;
 using System.Diagnostics.CodeAnalysis;
-
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-
 using Knot3.Framework.Core;
 using Knot3.Framework.Input;
 using Knot3.Framework.Math;
@@ -55,7 +52,7 @@ namespace Knot3.Framework.Widgets
         public int Value
         {
             get { return _value; }
-            set { if (_value != value) { _value = value; OnValueChanged (); } }
+            set { if (_value != value) { _value = value; } }
         }
 
         private int _value;
@@ -71,14 +68,9 @@ namespace Knot3.Framework.Widgets
         public int MaxValue { get; set; }
 
         /// <summary>
-        /// Schrittweite zwischen zwei einstellbaren Werten.
-        /// </summary>
-        //public int Step { get; set; }
-
-        /// <summary>
         /// Wird aufgerufen, wenn der Wert geändert wurde
         /// </summary>
-        public Action OnValueChanged = () => {};
+        public Action<GameTime> OnValueChanged = (time) => {};
 
         /// <summary>
         /// Die Breite des Rechtecks, abhängig von der Auflösung des Viewports.
@@ -132,12 +124,11 @@ namespace Knot3.Framework.Widgets
         /// mit dem zugehörigen IGameScreen-Objekt. Zudem ist die Angabe der Zeichenreihenfolge,
         /// einem minimalen einstellbaren Wert, einem maximalen einstellbaren Wert und einem Standardwert Pflicht.
         /// </summary>
-        public SliderItem (IScreen screen, DisplayLayer drawOrder, string text, int max, int min, int step, int value)
+        public SliderItem (IScreen screen, DisplayLayer drawOrder, string text, int max, int min, int value)
         : base (screen, drawOrder, text)
         {
             MaxValue = max;
             MinValue = min;
-            //Step = step;
             _value = value;
         }
 
@@ -174,7 +165,7 @@ namespace Knot3.Framework.Widgets
             spriteBatch.End ();
         }
 
-        private void UpdateSlider (ScreenPoint position)
+        private void UpdateSlider (ScreenPoint position, GameTime time)
         {
             float min = SliderRectangleMinX-ValueBounds.Rectangle.X;
             float max = SliderRectangleMaxX-ValueBounds.Rectangle.X;
@@ -185,16 +176,16 @@ namespace Knot3.Framework.Widgets
             float percent = (mousePositionX - min)/(max-min);
 
             Value = (int)(MinValue + percent * (MaxValue-MinValue));
+            OnValueChanged (time);
         }
 
         public override void OnLeftClick (Vector2 position, ClickState state, GameTime time)
         {
-            //UpdateSlider (position);
         }
 
         public void OnLeftMove (ScreenPoint previousPosition, ScreenPoint currentPosition, ScreenPoint move, GameTime time)
         {
-            UpdateSlider (currentPosition);
+            UpdateSlider (currentPosition, time);
         }
 
         public void OnRightMove (ScreenPoint previousPosition, ScreenPoint currentPosition, ScreenPoint move, GameTime time)

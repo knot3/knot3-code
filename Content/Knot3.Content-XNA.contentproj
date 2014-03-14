@@ -67,26 +67,6 @@
       <Importer>EffectImporter</Importer>
       <Processor>EffectProcessor</Processor>
     </Compile>
-    <Compile Include="Models\pipe-angled.fbx">
-      <Name>pipe-angled</Name>
-      <Importer>FbxImporter</Importer>
-      <Processor>ModelProcessor</Processor>
-    </Compile>
-    <Compile Include="Models\pipe-curved1.fbx">
-      <Name>pipe-curved1</Name>
-      <Importer>FbxImporter</Importer>
-      <Processor>ModelProcessor</Processor>
-    </Compile>
-    <Compile Include="Models\pipe-curved2.fbx">
-      <Name>pipe-curved2</Name>
-      <Importer>FbxImporter</Importer>
-      <Processor>ModelProcessor</Processor>
-    </Compile>
-    <Compile Include="Models\pipe-straight.fbx">
-      <Name>pipe-straight</Name>
-      <Importer>FbxImporter</Importer>
-      <Processor>ModelProcessor</Processor>
-    </Compile>
     <Compile Include="Fonts\font-overlay.spritefont">
       <Name>font-overlay</Name>
       <Importer>FontDescriptionImporter</Importer>

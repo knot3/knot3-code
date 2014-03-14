@@ -52,10 +52,12 @@ namespace Knot3.Framework.Models
         /// </summary>
         World World { get; set; }
 
+        Matrix WorldMatrix { get; }
+
         /// <summary>
         /// Die Mitte des Spielobjektes im 3D-Raum.
         /// </summary>
-        Vector3 Center ();
+        Vector3 Center { get; }
 
         /// <summary>
         /// Wird für jeden Frame aufgerufen.

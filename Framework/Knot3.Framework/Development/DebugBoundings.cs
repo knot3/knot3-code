@@ -48,6 +48,8 @@ namespace Knot3.Framework.Development
 
         public World World { get; set; }
 
+        public Matrix WorldMatrix { get { return Matrix.Identity; } }
+
         private VertexBuffer vertBuffer;
         private BasicEffect effect;
         private int sphereResolution;
@@ -90,10 +92,7 @@ namespace Knot3.Framework.Development
         /// <summary>
         /// Gibt den Ursprung des Knotens zurück.
         /// </summary>
-        public Vector3 Center ()
-        {
-            return Info.Position;
-        }
+        public Vector3 Center { get { return Info.Position; } }
 
         [ExcludeFromCodeCoverageAttribute]
         public void Update (GameTime time)

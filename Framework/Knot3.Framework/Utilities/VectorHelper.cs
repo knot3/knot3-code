@@ -494,6 +494,13 @@ namespace Knot3.Framework.Utilities
             }
         }
 
+        public static IEnumerable<float> Range (this float count, float step)
+        {
+            for (float f = 0; f < count; f += step) {
+                yield return f;
+            }
+        }
+
         public static void ForEach<U> (this IEnumerable<U> enumerable, Action<U> action)
         {
             foreach (U item in enumerable) {

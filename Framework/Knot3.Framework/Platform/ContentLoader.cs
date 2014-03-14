@@ -41,6 +41,7 @@ using Knot3.Framework.Core;
 using Knot3.Framework.Effects;
 using Knot3.Framework.Math;
 using Knot3.Framework.Widgets;
+using Knot3.Framework.Models;
 
 namespace Knot3.Framework.Platform
 {
@@ -174,9 +175,19 @@ namespace Knot3.Framework.Platform
             }
         }
 
+        public static Texture2D CreateGradient (GraphicsDevice graphicsDevice, GradientColor coloring)
+        {
+            return CreateGradient(graphicsDevice: graphicsDevice, topLeft: coloring.Color1, topRight: coloring.Color2, bottomLeft: coloring.Color1, bottomRight: coloring.Color2);
+        }
+
         public static Texture2D CreateGradient (GraphicsDevice graphicsDevice, Color color1, Color color2)
         {
-            string key = color1.ToString () + color2.ToString () + "gradient";
+            return CreateGradient(graphicsDevice: graphicsDevice, topLeft: color1, topRight: color2, bottomLeft: color2, bottomRight: color1);
+        }
+
+        public static Texture2D CreateGradient (GraphicsDevice graphicsDevice, Color topLeft, Color topRight, Color bottomLeft, Color bottomRight)
+        {
+            string key = topLeft.ToString () + topRight.ToString () +  bottomLeft.ToString () +  bottomRight.ToString () + "gradient";
             if (textureCache.ContainsKey (key)) {
                 return textureCache [key];
             }
@@ -186,10 +197,10 @@ namespace Knot3.Framework.Platform
 
                 // fill it with the specified colors
                 Color[] colors = new Color [texture.Width * texture.Height];
-                colors [0] = color1;
-                colors [1] = color2;
-                colors [2] = color2;
-                colors [3] = color1;
+                colors [0] = topLeft;
+                colors [1] = topRight;
+                colors [2] = bottomLeft;
+                colors [3] = bottomRight;
                 texture.SetData (colors);
                 textureCache [key] = texture;
                 return texture;

@@ -46,27 +46,27 @@ namespace Knot3.Game.Models
         /// <summary>
         /// Die Zuordnung zwischen den Modellinformationen zu den 3D-Modellen.
         /// </summary>
-        private Dictionary<GameModelInfo, GameModel> cache { get; set; }
+        private Dictionary<GameObjectInfo, IGameObject> cache { get; set; }
 
         /// <summary>
         /// Ein Delegate, das beim Erstellen eines Zwischenspeichers zugewiesen wird und aus den
         /// angegebenen Modellinformationen und dem angegebenen Spielzustand ein 3D-Modell erstellt.
         /// </summary>
-        private Func<IScreen, GameModelInfo, GameModel> createModel { get; set; }
+        private Func<IScreen, GameObjectInfo, IGameObject> createModel { get; set; }
 
         /// <summary>
         /// Erstellt einen neuen Zwischenspeicher.
         /// </summary>
-        public ModelFactory (Func<IScreen, GameModelInfo, GameModel> createModel)
+        public ModelFactory (Func<IScreen, GameObjectInfo, IGameObject> createModel)
         {
             this.createModel = createModel;
-            cache = new Dictionary<GameModelInfo, GameModel> ();
+            cache = new Dictionary<GameObjectInfo, IGameObject> ();
         }
 
         /// <summary>
         /// Falls das 3D-Modell zwischengespeichert ist, wird es zurückgegeben, sonst mit createModel () erstellt.
         /// </summary>
-        public GameModel this [IScreen screen, GameModelInfo info]
+        public IGameObject this [IScreen screen, GameObjectInfo info]
         {
             get {
                 if (cache.ContainsKey (info)) {

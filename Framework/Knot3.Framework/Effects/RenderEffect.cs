@@ -27,15 +27,12 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
-
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-
 using Knot3.Framework.Core;
 using Knot3.Framework.Models;
 using Knot3.Framework.Platform;
@@ -130,7 +127,7 @@ namespace Knot3.Framework.Effects
             foreach (ModelMesh mesh in model.Model.Meshes) {
                 foreach (ModelMeshPart part in mesh.MeshParts) {
                     if (part.Effect is BasicEffect) {
-                        ModifyBasicEffect (part.Effect as BasicEffect, model);
+                        ModifyBasicEffect (effect: part.Effect as BasicEffect, model: model);
                     }
                 }
             }
@@ -143,31 +140,67 @@ namespace Knot3.Framework.Effects
             screen.Viewport = original;
         }
 
-        protected void ModifyBasicEffect (BasicEffect effect, GameModel model)
+        private BasicEffect basicEffectForPrimitives;
+
+        /// <summary>
+        /// Zeichnet das Spielmodell model mit diesem Rendereffekt.
+        /// </summary>
+        public virtual void DrawPrimitive (GamePrimitive primitive, GameTime time)
+        {
+            // Setze den Viewport auf den der aktuellen Spielwelt
+            Viewport original = screen.Viewport;
+            screen.Viewport = primitive.World.Viewport;
+
+            if (basicEffectForPrimitives == null)
+                basicEffectForPrimitives = new BasicEffect (screen.GraphicsDevice);
+
+            ModifyBasicEffect (effect: basicEffectForPrimitives, primitive: primitive);
+            primitive.Primitive.Draw (effect: basicEffectForPrimitives);
+
+            // Setze den Viewport wieder auf den ganzen Screen
+            screen.Viewport = original;
+        }
+
+        protected void ModifyBasicEffect (BasicEffect effect, IGameObject obj)
         {
             // lighting
             if (screen.InputManager.KeyHeldDown (Keys.L)) {
                 effect.LightingEnabled = false;
             }
             else {
-                effect.EnableDefaultLighting ();  // Beleuchtung aktivieren
+                effect.EnableDefaultLighting ();
             }
+            effect.FogEnabled = false;
 
             // matrices
-            effect.World = model.WorldMatrix * model.World.Camera.WorldMatrix;
-            effect.View = model.World.Camera.ViewMatrix;
-            effect.Projection = model.World.Camera.ProjectionMatrix;
+            effect.World = obj.WorldMatrix * obj.World.Camera.WorldMatrix;
+            effect.View = obj.World.Camera.ViewMatrix;
+            effect.Projection = obj.World.Camera.ProjectionMatrix;
+        }
+
+        protected void ModifyBasicEffect (BasicEffect effect, GameModel model)
+        {
+            ModifyBasicEffect (effect: effect, obj: model as IGameObject);
 
             // colors
             if (!model.Coloring.IsTransparent) {
                 effect.DiffuseColor = model.Coloring.MixedColor.ToVector3 ();
             }
-
-            //effect.TextureEnabled = true;
-            //effect.Texture = TextureHelper.CreateGradient (screen.Device, model.BaseColor, Color.White.Mix (_Color.Black, 0.2f));
-
             effect.Alpha = model.Coloring.Alpha;
-            effect.FogEnabled = false;
+        }
+
+        protected void ModifyBasicEffect (BasicEffect effect, GamePrimitive primitive)
+        {
+            ModifyBasicEffect (effect: effect, obj: primitive as IGameObject);
+
+            effect.TextureEnabled = true;
+            ModelColoring coloring = primitive.Coloring;
+            if (coloring is GradientColor) {
+                effect.Texture = ContentLoader.CreateGradient (screen.GraphicsDevice, coloring as GradientColor);
+            }
+            else {
+                effect.Texture = ContentLoader.CreateTexture (screen.GraphicsDevice, coloring.MixedColor);
+            }
         }
 
         /// <summary>

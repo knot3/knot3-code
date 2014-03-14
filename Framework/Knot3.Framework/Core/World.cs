@@ -99,7 +99,7 @@ namespace Knot3.Framework.Core
         {
             get {
                 if (SelectedObject != null) {
-                    Vector3 toTarget = SelectedObject.Center () - Camera.Position;
+                    Vector3 toTarget = SelectedObject.Center - Camera.Position;
                     return toTarget.Length ();
                 }
                 else {
@@ -337,10 +337,10 @@ namespace Knot3.Framework.Core
                     // Berechne aus der angegebenen 2D-Position eine 3D-Position
                     Vector3 position3D = Camera.To3D (
                                              position: nearTo,
-                                             nearTo: obj.Center ()
+                                             nearTo: obj.Center
                                          );
                     // Berechne die Distanz zwischen 3D-Mausposition und dem Spielobjekt
-                    float distance = System.Math.Abs ((position3D - obj.Center ()).Length ());
+                    float distance = System.Math.Abs ((position3D - obj.Center).Length ());
                     distances [distance] = obj;
                 }
             }
@@ -366,7 +366,7 @@ namespace Knot3.Framework.Core
             foreach (IGameObject obj in this) {
                 if (obj.Info.IsSelectable) {
                     // Berechne die Distanz zwischen 3D-Mausposition und dem Spielobjekt
-                    float distance = System.Math.Abs ((nearTo - obj.Center ()).Length ());
+                    float distance = System.Math.Abs ((nearTo - obj.Center).Length ());
                     distances [distance] = obj;
                 }
             }

@@ -66,6 +66,8 @@ namespace Knot3.Game.Models
             set {}
         }
 
+        public Matrix WorldMatrix { get { return DecoratedModel.WorldMatrix; } }
+
         /// <summary>
         /// Die Position, an der das Vorschau-Spielobjekt gezeichnet werden soll.
         /// </summary>
@@ -119,10 +121,7 @@ namespace Knot3.Game.Models
         /// <summary>
         /// Die Position, an der das Vorschau-Spielobjekt gezeichnet werden soll.
         /// </summary>
-        public Vector3 Center ()
-        {
-            return ShadowPosition;
-        }
+        public Vector3 Center { get { return ShadowPosition; } }
 
         /// <summary>
         /// Wird für jeden Frame aufgerufen.

@@ -93,12 +93,17 @@
     <Compile Include="Knot3.Framework\Math\ModelExtensions.cs" />
     <Compile Include="Knot3.Framework\Math\RayExtensions.cs" />
     <Compile Include="Knot3.Framework\Math\ScreenPoint.cs" />
+    <Compile Include="Knot3.Framework\Models\CurvedCylinder.cs" />
+    <Compile Include="Knot3.Framework\Models\Cylinder.cs" />
     <Compile Include="Knot3.Framework\Models\GameModel.cs" />
     <Compile Include="Knot3.Framework\Models\GameModelInfo.cs" />
     <Compile Include="Knot3.Framework\Models\GameObjectDistance.cs" />
     <Compile Include="Knot3.Framework\Models\GameObjectInfo.cs" />
+    <Compile Include="Knot3.Framework\Models\GamePrimitive.cs" />
     <Compile Include="Knot3.Framework\Models\IGameObject.cs" />
     <Compile Include="Knot3.Framework\Models\ModelColoring.cs" />
+    <Compile Include="Knot3.Framework\Models\Primitive.cs" />
+    <Compile Include="Knot3.Framework\Models\Torus.cs" />
     <Compile Include="Knot3.Framework\Platform\ContentLoader-XNA.cs" />
     <Compile Include="Knot3.Framework\Platform\ContentLoader.cs" />
     <Compile Include="Knot3.Framework\Platform\Dependencies.cs" />

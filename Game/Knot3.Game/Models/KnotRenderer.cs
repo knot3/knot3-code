@@ -68,6 +68,8 @@ namespace Knot3.Game.Models
         /// </summary>
         public World World { get; set; }
 
+        public Matrix WorldMatrix { get { return Matrix.Identity; } }
+
         /// <summary>
         /// Die Liste der 3D-Modelle der Pfeile,
         /// die nach einer Auswahl von Kanten durch den Spieler angezeigt werden.
@@ -170,10 +172,7 @@ namespace Knot3.Game.Models
         /// <summary>
         /// Gibt den Ursprung des Knotens zurück.
         /// </summary>
-        public Vector3 Center ()
-        {
-            return Info.Position;
-        }
+        public Vector3 Center { get { return Info.Position; } }
 
         /// <summary>
         /// Ruft die Intersects (Ray)-Methode der Kanten, Übergänge und Pfeile auf und liefert das beste Ergebnis zurück.

@@ -59,6 +59,8 @@ namespace Knot3.Game.Models
 
         public World World { get; set; }
 
+        public Matrix WorldMatrix { get { return Matrix.Identity; } }
+
         private Vector3 UpperLeft;
         private Vector3 LowerLeft;
         private Vector3 UpperRight;
@@ -213,10 +215,7 @@ namespace Knot3.Game.Models
             return null;
         }
 
-        public Vector3 Center ()
-        {
-            return LowerLeft + (UpperRight - LowerLeft) / 2;
-        }
+        public Vector3 Center { get { return LowerLeft + (UpperRight - LowerLeft) / 2; } }
 
         [ExcludeFromCodeCoverageAttribute]
         public override string ToString ()
