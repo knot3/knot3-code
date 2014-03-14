@@ -288,22 +288,6 @@ namespace Knot3.Game.Models
                     float defaultRotation = curvedJunctionBumpRotationMap [directionTuple].At (JunctionsAtNodeIndex);
                     float bumpRotationZ = Config.Models [NodeConfigKey, "bump" + JunctionsAtNodeIndex, defaultRotation];
                     Rotation += Angles3.FromDegrees (0, 0, bumpRotationZ);
-
-                    // debug
-                    /*
-                    Log.Debug (
-                        "Index="
-                        + Index.ToString ()
-                        + ", Directions="
-                        + directionTuple
-                        + ", Rotation="
-                        + Rotation
-                        + ", bumpRotationZ="
-                        + bumpRotationZ.ToString ()
-                        + ", ...="
-                        + Angles3.FromDegrees (0, 0, bumpRotationZ)
-                    );
-                    */
                 }
                 else {
                     Modelname = Config.Models [NodeConfigKey, "modelname" + JunctionsAtNodeIndex, "pipe-straight"];
