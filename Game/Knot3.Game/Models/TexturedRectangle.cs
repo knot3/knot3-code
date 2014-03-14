@@ -215,10 +215,7 @@ namespace Knot3.Game.Models
             return null;
         }
 
-        public Vector3 Center ()
-        {
-            return LowerLeft + (UpperRight - LowerLeft) / 2;
-        }
+        public Vector3 Center { get { return LowerLeft + (UpperRight - LowerLeft) / 2; } }
 
         [ExcludeFromCodeCoverageAttribute]
         public override string ToString ()

@@ -204,10 +204,7 @@ namespace Knot3.Game.Models
         /// <summary>
         /// Gibt den Ursprung des Knotens zurück.
         /// </summary>
-        public Vector3 Center ()
-        {
-            return Info.Position;
-        }
+        public Vector3 Center { get { return Info.Position; } }
 
         [ExcludeFromCodeCoverageAttribute]
         public void Update (GameTime time)

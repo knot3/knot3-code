@@ -108,14 +108,16 @@ namespace Knot3.Framework.Models
         /// <summary>
         /// Gibt die Mitte des 3D-Modells zurück.
         /// </summary>
-        public virtual Vector3 Center ()
+        public virtual Vector3 Center
         {
-            Vector3 center = Vector3.Zero;
-            int count = Model.Meshes.Count;
-            foreach (ModelMesh mesh in Model.Meshes) {
-                center += mesh.BoundingSphere.Center / count;
+            get {
+                Vector3 center = Vector3.Zero;
+                int count = Model.Meshes.Count;
+                foreach (ModelMesh mesh in Model.Meshes) {
+                    center += mesh.BoundingSphere.Center / count;
+                }
+                return center / Info.Scale + Info.Position;
             }
-            return center / Info.Scale + Info.Position;
         }
 
         /// <summary>

@@ -248,7 +248,7 @@ namespace Knot3.Framework.Core
         {
             get {
                 if (World.SelectedObject != null) {
-                    return World.SelectedObject.Center ();
+                    return World.SelectedObject.Center;
                 }
                 else {
                     return Vector3.Zero;

@@ -176,7 +176,7 @@ namespace Knot3.Game.Development
             height += lineHeight;
             DrawString ("Selected Object: ", width1, height, Color.White);
             if (World.SelectedObject != null) {
-                Vector3 selectedObjectCenter = World.SelectedObject.Center ();
+                Vector3 selectedObjectCenter = World.SelectedObject.Center;
                 DrawVectorCoordinates (selectedObjectCenter, width2, width3, width4, height);
 
                 if (World.SelectedObject is PipeModel) {

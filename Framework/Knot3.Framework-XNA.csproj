@@ -98,6 +98,7 @@
     <Compile Include="Knot3.Framework\Models\GameModelInfo.cs" />
     <Compile Include="Knot3.Framework\Models\GameObjectDistance.cs" />
     <Compile Include="Knot3.Framework\Models\GameObjectInfo.cs" />
+    <Compile Include="Knot3.Framework\Models\GamePrimitive.cs" />
     <Compile Include="Knot3.Framework\Models\IGameObject.cs" />
     <Compile Include="Knot3.Framework\Models\ModelColoring.cs" />
     <Compile Include="Knot3.Framework\Models\Primitive.cs" />

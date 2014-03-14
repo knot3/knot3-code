@@ -88,6 +88,7 @@
     <Compile Include="Knot3.Framework\Models\GameModelInfo.cs" />
     <Compile Include="Knot3.Framework\Models\GameObjectDistance.cs" />
     <Compile Include="Knot3.Framework\Models\GameObjectInfo.cs" />
+    <Compile Include="Knot3.Framework\Models\GamePrimitive.cs" />
     <Compile Include="Knot3.Framework\Models\IGameObject.cs" />
     <Compile Include="Knot3.Framework\Models\ModelColoring.cs" />
     <Compile Include="Knot3.Framework\Models\Primitive.cs" />
@@ -140,8 +141,6 @@
     <Compile Include="Knot3.Framework\Widgets\VerticalAlignment.cs" />
     <Compile Include="Knot3.Framework\Widgets\Widget.cs" />
     <Compile Include="Knot3.Framework\Widgets\WidgetState.cs" />
-    <Compile Include="Knot3.Framework\Models\GamePrimitive.cs" />
-    <Compile Include="Knot3.Framework\Models\GamePrimitiveInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

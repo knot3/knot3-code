@@ -118,7 +118,7 @@ namespace Knot3.Framework.Input
                         name: actionName,
                         defaultValue: defaultReversed [action],
                         configFile: Config.Default
-                    );
+                    ) { Verbose = false };
                     // und lese den Wert aus und speichere ihn in der Zuordnung.
                     CurrentKeyAssignment [option.Value] = action;
                 }

@@ -22,9 +22,7 @@ namespace Primitives
         VertexBuffer vertexBuffer;
         IndexBuffer indexBuffer;
 
-        public Vector3 Center { get; private set; }
-
-        public BoundingSphere[] Bounds { get; private set; }
+        public Vector3 Center { get; protected set; }
 
         protected void AddVertex (Vector3 position, Vector3 normal, Vector2 texCoord)
         {

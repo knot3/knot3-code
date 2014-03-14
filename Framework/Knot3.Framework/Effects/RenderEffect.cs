@@ -151,6 +151,9 @@ namespace Knot3.Framework.Effects
             Viewport original = screen.Viewport;
             screen.Viewport = primitive.World.Viewport;
 
+            if (basicEffectForPrimitives == null)
+                basicEffectForPrimitives = new BasicEffect (screen.GraphicsDevice);
+
             ModifyBasicEffect (effect: basicEffectForPrimitives, obj: primitive);
             primitive.Primitive.Draw (effect: basicEffectForPrimitives);
 
@@ -180,11 +183,18 @@ namespace Knot3.Framework.Effects
                 if (!model.Coloring.IsTransparent) {
                     effect.DiffuseColor = model.Coloring.MixedColor.ToVector3 ();
                 }
-
-                //effect.TextureEnabled = true;
-                //effect.Texture = TextureHelper.CreateGradient (screen.Device, model.BaseColor, Color.White.Mix (_Color.Black, 0.2f));
-
                 effect.Alpha = model.Coloring.Alpha;
+            }
+            if (obj is GamePrimitive) {
+                GamePrimitive primitive = obj as GamePrimitive;
+                effect.TextureEnabled = true;
+                ModelColoring coloring = primitive.Coloring;
+                if (coloring is GradientColor) {
+                    effect.Texture = ContentLoader.CreateGradient (screen.GraphicsDevice, coloring as GradientColor);
+                }
+                else {
+                    effect.Texture = ContentLoader.CreateTexture (screen.GraphicsDevice, coloring.MixedColor);
+                }
             }
             effect.FogEnabled = false;
         }

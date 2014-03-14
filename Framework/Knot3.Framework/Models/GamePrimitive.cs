@@ -10,7 +10,7 @@ using Knot3.Framework.Utilities;
 namespace Knot3.Framework.Models
 {
     [ExcludeFromCodeCoverageAttribute]
-    public class GamePrimitive : IGameObject
+    public abstract class GamePrimitive : IGameObject
     {
         GameObjectInfo IGameObject.Info { get { return Info; } }
         
@@ -22,7 +22,7 @@ namespace Knot3.Framework.Models
         /// <summary>
         /// Die Modellinformationen wie Position, Skalierung und der Dateiname des 3D-Modells.
         /// </summary>
-        public GamePrimitiveInfo Info { get; protected set; }
+        public GameModelInfo Info { get; protected set; }
 
         /// <summary>
         /// Die Klasse des XNA-Frameworks, die ein 3D-Modell repräsentiert.
@@ -61,7 +61,7 @@ namespace Knot3.Framework.Models
         /// <summary>
         /// Erstellt ein neues 3D-Modell in dem angegebenen Spielzustand mit den angegebenen Modellinformationen.
         /// </summary>
-        public GamePrimitive (IScreen screen, GamePrimitiveInfo info, Primitive primitive)
+        public GamePrimitive (IScreen screen, GameModelInfo info, Primitive primitive)
         {
             Screen = screen;
             Info = info;
@@ -74,9 +74,11 @@ namespace Knot3.Framework.Models
         /// <summary>
         /// Gibt die Mitte des 3D-Modells zurück.
         /// </summary>
-        public virtual Vector3 Center ()
+        public virtual Vector3 Center
         {
-            return Primitive.Center / Info.Scale + Info.Position;
+            get {
+                return Primitive.Center / Info.Scale + Info.Position;
+            }
         }
 
         /// <summary>
@@ -124,16 +126,9 @@ namespace Knot3.Framework.Models
         private Angles3 _rotation;
         private Vector3 _position;
         private Matrix _worldMatrix;
-        private BoundingSphere[] _bounds;
         private bool _inFrustum;
 
-        public virtual BoundingSphere[] Bounds
-        {
-            get {
-                UpdatePrecomputed ();
-                return _bounds;
-            }
-        }
+        public abstract BoundingSphere[] Bounds { get; }
 
         protected bool InCameraFrustum
         {
@@ -150,12 +145,6 @@ namespace Knot3.Framework.Models
                     * Matrix.CreateFromYawPitchRoll (Info.Rotation.Y, Info.Rotation.X, Info.Rotation.Z)
                         * Matrix.CreateTranslation (Info.Position);
 
-                // bounding spheres
-                _bounds = Primitive.Bounds;
-                for (int i = 0; i < _bounds.Length; ++i) {
-                    _bounds [i] = _bounds [i].Scale (Info.Scale).Rotate (Info.Rotation).Translate ((Vector3)Info.Position);
-                }
-
                 // attrs
                 _scale = Info.Scale;
                 _rotation = Info.Rotation;
@@ -168,7 +157,7 @@ namespace Knot3.Framework.Models
             // camera frustum
             _inFrustum = false;
             UpdatePrecomputed ();
-            foreach (BoundingSphere _sphere in _bounds) {
+            foreach (BoundingSphere _sphere in Bounds) {
                 var sphere = _sphere;
                 if (World.Camera.ViewFrustum.FastIntersects (ref sphere)) {
                     _inFrustum = true;

@@ -57,7 +57,7 @@ namespace Knot3.Framework.Models
         /// <summary>
         /// Die Mitte des Spielobjektes im 3D-Raum.
         /// </summary>
-        Vector3 Center ();
+        Vector3 Center { get; }
 
         /// <summary>
         /// Wird für jeden Frame aufgerufen.

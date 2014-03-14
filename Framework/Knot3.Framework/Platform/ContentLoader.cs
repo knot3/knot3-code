@@ -41,6 +41,7 @@ using Knot3.Framework.Core;
 using Knot3.Framework.Effects;
 using Knot3.Framework.Math;
 using Knot3.Framework.Widgets;
+using Knot3.Framework.Models;
 
 namespace Knot3.Framework.Platform
 {
@@ -172,6 +173,11 @@ namespace Knot3.Framework.Platform
                 textureCache [key] = texture;
                 return texture;
             }
+        }
+
+        public static Texture2D CreateGradient (GraphicsDevice graphicsDevice, GradientColor coloring)
+        {
+            return CreateGradient(graphicsDevice: graphicsDevice, color1: coloring.Color1, color2: coloring.Color2);
         }
 
         public static Texture2D CreateGradient (GraphicsDevice graphicsDevice, Color color1, Color color2)

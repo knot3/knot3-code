@@ -27,14 +27,11 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
-
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-
 using Knot3.Framework.Audio;
 using Knot3.Framework.Effects;
 using Knot3.Framework.Platform;
@@ -234,13 +231,11 @@ namespace Knot3.Framework.Core
                 Graphics.GraphicsDevice.Clear (current.BackgroundColor);
 
                 try {
-                    Dependencies.CatchDllExceptions (() => {
-                        // Rufe Draw () auf dem aktuellen Screen auf
-                        current.Draw (time);
+                    // Rufe Draw () auf dem aktuellen Screen auf
+                    current.Draw (time);
 
-                        // Rufe Draw () auf den Spielkomponenten auf
-                        base.Draw (time);
-                    });
+                    // Rufe Draw () auf den Spielkomponenten auf
+                    base.Draw (time);
                 }
                 catch (Exception ex) {
                     if (ErrorScreenEnabled) {
@@ -276,28 +271,26 @@ namespace Knot3.Framework.Core
             }
 
             try {
-                Dependencies.CatchDllExceptions (() => {
-                    updateResolution ();
-                    // falls der Screen gewechselt werden soll...
-                    IScreen current = Screens.Peek ();
-                    IScreen next = current.NextScreen;
-                    if (current != next) {
-                        if (ScreenTransitionEffect != null) {
-                            next.PostProcessingEffect = ScreenTransitionEffect (current, next);
-                        }
-                        current.BeforeExit (next, time);
-                        current.NextScreen = current;
-                        next.NextScreen = next;
-                        Screens.Push (next);
-                        next.Entered (current, time);
+                updateResolution ();
+                // falls der Screen gewechselt werden soll...
+                IScreen current = Screens.Peek ();
+                IScreen next = current.NextScreen;
+                if (current != next && !(current is ErrorScreen)) {
+                    if (ScreenTransitionEffect != null) {
+                        next.PostProcessingEffect = ScreenTransitionEffect (current, next);
                     }
+                    current.BeforeExit (next, time);
+                    current.NextScreen = current;
+                    next.NextScreen = next;
+                    Screens.Push (next);
+                    next.Entered (current, time);
+                }
 
-                    // Rufe Update () auf dem aktuellen Screen auf
-                    Screens.Peek ().Update (time);
+                // Rufe Update () auf dem aktuellen Screen auf
+                Screens.Peek ().Update (time);
 
-                    // base method
-                    base.Update (time);
-                });
+                // base method
+                base.Update (time);
             }
             catch (Exception ex) {
                 if (ErrorScreenEnabled) {

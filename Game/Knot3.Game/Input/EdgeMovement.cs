@@ -101,10 +101,7 @@ namespace Knot3.Game.Input
         /// <summary>
         /// Gibt den Ursprung des Knotens zurück.
         /// </summary>
-        public Vector3 Center ()
-        {
-            return Info.Position;
-        }
+        public Vector3 Center { get { return Info.Position; } }
 
         /// <summary>
         /// Gibt immer \glqq null\grqq~zurück.
@@ -179,14 +176,11 @@ namespace Knot3.Game.Input
         private void MoveEdges (GameTime time)
         {
             // Wenn die Maus über einer Kante oder einem Pfeil liegt
+            IGameObject selectedObject = World.SelectedObject;
             if (World.SelectedObject is PipeModel || World.SelectedObject is ArrowModel) {
-                GameModel selectedModel = World.SelectedObject as GameModel;
 
                 // Berechne die Mausposition in 3D
-                Vector3 currentMousePosition = World.Camera.To3D (
-                                                   position: Screen.InputManager.CurrentMousePosition,
-                                                   nearTo: selectedModel.Center ()
-                                               );
+                Vector3 currentMousePosition = World.Camera.To3D (position: Screen.InputManager.CurrentMousePosition, nearTo: selectedObject.Center);
 
                 // Wenn die Maus gedrückt gehalten ist und wir mitten im Ziehen der Kante
                 // an die neue Position sind
@@ -199,9 +193,9 @@ namespace Knot3.Game.Input
                     }
 
                     // Setze die Positionen der Shadowobjekte abhängig von der Mausposition
-                    if (selectedModel is ArrowModel) {
+                    if (selectedObject is ArrowModel) {
                         // Wenn ein Pfeil selektiert wurde, ist die Verschiebe-Richtung eindeutig festgelegt
-                        UpdateShadowPipes (currentMousePosition, (selectedModel as ArrowModel).Info.Direction, time);
+                        UpdateShadowPipes (currentMousePosition, (selectedObject as ArrowModel).Info.Direction, time);
                     }
                     else {
                         // Wenn etwas anderes (eine Kante) selektiert wurde,
@@ -218,9 +212,9 @@ namespace Knot3.Game.Input
                 // Wenn die Verschiebe-Aktion beendet ist (wenn die Maus losgelassen wurde)
                 else if (Screen.InputManager.CurrentInputAction == InputAction.SelectedObjectMove) {
                     // Führe die finale Verschiebung durch
-                    if (selectedModel is ArrowModel) {
+                    if (selectedObject is ArrowModel) {
                         // Wenn ein Pfeil selektiert wurde, ist die Verschiebe-Richtung eindeutig festgelegt
-                        MovePipes (currentMousePosition, (selectedModel as ArrowModel).Info.Direction, time);
+                        MovePipes (currentMousePosition, (selectedObject as ArrowModel).Info.Direction, time);
                     }
                     else {
                         // Wenn etwas anderes (eine Kante) selektiert wurde,

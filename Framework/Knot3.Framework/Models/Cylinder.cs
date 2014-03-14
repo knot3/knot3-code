@@ -11,6 +11,7 @@ using System.Diagnostics.CodeAnalysis;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Knot3.Framework.Utilities;
 
 namespace Primitives
 {
@@ -34,8 +35,8 @@ namespace Primitives
                 Vector3 normal = GetCircleVector (i, tessellation);
                 float textureU = (float)i / (float)tessellation;
 
-                AddVertex (position: normal * radius + Vector3.Up * halfHeight, normal: normal, texCoord: new Vector2 (textureU, 0));
-                AddVertex (position: normal * radius + Vector3.Down * halfHeight, normal: normal, texCoord: new Vector2 (textureU, 1));
+                AddVertex (position: normal * radius + Vector3.Forward * halfHeight, normal: normal, texCoord: new Vector2 (textureU, 0));
+                AddVertex (position: normal * radius + Vector3.Backward * halfHeight, normal: normal, texCoord: new Vector2 (textureU, 1));
 
                 AddIndex (i * 2);
                 AddIndex (i * 2 + 1);
@@ -46,10 +47,12 @@ namespace Primitives
                 AddIndex ((i * 2 + 2) % (tessellation * 2));
             }
 
-            CreateCap (tessellation, halfHeight, radius, Vector3.Up);
-            CreateCap (tessellation, halfHeight, radius, Vector3.Down);
+            CreateCap (tessellation, halfHeight, radius, Vector3.Forward);
+            CreateCap (tessellation, halfHeight, radius, Vector3.Backward);
 
             InitializePrimitive (device);
+
+            Center = Vector3.Zero;
         }
 
         void CreateCap (int tessellation, float height, float radius, Vector3 normal)
@@ -82,7 +85,7 @@ namespace Primitives
             float angle = i * MathHelper.TwoPi / tessellation;
             float dx = (float)Math.Cos (angle);
             float dz = (float)Math.Sin (angle);
-            return new Vector3 (dx, 0, dz);
+            return new Vector3 (dx, dz, 0);
         }
     }
 }
