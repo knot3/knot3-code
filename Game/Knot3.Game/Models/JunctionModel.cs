@@ -49,12 +49,11 @@ namespace Knot3.Game.Models
         public new Junction Info { get { return base.Info as Junction; } set { base.Info = value; } }
 
         public bool IsVirtual { get; set; }
-        
+
         public override BoundingSphere[] Bounds { get { return _bounds; } }
 
         private BoundingSphere[] _bounds;
-
-        private static Dictionary<string, Primitive> _primitiveSingleton = new Dictionary<string, Primitive>();
+        private static Dictionary<string, Primitive> _primitiveSingleton = new Dictionary<string, Primitive> ();
 
         /// <summary>
         /// Erstellt ein neues 3D-Modell mit dem angegebenen Spielzustand und dem angegebenen Informationsobjekt.
@@ -76,8 +75,8 @@ namespace Knot3.Game.Models
                     thickness: 1f,
                     tessellation: 64,
                     circlePercent: 0.25f,
-                    translation: Vector3.Left*2+Vector3.Backward*2,
-                    rotation: Angles3.FromDegrees(90, 0, 90)
+                    translation: Vector3.Left * 2 + Vector3.Backward * 2,
+                    rotation: Angles3.FromDegrees (90, 0, 90)
                 );
             }
             else if (name == "pipe-straight") {
@@ -86,7 +85,7 @@ namespace Knot3.Game.Models
                     height: 1f,
                     diameter: 1f,
                     tessellation: 64
-                    );
+                );
             }
             else {
                 return _primitiveSingleton [name] = _primitiveSingleton.ContainsKey (name) ? _primitiveSingleton [name] : new CurvedCylinder (
@@ -94,7 +93,7 @@ namespace Knot3.Game.Models
                     height: 1f,
                     diameter: 1f,
                     tessellation: 64
-                    );
+                );
             }
         }
 

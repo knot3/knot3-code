@@ -33,7 +33,9 @@ namespace Primitives
             
             for (int i = 0; i < tessellation*circlePercent; i++) {
                 float outerAngle = i * MathHelper.TwoPi / tessellation;
-                float textureU = (float)i / (float)(tessellation * circlePercent);
+                float textureU = (float)i / (float)(tessellation * circlePercent - 1);
+                if (circlePercent < 1f)
+                    textureU = MathHelper.Clamp (textureU, 0.25f, 0.75f);
 
                 Matrix transform = Matrix.CreateTranslation (diameter / 2, 0, 0) *
                     Matrix.CreateRotationY (outerAngle);
