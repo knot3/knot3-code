@@ -37,14 +37,6 @@
     </None>
     <None Include="Fonts\font-overlay.xnb">
     </None>
-    <None Include="Models\pipe-angled.xnb">
-    </None>
-    <None Include="Models\pipe-curved1.xnb">
-    </None>
-    <None Include="Models\pipe-curved2.xnb">
-    </None>
-    <None Include="Models\pipe-straight.xnb">
-    </None>
     <None Include="Models\arrow.xnb">
     </None>
     <None Include="Sound\Pipe\Move\108617__juskiddink__thud-dry.ogg">
