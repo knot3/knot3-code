@@ -181,7 +181,7 @@ namespace Knot3.Game.Data
 
         public static List<Color> Colors = new List<Color> ()
         {
-            Color.Red, Color.Green, Color.Blue, Color.Yellow, Color.Orange
+            Color.Red, Color.Green, Color.Blue
         };
         public static Color DefaultColor = RandomColor ();
 

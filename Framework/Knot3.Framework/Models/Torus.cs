@@ -33,7 +33,7 @@ namespace Primitives
             
             for (int i = 0; i < tessellation*circlePercent; i++) {
                 float outerAngle = i * MathHelper.TwoPi / tessellation;
-                float textureU = (float)i / (float)tessellation;
+                float textureU = (float)i / (float)(tessellation * circlePercent);
 
                 Matrix transform = Matrix.CreateTranslation (diameter / 2, 0, 0) *
                     Matrix.CreateRotationY (outerAngle);
@@ -41,7 +41,7 @@ namespace Primitives
                 // Now we loop along the other axis, around the side of the tube.
                 for (int j = 0; j < tessellation; j++) {
                     float innerAngle = j * MathHelper.TwoPi / tessellation;
-                    float textureV = (float)j / (float)tessellation;
+                    float textureV = 0;//(float)j / (float)tessellation;
 
                     float dx = (float)Math.Cos (innerAngle);
                     float dy = (float)Math.Sin (innerAngle);

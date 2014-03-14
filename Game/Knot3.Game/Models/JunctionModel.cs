@@ -63,7 +63,7 @@ namespace Knot3.Game.Models
         public JunctionModel (IScreen screen, Junction info)
         : base (screen, info, PrimitiveSingleton(screen: screen, info: info))
         {
-            _bounds = new BoundingSphere[] { new BoundingSphere(Info.Position, radius: 1f) };
+            _bounds = new BoundingSphere[] { new BoundingSphere(Info.Position, radius: 100f) };
         }
 
         private static Primitive PrimitiveSingleton (IScreen screen, Junction info)

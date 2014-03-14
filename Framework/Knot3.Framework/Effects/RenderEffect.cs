@@ -127,7 +127,7 @@ namespace Knot3.Framework.Effects
             foreach (ModelMesh mesh in model.Model.Meshes) {
                 foreach (ModelMeshPart part in mesh.MeshParts) {
                     if (part.Effect is BasicEffect) {
-                        ModifyBasicEffect (part.Effect as BasicEffect, model);
+                        ModifyBasicEffect (effect: part.Effect as BasicEffect, model: model);
                     }
                 }
             }
@@ -154,7 +154,7 @@ namespace Knot3.Framework.Effects
             if (basicEffectForPrimitives == null)
                 basicEffectForPrimitives = new BasicEffect (screen.GraphicsDevice);
 
-            ModifyBasicEffect (effect: basicEffectForPrimitives, obj: primitive);
+            ModifyBasicEffect (effect: basicEffectForPrimitives, primitive: primitive);
             primitive.Primitive.Draw (effect: basicEffectForPrimitives);
 
             // Setze den Viewport wieder auf den ganzen Screen
@@ -168,35 +168,39 @@ namespace Knot3.Framework.Effects
                 effect.LightingEnabled = false;
             }
             else {
-                effect.EnableDefaultLighting ();  // Beleuchtung aktivieren
+                effect.EnableDefaultLighting ();
             }
+            effect.FogEnabled = false;
 
             // matrices
             effect.World = obj.WorldMatrix * obj.World.Camera.WorldMatrix;
             effect.View = obj.World.Camera.ViewMatrix;
             effect.Projection = obj.World.Camera.ProjectionMatrix;
-            
+        }
 
-            if (obj is GameModel) {
-                GameModel model = obj as GameModel;
-                // colors
-                if (!model.Coloring.IsTransparent) {
-                    effect.DiffuseColor = model.Coloring.MixedColor.ToVector3 ();
-                }
-                effect.Alpha = model.Coloring.Alpha;
+        protected void ModifyBasicEffect (BasicEffect effect, GameModel model)
+        {
+            ModifyBasicEffect (effect: effect, obj: model as IGameObject);
+
+            // colors
+            if (!model.Coloring.IsTransparent) {
+                effect.DiffuseColor = model.Coloring.MixedColor.ToVector3 ();
             }
-            if (obj is GamePrimitive) {
-                GamePrimitive primitive = obj as GamePrimitive;
-                effect.TextureEnabled = true;
-                ModelColoring coloring = primitive.Coloring;
-                if (coloring is GradientColor) {
-                    effect.Texture = ContentLoader.CreateGradient (screen.GraphicsDevice, coloring as GradientColor);
-                }
-                else {
-                    effect.Texture = ContentLoader.CreateTexture (screen.GraphicsDevice, coloring.MixedColor);
-                }
+            effect.Alpha = model.Coloring.Alpha;
+        }
+
+        protected void ModifyBasicEffect (BasicEffect effect, GamePrimitive primitive)
+        {
+            ModifyBasicEffect (effect: effect, obj: primitive as IGameObject);
+
+            effect.TextureEnabled = true;
+            ModelColoring coloring = primitive.Coloring;
+            if (coloring is GradientColor) {
+                effect.Texture = ContentLoader.CreateGradient (screen.GraphicsDevice, coloring as GradientColor);
             }
-            effect.FogEnabled = false;
+            else {
+                effect.Texture = ContentLoader.CreateTexture (screen.GraphicsDevice, coloring.MixedColor);
+            }
         }
 
         /// <summary>
