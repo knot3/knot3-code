@@ -194,7 +194,6 @@ namespace Knot3.Game.Screens
                         name: Localizer.Localize ("Edge Count: ") + meta.Target.CountEdges,
                     onClick: (t) => {}
                     );
-                    countEntry.IsSelectable = false;
                     countEntry.Enabled = false;
                     challengeInfo.Add (countEntry);
 
@@ -205,7 +204,6 @@ namespace Knot3.Game.Screens
                     onClick: (t) => {}
                     );
                     avgtimeEntry.IsLocalized = false;
-                    avgtimeEntry.IsSelectable = false;
                     avgtimeEntry.Enabled = false;
                     challengeInfo.Add (avgtimeEntry);
 
@@ -217,7 +215,6 @@ namespace Knot3.Game.Screens
                             onClick: (t) => deleteSavegame (filename, t)
                         );
                         deleteEntry.AddKey (Keys.Delete);
-                        deleteEntry.AddKey (Keys.Back);
                         challengeInfo.Add (deleteEntry);
                     }
 
@@ -235,6 +232,7 @@ namespace Knot3.Game.Screens
                 name: name,
                 onClick: LoadFile
             );
+            button.IsSelectable=true;
             button.IsLocalized = false;
             savegameMenu.Add (button);
         }

@@ -80,7 +80,7 @@ namespace Knot3.Framework.Widgets
         public MenuEntry (IScreen screen, DisplayLayer drawOrder, string name, Action<GameTime> onClick)
         : base (screen, drawOrder, name)
         {
-            IsSelectable = true;
+            IsSelectable = false;
             OnClick = onClick;
         }
 

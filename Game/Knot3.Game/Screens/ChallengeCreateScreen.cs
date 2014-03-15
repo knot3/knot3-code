@@ -186,6 +186,8 @@ namespace Knot3.Game.Screens
                 name: name,
                 onClick: SelectTargetKnot
             );
+            buttonStart.IsSelectable=true;
+            buttonTarget.IsSelectable=true;
             buttonStart.IsLocalized = false;
             buttonTarget.IsLocalized = false;
 

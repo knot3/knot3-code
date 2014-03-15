@@ -190,7 +190,7 @@ namespace Knot3.Game.Screens
                         name: Localizer.Localize ("Edge Count: ") + previewKnotMetaData.CountEdges,
                     onClick: (t) => {}
                     );
-                    countEntry.IsSelectable = false;
+
                     countEntry.Enabled = false;
                     knotInfo.Add (countEntry);
 
@@ -202,7 +202,7 @@ namespace Knot3.Game.Screens
                             onClick: (t) => deleteSavegame (filename, t)
                         );
                         deleteEntry.AddKey (Keys.Delete);
-                        deleteEntry.AddKey (Keys.Back);
+
                         knotInfo.Add (deleteEntry);
                     }
 
@@ -217,6 +217,7 @@ namespace Knot3.Game.Screens
                 name: name,
                 onClick: preview
             );
+            button.IsSelectable = true;
             button.IsLocalized = false;
 
             savegameMenu.Add (button);
