@@ -198,12 +198,17 @@ namespace Knot3.Framework.Effects
             ModifyBasicEffect (effect: effect, obj: primitive as IGameObject);
 
             effect.TextureEnabled = true;
-            ModelColoring coloring = primitive.Coloring;
-            if (coloring is GradientColor) {
-                effect.Texture = ContentLoader.CreateGradient (screen.GraphicsDevice, coloring as GradientColor);
+            if (primitive.Texture != null) {
+                effect.Texture = primitive.Texture;
             }
             else {
-                effect.Texture = ContentLoader.CreateTexture (screen.GraphicsDevice, coloring.MixedColor);
+                ModelColoring coloring = primitive.Coloring;
+                if (coloring is GradientColor) {
+                    effect.Texture = ContentLoader.CreateGradient (screen.GraphicsDevice, coloring as GradientColor);
+                }
+                else {
+                    effect.Texture = ContentLoader.CreateTexture (screen.GraphicsDevice, coloring.MixedColor);
+                }
             }
         }
 

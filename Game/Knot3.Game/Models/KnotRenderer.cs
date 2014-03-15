@@ -89,7 +89,7 @@ namespace Knot3.Game.Models
         /// <summary>
         /// Die Liste der Flächen zwischen den Kanten.
         /// </summary>
-        private HashSet<TexturedRectangle> rectangles;
+        private HashSet<RectangleModel> rectangles;
         private List<GameModel> debugModels;
 
         /// <summary>
@@ -161,7 +161,7 @@ namespace Knot3.Game.Models
             pipes = new List<PipeModel> ();
             nodes = new List<JunctionModel> ();
             arrows = new List<ArrowModel> ();
-            rectangles = new HashSet<TexturedRectangle> ();
+            rectangles = new HashSet<RectangleModel> ();
             debugModels = new List<GameModel> ();
             pipeFactory = new ModelFactory ((s, i) => new PipeModel (s, i as Pipe));
             nodeFactory = new ModelFactory ((s, i) => new JunctionModel (s, i as Junction));
@@ -340,9 +340,6 @@ namespace Knot3.Game.Models
 
         private void CreateRectangles ()
         {
-            foreach (TexturedRectangle rectangle in rectangles) {
-                rectangle.Dispose ();
-            }
             rectangles.Clear ();
 
             RectangleMap rectMap = new RectangleMap (nodeMap);
@@ -380,15 +377,21 @@ namespace Knot3.Game.Models
                     texture = CreateParallelRectangleTexture (edgeAB.Color, edgeCD.Color);
                 }
 
-                TexturedRectangleInfo info = new TexturedRectangleInfo (
-                    texture: texture,
-                    origin: rect.Position,
+                Parallelogram parallelogram = new Parallelogram (
+                    device: screen.GraphicsDevice,
+                    origin: Vector3.Zero,
                     left: edgeAB.Direction,
                     width: Node.Scale,
                     up: edgeCD.Direction.Reverse,
-                    height: Node.Scale
+                    height: Node.Scale,
+                    normalToCenter: false
                 );
-                TexturedRectangle rectangle = new TexturedRectangle (screen: screen, info: info);
+                RectangleModel rectangle = new RectangleModel (
+                    screen: screen,
+                    texture: texture,
+                    parallelogram: parallelogram,
+                    position: rect.Position
+                );
                 rectangle.World = World;
 
                 if (SystemInfo.IsRunningOnLinux ()) {
@@ -467,7 +470,7 @@ namespace Knot3.Game.Models
             foreach (ArrowModel arrow in arrows) {
                 arrow.Update (time);
             }
-            foreach (TexturedRectangle rectangle in rectangles) {
+            foreach (RectangleModel rectangle in rectangles) {
                 rectangle.Update (time);
             }
 
@@ -510,7 +513,7 @@ namespace Knot3.Game.Models
                     }
                 };
                 Profiler.ProfileDelegate ["Rectangles"] = () => {
-                    foreach (TexturedRectangle rectangle in rectangles) {
+                    foreach (RectangleModel rectangle in rectangles) {
                         rectangle.Draw (time);
                     }
                 };
@@ -537,7 +540,7 @@ namespace Knot3.Game.Models
             foreach (ArrowModel arrow in arrows) {
                 yield return arrow;
             }
-            foreach (TexturedRectangle rectangle in rectangles) {
+            foreach (RectangleModel rectangle in rectangles) {
                 yield return rectangle;
             }
         }

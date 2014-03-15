@@ -40,7 +40,7 @@ namespace Knot3.Framework.Models
     /// Enthält Informationen über ein 3D-Modell wie den Dateinamen, die Rotation und die Skalierung.
     /// </summary>
     [ExcludeFromCodeCoverageAttribute]
-    public abstract class GameModelInfo : GameObjectInfo
+    public class GameModelInfo : GameObjectInfo
     {
         /// <summary>
         /// Der Dateiname des Modells.

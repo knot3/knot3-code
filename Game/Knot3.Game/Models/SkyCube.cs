@@ -27,21 +27,18 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-
 using Knot3.Framework.Core;
 using Knot3.Framework.Models;
 using Knot3.Framework.Platform;
 using Knot3.Framework.Storage;
-
 using Knot3.Game.Data;
+using Microsoft.Xna.Framework.Input;
 
 namespace Knot3.Game.Models
 {
@@ -61,16 +58,7 @@ namespace Knot3.Game.Models
         /// <summary>
         /// Die Spielwelt.
         /// </summary>
-        public World World
-        {
-            get { return _world; }
-            set {
-                _world = value;
-                assignWorld ();
-            }
-        }
-
-        private World _world;
+        public World World { get; set; }
 
         public Matrix WorldMatrix { get { return Matrix.Identity; } }
 
@@ -87,60 +75,63 @@ namespace Knot3.Game.Models
         }
 
         private float _distance;
-
         /// <summary>
-        /// Die einzelnen texturierten Rechtecke.
+        /// Die einzelnen Rechtecke.
         /// </summary>
-        private List<TexturedRectangle> rectangles = new List<TexturedRectangle> ();
-
+        private Parallelogram[] rectangles;
+        /// <summary>
+        /// Die einzelnen Texturen.
+        /// </summary>
+        private Texture2D[] textures;
         /// <summary>
         /// Der Zufallsgenerator.
         /// </summary>
         private Random random;
-
         /// <summary>
         /// Der Texture-Cache.
         /// </summary>
-        private Dictionary<Direction, Texture2D> textureCache = new Dictionary<Direction, Texture2D>();
+        private Dictionary<Direction, Texture2D> textureCache = new Dictionary<Direction, Texture2D> ();
+        /// <summary>
+        /// Der Effekt, mit dem die Skybox gezeichnet wird.
+        /// </summary>
+        private BasicEffect effect;
 
         /// <summary>
         /// Erstellt ein neues KnotRenderer-Objekt für den angegebenen Spielzustand mit den angegebenen
         /// Spielobjekt-Informationen, die unter Anderem die Position des Knotenursprungs enthalten.
         /// </summary>
-        public SkyCube (IScreen screen, Vector3 position)
+        public SkyCube (IScreen screen, Vector3 position, float distance)
         {
             Screen = screen;
             Info = new GameObjectInfo (position: position);
             random = new Random ();
-        }
-
-        public SkyCube (IScreen screen, Vector3 position, float distance)
-        : this (screen, position)
-        {
+            effect = new BasicEffect (screen.GraphicsDevice);
             Distance = distance;
             ConstructRectangles ();
         }
 
         private void ConstructRectangles ()
         {
-            rectangles.Clear ();
+            rectangles = new Parallelogram[Direction.Values.Length];
+            textures = new Texture2D[Direction.Values.Length];
+            int i = 0;
             foreach (Direction direction in Direction.Values) {
                 Vector3 position = direction * Distance;
                 Vector3 up = direction == Direction.Up || direction == Direction.Down ? Vector3.Forward : Vector3.Up;
                 Vector3 left = Vector3.Normalize (Vector3.Cross (position, up));
-                TexturedRectangleInfo info = new TexturedRectangleInfo (
-                    // texturename: "sky1",
-                    texture: CachedSkyTexture (direction),
-                    origin: position,
+                Parallelogram parallelogram = new Parallelogram (
+                    device: Screen.GraphicsDevice,
                     left: left,
                     width: 2 * Distance,
                     up: up,
-                    height: 2 * Distance
+                    height: 2 * Distance,
+                    origin: position,
+                    normalToCenter: true
                 );
-
-                rectangles.Add (new TexturedRectangle (Screen, info));
+                rectangles [i] = parallelogram;
+                textures [i] = CachedSkyTexture (direction);
+                ++i;
             }
-            assignWorld ();
         }
 
         private Texture2D CachedSkyTexture (Direction direction)
@@ -194,13 +185,6 @@ namespace Knot3.Game.Models
             return texture;
         }
 
-        private void assignWorld ()
-        {
-            foreach (TexturedRectangle rect in rectangles) {
-                rect.World = World;
-            }
-        }
-
         /// <summary>
         /// Gibt den Ursprung des Knotens zurück.
         /// </summary>
@@ -212,16 +196,33 @@ namespace Knot3.Game.Models
             if (World.Camera.MaxPositionDistance + 500 != Distance) {
                 Distance = World.Camera.MaxPositionDistance + 500;
             }
-            foreach (TexturedRectangle rect in rectangles) {
-                rect.Update (time);
-            }
         }
 
         [ExcludeFromCodeCoverageAttribute]
         public void Draw (GameTime time)
         {
-            foreach (TexturedRectangle rect in rectangles) {
-                rect.Draw (time);
+            effect.World = World.Camera.WorldMatrix;
+            effect.Projection = World.Camera.ProjectionMatrix;
+
+            Matrix skyboxView = World.Camera.ViewMatrix;
+            skyboxView.M41 = 0;
+            skyboxView.M42 = 0;
+            skyboxView.M43 = 0;
+            effect.View = skyboxView;
+
+            effect.AmbientLightColor = new Vector3 (0.8f, 0.8f, 0.8f);
+            effect.TextureEnabled = true;
+            effect.VertexColorEnabled = false;
+
+            effect.LightingEnabled = false;
+            string effectName = Config.Default ["video", "knot-shader", "default"];
+            if (Screen.InputManager.KeyHeldDown (Keys.F7) || effectName == "celshader") {
+                effect.EnableDefaultLighting ();  // Beleuchtung aktivieren
+            }
+
+            for (int i = 0; i < rectangles.Length; ++i) {
+                effect.Texture = textures [i];
+                rectangles [i].Draw (effect);
             }
         }
 
@@ -236,9 +237,7 @@ namespace Knot3.Game.Models
         /// </summary>
         public IEnumerator<IGameObject> GetEnumerator ()
         {
-            foreach (TexturedRectangle rect in rectangles) {
-                yield return rect;
-            }
+            yield break;
         }
 
         // Explicit interface implementation for nongeneric interface

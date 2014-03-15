@@ -27,32 +27,23 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
-
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-
 using Microsoft.Xna.Framework;
-
 using Knot3.Framework.Core;
 using Knot3.Framework.Models;
 using Knot3.Framework.Utilities;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Knot3.Game.Models
 {
     /// <summary>
-    /// Ein 3D-Modell, das eine Kante darstellt.
+    /// Ein 3D-Modell, das eine Flächen zwischen Kanten darstellt.
     /// </summary>
     [ExcludeFromCodeCoverageAttribute]
-    public sealed class PipeModel : GamePrimitive
+    public sealed class RectangleModel : GamePrimitive
     {
-        /// <summary>
-        /// Enthält Informationen über die darzustellende Kante.
-        /// </summary>
-        public new Pipe Info { get { return base.Info as Pipe; } set { base.Info = value; } }
-
-        public override BoundingSphere[] Bounds { get { return _bounds; } }
-
-        private BoundingSphere[] _bounds;
+        public override BoundingSphere[] Bounds { get { return new BoundingSphere[0]; } }
 
         public bool IsVirtual { get; set; }
 
@@ -60,48 +51,59 @@ namespace Knot3.Game.Models
         /// Erstellt ein neues 3D-Modell mit dem angegebenen Spielzustand und den angegebenen Spielinformationen.
         /// [base=screen, info]
         /// </summary>
-        public PipeModel (IScreen screen, Pipe info)
-        : base (screen, info, () => PrimitiveSingleton (screen))
+        public RectangleModel (IScreen screen, Texture2D texture, Parallelogram parallelogram, Vector3 position)
+            : base (screen, new GameModelInfo(modelname: ""), () => parallelogram)
         {
-            float length = (info.PositionTo - info.PositionFrom).Length ();
-            float radius = 6.25f;
-            _bounds = VectorHelper.CylinderBounds (
-                          length: length,
-                          radius: radius,
-                          direction: Info.Edge.Direction.Vector,
-                          position: info.PositionFrom
-                      );
-        }
-
-        private static Cylinder PrimitiveSingleton (IScreen screen)
-        {
-            int tessellation = Primitive.CurrentCircleTessellation;
-            return new Cylinder (
-                       device: screen.GraphicsDevice,
-                       height: 1f,
-                       diameter: 1f,
-                       tessellation: tessellation
-                   );
+            Texture = texture;
+            Info.Position = position;
         }
 
         [ExcludeFromCodeCoverageAttribute]
         public override void Draw (GameTime time)
         {
-            Coloring = new SingleColor (Info.Edge);
-            if (World.SelectedObject == this) {
-                Coloring.Highlight (intensity: 0.40f, color: Color.White);
+            base.Draw (time);
+        }
+
+        public static bool operator == (RectangleModel a, RectangleModel b)
+        {
+            // If both are null, or both are same instance, return true.
+            if (System.Object.ReferenceEquals (a, b)) {
+                return true;
             }
-            else if (IsVirtual) {
-                Coloring.Highlight (intensity: 0.5f, color: Color.White);
+    
+            // If one is null, but not both, return false.
+            if (((object)a == null) || ((object)b == null)) {
+                return false;
             }
-            else if (Info.Knot != null && Info.Knot.SelectedEdges.Contains (Info.Edge)) {
-                Coloring.Highlight (intensity: 0.80f, color: Color.White);
+    
+            // Return true if the fields match:
+            return a.Info.Position == b.Info.Position;
+        }
+
+        public static bool operator != (RectangleModel a, RectangleModel b)
+        {
+            return !(a == b);
+        }
+
+        public bool Equals (RectangleModel other)
+        {
+            return this.Info.Position == other.Info.Position;
+        }
+
+        public override bool Equals (object obj)
+        {
+            if (obj is RectangleModel) {
+                return Equals ((RectangleModel)obj);
             }
             else {
-                Coloring.Unhighlight ();
+                return false;
             }
+        }
 
-            base.Draw (time);
+        [ExcludeFromCodeCoverageAttribute]
+        public override int GetHashCode ()
+        {
+            return Info.Position.GetHashCode ();
         }
     }
 }

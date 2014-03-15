@@ -92,6 +92,7 @@
     <Compile Include="Knot3.Framework\Models\GamePrimitive.cs" />
     <Compile Include="Knot3.Framework\Models\IGameObject.cs" />
     <Compile Include="Knot3.Framework\Models\ModelColoring.cs" />
+    <Compile Include="Knot3.Framework\Models\Parallelogram.cs" />
     <Compile Include="Knot3.Framework\Models\Primitive.cs" />
     <Compile Include="Knot3.Framework\Models\Torus.cs" />
     <Compile Include="Knot3.Framework\Platform\ContentLoader-MG.cs" />

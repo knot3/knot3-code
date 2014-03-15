@@ -38,6 +38,7 @@ using Microsoft.Xna.Framework;
 using Knot3.Framework.Core;
 using Knot3.Framework.Math;
 using Knot3.Framework.Utilities;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Knot3.Framework.Models
 {
@@ -50,6 +51,11 @@ namespace Knot3.Framework.Models
         /// Die Farbe des Modells.
         /// </summary>
         public ModelColoring Coloring { get; set; }
+
+        /// <summary>
+        /// Die Textur des Modells.
+        /// </summary>
+        public Texture2D Texture { get; set; }
 
         /// <summary>
         /// Die Modellinformationen wie Position, Skalierung und der Dateiname des 3D-Modells.
@@ -229,6 +235,14 @@ namespace Knot3.Framework.Models
             Vector3 frustumBoundsMax = boundsMax + Vector3.Normalize (toCameraTarget) * MathHelper.Min (200, toCameraTarget.Length ());
             _frustumBoundingBox = new BoundingBox (frustumBoundsMin, frustumBoundsMax);
             _inFrustum = World.Camera.ViewFrustum.FastIntersects (ref _frustumBoundingBox);
+        }
+
+        public void Dispose ()
+        {
+            if (Texture != null) {
+                Texture.Dispose ();
+                Texture = null;
+            }
         }
     }
 }

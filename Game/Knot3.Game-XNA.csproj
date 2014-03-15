@@ -159,10 +159,9 @@
     <Compile Include="Knot3.Game\Models\ModelMouseHandler.cs" />
     <Compile Include="Knot3.Game\Models\Pipe.cs" />
     <Compile Include="Knot3.Game\Models\PipeModel.cs" />
+    <Compile Include="Knot3.Game\Models\RectangleModel.cs" />
     <Compile Include="Knot3.Game\Models\ShadowModel.cs" />
     <Compile Include="Knot3.Game\Models\SkyCube.cs" />
-    <Compile Include="Knot3.Game\Models\TexturedRectangle.cs" />
-    <Compile Include="Knot3.Game\Models\TexturedRectangleInfo.cs" />
     <Compile Include="Knot3.Game\Program.cs" />
     <Compile Include="Knot3.Game\Screens\AudioSettingsScreen.cs" />
     <Compile Include="Knot3.Game\Screens\ChallengeCreateScreen.cs" />
