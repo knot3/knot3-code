@@ -101,8 +101,8 @@ namespace Knot3.Game.Input
         private void SelectEdges (GameTime time)
         {
             // Überprüfe, ob das Objekt über dem die Maus liegt, eine Pipe ist
-            if (World.SelectedObject is PipeModel) {
-                PipeModel pipe = World.SelectedObject as PipeModel;
+            if (World.SelectedObject is Pipe) {
+                Pipe pipe = World.SelectedObject as Pipe;
 
                 // Bei einem Linksklick...
                 if (Screen.InputManager.LeftMouseButton == ClickState.SingleClick) {
@@ -110,7 +110,7 @@ namespace Knot3.Game.Input
                     World.Redraw = true;
 
                     try {
-                        Edge selectedEdge = pipe.Info.Edge;
+                        Edge selectedEdge = pipe.Edge;
                         Log.Debug ("knot.Count () = ", Knot.Count ());
 
                         // Ctrl gedrückt
@@ -136,7 +136,7 @@ namespace Knot3.Game.Input
             }
 
             // Wenn das selektierte Objekt weder Kante noch Pfeil ist...
-            else if (!(World.SelectedObject is ArrowModel)) {
+            else if (!(World.SelectedObject is Arrow)) {
                 // dann leert ein Linksklick die Selektion
                 if (Screen.InputManager.LeftMouseButton == ClickState.SingleClick) {
                     Knot.ClearSelection ();
@@ -151,7 +151,7 @@ namespace Knot3.Game.Input
         {
             // Wenn die Maus über einer Kante oder einem Pfeil liegt
             IGameObject selectedObject = World.SelectedObject;
-            if (World.SelectedObject is PipeModel || World.SelectedObject is ArrowModel) {
+            if (World.SelectedObject is Pipe || World.SelectedObject is Arrow) {
                 // Berechne die Mausposition in 3D
                 Vector3 currentMousePosition = World.Camera.To3D (position: Screen.InputManager.CurrentMousePosition, nearTo: selectedObject.Center);
 
@@ -166,9 +166,9 @@ namespace Knot3.Game.Input
                     }
 
                     // Setze die Positionen der Shadowobjekte abhängig von der Mausposition
-                    if (selectedObject is ArrowModel) {
+                    if (selectedObject is Arrow) {
                         // Wenn ein Pfeil selektiert wurde, ist die Verschiebe-Richtung eindeutig festgelegt
-                        UpdateShadowPipes (currentMousePosition, (selectedObject as ArrowModel).Info.Direction, time);
+                        UpdateShadowPipes (currentMousePosition, (selectedObject as Arrow).Direction, time);
                     }
                     else {
                         // Wenn etwas anderes (eine Kante) selektiert wurde,
@@ -185,9 +185,9 @@ namespace Knot3.Game.Input
                 // Wenn die Verschiebe-Aktion beendet ist (wenn die Maus losgelassen wurde)
                 else if (Screen.InputManager.CurrentInputAction == InputAction.SelectedObjectMove) {
                     // Führe die finale Verschiebung durch
-                    if (selectedObject is ArrowModel) {
+                    if (selectedObject is Arrow) {
                         // Wenn ein Pfeil selektiert wurde, ist die Verschiebe-Richtung eindeutig festgelegt
-                        MovePipes (currentMousePosition, (selectedObject as ArrowModel).Info.Direction, time);
+                        MovePipes (currentMousePosition, (selectedObject as Arrow).Direction, time);
                     }
                     else {
                         // Wenn etwas anderes (eine Kante) selektiert wurde,

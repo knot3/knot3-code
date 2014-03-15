@@ -96,10 +96,10 @@
     <Compile Include="Knot3.Framework\Models\CurvedCylinder.cs" />
     <Compile Include="Knot3.Framework\Models\Cylinder.cs" />
     <Compile Include="Knot3.Framework\Models\GameModel.cs" />
-    <Compile Include="Knot3.Framework\Models\GameModelInfo.cs" />
+    <Compile Include="Knot3.Framework\Models\GameObject.cs" />
     <Compile Include="Knot3.Framework\Models\GameObjectDistance.cs" />
-    <Compile Include="Knot3.Framework\Models\GameObjectInfo.cs" />
     <Compile Include="Knot3.Framework\Models\GamePrimitive.cs" />
+    <Compile Include="Knot3.Framework\Models\IGameModel.cs" />
     <Compile Include="Knot3.Framework\Models\IGameObject.cs" />
     <Compile Include="Knot3.Framework\Models\ModelColoring.cs" />
     <Compile Include="Knot3.Framework\Models\Parallelogram.cs" />

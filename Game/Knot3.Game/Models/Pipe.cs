@@ -27,16 +27,16 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
-
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-
 using Microsoft.Xna.Framework;
-
 using Knot3.Framework.Math;
 using Knot3.Framework.Models;
-
 using Knot3.Game.Data;
+using Knot3.Framework.Core;
+using Knot3.Framework.Utilities;
+using System.Linq;
+using System;
 
 namespace Knot3.Game.Models
 {
@@ -44,7 +44,7 @@ namespace Knot3.Game.Models
     /// Enthält Informationen über ein 3D-Modell, das eine Kante darstellt.
     /// </summary>
     [ExcludeFromCodeCoverageAttribute]
-    public sealed class Pipe : GameModelInfo
+    public sealed class Pipe : GamePrimitive
     {
         /// <summary>
         /// Die Kante, die durch das 3D-Modell dargestellt wird.
@@ -66,8 +66,9 @@ namespace Knot3.Game.Models
         /// </summary>
         public Vector3 PositionTo { get; set; }
 
-        private Dictionary<Direction, Angles3> RotationMap = new Dictionary<Direction, Angles3> ()
-        {
+        public bool IsVirtual { get; set; }
+
+        private Dictionary<Direction, Angles3> RotationMap = new Dictionary<Direction, Angles3> () {
             { Direction.Up, 		Angles3.FromDegrees (90, 0, 0) },
             { Direction.Down, 		Angles3.FromDegrees (270, 0, 0) },
             { Direction.Right, 		Angles3.FromDegrees (0, 90, 0) },
@@ -80,9 +81,11 @@ namespace Knot3.Game.Models
         /// Erstellt ein neues Informationsobjekt für ein 3D-Modell, das eine Kante darstellt.
         /// [base="pipe1", Angles3.Zero, new Vector3 (10,10,10)]
         /// </summary>
-        public Pipe (INodeMap nodeMap, Knot knot, Edge edge)
-        : base ("pipe-straight", Angles3.Zero, new Vector3 (12.5f, 12.5f, 50f))
+        public Pipe (IScreen screen, INodeMap nodeMap, Knot knot, Edge edge)
+        : base (screen: screen)
         {
+            UniqueKey = edge.ToString();
+
             // Weise Knoten und Kante zu
             Knot = knot;
             Edge = edge;
@@ -93,6 +96,7 @@ namespace Knot3.Game.Models
             PositionFrom = node1;
             PositionTo = node2;
             Position = node1.CenterBetween (node2);
+            Scale = new Vector3 (12.5f, 12.5f, 50f);
 
             // Kanten sind verschiebbar und auswählbar
             IsMovable = true;
@@ -114,21 +118,53 @@ namespace Knot3.Game.Models
                 Scale += new Vector3 (0, 0, 25f);
                 Position += edge.Direction * 12.5f;
             }
+
+            // Bounds
+            float length = (PositionTo - PositionFrom).Length ();
+            float radius = 6.25f;
+            Bounds = VectorHelper.CylinderBounds (
+                length: length,
+                radius: radius,
+                direction: Edge.Direction.Vector,
+                position: PositionFrom
+            );
         }
 
-        public override bool Equals (GameObjectInfo other)
+        protected override Primitive CreativePrimitive ()
         {
-            if (other == null) {
-                return false;
+            int tessellation = Primitive.CurrentCircleTessellation;
+            return new Cylinder (
+                device: Screen.GraphicsDevice,
+                height: 1f,
+                diameter: 1f,
+                tessellation: tessellation
+            );
+        }
+
+        [ExcludeFromCodeCoverageAttribute]
+        public override void Draw (GameTime time)
+        {
+            Coloring = new SingleColor (color: Edge.Color);
+            if (World.SelectedObject == this) {
+                Coloring.Highlight (intensity: 0.40f, color: Color.White);
+            }
+            else if (IsVirtual) {
+                Coloring.Highlight (intensity: 0.5f, color: Color.White);
+            }
+            else if (Knot != null && Knot.SelectedEdges.Contains (Edge)) {
+                Coloring.Highlight (intensity: 0.80f, color: Color.White);
+            }
+            else {
+                Coloring.Unhighlight ();
             }
 
-            if (other is Pipe) {
-                if (this.Edge == (other as Pipe).Edge && this.Scale == (other as Pipe).Scale && base.Equals (other)) {
-                    return true;
-                }
-                else {
-                    return false;
-                }
+            base.Draw (time);
+        }
+
+        public override bool Equals (IGameObject other)
+        {
+            if (other != null && other is Pipe && Edge == (other as Pipe).Edge) {
+                return true;
             }
             else {
                 return base.Equals (other);

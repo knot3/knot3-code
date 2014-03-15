@@ -166,7 +166,7 @@ namespace Knot3.VisualTests
 
         private Vector3 KnotCenter (Knot knot)
         {
-            NodeMap nodeMap = new NodeMap ();
+            NodeMap nodeMap = new NodeMap (screen: this);
             nodeMap.Edges = knot;
             nodeMap.OnEdgesChanged ();
             Vector3 center = Vector3.Zero;

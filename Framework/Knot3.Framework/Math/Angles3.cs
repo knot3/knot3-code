@@ -40,7 +40,7 @@ namespace Knot3.Framework.Math
     /// Sie bietet Möglichkeit vordefinierte Winkelwerte zu verwenden, z.B. stellt Zero den Nullvektor dar.
     /// Die Umwandlung zwischen verschiedenen Winkelmaßen wie Grad- und Bogenmaß unterstützt sie durch entsprechende Methoden.
     /// </summary>
-    public sealed class Angles3 : IEquatable<Angles3>
+    public struct Angles3 : IEquatable<Angles3>
     {
         /// <summary>
         /// Der Winkel im Bogenmaß für das Rollen um die X-Achse. Siehe statische Methode Matrix.CreateRotationX (float) des XNA-Frameworks.
@@ -60,15 +60,13 @@ namespace Knot3.Framework.Math
         /// <summary>
         /// Eine statische Eigenschaft mit dem Wert X = 0, Y = 0, Z = 0.
         /// </summary>
-        public static Angles3 Zero
-        {
-            get { return new Angles3 (0f, 0f, 0f); }
-        }
+        public static Angles3 Zero { get { return new Angles3 (0f, 0f, 0f); } }
 
         /// <summary>
         /// Konstruiert ein neues Angles3-Objekt mit drei gegebenen Winkeln im Bogenmaß.
         /// </summary>
         public Angles3 (float x, float y, float z)
+        : this()
         {
             X = x;
             Y = y;
@@ -76,6 +74,7 @@ namespace Knot3.Framework.Math
         }
 
         public Angles3 (Vector3 v)
+        : this()
         {
             X = v.X;
             Y = v.Y;
@@ -122,9 +121,7 @@ namespace Knot3.Framework.Math
 
         public static bool operator == (Angles3 value1, Angles3 value2)
         {
-            return value1.X == value2.X
-                   && value1.Y == value2.Y
-                   && value1.Z == value2.Z;
+            return value1.X == value2.X && value1.Y == value2.Y && value1.Z == value2.Z;
         }
 
         public static bool operator != (Angles3 value1, Angles3 value2)

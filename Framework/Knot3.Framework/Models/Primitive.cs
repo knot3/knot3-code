@@ -53,7 +53,6 @@ namespace Knot3.Framework.Models
 
         public Primitive (Vector3 translation, Angles3 rotation)
         {
-            rotation = rotation ?? Angles3.Zero;
             vertexTransform = Matrix.CreateTranslation (translation) * Matrix.CreateFromYawPitchRoll (rotation.Y, rotation.X, rotation.Z);
         }
 

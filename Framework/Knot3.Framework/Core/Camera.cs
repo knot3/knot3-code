@@ -59,10 +59,12 @@ namespace Knot3.Framework.Core
         {
             get { return _position; }
             set {
-                OnViewChanged ();
-                if ((value.X.Abs () <= MaxPositionDistance && value.Y.Abs () <= MaxPositionDistance
-                        && value.Z.Abs () <= MaxPositionDistance) || MaxPositionDistance == 0) {
-                    _position = value;
+                if (_position != value) {
+                    if ((value.X.Abs () <= MaxPositionDistance && value.Y.Abs () <= MaxPositionDistance
+                         && value.Z.Abs () <= MaxPositionDistance) || MaxPositionDistance == 0) {
+                        OnViewChanged ();
+                        _position = value;
+                    }
                 }
             }
         }
@@ -76,8 +78,10 @@ namespace Knot3.Framework.Core
         {
             get { return _target; }
             set {
-                OnViewChanged ();
-                _target = value;
+                if (_target != value) {
+                    OnViewChanged ();
+                    _target = value;
+                }
             }
         }
 

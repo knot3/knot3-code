@@ -27,11 +27,8 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
-
 using System.Diagnostics.CodeAnalysis;
-
 using Microsoft.Xna.Framework;
-
 using Knot3.Framework.Core;
 using Knot3.Framework.Models;
 
@@ -40,13 +37,13 @@ namespace Knot3.Game.Development
     [ExcludeFromCodeCoverageAttribute]
     public class DebugModel:GameModel
     {
-        public DebugModel (IScreen screen, DebugModelInfo info) : base (screen,info)
+        public DebugModel (IScreen screen, string modelname) : base (screen: screen, modelname: modelname)
         {
         }
 
         public override void Update (GameTime gameTime)
         {
-            Info.Position = World.Camera.Target;
+            Position = World.Camera.Target;
             base.Update (gameTime);
         }
     }

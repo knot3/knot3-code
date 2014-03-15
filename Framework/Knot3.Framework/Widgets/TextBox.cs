@@ -79,7 +79,7 @@ namespace Knot3.Framework.Widgets
 
                 // zeichne die Schrift
                 Color foreground = ForegroundColor * (IsEnabled ? 1f : 0.5f);
-                Vector2 scale = new Vector2 (0.1f, 0.1f) // Standard-Skalierung ist 10%
+                Vector2 scale = new Vector2 (0.15f, 0.15f) // Standard-Skalierung ist 10%
                 / new Vector2 (800, 600) // bei 800x600
                 * Screen.Bounds.Size.AbsoluteVector; // Auf aktuelle Auflösung hochrechnen
                 string wrappedText = parseText (Text, scale);

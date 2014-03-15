@@ -27,15 +27,12 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
-
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-
 using Knot3.Framework.Core;
 using Knot3.Framework.Math;
 using Knot3.Framework.Utilities;
@@ -43,10 +40,8 @@ using Knot3.Framework.Utilities;
 namespace Knot3.Framework.Models
 {
     [ExcludeFromCodeCoverageAttribute]
-    public abstract class GamePrimitive : IGameObject
+    public abstract class GamePrimitive : GameObject, IGameModel
     {
-        GameObjectInfo IGameObject.Info { get { return Info; } }
-
         /// <summary>
         /// Die Farbe des Modells.
         /// </summary>
@@ -58,9 +53,9 @@ namespace Knot3.Framework.Models
         public Texture2D Texture { get; set; }
 
         /// <summary>
-        /// Die Modellinformationen wie Position, Skalierung und der Dateiname des 3D-Modells.
+        /// Der Dateiname des Modells.
         /// </summary>
-        public GameModelInfo Info { get; protected set; }
+        protected string Modelname { get; set; }
 
         /// <summary>
         /// Die Klasse des XNA-Frameworks, die ein automatisch generiertes 3D-Modell repräsentiert.
@@ -68,47 +63,13 @@ namespace Knot3.Framework.Models
         public Primitive Primitive
         {
             get {
-                string key = this.GetType ().Name + ":" + Info.Modelname;
+                string key = this.GetType ().Name + ":" + Modelname;
                 if (_primitiveCache.ContainsKey (key)) {
                     return _primitiveCache [key];
                 }
                 else {
-                    Console.WriteLine (key);
+                    return _primitiveCache [key] = CreativePrimitive ();
                 }
-                return _primitiveCache [key] = PrimitiveFunc ();
-            }
-        }
-
-        private Func<Primitive> PrimitiveFunc;
-
-        /// <summary>
-        /// Die Spielwelt, in der sich das 3D-Modell befindet.
-        /// </summary>
-        public World World
-        {
-            get { return _world; }
-            set {
-                if (_world != null) {
-                    _world.Camera.OnViewChanged -= OnViewChanged;
-                }
-                _world = value;
-                if (value != null) {
-                    _world.Camera.OnViewChanged += OnViewChanged;
-                    OnViewChanged ();
-                }
-            }
-        }
-
-        private World _world;
-
-        /// <summary>
-        /// Die Weltmatrix des 3D-Modells in der angegebenen Spielwelt.
-        /// </summary>
-        public Matrix WorldMatrix
-        {
-            get {
-                UpdatePrecomputed ();
-                return _worldMatrix;
             }
         }
 
@@ -128,34 +89,23 @@ namespace Knot3.Framework.Models
         /// <summary>
         /// Erstellt ein neues 3D-Modell in dem angegebenen Spielzustand mit den angegebenen Modellinformationen.
         /// </summary>
-        public GamePrimitive (IScreen screen, GameModelInfo info, Func<Primitive> primitiveFunc)
+        public GamePrimitive (IScreen screen)
         {
             Screen = screen;
-            Info = info;
-            PrimitiveFunc = primitiveFunc;
 
             // default values
             Coloring = new SingleColor (Color.Transparent);
         }
 
+        protected abstract Primitive CreativePrimitive();
+
         /// <summary>
         /// Gibt die Mitte des 3D-Modells zurück.
         /// </summary>
-        public virtual Vector3 Center
+        public override Vector3 Center
         {
             get {
-                return Primitive.Center / Info.Scale + Info.Position;
-            }
-        }
-
-        /// <summary>
-        /// Wird für jeden Frame aufgerufen.
-        /// </summary>
-        [ExcludeFromCodeCoverageAttribute]
-        public virtual void Update (GameTime time)
-        {
-            if (Info != null && Info.Position.Length () > World.Camera.MaxPositionDistance) {
-                World.Camera.MaxPositionDistance = Info.Position.Length () + 250;
+                return Primitive.Center / Scale + Position;
             }
         }
 
@@ -163,78 +113,11 @@ namespace Knot3.Framework.Models
         /// Zeichnet das 3D-Modell in der angegebenen Spielwelt mit dem aktuellen Rendereffekt der Spielwelt.
         /// </summary>
         [ExcludeFromCodeCoverageAttribute]
-        public virtual void Draw (GameTime time)
+        public override void Draw (GameTime time)
         {
-            if (Info.IsVisible) {
-                if (InCameraFrustum) {
-                    Screen.CurrentRenderEffects.CurrentEffect.DrawPrimitive (this, time);
-                }
+            if (IsVisible && InCameraFrustum) {
+                Screen.CurrentRenderEffects.CurrentEffect.DrawPrimitive (this, time);
             }
-        }
-
-        /// <summary>
-        /// Überprüft, ob der Mausstrahl das 3D-Modell schneidet.
-        /// </summary>
-        public virtual GameObjectDistance Intersects (Ray ray)
-        {
-            if (ray.Intersects (_overallBoundingBox) != null) {
-                foreach (BoundingSphere sphere in Bounds) {
-                    float? distance = ray.Intersects (sphere);
-                    if (distance != null) {
-                        GameObjectDistance intersection = new GameObjectDistance () {
-                            Object = this, Distance = distance.Value
-                        };
-                        return intersection;
-                    }
-                }
-            }
-            return null;
-        }
-
-        private Vector3 _scale;
-        private Angles3 _rotation;
-        private Vector3 _position;
-        private Matrix _worldMatrix;
-        private bool _inFrustum;
-        private BoundingBox _overallBoundingBox;
-        private BoundingBox _frustumBoundingBox;
-
-        public abstract BoundingSphere[] Bounds { get; }
-
-        protected bool InCameraFrustum { get { return _inFrustum; } }
-
-        private void UpdatePrecomputed ()
-        {
-            if (Info.Scale != _scale || Info.Rotation != _rotation || Info.Position != _position) {
-                // world matrix
-                _worldMatrix = Matrix.CreateScale (Info.Scale)
-                               * Matrix.CreateFromYawPitchRoll (Info.Rotation.Y, Info.Rotation.X, Info.Rotation.Z)
-                               * Matrix.CreateTranslation (Info.Position);
-
-                // attrs
-                _scale = Info.Scale;
-                _rotation = Info.Rotation;
-                _position = Info.Position;
-            }
-        }
-
-        private void OnViewChanged ()
-        {
-            UpdatePrecomputed ();
-
-            // bounding box which contains the whole object (and maybe more)
-            Vector3 overallBoundsMin = Info.Position + Vector3.One * 200;
-            Vector3 overallBoundsMax = Info.Position - Vector3.One * 200;
-            _overallBoundingBox = new BoundingBox (overallBoundsMin, overallBoundsMax);
-
-            // bounding box for view frustum intersects check
-            Vector3 boundsMin = Info.Position + Vector3.One;
-            Vector3 boundsMax = Info.Position - Vector3.One;
-            Vector3 toCameraTarget = World.Camera.Target - Info.Position;
-            Vector3 frustumBoundsMin = boundsMin + Vector3.Normalize (toCameraTarget) * MathHelper.Min (200, toCameraTarget.Length ());
-            Vector3 frustumBoundsMax = boundsMax + Vector3.Normalize (toCameraTarget) * MathHelper.Min (200, toCameraTarget.Length ());
-            _frustumBoundingBox = new BoundingBox (frustumBoundsMin, frustumBoundsMax);
-            _inFrustum = World.Camera.ViewFrustum.FastIntersects (ref _frustumBoundingBox);
         }
 
         public void Dispose ()

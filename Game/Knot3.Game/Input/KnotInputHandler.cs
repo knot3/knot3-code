@@ -235,7 +235,7 @@ namespace Knot3.Game.Input
             else {
                 // und die linke Maustaste gedrückt gehalten wird
                 if (Screen.InputManager.CurrentMouseState.LeftButton == ButtonState.Pressed) {
-                    if (world.SelectedObject != null && world.SelectedObject.Info.IsMovable) {
+                    if (world.SelectedObject != null && world.SelectedObject.IsMovable) {
                         action = InputAction.SelectedObjectShadowMove;
                     }
                     else {
@@ -244,7 +244,7 @@ namespace Knot3.Game.Input
                 }
                 // und die linke Maustaste gerade losgelassen wurde
                 else if (Screen.InputManager.CurrentMouseState.LeftButton == ButtonState.Released && Screen.InputManager.PreviousMouseState.LeftButton == ButtonState.Pressed) {
-                    if (world.SelectedObject != null && world.SelectedObject.Info.IsMovable) {
+                    if (world.SelectedObject != null && world.SelectedObject.IsMovable) {
                         action = InputAction.SelectedObjectMove;
                     }
                     else {

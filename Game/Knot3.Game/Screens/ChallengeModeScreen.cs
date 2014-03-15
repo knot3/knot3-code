@@ -401,7 +401,7 @@ namespace Knot3.Game.Screens
             AudioManager.BackgroundMusic = Knot3Sound.ChallengeMusic;
 
             // Einstellungen anwenden
-            debugBoundings.Info.IsVisible = Config.Default ["debug", "show-boundings", false];
+            debugBoundings.IsVisible = Config.Default ["debug", "show-boundings", false];
         }
 
         enum ChallengeModeState {

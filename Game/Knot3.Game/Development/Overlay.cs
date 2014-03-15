@@ -72,8 +72,7 @@ namespace Knot3.Game.Development
             effect.VertexColorEnabled = true;
             effect.World = Matrix.CreateFromYawPitchRoll (0, 0, 0);
             if (Config.Default ["video", "camera-overlay", true]) {
-                DebugModelInfo info = new DebugModelInfo ("sphere");
-                debugModel = new DebugModel (screen, info);
+                debugModel = new DebugModel (screen, "sphere");
                 world.Add (debugModel);
             }
 
@@ -179,13 +178,13 @@ namespace Knot3.Game.Development
                 Vector3 selectedObjectCenter = World.SelectedObject.Center;
                 DrawVectorCoordinates (selectedObjectCenter, width2, width3, width4, height);
 
-                if (World.SelectedObject is PipeModel) {
+                if (World.SelectedObject is Pipe) {
                     DrawString ("Pipe: ", width1, height, Color.White);
-                    PipeModel pipe = World.SelectedObject as PipeModel;
+                    Pipe pipe = World.SelectedObject as Pipe;
                     height += lineHeight;
-                    string str = pipe.Info.Edge.Direction;
-                    if (pipe.Info.Knot != null) {
-                        str += "   #" + pipe.Info.Knot.ToList ().FindIndex (g => g == pipe.Info.Edge).ToString ();
+                    string str = pipe.Edge.Direction;
+                    if (pipe.Knot != null) {
+                        str += "   #" + pipe.Knot.ToList ().FindIndex (g => g == pipe.Edge).ToString ();
                     }
                     DrawString (str, width2, height, Color.Yellow);
                 }

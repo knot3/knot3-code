@@ -47,31 +47,17 @@ using Knot3.Game.Data;
 namespace Knot3.Game.Models
 {
     [ExcludeFromCodeCoverageAttribute]
-    public class SkyCube : IGameObject, IEnumerable<IGameObject>
+    public class SkyCube : GameObject, IEnumerable<IGameObject>
     {
-        /// <summary>
-        /// Der dazugehörige Screen.
-        /// </summary>
         private IScreen Screen;
-
-        /// <summary>
-        /// Enthält Informationen über die Position des Mitte der Welt.
-        /// </summary>
-        public GameObjectInfo Info { get; private set; }
-
-        /// <summary>
-        /// Die Spielwelt.
-        /// </summary>
-        public World World { get; set; }
-
-        public Matrix WorldMatrix { get { return Matrix.Identity; } }
-
         /// <summary>
         /// Die Distanz zu den Wänden vom Ursprung aus.
         /// </summary>
         public float Distance
         {
-            get { return _distance; }
+            get {
+                return _distance;
+            }
             set {
                 _distance = value;
                 ConstructRectangles ();
@@ -107,7 +93,7 @@ namespace Knot3.Game.Models
         public SkyCube (IScreen screen, Vector3 position, float distance)
         {
             Screen = screen;
-            Info = new GameObjectInfo (position: position);
+            Position = position;
             random = new Random ();
             effect = new BasicEffect (screen.GraphicsDevice);
             Distance = distance;
@@ -189,13 +175,8 @@ namespace Knot3.Game.Models
             return texture;
         }
 
-        /// <summary>
-        /// Gibt den Ursprung des Knotens zurück.
-        /// </summary>
-        public Vector3 Center { get { return Info.Position; } }
-
         [ExcludeFromCodeCoverageAttribute]
-        public void Update (GameTime time)
+        public override void Update (GameTime time)
         {
             if (World.Camera.MaxPositionDistance + 500 != Distance) {
                 Distance = World.Camera.MaxPositionDistance + 500;
@@ -203,8 +184,12 @@ namespace Knot3.Game.Models
         }
 
         [ExcludeFromCodeCoverageAttribute]
-        public void Draw (GameTime time)
+        public override void Draw (GameTime time)
         {
+            // Setze den Viewport auf den der aktuellen Spielwelt
+            Viewport original = Screen.Viewport;
+            Screen.Viewport = World.Viewport;
+
             effect.World = World.Camera.WorldMatrix;
             effect.Projection = World.Camera.ProjectionMatrix;
 
@@ -228,9 +213,12 @@ namespace Knot3.Game.Models
                 effect.Texture = textures [i];
                 rectangles [i].Draw (effect);
             }
+
+            // Setze den Viewport wieder auf den ganzen Screen
+            Screen.Viewport = original;
         }
 
-        public GameObjectDistance Intersects (Ray ray)
+        public override GameObjectDistance Intersects (Ray ray)
         {
             return null;
         }

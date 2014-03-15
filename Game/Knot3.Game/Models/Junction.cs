@@ -27,22 +27,19 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-
 using Microsoft.Xna.Framework;
-
 using Knot3.Framework.Math;
 using Knot3.Framework.Models;
 using Knot3.Framework.Platform;
 using Knot3.Framework.Storage;
 using Knot3.Framework.Utilities;
-
 using Knot3.Game.Data;
+using Knot3.Framework.Core;
 
 namespace Knot3.Game.Models
 {
@@ -50,7 +47,7 @@ namespace Knot3.Game.Models
     /// Enthält Informationen über ein 3D-Modell, das einen Kantenübergang darstellt.
     /// </summary>
     [ExcludeFromCodeCoverageAttribute]
-    public sealed class Junction : GameModelInfo, IJunction
+    public sealed class Junction : GamePrimitive, IJunction
     {
         /// <summary>
         /// Die Kante vor dem Übergang.
@@ -67,6 +64,8 @@ namespace Knot3.Game.Models
         private INodeMap NodeMap;
 
         public int Index { get; private set; }
+
+        public bool IsVirtual { get; set; }
 
         public List<IJunction> JunctionsAtNode
         {
@@ -112,8 +111,7 @@ namespace Knot3.Game.Models
         }
 
         private static Dictionary<Tuple<Direction, Direction>, JunctionDirection> angledJunctionDirectionMap
-            = new Dictionary<Tuple<Direction, Direction>, JunctionDirection> ()
-        {
+            = new Dictionary<Tuple<Direction, Direction>, JunctionDirection> () {
             { Tuple.Create (Direction.Up, Direction.Up),               JunctionDirection.UpUp },
             { Tuple.Create (Direction.Up, Direction.Left),             JunctionDirection.UpLeft },
             { Tuple.Create (Direction.Up, Direction.Right),            JunctionDirection.UpRight },
@@ -151,8 +149,7 @@ namespace Knot3.Game.Models
             { Tuple.Create (Direction.Backward, Direction.Down),       JunctionDirection.UpForward },
         };
         private static Dictionary<JunctionDirection, Angles3> angledJunctionRotationMap
-            = new Dictionary<JunctionDirection, Angles3> ()
-        {
+            = new Dictionary<JunctionDirection, Angles3> () {
             { JunctionDirection.UpForward,         Angles3.FromDegrees (0, 0, 0) },
             { JunctionDirection.UpBackward,        Angles3.FromDegrees (0, 180, 0) },
             { JunctionDirection.UpLeft,            Angles3.FromDegrees (0, 90, 0) },
@@ -170,8 +167,7 @@ namespace Knot3.Game.Models
             { JunctionDirection.BackwardBackward,  Angles3.FromDegrees (0, 0, 0) },
         };
         private static Dictionary<Direction, Angles3> straightJunctionRotationMap
-            = new Dictionary<Direction, Angles3> ()
-        {
+            = new Dictionary<Direction, Angles3> () {
             { Direction.Up,         Angles3.FromDegrees (90, 0, 0) },
             { Direction.Down,       Angles3.FromDegrees (270, 0, 0) },
             { Direction.Left,       Angles3.FromDegrees (0, 90, 0) },
@@ -180,8 +176,7 @@ namespace Knot3.Game.Models
             { Direction.Backward,   Angles3.FromDegrees (0, 0, 180) },
         };
         private static Dictionary<Tuple<Direction, Direction>, Tuple<float, float>> curvedJunctionBumpRotationMap
-            = new Dictionary<Tuple<Direction, Direction>, Tuple<float, float>> ()
-        {
+            = new Dictionary<Tuple<Direction, Direction>, Tuple<float, float>> () {
             { Tuple.Create (Direction.Up, Direction.Left),            Tuple.Create (90f, 0f) }, // works
             { Tuple.Create (Direction.Up, Direction.Right),           Tuple.Create (-90f, 0f) }, // works
             { Tuple.Create (Direction.Up, Direction.Forward),         Tuple.Create (0f, 180f) }, // works
@@ -217,9 +212,11 @@ namespace Knot3.Game.Models
         /// Erstellt ein neues Informationsobjekt für ein 3D-Modell, das einen Kantenübergang darstellt.
         /// [base="node1", Angles3.Zero, new Vector3 (1,1,1)]
         /// </summary>
-        public Junction (INodeMap nodeMap, Edge from, Edge to, Node node, int index)
-        : base ("pipe-straight", Angles3.Zero, Vector3.One)
+        public Junction (IScreen screen, INodeMap nodeMap, Edge from, Edge to, Node node, int index)
+            : base (screen)
         {
+            UniqueKey = from.ToString()+to.ToString();
+
             EdgeFrom = from;
             EdgeTo = to;
             Node = node;
@@ -247,6 +244,38 @@ namespace Knot3.Game.Models
             }
             else {
                 Scale = new Vector3 (12.5f, 12.5f, 50f);
+            }
+        }
+
+        protected override Primitive CreativePrimitive ()
+        {
+            int tessellation = Primitive.CurrentCircleTessellation;
+            if (Modelname == "pipe-angled") {
+                return new Torus (
+                    device: Screen.GraphicsDevice,
+                    diameter: 4f,
+                    thickness: 1f,
+                    tessellation: tessellation,
+                    circlePercent: 0.25f,
+                    translation: Vector3.Left * 2 + Vector3.Backward * 2,
+                    rotation: Angles3.FromDegrees (90, 0, 90)
+                );
+            }
+            else if (Modelname == "pipe-straight") {
+                return new Cylinder (
+                    device: Screen.GraphicsDevice,
+                    height: 1f,
+                    diameter: 1f,
+                    tessellation: tessellation
+                );
+            }
+            else {
+                return new CurvedCylinder (
+                    device: Screen.GraphicsDevice,
+                    height: 1f,
+                    diameter: 1f,
+                    tessellation: tessellation
+                );
             }
         }
 
@@ -313,29 +342,43 @@ namespace Knot3.Game.Models
             }
         }
 
-        public override bool Equals (GameObjectInfo other)
+        /// <summary>
+        /// Zeichnet das 3D-Modell mit dem aktuellen Rendereffekt.
+        /// </summary>
+        [ExcludeFromCodeCoverageAttribute]
+        public override void Draw (GameTime time)
+        {
+            Coloring = new GradientColor (EdgeFrom, EdgeTo);
+            /*
+            if (IsVirtual) {
+                Coloring.Highlight (intensity: 0.5f, color: Color.White);
+            }
+            else {
+                Coloring.Unhighlight ();
+            }
+            */
+            base.Draw (time);
+        }
+
+        public override bool Equals (IGameObject other)
         {
             if (other == null) {
                 return false;
             }
 
             if (other is Junction) {
-                if (this.EdgeFrom == (other as Junction).EdgeFrom
-                        && this.EdgeTo == (other as Junction).EdgeTo
-                        && base.Equals (other)) {
+                Junction otherJunction = other as Junction;
+                if (this.EdgeFrom == otherJunction.EdgeFrom && this.EdgeTo == otherJunction.EdgeTo) {
                     return true;
                 }
-                else {
-                    return false;
-                }
             }
-            else {
-                return base.Equals (other);
-            }
+
+            return base.Equals (other);
         }
     }
 
-    enum JunctionDirection {
+    enum JunctionDirection
+    {
         UpForward,
         UpBackward,
         UpLeft,
