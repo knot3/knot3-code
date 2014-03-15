@@ -178,7 +178,6 @@ namespace Knot3.Game.Screens
             // edge movements
             PlayerEdgeMovement = new EdgeMovement (screen: this, world: PlayerWorld, knotRenderer: PlayerKnotRenderer, position: Vector3.Zero);
             PlayerEdgeMovement.KnotMoved = OnKnotMoved;
-            PlayerWorld.Add (PlayerEdgeMovement);
 
             // assign the specified challenge
             Challenge = challenge;
@@ -395,6 +394,7 @@ namespace Knot3.Game.Screens
             base.Entered (previousScreen, time);
             AddGameComponents (time, playerKnotInput, challengeKnotInput, overlay, pointer,
                                ChallengeWorld, PlayerWorld, playerModelMouseHandler, challengeModelMouseHandler,
+                               PlayerEdgeMovement, 
                                lines, playTimeDisplay, playTimeBorder,
                                undoButton, undoButtonBorder, redoButton, redoButtonBorder);
 
