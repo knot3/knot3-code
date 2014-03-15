@@ -90,41 +90,46 @@ namespace Knot3.Game.Screens
                 screen: this,
                 drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
                 name: "Debug",
-                onClick: (time) =>  {game.SkipNextScreenEffect =true;
+            onClick: (time) =>  {
+                game.SkipNextScreenEffect =true;
                 NextScreen = new DebugSettingsScreen (Game);
-                }
-                        );
+            }
+            );
             MenuEntry graphicsButton = new MenuEntry (
                 screen: this,
                 drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
                 name: "Video",
-                onClick: (time) =>  {game.SkipNextScreenEffect =true;
+            onClick: (time) =>  {
+                game.SkipNextScreenEffect =true;
                 NextScreen = new GraphicsSettingsScreen (Game);
-                }
+            }
             );
             MenuEntry audioButton = new MenuEntry (
                 screen: this,
                 drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
                 name: "Audio",
-                onClick: (time) =>  {game.SkipNextScreenEffect =true;
+            onClick: (time) =>  {
+                game.SkipNextScreenEffect =true;
                 NextScreen = new AudioSettingsScreen (Game);
-                }
+            }
             );
             MenuEntry controlsButton = new MenuEntry (
                 screen: this,
                 drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
                 name: "Controls",
-                onClick: (time) =>  {game.SkipNextScreenEffect =true;
+            onClick: (time) =>  {
+                game.SkipNextScreenEffect =true;
                 NextScreen = new ControlSettingsScreen (Game);
-                }
+            }
             );
             MenuEntry profileButton = new MenuEntry (
                 screen: this,
                 drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
                 name: "Profile",
-                onClick: (time) => {game.SkipNextScreenEffect =true;
-                    NextScreen = new ProfileSettingsScreen (Game);
-                }
+            onClick: (time) => {
+                game.SkipNextScreenEffect =true;
+                NextScreen = new ProfileSettingsScreen (Game);
+            }
             );
 
             navigationMenu.Add (debugButton);

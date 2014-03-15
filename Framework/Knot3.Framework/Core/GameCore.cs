@@ -54,7 +54,7 @@ namespace Knot3.Framework.Core
         protected Point lastResolution;
         protected bool isFullscreen;
 
-        public bool SkipNextScreenEffect{get;set;}
+        public bool SkipNextScreenEffect {get; set;}
 
         /// <summary>
         /// Wird dieses Attribut ausgelesen, dann gibt es einen Wahrheitswert zurück, der angibt,
@@ -283,7 +283,6 @@ namespace Knot3.Framework.Core
                 if (current != next && !(current is ErrorScreen)) {
                     if (ScreenTransitionEffect != null && !SkipNextScreenEffect) {
                         next.PostProcessingEffect = ScreenTransitionEffect (current, next);
-                       
                     }
                     SkipNextScreenEffect = false;
                     current.BeforeExit (next, time);
