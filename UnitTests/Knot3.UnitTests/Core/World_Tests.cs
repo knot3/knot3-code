@@ -62,6 +62,7 @@ namespace Knot3.UnitTests.Core
             // Erstelle eine Rasterpunkt-Zuordnung
             NodeMap nodeMap = new NodeMap (screen: screen);
             nodeMap.Edges = knot;
+            nodeMap.OnEdgesChanged ();
 
             List<Pipe> models = new List<Pipe> ();
 
