@@ -96,6 +96,8 @@ namespace Knot3.Game.Screens
                 drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
                 name: "Settings",
                 onClick: (time) => NextScreen = new SettingsScreen (Game)
+              
+
             );
             settingsButton.SetCoordinates (left: 0.260f, top: 0.840f, right: 0.480f, bottom: 0.950f);
 

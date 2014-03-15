@@ -54,6 +54,8 @@ namespace Knot3.Framework.Core
         protected Point lastResolution;
         protected bool isFullscreen;
 
+        public bool SkipNextScreenEffect{get;set;}
+
         /// <summary>
         /// Wird dieses Attribut ausgelesen, dann gibt es einen Wahrheitswert zurück, der angibt,
         /// ob sich das Spiel im Vollbildmodus befindet. Wird dieses Attribut auf einen Wert gesetzt,
@@ -279,9 +281,11 @@ namespace Knot3.Framework.Core
                 IScreen current = Screens.Peek ();
                 IScreen next = current.NextScreen;
                 if (current != next && !(current is ErrorScreen)) {
-                    if (ScreenTransitionEffect != null) {
+                    if (ScreenTransitionEffect != null && !SkipNextScreenEffect) {
                         next.PostProcessingEffect = ScreenTransitionEffect (current, next);
+                       
                     }
+                    SkipNextScreenEffect = false;
                     current.BeforeExit (next, time);
                     current.NextScreen = current;
                     next.NextScreen = next;
