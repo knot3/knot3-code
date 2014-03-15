@@ -27,18 +27,22 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+
 using Knot3.Framework.Core;
 using Knot3.Framework.Models;
 using Knot3.Framework.Platform;
 using Knot3.Framework.Storage;
+
 using Knot3.Game.Data;
-using Microsoft.Xna.Framework.Input;
 
 namespace Knot3.Game.Models
 {
@@ -112,8 +116,8 @@ namespace Knot3.Game.Models
 
         private void ConstructRectangles ()
         {
-            rectangles = new Parallelogram[Direction.Values.Length];
-            textures = new Texture2D[Direction.Values.Length];
+            rectangles = new Parallelogram [Direction.Values.Length];
+            textures = new Texture2D [Direction.Values.Length];
             int i = 0;
             foreach (Direction direction in Direction.Values) {
                 Vector3 position = direction * Distance;

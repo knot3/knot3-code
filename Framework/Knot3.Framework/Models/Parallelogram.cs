@@ -27,10 +27,13 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
+
 using System;
 using System.Diagnostics.CodeAnalysis;
+
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+
 using Knot3.Framework.Utilities;
 
 namespace Knot3.Framework.Models
@@ -38,12 +41,12 @@ namespace Knot3.Framework.Models
     public class Parallelogram : Primitive
     {
         public Parallelogram (GraphicsDevice device, Vector3 left, float width, Vector3 up, float height, Vector3 origin, bool normalToCenter)
-            : this (device: device,
-                    topLeft: origin + left * width / 2 + up * height / 2,
-                    topRight: origin - left * width / 2 + up * height / 2,
-                    bottomLeft: origin + left * width / 2 - up * height / 2,
-                    bottomRight: origin - left * width / 2 - up * height / 2,
-                    normalToCenter: normalToCenter)
+        : this (device: device,
+                topLeft: origin + left * width / 2 + up * height / 2,
+                topRight: origin - left * width / 2 + up * height / 2,
+                bottomLeft: origin + left * width / 2 - up * height / 2,
+                bottomRight: origin - left * width / 2 - up * height / 2,
+                normalToCenter: normalToCenter)
         {
         }
 

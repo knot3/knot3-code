@@ -27,13 +27,16 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
+
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+
 using Knot3.Framework.Core;
 using Knot3.Framework.Models;
 using Knot3.Framework.Utilities;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace Knot3.Game.Models
 {
@@ -43,7 +46,7 @@ namespace Knot3.Game.Models
     [ExcludeFromCodeCoverageAttribute]
     public sealed class RectangleModel : GamePrimitive
     {
-        public override BoundingSphere[] Bounds { get { return new BoundingSphere[0]; } }
+        public override BoundingSphere[] Bounds { get { return new BoundingSphere [0]; } }
 
         public bool IsVirtual { get; set; }
 
@@ -52,7 +55,7 @@ namespace Knot3.Game.Models
         /// [base=screen, info]
         /// </summary>
         public RectangleModel (IScreen screen, Texture2D texture, Parallelogram parallelogram, Vector3 position)
-            : base (screen, new GameModelInfo(modelname: ""), () => parallelogram)
+        : base (screen, new GameModelInfo (modelname: ""), () => parallelogram)
         {
             Texture = texture;
             Info.Position = position;
@@ -70,12 +73,12 @@ namespace Knot3.Game.Models
             if (System.Object.ReferenceEquals (a, b)) {
                 return true;
             }
-    
+
             // If one is null, but not both, return false.
             if (((object)a == null) || ((object)b == null)) {
                 return false;
             }
-    
+
             // Return true if the fields match:
             return a.Info.Position == b.Info.Position;
         }
