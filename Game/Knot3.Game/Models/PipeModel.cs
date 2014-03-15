@@ -103,22 +103,5 @@ namespace Knot3.Game.Models
 
             base.Draw (time);
         }
-
-        /// <summary>
-        /// Prüft, ob der angegebene Mausstrahl das 3D-Modell schneidet.
-        /// </summary>
-        public override GameObjectDistance Intersects (Ray ray)
-        {
-            foreach (BoundingSphere sphere in Bounds) {
-                float? distance = ray.Intersects (sphere);
-                if (distance != null) {
-                    GameObjectDistance intersection = new GameObjectDistance () {
-                        Object=this, Distance=distance.Value
-                    };
-                    return intersection;
-                }
-            }
-            return null;
-        }
     }
 }

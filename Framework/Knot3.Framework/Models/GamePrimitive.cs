@@ -27,14 +27,11 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
-
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-
 using Microsoft.Xna.Framework;
-
 using Knot3.Framework.Core;
 using Knot3.Framework.Math;
 using Knot3.Framework.Utilities;
@@ -171,13 +168,15 @@ namespace Knot3.Framework.Models
         /// </summary>
         public virtual GameObjectDistance Intersects (Ray ray)
         {
-            foreach (BoundingSphere sphere in Bounds) {
-                float? distance = ray.Intersects (sphere);
-                if (distance != null) {
-                    GameObjectDistance intersection = new GameObjectDistance () {
-                        Object = this, Distance = distance.Value
-                    };
-                    return intersection;
+            if (ray.Intersects (_overallBoundingBox) != null) {
+                foreach (BoundingSphere sphere in Bounds) {
+                    float? distance = ray.Intersects (sphere);
+                    if (distance != null) {
+                        GameObjectDistance intersection = new GameObjectDistance () {
+                            Object = this, Distance = distance.Value
+                        };
+                        return intersection;
+                    }
                 }
             }
             return null;
@@ -188,24 +187,20 @@ namespace Knot3.Framework.Models
         private Vector3 _position;
         private Matrix _worldMatrix;
         private bool _inFrustum;
+        private BoundingBox _overallBoundingBox;
         private BoundingBox _frustumBoundingBox;
 
         public abstract BoundingSphere[] Bounds { get; }
 
-        protected bool InCameraFrustum
-        {
-            get {
-                return _inFrustum;
-            }
-        }
+        protected bool InCameraFrustum { get { return _inFrustum; } }
 
         private void UpdatePrecomputed ()
         {
             if (Info.Scale != _scale || Info.Rotation != _rotation || Info.Position != _position) {
                 // world matrix
                 _worldMatrix = Matrix.CreateScale (Info.Scale)
-                               * Matrix.CreateFromYawPitchRoll (Info.Rotation.Y, Info.Rotation.X, Info.Rotation.Z)
-                               * Matrix.CreateTranslation (Info.Position);
+                    * Matrix.CreateFromYawPitchRoll (Info.Rotation.Y, Info.Rotation.X, Info.Rotation.Z)
+                    * Matrix.CreateTranslation (Info.Position);
 
                 // attrs
                 _scale = Info.Scale;
@@ -218,14 +213,26 @@ namespace Knot3.Framework.Models
         {
             UpdatePrecomputed ();
 
-            // bounding sphere for view frustum intersects check
-            Vector3 frustumBoundsMin = Info.Position + Vector3.One;
-            Vector3 frustumBoundsMax = Info.Position - Vector3.One;
+
+            // bounding box which contains the whole object (and maybe more)
+            Vector3 overallBoundsMin = Info.Position + Vector3.One * 200;
+            Vector3 overallBoundsMax = Info.Position - Vector3.One * 200;
+            _overallBoundingBox = new BoundingBox (overallBoundsMin, overallBoundsMax);
+
+            // bounding box for view frustum intersects check
+            Vector3 boundsMin = Info.Position + Vector3.One;
+            Vector3 boundsMax = Info.Position - Vector3.One;
             Vector3 toCameraTarget = World.Camera.Target - Info.Position;
-            frustumBoundsMin += Vector3.Normalize (toCameraTarget) * MathHelper.Min (200, toCameraTarget.Length ());
-            frustumBoundsMax += Vector3.Normalize (toCameraTarget) * MathHelper.Min (200, toCameraTarget.Length ());
+            Vector3 frustumBoundsMin = boundsMin + Vector3.Normalize (toCameraTarget) * MathHelper.Min (200, toCameraTarget.Length ());
+            Vector3 frustumBoundsMax = boundsMax + Vector3.Normalize (toCameraTarget) * MathHelper.Min (200, toCameraTarget.Length ());
             _frustumBoundingBox = new BoundingBox (frustumBoundsMin, frustumBoundsMax);
             _inFrustum = World.Camera.ViewFrustum.FastIntersects (ref _frustumBoundingBox);
         }
     }
 }
+
+
+
+
+
+
