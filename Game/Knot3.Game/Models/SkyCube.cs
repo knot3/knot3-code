@@ -175,8 +175,8 @@ namespace Knot3.Game.Models
         [ExcludeFromCodeCoverageAttribute]
         public override void Update (GameTime time)
         {
-            if (World.Camera.MaxPositionDistance + 500 != Distance) {
-                Distance = World.Camera.MaxPositionDistance + 500;
+            if (World.Camera.FarPlane - 500 != Distance) {
+                Distance = World.Camera.FarPlane / 2;
             }
         }
 

@@ -101,6 +101,10 @@ namespace Knot3.Framework.Effects
             screen.GraphicsDevice.SamplerStates [0] = SamplerState.LinearWrap;
         }
 
+        protected virtual void BeforeEnd (GameTime time)
+        {
+        }
+
         /// <summary>
         /// Das auf dem Stack gesicherte, vorher genutzte Rendertarget wird wiederhergestellt und
         /// das Rendertarget dieses Rendereffekts wird, unter Umständen in Unterklassen verändert,
@@ -108,6 +112,7 @@ namespace Knot3.Framework.Effects
         /// </summary>
         public virtual void End (GameTime time)
         {
+            BeforeEnd (time);
             screen.CurrentRenderEffects.Pop ();
 
             spriteBatch.Begin (SpriteSortMode.Immediate, BlendState.NonPremultiplied);

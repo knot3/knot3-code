@@ -186,9 +186,9 @@ namespace Knot3.Game.Screens
             // assign the specified target knot
             ChallengeKnotRenderer.Knot = challenge.Target;
 
-            SkyCube playerSkyCube = new SkyCube (screen: this, position: Vector3.Zero, distance: PlayerWorld.Camera.MaxPositionDistance + 500);
+            SkyCube playerSkyCube = new SkyCube (screen: this, position: Vector3.Zero, distance: 10000);
             PlayerWorld.Add (playerSkyCube);
-            SkyCube challengeSkyCube = new SkyCube (screen: this, position: Vector3.Zero, distance: ChallengeWorld.Camera.MaxPositionDistance + 500);
+            SkyCube challengeSkyCube = new SkyCube (screen: this, position: Vector3.Zero, distance: 10000);
             ChallengeWorld.Add (challengeSkyCube);
 
             // Die Spielzeit-Anzeige

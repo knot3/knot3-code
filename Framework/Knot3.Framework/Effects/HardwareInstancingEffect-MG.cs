@@ -39,7 +39,7 @@ namespace Knot3.Framework.Effects
             return new VertexDeclaration (instanceStreamElements);
         }
 
-        public override void DrawModel (GameModel model, GameTime time)
+        /*public override void DrawModel (GameModel model, GameTime time)
         {
             return;
             // Setze den Viewport auf den der aktuellen Spielwelt
@@ -60,7 +60,16 @@ namespace Knot3.Framework.Effects
 
             // Setze den Viewport wieder auf den ganzen Screen
             screen.Viewport = original;
-        }
+        }*/
+
+        /*public override void RemapModel (Model model)
+        {
+            foreach (ModelMesh mesh in model.Meshes) {
+                foreach (ModelMeshPart part in mesh.MeshParts) {
+                    part.Effect = effect;
+                }
+            }
+        }*/
 
         private struct InstanceInfo
         {
@@ -74,110 +83,98 @@ namespace Knot3.Framework.Effects
             public Texture2D Texture;
             public InstanceInfo[] Instances;
             public int InstanceCount;
-
             public int InstanceCapacity { get { return Instances.Length; } }
+            public double InstanceUniqueHash;
         }
 
         private class InstancedBuffer
         {
             public VertexBuffer InstanceBuffer;
             public int InstanceCount;
-
             public int InstanceCapacity { get { return InstanceBuffer.VertexCount; } }
+            public double InstanceUniqueHash;
         }
 
-        private Dictionary<string, InstancedPrimitive> cachePrimitivesInstances = new Dictionary<string, InstancedPrimitive> ();
+        private Dictionary<string, InstancedPrimitive> cacheInstancedPrimitives = new Dictionary<string, InstancedPrimitive> ();
         private Dictionary<string, InstancedBuffer> cachePrimitivesBuffers = new Dictionary<string, InstancedBuffer> ();
 
         public override void DrawPrimitive (GamePrimitive primitive, GameTime time)
         {
             int texture = GetTextureHashCode (primitive);
             string key = primitive.GetType ().Name + texture.GetHashCode ();
-            InstancedPrimitive instances;
-            if (!cachePrimitivesInstances.ContainsKey (key)) {
-                cachePrimitivesInstances [key] = instances = new InstancedPrimitive () {
+            InstancedPrimitive instancedPrimitive;
+            if (!cacheInstancedPrimitives.ContainsKey (key)) {
+                cacheInstancedPrimitives [key] = instancedPrimitive = new InstancedPrimitive () {
                     Primitive = primitive.Primitive,
                     World = primitive.World,
                     Texture = GetTexture (primitive),
                     Instances = new InstanceInfo[100],
-                    InstanceCount = 0
+                    InstanceCount = 0,
+                    InstanceUniqueHash = 0
                 };
             }
             else {
-                instances = cachePrimitivesInstances [key];
+                instancedPrimitive = cacheInstancedPrimitives [key];
             }
-            if (instances.InstanceCount + 1 >= instances.Instances.Length) {
-                Array.Resize (ref instances.Instances, instances.Instances.Length + 200);
+            if (instancedPrimitive.InstanceCount + 1 >= instancedPrimitive.Instances.Length) {
+                Array.Resize (ref instancedPrimitive.Instances, instancedPrimitive.Instances.Length + 200);
             }
             InstanceInfo instanceInfo = new InstanceInfo { WorldMatrix = primitive.WorldMatrix };
-            instances.Instances [instances.InstanceCount++] = instanceInfo;
+            instancedPrimitive.Instances [instancedPrimitive.InstanceCount++] = instanceInfo;
+            instancedPrimitive.InstanceUniqueHash += primitive.Position.LengthSquared ();
         }
 
         private void DrawAllPrimitives (GameTime time)
         {
-            foreach (string key in cachePrimitivesInstances.Keys) {
-                Console.WriteLine ("DrawAllPrimitives: " + key + " (" + cachePrimitivesInstances.Count + ")");
-                InstancedPrimitive primitive = cachePrimitivesInstances [key];
+            foreach (string key in cacheInstancedPrimitives.Keys) {
+                InstancedPrimitive instancedPrimitive = cacheInstancedPrimitives [key];
 
                 // Setze den Viewport auf den der aktuellen Spielwelt
                 Viewport original = screen.Viewport;
-                screen.Viewport = primitive.World.Viewport;
+                screen.Viewport = instancedPrimitive.World.Viewport;
 
-                Camera camera = primitive.World.Camera;
+                Camera camera = instancedPrimitive.World.Camera;
                 //effect.Parameters ["World"].SetValue (primitive.WorldMatrix * camera.WorldMatrix);
                 effect.Parameters ["View"].SetValue (camera.ViewMatrix);
                 effect.Parameters ["Projection"].SetValue (camera.ProjectionMatrix);
                 //effect.Parameters ["WorldInverseTranspose"].SetValue (Matrix.Transpose (Matrix.Invert (primitive.WorldMatrix * camera.WorldMatrix)));
 
-                effect.Parameters ["ModelTexture"].SetValue (primitive.Texture);
+                effect.Parameters ["ModelTexture"].SetValue (instancedPrimitive.Texture);
 
                 InstancedBuffer buffer;
                 if (!cachePrimitivesBuffers.ContainsKey (key)) {
                     buffer = cachePrimitivesBuffers [key] = new InstancedBuffer ();
-                    buffer.InstanceBuffer = new VertexBuffer (screen.GraphicsDevice, instanceVertexDeclaration, primitive.InstanceCapacity, BufferUsage.WriteOnly);
+                    buffer.InstanceBuffer = new VertexBuffer (screen.GraphicsDevice, instanceVertexDeclaration, instancedPrimitive.InstanceCapacity, BufferUsage.WriteOnly);
                     buffer.InstanceCount = 0;
                 }
                 else {
                     buffer = cachePrimitivesBuffers [key];
                 }
 
-                if (buffer.InstanceCapacity < primitive.InstanceCapacity) {
+                if (buffer.InstanceCapacity < instancedPrimitive.InstanceCapacity) {
                     buffer.InstanceBuffer.Dispose ();
-                    buffer.InstanceBuffer = new VertexBuffer (screen.GraphicsDevice, instanceVertexDeclaration, primitive.InstanceCapacity, BufferUsage.WriteOnly);
+                    buffer.InstanceBuffer = new VertexBuffer (screen.GraphicsDevice, instanceVertexDeclaration, instancedPrimitive.InstanceCapacity, BufferUsage.WriteOnly);
                 }
-                if (buffer.InstanceCount != primitive.InstanceCount) {
-                    buffer.InstanceBuffer.SetData (primitive.Instances);
-                    buffer.InstanceCount = primitive.InstanceCount;
+                if (buffer.InstanceCount != instancedPrimitive.InstanceCount || buffer.InstanceUniqueHash != instancedPrimitive.InstanceUniqueHash) {
+                    buffer.InstanceBuffer.SetData (instancedPrimitive.Instances);
+                    buffer.InstanceCount = instancedPrimitive.InstanceCount;
+                    buffer.InstanceUniqueHash = instancedPrimitive.InstanceUniqueHash;
                 }
 
-                primitive.Primitive.DrawInstances (effect: effect, instanceBuffer: ref buffer.InstanceBuffer, instanceCount: primitive.InstanceCount);
+                instancedPrimitive.Primitive.DrawInstances (effect: effect, instanceBuffer: ref buffer.InstanceBuffer, instanceCount: instancedPrimitive.InstanceCount);
 
                 // Setze den Viewport wieder auf den ganzen Screen
                 screen.Viewport = original;
 
-                primitive.InstanceCount = 0;
+                instancedPrimitive.InstanceCount = 0;
             }
         }
 
-        protected override void DrawRenderTarget (GameTime time)
+        protected override void BeforeEnd (GameTime time)
         {
             Profiler.ProfileDelegate ["Instancing"] = () => {
                 DrawAllPrimitives (time);
             };
-
-            base.DrawRenderTarget (time);
-        }
-
-        /// <summary>
-        /// Weist dem 3D-Modell den Cel-Shader zu.
-        /// </summary>
-        public override void RemapModel (Model model)
-        {
-            foreach (ModelMesh mesh in model.Meshes) {
-                foreach (ModelMeshPart part in mesh.MeshParts) {
-                    part.Effect = effect;
-                }
-            }
         }
 
         private readonly string SHADER_CODE = @"
