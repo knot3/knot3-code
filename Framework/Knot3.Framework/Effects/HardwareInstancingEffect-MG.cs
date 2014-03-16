@@ -72,30 +72,53 @@ namespace Knot3.Framework.Effects
             public Primitive Primitive;
             public World World;
             public Texture2D Texture;
-            public IList<InstanceInfo> Instances;
+            public InstanceInfo[] Instances;
+            public int InstanceCount;
+
+            public int InstanceCapacity { get { return Instances.Length; } }
         }
 
-        private Dictionary<string, InstancedPrimitive> cachePrimitives = new Dictionary<string, InstancedPrimitive> ();
+        private class InstancedBuffer
+        {
+            public VertexBuffer InstanceBuffer;
+            public int InstanceCount;
+
+            public int InstanceCapacity { get { return InstanceBuffer.VertexCount; } }
+        }
+
+        private Dictionary<string, InstancedPrimitive> cachePrimitivesInstances = new Dictionary<string, InstancedPrimitive> ();
+        private Dictionary<string, InstancedBuffer> cachePrimitivesBuffers = new Dictionary<string, InstancedBuffer> ();
 
         public override void DrawPrimitive (GamePrimitive primitive, GameTime time)
         {
-            Texture2D texture = GetTexture (primitive);
+            int texture = GetTextureHashCode (primitive);
             string key = primitive.GetType ().Name + texture.GetHashCode ();
-            if (!cachePrimitives.ContainsKey (key)) {
-                cachePrimitives [key] = new InstancedPrimitive () {
+            InstancedPrimitive instances;
+            if (!cachePrimitivesInstances.ContainsKey (key)) {
+                cachePrimitivesInstances [key] = instances = new InstancedPrimitive () {
                     Primitive = primitive.Primitive,
                     World = primitive.World,
-                    Texture = texture,
-                    Instances = new List<InstanceInfo>()
+                    Texture = GetTexture (primitive),
+                    Instances = new InstanceInfo[100],
+                    InstanceCount = 0
                 };
             }
-            InstanceInfo instance = new InstanceInfo { WorldMatrix = primitive.WorldMatrix };
-            cachePrimitives [key].Instances.Add (instance);
+            else {
+                instances = cachePrimitivesInstances [key];
+            }
+            if (instances.InstanceCount + 1 >= instances.Instances.Length) {
+                Array.Resize (ref instances.Instances, instances.Instances.Length + 200);
+            }
+            InstanceInfo instanceInfo = new InstanceInfo { WorldMatrix = primitive.WorldMatrix };
+            instances.Instances [instances.InstanceCount++] = instanceInfo;
         }
 
         private void DrawAllPrimitives (GameTime time)
         {
-            foreach (InstancedPrimitive primitive in cachePrimitives.Values) {
+            foreach (string key in cachePrimitivesInstances.Keys) {
+                Console.WriteLine ("DrawAllPrimitives: " + key + " (" + cachePrimitivesInstances.Count + ")");
+                InstancedPrimitive primitive = cachePrimitivesInstances [key];
+
                 // Setze den Viewport auf den der aktuellen Spielwelt
                 Viewport original = screen.Viewport;
                 screen.Viewport = primitive.World.Viewport;
@@ -108,16 +131,31 @@ namespace Knot3.Framework.Effects
 
                 effect.Parameters ["ModelTexture"].SetValue (primitive.Texture);
 
-                
-                InstanceInfo[] instances = primitive.Instances.ToArray ();
-                int instanceCount = primitive.Instances.Count;
-                VertexBuffer instanceBuffer = new VertexBuffer (screen.GraphicsDevice, instanceVertexDeclaration, instanceCount, BufferUsage.WriteOnly);
-                instanceBuffer.SetData (instances);
+                InstancedBuffer buffer;
+                if (!cachePrimitivesBuffers.ContainsKey (key)) {
+                    buffer = cachePrimitivesBuffers [key] = new InstancedBuffer ();
+                    buffer.InstanceBuffer = new VertexBuffer (screen.GraphicsDevice, instanceVertexDeclaration, primitive.InstanceCapacity, BufferUsage.WriteOnly);
+                    buffer.InstanceCount = 0;
+                }
+                else {
+                    buffer = cachePrimitivesBuffers [key];
+                }
 
-                primitive.Primitive.DrawInstances (effect: effect, instanceBuffer: ref instanceBuffer, instanceCount: instanceCount);
+                if (buffer.InstanceCapacity < primitive.InstanceCapacity) {
+                    buffer.InstanceBuffer.Dispose ();
+                    buffer.InstanceBuffer = new VertexBuffer (screen.GraphicsDevice, instanceVertexDeclaration, primitive.InstanceCapacity, BufferUsage.WriteOnly);
+                }
+                if (buffer.InstanceCount != primitive.InstanceCount) {
+                    buffer.InstanceBuffer.SetData (primitive.Instances);
+                    buffer.InstanceCount = primitive.InstanceCount;
+                }
+
+                primitive.Primitive.DrawInstances (effect: effect, instanceBuffer: ref buffer.InstanceBuffer, instanceCount: primitive.InstanceCount);
 
                 // Setze den Viewport wieder auf den ganzen Screen
                 screen.Viewport = original;
+
+                primitive.InstanceCount = 0;
             }
         }
 

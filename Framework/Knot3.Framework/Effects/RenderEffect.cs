@@ -220,6 +220,25 @@ namespace Knot3.Framework.Effects
             }
         }
 
+        protected int GetTextureHashCode (IGameObject obj)
+        {
+            if (obj is ITexturedObject && (obj as ITexturedObject).Texture != null) {
+                return (obj as ITexturedObject).Texture.GetHashCode();
+            }
+            else if (obj is IColoredObject) {
+                ModelColoring coloring = (obj as IColoredObject).Coloring;
+                if (coloring is GradientColor) {
+                    return (coloring as GradientColor).Color1.GetHashCode()+(coloring as GradientColor).Color2.GetHashCode();
+                }
+                else {
+                    return coloring.MixedColor.GetHashCode();
+                }
+            }
+            else {
+                return 0;
+            }
+        }
+
         /// <summary>
         /// Beim Laden des Modells wird von der XNA-Content-Pipeline jedem ModelMeshPart ein Shader der Klasse
         /// BasicEffect zugewiesen. Für die Nutzung des Modells in diesem Rendereffekt kann jedem ModelMeshPart
