@@ -155,10 +155,9 @@ namespace Knot3.Framework.Effects
             if (instancedPrimitive.InstanceCount + 1 >= instancedPrimitive.Instances.Length) {
                 Array.Resize (ref instancedPrimitive.Instances, instancedPrimitive.Instances.Length + 200);
             }
-            Matrix worldMatrix = primitive.WorldMatrix * primitive.World.Camera.WorldMatrix;
             InstanceInfo instanceInfo = new InstanceInfo {
-                WorldMatrix = worldMatrix,
-                TransposeInverseWorldMatrix = Matrix.Transpose (Matrix.Invert (worldMatrix))
+                WorldMatrix = primitive.WorldMatrix * primitive.World.Camera.WorldMatrix,
+                TransposeInverseWorldMatrix = primitive.WorldMatrixInverseTranspose * primitive.World.Camera.WorldMatrix
             };
             instancedPrimitive.Instances [instancedPrimitive.InstanceCount++] = instanceInfo;
             instancedPrimitive.InstanceUniqueHash += primitive.Position.LengthSquared ();

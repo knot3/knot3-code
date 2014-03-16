@@ -110,6 +110,17 @@ namespace Knot3.Framework.Models
             }
         }
 
+        /// <summary>
+        /// Die Weltmatrix des 3D-Modells in der angegebenen Spielwelt.
+        /// </summary>
+        public Matrix WorldMatrixInverseTranspose
+        {
+            get {
+                UpdatePrecomputed ();
+                return _worldMatrixInverseTranspose;
+            }
+        }
+
         public virtual BoundingSphere[] Bounds { get; protected set; }
 
         protected bool InCameraFrustum { get { return _inFrustum; } }
@@ -196,6 +207,7 @@ namespace Knot3.Framework.Models
         private Angles3 _rotation;
         private Vector3 _position;
         private Matrix _worldMatrix;
+        private Matrix _worldMatrixInverseTranspose;
         private bool _inFrustum;
         private BoundingBox _overallBoundingBox;
         private BoundingBox _frustumBoundingBox;
@@ -207,6 +219,7 @@ namespace Knot3.Framework.Models
                 _worldMatrix = Matrix.CreateScale (Scale)
                                * Matrix.CreateFromYawPitchRoll (Rotation.Y, Rotation.X, Rotation.Z)
                                * Matrix.CreateTranslation (Position);
+                _worldMatrixInverseTranspose = Matrix.Transpose (Matrix.Invert (_worldMatrix));
 
                 // attrs
                 _scale = Scale;
