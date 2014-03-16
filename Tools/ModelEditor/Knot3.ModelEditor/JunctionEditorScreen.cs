@@ -111,7 +111,7 @@ namespace Knot3.ModelEditor
             world.Add (debugBoundings);
 
             // Hintergrund
-            SkyCube skyCube = new SkyCube (screen: this, position: Vector3.Zero, distance: world.Camera.MaxPositionDistance + 500);
+            SkyCube skyCube = new SkyCube (screen: this, position: Vector3.Zero, distance: 10000);
             world.Add (skyCube);
 
             // Backbutton
