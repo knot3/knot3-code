@@ -394,7 +394,7 @@ namespace Knot3.Game.Screens
             base.Entered (previousScreen, time);
             AddGameComponents (time, playerKnotInput, challengeKnotInput, overlay, pointer,
                                ChallengeWorld, PlayerWorld, playerModelMouseHandler, challengeModelMouseHandler,
-                               PlayerEdgeMovement, 
+                               PlayerEdgeMovement,
                                lines, playTimeDisplay, playTimeBorder,
                                undoButton, undoButtonBorder, redoButton, redoButtonBorder);
 

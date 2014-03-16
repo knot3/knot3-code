@@ -1,8 +1,40 @@
+/*
+ * Copyright (c) 2013-2014 Tobias Schulz, Maximilian Reuter, Pascal Knodel,
+ *                         Gerd Augsburg, Christina Erler, Daniel Warzel
+ *
+ * This source code file is part of Knot3. Copying, redistribution and
+ * use of the source code in this file in source and binary forms,
+ * with or without modification, are permitted provided that the conditions
+ * of the MIT license are met:
+ *
+ *   Permission is hereby granted, free of charge, to any person obtaining a copy
+ *   of this software and associated documentation files (the "Software"), to deal
+ *   in the Software without restriction, including without limitation the rights
+ *   to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ *   copies of the Software, and to permit persons to whom the Software is
+ *   furnished to do so, subject to the following conditions:
+ *
+ *   The above copyright notice and this permission notice shall be included in all
+ *   copies or substantial portions of the Software.
+ *
+ *   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ *   IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ *   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ *   AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ *   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ *   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ *   SOFTWARE.
+ *
+ * See the LICENSE file for full license details of the Knot3 project.
+ */
+
 using System;
 using System.Diagnostics.CodeAnalysis;
-using Microsoft.Xna.Framework.Graphics;
-using Knot3.Framework.Core;
+
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+
+using Knot3.Framework.Core;
 using Knot3.Framework.Models;
 using Knot3.Framework.Platform;
 
@@ -14,7 +46,7 @@ namespace Knot3.Framework.Effects
         Effect effect;
 
         public SimpleGLEffect (IScreen screen)
-            : base (screen)
+        : base (screen)
         {
             effect = new Effect (screen.GraphicsDevice, SHADER_CODE, GetType ().Name);
         }
@@ -54,7 +86,7 @@ namespace Knot3.Framework.Effects
             effect.Parameters ["WorldInverseTranspose"].SetValue (Matrix.Transpose (Matrix.Invert (primitive.WorldMatrix * camera.WorldMatrix)));
 
             effect.Parameters ["ModelTexture"].SetValue (GetTexture (primitive));
-            
+
             primitive.Primitive.Draw (effect: effect);
 
             // Setze den Viewport wieder auf den ganzen Screen
@@ -74,50 +106,46 @@ namespace Knot3.Framework.Effects
         }
 
         private readonly string SHADER_CODE = @"
-#monogame EffectParameter(name=World; class=Matrix; type=Single; rows=4; columns=4)
-#monogame ConstantBuffer(name=World; sizeInBytes=64; parameters=[0]; offsets=[0])
+#monogame EffectParameter (name=World; class=Matrix; type=Single; rows=4; columns=4)
+#monogame ConstantBuffer (name=World; sizeInBytes=64; parameters=[0]; offsets=[0])
 
-#monogame EffectParameter(name=View; class=Matrix; type=Single; rows=4; columns=4)
-#monogame ConstantBuffer(name=View; sizeInBytes=64; parameters=[1]; offsets=[0])
+#monogame EffectParameter (name=View; class=Matrix; type=Single; rows=4; columns=4)
+#monogame ConstantBuffer (name=View; sizeInBytes=64; parameters=[1]; offsets=[0])
 
-#monogame EffectParameter(name=Projection; class=Matrix; type=Single; rows=4; columns=4)
-#monogame ConstantBuffer(name=Projection; sizeInBytes=64; parameters=[2]; offsets=[0])
+#monogame EffectParameter (name=Projection; class=Matrix; type=Single; rows=4; columns=4)
+#monogame ConstantBuffer (name=Projection; sizeInBytes=64; parameters=[2]; offsets=[0])
 
-#monogame EffectParameter(name=WorldInverseTranspose; class=Matrix; type=Single; rows=4; columns=4)
-#monogame ConstantBuffer(name=WorldInverseTranspose; sizeInBytes=64; parameters=[3]; offsets=[0])
+#monogame EffectParameter (name=WorldInverseTranspose; class=Matrix; type=Single; rows=4; columns=4)
+#monogame ConstantBuffer (name=WorldInverseTranspose; sizeInBytes=64; parameters=[3]; offsets=[0])
 
-#monogame EffectParameter(name=ModelTexture; class=Object; type=Texture2D; semantic=; rows=0; columns=0; elements=[]; structMembers=[])
+#monogame EffectParameter (name=ModelTexture; class=Object; type=Texture2D; semantic=; rows=0; columns=0; elements=[]; structMembers=[])
 
-
-#monogame BeginShader(stage=pixel; constantBuffers=[])
-#monogame Sampler(name=sampler0; type=Sampler2D; textureSlot=0; samplerSlot=0; parameter=4)
+#monogame BeginShader (stage=pixel; constantBuffers=[])
+#monogame Sampler (name=sampler0; type=Sampler2D; textureSlot=0; samplerSlot=0; parameter=4)
 #version 130
-
 
 uniform sampler2D sampler0;
 in vec4 vTexCoord1;
 
-void main()
+void main ()
 {
-    vec4 color = texture2D(sampler0, vTexCoord1.xy);
+    vec4 color = texture2D (sampler0, vTexCoord1.xy);
     color.w = 1.0;
     gl_FragColor = color;
 }
 
+#monogame EndShader ()
 
-#monogame EndShader()
-
-#monogame BeginShader(stage=vertex; constantBuffers=[0,1,2,3])
-#monogame Attribute(name=inputPosition; usage=Position; index=0; format=0)
-#monogame Attribute(name=inputNormal; usage=Normal; index=0; format=0)
-#monogame Attribute(name=inputTexCoord; usage=TextureCoordinate; index=0; format=0)
+#monogame BeginShader (stage=vertex; constantBuffers=[0,1,2,3])
+#monogame Attribute (name=inputPosition; usage=Position; index=0; format=0)
+#monogame Attribute (name=inputNormal; usage=Normal; index=0; format=0)
+#monogame Attribute (name=inputTexCoord; usage=TextureCoordinate; index=0; format=0)
 #version 130
 
-
-uniform vec4 World[4];
-uniform vec4 View[4];
-uniform vec4 Projection[4];
-uniform vec4 WorldInverseTranspose[4];
+uniform vec4 World [4];
+uniform vec4 View [4];
+uniform vec4 Projection [4];
+uniform vec4 WorldInverseTranspose [4];
 uniform vec4 posFixup;
 
 in vec4 inputPosition;
@@ -126,16 +154,16 @@ in vec4 inputTexCoord;
 out vec4 outputNormal;
 out vec4 vTexCoord1;
 
-void main()
+void main ()
 {
-    mat4 world = mat4(World[0], World[1], World[2], World[3]);
-    mat4 view = mat4(View[0], View[1], View[2], View[3]);
-    mat4 proj = mat4(Projection[0], Projection[1], Projection[2], Projection[3]);
-    mat4 worldInverseTranspose = mat4(WorldInverseTranspose[0], WorldInverseTranspose[1], WorldInverseTranspose[2], WorldInverseTranspose[3]);
+    mat4 world = mat4 (World [0], World [1], World [2], World [3]);
+    mat4 view = mat4 (View [0], View [1], View [2], View [3]);
+    mat4 proj = mat4 (Projection [0], Projection [1], Projection [2], Projection [3]);
+    mat4 worldInverseTranspose = mat4 (WorldInverseTranspose [0], WorldInverseTranspose [1], WorldInverseTranspose [2], WorldInverseTranspose [3]);
     
     gl_Position = inputPosition * world * view * proj;
     
-    outputNormal.xyz = normalize(inputNormal * worldInverseTranspose).xyz;
+    outputNormal.xyz = normalize (inputNormal * worldInverseTranspose).xyz;
     
     vTexCoord1.xy = inputTexCoord.xy;
     
@@ -144,14 +172,11 @@ void main()
     gl_Position.xy += posFixup.zw * gl_Position.ww;
 }
 
+#monogame EndShader ()
 
-#monogame EndShader()
-
-#monogame EffectPass(name=Pass1; vertexShader=1; pixelShader=0)
-#monogame EffectTechnique(name=Textured)
-
+#monogame EffectPass (name=Pass1; vertexShader=1; pixelShader=0)
+#monogame EffectTechnique (name=Textured)
 
 ";
     }
 }
-

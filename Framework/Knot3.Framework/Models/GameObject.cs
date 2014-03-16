@@ -27,11 +27,14 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
+
 using System;
 using System.Diagnostics.CodeAnalysis;
+
 using Microsoft.Xna.Framework;
-using Knot3.Framework.Math;
+
 using Knot3.Framework.Core;
+using Knot3.Framework.Math;
 
 namespace Knot3.Framework.Models
 {
@@ -113,15 +116,15 @@ namespace Knot3.Framework.Models
 
         public string UniqueKey { get; protected set; }
 
-        public GameObject (Vector3 position = default(Vector3), Angles3 rotation = default(Angles3), Vector3 scale = default(Vector3),
+        public GameObject (Vector3 position = default (Vector3), Angles3 rotation = default (Angles3), Vector3 scale = default (Vector3),
                            bool isVisible = true, bool isSelectable = false, bool isMovable = false)
         {
             Position = position;
-            Scale = scale.Length() != 0 ? scale : Vector3.One;
+            Scale = scale.Length () != 0 ? scale : Vector3.One;
             IsVisible = isVisible;
             IsSelectable = isSelectable;
             IsMovable = isMovable;
-            Bounds = new BoundingSphere[0];
+            Bounds = new BoundingSphere [0];
             UniqueKey = GetType ().Name;
         }
 
@@ -202,8 +205,8 @@ namespace Knot3.Framework.Models
             if (Scale != _scale || Rotation != _rotation || Position != _position) {
                 // world matrix
                 _worldMatrix = Matrix.CreateScale (Scale)
-                    * Matrix.CreateFromYawPitchRoll (Rotation.Y, Rotation.X, Rotation.Z)
-                    * Matrix.CreateTranslation (Position);
+                               * Matrix.CreateFromYawPitchRoll (Rotation.Y, Rotation.X, Rotation.Z)
+                               * Matrix.CreateTranslation (Position);
 
                 // attrs
                 _scale = Scale;

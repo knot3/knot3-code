@@ -33,12 +33,12 @@ using System.Diagnostics.CodeAnalysis;
 
 using Microsoft.Xna.Framework;
 
+using Knot3.Framework.Core;
 using Knot3.Framework.Math;
 using Knot3.Framework.Models;
+using Knot3.Framework.Utilities;
 
 using Knot3.Game.Data;
-using Knot3.Framework.Core;
-using Knot3.Framework.Utilities;
 
 namespace Knot3.Game.Models
 {
@@ -83,11 +83,11 @@ namespace Knot3.Game.Models
 
             // Berechne die Bounding-Spheres
             Bounds = VectorHelper.CylinderBounds (
-                length: Length,
-                radius: Diameter / 2,
-                direction: Direction.Vector,
-                position: Position - Direction.Vector * Length / 2
-                );
+                         length: Length,
+                         radius: Diameter / 2,
+                         direction: Direction.Vector,
+                         position: Position - Direction.Vector * Length / 2
+                     );
         }
 
         /// <summary>

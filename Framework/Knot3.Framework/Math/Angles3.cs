@@ -40,8 +40,7 @@ namespace Knot3.Framework.Math
     /// Sie bietet Möglichkeit vordefinierte Winkelwerte zu verwenden, z.B. stellt Zero den Nullvektor dar.
     /// Die Umwandlung zwischen verschiedenen Winkelmaßen wie Grad- und Bogenmaß unterstützt sie durch entsprechende Methoden.
     /// </summary>
-    public struct Angles3 : IEquatable<Angles3>
-    {
+    public struct Angles3 : IEquatable<Angles3> {
         /// <summary>
         /// Der Winkel im Bogenmaß für das Rollen um die X-Achse. Siehe statische Methode Matrix.CreateRotationX (float) des XNA-Frameworks.
         /// </summary>
@@ -66,7 +65,7 @@ namespace Knot3.Framework.Math
         /// Konstruiert ein neues Angles3-Objekt mit drei gegebenen Winkeln im Bogenmaß.
         /// </summary>
         public Angles3 (float x, float y, float z)
-        : this()
+        : this ()
         {
             X = x;
             Y = y;
@@ -74,7 +73,7 @@ namespace Knot3.Framework.Math
         }
 
         public Angles3 (Vector3 v)
-        : this()
+        : this ()
         {
             X = v.X;
             Y = v.Y;

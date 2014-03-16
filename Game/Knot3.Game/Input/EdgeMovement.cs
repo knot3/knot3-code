@@ -27,12 +27,15 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+
 using Microsoft.Xna.Framework;
+
 using Knot3.Framework.Audio;
 using Knot3.Framework.Core;
 using Knot3.Framework.Development;
@@ -42,6 +45,7 @@ using Knot3.Framework.Models;
 using Knot3.Framework.Platform;
 using Knot3.Framework.Storage;
 using Knot3.Framework.Utilities;
+
 using Knot3.Game.Audio;
 using Knot3.Game.Data;
 using Knot3.Game.Models;
@@ -78,7 +82,7 @@ namespace Knot3.Game.Input
         /// Objektinformationen info.
         /// </summary>
         public EdgeMovement (IScreen screen, World world, KnotRenderer knotRenderer, Vector3 position)
-            : base (screen, DisplayLayer.None)
+        : base (screen, DisplayLayer.None)
         {
             Screen = screen;
             World = world;

@@ -36,10 +36,10 @@ using System.Linq;
 
 using Microsoft.Xna.Framework;
 
+using Knot3.Framework.Core;
 using Knot3.Framework.Utilities;
 
 using Knot3.Game.Models;
-using Knot3.Framework.Core;
 
 namespace Knot3.Game.Data
 {
@@ -146,9 +146,3 @@ namespace Knot3.Game.Data
         }
     }
 }
-
-
-
-
-
-
