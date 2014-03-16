@@ -231,9 +231,9 @@ namespace Knot3.Framework.Effects
 
 #monogame BeginShader (stage=pixel; constantBuffers=[2])
 #monogame Sampler (name=sModelTexture; type=Sampler2D; textureSlot=0; samplerSlot=0; parameter=2)
-#monogame Attribute (name=fragNormal; usage=Normal; index=0; format=0)
-#monogame Attribute (name=fragTexCoord; usage=TextureCoordinate; index=0; format=0)
-#monogame Attribute (name=fragLightingFactor; usage=TextureCoordinate; index=0; format=0)
+#monogame Attribute (name=fragNormal; usage=Normal; index=0)
+#monogame Attribute (name=fragTexCoord; usage=TextureCoordinate; index=0)
+#monogame Attribute (name=fragLightingFactor; usage=TextureCoordinate; index=0)
 #version 130
 
 uniform sampler2D sModelTexture;
@@ -253,17 +253,11 @@ void main ()
 #monogame EndShader ()
 
 #monogame BeginShader (stage=vertex; constantBuffers=[0, 1])
-#monogame Attribute (name=vertexPosition; usage=Position; index=0; format=0)
-#monogame Attribute (name=vertexNormal; usage=Normal; index=0; format=0)
-#monogame Attribute (name=vertexTexCoord; usage=TextureCoordinate; index=0; format=0)
-#monogame Attribute (name=instanceWorld0; usage=TextureCoordinate; index=1; format=0)
-#monogame Attribute (name=instanceWorld1; usage=TextureCoordinate; index=2; format=0)
-#monogame Attribute (name=instanceWorld2; usage=TextureCoordinate; index=3; format=0)
-#monogame Attribute (name=instanceWorld3; usage=TextureCoordinate; index=4; format=0)
-#monogame Attribute (name=instanceWorldInverseTranspose0; usage=TextureCoordinate; index=5; format=0)
-#monogame Attribute (name=instanceWorldInverseTranspose1; usage=TextureCoordinate; index=6; format=0)
-#monogame Attribute (name=instanceWorldInverseTranspose2; usage=TextureCoordinate; index=7; format=0)
-#monogame Attribute (name=instanceWorldInverseTranspose3; usage=TextureCoordinate; index=8; format=0)
+#monogame Attribute (name=vertexPosition; usage=Position; index=0)
+#monogame Attribute (name=vertexNormal; usage=Normal; index=0)
+#monogame Attribute (name=vertexTexCoord; usage=TextureCoordinate; index=0)
+#monogame Attribute (name=instanceWorld; usage=TextureCoordinate; index=[1, 2, 3, 4])
+#monogame Attribute (name=instanceWorldInverseTranspose; usage=TextureCoordinate; index=[5, 6, 7, 8])
 #version 130
 
 uniform vec4 xView [4];
