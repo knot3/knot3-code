@@ -60,14 +60,15 @@ namespace Knot3.UnitTests.Core
             Knot knot = new Knot ();
 
             // Erstelle eine Rasterpunkt-Zuordnung
-            NodeMap nodeMap = new NodeMap (knot);
+            NodeMap nodeMap = new NodeMap (screen: screen);
+            nodeMap.Edges = knot;
+            nodeMap.OnEdgesChanged ();
 
-            List<PipeModel> models = new List<PipeModel> ();
+            List<Pipe> models = new List<Pipe> ();
 
             // Erstelle ein paar Pipes
             foreach (Edge edge in knot) {
-                Pipe pipeInfo = new Pipe (nodeMap: nodeMap, knot: knot, edge: edge);
-                PipeModel pipe = new PipeModel (screen: screen, info: pipeInfo);
+                Pipe pipe = new Pipe (screen: screen, nodeMap: nodeMap, knot: knot, edge: edge);
                 models.Add (pipe);
             }
             Assert.AreEqual (knot.Count (), models.Count (), "Für jede Edge eine Pipe");

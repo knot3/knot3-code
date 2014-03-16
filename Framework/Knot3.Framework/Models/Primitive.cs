@@ -27,14 +27,11 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
-
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-
 using Knot3.Framework.Math;
 using Knot3.Framework.Storage;
 using Knot3.Framework.Utilities;
@@ -53,7 +50,6 @@ namespace Knot3.Framework.Models
 
         public Primitive (Vector3 translation, Angles3 rotation)
         {
-            rotation = rotation ?? Angles3.Zero;
             vertexTransform = Matrix.CreateTranslation (translation) * Matrix.CreateFromYawPitchRoll (rotation.Y, rotation.X, rotation.Z);
         }
 
@@ -84,9 +80,9 @@ namespace Knot3.Framework.Models
         {
             // the graphics device is null during the unit tests
             if (device != null) {
-                vertexBuffer = new VertexBuffer (device, typeof (VertexPositionNormalTexture), vertices.Count, BufferUsage.None);
+                vertexBuffer = new VertexBuffer (device, typeof(VertexPositionNormalTexture), vertices.Count, BufferUsage.None);
                 vertexBuffer.SetData (vertices.ToArray ());
-                indexBuffer = new IndexBuffer (device, typeof (ushort), indices.Count, BufferUsage.None);
+                indexBuffer = new IndexBuffer (device, typeof(ushort), indices.Count, BufferUsage.None);
                 indexBuffer.SetData (indices.ToArray ());
             }
         }
@@ -127,15 +123,31 @@ namespace Knot3.Framework.Models
             }
         }
 
+        public void DrawInstances (Effect effect, ref VertexBuffer instanceBuffer, int instanceCount)
+        {
+            GraphicsDevice device = effect.GraphicsDevice;
+            VertexBufferBinding[] bindings = new VertexBufferBinding[2];
+            bindings [0] = new VertexBufferBinding (vertexBuffer);
+            bindings [1] = new VertexBufferBinding (instanceBuffer, 0, 1);
+            device.SetVertexBuffers (bindings);
+            device.Indices = indexBuffer;
+
+            foreach (EffectPass effectPass in effect.CurrentTechnique.Passes) {
+                effectPass.Apply ();
+                int primitiveCount = indices.Count / 3;
+                device.DrawInstancedPrimitives (PrimitiveType.TriangleList, 0, 0, vertices.Count, 0, primitiveCount, instanceCount);
+            }
+        }
+
         public static FloatOption ModelQualityOption
         {
             get {
                 return _modelQualityOption = _modelQualityOption ?? new FloatOption (
-                                                 section: "video",
-                                                 name: "model-quality",
-                                                 defaultValue: 0.200f,
-                                                 validValues: 1.001f.Range (step: 0.001f),
-                                                 configFile: Config.Default
+                    section: "video",
+                    name: "model-quality",
+                    defaultValue: 0.200f,
+                    validValues: 1.001f.Range (step: 0.001f),
+                    configFile: Config.Default
                 ) { Verbose = false };
             }
         }

@@ -37,6 +37,8 @@ using Knot3.Framework.Math;
 using Knot3.Framework.Models;
 
 using Knot3.Game.Data;
+using Knot3.Framework.Core;
+using Knot3.Framework.Utilities;
 
 namespace Knot3.Game.Models
 {
@@ -44,7 +46,7 @@ namespace Knot3.Game.Models
     /// Ein Objekt der Klasse ArrowModelInfo hält alle Informationen, die zur Erstellung eines Pfeil-3D-Modelles (s. ArrowModel) notwendig sind.
     /// </summary>
     [ExcludeFromCodeCoverageAttribute]
-    public sealed class Arrow : GameModelInfo
+    public sealed class Arrow : GameModel
     {
         /// <summary>
         /// Gibt die Richtung, in die der Pfeil zeigen soll an.
@@ -68,8 +70,8 @@ namespace Knot3.Game.Models
         /// <summary>
         /// Erstellt ein neues ArrowModelInfo-Objekt an einer bestimmten Position position im 3D-Raum. Dieses zeigt in eine durch direction bestimmte Richtung.
         /// </summary>
-        public Arrow (Vector3 position, Direction direction)
-        : base ("arrow")
+        public Arrow (IScreen screen, Vector3 position, Direction direction)
+        : base (screen: screen, modelname: "arrow")
         {
             Direction = direction;
             Position = position + Direction.Vector * Node.Scale / 3;
@@ -78,6 +80,31 @@ namespace Knot3.Game.Models
 
             // Berechne die Drehung
             Rotation += RotationMap [direction];
+
+            // Berechne die Bounding-Spheres
+            Bounds = VectorHelper.CylinderBounds (
+                length: Length,
+                radius: Diameter / 2,
+                direction: Direction.Vector,
+                position: Position - Direction.Vector * Length / 2
+                );
+        }
+
+        /// <summary>
+        /// Zeichnet den Pfeil.
+        /// </summary>
+        [ExcludeFromCodeCoverageAttribute]
+        public override void Draw (GameTime time)
+        {
+            Coloring = new SingleColor (Color.Red);
+            if (World.SelectedObject == this) {
+                Coloring.Highlight (intensity: 1f, color: Color.Orange);
+            }
+            else {
+                Coloring.Unhighlight ();
+            }
+
+            base.Draw (time);
         }
     }
 }

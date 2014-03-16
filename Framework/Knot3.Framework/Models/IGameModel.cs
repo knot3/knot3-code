@@ -27,19 +27,27 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
-
-using System;
 using System.Diagnostics.CodeAnalysis;
+using Microsoft.Xna.Framework;
+using Knot3.Framework.Math;
+using Microsoft.Xna.Framework.Graphics;
+using System;
 
-using Knot3.Framework.Models;
-
-namespace Knot3.Game.Development
+namespace Knot3.Framework.Models
 {
-    [ExcludeFromCodeCoverageAttribute]
-    public class DebugModelInfo:GameModelInfo
+    /// <summary>
+    /// Enthält Informationen über ein 3D-Modell wie den Dateinamen, die Rotation und die Skalierung.
+    /// </summary>
+    public interface IGameModel : IGameObject, IDisposable
     {
-        public DebugModelInfo (String modelname) : base (modelname)
-        {
-        }
+        /// <summary>
+        /// Die Farbe des Modells.
+        /// </summary>
+        ModelColoring Coloring { get; }
+
+        /// <summary>
+        /// Die Textur des Modells.
+        /// </summary>
+        Texture2D Texture { get; }
     }
 }

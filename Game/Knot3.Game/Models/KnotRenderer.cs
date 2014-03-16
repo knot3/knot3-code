@@ -27,23 +27,19 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-
 using Knot3.Framework.Core;
 using Knot3.Framework.Development;
 using Knot3.Framework.Models;
 using Knot3.Framework.Platform;
 using Knot3.Framework.Storage;
 using Knot3.Framework.Utilities;
-
 using Knot3.Game.Data;
 
 namespace Knot3.Game.Models
@@ -54,38 +50,23 @@ namespace Knot3.Game.Models
     /// Container für die erstellten Spielobjekte.
     /// </summary>
     [ExcludeFromCodeCoverageAttribute]
-    public sealed class KnotRenderer : IGameObject, IEnumerable<IGameObject>
+    public sealed class KnotRenderer : GameObject, IEnumerable<IGameObject>
     {
-        private IScreen screen;
-
-        /// <summary>
-        /// Enthält Informationen über die Position des Knotens.
-        /// </summary>
-        public GameObjectInfo Info { get; private set; }
-
-        /// <summary>
-        /// Die Spielwelt, in der die 3D-Modelle erstellt werden sollen.
-        /// </summary>
-        public World World { get; set; }
-
-        public Matrix WorldMatrix { get { return Matrix.Identity; } }
+        private IScreen Screen;
 
         /// <summary>
         /// Die Liste der 3D-Modelle der Pfeile,
         /// die nach einer Auswahl von Kanten durch den Spieler angezeigt werden.
         /// </summary>
-        private List<ArrowModel> arrows;
-
+        private List<Arrow> arrows;
         /// <summary>
         /// Die Liste der 3D-Modelle der Kantenübergänge.
         /// </summary>
-        private List<JunctionModel> nodes;
-
+        private List<Junction> nodes;
         /// <summary>
         /// Die Liste der 3D-Modelle der Kanten.
         /// </summary>
-        private List<PipeModel> pipes;
-
+        private List<Pipe> pipes;
         /// <summary>
         /// Die Liste der Flächen zwischen den Kanten.
         /// </summary>
@@ -124,22 +105,6 @@ namespace Knot3.Game.Models
         }
 
         private Knot virtualKnot;
-
-        /// <summary>
-        /// Der Zwischenspeicher für die 3D-Modelle der Kanten. Hier wird das Fabrik-Entwurfsmuster verwendet.
-        /// </summary>
-        private ModelFactory pipeFactory;
-
-        /// <summary>
-        /// Der Zwischenspeicher für die 3D-Modelle der Kantenübergänge. Hier wird das Fabrik-Entwurfsmuster verwendet.
-        /// </summary>
-        private ModelFactory nodeFactory;
-
-        /// <summary>
-        /// Der Zwischenspeicher für die 3D-Modelle der Pfeile. Hier wird das Fabrik-Entwurfsmuster verwendet.
-        /// </summary>
-        private ModelFactory arrowFactory;
-
         /// <summary>
         /// Die Zuordnung zwischen Kanten und den dreidimensionalen Rasterpunkten, an denen sich die die Kantenübergänge befinden.
         /// </summary>
@@ -156,32 +121,24 @@ namespace Knot3.Game.Models
         /// </summary>
         public KnotRenderer (IScreen screen, Vector3 position)
         {
-            this.screen = screen;
-            Info = new GameObjectInfo (position: position);
-            pipes = new List<PipeModel> ();
-            nodes = new List<JunctionModel> ();
-            arrows = new List<ArrowModel> ();
+            Screen = screen;
+            Position = position;
+            pipes = new List<Pipe> ();
+            nodes = new List<Junction> ();
+            arrows = new List<Arrow> ();
             rectangles = new HashSet<RectangleModel> ();
             debugModels = new List<GameModel> ();
-            pipeFactory = new ModelFactory ((s, i) => new PipeModel (s, i as Pipe));
-            nodeFactory = new ModelFactory ((s, i) => new JunctionModel (s, i as Junction));
-            arrowFactory = new ModelFactory ((s, i) => new ArrowModel (s, i as Arrow));
-            nodeMap = new NodeMap ();
+            nodeMap = new NodeMap (screen: Screen);
         }
-
-        /// <summary>
-        /// Gibt den Ursprung des Knotens zurück.
-        /// </summary>
-        public Vector3 Center { get { return Info.Position; } }
 
         /// <summary>
         /// Ruft die Intersects (Ray)-Methode der Kanten, Übergänge und Pfeile auf und liefert das beste Ergebnis zurück.
         /// </summary>
-        public GameObjectDistance Intersects (Ray ray)
+        public override GameObjectDistance Intersects (Ray ray)
         {
             GameObjectDistance nearest = null;
-            if (!screen.InputManager.GrabMouseMovement) {
-                foreach (PipeModel pipe in pipes) {
+            if (!Screen.InputManager.GrabMouseMovement) {
+                foreach (Pipe pipe in pipes) {
                     GameObjectDistance intersection = pipe.Intersects (ray);
                     if (intersection != null) {
                         if (intersection.Distance > 0 && (nearest == null || intersection.Distance < nearest.Distance)) {
@@ -189,7 +146,7 @@ namespace Knot3.Game.Models
                         }
                     }
                 }
-                foreach (ArrowModel arrow in arrows) {
+                foreach (Arrow arrow in arrows) {
                     GameObjectDistance intersection = arrow.Intersects (ray);
                     if (intersection != null) {
                         if (intersection.Distance > 0 && (nearest == null || intersection.Distance < nearest.Distance)) {
@@ -207,7 +164,7 @@ namespace Knot3.Game.Models
         private void OnEdgesChanged ()
         {
             nodeMap.Edges = knot;
-            nodeMap.Offset = Info.Position + knot.OffSet;
+            nodeMap.Offset = Position + knot.OffSet;
             nodeMap.OnEdgesChanged ();
 
             //Log.Debug ("=> render Knot #", knot.Count (), " = ", string.Join (", ", from c in knot select c.Direction));
@@ -228,7 +185,7 @@ namespace Knot3.Game.Models
         private void OnVirtualKnotAssigned ()
         {
             nodeMap.Edges = virtualKnot;
-            nodeMap.Offset = Info.Position + virtualKnot.OffSet;
+            nodeMap.Offset = Position + virtualKnot.OffSet;
             nodeMap.OnEdgesChanged ();
 
             CreatePipes (virtualKnot);
@@ -249,15 +206,14 @@ namespace Knot3.Game.Models
 
         private void CreatePipes (Knot knot)
         {
-            foreach (PipeModel pipemodel in pipes) {
-                pipemodel.World=null;
+            foreach (Pipe Pipe in pipes) {
+                Pipe.World = null;
             }
             pipes.Clear ();
             foreach (Edge edge in knot) {
-                Pipe info = new Pipe (nodeMap, knot, edge);
-                PipeModel pipe = pipeFactory [screen, info] as PipeModel;
-                pipe.Info.Knot = knot;
-                pipe.Info.IsVisible = true;
+                Pipe pipe = new Pipe (screen: Screen, nodeMap: nodeMap, knot: knot, edge: edge);
+                pipe.Knot = knot;
+                pipe.IsVisible = true;
                 pipe.IsVirtual = !knot.Contains (edge);
                 pipe.World = World;
                 pipes.Add (pipe);
@@ -268,20 +224,20 @@ namespace Knot3.Game.Models
         {
             Edge edge = knot.ElementAt (0);
             Vector3 towardsCamera = World.Camera.PositionToTargetDirection;
-            Arrow info = new Arrow (
+            Arrow arrow = new Arrow (
+                screen: Screen,
                 position: Vector3.Zero - 10 * towardsCamera - 10 * towardsCamera.PrimaryDirection (),
                 direction: edge
             );
-            ArrowModel arrow = arrowFactory [screen, info] as ArrowModel;
-            arrow.Info.IsVisible = true;
+            arrow.IsVisible = true;
             arrow.World = World;
             debugModels.Add (arrow);
         }
 
         private void CreateNodes ()
         {
-            foreach (JunctionModel junctionmodel in nodes) {
-                junctionmodel.World=null;
+            foreach (Junction Junction in nodes) {
+                Junction.World = null;
             }
             nodes.Clear ();
 
@@ -294,18 +250,17 @@ namespace Knot3.Game.Models
                 }
 
                 foreach (Junction junction in junctions.OfType<Junction>()) {
-                    JunctionModel model = nodeFactory [screen, junction] as JunctionModel;
-                    model.IsVirtual = !knot.Contains (junction.EdgeFrom) || !knot.Contains (junction.EdgeTo);
-                    model.World = World;
-                    nodes.Add (model);
+                    junction.IsVirtual = !knot.Contains (junction.EdgeFrom) || !knot.Contains (junction.EdgeTo);
+                    junction.World = World;
+                    nodes.Add (junction);
                 }
             }
         }
 
         private void CreateArrows ()
         {
-            foreach (ArrowModel arrowmodel in arrows) {
-                arrowmodel.World=null;
+            foreach (Arrow Arrow in arrows) {
+                Arrow.World = null;
             }
             arrows.Clear ();
             int selectedEdgesCount = knot.SelectedEdges.Count ();
@@ -322,12 +277,12 @@ namespace Knot3.Game.Models
                 foreach (Direction direction in Direction.Values) {
                     if (knot.IsValidDirection (direction)) {
                         Vector3 towardsCamera = World.Camera.PositionToTargetDirection;
-                        Arrow info = new Arrow (
+                        Arrow arrow = new Arrow (
+                            screen: Screen,
                             position: node1.CenterBetween (node2) - 25 * towardsCamera - 25 * towardsCamera.PrimaryDirection (),
                             direction: direction
                         );
-                        ArrowModel arrow = arrowFactory [screen, info] as ArrowModel;
-                        arrow.Info.IsVisible = true;
+                        arrow.IsVisible = true;
                         arrow.World = World;
                         arrows.Add (arrow);
                     }
@@ -378,7 +333,7 @@ namespace Knot3.Game.Models
                 }
 
                 Parallelogram parallelogram = new Parallelogram (
-                    device: screen.GraphicsDevice,
+                    device: Screen.GraphicsDevice,
                     origin: Vector3.Zero,
                     left: edgeAB.Direction,
                     width: Node.Scale,
@@ -387,7 +342,7 @@ namespace Knot3.Game.Models
                     normalToCenter: false
                 );
                 RectangleModel rectangle = new RectangleModel (
-                    screen: screen,
+                    screen: Screen,
                     texture: texture,
                     parallelogram: parallelogram,
                     position: rect.Position
@@ -429,7 +384,7 @@ namespace Knot3.Game.Models
         {
             int width = 50;
             int height = 50;
-            Texture2D texture = new Texture2D (screen.GraphicsDevice, width, height);
+            Texture2D texture = new Texture2D (Screen.GraphicsDevice, width, height);
             Color[] colors = new Color [width * height];
             for (int w = 0; w < width; ++w) {
                 for (int h = 0; h < height; ++h) {
@@ -444,7 +399,7 @@ namespace Knot3.Game.Models
         {
             int width = 50;
             int height = 50;
-            Texture2D texture = new Texture2D (screen.GraphicsDevice, width, height);
+            Texture2D texture = new Texture2D (Screen.GraphicsDevice, width, height);
             Color[] colors = new Color [width * height];
             for (int w = 0; w < width; ++w) {
                 for (int h = 0; h < height; ++h) {
@@ -459,15 +414,15 @@ namespace Knot3.Game.Models
         /// Ruft die Update ()-Methoden der Kanten, Übergänge und Pfeile auf.
         /// </summary>
         [ExcludeFromCodeCoverageAttribute]
-        public void Update (GameTime time)
+        public override void Update (GameTime time)
         {
-            foreach (PipeModel pipe in pipes) {
+            foreach (Pipe pipe in pipes) {
                 pipe.Update (time);
             }
-            foreach (JunctionModel node in nodes) {
+            foreach (Junction node in nodes) {
                 node.Update (time);
             }
-            foreach (ArrowModel arrow in arrows) {
+            foreach (Arrow arrow in arrows) {
                 arrow.Update (time);
             }
             foreach (RectangleModel rectangle in rectangles) {
@@ -475,15 +430,9 @@ namespace Knot3.Game.Models
             }
 
             if (time.TotalGameTime.Seconds % 10 == 0) {
-                int count = pipeFactory.Count + nodeFactory.Count + arrowFactory.Count;
+                int count = pipes.Count + nodes.Count + arrows.Count;
                 if (count > 0) {
                     Profiler.Values ["# Cached Models"] = count;
-                    if (time.TotalGameTime.Seconds % 20 == 0) {
-                        Log.Debug ("Clear Model Cache: ", count, " Models deleted");
-                        pipeFactory.Clear ();
-                        nodeFactory.Clear ();
-                        arrowFactory.Clear ();
-                    }
                 }
             }
         }
@@ -492,23 +441,23 @@ namespace Knot3.Game.Models
         /// Ruft die Draw ()-Methoden der Kanten, Übergänge und Pfeile auf.
         /// </summary>
         [ExcludeFromCodeCoverageAttribute]
-        public void Draw (GameTime time)
+        public override void Draw (GameTime time)
         {
-            if (Info.IsVisible) {
+            if (IsVisible) {
                 Profiler.Values ["# InFrustum"] = 0;
                 Profiler.Values ["RenderEffect"] = 0;
                 Profiler.ProfileDelegate ["Pipes"] = () => {
-                    foreach (PipeModel pipe in pipes) {
+                    foreach (Pipe pipe in pipes) {
                         pipe.Draw (time);
                     }
                 };
                 Profiler.ProfileDelegate ["Nodes"] = () => {
-                    foreach (JunctionModel node in nodes) {
+                    foreach (Junction node in nodes) {
                         node.Draw (time);
                     }
                 };
                 Profiler.ProfileDelegate ["Arrows"] = () => {
-                    foreach (ArrowModel arrow in arrows) {
+                    foreach (Arrow arrow in arrows) {
                         arrow.Draw (time);
                     }
                 };
@@ -531,20 +480,19 @@ namespace Knot3.Game.Models
         /// </summary>
         public IEnumerator<IGameObject> GetEnumerator ()
         {
-            foreach (PipeModel pipe in pipes) {
+            foreach (Pipe pipe in pipes) {
                 yield return pipe;
             }
-            foreach (JunctionModel node in nodes) {
+            foreach (Junction node in nodes) {
                 yield return node;
             }
-            foreach (ArrowModel arrow in arrows) {
+            foreach (Arrow arrow in arrows) {
                 yield return arrow;
             }
             foreach (RectangleModel rectangle in rectangles) {
                 yield return rectangle;
             }
         }
-
         // Explicit interface implementation for nongeneric interface
         IEnumerator IEnumerable.GetEnumerator ()
         {

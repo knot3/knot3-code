@@ -178,7 +178,6 @@ namespace Knot3.Game.Screens
             // edge movements
             PlayerEdgeMovement = new EdgeMovement (screen: this, world: PlayerWorld, knotRenderer: PlayerKnotRenderer, position: Vector3.Zero);
             PlayerEdgeMovement.KnotMoved = OnKnotMoved;
-            PlayerWorld.Add (PlayerEdgeMovement);
 
             // assign the specified challenge
             Challenge = challenge;
@@ -187,9 +186,9 @@ namespace Knot3.Game.Screens
             // assign the specified target knot
             ChallengeKnotRenderer.Knot = challenge.Target;
 
-            SkyCube playerSkyCube = new SkyCube (screen: this, position: Vector3.Zero, distance: PlayerWorld.Camera.MaxPositionDistance + 500);
+            SkyCube playerSkyCube = new SkyCube (screen: this, position: Vector3.Zero, distance: 10000);
             PlayerWorld.Add (playerSkyCube);
-            SkyCube challengeSkyCube = new SkyCube (screen: this, position: Vector3.Zero, distance: ChallengeWorld.Camera.MaxPositionDistance + 500);
+            SkyCube challengeSkyCube = new SkyCube (screen: this, position: Vector3.Zero, distance: 10000);
             ChallengeWorld.Add (challengeSkyCube);
 
             // Die Spielzeit-Anzeige
@@ -395,13 +394,14 @@ namespace Knot3.Game.Screens
             base.Entered (previousScreen, time);
             AddGameComponents (time, playerKnotInput, challengeKnotInput, overlay, pointer,
                                ChallengeWorld, PlayerWorld, playerModelMouseHandler, challengeModelMouseHandler,
+                               PlayerEdgeMovement, 
                                lines, playTimeDisplay, playTimeBorder,
                                undoButton, undoButtonBorder, redoButton, redoButtonBorder);
 
             AudioManager.BackgroundMusic = Knot3Sound.ChallengeMusic;
 
             // Einstellungen anwenden
-            debugBoundings.Info.IsVisible = Config.Default ["debug", "show-boundings", false];
+            debugBoundings.IsVisible = Config.Default ["debug", "show-boundings", false];
         }
 
         enum ChallengeModeState {

@@ -59,6 +59,8 @@ namespace Knot3.ModelEditor
     [ExcludeFromCodeCoverageAttribute]
     public class JunctionEditorNodeMap : INodeMap
     {
+        private IScreen Screen;
+
         private Hashtable fromMap = new Hashtable ();
         private Hashtable toMap = new Hashtable ();
         private Dictionary<Node, List<IJunction>> junctionMap = new Dictionary<Node, List<IJunction>> ();
@@ -80,8 +82,9 @@ namespace Knot3.ModelEditor
 
         public Action IndexRebuilt { get; set; }
 
-        public JunctionEditorNodeMap ()
+        public JunctionEditorNodeMap (IScreen screen)
         {
+            Screen = screen;
             IndexRebuilt = () => {};
         }
 
@@ -158,7 +161,7 @@ namespace Knot3.ModelEditor
                 toMap [edge2] = zero + edge2.Direction;
 
                 Node node = NodeAfterEdge (edge1);
-                IJunction junction = new Junction (nodeMap: this, from: edge1, to: edge2, node: node, index: i * 2);
+                IJunction junction = new Junction (screen: Screen, nodeMap: this, from: edge1, to: edge2, node: node, index: i * 2);
                 junctionMap.Add (node, junction);
             }
 

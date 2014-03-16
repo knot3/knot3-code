@@ -40,15 +40,9 @@ using Knot3.Framework.Models;
 namespace Knot3.Framework.Development
 {
     [ExcludeFromCodeCoverageAttribute]
-    public class DebugBoundings : IGameObject
+    public class DebugBoundings : GameObject
     {
         private IScreen screen;
-
-        public GameObjectInfo Info { get; private set; }
-
-        public World World { get; set; }
-
-        public Matrix WorldMatrix { get { return Matrix.Identity; } }
 
         private VertexBuffer vertBuffer;
         private BasicEffect effect;
@@ -57,7 +51,6 @@ namespace Knot3.Framework.Development
         public DebugBoundings (IScreen screen, Vector3 position)
         {
             this.screen = screen;
-            Info = new GameObjectInfo (position: position);
 
             sphereResolution = 40;
             effect = new BasicEffect (screen.GraphicsDevice);
@@ -89,20 +82,10 @@ namespace Knot3.Framework.Development
             vertBuffer.SetData (verts);
         }
 
-        /// <summary>
-        /// Gibt den Ursprung des Knotens zurück.
-        /// </summary>
-        public Vector3 Center { get { return Info.Position; } }
-
         [ExcludeFromCodeCoverageAttribute]
-        public void Update (GameTime time)
+        public override void Draw (GameTime time)
         {
-        }
-
-        [ExcludeFromCodeCoverageAttribute]
-        public void Draw (GameTime time)
-        {
-            if (!Info.IsVisible) {
+            if (!IsVisible) {
                 return;
             }
 
@@ -111,7 +94,7 @@ namespace Knot3.Framework.Development
             screen.Viewport = World.Viewport;
 
             foreach (GameModel model in World.OfType<GameModel>()) {
-                if (model.Info.IsVisible) {
+                if (model.IsVisible) {
                     screen.GraphicsDevice.SetVertexBuffer (vertBuffer);
 
                     foreach (BoundingSphere sphere in model.Bounds) {
@@ -135,7 +118,7 @@ namespace Knot3.Framework.Development
             screen.Viewport = original;
         }
 
-        public GameObjectDistance Intersects (Ray ray)
+        public override GameObjectDistance Intersects (Ray ray)
         {
             return null;
         }

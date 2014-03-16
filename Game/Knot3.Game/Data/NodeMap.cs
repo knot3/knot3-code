@@ -39,6 +39,7 @@ using Microsoft.Xna.Framework;
 using Knot3.Framework.Utilities;
 
 using Knot3.Game.Models;
+using Knot3.Framework.Core;
 
 namespace Knot3.Game.Data
 {
@@ -47,6 +48,8 @@ namespace Knot3.Game.Data
     /// </summary>
     public sealed class NodeMap : INodeMap
     {
+        private IScreen Screen;
+
         private Hashtable fromMap = new Hashtable ();
         private Hashtable toMap = new Hashtable ();
         private Dictionary<Node, List<IJunction>> junctionMap = new Dictionary<Node, List<IJunction>> ();
@@ -62,16 +65,10 @@ namespace Knot3.Game.Data
 
         public Action IndexRebuilt { get; set; }
 
-        public NodeMap ()
+        public NodeMap (IScreen screen)
         {
+            Screen = screen;
             IndexRebuilt = () => {};
-        }
-
-        public NodeMap (IEnumerable<Edge> edges)
-        : this ()
-        {
-            Edges = edges;
-            BuildIndex ();
         }
 
         /// <summary>
@@ -141,7 +138,7 @@ namespace Knot3.Game.Data
                 Edge edgeA = Edges.At (n);
                 Edge edgeB = Edges.At (n + 1);
                 Node node = NodeAfterEdge (edgeA);
-                IJunction junction = new Junction (nodeMap: this, from: edgeA, to: edgeB, node: node, index: n);
+                IJunction junction = new Junction (screen: Screen, nodeMap: this, from: edgeA, to: edgeB, node: node, index: n);
                 junctionMap.Add (node, junction);
             }
 
@@ -149,3 +146,9 @@ namespace Knot3.Game.Data
         }
     }
 }
+
+
+
+
+
+

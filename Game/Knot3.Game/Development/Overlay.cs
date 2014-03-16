@@ -27,20 +27,16 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
-
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-
 using Knot3.Framework.Core;
 using Knot3.Framework.Development;
 using Knot3.Framework.Platform;
 using Knot3.Framework.Storage;
-
 using Knot3.Game.Models;
 
 namespace Knot3.Game.Development
@@ -72,8 +68,7 @@ namespace Knot3.Game.Development
             effect.VertexColorEnabled = true;
             effect.World = Matrix.CreateFromYawPitchRoll (0, 0, 0);
             if (Config.Default ["video", "camera-overlay", true]) {
-                DebugModelInfo info = new DebugModelInfo ("sphere");
-                debugModel = new DebugModel (screen, info);
+                debugModel = new DebugModel (screen, "sphere");
                 world.Add (debugModel);
             }
 
@@ -179,13 +174,13 @@ namespace Knot3.Game.Development
                 Vector3 selectedObjectCenter = World.SelectedObject.Center;
                 DrawVectorCoordinates (selectedObjectCenter, width2, width3, width4, height);
 
-                if (World.SelectedObject is PipeModel) {
+                if (World.SelectedObject is Pipe) {
                     DrawString ("Pipe: ", width1, height, Color.White);
-                    PipeModel pipe = World.SelectedObject as PipeModel;
+                    Pipe pipe = World.SelectedObject as Pipe;
                     height += lineHeight;
-                    string str = pipe.Info.Edge.Direction;
-                    if (pipe.Info.Knot != null) {
-                        str += "   #" + pipe.Info.Knot.ToList ().FindIndex (g => g == pipe.Info.Edge).ToString ();
+                    string str = pipe.Edge.Direction;
+                    if (pipe.Knot != null) {
+                        str += "   #" + pipe.Knot.ToList ().FindIndex (g => g == pipe.Edge).ToString ();
                     }
                     DrawString (str, width2, height, Color.Yellow);
                 }
@@ -234,12 +229,13 @@ namespace Knot3.Game.Development
         int _total_frames = 0;
         float _elapsed_time = 0.0f;
         int _fps = 0;
+        float _fps_interval_seconds = 0.333f;
 
         private void UpdateFPS (GameTime time)
         {
             _elapsed_time += (float)time.ElapsedGameTime.TotalMilliseconds;
 
-            if (_elapsed_time >= 1000.0f) {
+            if (_elapsed_time >= 1000.0f * _fps_interval_seconds) {
                 _fps = (int)(_total_frames * 1000.0f / _elapsed_time);
                 _total_frames = 0;
                 _elapsed_time = 0;

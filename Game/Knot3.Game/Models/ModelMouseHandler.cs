@@ -93,7 +93,7 @@ namespace Knot3.Game.Models
 
             GameObjectDistance nearest = null;
             foreach (IGameObject obj in World.Objects) {
-                if (obj.Info.IsVisible) {
+                if (obj.IsVisible) {
                     GameObjectDistance intersection = obj.Intersects (ray);
                     if (intersection != null) {
                         if (intersection.Distance > 0 && (nearest == null || intersection.Distance < nearest.Distance)) {

@@ -145,7 +145,6 @@ namespace Knot3.Game.Screens
             // der Input-Handler zur Kanten-Verschiebung
             edgeMovement = new EdgeMovement (screen: this, world: world, knotRenderer : knotRenderer, position: Vector3.Zero);
             edgeMovement.KnotMoved = OnKnotMoved;
-            world.Add (edgeMovement);
 
             // der Input-Handler zur Kanten-Einfärbung
             edgeColoring = new EdgeColoring (screen: this);
@@ -297,12 +296,12 @@ namespace Knot3.Game.Screens
         {
             base.Entered (previousScreen, time);
             AddGameComponents (time, knotInput, overlay, pointer, world, modelMouseHandler,
-                               edgeColoring, edgeRectangles, undoButton, undoButtonBorder,
-                               redoButton, redoButtonBorder, invisible);
+                               edgeColoring, edgeRectangles, edgeMovement,
+                               undoButton, undoButtonBorder, redoButton, redoButtonBorder, invisible);
             AudioManager.BackgroundMusic = Knot3Sound.CreativeMusic;
 
             // Einstellungen anwenden
-            debugBoundings.Info.IsVisible = Config.Default ["debug", "show-boundings", false];
+            debugBoundings.IsVisible = Config.Default ["debug", "show-boundings", false];
         }
     }
 }

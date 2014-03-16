@@ -27,28 +27,28 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
-
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-
 using Microsoft.Xna.Framework;
-
 using Knot3.Framework.Core;
 
 namespace Knot3.Framework.Effects
 {
     [ExcludeFromCodeCoverageAttribute]
-    public class RenderEffectLibrary
+    public partial class RenderEffectLibrary
     {
-        public static List<EffectFactory> EffectLibrary = new List<EffectFactory> (new EffectFactory[] {
-            new EffectFactory (
+        public static List<EffectFactory> EffectLibrary = new List<EffectFactory> ();
+
+        static RenderEffectLibrary ()
+        {
+            EffectLibrary.Add (new EffectFactory (
                 name: "default",
                 displayName: "Default",
                 createInstance: (screen) => new StandardEffect (screen)
-            ),
+            ));
+            AddDefaultGLShaders ();
         }
-                                                                                  );
 
         public static Action<string, GameTime> RenderEffectChanged = (e, t) => {};
 

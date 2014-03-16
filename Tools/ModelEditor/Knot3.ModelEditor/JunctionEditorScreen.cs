@@ -342,7 +342,7 @@ namespace Knot3.ModelEditor
             AudioManager.BackgroundMusic = Knot3Sound.CreativeMusic;
 
             // Einstellungen anwenden
-            debugBoundings.Info.IsVisible = Config.Default ["debug", "show-boundings", false];
+            debugBoundings.IsVisible = Config.Default ["debug", "show-boundings", false];
         }
     }
 }

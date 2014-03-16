@@ -27,15 +27,12 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
-
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-
 using Knot3.Framework.Core;
 using Knot3.Framework.Models;
 using Knot3.Framework.Platform;
@@ -104,6 +101,10 @@ namespace Knot3.Framework.Effects
             screen.GraphicsDevice.SamplerStates [0] = SamplerState.LinearWrap;
         }
 
+        protected virtual void BeforeEnd (GameTime time)
+        {
+        }
+
         /// <summary>
         /// Das auf dem Stack gesicherte, vorher genutzte Rendertarget wird wiederhergestellt und
         /// das Rendertarget dieses Rendereffekts wird, unter Umständen in Unterklassen verändert,
@@ -111,6 +112,7 @@ namespace Knot3.Framework.Effects
         /// </summary>
         public virtual void End (GameTime time)
         {
+            BeforeEnd (time);
             screen.CurrentRenderEffects.Pop ();
 
             spriteBatch.Begin (SpriteSortMode.Immediate, BlendState.NonPremultiplied);
@@ -198,17 +200,38 @@ namespace Knot3.Framework.Effects
             ModifyBasicEffect (effect: effect, obj: primitive as IGameObject);
 
             effect.TextureEnabled = true;
-            if (primitive.Texture != null) {
-                effect.Texture = primitive.Texture;
+            effect.Texture = GetTexture (primitive);
+        }
+
+        protected Texture2D GetTexture (IGameObject obj)
+        {
+            if (obj is ITexturedObject && (obj as ITexturedObject).Texture != null) {
+                return (obj as ITexturedObject).Texture;
             }
-            else {
-                ModelColoring coloring = primitive.Coloring;
+            else if (obj is IColoredObject) {
+                ModelColoring coloring = (obj as IColoredObject).Coloring;
                 if (coloring is GradientColor) {
-                    effect.Texture = ContentLoader.CreateGradient (screen.GraphicsDevice, coloring as GradientColor);
+                    return ContentLoader.CreateGradient (screen.GraphicsDevice, coloring as GradientColor);
                 }
                 else {
-                    effect.Texture = ContentLoader.CreateTexture (screen.GraphicsDevice, coloring.MixedColor);
+                    return ContentLoader.CreateTexture (screen.GraphicsDevice, coloring.MixedColor);
                 }
+            }
+            else {
+                return ContentLoader.CreateTexture (screen.GraphicsDevice, Color.CornflowerBlue);
+            }
+        }
+
+        protected int GetTextureHashCode (IGameObject obj)
+        {
+            if (obj is ITexturedObject && (obj as ITexturedObject).Texture != null) {
+                return (obj as ITexturedObject).Texture.GetHashCode ();
+            }
+            else if (obj is IColoredObject) {
+                return (obj as IColoredObject).Coloring.MixedColor.GetHashCode ();
+            }
+            else {
+                return 0;
             }
         }
 
@@ -224,7 +247,7 @@ namespace Knot3.Framework.Effects
         /// <summary>
         /// Zeichnet das Rendertarget.
         /// </summary>
-        protected virtual void DrawRenderTarget (GameTime GameTime)
+        protected virtual void DrawRenderTarget (GameTime time)
         {
             spriteBatch.Draw (
                 RenderTarget,

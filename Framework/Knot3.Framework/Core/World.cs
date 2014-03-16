@@ -334,7 +334,7 @@ namespace Knot3.Framework.Core
         {
             Dictionary<float, IGameObject> distances = new Dictionary<float, IGameObject> ();
             foreach (IGameObject obj in this) {
-                if (obj.Info.IsSelectable) {
+                if (obj.IsSelectable) {
                     // Berechne aus der angegebenen 2D-Position eine 3D-Position
                     Vector3 position3D = Camera.To3D (
                                              position: nearTo,
@@ -365,7 +365,7 @@ namespace Knot3.Framework.Core
         {
             Dictionary<float, IGameObject> distances = new Dictionary<float, IGameObject> ();
             foreach (IGameObject obj in this) {
-                if (obj.Info.IsSelectable) {
+                if (obj.IsSelectable) {
                     // Berechne die Distanz zwischen 3D-Mausposition und dem Spielobjekt
                     float distance = System.Math.Abs ((nearTo - obj.Center).Length ());
                     distances [distance] = obj;

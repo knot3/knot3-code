@@ -71,7 +71,6 @@
     <Compile Include="Knot3.Game\Data\PrinterIO.cs" />
     <Compile Include="Knot3.Game\Data\RectangleMap.cs" />
     <Compile Include="Knot3.Game\Development\DebugModel.cs" />
-    <Compile Include="Knot3.Game\Development\DebugModelInfo.cs" />
     <Compile Include="Knot3.Game\Development\DebugSettingsScreen.cs" />
     <Compile Include="Knot3.Game\Development\Overlay.cs" />
     <Compile Include="Knot3.Game\Effects\CelShadingEffect.cs" />
@@ -84,16 +83,12 @@
     <Compile Include="Knot3.Game\Input\Knot3PlayerAction.cs" />
     <Compile Include="Knot3.Game\Input\KnotInputHandler.cs" />
     <Compile Include="Knot3.Game\Models\Arrow.cs" />
-    <Compile Include="Knot3.Game\Models\ArrowModel.cs" />
     <Compile Include="Knot3.Game\Models\Junction.cs" />
-    <Compile Include="Knot3.Game\Models\JunctionModel.cs" />
     <Compile Include="Knot3.Game\Models\KnotRenderer.cs" />
     <Compile Include="Knot3.Game\Models\ModelFactory.cs" />
     <Compile Include="Knot3.Game\Models\ModelMouseHandler.cs" />
     <Compile Include="Knot3.Game\Models\Pipe.cs" />
-    <Compile Include="Knot3.Game\Models\PipeModel.cs" />
     <Compile Include="Knot3.Game\Models\RectangleModel.cs" />
-    <Compile Include="Knot3.Game\Models\ShadowModel.cs" />
     <Compile Include="Knot3.Game\Models\SkyCube.cs" />
     <Compile Include="Knot3.Game\Program.cs" />
     <Compile Include="Knot3.Game\Screens\AudioSettingsScreen.cs" />

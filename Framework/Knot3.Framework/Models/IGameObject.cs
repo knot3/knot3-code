@@ -27,12 +27,11 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
-
 using System.Diagnostics.CodeAnalysis;
-
 using Microsoft.Xna.Framework;
-
 using Knot3.Framework.Core;
+using Knot3.Framework.Math;
+using System;
 
 namespace Knot3.Framework.Models
 {
@@ -40,18 +39,46 @@ namespace Knot3.Framework.Models
     /// Diese Schnittstelle repräsentiert ein Spielobjekt und enthält eine Referenz auf die Spielwelt, in der sich dieses
     /// Game befindet, sowie Informationen zu dem Game.
     /// </summary>
-    public interface IGameObject
+    public interface IGameObject : IEquatable<IGameObject>
     {
         /// <summary>
-        /// Informationen über das Spielobjekt, wie z.B. die Position.
+        /// Die Verschiebbarkeit des Spielobjektes.
         /// </summary>
-        GameObjectInfo Info { get; }
+        bool IsMovable { get; }
+
+        /// <summary>
+        /// Die Auswählbarkeit des Spielobjektes.
+        /// </summary>
+        bool IsSelectable { get; }
+
+        /// <summary>
+        /// Die Sichtbarkeit des Spielobjektes.
+        /// </summary>
+        bool IsVisible { get; set; }
+
+        /// <summary>
+        /// Die Position des Spielobjektes.
+        /// </summary>
+        Vector3 Position { get; set; }
+
+        /// <summary>
+        /// Die Rotation des Spielobjektes.
+        /// </summary>
+        Angles3 Rotation { get; set; }
+
+        /// <summary>
+        /// Die Skalierung des Spielobjektes.
+        /// </summary>
+        Vector3 Scale { get; set; }
 
         /// <summary>
         /// Eine Referenz auf die Spielwelt, in der sich das Spielobjekt befindet.
         /// </summary>
         World World { get; set; }
 
+        /// <summary>
+        /// Die Weltmatrix des 3D-Modells in der angegebenen Spielwelt.
+        /// </summary>
         Matrix WorldMatrix { get; }
 
         /// <summary>
@@ -73,5 +100,9 @@ namespace Knot3.Framework.Models
         /// Überprüft, ob der Mausstrahl das Spielobjekt schneidet.
         /// </summary>
         GameObjectDistance Intersects (Ray ray);
+
+        BoundingSphere[] Bounds { get; }
+
+        string UniqueKey { get; }
     }
 }

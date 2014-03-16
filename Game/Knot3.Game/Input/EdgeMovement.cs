@@ -27,15 +27,12 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-
 using Microsoft.Xna.Framework;
-
 using Knot3.Framework.Audio;
 using Knot3.Framework.Core;
 using Knot3.Framework.Development;
@@ -45,7 +42,6 @@ using Knot3.Framework.Models;
 using Knot3.Framework.Platform;
 using Knot3.Framework.Storage;
 using Knot3.Framework.Utilities;
-
 using Knot3.Game.Audio;
 using Knot3.Game.Data;
 using Knot3.Game.Models;
@@ -56,15 +52,8 @@ namespace Knot3.Game.Input
     /// Ein Inputhandler, der für das Verschieben der Kanten zuständig ist.
     /// </summary>
     [ExcludeFromCodeCoverageAttribute]
-    public sealed class EdgeMovement : IGameObject, IEnumerable<IGameObject>
+    public sealed class EdgeMovement : ScreenComponent
     {
-        private IScreen Screen;
-
-        /// <summary>
-        /// Enthält Informationen über die Position des Knotens.
-        /// </summary>
-        public GameObjectInfo Info { get; private set; }
-
         /// <summary>
         /// Der Knoten, dessen Kanten verschoben werden können.
         /// </summary>
@@ -80,8 +69,7 @@ namespace Knot3.Game.Input
         public Matrix WorldMatrix { get { return Matrix.Identity; } }
 
         private Vector3 previousMousePosition = Vector3.Zero;
-        private List<ShadowModel> shadowModels;
-        private KnotRenderer knotRenderer;
+        private KnotRenderer KnotRenderer;
         private Dictionary<Vector3, Knot> knotCache = new Dictionary<Vector3, Knot> ();
 
         /// <summary>
@@ -90,32 +78,18 @@ namespace Knot3.Game.Input
         /// Objektinformationen info.
         /// </summary>
         public EdgeMovement (IScreen screen, World world, KnotRenderer knotRenderer, Vector3 position)
+            : base (screen, DisplayLayer.None)
         {
             Screen = screen;
             World = world;
-            this.knotRenderer = knotRenderer;
-            Info = new GameObjectInfo (position: position);
-            shadowModels = new List<ShadowModel> ();
-        }
-
-        /// <summary>
-        /// Gibt den Ursprung des Knotens zurück.
-        /// </summary>
-        public Vector3 Center { get { return Info.Position; } }
-
-        /// <summary>
-        /// Gibt immer \glqq null\grqq~zurück.
-        /// </summary>
-        public GameObjectDistance Intersects (Ray Ray)
-        {
-            return null;
+            KnotRenderer = knotRenderer;
         }
 
         /// <summary>
         /// Wird für jeden Frame aufgerufen.
         /// </summary>
         [ExcludeFromCodeCoverageAttribute]
-        public void Update (GameTime time)
+        public override void Update (GameTime time)
         {
             SelectEdges (time);
             MoveEdges (time);
@@ -127,8 +101,8 @@ namespace Knot3.Game.Input
         private void SelectEdges (GameTime time)
         {
             // Überprüfe, ob das Objekt über dem die Maus liegt, eine Pipe ist
-            if (World.SelectedObject is PipeModel) {
-                PipeModel pipe = World.SelectedObject as PipeModel;
+            if (World.SelectedObject is Pipe) {
+                Pipe pipe = World.SelectedObject as Pipe;
 
                 // Bei einem Linksklick...
                 if (Screen.InputManager.LeftMouseButton == ClickState.SingleClick) {
@@ -136,7 +110,7 @@ namespace Knot3.Game.Input
                     World.Redraw = true;
 
                     try {
-                        Edge selectedEdge = pipe.Info.Edge;
+                        Edge selectedEdge = pipe.Edge;
                         Log.Debug ("knot.Count () = ", Knot.Count ());
 
                         // Ctrl gedrückt
@@ -162,7 +136,7 @@ namespace Knot3.Game.Input
             }
 
             // Wenn das selektierte Objekt weder Kante noch Pfeil ist...
-            else if (!(World.SelectedObject is ArrowModel)) {
+            else if (!(World.SelectedObject is Arrow)) {
                 // dann leert ein Linksklick die Selektion
                 if (Screen.InputManager.LeftMouseButton == ClickState.SingleClick) {
                     Knot.ClearSelection ();
@@ -177,7 +151,7 @@ namespace Knot3.Game.Input
         {
             // Wenn die Maus über einer Kante oder einem Pfeil liegt
             IGameObject selectedObject = World.SelectedObject;
-            if (World.SelectedObject is PipeModel || World.SelectedObject is ArrowModel) {
+            if (World.SelectedObject is Pipe || World.SelectedObject is Arrow) {
                 // Berechne die Mausposition in 3D
                 Vector3 currentMousePosition = World.Camera.To3D (position: Screen.InputManager.CurrentMousePosition, nearTo: selectedObject.Center);
 
@@ -192,9 +166,9 @@ namespace Knot3.Game.Input
                     }
 
                     // Setze die Positionen der Shadowobjekte abhängig von der Mausposition
-                    if (selectedObject is ArrowModel) {
+                    if (selectedObject is Arrow) {
                         // Wenn ein Pfeil selektiert wurde, ist die Verschiebe-Richtung eindeutig festgelegt
-                        UpdateShadowPipes (currentMousePosition, (selectedObject as ArrowModel).Info.Direction, time);
+                        UpdateShadowPipes (currentMousePosition, (selectedObject as Arrow).Direction, time);
                     }
                     else {
                         // Wenn etwas anderes (eine Kante) selektiert wurde,
@@ -211,9 +185,9 @@ namespace Knot3.Game.Input
                 // Wenn die Verschiebe-Aktion beendet ist (wenn die Maus losgelassen wurde)
                 else if (Screen.InputManager.CurrentInputAction == InputAction.SelectedObjectMove) {
                     // Führe die finale Verschiebung durch
-                    if (selectedObject is ArrowModel) {
+                    if (selectedObject is Arrow) {
                         // Wenn ein Pfeil selektiert wurde, ist die Verschiebe-Richtung eindeutig festgelegt
-                        MovePipes (currentMousePosition, (selectedObject as ArrowModel).Info.Direction, time);
+                        MovePipes (currentMousePosition, (selectedObject as Arrow).Direction, time);
                     }
                     else {
                         // Wenn etwas anderes (eine Kante) selektiert wurde,
@@ -228,14 +202,6 @@ namespace Knot3.Game.Input
                 // Keine Verschiebeaktion
                 else {
                     previousMousePosition = Vector3.Zero;
-
-                    // Wenn die Shadowobjekt-Liste nicht leer ist...
-                    if (shadowModels.Count > 0) {
-                        // dann leere die Liste
-                        DestroyShadowModels ();
-                        // Zeichne im nächsten Frame auf jeden Fall neu
-                        World.Redraw = true;
-                    }
                 }
             }
         }
@@ -296,38 +262,6 @@ namespace Knot3.Game.Input
         }
 
         /// <summary>
-        /// Erstellt für die selektierten Kantenmodelle und die Pfeile jeweils Shadowobjekte.
-        /// </summary>
-        private void CreateShadowModels ()
-        {
-            DestroyShadowModels ();
-            foreach (PipeModel pipe in World.OfType<PipeModel>()) {
-                if (Knot.SelectedEdges.Contains (pipe.Info.Edge)) {
-                    pipe.Info.IsVisible = false;
-                    // shadowModels.Add (new ShadowModel (Screen, pipe));
-                }
-            }
-            foreach (ArrowModel arrow in World.OfType<ArrowModel>()) {
-                arrow.Info.IsVisible = false;
-                shadowModels.Add (new ShadowModel (Screen, arrow));
-            }
-        }
-
-        /// <summary>
-        /// Entfernt alle Shadowobjekte.
-        /// </summary>
-        private void DestroyShadowModels ()
-        {
-            shadowModels.Clear ();
-            foreach (PipeModel pipe in World.OfType<PipeModel>()) {
-                pipe.Info.IsVisible = true;
-            }
-            foreach (ArrowModel arrow in World.OfType<ArrowModel>()) {
-                arrow.Info.IsVisible = true;
-            }
-        }
-
-        /// <summary>
         /// Setze die Position der Shadowobjekte der selektierten Kantenmodelle
         /// auf die von der aktuellen Mausposition abhängende Position.
         /// </summary>
@@ -366,13 +300,7 @@ namespace Knot3.Game.Input
                 }
 
                 if (shadowKnot != null) {
-                    knotRenderer.VirtualKnot = shadowKnot;
-                }
-
-                foreach (ShadowModel shadowObj in shadowModels) {
-                    shadowObj.ShadowPosition = shadowObj.OriginalPosition + direction * count * Node.Scale;
-                    shadowObj.ShadowAlpha = 1f;
-                    shadowObj.ShadowColor = Color.White;
+                    KnotRenderer.VirtualKnot = shadowKnot;
                 }
             }
         }
@@ -389,34 +317,6 @@ namespace Knot3.Game.Input
             float count = ComputeLength (currentMousePosition);
             Direction direction = ComputeDirection (currentMousePosition);
             UpdateShadowPipes (currentMousePosition, direction, count, time);
-        }
-
-        /// <summary>
-        /// Gibt einen Enumerator über die während einer Verschiebeaktion dynamisch erstellten 3D-Modelle zurück.
-        /// [returntype=IEnumerator<IGameObject>]
-        /// </summary>
-        public IEnumerator<IGameObject> GetEnumerator ()
-        {
-            foreach (IGameObject shadowObj in shadowModels) {
-                yield return shadowObj;
-            }
-        }
-
-        // Explicit interface implementation for nongeneric interface
-        IEnumerator IEnumerable.GetEnumerator ()
-        {
-            return GetEnumerator (); // Just return the generic version
-        }
-
-        /// <summary>
-        /// Zeichnet die während einer Verschiebeaktion dynamisch erstellten 3D-Modelle.
-        /// </summary>
-        [ExcludeFromCodeCoverageAttribute]
-        public void Draw (GameTime time)
-        {
-            foreach (IGameObject shadowObj in shadowModels) {
-                shadowObj.Draw (time);
-            }
         }
     }
 }

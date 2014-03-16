@@ -209,7 +209,6 @@ namespace Knot3.Game.Data
                 hexString = hexString.Substring (1);
             }
 
-            Log.Debug (hexString);
             uint hex = unchecked ( uint.Parse (hexString, System.Globalization.NumberStyles.HexNumber) );
             Color color = Color.White;
             if (hexString.Length == 8) {

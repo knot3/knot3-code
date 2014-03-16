@@ -60,8 +60,10 @@
     <Compile Include="Knot3.Framework\Effects\IRenderEffect.cs" />
     <Compile Include="Knot3.Framework\Effects\IRenderEffectStack.cs" />
     <Compile Include="Knot3.Framework\Effects\RenderEffect.cs" />
+    <Compile Include="Knot3.Framework\Effects\RenderEffectLibrary-MG.cs" />
     <Compile Include="Knot3.Framework\Effects\RenderEffectLibrary.cs" />
     <Compile Include="Knot3.Framework\Effects\RenderEffectStack.cs" />
+    <Compile Include="Knot3.Framework\Effects\SimpleGLEffect-MG.cs" />
     <Compile Include="Knot3.Framework\Effects\StandardEffect.cs" />
     <Compile Include="Knot3.Framework\Input\ClickState.cs" />
     <Compile Include="Knot3.Framework\Input\IKeyEventListener.cs" />
@@ -86,11 +88,13 @@
     <Compile Include="Knot3.Framework\Models\CurvedCylinder.cs" />
     <Compile Include="Knot3.Framework\Models\Cylinder.cs" />
     <Compile Include="Knot3.Framework\Models\GameModel.cs" />
-    <Compile Include="Knot3.Framework\Models\GameModelInfo.cs" />
+    <Compile Include="Knot3.Framework\Models\GameObject.cs" />
     <Compile Include="Knot3.Framework\Models\GameObjectDistance.cs" />
-    <Compile Include="Knot3.Framework\Models\GameObjectInfo.cs" />
     <Compile Include="Knot3.Framework\Models\GamePrimitive.cs" />
+    <Compile Include="Knot3.Framework\Models\IColoredObject.cs" />
+    <Compile Include="Knot3.Framework\Models\IGameModel.cs" />
     <Compile Include="Knot3.Framework\Models\IGameObject.cs" />
+    <Compile Include="Knot3.Framework\Models\ITexturedObject.cs" />
     <Compile Include="Knot3.Framework\Models\ModelColoring.cs" />
     <Compile Include="Knot3.Framework\Models\Parallelogram.cs" />
     <Compile Include="Knot3.Framework\Models\Primitive.cs" />
@@ -143,6 +147,7 @@
     <Compile Include="Knot3.Framework\Widgets\VerticalAlignment.cs" />
     <Compile Include="Knot3.Framework\Widgets\Widget.cs" />
     <Compile Include="Knot3.Framework\Widgets\WidgetState.cs" />
+    <Compile Include="Knot3.Framework\Effects\HardwareInstancingEffect-MG.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -158,8 +163,5 @@
       <Project>{F8C66EB3-E81D-45FB-B28E-747BE332230F}</Project>
       <Name>OggSharp</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Knot3.Framework\Primitives\" />
   </ItemGroup>
 </Project>

@@ -59,41 +59,19 @@ using Knot3.Game.Widgets;
 namespace Knot3.ModelEditor
 {
     [ExcludeFromCodeCoverageAttribute]
-    public class JunctionEditorRenderer : IGameObject, IEnumerable<IGameObject>
+    public class JunctionEditorRenderer : GameObject, IEnumerable<IGameObject>
     {
         private IScreen screen;
 
         /// <summary>
-        /// Enthält Informationen über die Position des Knotens.
-        /// </summary>
-        public GameObjectInfo Info { get; private set; }
-
-        /// <summary>
-        /// Die Spielwelt, in der die 3D-Modelle erstellt werden sollen.
-        /// </summary>
-        public World World { get; set; }
-
-        public Matrix WorldMatrix { get { return Matrix.Identity; } }
-
-        /// <summary>
         /// Die Liste der 3D-Modelle der Kantenübergänge.
         /// </summary>
-        private List<JunctionModel> nodes;
+        private List<Junction> nodes;
 
         /// <summary>
         /// Die Liste der 3D-Modelle der Kanten.
         /// </summary>
-        private List<PipeModel> pipes;
-
-        /// <summary>
-        /// Der Zwischenspeicher für die 3D-Modelle der Kanten. Hier wird das Fabrik-Entwurfsmuster verwendet.
-        /// </summary>
-        private ModelFactory pipeFactory;
-
-        /// <summary>
-        /// Der Zwischenspeicher für die 3D-Modelle der Kantenübergänge. Hier wird das Fabrik-Entwurfsmuster verwendet.
-        /// </summary>
-        private ModelFactory nodeFactory;
+        private List<Pipe> pipes;
 
         /// <summary>
         /// Die Zuordnung zwischen Kanten und den dreidimensionalen Rasterpunkten, an denen sich die die Kantenübergänge befinden.
@@ -107,27 +85,19 @@ namespace Knot3.ModelEditor
         public JunctionEditorRenderer (IScreen screen, Vector3 position)
         {
             this.screen = screen;
-            Info = new GameObjectInfo (position: position);
-            pipes = new List<PipeModel> ();
-            nodes = new List<JunctionModel> ();
-            pipeFactory = new ModelFactory ((s, i) => new PipeModel (s, i as Pipe));
-            nodeFactory = new ModelFactory ((s, i) => new JunctionModel (s, i as Junction));
-            nodeMap = new JunctionEditorNodeMap ();
+            pipes = new List<Pipe> ();
+            nodes = new List<Junction> ();
+            nodeMap = new JunctionEditorNodeMap (screen: screen);
         }
-
-        /// <summary>
-        /// Gibt den Ursprung des Knotens zurück.
-        /// </summary>
-        public Vector3 Center { get { return Info.Position; } }
 
         /// <summary>
         /// Ruft die Intersects (Ray)-Methode der Kanten, Übergänge und Pfeile auf und liefert das beste Ergebnis zurück.
         /// </summary>
-        public GameObjectDistance Intersects (Ray ray)
+        public override GameObjectDistance Intersects (Ray ray)
         {
             GameObjectDistance nearest = null;
             if (!screen.InputManager.GrabMouseMovement) {
-                foreach (PipeModel pipe in pipes) {
+                foreach (Pipe pipe in pipes) {
                     GameObjectDistance intersection = pipe.Intersects (ray);
                     if (intersection != null) {
                         if (intersection.Distance > 0 && (nearest == null || intersection.Distance < nearest.Distance)) {
@@ -155,7 +125,7 @@ namespace Knot3.ModelEditor
 
             if (valid) {
                 nodeMap.Render (directions);
-                nodeMap.Offset = Info.Position;
+                nodeMap.Offset = Position;
 
                 CreatePipes ();
                 CreateNodes ();
@@ -174,9 +144,8 @@ namespace Knot3.ModelEditor
         {
             pipes.Clear ();
             foreach (Edge edge in nodeMap.Edges) {
-                Pipe info = new Pipe (nodeMap: nodeMap, knot: null, edge: edge);
-                PipeModel pipe = pipeFactory [screen, info] as PipeModel;
-                pipe.Info.IsVisible = true;
+                Pipe pipe = new Pipe (screen: screen, nodeMap: nodeMap, knot: null, edge: edge);
+                pipe.IsVisible = true;
                 pipe.World = World;
                 pipes.Add (pipe);
             }
@@ -195,9 +164,8 @@ namespace Knot3.ModelEditor
                 }
 
                 foreach (Junction junction in junctions.OfType<Junction>()) {
-                    JunctionModel model = nodeFactory [screen, junction] as JunctionModel;
-                    model.World = World;
-                    nodes.Add (model);
+                    junction.World = World;
+                    nodes.Add (junction);
                 }
             }
         }
@@ -206,12 +174,12 @@ namespace Knot3.ModelEditor
         /// Ruft die Update ()-Methoden der Kanten, Übergänge und Pfeile auf.
         /// </summary>
         [ExcludeFromCodeCoverageAttribute]
-        public void Update (GameTime time)
+        public override void Update (GameTime time)
         {
-            foreach (PipeModel pipe in pipes) {
+            foreach (Pipe pipe in pipes) {
                 pipe.Update (time);
             }
-            foreach (JunctionModel node in nodes) {
+            foreach (Junction node in nodes) {
                 node.Update (time);
             }
         }
@@ -220,18 +188,18 @@ namespace Knot3.ModelEditor
         /// Ruft die Draw ()-Methoden der Kanten, Übergänge und Pfeile auf.
         /// </summary>
         [ExcludeFromCodeCoverageAttribute]
-        public void Draw (GameTime time)
+        public override void Draw (GameTime time)
         {
-            if (Info.IsVisible) {
+            if (IsVisible) {
                 Profiler.Values ["# InFrustum"] = 0;
                 Profiler.Values ["RenderEffect"] = 0;
                 Profiler.ProfileDelegate ["Pipes"] = () => {
-                    foreach (PipeModel pipe in pipes) {
+                    foreach (Pipe pipe in pipes) {
                         pipe.Draw (time);
                     }
                 };
                 Profiler.ProfileDelegate ["Nodes"] = () => {
-                    foreach (JunctionModel node in nodes) {
+                    foreach (Junction node in nodes) {
                         node.Draw (time);
                     }
                 };
@@ -246,10 +214,10 @@ namespace Knot3.ModelEditor
         /// </summary>
         public IEnumerator<IGameObject> GetEnumerator ()
         {
-            foreach (PipeModel pipe in pipes) {
+            foreach (Pipe pipe in pipes) {
                 yield return pipe;
             }
-            foreach (JunctionModel node in nodes) {
+            foreach (Junction node in nodes) {
                 yield return node;
             }
         }
