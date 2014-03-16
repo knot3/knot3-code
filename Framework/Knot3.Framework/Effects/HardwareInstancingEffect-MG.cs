@@ -260,21 +260,14 @@ void main ()
 #monogame Attribute (name=instanceWorldInverseTranspose; usage=TextureCoordinate; index=[5, 6, 7, 8])
 #version 130
 
-uniform vec4 xView [4];
-uniform vec4 xProjection [4];
-uniform vec4 posFixup;
+uniform mat4 xView;
+uniform mat4 xProjection;
 
 in vec4 vertexPosition;
 in vec4 vertexNormal;
 in vec4 vertexTexCoord;
-in vec4 instanceWorld0;
-in vec4 instanceWorld1;
-in vec4 instanceWorld2;
-in vec4 instanceWorld3;
-in vec4 instanceWorldInverseTranspose0;
-in vec4 instanceWorldInverseTranspose1;
-in vec4 instanceWorldInverseTranspose2;
-in vec4 instanceWorldInverseTranspose3;
+in mat4 instanceWorld;
+in mat4 instanceWorldInverseTranspose;
 
 out vec4 fragNormal;
 out vec4 fragTexCoord;
@@ -282,22 +275,16 @@ out vec4 fragLightingFactor;
 
 void main ()
 {
-    mat4 world = transpose (mat4 (instanceWorld0, instanceWorld1, instanceWorld2, instanceWorld3));
-    mat4 view = mat4 (xView [0], xView [1], xView [2], xView [3]);
-    mat4 proj = mat4 (xProjection [0], xProjection [1], xProjection [2], xProjection [3]);
-    mat4 worldInverseTranspose = transpose (mat4 (instanceWorldInverseTranspose0, instanceWorldInverseTranspose1, instanceWorldInverseTranspose2, instanceWorldInverseTranspose3));
+    mat4 world = transpose (instanceWorld);
+    mat4 worldInverseTranspose = transpose (instanceWorldInverseTranspose);
     
-    gl_Position = vertexPosition * world * view * proj;
+    gl_Position = vertexPosition * world * xViewM * xProjectionM;
     
     fragNormal.xyz = normalize (vertexNormal * worldInverseTranspose).xyz;
     
     fragTexCoord.xy = vertexTexCoord.xy;
 
     fragLightingFactor.x = dot (fragNormal.xyz, -vec3 (-1.0, -1.0, -1.0));
-    
-    // https://github.com/flibitijibibo/MonoGame/blob/e9f61e3efbae6f11ebbf45012e7c692c8d0ee529/MonoGame.Framework/Graphics/GraphicsDevice.cs#L1209
-    gl_Position.y = gl_Position.y * posFixup.y;
-    gl_Position.xy += posFixup.zw * gl_Position.ww;
 }
 
 #monogame EndShader ()
