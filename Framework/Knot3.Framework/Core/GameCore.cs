@@ -222,7 +222,7 @@ namespace Knot3.Framework.Core
                 firstException = ex;
             }
             else {
-                Log.ShowMessageBox (firstException.ToString(), "Exception");
+                Log.ShowMessageBox (firstException.ToString (), "Exception");
                 Exit ();
             }
         }

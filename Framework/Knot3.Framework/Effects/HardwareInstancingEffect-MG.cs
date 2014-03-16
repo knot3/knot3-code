@@ -175,7 +175,7 @@ namespace Knot3.Framework.Effects
 
                 Camera camera = instancedPrimitive.World.Camera;
                 //effect.Parameters ["World"].SetValue (primitive.WorldMatrix * camera.WorldMatrix);
-                effect.Parameters ["xAmbient"].SetValue (Color.White.ToVector4()*0.2f);
+                effect.Parameters ["xAmbient"].SetValue (Color.White.ToVector4 ()*0.2f);
                 effect.Parameters ["xView"].SetValue (camera.ViewMatrix);
                 effect.Parameters ["xProjection"].SetValue (camera.ProjectionMatrix);
                 //effect.Parameters ["WorldInverseTranspose"].SetValue (Matrix.Transpose (Matrix.Invert (primitive.WorldMatrix * camera.WorldMatrix)));
@@ -228,8 +228,7 @@ namespace Knot3.Framework.Effects
 #monogame EffectParameter (name=xModelTexture; class=Object; type=Texture2D; semantic=; rows=0; columns=0; elements=[]; structMembers=[])
 
 #monogame EffectParameter (name=xAmbient; class=Vector; type=Single; rows=1; columns=4)
-#monogame ConstantBuffer(name=xAmbient; sizeInBytes=16; parameters=[3]; offsets=[0])
-
+#monogame ConstantBuffer (name=xAmbient; sizeInBytes=16; parameters=[3]; offsets=[0])
 
 #monogame BeginShader (stage=pixel; constantBuffers=[2])
 #monogame Sampler (name=sModelTexture; type=Sampler2D; textureSlot=0; samplerSlot=0; parameter=2)
@@ -249,7 +248,7 @@ void main ()
 {
     vec4 color = texture2D (sModelTexture, fragTexCoord.xy);
     color.w = 1.0;
-    fragColor = color * clamp(fragLightingFactor.x, 0.0, 1.0) + xAmbient;
+    fragColor = color * clamp (fragLightingFactor.x, 0.0, 1.0) + xAmbient;
 }
 
 #monogame EndShader ()
@@ -301,7 +300,7 @@ void main ()
     
     fragTexCoord.xy = vertexTexCoord.xy;
 
-    fragLightingFactor.x = dot(fragNormal.xyz, -vec3(-1.0, -1.0, -1.0));
+    fragLightingFactor.x = dot (fragNormal.xyz, -vec3 (-1.0, -1.0, -1.0));
     
     // https://github.com/flibitijibibo/MonoGame/blob/e9f61e3efbae6f11ebbf45012e7c692c8d0ee529/MonoGame.Framework/Graphics/GraphicsDevice.cs#L1209
     gl_Position.y = gl_Position.y * posFixup.y;
