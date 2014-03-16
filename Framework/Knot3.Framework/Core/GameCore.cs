@@ -211,11 +211,20 @@ namespace Knot3.Framework.Core
 
         public bool ErrorScreenEnabled { get; protected set; }
 
+        private Exception firstException = null;
+
         public void ShowError (Exception ex)
         {
-            Screens = new Stack<IScreen> ();
-            Screens.Push (new ErrorScreen (this, ex));
-            Screens.Peek ().Entered (null, null);
+            if (firstException == null) {
+                Screens = new Stack<IScreen> ();
+                Screens.Push (new ErrorScreen (this, ex));
+                Screens.Peek ().Entered (null, null);
+                firstException = ex;
+            }
+            else {
+                Log.ShowMessageBox (firstException.ToString(), "Exception");
+                Exit ();
+            }
         }
 
         /// <summary>

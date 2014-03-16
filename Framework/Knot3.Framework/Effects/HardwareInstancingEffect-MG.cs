@@ -175,11 +175,12 @@ namespace Knot3.Framework.Effects
 
                 Camera camera = instancedPrimitive.World.Camera;
                 //effect.Parameters ["World"].SetValue (primitive.WorldMatrix * camera.WorldMatrix);
-                effect.Parameters ["View"].SetValue (camera.ViewMatrix);
-                effect.Parameters ["Projection"].SetValue (camera.ProjectionMatrix);
+                effect.Parameters ["xAmbient"].SetValue (Color.White.ToVector4()*0.2f);
+                effect.Parameters ["xView"].SetValue (camera.ViewMatrix);
+                effect.Parameters ["xProjection"].SetValue (camera.ProjectionMatrix);
                 //effect.Parameters ["WorldInverseTranspose"].SetValue (Matrix.Transpose (Matrix.Invert (primitive.WorldMatrix * camera.WorldMatrix)));
 
-                effect.Parameters ["ModelTexture"].SetValue (instancedPrimitive.Texture);
+                effect.Parameters ["xModelTexture"].SetValue (instancedPrimitive.Texture);
 
                 InstancedBuffer buffer;
                 if (!cachePrimitivesBuffers.ContainsKey (key)) {
@@ -218,34 +219,45 @@ namespace Knot3.Framework.Effects
         }
 
         private readonly string SHADER_CODE = @"
-#monogame EffectParameter (name=View; class=Matrix; type=Single; rows=4; columns=4)
-#monogame ConstantBuffer (name=View; sizeInBytes=64; parameters=[0]; offsets=[0])
+#monogame EffectParameter (name=xView; class=Matrix; type=Single; rows=4; columns=4)
+#monogame ConstantBuffer (name=xView; sizeInBytes=64; parameters=[0]; offsets=[0])
 
-#monogame EffectParameter (name=Projection; class=Matrix; type=Single; rows=4; columns=4)
-#monogame ConstantBuffer (name=Projection; sizeInBytes=64; parameters=[1]; offsets=[0])
+#monogame EffectParameter (name=xProjection; class=Matrix; type=Single; rows=4; columns=4)
+#monogame ConstantBuffer (name=xProjection; sizeInBytes=64; parameters=[1]; offsets=[0])
 
-#monogame EffectParameter (name=ModelTexture; class=Object; type=Texture2D; semantic=; rows=0; columns=0; elements=[]; structMembers=[])
+#monogame EffectParameter (name=xModelTexture; class=Object; type=Texture2D; semantic=; rows=0; columns=0; elements=[]; structMembers=[])
 
-#monogame BeginShader (stage=pixel; constantBuffers=[])
-#monogame Sampler (name=sampler0; type=Sampler2D; textureSlot=0; samplerSlot=0; parameter=2)
+#monogame EffectParameter (name=xAmbient; class=Vector; type=Single; rows=1; columns=4)
+#monogame ConstantBuffer(name=xAmbient; sizeInBytes=16; parameters=[3]; offsets=[0])
+
+
+#monogame BeginShader (stage=pixel; constantBuffers=[2])
+#monogame Sampler (name=sModelTexture; type=Sampler2D; textureSlot=0; samplerSlot=0; parameter=2)
+#monogame Attribute (name=fragNormal; usage=Normal; index=0; format=0)
+#monogame Attribute (name=fragTexCoord; usage=TextureCoordinate; index=0; format=0)
+#monogame Attribute (name=fragLightingFactor; usage=TextureCoordinate; index=0; format=0)
 #version 130
 
-uniform sampler2D sampler0;
-in vec4 vTexCoord1;
+uniform sampler2D sModelTexture;
+uniform vec4 xAmbient;
+in vec4 fragNormal;
+in vec4 fragTexCoord;
+in vec4 fragLightingFactor;
+out vec4 fragColor;
 
 void main ()
 {
-    vec4 color = texture2D (sampler0, vTexCoord1.xy);
+    vec4 color = texture2D (sModelTexture, fragTexCoord.xy);
     color.w = 1.0;
-    gl_FragColor = color;
+    fragColor = color * clamp(fragLightingFactor.x, 0.0, 1.0) + xAmbient;
 }
 
 #monogame EndShader ()
 
 #monogame BeginShader (stage=vertex; constantBuffers=[0, 1])
-#monogame Attribute (name=inputPosition; usage=Position; index=0; format=0)
-#monogame Attribute (name=inputNormal; usage=Normal; index=0; format=0)
-#monogame Attribute (name=inputTexCoord; usage=TextureCoordinate; index=0; format=0)
+#monogame Attribute (name=vertexPosition; usage=Position; index=0; format=0)
+#monogame Attribute (name=vertexNormal; usage=Normal; index=0; format=0)
+#monogame Attribute (name=vertexTexCoord; usage=TextureCoordinate; index=0; format=0)
 #monogame Attribute (name=instanceWorld0; usage=TextureCoordinate; index=1; format=0)
 #monogame Attribute (name=instanceWorld1; usage=TextureCoordinate; index=2; format=0)
 #monogame Attribute (name=instanceWorld2; usage=TextureCoordinate; index=3; format=0)
@@ -256,15 +268,13 @@ void main ()
 #monogame Attribute (name=instanceWorldInverseTranspose3; usage=TextureCoordinate; index=8; format=0)
 #version 130
 
-uniform vec4 View [4];
-uniform vec4 Projection [4];
+uniform vec4 xView [4];
+uniform vec4 xProjection [4];
 uniform vec4 posFixup;
 
-in vec4 inputPosition;
-in vec4 inputNormal;
-in vec4 inputTexCoord;
-out vec4 outputNormal;
-out vec4 vTexCoord1;
+in vec4 vertexPosition;
+in vec4 vertexNormal;
+in vec4 vertexTexCoord;
 in vec4 instanceWorld0;
 in vec4 instanceWorld1;
 in vec4 instanceWorld2;
@@ -274,18 +284,24 @@ in vec4 instanceWorldInverseTranspose1;
 in vec4 instanceWorldInverseTranspose2;
 in vec4 instanceWorldInverseTranspose3;
 
+out vec4 fragNormal;
+out vec4 fragTexCoord;
+out vec4 fragLightingFactor;
+
 void main ()
 {
     mat4 world = transpose (mat4 (instanceWorld0, instanceWorld1, instanceWorld2, instanceWorld3));
-    mat4 view = mat4 (View [0], View [1], View [2], View [3]);
-    mat4 proj = mat4 (Projection [0], Projection [1], Projection [2], Projection [3]);
+    mat4 view = mat4 (xView [0], xView [1], xView [2], xView [3]);
+    mat4 proj = mat4 (xProjection [0], xProjection [1], xProjection [2], xProjection [3]);
     mat4 worldInverseTranspose = transpose (mat4 (instanceWorldInverseTranspose0, instanceWorldInverseTranspose1, instanceWorldInverseTranspose2, instanceWorldInverseTranspose3));
     
-    gl_Position = inputPosition * world * view * proj;
+    gl_Position = vertexPosition * world * view * proj;
     
-    outputNormal.xyz = normalize (inputNormal * worldInverseTranspose).xyz;
+    fragNormal.xyz = normalize (vertexNormal * worldInverseTranspose).xyz;
     
-    vTexCoord1.xy = inputTexCoord.xy;
+    fragTexCoord.xy = vertexTexCoord.xy;
+
+    fragLightingFactor.x = dot(fragNormal.xyz, -vec3(-1.0, -1.0, -1.0));
     
     // https://github.com/flibitijibibo/MonoGame/blob/e9f61e3efbae6f11ebbf45012e7c692c8d0ee529/MonoGame.Framework/Graphics/GraphicsDevice.cs#L1209
     gl_Position.y = gl_Position.y * posFixup.y;
