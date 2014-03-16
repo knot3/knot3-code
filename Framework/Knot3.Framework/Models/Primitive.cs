@@ -126,6 +126,22 @@ namespace Knot3.Framework.Models
             }
         }
 
+        public void DrawInstances (Effect effect, ref VertexBuffer instanceBuffer, int instanceCount)
+        {
+            GraphicsDevice device = effect.GraphicsDevice;
+            VertexBufferBinding[] bindings = new VertexBufferBinding[2];
+            bindings [0] = new VertexBufferBinding (vertexBuffer);
+            bindings [1] = new VertexBufferBinding (instanceBuffer, 0, 1);
+            device.SetVertexBuffers (bindings);
+            device.Indices = indexBuffer;
+
+            foreach (EffectPass effectPass in effect.CurrentTechnique.Passes) {
+                effectPass.Apply ();
+                int primitiveCount = indices.Count / 3;
+                device.DrawInstancedPrimitives (PrimitiveType.TriangleList, 0, 0, vertices.Count, 0, primitiveCount, instanceCount);
+            }
+        }
+
         public static FloatOption ModelQualityOption
         {
             get {

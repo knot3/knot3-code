@@ -198,17 +198,25 @@ namespace Knot3.Framework.Effects
             ModifyBasicEffect (effect: effect, obj: primitive as IGameObject);
 
             effect.TextureEnabled = true;
-            if (primitive.Texture != null) {
-                effect.Texture = primitive.Texture;
+            effect.Texture = GetTexture (primitive);
+        }
+
+        protected Texture2D GetTexture (IGameObject obj)
+        {
+            if (obj is ITexturedObject && (obj as ITexturedObject).Texture != null) {
+                return (obj as ITexturedObject).Texture;
             }
-            else {
-                ModelColoring coloring = primitive.Coloring;
+            else if (obj is IColoredObject) {
+                ModelColoring coloring = (obj as IColoredObject).Coloring;
                 if (coloring is GradientColor) {
-                    effect.Texture = ContentLoader.CreateGradient (screen.GraphicsDevice, coloring as GradientColor);
+                    return ContentLoader.CreateGradient (screen.GraphicsDevice, coloring as GradientColor);
                 }
                 else {
-                    effect.Texture = ContentLoader.CreateTexture (screen.GraphicsDevice, coloring.MixedColor);
+                    return ContentLoader.CreateTexture (screen.GraphicsDevice, coloring.MixedColor);
                 }
+            }
+            else {
+                return ContentLoader.CreateTexture (screen.GraphicsDevice, Color.CornflowerBlue);
             }
         }
 
@@ -224,7 +232,7 @@ namespace Knot3.Framework.Effects
         /// <summary>
         /// Zeichnet das Rendertarget.
         /// </summary>
-        protected virtual void DrawRenderTarget (GameTime GameTime)
+        protected virtual void DrawRenderTarget (GameTime time)
         {
             spriteBatch.Draw (
                 RenderTarget,

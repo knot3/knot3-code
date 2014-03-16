@@ -61,25 +61,6 @@ namespace Knot3.Framework.Effects
             screen.Viewport = original;
         }
 
-        private Texture2D GetTexture (IGameObject obj)
-        {
-            if (obj is ITexturedObject && (obj as ITexturedObject).Texture != null) {
-                return (obj as ITexturedObject).Texture;
-            }
-            else if (obj is IColoredObject) {
-                ModelColoring coloring = (obj as IColoredObject).Coloring;
-                if (coloring is GradientColor) {
-                    return ContentLoader.CreateGradient (screen.GraphicsDevice, coloring as GradientColor);
-                }
-                else {
-                    return ContentLoader.CreateTexture (screen.GraphicsDevice, coloring.MixedColor);
-                }
-            }
-            else {
-                return ContentLoader.CreateTexture (screen.GraphicsDevice, Color.CornflowerBlue);
-            }
-        }
-
         /// <summary>
         /// Weist dem 3D-Modell den Cel-Shader zu.
         /// </summary>

@@ -8,8 +8,13 @@ namespace Knot3.Framework.Effects
         {
             EffectLibrary.Add (new EffectFactory (
                 name: "simple-gl",
-                displayName: "Simple GL Shader",
+                displayName: "Simple OpenGL Shader",
                 createInstance: (screen) => new SimpleGLEffect (screen)
+            ));
+            EffectLibrary.Add (new EffectFactory (
+                name: "hardware-instancing-gl",
+                displayName: "Hardware Instancing (OpenGL)",
+                createInstance: (screen) => new HardwareInstancingEffect (screen)
             ));
         }
     }
