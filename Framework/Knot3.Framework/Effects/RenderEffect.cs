@@ -27,15 +27,12 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
-
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-
 using Knot3.Framework.Core;
 using Knot3.Framework.Models;
 using Knot3.Framework.Platform;
@@ -223,16 +220,10 @@ namespace Knot3.Framework.Effects
         protected int GetTextureHashCode (IGameObject obj)
         {
             if (obj is ITexturedObject && (obj as ITexturedObject).Texture != null) {
-                return (obj as ITexturedObject).Texture.GetHashCode();
+                return (obj as ITexturedObject).Texture.GetHashCode ();
             }
             else if (obj is IColoredObject) {
-                ModelColoring coloring = (obj as IColoredObject).Coloring;
-                if (coloring is GradientColor) {
-                    return (coloring as GradientColor).Color1.GetHashCode()+(coloring as GradientColor).Color2.GetHashCode();
-                }
-                else {
-                    return coloring.MixedColor.GetHashCode();
-                }
+                return (obj as IColoredObject).Coloring.MixedColor.GetHashCode ();
             }
             else {
                 return 0;

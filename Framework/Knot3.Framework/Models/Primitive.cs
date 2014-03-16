@@ -27,14 +27,11 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
-
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-
 using Knot3.Framework.Math;
 using Knot3.Framework.Storage;
 using Knot3.Framework.Utilities;
@@ -83,9 +80,9 @@ namespace Knot3.Framework.Models
         {
             // the graphics device is null during the unit tests
             if (device != null) {
-                vertexBuffer = new VertexBuffer (device, typeof (VertexPositionNormalTexture), vertices.Count, BufferUsage.None);
+                vertexBuffer = new VertexBuffer (device, typeof(VertexPositionNormalTexture), vertices.Count, BufferUsage.None);
                 vertexBuffer.SetData (vertices.ToArray ());
-                indexBuffer = new IndexBuffer (device, typeof (ushort), indices.Count, BufferUsage.None);
+                indexBuffer = new IndexBuffer (device, typeof(ushort), indices.Count, BufferUsage.None);
                 indexBuffer.SetData (indices.ToArray ());
             }
         }
@@ -146,11 +143,11 @@ namespace Knot3.Framework.Models
         {
             get {
                 return _modelQualityOption = _modelQualityOption ?? new FloatOption (
-                                                 section: "video",
-                                                 name: "model-quality",
-                                                 defaultValue: 0.200f,
-                                                 validValues: 1.001f.Range (step: 0.001f),
-                                                 configFile: Config.Default
+                    section: "video",
+                    name: "model-quality",
+                    defaultValue: 0.200f,
+                    validValues: 1.001f.Range (step: 0.001f),
+                    configFile: Config.Default
                 ) { Verbose = false };
             }
         }

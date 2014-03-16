@@ -27,20 +27,16 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
-
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-
 using Knot3.Framework.Core;
 using Knot3.Framework.Development;
 using Knot3.Framework.Platform;
 using Knot3.Framework.Storage;
-
 using Knot3.Game.Models;
 
 namespace Knot3.Game.Development
@@ -239,7 +235,7 @@ namespace Knot3.Game.Development
         {
             _elapsed_time += (float)time.ElapsedGameTime.TotalMilliseconds;
 
-            if (_elapsed_time >= 1000.0f*_fps_interval_seconds) {
+            if (_elapsed_time >= 1000.0f * _fps_interval_seconds) {
                 _fps = (int)(_total_frames * 1000.0f / _elapsed_time);
                 _total_frames = 0;
                 _elapsed_time = 0;

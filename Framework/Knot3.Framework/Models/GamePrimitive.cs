@@ -97,7 +97,7 @@ namespace Knot3.Framework.Models
             Coloring = new SingleColor (Color.Transparent);
         }
 
-        protected abstract Primitive CreativePrimitive();
+        protected abstract Primitive CreativePrimitive ();
 
         /// <summary>
         /// Gibt die Mitte des 3D-Modells zurück.

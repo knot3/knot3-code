@@ -18,7 +18,7 @@ namespace Knot3.Framework.Effects
         {
             effect = new Effect (screen.GraphicsDevice, SHADER_CODE, GetType ().Name);
         }
-        
+
         public override void DrawModel (GameModel model, GameTime time)
         {
             // Setze den Viewport auf den der aktuellen Spielwelt
@@ -40,7 +40,7 @@ namespace Knot3.Framework.Effects
             // Setze den Viewport wieder auf den ganzen Screen
             screen.Viewport = original;
         }
-        
+
         public override void DrawPrimitive (GamePrimitive primitive, GameTime time)
         {
             // Setze den Viewport auf den der aktuellen Spielwelt

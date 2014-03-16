@@ -27,12 +27,9 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
-
 using System.Diagnostics.CodeAnalysis;
-
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-
 using Knot3.Framework.Core;
 using Knot3.Framework.Effects;
 using Knot3.Framework.Models;
@@ -46,14 +43,18 @@ namespace Knot3.Game.Effects
     [ExcludeFromCodeCoverageAttribute]
     public class CelShadingEffect : RenderEffect
     {
-        Effect celShader;       // Toon shader effect
-        Texture2D celMap;       // Texture map for cell shading
-        Vector4 lightDirection; // Light source for toon shader
-
-        Effect outlineShader;   // Outline shader effect
-        float outlineThickness = 1.0f;  // current outline thickness
-        float outlineThreshold = 0.2f;  // current edge detection threshold
-
+        Effect celShader;
+        // Toon shader effect
+        Texture2D celMap;
+        // Texture map for cell shading
+        Vector4 lightDirection;
+        // Light source for toon shader
+        Effect outlineShader;
+        // Outline shader effect
+        float outlineThickness = 1.0f;
+        // current outline thickness
+        float outlineThreshold = 0.2f;
+        // current edge detection threshold
         /// <summary>
         /// Erstellt einen neuen Cel-Shading-Effekt für den angegebenen IGameScreen.
         /// </summary>
@@ -80,8 +81,7 @@ namespace Knot3.Game.Effects
             outlineShader = screen.LoadEffect ("OutlineShader");
             outlineShader.Parameters ["Thickness"].SetValue (outlineThickness);
             outlineShader.Parameters ["Threshold"].SetValue (outlineThreshold);
-            outlineShader.Parameters ["ScreenSize"].SetValue (
-                new Vector2 (screen.Viewport.Bounds.Width, screen.Viewport.Bounds.Height));
+            outlineShader.Parameters ["ScreenSize"].SetValue (new Vector2 (screen.Viewport.Bounds.Width, screen.Viewport.Bounds.Height));
         }
 
         /// <summary>
