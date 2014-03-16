@@ -62,11 +62,15 @@ namespace Knot3.Framework.Effects
 
         private VertexDeclaration GenerateInstanceVertexDeclaration ()
         {
-            VertexElement[] instanceStreamElements = new VertexElement [4];
+            VertexElement[] instanceStreamElements = new VertexElement [8];
             instanceStreamElements [0] = new VertexElement (0, VertexElementFormat.Vector4, VertexElementUsage.TextureCoordinate, 1);
             instanceStreamElements [1] = new VertexElement (sizeof (float) * 4, VertexElementFormat.Vector4, VertexElementUsage.TextureCoordinate, 2);
             instanceStreamElements [2] = new VertexElement (sizeof (float) * 8, VertexElementFormat.Vector4, VertexElementUsage.TextureCoordinate, 3);
             instanceStreamElements [3] = new VertexElement (sizeof (float) * 12, VertexElementFormat.Vector4, VertexElementUsage.TextureCoordinate, 4);
+            instanceStreamElements [4] = new VertexElement (sizeof (float) * 16, VertexElementFormat.Vector4, VertexElementUsage.TextureCoordinate, 5);
+            instanceStreamElements [5] = new VertexElement (sizeof (float) * 20, VertexElementFormat.Vector4, VertexElementUsage.TextureCoordinate, 6);
+            instanceStreamElements [6] = new VertexElement (sizeof (float) * 24, VertexElementFormat.Vector4, VertexElementUsage.TextureCoordinate, 7);
+            instanceStreamElements [7] = new VertexElement (sizeof (float) * 28, VertexElementFormat.Vector4, VertexElementUsage.TextureCoordinate, 8);
             //instanceStreamElements [4] = new VertexElement (sizeof (float) * 16, VertexElementFormat.Vector2, VertexElementUsage.TextureCoordinate, 5);
             return new VertexDeclaration (instanceStreamElements);
         }
@@ -105,6 +109,7 @@ namespace Knot3.Framework.Effects
 
         private struct InstanceInfo {
             public Matrix WorldMatrix;
+            public Matrix TransposeInverseWorldMatrix;
         }
 
         private class InstancedPrimitive
@@ -150,7 +155,11 @@ namespace Knot3.Framework.Effects
             if (instancedPrimitive.InstanceCount + 1 >= instancedPrimitive.Instances.Length) {
                 Array.Resize (ref instancedPrimitive.Instances, instancedPrimitive.Instances.Length + 200);
             }
-            InstanceInfo instanceInfo = new InstanceInfo { WorldMatrix = primitive.WorldMatrix };
+            Matrix worldMatrix = primitive.WorldMatrix * primitive.World.Camera.WorldMatrix;
+            InstanceInfo instanceInfo = new InstanceInfo {
+                WorldMatrix = worldMatrix,
+                TransposeInverseWorldMatrix = Matrix.Transpose (Matrix.Invert (worldMatrix))
+            };
             instancedPrimitive.Instances [instancedPrimitive.InstanceCount++] = instanceInfo;
             instancedPrimitive.InstanceUniqueHash += primitive.Position.LengthSquared ();
         }
@@ -241,6 +250,10 @@ void main ()
 #monogame Attribute (name=instanceWorld1; usage=TextureCoordinate; index=2; format=0)
 #monogame Attribute (name=instanceWorld2; usage=TextureCoordinate; index=3; format=0)
 #monogame Attribute (name=instanceWorld3; usage=TextureCoordinate; index=4; format=0)
+#monogame Attribute (name=instanceWorldInverseTranspose0; usage=TextureCoordinate; index=5; format=0)
+#monogame Attribute (name=instanceWorldInverseTranspose1; usage=TextureCoordinate; index=6; format=0)
+#monogame Attribute (name=instanceWorldInverseTranspose2; usage=TextureCoordinate; index=7; format=0)
+#monogame Attribute (name=instanceWorldInverseTranspose3; usage=TextureCoordinate; index=8; format=0)
 #version 130
 
 uniform vec4 View [4];
@@ -256,13 +269,17 @@ in vec4 instanceWorld0;
 in vec4 instanceWorld1;
 in vec4 instanceWorld2;
 in vec4 instanceWorld3;
+in vec4 instanceWorldInverseTranspose0;
+in vec4 instanceWorldInverseTranspose1;
+in vec4 instanceWorldInverseTranspose2;
+in vec4 instanceWorldInverseTranspose3;
 
 void main ()
 {
     mat4 world = transpose (mat4 (instanceWorld0, instanceWorld1, instanceWorld2, instanceWorld3));
     mat4 view = mat4 (View [0], View [1], View [2], View [3]);
     mat4 proj = mat4 (Projection [0], Projection [1], Projection [2], Projection [3]);
-    mat4 worldInverseTranspose = transpose (inverse (world));
+    mat4 worldInverseTranspose = transpose (mat4 (instanceWorldInverseTranspose0, instanceWorldInverseTranspose1, instanceWorldInverseTranspose2, instanceWorldInverseTranspose3));
     
     gl_Position = inputPosition * world * view * proj;
     
