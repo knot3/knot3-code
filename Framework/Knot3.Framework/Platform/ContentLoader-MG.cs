@@ -42,12 +42,24 @@ namespace Knot3.Framework.Platform
     {
         public static Effect LoadEffect (this IScreen screen, string name)
         {
-            string[] filenames = {
+            string[] filenames = new string[] {
+                SystemInfo.RelativeContentDirectory + "Shader/" + name + ".glfx"
+            };
+            Exception lastException = new Exception ("Could not find shader: " + name);
+            foreach (string filename in filenames) {
+                try {
+                    Effect effect = new Effect (screen.GraphicsDevice, System.IO.File.ReadAllText (filename), name);
+                    return effect;
+                }
+                catch (Exception ex) {
+                    lastException = ex;
+                }
+            }
+            filenames = new string[] {
                 SystemInfo.RelativeContentDirectory + "Shader/" + name + ".mgfx",
                 SystemInfo.RelativeContentDirectory + "Shader/" + name + "_3.0.mgfx",
                 SystemInfo.RelativeContentDirectory + "Shader/" + name + "_3.1.mgfx"
             };
-            Exception lastException = new Exception ("Could not find shader: " + name);
             foreach (string filename in filenames) {
                 try {
                     Effect effect = new Effect (screen.GraphicsDevice, System.IO.File.ReadAllBytes (filename), name);

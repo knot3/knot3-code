@@ -40,7 +40,7 @@ using Knot3.Framework.Utilities;
 namespace Knot3.Framework.Models
 {
     [ExcludeFromCodeCoverageAttribute]
-    public abstract class GamePrimitive : GameObject, IGameModel
+    public abstract class GamePrimitive : GameObject, IGameModel, ITexturedObject, IColoredObject
     {
         /// <summary>
         /// Die Farbe des Modells.

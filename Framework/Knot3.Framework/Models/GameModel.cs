@@ -42,7 +42,7 @@ namespace Knot3.Framework.Models
     /// Repräsentiert ein 3D-Modell in einer Spielwelt.
     /// </summary>
     [ExcludeFromCodeCoverageAttribute]
-    public abstract class GameModel : GameObject, IGameModel
+    public abstract class GameModel : GameObject, IGameModel, ITexturedObject, IColoredObject
     {
         /// <summary>
         /// Die Farbe des Modells.
