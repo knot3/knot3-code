@@ -137,7 +137,7 @@ namespace Knot3.Framework.Effects
         public override void DrawPrimitive (GamePrimitive primitive, GameTime time)
         {
             int texture = GetTextureHashCode (primitive);
-            string key = primitive.GetType ().Name + texture.GetHashCode ();
+            string key = primitive.GetType ().Name + primitive.Primitive.GetType ().Name + texture.GetHashCode ();
             InstancedPrimitive instancedPrimitive;
             if (!cacheInstancedPrimitives.ContainsKey (key)) {
                 cacheInstancedPrimitives [key] = instancedPrimitive = new InstancedPrimitive () {
