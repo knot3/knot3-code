@@ -217,20 +217,20 @@ namespace Knot3.Framework.Effects
             };
         }
 
+        //#monogame EffectParameter (name=xView; class=Matrix; type=Single; rows=4; columns=4)
+        //#monogame ConstantBuffer (name=xView; sizeInBytes=64; parameters=[0]; offsets=[0])
+
+        //#monogame EffectParameter (name=xProjection; class=Matrix; type=Single; rows=4; columns=4)
+        //#monogame ConstantBuffer (name=xProjection; sizeInBytes=64; parameters=[1]; offsets=[0])
+
         private readonly string SHADER_CODE = @"
-#monogame EffectParameter (name=xView; class=Matrix; type=Single; rows=4; columns=4)
-#monogame ConstantBuffer (name=xView; sizeInBytes=64; parameters=[0]; offsets=[0])
-
-#monogame EffectParameter (name=xProjection; class=Matrix; type=Single; rows=4; columns=4)
-#monogame ConstantBuffer (name=xProjection; sizeInBytes=64; parameters=[1]; offsets=[0])
-
 #monogame EffectParameter (name=xModelTexture; class=Object; type=Texture2D; semantic=; rows=0; columns=0; elements=[]; structMembers=[])
 
 #monogame EffectParameter (name=xAmbient; class=Vector; type=Single; rows=1; columns=4)
-#monogame ConstantBuffer (name=xAmbient; sizeInBytes=16; parameters=[3]; offsets=[0])
+#monogame ConstantBuffer (name=xAmbient; sizeInBytes=16; parameters=[1]; offsets=[0])
 
-#monogame BeginShader (stage=pixel; constantBuffers=[2])
-#monogame Sampler (name=sModelTexture; type=Sampler2D; textureSlot=0; samplerSlot=0; parameter=2)
+#monogame BeginShader (stage=pixel; constantBuffers=[0])
+#monogame Sampler (name=sModelTexture; type=Sampler2D; textureSlot=0; samplerSlot=0; parameter=0)
 #monogame Attribute (name=fragNormal; usage=Normal; index=0)
 #monogame Attribute (name=fragTexCoord; usage=TextureCoordinate; index=0)
 #monogame Attribute (name=fragLightingFactor; usage=TextureCoordinate; index=0)
@@ -252,7 +252,7 @@ void main ()
 
 #monogame EndShader ()
 
-#monogame BeginShader (stage=vertex; constantBuffers=[0, 1])
+#monogame BeginShader (stage=vertex; constantBuffers=[])
 #monogame Attribute (name=vertexPosition; usage=Position; index=0)
 #monogame Attribute (name=vertexNormal; usage=Normal; index=0)
 #monogame Attribute (name=vertexTexCoord; usage=TextureCoordinate; index=0)
@@ -278,7 +278,7 @@ void main ()
     mat4 world = transpose (instanceWorld);
     mat4 worldInverseTranspose = transpose (instanceWorldInverseTranspose);
     
-    gl_Position = vertexPosition * world * xViewM * xProjectionM;
+    gl_Position = vertexPosition * world * xView * xProjection;
     
     fragNormal.xyz = normalize (vertexNormal * worldInverseTranspose).xyz;
     
