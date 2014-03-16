@@ -88,7 +88,7 @@ namespace Knot3.Framework.Storage
             Name = name;
             DefaultValue = defaultValue;
             ConfigFile = configFile != null ? configFile : Config.Default;
-            Verbose = true;
+            Verbose = SystemInfo.IsRunningOnLinux ();
         }
     }
 }
