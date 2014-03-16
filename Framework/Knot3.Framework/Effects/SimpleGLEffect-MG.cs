@@ -106,30 +106,15 @@ namespace Knot3.Framework.Effects
         }
 
         private readonly string SHADER_CODE = @"
-#monogame EffectParameter (name=World; class=Matrix; type=Single; rows=4; columns=4)
-#monogame ConstantBuffer (name=World; sizeInBytes=64; parameters=[0]; offsets=[0])
-
-#monogame EffectParameter (name=View; class=Matrix; type=Single; rows=4; columns=4)
-#monogame ConstantBuffer (name=View; sizeInBytes=64; parameters=[1]; offsets=[0])
-
-#monogame EffectParameter (name=Projection; class=Matrix; type=Single; rows=4; columns=4)
-#monogame ConstantBuffer (name=Projection; sizeInBytes=64; parameters=[2]; offsets=[0])
-
-#monogame EffectParameter (name=WorldInverseTranspose; class=Matrix; type=Single; rows=4; columns=4)
-#monogame ConstantBuffer (name=WorldInverseTranspose; sizeInBytes=64; parameters=[3]; offsets=[0])
-
-#monogame EffectParameter (name=ModelTexture; class=Object; type=Texture2D; semantic=; rows=0; columns=0; elements=[]; structMembers=[])
-
 #monogame BeginShader (stage=pixel; constantBuffers=[])
-#monogame Sampler (name=sampler0; type=Sampler2D; textureSlot=0; samplerSlot=0; parameter=4)
 #version 130
 
-uniform sampler2D sampler0;
+uniform sampler2D ModelTexture;
 in vec4 vTexCoord1;
 
 void main ()
 {
-    vec4 color = texture2D (sampler0, vTexCoord1.xy);
+    vec4 color = texture2D (ModelTexture, vTexCoord1.xy);
     color.w = 1.0;
     gl_FragColor = color;
 }
@@ -142,11 +127,10 @@ void main ()
 #monogame Attribute (name=inputTexCoord; usage=TextureCoordinate; index=0; format=0)
 #version 130
 
-uniform vec4 World [4];
-uniform vec4 View [4];
-uniform vec4 Projection [4];
-uniform vec4 WorldInverseTranspose [4];
-uniform vec4 posFixup;
+uniform mat4 World;
+uniform mat4 View;
+uniform mat4 Projection;
+uniform mat4 WorldInverseTranspose;
 
 in vec4 inputPosition;
 in vec4 inputNormal;
@@ -156,20 +140,11 @@ out vec4 vTexCoord1;
 
 void main ()
 {
-    mat4 world = mat4 (World [0], World [1], World [2], World [3]);
-    mat4 view = mat4 (View [0], View [1], View [2], View [3]);
-    mat4 proj = mat4 (Projection [0], Projection [1], Projection [2], Projection [3]);
-    mat4 worldInverseTranspose = mat4 (WorldInverseTranspose [0], WorldInverseTranspose [1], WorldInverseTranspose [2], WorldInverseTranspose [3]);
+    gl_Position = inputPosition * World * View * Projection;
     
-    gl_Position = inputPosition * world * view * proj;
-    
-    outputNormal.xyz = normalize (inputNormal * worldInverseTranspose).xyz;
+    outputNormal.xyz = normalize (inputNormal * WorldInverseTranspose).xyz;
     
     vTexCoord1.xy = inputTexCoord.xy;
-    
-    // https://github.com/flibitijibibo/MonoGame/blob/e9f61e3efbae6f11ebbf45012e7c692c8d0ee529/MonoGame.Framework/Graphics/GraphicsDevice.cs#L1209
-    gl_Position.y = gl_Position.y * posFixup.y;
-    gl_Position.xy += posFixup.zw * gl_Position.ww;
 }
 
 #monogame EndShader ()

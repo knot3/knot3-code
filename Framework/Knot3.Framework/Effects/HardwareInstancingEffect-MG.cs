@@ -224,19 +224,13 @@ namespace Knot3.Framework.Effects
         //#monogame ConstantBuffer (name=xProjection; sizeInBytes=64; parameters=[1]; offsets=[0])
 
         private readonly string SHADER_CODE = @"
-#monogame EffectParameter (name=xModelTexture; class=Object; type=Texture2D; semantic=; rows=0; columns=0; elements=[]; structMembers=[])
-
-#monogame EffectParameter (name=xAmbient; class=Vector; type=Single; rows=1; columns=4)
-#monogame ConstantBuffer (name=xAmbient; sizeInBytes=16; parameters=[1]; offsets=[0])
-
 #monogame BeginShader (stage=pixel; constantBuffers=[0])
-#monogame Sampler (name=sModelTexture; type=Sampler2D; textureSlot=0; samplerSlot=0; parameter=0)
 #monogame Attribute (name=fragNormal; usage=Normal; index=0)
 #monogame Attribute (name=fragTexCoord; usage=TextureCoordinate; index=0)
 #monogame Attribute (name=fragLightingFactor; usage=TextureCoordinate; index=0)
 #version 130
 
-uniform sampler2D sModelTexture;
+uniform sampler2D xModelTexture;
 uniform vec4 xAmbient;
 in vec4 fragNormal;
 in vec4 fragTexCoord;
@@ -245,9 +239,9 @@ out vec4 fragColor;
 
 void main ()
 {
-    vec4 color = texture2D (sModelTexture, fragTexCoord.xy);
+    vec4 color = texture2D (xModelTexture, fragTexCoord.xy);
     color.w = 1.0;
-    fragColor = color * clamp (fragLightingFactor.x, 0.0, 1.0) + xAmbient;
+    fragColor = color * (clamp (fragLightingFactor.x, 0.0, 1.0) + xAmbient.x);
 }
 
 #monogame EndShader ()
