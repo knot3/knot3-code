@@ -71,8 +71,8 @@ Global
 		{A0C2FF20-61A7-4EC7-9406-8F6A79993DAB}.Debug|x64.Build.0 = Debug|x86
 		{A0C2FF20-61A7-4EC7-9406-8F6A79993DAB}.Debug|x86.ActiveCfg = Debug|x86
 		{A0C2FF20-61A7-4EC7-9406-8F6A79993DAB}.Debug|x86.Build.0 = Debug|x86
-		{A0C2FF20-61A7-4EC7-9406-8F6A79993DAB}.Release|x64.ActiveCfg = Debug|x86
-		{A0C2FF20-61A7-4EC7-9406-8F6A79993DAB}.Release|x64.Build.0 = Debug|x86
+		{A0C2FF20-61A7-4EC7-9406-8F6A79993DAB}.Release|x64.ActiveCfg = Release|x86
+		{A0C2FF20-61A7-4EC7-9406-8F6A79993DAB}.Release|x64.Build.0 = Release|x86
 		{A0C2FF20-61A7-4EC7-9406-8F6A79993DAB}.Release|x86.ActiveCfg = Release|x86
 		{A0C2FF20-61A7-4EC7-9406-8F6A79993DAB}.Release|x86.Build.0 = Release|x86
 		{A48CC175-E2A7-4F17-8126-93A8B3C90936}.Debug|x64.ActiveCfg = Debug|x86
@@ -87,8 +87,8 @@ Global
 		{A7093300-1D0E-462B-83E2-A5DC7C3D145B}.Debug|x64.Build.0 = Debug|x86
 		{A7093300-1D0E-462B-83E2-A5DC7C3D145B}.Debug|x86.ActiveCfg = Debug|x86
 		{A7093300-1D0E-462B-83E2-A5DC7C3D145B}.Debug|x86.Build.0 = Debug|x86
-		{A7093300-1D0E-462B-83E2-A5DC7C3D145B}.Release|x64.ActiveCfg = Debug|x86
-		{A7093300-1D0E-462B-83E2-A5DC7C3D145B}.Release|x64.Build.0 = Debug|x86
+		{A7093300-1D0E-462B-83E2-A5DC7C3D145B}.Release|x64.ActiveCfg = Release|x86
+		{A7093300-1D0E-462B-83E2-A5DC7C3D145B}.Release|x64.Build.0 = Release|x86
 		{A7093300-1D0E-462B-83E2-A5DC7C3D145B}.Release|x86.ActiveCfg = Release|x86
 		{A7093300-1D0E-462B-83E2-A5DC7C3D145B}.Release|x86.Build.0 = Release|x86
 		{AE483C29-042E-4226-BA52-D247CE7676DA}.Debug|x64.ActiveCfg = Debug|Any CPU
@@ -141,7 +141,7 @@ Global
 		{F8C66EB3-E81D-45FB-B28E-747BE332230F}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = Tools\ModelEditor\Knot3.ModelEditor-MG.csproj
+		StartupItem = Game\Knot3.Game-MG.csproj
 		Policies = $0
 		$0.TextStylePolicy = $1
 		$1.inheritsSet = null
