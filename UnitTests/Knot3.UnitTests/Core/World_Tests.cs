@@ -57,11 +57,14 @@ namespace Knot3.UnitTests.Core
             effect = effect ?? new FakeEffect (screen);
 
             // Erstelle einen Knoten
+            new Knot ();
+            
+            /*
             Knot knot = new Knot ();
 
             // Erstelle eine Rasterpunkt-Zuordnung
-            NodeMap nodeMap = new NodeMap (screen: screen);
-            nodeMap.Edges = knot;
+            Grid nodeMap = new Grid (screen: screen);
+            nodeMap.Knot = knot;
             nodeMap.OnEdgesChanged ();
 
             List<Pipe> models = new List<Pipe> ();
@@ -76,7 +79,6 @@ namespace Knot3.UnitTests.Core
             return;
             // das hier zu sehr in XNA verwoben, macht als test wahrscheinlich keinen sinn!!
 
-            /*
 
             World world = new World (screen: screen, effect: effect);
 

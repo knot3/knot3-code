@@ -121,9 +121,6 @@ namespace Knot3.Game.Data
             else if (other is Vector3) {
                 return Direction.Vector.Equals ((Vector3)other);
             }
-            else if (other is Color) {
-                return Color.Equals ((Color)other);
-            }
             else {
                 return false;
             }

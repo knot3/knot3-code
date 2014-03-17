@@ -27,14 +27,11 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
-
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
-
 using Knot3.Framework.Audio;
 using Knot3.Framework.Core;
 using Knot3.Framework.Development;
@@ -44,7 +41,6 @@ using Knot3.Framework.Platform;
 using Knot3.Framework.Storage;
 using Knot3.Framework.Utilities;
 using Knot3.Framework.Widgets;
-
 using Knot3.Game.Audio;
 using Knot3.Game.Data;
 using Knot3.Game.Development;
@@ -184,7 +180,7 @@ namespace Knot3.Game.Screens
             // assign the specified player knot
             PlayerKnot = challenge.Start.Clone () as Knot;
             // assign the specified target knot
-            ChallengeKnotRenderer.Knot = challenge.Target;
+            ChallengeKnotRenderer.RenderKnot (challenge.Target);
 
             SkyCube playerSkyCube = new SkyCube (screen: this, position: Vector3.Zero, distance: 10000);
             PlayerWorld.Add (playerSkyCube);
@@ -295,7 +291,7 @@ namespace Knot3.Game.Screens
         private void registerCurrentKnot ()
         {
             // den Knoten dem KnotRenderer zuweisen
-            PlayerKnotRenderer.Knot = _playerKnot;
+            PlayerKnotRenderer.RenderKnot (_playerKnot);
             // den Knoten dem Kantenverschieber zuweisen
             PlayerEdgeMovement.Knot = _playerKnot;
         }
@@ -352,8 +348,8 @@ namespace Knot3.Game.Screens
             challengeKnotInput.IsEnabled = false;
             // erstelle einen Dialog zum Eingeben des Spielernamens
             TextInputDialog nameDialog = new TextInputDialog (screen: this, drawOrder: DisplayLayer.Dialog,
-                    title: "Challenge", text: "Your name:",
-                    inputText: Config.Default ["profile", "name", String.Empty]);
+                                                              title: "Challenge", text: "Your name:",
+                                                              inputText: Config.Default ["profile", "name", String.Empty]);
             // füge ihn zur Spielkomponentenliste hinzu
             nameDialog.NoCloseEmpty = true;
             nameDialog.NoWhiteSpace = true;
@@ -404,7 +400,8 @@ namespace Knot3.Game.Screens
             debugBoundings.IsVisible = Config.Default ["debug", "show-boundings", false];
         }
 
-        enum ChallengeModeState {
+        enum ChallengeModeState
+        {
             Start,
             Running,
             Finished,

@@ -220,7 +220,13 @@ namespace Knot3.Game.Input
             if (distance > 0) {
                 try {
                     Knot newKnot;
-                    Knot.TryMove (direction, distance, out newKnot);
+                    if (knotCache.ContainsKey (direction * distance)) {
+                        newKnot = knotCache [direction * distance];
+                    }
+                    else {
+                        Knot.TryMove (direction, distance, out newKnot);
+                        knotCache [direction * distance] = newKnot;
+                    }
 
                     if (newKnot != null) {
                         KnotMoved (newKnot);
@@ -304,7 +310,7 @@ namespace Knot3.Game.Input
                 }
 
                 if (shadowKnot != null) {
-                    KnotRenderer.VirtualKnot = shadowKnot;
+                    KnotRenderer.RenderKnot(shadowKnot);
                 }
             }
         }

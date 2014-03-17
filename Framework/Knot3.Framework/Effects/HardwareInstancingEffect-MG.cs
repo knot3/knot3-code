@@ -174,7 +174,7 @@ namespace Knot3.Framework.Effects
 
                 Camera camera = instancedPrimitive.World.Camera;
                 //effect.Parameters ["World"].SetValue (primitive.WorldMatrix * camera.WorldMatrix);
-                effect.Parameters ["xAmbient"].SetValue (Color.White.ToVector4 ()*0.2f);
+                effect.Parameters ["xAmbient"].SetValue (new Vector4(0.5f, 0, 0, 0));
                 effect.Parameters ["xView"].SetValue (camera.ViewMatrix);
                 effect.Parameters ["xProjection"].SetValue (camera.ProjectionMatrix);
                 //effect.Parameters ["WorldInverseTranspose"].SetValue (Matrix.Transpose (Matrix.Invert (primitive.WorldMatrix * camera.WorldMatrix)));
@@ -192,8 +192,10 @@ namespace Knot3.Framework.Effects
                 }
 
                 if (buffer.InstanceCapacity < instancedPrimitive.InstanceCapacity) {
-                    buffer.InstanceBuffer.Dispose ();
-                    buffer.InstanceBuffer = new VertexBuffer (screen.GraphicsDevice, instanceVertexDeclaration, instancedPrimitive.InstanceCapacity, BufferUsage.WriteOnly);
+                    Profiler.ProfileDelegate ["NewVertexBuffer"] = () => {
+                        buffer.InstanceBuffer.Dispose ();
+                        buffer.InstanceBuffer = new VertexBuffer (screen.GraphicsDevice, instanceVertexDeclaration, instancedPrimitive.InstanceCapacity, BufferUsage.WriteOnly);
+                    };
                 }
                 if (buffer.InstanceCount != instancedPrimitive.InstanceCount || buffer.InstanceUniqueHash != instancedPrimitive.InstanceUniqueHash) {
                     buffer.InstanceBuffer.SetData (instancedPrimitive.Instances);

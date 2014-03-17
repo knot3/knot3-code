@@ -27,49 +27,30 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
-
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-
+using System.Linq;
 using Microsoft.Xna.Framework;
+using Knot3.Framework.Core;
+using Knot3.Framework.Utilities;
+using Knot3.Game.Models;
+using Knot3.Framework.Platform;
+using Knot3.Framework.Development;
 
 namespace Knot3.Game.Data
 {
-    public interface INodeMap
+    public interface IGrid
     {
-        /// <summary>
-        /// Die Skalierung, die bei einer Konvertierung in einen Vector3 des XNA-Frameworks durch die ToVector ()-Methode der Node-Objekte verwendet wird.
-        /// </summary>
-        int Scale { get; set; }
+        List<Junction> JunctionsBeforeEdge (Edge edge);
 
-        IEnumerable<Edge> Edges { get; set; }
+        List<Junction> JunctionsAfterEdge (Edge edge);
 
-        Vector3 Offset { get; set; }
+        List<Junction> JunctionsAtNode (Node node);
 
-        Action IndexRebuilt { get; set; }
-
-        /// <summary>
-        /// Gibt die Rasterposition des Übergangs am Anfang der Kante zurück.
-        /// </summary>
         Node NodeBeforeEdge (Edge edge);
 
-        /// <summary>
-        /// Gibt die Rasterposition des Übergangs am Ende der Kante zurück.
-        /// </summary>
         Node NodeAfterEdge (Edge edge);
-
-        List<IJunction> JunctionsAtNode (Node node);
-
-        List<IJunction> JunctionsBeforeEdge (Edge edge);
-
-        List<IJunction> JunctionsAfterEdge (Edge edge);
-
-        IEnumerable<Node> Nodes { get; }
-
-        /// <summary>
-        /// Aktualisiert die Zuordnung, wenn sich die Kanten geändert haben.
-        /// </summary>
-        void OnEdgesChanged ();
     }
 }

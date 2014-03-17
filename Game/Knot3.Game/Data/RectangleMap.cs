@@ -41,11 +41,11 @@ namespace Knot3.Game.Data
     [ExcludeFromCodeCoverageAttribute]
     public sealed class RectangleMap
     {
-        private INodeMap NodeMap;
+        private Grid NodeMap;
         private Dictionary<Vector3, List<PossibleRectanglePosition>> positions
             = new Dictionary<Vector3, List<PossibleRectanglePosition>> ();
 
-        public RectangleMap (INodeMap nodeMap)
+        public RectangleMap (Grid nodeMap)
         {
             NodeMap = nodeMap;
         }

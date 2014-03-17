@@ -111,7 +111,10 @@ namespace Knot3.Game.Data
         /// </summary>
         private KnotCharakteristic? CharakteristicCache = null;
 
-        public Vector3 OffSet { get; private set;}
+        public Vector3 OffSet { get; private set; }
+
+        public bool Verbose { get; set; }
+
 
         /// <summary>
         /// Erstellt einen minimalen Standardknoten. Das Metadaten-Objekt enthält in den Eigenschaften,
@@ -211,8 +214,10 @@ namespace Knot3.Game.Data
                 return true;
             }
 
-            Log.Debug ("TryMove: direction = ", direction, ", distance = ", distance);
-            Log.Debug ("Current Knot #", startElement.Count, " = ", string.Join (", ", from c in startElement select c.Direction));
+            if (Verbose) {
+                Log.Debug ("TryMove: direction = ", direction, ", distance = ", distance);
+                Log.Debug ("Current Knot #", startElement.Count, " = ", string.Join (", ", from c in startElement select c.Direction));
+            }
 
             HashSet<Edge> selected = new HashSet<Edge> (selectedEdges);
             CircleEntry<Edge> newCircle = CircleEntry<Edge>.Empty;
@@ -223,17 +228,25 @@ namespace Knot3.Game.Data
                 Edge nextEdge = triple.Item3;
 
                 if (selectedEdges.Contains (currentEdge) && !selectedEdges.Contains (previousEdge)) {
-                    distance.Repeat (i => newCircle.Add (new Edge (direction: direction, color: currentEdge)));
+                    for (int i = 0; i < distance; ++i) {
+                        Edge newEdge = new Edge (direction: direction, color: currentEdge);
+                        newCircle.Add (newEdge);
+                    }
                 }
 
                 newCircle.Add (currentEdge);
 
                 if (selectedEdges.Contains (currentEdge) && !selectedEdges.Contains (nextEdge)) {
-                    distance.Repeat (i => newCircle.Add (new Edge (direction: direction.Reverse, color: currentEdge)));
+                    for (int i = 0; i < distance; ++i) {
+                        Edge newEdge = new Edge (direction: direction.Reverse, color: currentEdge);
+                        newCircle.Add (newEdge);
+                    }
                 }
             }
 
-            Log.Debug ("New Knot #", newCircle.Count, " = ", string.Join (", ", from c in newCircle select c.Direction));
+            if (Verbose) {
+                Log.Debug ("New Knot #", newCircle.Count, " = ", string.Join (", ", from c in newCircle select c.Direction));
+            }
 
             Vector3 localOffset = OffSet;
             CircleEntry<Edge> current = newCircle;
@@ -260,7 +273,9 @@ namespace Knot3.Game.Data
             }
             while (current != newCircle);
 
-            Log.Debug ("New Knot after Remove #", newCircle.Count, " = ", string.Join (", ", from c in newCircle select c.Direction));
+            if (Verbose) {
+                Log.Debug ("New Knot after Remove #", newCircle.Count, " = ", string.Join (", ", from c in newCircle select c.Direction));
+            }
 
             if (!IsValidStructure (newCircle)) {
                 Log.Debug ("Error: newCircle ist keine valide Struktur");

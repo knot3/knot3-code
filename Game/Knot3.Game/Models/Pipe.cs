@@ -27,19 +27,15 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
-
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-
 using Microsoft.Xna.Framework;
-
 using Knot3.Framework.Core;
 using Knot3.Framework.Math;
 using Knot3.Framework.Models;
 using Knot3.Framework.Utilities;
-
 using Knot3.Game.Data;
 
 namespace Knot3.Game.Models
@@ -60,6 +56,8 @@ namespace Knot3.Game.Models
         /// </summary>
         public Knot Knot { get; set; }
 
+        private IGrid Grid;
+
         /// <summary>
         /// Die Position, an der die Kante beginnt.
         /// </summary>
@@ -72,8 +70,7 @@ namespace Knot3.Game.Models
 
         public bool IsVirtual { get; set; }
 
-        private Dictionary<Direction, Angles3> RotationMap = new Dictionary<Direction, Angles3> ()
-        {
+        private Dictionary<Direction, Angles3> RotationMap = new Dictionary<Direction, Angles3> () {
             { Direction.Up, 		Angles3.FromDegrees (90, 0, 0) },
             { Direction.Down, 		Angles3.FromDegrees (270, 0, 0) },
             { Direction.Right, 		Angles3.FromDegrees (0, 90, 0) },
@@ -86,7 +83,7 @@ namespace Knot3.Game.Models
         /// Erstellt ein neues Informationsobjekt für ein 3D-Modell, das eine Kante darstellt.
         /// [base="pipe1", Angles3.Zero, new Vector3 (10,10,10)]
         /// </summary>
-        public Pipe (IScreen screen, INodeMap nodeMap, Knot knot, Edge edge)
+        public Pipe (IScreen screen, IGrid grid, Knot knot, Edge edge, Node node1, Node node2)
         : base (screen: screen)
         {
             UniqueKey = edge.ToString ();
@@ -94,14 +91,11 @@ namespace Knot3.Game.Models
             // Weise Knoten und Kante zu
             Knot = knot;
             Edge = edge;
+            Grid = grid;
 
             // Berechne die beiden Positionen, zwischen denen die Kante gezeichnet wird
-            Node node1 = nodeMap.NodeBeforeEdge (edge);
-            Node node2 = nodeMap.NodeAfterEdge (edge);
             PositionFrom = node1;
             PositionTo = node2;
-            Position = node1.CenterBetween (node2);
-            Scale = new Vector3 (12.5f, 12.5f, 50f);
 
             // Kanten sind verschiebbar und auswählbar
             IsMovable = true;
@@ -110,45 +104,72 @@ namespace Knot3.Game.Models
             // Berechne die Drehung
             Rotation += RotationMap [Edge.Direction];
 
-            // Berechne die Skalierung bei abgeschnittenen Übergängen
-            List<IJunction> junctions1 = nodeMap.JunctionsBeforeEdge (edge);
-            List<IJunction> junctions2 = nodeMap.JunctionsAfterEdge (edge);
+            incomplete = true;
+        }
 
-            // Berechne die Skalierung bei überlangen Kanten
-            if (junctions1.Count == 1 && junctions1 [0].EdgeFrom.Direction == junctions1 [0].EdgeTo.Direction) {
-                Scale += new Vector3 (0, 0, 25f);
-                Position -= edge.Direction * 12.5f;
-            }
-            if (junctions2.Count == 1 && junctions2 [0].EdgeFrom.Direction == junctions2 [0].EdgeTo.Direction) {
-                Scale += new Vector3 (0, 0, 25f);
-                Position += edge.Direction * 12.5f;
+        private bool incomplete;
+
+        private void initialize ()
+        {
+            incomplete = false;
+
+            // die Position
+            Position = (PositionFrom + PositionTo) / 2;
+            // die Skalierung
+            Scale = new Vector3 (12.5f, 12.5f, 50f);
+
+            // berechne die Skalierung bei abgeschnittenen Übergängen
+            if (Grid != null) {
+                List<Junction> junctions1 = Grid.JunctionsBeforeEdge (Edge);
+                List<Junction> junctions2 = Grid.JunctionsAfterEdge (Edge);
+
+                // berechne die Skalierung bei überlangen Kanten
+                if (junctions1.Count == 1 && junctions1 [0].EdgeFrom.Direction == junctions1 [0].EdgeTo.Direction) {
+                    Scale += new Vector3 (0, 0, 25f);
+                    Position -= Edge.Direction * 12.5f;
+                }
+                if (junctions2.Count == 1 && junctions2 [0].EdgeFrom.Direction == junctions2 [0].EdgeTo.Direction) {
+                    Scale += new Vector3 (0, 0, 25f);
+                    Position += Edge.Direction * 12.5f;
+                }
             }
 
             // Bounds
             float length = (PositionTo - PositionFrom).Length ();
             float radius = 6.25f;
             Bounds = VectorHelper.CylinderBounds (
-                         length: length,
-                         radius: radius,
-                         direction: Edge.Direction.Vector,
-                         position: PositionFrom
-                     );
+                length: length,
+                radius: radius,
+                direction: Edge.Direction.Vector,
+                position: PositionFrom
+                );
+
+            OnViewChanged ();
+        }
+
+        public void OnGridUpdated ()
+        {
+            initialize ();
         }
 
         protected override Primitive CreativePrimitive ()
         {
             int tessellation = Primitive.CurrentCircleTessellation;
             return new Cylinder (
-                       device: Screen.GraphicsDevice,
-                       height: 1f,
-                       diameter: 1f,
-                       tessellation: tessellation
-                   );
+                device: Screen.GraphicsDevice,
+                height: 1f,
+                diameter: 1f,
+                tessellation: tessellation
+            );
         }
 
         [ExcludeFromCodeCoverageAttribute]
         public override void Draw (GameTime time)
         {
+            if (incomplete) {
+                initialize ();
+            }
+
             Coloring = new SingleColor (color: Edge.Color);
             if (World.SelectedObject == this) {
                 Coloring.Highlight (intensity: 0.40f, color: Color.White);
