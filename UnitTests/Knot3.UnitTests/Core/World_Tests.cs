@@ -57,9 +57,11 @@ namespace Knot3.UnitTests.Core
             effect = effect ?? new FakeEffect (screen);
 
             // Erstelle einen Knoten
-            Knot knot = new Knot ();
+            new Knot ();
             
             /*
+            Knot knot = new Knot ();
+
             // Erstelle eine Rasterpunkt-Zuordnung
             Grid nodeMap = new Grid (screen: screen);
             nodeMap.Knot = knot;

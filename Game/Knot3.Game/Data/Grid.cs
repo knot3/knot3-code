@@ -51,11 +51,12 @@ namespace Knot3.Game.Data
         private class NodeContent
         {
             public List<Junction> Junctions = new List<Junction> ();
-            public Hashtable Pipes = new Hashtable ();
+            public Hashtable PipesOut = new Hashtable ();
+            public Hashtable PipesIn = new Hashtable ();
 
             public bool ContainsEdge (Edge edge)
             {
-                return Pipes.ContainsKey (edge);
+                return PipesIn.ContainsKey (edge) || PipesOut.ContainsKey (edge);
             }
 
             public bool ContainsJunction (Edge edgeFrom, Edge edgeTo)
@@ -70,7 +71,7 @@ namespace Knot3.Game.Data
 
             public Pipe GetPipe (Edge edge)
             {
-                return Pipes [edge] as Pipe;
+                return PipesIn.ContainsKey (edge) ? PipesIn [edge] as Pipe : PipesOut [edge] as Pipe;
             }
 
             public void SetTick (Edge edgeFrom, Edge edgeTo)
@@ -90,19 +91,26 @@ namespace Knot3.Game.Data
 
             public void RemoveOldStuff ()
             {
+                RemoveOldPipes (PipesIn);
+                RemoveOldPipes (PipesOut);
+
+                Junctions.Where (obj => obj.LastTick != CurrentTick).ForEach (obj => obj.World = null);
+                Junctions.RemoveAll (obj => obj.LastTick != CurrentTick);
+            }
+
+            private void RemoveOldPipes (Hashtable table)
+            {
                 int i = 0;
-                foreach (Edge edge in Pipes.Keys) {
-                    Pipe pipe = (Pipes [edge] as Pipe);
+                foreach (Edge edge in table.Keys) {
+                    Pipe pipe = (table [edge] as Pipe);
                     if (pipe.LastTick != CurrentTick) {
                         pipe.World = null;
                         removedEdges [i++] = edge;
                     }
                 }
                 for (--i; i >= 0; --i) {
-                    Pipes.Remove (removedEdges[i]);
+                    table.Remove (removedEdges [i]);
                 }
-                Junctions.Where (obj => obj.LastTick != CurrentTick).ForEach (obj => obj.World = null);
-                Junctions.RemoveAll (obj => obj.LastTick != CurrentTick);
             }
         };
 
@@ -141,7 +149,7 @@ namespace Knot3.Game.Data
         {
             get {
                 foreach (NodeContent content in grid.Values) {
-                    foreach (Pipe pipe in content.Pipes.Values) {
+                    foreach (Pipe pipe in content.PipesOut.Values) {
                         if (pipe.LastTick == CurrentTick) {
                             yield return pipe;
                         }
@@ -253,8 +261,8 @@ namespace Knot3.Game.Data
                     NodeContent content2 = AtNode (node2);
                     if (!content1.ContainsEdge (edge) || !content2.ContainsEdge (edge)) {
                         Pipe _pipe = newPipe (edge, node1, node2);
-                        content1.Pipes [edge] = _pipe;
-                        content2.Pipes [edge] = _pipe;
+                        content1.PipesOut [edge] = _pipe;
+                        content2.PipesIn [edge] = _pipe;
                         updatedNodes.Add (node1);
                         updatedNodes.Add (node2);
                     }

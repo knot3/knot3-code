@@ -230,10 +230,10 @@ namespace Knot3.Game.Development
             DrawString (String.Empty + n.ToString (), width, height, color);
         }
 
-        int _total_frames = 0;
+        /*int _total_frames = 0;
         float _elapsed_time = 0.0f;
+        float _fps_interval_seconds = 0.100f;*/
         int _fps = 0;
-        float _fps_interval_seconds = 0.100f;
 
         private void UpdateFPS (GameTime time)
         {
@@ -251,7 +251,7 @@ namespace Knot3.Game.Development
 
         private void DrawFPS (GameTime time)
         {
-            _total_frames++;
+            /*_total_frames++;*/
             spriteBatch.Begin ();
             DrawString ("FPS: " + _fps.ToString (), (int)(Screen.Viewport.Width / Config.Default ["video", "Supersamples", 1]) - (int)(170 * scale), (int)(50 * scale), Color.White);
             spriteBatch.End ();
