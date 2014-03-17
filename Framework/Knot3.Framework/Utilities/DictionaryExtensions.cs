@@ -36,8 +36,7 @@ namespace Knot3.Framework.Utilities
     [ExcludeFromCodeCoverageAttribute]
     public static class DictionaryExtensions
     {
-        public static void Add<KeyType, ListType, ValueType> (this Dictionary<KeyType, ListType> dict,
-                KeyType key, ValueType value)
+        public static void Add<KeyType, ListType, ValueType> (this Dictionary<KeyType, ListType> dict, KeyType key, ValueType value)
         where ListType : IList<ValueType> , new ()
         {
             if (!dict.ContainsKey (key)) {
@@ -46,13 +45,27 @@ namespace Knot3.Framework.Utilities
             dict [key].Add (value);
         }
 
-        public static void Add<KeyType, ValueType> (this Dictionary<KeyType, ISet<ValueType>> dict,
-                KeyType key, ValueType value)
+        public static void Add<KeyType, ValueType> (this Dictionary<KeyType, ISet<ValueType>> dict, KeyType key, ValueType value)
         {
             if (!dict.ContainsKey (key)) {
                 dict.Add (key, new HashSet<ValueType> ());
             }
             dict [key].Add (value);
+        }
+
+        public static void InitList<KeyType, ListType> (this Dictionary<KeyType, ListType> dict, KeyType key)
+            where ListType : new ()
+        {
+            if (!dict.ContainsKey (key)) {
+                dict.Add (key, new ListType ());
+            }
+        }
+
+        public static void InitList<KeyType, ValueType> (this Dictionary<KeyType, ISet<ValueType>> dict, KeyType key)
+        {
+            if (!dict.ContainsKey (key)) {
+                dict.Add (key, new HashSet<ValueType> ());
+            }
         }
     }
 }

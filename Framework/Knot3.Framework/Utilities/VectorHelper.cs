@@ -507,5 +507,18 @@ namespace Knot3.Framework.Utilities
                 action (item);
             }
         }
+
+        public static bool Swap<T> (ref T x, ref T y)
+        {
+            try {
+                T t = y;
+                y = x;
+                x = t;
+                return true;
+            }
+            catch {
+                return false;
+            }
+        }
     }
 }
