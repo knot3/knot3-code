@@ -234,10 +234,11 @@ namespace Knot3.Game.Development
         float _elapsed_time = 0.0f;
         float _fps_interval_seconds = 0.100f;*/
         int _fps = 0;
+        float _elapsed_time = 0.0f;
 
         private void UpdateFPS (GameTime time)
         {
-            float elapsed = (float)time.ElapsedGameTime.TotalMilliseconds;
+            float elapsed = (float)time.TotalGameTime.TotalMilliseconds;
             /*_elapsed_time += elapsed;
 
             if (_elapsed_time >= 1000.0f * _fps_interval_seconds) {
@@ -246,11 +247,13 @@ namespace Knot3.Game.Development
                 _elapsed_time = 0;
             }*/
 
-            _fps = (int)(1000.0f / elapsed);
+            _fps = (int)MathHelper.Clamp ((float)Math.Ceiling (1000.0f / (elapsed - _elapsed_time)), 0, 60);
+            _elapsed_time = elapsed;
         }
 
         private void DrawFPS (GameTime time)
         {
+            float elapsed = (float)time.ElapsedGameTime.TotalMilliseconds;
             /*_total_frames++;*/
             spriteBatch.Begin ();
             DrawString ("FPS: " + _fps.ToString (), (int)(Screen.Viewport.Width / Config.Default ["video", "Supersamples", 1]) - (int)(170 * scale), (int)(50 * scale), Color.White);
