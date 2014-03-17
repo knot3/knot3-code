@@ -58,7 +58,8 @@ namespace Knot3.UnitTests.Core
 
             // Erstelle einen Knoten
             Knot knot = new Knot ();
-
+            
+            /*
             // Erstelle eine Rasterpunkt-Zuordnung
             Grid nodeMap = new Grid (screen: screen);
             nodeMap.Knot = knot;
@@ -66,7 +67,6 @@ namespace Knot3.UnitTests.Core
 
             List<Pipe> models = new List<Pipe> ();
 
-            /*
             // Erstelle ein paar Pipes
             foreach (Edge edge in knot) {
                 Pipe pipe = new Pipe (screen: screen, nodeMap: nodeMap, knot: knot, edge: edge);
