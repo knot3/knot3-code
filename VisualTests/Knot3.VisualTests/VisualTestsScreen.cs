@@ -168,7 +168,7 @@ namespace Knot3.VisualTests
         {
             Grid nodeMap = new Grid (screen: this);
             nodeMap.Knot = knot;
-            nodeMap.OnEdgesChanged ();
+            nodeMap.Update ();
             Vector3 center = Vector3.Zero;
             foreach (Edge edge in knot) {
                 center += nodeMap.NodeBeforeEdge (edge);

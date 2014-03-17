@@ -221,7 +221,7 @@ namespace Knot3.Game.Data
         /// <summary>
         /// Aktualisiert die Zuordnung, wenn sich die Kanten geändert haben.
         /// </summary>
-        public void OnEdgesChanged ()
+        public void Update ()
         {
             BuildIndex ();
         }
