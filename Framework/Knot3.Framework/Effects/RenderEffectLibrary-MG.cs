@@ -27,7 +27,6 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
-
 using System;
 using System.Diagnostics.CodeAnalysis;
 
@@ -38,15 +37,20 @@ namespace Knot3.Framework.Effects
         private static void AddDefaultGLShaders ()
         {
             EffectLibrary.Add (new EffectFactory (
-                                   name: "simple-gl",
-                                   displayName: "Simple OpenGL Shader",
-                                   createInstance: (screen) => new SimpleGLEffect (screen)
-                               ));
+                name: "simple-gl",
+                displayName: "Simple OpenGL Shader",
+                createInstance: (screen) => new SimpleGLEffect (screen)
+            ));
             EffectLibrary.Add (new EffectFactory (
-                                   name: "hardware-instancing-gl",
-                                   displayName: "Hardware Instancing (OpenGL)",
-                                   createInstance: (screen) => new HardwareInstancingEffect (screen)
-                               ));
+                name: "hardware-instancing-gl",
+                displayName: "Hardware Instancing (OpenGL)",
+                createInstance: (screen) => new HardwareInstancingEffect (screen)
+            ));
+            EffectLibrary.Add (new EffectFactory (
+                name: "hardware-instancing-nolighting-gl",
+                displayName: "Hardware Instancing, No Lighting (OpenGL)",
+                createInstance: (screen) => new NoLightingHardwareInstancingEffect (screen)
+            ));
         }
     }
 }

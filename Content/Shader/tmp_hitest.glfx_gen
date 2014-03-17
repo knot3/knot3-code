@@ -1,0 +1,81 @@
+#monogame ConstantBuffer(name=vs_uniforms_vec4; sizeInBytes=64; parameters=[0]; offsets=[0])
+
+#monogame BeginShader(stage=pixel; constantBuffers=[])
+#monogame Sampler(name=ps_s0; type=Sampler2D; textureSlot=0; samplerSlot=0; parameter=1)
+
+#ifdef GL_ES
+precision mediump float;
+precision mediump int;
+#endif
+
+uniform sampler2D ps_s0;
+varying vec4 vTexCoord0;
+#define ps_v0 vTexCoord0
+#define ps_oC0 gl_FragColor
+
+void main()
+{
+	ps_oC0 = texture2D(ps_s0, ps_v0.xy);
+}
+
+
+#monogame EndShader()
+
+#monogame BeginShader(stage=vertex; constantBuffers=[0])
+#monogame Attribute(name=vs_v0; usage=TextureCoordinate; index=1; format=0)
+#monogame Attribute(name=vs_v1; usage=TextureCoordinate; index=2; format=0)
+#monogame Attribute(name=vs_v2; usage=TextureCoordinate; index=3; format=0)
+#monogame Attribute(name=vs_v3; usage=TextureCoordinate; index=4; format=0)
+#monogame Attribute(name=vs_v4; usage=Position; index=0; format=0)
+#monogame Attribute(name=vs_v5; usage=TextureCoordinate; index=0; format=0)
+#monogame Attribute(name=vs_v6; usage=TextureCoordinate; index=5; format=0)
+
+#ifdef GL_ES
+precision highp float;
+precision mediump int;
+#endif
+
+uniform vec4 vs_uniforms_vec4[4];
+uniform vec4 posFixup;
+const vec4 vs_c4 = vec4(0.5, 0.0, 0.0, 0.0);
+vec4 vs_r0;
+vec4 vs_r1;
+#define vs_c0 vs_uniforms_vec4[0]
+#define vs_c1 vs_uniforms_vec4[1]
+#define vs_c2 vs_uniforms_vec4[2]
+#define vs_c3 vs_uniforms_vec4[3]
+attribute vec4 vs_v0;
+#define vs_o0 gl_Position
+attribute vec4 vs_v1;
+varying vec4 vTexCoord0;
+#define vs_o1 vTexCoord0
+attribute vec4 vs_v2;
+attribute vec4 vs_v3;
+attribute vec4 vs_v4;
+attribute vec4 vs_v5;
+attribute vec4 vs_v6;
+
+void main()
+{
+	vs_r0 = vs_v4;
+	vs_r1 = vs_r0.yyyy * vs_v1;
+	vs_r1 = (vs_r0.xxxx * vs_v0) + vs_r1;
+	vs_r1 = (vs_r0.zzzz * vs_v2) + vs_r1;
+	vs_r0 = (vs_r0.wwww * vs_v3) + vs_r1;
+	vs_o0.x = dot(vs_r0, vs_c0);
+	vs_o0.y = dot(vs_r0, vs_c1);
+	vs_o0.z = dot(vs_r0, vs_c2);
+	vs_o0.w = dot(vs_r0, vs_c3);
+	vs_r0.xy = vs_c4.xx * vs_v6.xy;
+	vs_o1.xy = (vs_v5.xy * vs_c4.xx) + vs_r0.xy;
+	gl_Position.y = gl_Position.y * posFixup.y;
+	gl_Position.xy += posFixup.zw * gl_Position.ww;
+}
+
+
+#monogame EndShader()
+
+#monogame EffectParameter(name=WVP; class=Matrix; type=Single; semantic=; rows=4; columns=4; elements=[]; structMembers=[])
+#monogame EffectParameter(name=cubeTexture; class=Object; type=Texture2D; semantic=; rows=0; columns=0; elements=[]; structMembers=[])
+#monogame EffectPass(name=Pass0; vertexShader=1; pixelShader=0)
+#monogame EffectTechnique(name=Instancing)
