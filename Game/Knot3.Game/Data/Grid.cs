@@ -88,8 +88,18 @@ namespace Knot3.Game.Data
 
             public void RemoveOldStuff ()
             {
-                //Pipes.Where (obj => obj.LastTick != CurrentTick).ForEach (obj => obj.World = null);
-                //Pipes.RemoveAll (obj => obj.LastTick != CurrentTick);
+                Edge[] removed = new Edge[Pipes.Count];
+                int i = 0;
+                foreach (Edge edge in Pipes.Keys) {
+                    Pipe pipe = (Pipes [edge] as Pipe);
+                    if (pipe.LastTick != CurrentTick) {
+                        pipe.World = null;
+                        removed [i++] = edge;
+                    }
+                }
+                for (--i; i >= 0; --i) {
+                    Pipes.Remove (removed[i]);
+                }
                 Junctions.Where (obj => obj.LastTick != CurrentTick).ForEach (obj => obj.World = null);
                 Junctions.RemoveAll (obj => obj.LastTick != CurrentTick);
             }
