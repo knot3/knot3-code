@@ -111,7 +111,10 @@ namespace Knot3.Game.Data
         /// </summary>
         private KnotCharakteristic? CharakteristicCache = null;
 
-        public Vector3 OffSet { get; private set;}
+        public Vector3 OffSet { get; private set; }
+        
+        public Edge[] UpdatedEdges = new Edge[0];
+        public Edge[] DeletedEdges = new Edge[0];
 
         /// <summary>
         /// Erstellt einen minimalen Standardknoten. Das Metadaten-Objekt enthält in den Eigenschaften,
@@ -216,6 +219,9 @@ namespace Knot3.Game.Data
 
             HashSet<Edge> selected = new HashSet<Edge> (selectedEdges);
             CircleEntry<Edge> newCircle = CircleEntry<Edge>.Empty;
+            
+            List<Edge> _updatedEdges = new List<Edge> ();
+            List<Edge> _deletedEdges = new List<Edge> ();
 
             foreach (Tuple<Edge, Edge, Edge> triple in startElement.Triples) {
                 Edge previousEdge = triple.Item1;
@@ -223,13 +229,22 @@ namespace Knot3.Game.Data
                 Edge nextEdge = triple.Item3;
 
                 if (selectedEdges.Contains (currentEdge) && !selectedEdges.Contains (previousEdge)) {
-                    distance.Repeat (i => newCircle.Add (new Edge (direction: direction, color: currentEdge)));
+                    for (int i = 0; i < distance; ++i) {
+                        Edge newEdge = new Edge (direction: direction, color: currentEdge);
+                        newCircle.Add (newEdge);
+                        _updatedEdges.Add (newEdge);
+                    }
                 }
 
                 newCircle.Add (currentEdge);
+                _updatedEdges.Add (currentEdge);
 
                 if (selectedEdges.Contains (currentEdge) && !selectedEdges.Contains (nextEdge)) {
-                    distance.Repeat (i => newCircle.Add (new Edge (direction: direction.Reverse, color: currentEdge)));
+                    for (int i = 0; i < distance; ++i) {
+                        Edge newEdge = new Edge (direction: direction.Reverse, color: currentEdge);
+                        newCircle.Add (newEdge);
+                        _updatedEdges.Add (newEdge);
+                    }
                 }
             }
 
@@ -253,6 +268,14 @@ namespace Knot3.Game.Data
                         localOffset += (current - 1).Value.Direction + (current - 1).Value.Direction;
                         newCircle = current;
                     }
+                    if (_updatedEdges.Contains(current [- 2]))
+                        _updatedEdges.Remove(current [- 2]);
+                    else
+                        _deletedEdges.Add(current [- 2]);
+                    if (_updatedEdges.Contains(current [- 1]))
+                        _updatedEdges.Remove(current [- 1]);
+                    else
+                        _deletedEdges.Add(current [- 1]);
                     (current - 2).Remove ();
                     (current - 1).Remove ();
                 }
@@ -267,7 +290,10 @@ namespace Knot3.Game.Data
                 newknot = null;
                 return false;
             }
-            newknot = new Knot (MetaData, newCircle, selected, localOffset);
+            newknot = new Knot (MetaData, newCircle, selected, localOffset) {
+                UpdatedEdges = _updatedEdges.ToArray (),
+                DeletedEdges = _deletedEdges.ToArray ()
+            };
             return true;
         }
 

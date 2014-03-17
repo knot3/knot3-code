@@ -159,7 +159,7 @@ namespace Knot3.VisualTests
         private void Render (GameTime time)
         {
             Knot knot = KnotGenerator.generateSquareKnot (EdgeCount, "VisualTest-Knot");
-            knotRenderer.Knot = knot;
+            knotRenderer.RenderKnot (knot);
 
             world.Camera.Target = KnotCenter (knot);
         }

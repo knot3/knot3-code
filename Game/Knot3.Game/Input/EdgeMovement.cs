@@ -304,7 +304,7 @@ namespace Knot3.Game.Input
                 }
 
                 if (shadowKnot != null) {
-                    KnotRenderer.VirtualKnot = shadowKnot;
+                    KnotRenderer.RenderKnot(shadowKnot);
                 }
             }
         }

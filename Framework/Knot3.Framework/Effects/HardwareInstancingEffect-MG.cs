@@ -192,8 +192,10 @@ namespace Knot3.Framework.Effects
                 }
 
                 if (buffer.InstanceCapacity < instancedPrimitive.InstanceCapacity) {
-                    buffer.InstanceBuffer.Dispose ();
-                    buffer.InstanceBuffer = new VertexBuffer (screen.GraphicsDevice, instanceVertexDeclaration, instancedPrimitive.InstanceCapacity, BufferUsage.WriteOnly);
+                    Profiler.ProfileDelegate ["NewVertexBuffer"] = () => {
+                        buffer.InstanceBuffer.Dispose ();
+                        buffer.InstanceBuffer = new VertexBuffer (screen.GraphicsDevice, instanceVertexDeclaration, instancedPrimitive.InstanceCapacity, BufferUsage.WriteOnly);
+                    };
                 }
                 if (buffer.InstanceCount != instancedPrimitive.InstanceCount || buffer.InstanceUniqueHash != instancedPrimitive.InstanceUniqueHash) {
                     buffer.InstanceBuffer.SetData (instancedPrimitive.Instances);

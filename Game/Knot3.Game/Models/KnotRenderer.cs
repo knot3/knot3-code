@@ -27,23 +27,19 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-
 using Knot3.Framework.Core;
 using Knot3.Framework.Development;
 using Knot3.Framework.Models;
 using Knot3.Framework.Platform;
 using Knot3.Framework.Storage;
 using Knot3.Framework.Utilities;
-
 using Knot3.Game.Data;
 
 namespace Knot3.Game.Models
@@ -57,7 +53,6 @@ namespace Knot3.Game.Models
     public sealed class KnotRenderer : GameObject, IEnumerable<IGameObject>
     {
         private IScreen Screen;
-
         /// <summary>
         /// Die Liste der 3D-Modelle der Pfeile,
         /// die nach einer Auswahl von Kanten durch den Spieler angezeigt werden.
@@ -80,35 +75,23 @@ namespace Knot3.Game.Models
         /// <summary>
         /// Der Knoten, für den 3D-Modelle erstellt werden sollen.
         /// </summary>
-        public Knot Knot
+        private Knot knot
         {
             get {
-                return knot;
+                return _knot;
             }
             set {
-                knot = value;
-                knot.EdgesChanged += OnEdgesChanged;
-                knot.SelectionChanged += OnSelectionChanged;
-                OnEdgesChanged ();
-            }
-        }
-
-        private Knot knot;
-
-        public Knot VirtualKnot
-        {
-            get {
-                return virtualKnot;
-            }
-            set {
-                if (virtualKnot != value) {
-                    virtualKnot = value;
-                    OnVirtualKnotAssigned ();
+                if (_knot != null) {
+                    _knot.SelectionChanged -= OnSelectionChanged;
+                }
+                if (value != null) {
+                    _knot = value;
+                    _knot.SelectionChanged += OnSelectionChanged;
                 }
             }
         }
 
-        private Knot virtualKnot;
+        private Knot _knot;
         /// <summary>
         /// Die Zuordnung zwischen Kanten und den dreidimensionalen Rasterpunkten, an denen sich die die Kantenübergänge befinden.
         /// </summary>
@@ -165,35 +148,23 @@ namespace Knot3.Game.Models
         /// <summary>
         /// Wird mit dem EdgesChanged-Event des Knotens verknüft.
         /// </summary>
-        private void OnEdgesChanged ()
+        public void RenderKnot (Knot newKnot)
         {
+            knot = newKnot;
+
             nodeMap.Edges = knot;
             nodeMap.Offset = Position + knot.OffSet;
             nodeMap.OnEdgesChanged ();
 
-            //Log.Debug ("=> render Knot #", knot.Count (), " = ", string.Join (", ", from c in knot select c.Direction));
-
-            CreatePipes (knot);
+            Profiler.ProfileDelegate ["CreatePipes"] = () => CreatePipes (knot);
             if (Config.Default ["debug", "show-startedge-direction", false]) {
                 CreateStartArrow ();
             }
-            CreateNodes ();
+            Profiler.ProfileDelegate ["CreateNodes"] = () => CreateNodes (knot);
             if (showArrows) {
                 CreateArrows ();
             }
             CreateRectangles ();
-
-            World.Redraw = true;
-        }
-
-        private void OnVirtualKnotAssigned ()
-        {
-            nodeMap.Edges = virtualKnot;
-            nodeMap.Offset = Position + virtualKnot.OffSet;
-            nodeMap.OnEdgesChanged ();
-
-            CreatePipes (virtualKnot);
-            CreateNodes ();
 
             World.Redraw = true;
         }
@@ -238,7 +209,7 @@ namespace Knot3.Game.Models
             debugModels.Add (arrow);
         }
 
-        private void CreateNodes ()
+        private void CreateNodes (Knot knot)
         {
             foreach (Junction Junction in nodes) {
                 Junction.World = null;

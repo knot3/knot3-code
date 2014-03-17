@@ -27,14 +27,11 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
-
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
-
 using Knot3.Framework.Audio;
 using Knot3.Framework.Core;
 using Knot3.Framework.Development;
@@ -43,7 +40,6 @@ using Knot3.Framework.Platform;
 using Knot3.Framework.Storage;
 using Knot3.Framework.Utilities;
 using Knot3.Framework.Widgets;
-
 using Knot3.Game.Audio;
 using Knot3.Game.Data;
 using Knot3.Game.Development;
@@ -191,7 +187,7 @@ namespace Knot3.Game.Screens
                 screen: this,
                 drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
                 name: "menu",
-            onClick: (time) => {
+                onClick: (time) => {
                 // erstelle einen neuen Pausedialog
                 knotInput.IsEnabled = false;
                 Dialog pauseDialog = new CreativePauseDialog (screen: this, drawOrder: DisplayLayer.Dialog, knot: Knot);
@@ -204,14 +200,12 @@ namespace Knot3.Game.Screens
             invisible.IsVisible = true;
             invisible.AddKey (Keys.Escape);
         }
-
         /*
         public void Dispose ()
         {
             // Undo, Redo, knot ...
         }
         */
-
         private void OnKnotMoved (Knot newKnot)
         {
             if (!knot.Equals (newKnot)) {
@@ -272,7 +266,7 @@ namespace Knot3.Game.Screens
         private void registerCurrentKnot ()
         {
             // den Knoten dem KnotRenderer zuweisen
-            knotRenderer.Knot = knot;
+            knotRenderer.RenderKnot (knot);
             // den Knoten dem Kantenverschieber zuweisen
             edgeMovement.Knot = knot;
             // den Knoten dem Kanteneinfärber zuweisen
