@@ -106,25 +106,31 @@ namespace Knot3.Framework.Effects
         }
 
         private readonly string SHADER_CODE = @"
-#monogame BeginShader (stage=pixel; constantBuffers=[])
+#monogame BeginShader (stage=pixel)
+#monogame Attribute (name=fragNormal; usage=Normal; index=0)
+#monogame Attribute (name=fragTexCoord; usage=TextureCoordinate; index=0)
+#monogame Attribute (name=fragLightingFactor; usage=TextureCoordinate; index=0)
 #version 130
 
 uniform sampler2D ModelTexture;
-in vec4 vTexCoord1;
+in vec4 fragNormal;
+in vec4 fragTexCoord;
+in vec4 fragLightingFactor;
+out vec4 fragColor;
 
 void main ()
 {
-    vec4 color = texture2D (ModelTexture, vTexCoord1.xy);
+    vec4 color = texture2D (ModelTexture, fragTexCoord.xy);
     color.w = 1.0;
-    gl_FragColor = color;
+    fragColor = color;
 }
 
 #monogame EndShader ()
 
-#monogame BeginShader (stage=vertex; constantBuffers=[0,1,2,3])
-#monogame Attribute (name=inputPosition; usage=Position; index=0; format=0)
-#monogame Attribute (name=inputNormal; usage=Normal; index=0; format=0)
-#monogame Attribute (name=inputTexCoord; usage=TextureCoordinate; index=0; format=0)
+#monogame BeginShader (stage=vertex)
+#monogame Attribute (name=inputPosition; usage=Position; index=0)
+#monogame Attribute (name=inputNormal; usage=Normal; index=0)
+#monogame Attribute (name=inputTexCoord; usage=TextureCoordinate; index=0)
 #version 130
 
 uniform mat4 World;
@@ -135,16 +141,14 @@ uniform mat4 WorldInverseTranspose;
 in vec4 inputPosition;
 in vec4 inputNormal;
 in vec4 inputTexCoord;
-out vec4 outputNormal;
-out vec4 vTexCoord1;
+out vec4 fragNormal;
+out vec4 fragTexCoord;
 
 void main ()
 {
     gl_Position = inputPosition * World * View * Projection;
-    
-    outputNormal.xyz = normalize (inputNormal * WorldInverseTranspose).xyz;
-    
-    vTexCoord1.xy = inputTexCoord.xy;
+    fragNormal.xyz = normalize (inputNormal * WorldInverseTranspose).xyz;
+    fragTexCoord.xy = inputTexCoord.xy;
 }
 
 #monogame EndShader ()
