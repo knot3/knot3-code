@@ -115,7 +115,6 @@ namespace Knot3.Game.Data
 
         public bool Verbose { get; set; }
 
-
         /// <summary>
         /// Erstellt einen minimalen Standardknoten. Das Metadaten-Objekt enthält in den Eigenschaften,
         /// die das Speicherformat und den Dateinamen beinhalten, den Wert \glqq null\grqq.

@@ -27,22 +27,26 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+
 using Knot3.Framework.Core;
 using Knot3.Framework.Development;
 using Knot3.Framework.Input;
 using Knot3.Framework.Models;
 using Knot3.Framework.Platform;
 using Knot3.Framework.Utilities;
+
 using Knot3.Game.Core;
 using Knot3.Game.Data;
 using Knot3.Game.Effects;
@@ -190,13 +194,13 @@ namespace Knot3.ModelEditor
                 Profiler.Values ["# InFrustum"] = 0;
                 Profiler.Values ["RenderEffect"] = 0;
                 Profiler.ProfileDelegate ["Pipes"] = () => {
-                    Log.Debug("Pipes: " + string.Join(", ", pipes.Select(pipe => pipe.Edge.ToString())));
+                    Log.Debug ("Pipes: ", string.Join (", ", pipes.Select (pipe => pipe.Edge)));
                     foreach (Pipe pipe in pipes) {
                         pipe.Draw (time);
                     }
                 };
                 Profiler.ProfileDelegate ["Nodes"] = () => {
-                        Log.Debug("Junction: " + string.Join(", ", junctions.Select(junction => junction.Node.ToString())));
+                    Log.Debug ("Junction: ", string.Join (", ", junctions.Select (junction => junction.Node)));
                     foreach (Junction junction in junctions) {
                         junction.Draw (time);
                     }

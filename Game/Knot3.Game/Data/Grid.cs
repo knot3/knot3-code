@@ -27,17 +27,21 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+
 using Microsoft.Xna.Framework;
+
 using Knot3.Framework.Core;
-using Knot3.Framework.Utilities;
-using Knot3.Game.Models;
-using Knot3.Framework.Platform;
 using Knot3.Framework.Development;
+using Knot3.Framework.Platform;
+using Knot3.Framework.Utilities;
+
+using Knot3.Game.Models;
 
 namespace Knot3.Game.Data
 {
@@ -77,7 +81,7 @@ namespace Knot3.Game.Data
             public void SetTick (Edge edgeFrom, Edge edgeTo)
             {
                 Junctions.Where (junction => junction.EdgeFrom == edgeFrom && junction.EdgeTo == edgeTo)
-                    .ForEach (obj => obj.LastTick = CurrentTick);
+                .ForEach (obj => obj.LastTick = CurrentTick);
             }
 
             public void Update (Edge edgeFrom, Edge edgeTo)
@@ -86,8 +90,8 @@ namespace Knot3.Game.Data
                     junction.OnGridUpdated ();
                 }
             }
-            
-            private static Edge[] removedEdges = new Edge[100];
+
+            private static Edge[] removedEdges = new Edge [100];
 
             public void RemoveOldStuff ()
             {
@@ -256,7 +260,7 @@ namespace Knot3.Game.Data
                     y += v.Y;
                     z += v.Z;
                     Node node2 = new Node ((int)x, (int)y, (int)z);
-                
+
                     NodeContent content1 = AtNode (node1);
                     NodeContent content2 = AtNode (node2);
                     if (!content1.ContainsEdge (edge) || !content2.ContainsEdge (edge)) {
@@ -272,12 +276,12 @@ namespace Knot3.Game.Data
                         pipe.Knot = Knot;
                         pipe.OnGridUpdated ();
                     };
-                
+
                     nodeBeforeEdge [edge] = node1;
                     nodeAfterEdge [edge] = node2;
                 }
             };
-            
+
             Profiler.ProfileDelegate ["Grid.Junctions"] = () => {
                 List<Edge> EdgeList = Knot.ToList ();
                 for (int n = 0; n < EdgeList.Count; n++) {
@@ -290,7 +294,7 @@ namespace Knot3.Game.Data
                             content.DeleteOldJunctions (edgeA, edgeB);
                             content.Junctions.Add (newJunction (edgeA, edgeB, node, n));
                         }
-  
+
                         later += () => {
                             content.Update (edgeA, edgeB);
                         };
@@ -306,7 +310,6 @@ namespace Knot3.Game.Data
             };
 
             Profiler.ProfileDelegate ["Grid.Later"] = () => later ();
-
         }
     }
 }

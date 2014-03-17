@@ -54,7 +54,7 @@ namespace Knot3.Framework.Utilities
         }
 
         public static void InitList<KeyType, ListType> (this Dictionary<KeyType, ListType> dict, KeyType key)
-            where ListType : new ()
+        where ListType : new ()
         {
             if (!dict.ContainsKey (key)) {
                 dict.Add (key, new ListType ());

@@ -174,7 +174,7 @@ namespace Knot3.Framework.Effects
 
                 Camera camera = instancedPrimitive.World.Camera;
                 //effect.Parameters ["World"].SetValue (primitive.WorldMatrix * camera.WorldMatrix);
-                effect.Parameters ["xAmbient"].SetValue (new Vector4(0.5f, 0, 0, 0));
+                effect.Parameters ["xAmbient"].SetValue (new Vector4 (0.5f, 0, 0, 0));
                 effect.Parameters ["xView"].SetValue (camera.ViewMatrix);
                 effect.Parameters ["xProjection"].SetValue (camera.ProjectionMatrix);
                 //effect.Parameters ["WorldInverseTranspose"].SetValue (Matrix.Transpose (Matrix.Invert (primitive.WorldMatrix * camera.WorldMatrix)));

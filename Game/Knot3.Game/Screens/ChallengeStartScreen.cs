@@ -27,18 +27,22 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
+
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
+
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+
 using Knot3.Framework.Core;
 using Knot3.Framework.Math;
 using Knot3.Framework.Platform;
 using Knot3.Framework.Storage;
 using Knot3.Framework.Utilities;
 using Knot3.Framework.Widgets;
+
 using Knot3.Game.Data;
 using Knot3.Game.Input;
 using Knot3.Game.Models;
@@ -188,7 +192,7 @@ namespace Knot3.Game.Screens
                         screen: this,
                         drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
                         name: Localizer.Localize ("Edge Count: ") + meta.Target.CountEdges,
-                        onClick: (t) => {}
+                    onClick: (t) => {}
                     );
                     countEntry.Enabled = false;
                     challengeInfo.Add (countEntry);
@@ -197,7 +201,7 @@ namespace Knot3.Game.Screens
                         screen: this,
                         drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
                         name: ("Avg Time: ").Localize () + (meta.FormatedAvgTime).Localize (),
-                        onClick: (t) => {}
+                    onClick: (t) => {}
                     );
                     avgtimeEntry.IsLocalized = false;
                     avgtimeEntry.Enabled = false;

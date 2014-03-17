@@ -27,19 +27,23 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+
 using Knot3.Framework.Core;
 using Knot3.Framework.Development;
 using Knot3.Framework.Models;
 using Knot3.Framework.Platform;
 using Knot3.Framework.Storage;
 using Knot3.Framework.Utilities;
+
 using Knot3.Game.Data;
 
 namespace Knot3.Game.Models
@@ -357,7 +361,7 @@ namespace Knot3.Game.Models
             }
 
             if (time.TotalGameTime.Seconds % 10 == 0) {
-                int count = grid.Pipes.Count() + grid.Junctions.Count() + arrows.Count;
+                int count = grid.Pipes.Count () + grid.Junctions.Count () + arrows.Count;
                 if (count > 0) {
                     Profiler.Values ["# Cached Models"] = count;
                 }
@@ -380,7 +384,7 @@ namespace Knot3.Game.Models
                 };
                 Profiler.ProfileDelegate ["Nodes"] = () => {
                     foreach (Junction junction in grid.Junctions) {
-                        //Log.Debug ("junction=", junction, ", LastTick=", junction.LastTick, ", modelname="+junction.Scale);
+                        //Log.Debug ("junction=", junction, ", LastTick=", junction.LastTick, ", modelname=",junction.Scale);
                         junction.Draw (time);
                     }
                 };
@@ -397,8 +401,8 @@ namespace Knot3.Game.Models
                 foreach (GameModel model in debugModels) {
                     model.Draw (time);
                 }
-                Profiler.Values ["# Pipes"] = grid.Pipes.Count();
-                Profiler.Values ["# Nodes"] = grid.Nodes.Count();
+                Profiler.Values ["# Pipes"] = grid.Pipes.Count ();
+                Profiler.Values ["# Nodes"] = grid.Nodes.Count ();
             }
         }
 

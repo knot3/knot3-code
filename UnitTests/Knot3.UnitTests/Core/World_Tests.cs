@@ -58,7 +58,7 @@ namespace Knot3.UnitTests.Core
 
             // Erstelle einen Knoten
             new Knot ();
-            
+
             /*
             Knot knot = new Knot ();
 
@@ -78,7 +78,6 @@ namespace Knot3.UnitTests.Core
 
             return;
             // das hier zu sehr in XNA verwoben, macht als test wahrscheinlich keinen sinn!!
-
 
             World world = new World (screen: screen, effect: effect);
 

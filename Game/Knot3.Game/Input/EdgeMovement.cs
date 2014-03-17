@@ -310,7 +310,7 @@ namespace Knot3.Game.Input
                 }
 
                 if (shadowKnot != null) {
-                    KnotRenderer.RenderKnot(shadowKnot);
+                    KnotRenderer.RenderKnot (shadowKnot);
                 }
             }
         }
