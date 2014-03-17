@@ -237,13 +237,16 @@ namespace Knot3.Game.Development
 
         private void UpdateFPS (GameTime time)
         {
-            _elapsed_time += (float)time.ElapsedGameTime.TotalMilliseconds;
+            float elapsed = (float)time.ElapsedGameTime.TotalMilliseconds;
+            /*_elapsed_time += elapsed;
 
             if (_elapsed_time >= 1000.0f * _fps_interval_seconds) {
                 _fps = (int)(_total_frames * 1000.0f / _elapsed_time);
                 _total_frames = 0;
                 _elapsed_time = 0;
-            }
+            }*/
+
+            _fps = (int)(1000.0f / elapsed);
         }
 
         private void DrawFPS (GameTime time)
