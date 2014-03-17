@@ -233,7 +233,7 @@ namespace Knot3.Game.Development
         int _total_frames = 0;
         float _elapsed_time = 0.0f;
         int _fps = 0;
-        float _fps_interval_seconds = 0.333f;
+        float _fps_interval_seconds = 0.100f;
 
         private void UpdateFPS (GameTime time)
         {
