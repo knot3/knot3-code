@@ -79,6 +79,8 @@ namespace Knot3.Framework.Models
         /// </summary>
         public Vector3 Scale { get; set; }
 
+        public int LastTick { get; set; }
+
         /// <summary>
         /// Die Spielwelt, in der sich das 3D-Modell befindet.
         /// </summary>
@@ -228,7 +230,7 @@ namespace Knot3.Framework.Models
             }
         }
 
-        private void OnViewChanged ()
+        protected void OnViewChanged ()
         {
             UpdatePrecomputed ();
 

@@ -57,18 +57,24 @@ using Knot3.Game.Widgets;
 namespace Knot3.ModelEditor
 {
     [ExcludeFromCodeCoverageAttribute]
-    public class JunctionEditorNodeMap : INodeMap
+    public class JunctionEditorNodeMap
     {
         private IScreen Screen;
 
         private Hashtable fromMap = new Hashtable ();
         private Hashtable toMap = new Hashtable ();
-        private Dictionary<Node, List<IJunction>> junctionMap = new Dictionary<Node, List<IJunction>> ();
+        private Dictionary<Node, List<Junction>> junctionMap = new Dictionary<Node, List<Junction>> ();
 
         /// <summary>
         /// Die Skalierung, die bei einer Konvertierung in einen Vector3 des XNA-Frameworks durch die ToVector ()-Methode der Node-Objekte verwendet wird.
         /// </summary>
         public int Scale { get; set; }
+
+        public Knot Knot
+        {
+            get { return null; }
+            set {}
+        }
 
         public IEnumerable<Edge> Edges
         {
@@ -112,21 +118,21 @@ namespace Knot3.ModelEditor
             return (Node)toMap [edge];
         }
 
-        public List<IJunction> JunctionsAtNode (Node node)
+        public List<Junction> JunctionsAtNode (Node node)
         {
             return junctionMap [node];
         }
 
-        public List<IJunction> JunctionsBeforeEdge (Edge edge)
+        public List<Junction> JunctionsBeforeEdge (Edge edge)
         {
             Node node = NodeBeforeEdge (edge);
-            return junctionMap.ContainsKey (node) ? junctionMap [node] : new List<IJunction> ();
+            return junctionMap.ContainsKey (node) ? junctionMap [node] : new List<Junction> ();
         }
 
-        public List<IJunction> JunctionsAfterEdge (Edge edge)
+        public List<Junction> JunctionsAfterEdge (Edge edge)
         {
             Node node = NodeAfterEdge (edge);
-            return junctionMap.ContainsKey (node) ? junctionMap [node] : new List<IJunction> ();
+            return junctionMap.ContainsKey (node) ? junctionMap [node] : new List<Junction> ();
         }
 
         public IEnumerable<Node> Nodes
@@ -161,7 +167,7 @@ namespace Knot3.ModelEditor
                 toMap [edge2] = zero + edge2.Direction;
 
                 Node node = NodeAfterEdge (edge1);
-                IJunction junction = new Junction (screen: Screen, nodeMap: this, from: edge1, to: edge2, node: node, index: i * 2);
+                Junction junction = new Junction (screen: Screen, nodeMap: null, from: edge1, to: edge2, node: node, index: i * 2);
                 junctionMap.Add (node, junction);
             }
 

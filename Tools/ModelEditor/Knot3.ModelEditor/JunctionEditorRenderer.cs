@@ -144,7 +144,7 @@ namespace Knot3.ModelEditor
         {
             pipes.Clear ();
             foreach (Edge edge in nodeMap.Edges) {
-                Pipe pipe = new Pipe (screen: screen, nodeMap: nodeMap, knot: null, edge: edge);
+                Pipe pipe = null;//new Pipe (screen: screen, nodeMap: nodeMap, knot: null, edge: edge);
                 pipe.IsVisible = true;
                 pipe.World = World;
                 pipes.Add (pipe);
@@ -156,7 +156,7 @@ namespace Knot3.ModelEditor
             nodes.Clear ();
 
             foreach (Node node in nodeMap.Nodes) {
-                List<IJunction> junctions = nodeMap.JunctionsAtNode (node);
+                List<Junction> junctions = nodeMap.JunctionsAtNode (node);
                 // zeige zwischen zwei Kanten in der selben Richtung keinen Übergang an,
                 // wenn sie alleine an dem Kantenpunkt sind
                 if (junctions.Count == 1 && junctions [0].EdgeFrom.Direction == junctions [0].EdgeTo.Direction) {
