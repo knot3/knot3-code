@@ -140,22 +140,24 @@ namespace Knot3.Game.Models
         /// </summary>
         public void RenderKnot (Knot newKnot)
         {
-            knot = newKnot;
+            if (knot != newKnot) {
+                knot = newKnot;
 
-            grid.Knot = knot;
-            grid.World = World;
-            grid.Offset = Position + knot.OffSet;
-            Profiler.ProfileDelegate ["Grid"] = () => grid.OnEdgesChanged ();
+                grid.Knot = knot;
+                grid.World = World;
+                grid.Offset = Position + knot.OffSet;
+                Profiler.ProfileDelegate ["Grid"] = () => grid.OnEdgesChanged ();
 
-            if (Config.Default ["debug", "show-startedge-direction", false]) {
-                CreateStartArrow ();
+                if (Config.Default ["debug", "show-startedge-direction", false]) {
+                    CreateStartArrow ();
+                }
+                if (showArrows) {
+                    CreateArrows ();
+                }
+                CreateRectangles ();
+
+                World.Redraw = true;
             }
-            if (showArrows) {
-                CreateArrows ();
-            }
-            CreateRectangles ();
-
-            World.Redraw = true;
         }
 
         private void OnSelectionChanged ()

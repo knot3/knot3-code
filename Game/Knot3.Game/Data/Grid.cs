@@ -37,6 +37,7 @@ using Knot3.Framework.Core;
 using Knot3.Framework.Utilities;
 using Knot3.Game.Models;
 using Knot3.Framework.Platform;
+using Knot3.Framework.Development;
 
 namespace Knot3.Game.Data
 {
@@ -50,11 +51,11 @@ namespace Knot3.Game.Data
         private class NodeContent
         {
             public List<Junction> Junctions = new List<Junction> ();
-            public List<Pipe> Pipes = new List<Pipe> ();
+            public Hashtable Pipes = new Hashtable ();
 
             public bool ContainsEdge (Edge edge)
             {
-                return Pipes.Count > 0 && Pipes.Where (pipe => pipe.Edge == edge).Any ();
+                return Pipes.ContainsKey (edge);
             }
 
             public bool ContainsJunction (Edge edgeFrom, Edge edgeTo)
@@ -67,17 +68,9 @@ namespace Knot3.Game.Data
                 Junctions.RemoveAll (j => j.EdgeFrom.Direction == edgeFrom.Direction && j.EdgeTo.Direction == edgeTo.Direction);
             }
 
-            public void SetTick (Edge edge)
+            public Pipe GetPipe (Edge edge)
             {
-                Pipes.Where (pipe => pipe.Edge == edge).ForEach (obj => obj.LastTick = CurrentTick);
-            }
-
-            public void Update (Edge edge, Knot knot)
-            {
-                foreach (Pipe pipe in Pipes.Where (pipe => pipe.Edge == edge)) {
-                    pipe.Knot = knot;
-                    pipe.OnGridUpdated ();
-                }
+                return Pipes [edge] as Pipe;
             }
 
             public void SetTick (Edge edgeFrom, Edge edgeTo)
@@ -95,8 +88,8 @@ namespace Knot3.Game.Data
 
             public void RemoveOldStuff ()
             {
-                Pipes.Where (obj => obj.LastTick != CurrentTick).ForEach (obj => obj.World = null);
-                Pipes.RemoveAll (obj => obj.LastTick != CurrentTick);
+                //Pipes.Where (obj => obj.LastTick != CurrentTick).ForEach (obj => obj.World = null);
+                //Pipes.RemoveAll (obj => obj.LastTick != CurrentTick);
                 Junctions.Where (obj => obj.LastTick != CurrentTick).ForEach (obj => obj.World = null);
                 Junctions.RemoveAll (obj => obj.LastTick != CurrentTick);
             }
@@ -137,7 +130,7 @@ namespace Knot3.Game.Data
         {
             get {
                 foreach (NodeContent content in grid.Values) {
-                    foreach (Pipe pipe in content.Pipes) {
+                    foreach (Pipe pipe in content.Pipes.Values) {
                         if (pipe.LastTick == CurrentTick) {
                             yield return pipe;
                         }
@@ -233,55 +226,68 @@ namespace Knot3.Game.Data
 
             Action later = () => {};
 
-            float x = Offset.X, y = Offset.Y, z = Offset.Z;
-            foreach (Edge edge in Knot) {
-                Node node1 = new Node ((int)x, (int)y, (int)z);
-                Vector3 v = edge.Direction.Vector;
-                x += v.X;
-                y += v.Y;
-                z += v.Z;
-                Node node2 = new Node ((int)x, (int)y, (int)z);
-                
-                NodeContent content1 = AtNode (node1);
-                NodeContent content2 = AtNode (node2);
-                if (!content1.ContainsEdge (edge) || !content2.ContainsEdge (edge)) {
-                    Pipe pipe = newPipe (edge, node1, node2);
-                    content1.Pipes.Add (pipe);
-                    content2.Pipes.Add (pipe);
-                }
-                content1.SetTick (edge);
-                content2.SetTick (edge);
-                later += () => {
-                    content1.Update (edge, Knot);
-                    content2.Update (edge, Knot);
-                };
-                
-                nodeBeforeEdge [edge] = node1;
-                nodeAfterEdge [edge] = node2;
-            }
+            HashSet<Node> updatedNodes = new HashSet<Node> ();
+            Profiler.ProfileDelegate ["Grid.Pipes"] = () => {
+                float x = Offset.X, y = Offset.Y, z = Offset.Z;
 
-            List<Edge> EdgeList = Knot.ToList ();
-            for (int n = 0; n < EdgeList.Count; n++) {
-                Edge edgeA = Knot.At (n);
-                Edge edgeB = Knot.At (n + 1);
-                Node node = NodeAfterEdge (edgeA);
+                foreach (Edge edge in Knot) {
+                    Node node1 = new Node ((int)x, (int)y, (int)z);
+                    Vector3 v = edge.Direction.Vector;
+                    x += v.X;
+                    y += v.Y;
+                    z += v.Z;
+                    Node node2 = new Node ((int)x, (int)y, (int)z);
                 
-                NodeContent content = AtNode (node);
-                if (!content.ContainsJunction (edgeA, edgeB)) {
-                    content.DeleteOldJunctions (edgeA, edgeB);
-                    content.Junctions.Add (newJunction (edgeA, edgeB, node, n));
+                    NodeContent content1 = AtNode (node1);
+                    NodeContent content2 = AtNode (node2);
+                    if (!content1.ContainsEdge (edge) || !content2.ContainsEdge (edge)) {
+                        Pipe _pipe = newPipe (edge, node1, node2);
+                        content1.Pipes [edge] = _pipe;
+                        content2.Pipes [edge] = _pipe;
+                        updatedNodes.Add (node1);
+                        updatedNodes.Add (node2);
+                    }
+                    Pipe pipe = content1.GetPipe (edge);
+                    pipe.LastTick = CurrentTick;
+                    later += () => {
+                        pipe.Knot = Knot;
+                        pipe.OnGridUpdated ();
+                    };
+                
+                    nodeBeforeEdge [edge] = node1;
+                    nodeAfterEdge [edge] = node2;
                 }
-                content.SetTick (edgeA, edgeB);
-                later += () => {
-                    content.Update (edgeA, edgeB);
-                };
-            }
-
-            later ();
+            };
             
-            foreach (NodeContent content in grid.Values) {
-                content.RemoveOldStuff ();
-            }
+            Profiler.ProfileDelegate ["Grid.Junctions"] = () => {
+                List<Edge> EdgeList = Knot.ToList ();
+                for (int n = 0; n < EdgeList.Count; n++) {
+                    Edge edgeA = EdgeList.At (n);
+                    Edge edgeB = EdgeList.At (n + 1);
+                    Node node = NodeAfterEdge (edgeA);
+                    NodeContent content = AtNode (node);
+                    if (updatedNodes.Contains (node)) {
+                        if (!content.ContainsJunction (edgeA, edgeB)) {
+                            content.DeleteOldJunctions (edgeA, edgeB);
+                            content.Junctions.Add (newJunction (edgeA, edgeB, node, n));
+                        }
+  
+                        later += () => {
+                            content.Update (edgeA, edgeB);
+                        };
+                    }
+                    content.SetTick (edgeA, edgeB);
+                }
+            };
+
+            Profiler.ProfileDelegate ["Grid.Remove"] = () => {
+                foreach (NodeContent content in grid.Values) {
+                    content.RemoveOldStuff ();
+                }
+            };
+
+            Profiler.ProfileDelegate ["Grid.Later"] = () => later ();
+
         }
     }
 }
