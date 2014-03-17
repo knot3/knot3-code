@@ -57,7 +57,7 @@ using Knot3.Game.Widgets;
 namespace Knot3.ModelEditor
 {
     [ExcludeFromCodeCoverageAttribute]
-    public class JunctionEditorNodeMap
+    public class JunctionEditorGrid : IGrid
     {
         private IScreen Screen;
 
@@ -88,7 +88,7 @@ namespace Knot3.ModelEditor
 
         public Action IndexRebuilt { get; set; }
 
-        public JunctionEditorNodeMap (IScreen screen)
+        public JunctionEditorGrid (IScreen screen)
         {
             Screen = screen;
             IndexRebuilt = () => {};
@@ -167,7 +167,7 @@ namespace Knot3.ModelEditor
                 toMap [edge2] = zero + edge2.Direction;
 
                 Node node = NodeAfterEdge (edge1);
-                Junction junction = new Junction (screen: Screen, nodeMap: null, from: edge1, to: edge2, node: node, index: i * 2);
+                Junction junction = new Junction (screen: Screen, grid: this, from: edge1, to: edge2, node: node, index: i * 2);
                 junctionMap.Add (node, junction);
             }
 

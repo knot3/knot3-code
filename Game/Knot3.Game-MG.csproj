@@ -59,6 +59,7 @@
     <Compile Include="Knot3.Game\Data\Edge.cs" />
     <Compile Include="Knot3.Game\Data\Grid.cs" />
     <Compile Include="Knot3.Game\Data\IChallengeIO.cs" />
+    <Compile Include="Knot3.Game\Data\IGrid.cs" />
     <Compile Include="Knot3.Game\Data\IJunction.cs" />
     <Compile Include="Knot3.Game\Data\IKnotIO.cs" />
     <Compile Include="Knot3.Game\Data\ISavegameIO.cs" />

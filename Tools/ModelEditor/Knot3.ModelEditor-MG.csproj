@@ -40,11 +40,11 @@
     <Folder Include="Knot3.ModelEditor\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Knot3.ModelEditor\JunctionEditorNodeMap.cs" />
     <Compile Include="Knot3.ModelEditor\JunctionEditorRenderer.cs" />
     <Compile Include="Knot3.ModelEditor\JunctionEditorScreen.cs" />
     <Compile Include="Knot3.ModelEditor\Program.cs" />
     <Compile Include="Knot3.ModelEditor\ModelEditorGame.cs" />
+    <Compile Include="Knot3.ModelEditor\JunctionEditorGrid.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Framework\Knot3.Framework-MG.csproj">

@@ -63,12 +63,12 @@ namespace Knot3.Game.Models
 
         public int Index { get; private set; }
 
-        private Grid NodeMap;
+        private IGrid Grid;
 
         public List<Junction> JunctionsAtNode
         {
             get {
-                return (from j in NodeMap.JunctionsAtNode (NodeMap.NodeAfterEdge (EdgeFrom)) orderby j.Index ascending select j).ToList ();
+                return (from j in Grid.JunctionsAtNode (Grid.NodeAfterEdge (EdgeFrom)) orderby j.Index ascending select j).ToList ();
             }
         }
 
@@ -210,7 +210,7 @@ namespace Knot3.Game.Models
         /// Erstellt ein neues Informationsobjekt für ein 3D-Modell, das einen Kantenübergang darstellt.
         /// [base="node1", Angles3.Zero, new Vector3 (1,1,1)]
         /// </summary>
-        public Junction (IScreen screen, Grid nodeMap, Edge from, Edge to, Node node, int index)
+        public Junction (IScreen screen, IGrid grid, Edge from, Edge to, Node node, int index)
         : base (screen)
         {
             UniqueKey = from.ToString () + to.ToString ();
@@ -218,7 +218,7 @@ namespace Knot3.Game.Models
             EdgeFrom = from;
             EdgeTo = to;
             Node = node;
-            NodeMap = nodeMap;
+            Grid = grid;
             Index = index;
             Position = node;
 

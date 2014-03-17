@@ -27,26 +27,22 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-
 using Knot3.Framework.Core;
 using Knot3.Framework.Development;
 using Knot3.Framework.Input;
 using Knot3.Framework.Models;
 using Knot3.Framework.Platform;
 using Knot3.Framework.Utilities;
-
 using Knot3.Game.Core;
 using Knot3.Game.Data;
 using Knot3.Game.Effects;
@@ -62,21 +58,18 @@ namespace Knot3.ModelEditor
     public class JunctionEditorRenderer : GameObject, IEnumerable<IGameObject>
     {
         private IScreen screen;
-
         /// <summary>
         /// Die Liste der 3D-Modelle der Kantenübergänge.
         /// </summary>
-        private List<Junction> nodes;
-
+        private List<Junction> junctions;
         /// <summary>
         /// Die Liste der 3D-Modelle der Kanten.
         /// </summary>
         private List<Pipe> pipes;
-
         /// <summary>
         /// Die Zuordnung zwischen Kanten und den dreidimensionalen Rasterpunkten, an denen sich die die Kantenübergänge befinden.
         /// </summary>
-        private JunctionEditorNodeMap nodeMap;
+        private JunctionEditorGrid grid;
 
         /// <summary>
         /// Erstellt ein neues KnotRenderer-Objekt für den angegebenen Spielzustand mit den angegebenen
@@ -86,8 +79,8 @@ namespace Knot3.ModelEditor
         {
             this.screen = screen;
             pipes = new List<Pipe> ();
-            nodes = new List<Junction> ();
-            nodeMap = new JunctionEditorNodeMap (screen: screen);
+            junctions = new List<Junction> ();
+            grid = new JunctionEditorGrid (screen: screen);
         }
 
         /// <summary>
@@ -124,17 +117,17 @@ namespace Knot3.ModelEditor
             }
 
             if (valid) {
-                nodeMap.Render (directions);
-                nodeMap.Offset = Position;
+                grid.Render (directions);
+                grid.Offset = Position;
 
                 CreatePipes ();
-                CreateNodes ();
+                CreateJunctions ();
 
                 World.Redraw = true;
             }
             else {
                 pipes.Clear ();
-                nodes.Clear ();
+                junctions.Clear ();
 
                 World.Redraw = true;
             }
@@ -143,29 +136,32 @@ namespace Knot3.ModelEditor
         private void CreatePipes ()
         {
             pipes.Clear ();
-            foreach (Edge edge in nodeMap.Edges) {
-                Pipe pipe = null;//new Pipe (screen: screen, nodeMap: nodeMap, knot: null, edge: edge);
+            foreach (Edge edge in grid.Edges) {
+                Pipe pipe = new Pipe (screen: screen, grid: grid, knot: null, edge: edge,
+                                      node1: grid.NodeBeforeEdge (edge), node2: grid.NodeAfterEdge (edge));
                 pipe.IsVisible = true;
                 pipe.World = World;
+                pipe.OnGridUpdated ();
                 pipes.Add (pipe);
             }
         }
 
-        private void CreateNodes ()
+        private void CreateJunctions ()
         {
-            nodes.Clear ();
+            junctions.Clear ();
 
-            foreach (Node node in nodeMap.Nodes) {
-                List<Junction> junctions = nodeMap.JunctionsAtNode (node);
+            foreach (Node node in grid.Nodes) {
+                List<Junction> junctionsAtNode = grid.JunctionsAtNode (node);
                 // zeige zwischen zwei Kanten in der selben Richtung keinen Übergang an,
                 // wenn sie alleine an dem Kantenpunkt sind
-                if (junctions.Count == 1 && junctions [0].EdgeFrom.Direction == junctions [0].EdgeTo.Direction) {
+                if (junctionsAtNode.Count == 1 && junctionsAtNode [0].EdgeFrom.Direction == junctionsAtNode [0].EdgeTo.Direction) {
                     continue;
                 }
 
-                foreach (Junction junction in junctions.OfType<Junction>()) {
+                foreach (Junction junction in junctionsAtNode) {
                     junction.World = World;
-                    nodes.Add (junction);
+                    junction.OnGridUpdated ();
+                    junctions.Add (junction);
                 }
             }
         }
@@ -179,7 +175,7 @@ namespace Knot3.ModelEditor
             foreach (Pipe pipe in pipes) {
                 pipe.Update (time);
             }
-            foreach (Junction node in nodes) {
+            foreach (Junction node in junctions) {
                 node.Update (time);
             }
         }
@@ -194,17 +190,19 @@ namespace Knot3.ModelEditor
                 Profiler.Values ["# InFrustum"] = 0;
                 Profiler.Values ["RenderEffect"] = 0;
                 Profiler.ProfileDelegate ["Pipes"] = () => {
+                    Log.Debug("Pipes: " + string.Join(", ", pipes.Select(pipe => pipe.Edge.ToString())));
                     foreach (Pipe pipe in pipes) {
                         pipe.Draw (time);
                     }
                 };
                 Profiler.ProfileDelegate ["Nodes"] = () => {
-                    foreach (Junction node in nodes) {
-                        node.Draw (time);
+                        Log.Debug("Junction: " + string.Join(", ", junctions.Select(junction => junction.Node.ToString())));
+                    foreach (Junction junction in junctions) {
+                        junction.Draw (time);
                     }
                 };
                 Profiler.Values ["# Pipes"] = pipes.Count;
-                Profiler.Values ["# Nodes"] = nodes.Count;
+                Profiler.Values ["# Nodes"] = junctions.Count;
             }
         }
 
@@ -217,11 +215,10 @@ namespace Knot3.ModelEditor
             foreach (Pipe pipe in pipes) {
                 yield return pipe;
             }
-            foreach (Junction node in nodes) {
+            foreach (Junction node in junctions) {
                 yield return node;
             }
         }
-
         // Explicit interface implementation for nongeneric interface
         IEnumerator IEnumerable.GetEnumerator ()
         {

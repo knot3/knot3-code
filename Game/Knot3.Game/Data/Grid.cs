@@ -44,7 +44,7 @@ namespace Knot3.Game.Data
     /// <summary>
     /// Eine Zuordnung zwischen Kanten und den dreidimensionalen Rasterpunkten, an denen sich die die Kantenübergänge befinden.
     /// </summary>
-    public sealed class Grid
+    public sealed class Grid : IGrid
     {
         private IScreen Screen;
 
@@ -224,7 +224,7 @@ namespace Knot3.Game.Data
 
         private Pipe newPipe (Edge edge, Node node1, Node node2)
         {
-            Pipe pipe = new Pipe (screen: Screen, nodeMap: this, knot: Knot, edge: edge, node1: node1, node2: node2);
+            Pipe pipe = new Pipe (screen: Screen, grid: this, knot: Knot, edge: edge, node1: node1, node2: node2);
             pipe.Knot = Knot;
             pipe.IsVisible = true;
             pipe.World = World;
@@ -233,7 +233,7 @@ namespace Knot3.Game.Data
 
         private Junction newJunction (Edge edgeA, Edge edgeB, Node node, int index)
         {
-            Junction junction = new Junction (screen: Screen, nodeMap: this, from: edgeA, to: edgeB, node: node, index: index);
+            Junction junction = new Junction (screen: Screen, grid: this, from: edgeA, to: edgeB, node: node, index: index);
             junction.IsVisible = true;
             junction.World = World;
             return junction;

@@ -56,7 +56,7 @@ namespace Knot3.Game.Models
         /// </summary>
         public Knot Knot { get; set; }
 
-        private Grid NodeMap;
+        private IGrid Grid;
 
         /// <summary>
         /// Die Position, an der die Kante beginnt.
@@ -83,7 +83,7 @@ namespace Knot3.Game.Models
         /// Erstellt ein neues Informationsobjekt für ein 3D-Modell, das eine Kante darstellt.
         /// [base="pipe1", Angles3.Zero, new Vector3 (10,10,10)]
         /// </summary>
-        public Pipe (IScreen screen, Grid nodeMap, Knot knot, Edge edge, Node node1, Node node2)
+        public Pipe (IScreen screen, IGrid grid, Knot knot, Edge edge, Node node1, Node node2)
         : base (screen: screen)
         {
             UniqueKey = edge.ToString ();
@@ -91,7 +91,7 @@ namespace Knot3.Game.Models
             // Weise Knoten und Kante zu
             Knot = knot;
             Edge = edge;
-            NodeMap = nodeMap;
+            Grid = grid;
 
             // Berechne die beiden Positionen, zwischen denen die Kante gezeichnet wird
             PositionFrom = node1;
@@ -119,17 +119,19 @@ namespace Knot3.Game.Models
             Scale = new Vector3 (12.5f, 12.5f, 50f);
 
             // berechne die Skalierung bei abgeschnittenen Übergängen
-            List<Junction> junctions1 = NodeMap.JunctionsBeforeEdge (Edge);
-            List<Junction> junctions2 = NodeMap.JunctionsAfterEdge (Edge);
+            if (Grid != null) {
+                List<Junction> junctions1 = Grid.JunctionsBeforeEdge (Edge);
+                List<Junction> junctions2 = Grid.JunctionsAfterEdge (Edge);
 
-            // berechne die Skalierung bei überlangen Kanten
-            if (junctions1.Count == 1 && junctions1 [0].EdgeFrom.Direction == junctions1 [0].EdgeTo.Direction) {
-                Scale += new Vector3 (0, 0, 25f);
-                Position -= Edge.Direction * 12.5f;
-            }
-            if (junctions2.Count == 1 && junctions2 [0].EdgeFrom.Direction == junctions2 [0].EdgeTo.Direction) {
-                Scale += new Vector3 (0, 0, 25f);
-                Position += Edge.Direction * 12.5f;
+                // berechne die Skalierung bei überlangen Kanten
+                if (junctions1.Count == 1 && junctions1 [0].EdgeFrom.Direction == junctions1 [0].EdgeTo.Direction) {
+                    Scale += new Vector3 (0, 0, 25f);
+                    Position -= Edge.Direction * 12.5f;
+                }
+                if (junctions2.Count == 1 && junctions2 [0].EdgeFrom.Direction == junctions2 [0].EdgeTo.Direction) {
+                    Scale += new Vector3 (0, 0, 25f);
+                    Position += Edge.Direction * 12.5f;
+                }
             }
 
             // Bounds
