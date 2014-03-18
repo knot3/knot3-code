@@ -152,7 +152,6 @@
     <Compile Include="Knot3.Game\Models\Arrow.cs" />
     <Compile Include="Knot3.Game\Models\Junction.cs" />
     <Compile Include="Knot3.Game\Models\KnotRenderer.cs" />
-    <Compile Include="Knot3.Game\Models\ModelFactory.cs" />
     <Compile Include="Knot3.Game\Models\ModelMouseHandler.cs" />
     <Compile Include="Knot3.Game\Models\Pipe.cs" />
     <Compile Include="Knot3.Game\Models\RectangleModel.cs" />

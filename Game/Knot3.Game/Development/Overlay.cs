@@ -236,7 +236,7 @@ namespace Knot3.Game.Development
         int _fps = 0;
         float preDrawElapsedTime=0.0f;
         float _elapsed_time = 0.0f;
-        float[] lastFrameTimes = new float[5] ;
+        float[] lastFrameTimes = new float [5] ;
         int index =0;*/
         int _total_frames = 0;
         float _elapsed_time = 0.0f;
@@ -249,8 +249,8 @@ namespace Knot3.Game.Development
             float elapsed = (float)time.TotalGameTime.TotalMilliseconds;
 
             _fps = (int)MathHelper.Clamp ((float)Math.Ceiling (1000.0f / (elapsed - _elapsed_time)), 0, 60);
-            lastFrameTimes[index%5] = elapsed - _elapsed_time;
-            Console.WriteLine ("lastFrameTimes["+(index%5)+"]="+(elapsed - _elapsed_time));
+            lastFrameTimes [index%5] = elapsed - _elapsed_time;
+            Console.WriteLine ("lastFrameTimes ["+(index%5)+"]="+(elapsed - _elapsed_time));
             index++;
 
             _elapsed_time = elapsed;
@@ -273,7 +273,7 @@ namespace Knot3.Game.Development
             DrawString ("FPS: " + _fps.ToString (), (int)(Screen.Viewport.Width / Config.Default ["video", "Supersamples", 1]) - (int)(170 * scale), (int)(50 * scale), Color.White);
             DrawString ("totaltime: " + elapsed.ToString (), (int)(Screen.Viewport.Width / Config.Default ["video", "Supersamples", 1]) - (int)(170 * scale), (int)(70 * scale), Color.White);
             DrawString ("_elapsed: " + preDrawElapsedTime.ToString (), (int)(Screen.Viewport.Width / Config.Default ["video", "Supersamples", 1]) - (int)(170 * scale), (int)(30 * scale), Color.White);
-            float sum = 5000 / (float) lastFrameTimes.Sum();
+            float sum = 5000 / (float) lastFrameTimes.Sum ();
             DrawString ("sum: " + sum.ToString (), (int)(Screen.Viewport.Width / Config.Default ["video", "Supersamples", 1]) - (int)(170 * scale), (int)(10 * scale), Color.White);
             spriteBatch.End ();
             */
