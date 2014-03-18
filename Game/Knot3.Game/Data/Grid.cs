@@ -52,7 +52,7 @@ namespace Knot3.Game.Data
     {
         private IScreen Screen;
 
-        private class NodeContent
+        private sealed class NodeContent
         {
             public List<Junction> Junctions = new List<Junction> ();
             public Hashtable PipesOut = new Hashtable ();
@@ -132,11 +132,6 @@ namespace Knot3.Game.Data
                 return grid [node];
             }
         }
-
-        /// <summary>
-        /// Die Skalierung, die bei einer Konvertierung in einen Vector3 des XNA-Frameworks durch die ToVector ()-Methode der Node-Objekte verwendet wird.
-        /// </summary>
-        public int Scale { get; set; }
 
         public Knot Knot { get; set; }
 
