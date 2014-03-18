@@ -232,26 +232,52 @@ namespace Knot3.Game.Development
 
         /*int _total_frames = 0;
         float _elapsed_time = 0.0f;
-        float _fps_interval_seconds = 0.100f;*/
+        float _fps_interval_seconds = 0.100f;
         int _fps = 0;
+        float preDrawElapsedTime=0.0f;
+        float _elapsed_time = 0.0f;
+        float[] lastFrameTimes = new float[5] ;
+        int index =0;*/
+        int _total_frames = 0;
+        float _elapsed_time = 0.0f;
+        int _fps = 0;
+        float _fps_interval_seconds = 0.333f;
 
         private void UpdateFPS (GameTime time)
         {
-            float elapsed = (float)time.ElapsedGameTime.TotalMilliseconds;
-            /*_elapsed_time += elapsed;
+            /*
+            float elapsed = (float)time.TotalGameTime.TotalMilliseconds;
+
+            _fps = (int)MathHelper.Clamp ((float)Math.Ceiling (1000.0f / (elapsed - _elapsed_time)), 0, 60);
+            lastFrameTimes[index%5] = elapsed - _elapsed_time;
+            Console.WriteLine ("lastFrameTimes["+(index%5)+"]="+(elapsed - _elapsed_time));
+            index++;
+
+            _elapsed_time = elapsed;
+            preDrawElapsedTime = _elapsed_time;
+            */
+            _elapsed_time += (float)time.ElapsedGameTime.TotalMilliseconds;
 
             if (_elapsed_time >= 1000.0f * _fps_interval_seconds) {
                 _fps = (int)(_total_frames * 1000.0f / _elapsed_time);
                 _total_frames = 0;
                 _elapsed_time = 0;
-            }*/
-
-            _fps = (int)(1000.0f / elapsed);
+            }
         }
 
         private void DrawFPS (GameTime time)
         {
-            /*_total_frames++;*/
+            /*
+            float elapsed = (float)time.TotalGameTime.TotalMilliseconds;
+            spriteBatch.Begin ();
+            DrawString ("FPS: " + _fps.ToString (), (int)(Screen.Viewport.Width / Config.Default ["video", "Supersamples", 1]) - (int)(170 * scale), (int)(50 * scale), Color.White);
+            DrawString ("totaltime: " + elapsed.ToString (), (int)(Screen.Viewport.Width / Config.Default ["video", "Supersamples", 1]) - (int)(170 * scale), (int)(70 * scale), Color.White);
+            DrawString ("_elapsed: " + preDrawElapsedTime.ToString (), (int)(Screen.Viewport.Width / Config.Default ["video", "Supersamples", 1]) - (int)(170 * scale), (int)(30 * scale), Color.White);
+            float sum = 5000 / (float) lastFrameTimes.Sum();
+            DrawString ("sum: " + sum.ToString (), (int)(Screen.Viewport.Width / Config.Default ["video", "Supersamples", 1]) - (int)(170 * scale), (int)(10 * scale), Color.White);
+            spriteBatch.End ();
+            */
+            _total_frames++;
             spriteBatch.Begin ();
             DrawString ("FPS: " + _fps.ToString (), (int)(Screen.Viewport.Width / Config.Default ["video", "Supersamples", 1]) - (int)(170 * scale), (int)(50 * scale), Color.White);
             spriteBatch.End ();

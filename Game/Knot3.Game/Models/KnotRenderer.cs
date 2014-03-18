@@ -150,7 +150,7 @@ namespace Knot3.Game.Models
                 grid.Knot = knot;
                 grid.World = World;
                 grid.Offset = Position + knot.OffSet;
-                Profiler.ProfileDelegate ["Grid"] = () => grid.OnEdgesChanged ();
+                Profiler.ProfileDelegate ["Grid"] = () => grid.Update ();
 
                 if (Config.Default ["debug", "show-startedge-direction", false]) {
                     CreateStartArrow ();

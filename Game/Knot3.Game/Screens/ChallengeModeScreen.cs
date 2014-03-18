@@ -185,6 +185,8 @@ namespace Knot3.Game.Screens
             PlayerKnot = challenge.Start.Clone () as Knot;
             // assign the specified target knot
             ChallengeKnotRenderer.RenderKnot (challenge.Target);
+            // assign the specified start knot
+            PlayerKnotRenderer.RenderKnot (PlayerKnot);
 
             SkyCube playerSkyCube = new SkyCube (screen: this, position: Vector3.Zero, distance: 10000);
             PlayerWorld.Add (playerSkyCube);
