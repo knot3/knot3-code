@@ -46,11 +46,6 @@ namespace Knot3.Framework.Effects
         static RenderEffectLibrary ()
         {
             EffectLibrary.Add (new EffectFactory (
-                                   name: "default",
-                                   displayName: "Default (XNA)",
-                                   createInstance: (screen) => new StandardEffect (screen)
-                               ));
-            EffectLibrary.Add (new EffectFactory (
                                    name: "basiceffect",
                                    displayName: "Basic Effect (XNA)",
                                    createInstance: (screen) => new StandardEffect (screen)
