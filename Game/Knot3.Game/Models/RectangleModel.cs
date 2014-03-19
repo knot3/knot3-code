@@ -37,6 +37,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Knot3.Framework.Core;
 using Knot3.Framework.Models;
 using Knot3.Framework.Utilities;
+using Knot3.Framework.Primitives;
 
 namespace Knot3.Game.Models
 {

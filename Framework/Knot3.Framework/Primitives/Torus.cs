@@ -36,7 +36,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 using Knot3.Framework.Math;
 
-namespace Knot3.Framework.Models
+namespace Knot3.Framework.Primitives
 {
     public class Torus : Primitive
     {
