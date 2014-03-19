@@ -239,20 +239,22 @@ namespace Knot3.Framework.Effects
 #monogame BeginShader (stage=pixel; constantBuffers=[0])
 #monogame Attribute (name=fragNormal; usage=Normal; index=0)
 #monogame Attribute (name=fragTexCoord; usage=TextureCoordinate; index=0)
-#monogame Attribute (name=fragLightingFactor; usage=TextureCoordinate; index=0)
+//#monogame Attribute (name=fragLightingFactor; usage=TextureCoordinate; index=0)
 #version 130
 
 uniform sampler2D xModelTexture;
 uniform vec4 xAmbient;
 in vec4 fragNormal;
 in vec4 fragTexCoord;
-in vec4 fragLightingFactor;
+//in vec4 fragLightingFactor;
 out vec4 fragColor;
 
 void main ()
 {
-    vec4 color = texture2D (xModelTexture, fragTexCoord.xy);
-    color = color * 0.5 + vec4(1,1,1,0)* clamp (dot (fragNormal.xyz, -vec3 (-1.0, -1.0, -1.0)), 0.0, 1.0);
+    vec4 colorTexture = texture2D (xModelTexture, fragTexCoord.xy);
+    vec4 colorDiffuse = vec4(1.0) * clamp (dot (-fragNormal.xyz, vec3 (-1.0)), 0.0, 1.0);
+
+    vec4 color = colorTexture * 0.5 + colorDiffuse * 0.5;
     color.w = 1.0;
     fragColor = color;
 }
@@ -278,7 +280,7 @@ in mat4 instanceWorldInverseTranspose;
 
 out vec4 fragNormal;
 out vec4 fragTexCoord;
-out vec4 fragLightingFactor;
+//out vec4 fragLightingFactor;
 
 void main ()
 {
@@ -288,10 +290,8 @@ void main ()
     gl_Position = vertexPosition * world * xView * xProjection;
     
     fragNormal.xyz = normalize (vertexNormal * worldInverseTranspose).xyz;
-    
     fragTexCoord.xy = vertexTexCoord.xy;
-
-    fragLightingFactor.x = 0;
+    //fragLightingFactor.x = 0;
 }
 
 #monogame EndShader ()
