@@ -47,8 +47,6 @@
     </None>
     <None Include="Music\Creative\Jupiter_Makes_Me_Scream_-_05_-_Incidents.ogg">
     </None>
-    <None Include="Models\sphere.xnb">
-    </None>
     <None Include="Sound\Pipe\Invalid-Move\13290__schademans__pipe9.ogg">
     </None>
     <None Include="Shader\CelShader_3.0.mgfx">

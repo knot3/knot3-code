@@ -1,6 +1,7 @@
 X = xbuild
 CP = cp -v
 CPR = cp -rvf
+MV = mv -v
 RM = rm -vf
 RMR = rm -rvf
 MKDIR = mkdir -p
@@ -83,10 +84,17 @@ package-windows: build-windows
 	$(CPR) $(TOOL_MODELEDITOR_DIR)/bin/Release/* $(DESTDIR)/
 	$(CPR) $(VISUALTESTS_DIR)/bin/Release/* $(DESTDIR)/
 	$(CPR) $(CODE_DIR)/bin/Release/* $(DESTDIR)/
+	$(MKDIR) tmp-package-windows
+	$(MV) $(DESTDIR)/*.exe $(DESTDIR)/*.dll tmp-package-windows/
+	wget http://nuget.org/api/v2/package/ILRepack -O ILRepack.zip
+	unzip -d ILRepack-tmp ILRepack.zip
+	mono ILRepack-tmp/tools/ILRepack.exe /out:Knot3.exe tmp-package-windows/Knot3.exe tmp-package-windows/*.dll
+	$(CP) Knot3.exe $(DESTDIR)/
+	$(RMR) Knot3.exe tmp-package-windows ILRepack-tmp ILRepack.zip
 	$(CP) LICENSE $(DESTDIR)/
 	$(CP) debian/changelog $(DESTDIR)/CHANGELOG
 	$(CP) README.md $(DESTDIR)/README
-	$(RM) $(DESTDIR)/*.pdb
+	$(RM) $(DESTDIR)/*.pdb $(DESTDIR)/*.mdb $(DESTDIR)/*.config
 	$(CP) $(DOC_PDF) $(DESTDIR)/
 
 dep-ubuntu-saucy:
