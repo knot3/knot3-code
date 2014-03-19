@@ -36,6 +36,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Knot3.Framework.Core;
 using Knot3.Framework.Effects;
 using Knot3.Framework.Models;
+using System;
 
 namespace Knot3.MockObjects
 {
@@ -133,6 +134,21 @@ namespace Knot3.MockObjects
 
         public void DrawLastFrame (GameTime time)
         {
+        }
+
+        public void Dispose ()
+        {
+            Dispose (true);
+            GC.SuppressFinalize (this);
+        }
+
+        protected virtual void Dispose (bool disposing)
+        {
+        }
+
+        ~FakeEffect ()
+        {
+            Dispose (false);
         }
     }
 }

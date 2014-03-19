@@ -39,7 +39,7 @@ using Knot3.Framework.Math;
 using Knot3.Framework.Storage;
 using Knot3.Framework.Utilities;
 
-namespace Knot3.Framework.Models
+namespace Knot3.Framework.Primitives
 {
     public abstract class Primitive : IDisposable
     {

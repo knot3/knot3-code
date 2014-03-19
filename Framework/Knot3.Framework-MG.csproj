@@ -87,8 +87,6 @@
     <Compile Include="Knot3.Framework\Math\ModelExtensions.cs" />
     <Compile Include="Knot3.Framework\Math\RayExtensions.cs" />
     <Compile Include="Knot3.Framework\Math\ScreenPoint.cs" />
-    <Compile Include="Knot3.Framework\Models\CurvedCylinder.cs" />
-    <Compile Include="Knot3.Framework\Models\Cylinder.cs" />
     <Compile Include="Knot3.Framework\Models\GameModel.cs" />
     <Compile Include="Knot3.Framework\Models\GameObject.cs" />
     <Compile Include="Knot3.Framework\Models\GameObjectDistance.cs" />
@@ -98,9 +96,6 @@
     <Compile Include="Knot3.Framework\Models\IGameObject.cs" />
     <Compile Include="Knot3.Framework\Models\ITexturedObject.cs" />
     <Compile Include="Knot3.Framework\Models\ModelColoring.cs" />
-    <Compile Include="Knot3.Framework\Models\Parallelogram.cs" />
-    <Compile Include="Knot3.Framework\Models\Primitive.cs" />
-    <Compile Include="Knot3.Framework\Models\Torus.cs" />
     <Compile Include="Knot3.Framework\Platform\ContentLoader-MG.cs" />
     <Compile Include="Knot3.Framework\Platform\ContentLoader.cs" />
     <Compile Include="Knot3.Framework\Platform\Dependencies.cs" />
@@ -149,6 +144,12 @@
     <Compile Include="Knot3.Framework\Widgets\VerticalAlignment.cs" />
     <Compile Include="Knot3.Framework\Widgets\Widget.cs" />
     <Compile Include="Knot3.Framework\Widgets\WidgetState.cs" />
+    <Compile Include="Knot3.Framework\Primitives\CurvedCylinder.cs" />
+    <Compile Include="Knot3.Framework\Primitives\Cylinder.cs" />
+    <Compile Include="Knot3.Framework\Primitives\Parallelogram.cs" />
+    <Compile Include="Knot3.Framework\Primitives\Primitive.cs" />
+    <Compile Include="Knot3.Framework\Primitives\Torus.cs" />
+    <Compile Include="Knot3.Framework\Primitives\Sphere.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -164,5 +165,8 @@
       <Project>{F8C66EB3-E81D-45FB-B28E-747BE332230F}</Project>
       <Name>OggSharp</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Knot3.Framework\Primitives\" />
   </ItemGroup>
 </Project>

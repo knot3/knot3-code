@@ -96,8 +96,12 @@ namespace Knot3.MockObjects
             get { return new Bounds (screen: this, relX: 0f, relY: 0f, relWidth: 1f, relHeight: 1f); }
         }
 
-        public FakeScreen ()
-        :this (800, 600)
+        /// <summary>
+        /// Gibt an, ob die Screen History beim öffnen dieses Screens geleert werden soll.
+        /// </summary>
+        public bool ClearScreenHistory { get; protected set; }
+
+        public FakeScreen () : this (800, 600)
         {
         }
 

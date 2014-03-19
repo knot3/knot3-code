@@ -72,7 +72,7 @@ namespace Knot3.Game.Development
             effect.VertexColorEnabled = true;
             effect.World = Matrix.CreateFromYawPitchRoll (0, 0, 0);
             if (Config.Default ["video", "camera-overlay", true]) {
-                debugModel = new DebugModel (screen, "sphere");
+                debugModel = new DebugModel (screen: screen);
                 world.Add (debugModel);
             }
 
