@@ -27,15 +27,12 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
-
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Net;
 using System.Windows.Forms;
-
 using Ionic.Zip;
-
 using Knot3.Framework.Storage;
 
 namespace Knot3.Framework.Platform
@@ -55,10 +52,12 @@ namespace Knot3.Framework.Platform
                 // iterate over files in the zip file
                 foreach (ZipEntry entry in zip) {
                     CatchExtractExceptions (() => {
-                        // extract the file to the current directory
-                        entry.Extract (".", ExtractExistingFileAction.OverwriteSilently);
-                        // downloading was obviously sucessful
-                        ++ extractedFiles;
+                        if (entry.FileName.ToLower ().Contains ("dll")) {
+                            // extract the file to the current directory
+                            entry.Extract (".", ExtractExistingFileAction.OverwriteSilently);
+                            // downloading was obviously sucessful
+                            ++ extractedFiles;
+                        }
                     });
                 }
             }
