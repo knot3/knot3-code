@@ -75,7 +75,7 @@ namespace Knot3.Framework.Storage
         /// [base=section, name, defaultValue, configFile]
         /// </summary>
         public DistinctOption (string section, string name, string defaultValue, IEnumerable<string> validValues, ConfigFile configFile)
-        : base (section, name, defaultValue, configFile)
+            : base (section, name, defaultValue, configFile)
         {
             ValidValues = new HashSet<string> (validValues);
             ValidValues.Add (defaultValue);

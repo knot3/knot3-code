@@ -244,9 +244,9 @@ namespace Knot3.Framework.Effects
 
 uniform sampler2D xModelTexture;
 uniform vec4 xLightDirection;
+
 in vec4 fragNormal;
 in vec4 fragTexCoord;
-//in vec4 fragLightingFactor;
 out vec4 fragColor;
 
 void main ()
@@ -281,7 +281,6 @@ in mat4 instanceWorldInverseTranspose;
 
 out vec4 fragNormal;
 out vec4 fragTexCoord;
-//out vec4 fragLightingFactor;
 
 void main ()
 {

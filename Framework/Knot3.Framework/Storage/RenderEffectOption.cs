@@ -27,28 +27,33 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
-
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Knot3.Framework.Effects;
 
 namespace Knot3.Framework.Storage
 {
-    public class LanguageOption : DistinctOption
+    public class RenderEffectOption : DistinctOption
     {
-        public new Language Value
+        public new RenderEffectLibrary.EffectFactory Value
         {
             get {
-                string code = base.Value;
-                foreach (Language lang in Localizer.ValidLanguages) {
-                    if (lang.Code == code) {
-                        return lang;
+                string name = base.Value;
+                foreach (RenderEffectLibrary.EffectFactory factory in RenderEffectLibrary.Factories) {
+                    if (factory.Name == name) {
+                        return factory;
                     }
                 }
-                return Localizer.CurrentLanguage;
+                foreach (RenderEffectLibrary.EffectFactory factory in RenderEffectLibrary.Factories) {
+                    if (factory.Name == "default") {
+                        return factory;
+                    }
+                }
+                return RenderEffectLibrary.Factories.ElementAt (0);
             }
             set {
-                base.Value = value.Code;
+                base.Value = value.Name;
             }
         }
 
@@ -70,29 +75,39 @@ namespace Knot3.Framework.Storage
             }
         }
 
-        public LanguageOption (string section, string name, ConfigFile configFile)
-        : base (section, name, Localizer.DefaultLanguageCode, from lang in Localizer.ValidLanguages select lang.Code, configFile)
+        public RenderEffectOption (string section, string name, ConfigFile configFile)
+        : base (section, name, "default", RenderEffectLibrary.Names, configFile)
         {
         }
 
-        private string toDisplayName (string code)
+        private string toDisplayName (string name)
         {
-            foreach (Language lang in Localizer.ValidLanguages) {
-                if (lang.Code == code) {
-                    return lang.DisplayName;
+            foreach (RenderEffectLibrary.EffectFactory factory in RenderEffectLibrary.Factories) {
+                if (factory.Name == name) {
+                    return factory.DisplayName;
                 }
             }
-            return Localizer.CurrentLanguage != null ? Localizer.CurrentLanguage.DisplayName : code;
+            foreach (RenderEffectLibrary.EffectFactory factory in RenderEffectLibrary.Factories) {
+                if (factory.Name == "default") {
+                    return factory.DisplayName;
+                }
+            }
+            return "default";
+        }
+
+        private string toDisplayName (RenderEffectLibrary.EffectFactory factory)
+        {
+            return factory.DisplayName;
         }
 
         private string fromDisplayName (string displayName)
         {
-            foreach (Language lang in Localizer.ValidLanguages) {
-                if (lang.DisplayName == displayName) {
-                    return lang.Code;
+            foreach (RenderEffectLibrary.EffectFactory factory in RenderEffectLibrary.Factories) {
+                if (factory.DisplayName == displayName) {
+                    return factory.Name;
                 }
             }
-            return Localizer.CurrentLanguage != null ? Localizer.CurrentLanguage.Code : displayName;
+            return "default";
         }
     }
 }

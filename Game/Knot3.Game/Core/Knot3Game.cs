@@ -88,22 +88,24 @@ namespace Knot3.Game.Core
             // effects
             RenderEffectLibrary.EffectLibrary.Add (new RenderEffectLibrary.EffectFactory (
                     name: "celshader",
-                    displayName: "Cel Shading",
+                    displayName: "Cel Shading (XNA)",
                     createInstance: (screen) => new CelShadingEffect (screen)
                                                    )
                                                   );
+            /*
             RenderEffectLibrary.EffectLibrary.Add (new RenderEffectLibrary.EffectFactory (
                     name: "opaque",
-                    displayName: "opaque",
+                    displayName: "Opaque (XNA)",
                     createInstance: (screen) => new OpaqueEffect (screen)
                                                    )
                                                   );
             RenderEffectLibrary.EffectLibrary.Add (new RenderEffectLibrary.EffectFactory (
                     name: "z-nebula",
-                    displayName: "Z-Nebula",
+                    displayName: "Z-Nebula (XNA)",
                     createInstance: (screen) => new Z_Nebula (screen)
                                                    )
                                                   );
+            */
 
             ScreenTransitionEffect = (previous, next) => new FadeEffect (next, previous);
         }

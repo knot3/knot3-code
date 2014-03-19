@@ -170,12 +170,9 @@ namespace Knot3.Game.Screens
             settingsMenu.Add (sliderModelQuality);
 
             // Rendereffects
-            string[] validRenderEffects = RenderEffectLibrary.Names.ToArray ();
-            DistinctOption renderEffectOption = new DistinctOption (
+            RenderEffectOption renderEffectOption = new RenderEffectOption (
                 section: "video",
                 name: "knot-shader",
-                defaultValue: "default",
-                validValues: validRenderEffects,
                 configFile: Config.Default
             );
             DropDownMenuItem renderEffectItem = new DropDownMenuItem (
