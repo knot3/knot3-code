@@ -34,13 +34,14 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 using Knot3.Framework.Models;
+using System;
 
 namespace Knot3.Framework.Effects
 {
     /// <summary>
     /// Stellt eine Schnittstelle für Klassen bereit, die Rendereffekte ermöglichen.
     /// </summary>
-    public interface IRenderEffect
+    public interface IRenderEffect : IDisposable
     {
         /// <summary>
         /// Das Rendertarget, in das zwischen dem Aufruf der Begin ()- und der End ()-Methode gezeichnet wird,

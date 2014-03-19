@@ -311,5 +311,20 @@ namespace Knot3.Framework.Effects
                 return renderTargets [resolution] [viewport] [Supersampling];
             }
         }
+
+        public void Dispose ()
+        {
+            Dispose (true);
+            GC.SuppressFinalize (this);
+        }
+
+        protected virtual void Dispose (bool disposing)
+        {
+        }
+
+        ~RenderEffect ()
+        {
+            Dispose (false);
+        }
     }
 }

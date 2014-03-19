@@ -219,6 +219,15 @@ namespace Knot3.Framework.Effects
             };
         }
 
+        protected override void Dispose (bool disposing)
+        {
+            if (disposing) {
+                foreach (InstancedBuffer buffer in cachePrimitivesBuffers.Values) {
+                    buffer.InstanceBuffer.Dispose ();
+                }
+            }
+        }
+
         //#monogame EffectParameter (name=xView; class=Matrix; type=Single; rows=4; columns=4)
         //#monogame ConstantBuffer (name=xView; sizeInBytes=64; parameters=[0]; offsets=[0])
 
@@ -242,8 +251,9 @@ out vec4 fragColor;
 void main ()
 {
     vec4 color = texture2D (xModelTexture, fragTexCoord.xy);
+    color = color * 0.5 + vec4(1,1,1,0)* clamp (dot (fragNormal.xyz, -vec3 (-1.0, -1.0, -1.0)), 0.0, 1.0);
     color.w = 1.0;
-    fragColor = color * (clamp (fragLightingFactor.x, 0.0, 1.0) + xAmbient.x);
+    fragColor = color;
 }
 
 #monogame EndShader ()
@@ -280,7 +290,7 @@ void main ()
     
     fragTexCoord.xy = vertexTexCoord.xy;
 
-    fragLightingFactor.x = dot (fragNormal.xyz, -vec3 (-1.0, -1.0, -1.0));
+    fragLightingFactor.x = 0;
 }
 
 #monogame EndShader ()

@@ -63,6 +63,10 @@ namespace Knot3.Game.Screens
         public StartScreen (GameCore game)
         : base (game)
         {
+            // leere den Screen-Stack beim Öffnen dieses Screens
+            ClearScreenHistory = true;
+
+            // der Container für die Buttons
             buttons = new Container (screen: this, drawOrder: DisplayLayer.ScreenUI + DisplayLayer.Menu);
 
             // logo

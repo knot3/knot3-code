@@ -27,16 +27,13 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-
 using Knot3.Framework.Effects;
 using Knot3.Framework.Math;
 using Knot3.Framework.Models;
@@ -134,6 +131,8 @@ namespace Knot3.Framework.Core
         /// </summary>
         public Bounds Bounds { get; private set; }
 
+        private bool disposeEffect = false;
+
         /// <summary>
         /// Erstellt eine neue Spielwelt im angegebenen Spielzustand, dem angegebenen Rendereffekt und dem
         /// angegebenen Bounds-Objekt.
@@ -168,7 +167,9 @@ namespace Knot3.Framework.Core
         public World (IScreen screen, DisplayLayer drawOrder, Bounds bounds)
         : this (screen: screen, drawOrder: drawOrder, effect: DefaultEffect (screen), bounds: bounds)
         {
+            disposeEffect = true;
             RenderEffectLibrary.RenderEffectChanged += (newEffectName, time) => {
+                CurrentEffect.Dispose ();
                 CurrentEffect = RenderEffectLibrary.CreateEffect (screen: screen, name: newEffectName);
             };
         }
@@ -179,6 +180,13 @@ namespace Knot3.Framework.Core
             string effectName = Config.Default ["video", "knot-shader", "default"];
             IRenderEffect effect = RenderEffectLibrary.CreateEffect (screen: screen, name: effectName);
             return effect;
+        }
+
+        protected override void UnloadContent ()
+        {
+            if (disposeEffect) {
+                CurrentEffect.Dispose ();
+            }
         }
 
         /// <summary>
@@ -337,9 +345,9 @@ namespace Knot3.Framework.Core
                 if (obj.IsSelectable) {
                     // Berechne aus der angegebenen 2D-Position eine 3D-Position
                     Vector3 position3D = Camera.To3D (
-                                             position: nearTo,
-                                             nearTo: obj.Center
-                                         );
+                        position: nearTo,
+                        nearTo: obj.Center
+                    );
                     // Berechne die Distanz zwischen 3D-Mausposition und dem Spielobjekt
                     float distance = System.Math.Abs ((position3D - obj.Center).Length ());
                     distances [distance] = obj;

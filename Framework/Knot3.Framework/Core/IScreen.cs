@@ -98,6 +98,11 @@ namespace Knot3.Framework.Core
         Bounds Bounds { get; }
 
         /// <summary>
+        /// Gibt an, ob die Screen History beim öffnen dieses Screens geleert werden soll.
+        /// </summary>
+        bool ClearScreenHistory { get; }
+
+        /// <summary>
         /// Beginnt mit dem Füllen der Spielkomponentenliste des XNA-Frameworks und fügt sowohl für Tastatur- als auch für
         /// Mauseingaben einen Inputhandler für Widgets hinzu. Wird in Unterklassen von IGameScreen reimplementiert und fügt zusätzlich weitere
         /// Spielkomponenten hinzu.
