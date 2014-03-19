@@ -89,7 +89,8 @@ package-windows: build-windows
 	wget http://nuget.org/api/v2/package/ILRepack -O ILRepack.zip
 	unzip -d ILRepack-tmp ILRepack.zip
 	mono ILRepack-tmp/tools/ILRepack.exe /out:Knot3.exe tmp-package-windows/Knot3.exe tmp-package-windows/*.dll
-	$(CP) Knot3.exe $(DESTDIR)/
+	mono ILRepack-tmp/tools/ILRepack.exe /out:ConfigReset.exe tmp-package-windows/ConfigReset.exe tmp-package-windows/Knot3.Framework.dll
+	$(CP) Knot3.exe ConfigReset.exe $(DESTDIR)/
 	$(RMR) Knot3.exe tmp-package-windows ILRepack-tmp ILRepack.zip
 	$(CP) LICENSE $(DESTDIR)/
 	$(CP) debian/changelog $(DESTDIR)/CHANGELOG
