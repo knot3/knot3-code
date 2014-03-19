@@ -130,6 +130,7 @@
     <Compile Include="Knot3.Framework\Storage\Localizer.cs" />
     <Compile Include="Knot3.Framework\Storage\NoFilenameException.cs" />
     <Compile Include="Knot3.Framework\Storage\Option.cs" />
+    <Compile Include="Knot3.Framework\Storage\RenderEffectOption.cs" />
     <Compile Include="Knot3.Framework\Utilities\ColorHelper.cs" />
     <Compile Include="Knot3.Framework\Utilities\DictionaryExtensions.cs" />
     <Compile Include="Knot3.Framework\Utilities\EnumHelper.cs" />

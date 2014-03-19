@@ -123,6 +123,7 @@
     <Compile Include="Knot3.Framework\Storage\Localizer.cs" />
     <Compile Include="Knot3.Framework\Storage\NoFilenameException.cs" />
     <Compile Include="Knot3.Framework\Storage\Option.cs" />
+    <Compile Include="Knot3.Framework\Storage\RenderEffectOption.cs" />
     <Compile Include="Knot3.Framework\Utilities\ColorHelper.cs" />
     <Compile Include="Knot3.Framework\Utilities\DictionaryExtensions.cs" />
     <Compile Include="Knot3.Framework\Utilities\EnumHelper.cs" />
@@ -150,7 +151,6 @@
     <Compile Include="Knot3.Framework\Widgets\VerticalAlignment.cs" />
     <Compile Include="Knot3.Framework\Widgets\Widget.cs" />
     <Compile Include="Knot3.Framework\Widgets\WidgetState.cs" />
-    <Compile Include="Knot3.Framework\Storage\RenderEffectOption.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
