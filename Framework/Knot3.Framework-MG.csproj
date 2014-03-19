@@ -149,6 +149,7 @@
     <Compile Include="Knot3.Framework\Primitives\Parallelogram.cs" />
     <Compile Include="Knot3.Framework\Primitives\Primitive.cs" />
     <Compile Include="Knot3.Framework\Primitives\Torus.cs" />
+    <Compile Include="Knot3.Framework\Primitives\Sphere.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
