@@ -38,8 +38,8 @@ using Microsoft.Xna.Framework.Graphics;
 
 using Knot3.Framework.Core;
 using Knot3.Framework.Math;
-using Knot3.Framework.Utilities;
 using Knot3.Framework.Primitives;
+using Knot3.Framework.Utilities;
 
 namespace Knot3.Framework.Models
 {

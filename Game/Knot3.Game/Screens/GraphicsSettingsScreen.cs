@@ -40,10 +40,10 @@ using Knot3.Framework.Core;
 using Knot3.Framework.Effects;
 using Knot3.Framework.Math;
 using Knot3.Framework.Models;
+using Knot3.Framework.Primitives;
 using Knot3.Framework.Storage;
 using Knot3.Framework.Utilities;
 using Knot3.Framework.Widgets;
-using Knot3.Framework.Primitives;
 
 namespace Knot3.Game.Screens
 {

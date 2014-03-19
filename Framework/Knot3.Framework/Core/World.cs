@@ -27,13 +27,16 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+
 using Knot3.Framework.Effects;
 using Knot3.Framework.Math;
 using Knot3.Framework.Models;
@@ -345,9 +348,9 @@ namespace Knot3.Framework.Core
                 if (obj.IsSelectable) {
                     // Berechne aus der angegebenen 2D-Position eine 3D-Position
                     Vector3 position3D = Camera.To3D (
-                        position: nearTo,
-                        nearTo: obj.Center
-                    );
+                                             position: nearTo,
+                                             nearTo: obj.Center
+                                         );
                     // Berechne die Distanz zwischen 3D-Mausposition und dem Spielobjekt
                     float distance = System.Math.Abs ((position3D - obj.Center).Length ());
                     distances [distance] = obj;

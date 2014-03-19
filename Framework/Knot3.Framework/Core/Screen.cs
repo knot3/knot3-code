@@ -111,7 +111,7 @@ namespace Knot3.Framework.Core
         {
             get { return new Bounds (screen: this, relX: 0f, relY: 0f, relWidth: 1f, relHeight: 1f); }
         }
-        
+
         /// <summary>
         /// Gibt an, ob die Screen History beim öffnen dieses Screens geleert werden soll.
         /// </summary>

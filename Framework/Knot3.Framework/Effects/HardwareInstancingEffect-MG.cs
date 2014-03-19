@@ -253,9 +253,9 @@ void main ()
 {
     vec4 colorTexture = texture2D (xModelTexture, fragTexCoord.xy);
     colorTexture.w = 1.0;
-    vec4 intensityDiffuse = colorTexture * clamp (dot (-normalize(fragNormal.xyz), normalize(xLightDirection.xyz)), -1.0, 2.0);
+    vec4 intensityDiffuse = colorTexture * clamp (dot (-normalize (fragNormal.xyz), normalize (xLightDirection.xyz)), -1.0, 2.0);
 
-    vec4 color = colorTexture * 0.4 + normalize(colorTexture+vec4(1.0)) * intensityDiffuse * 0.6;
+    vec4 color = colorTexture * 0.4 + normalize (colorTexture+vec4 (1.0)) * intensityDiffuse * 0.6;
     color.w = 1.0;
     fragColor = color;
 }
@@ -289,7 +289,7 @@ void main ()
     mat4 worldInverseTranspose = transpose (instanceWorldInverseTranspose);
     
     gl_Position = vertexPosition * world * xView * xProjection;
-    fragNormal = normalize (vec4((vertexNormal * worldInverseTranspose).xyz, 0));
+    fragNormal = normalize (vec4 ((vertexNormal * worldInverseTranspose).xyz, 0));
     fragTexCoord.xy = vertexTexCoord.xy;
     //fragLightingFactor.x = 0;
 }

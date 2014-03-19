@@ -27,8 +27,11 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
+
 using System.Diagnostics.CodeAnalysis;
+
 using Microsoft.Xna.Framework;
+
 using Knot3.Framework.Core;
 using Knot3.Framework.Models;
 using Knot3.Framework.Primitives;
@@ -47,10 +50,10 @@ namespace Knot3.Game.Development
         {
             int tessellation = Primitive.CurrentCircleTessellation;
             return new Sphere (
-                device: Screen.GraphicsDevice,
-                diameter: 1f,
-                tessellation: tessellation
-            );
+                       device: Screen.GraphicsDevice,
+                       diameter: 1f,
+                       tessellation: tessellation
+                   );
         }
 
         public override void Update (GameTime gameTime)

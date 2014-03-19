@@ -298,7 +298,7 @@ namespace Knot3.Framework.Core
                     current.NextScreen = current;
                     next.NextScreen = next;
                     if (next.ClearScreenHistory) {
-                        Screens.Clear();
+                        Screens.Clear ();
                     }
                     Screens.Push (next);
                     next.Entered (current, time);
