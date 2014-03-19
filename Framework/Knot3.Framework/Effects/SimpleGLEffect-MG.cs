@@ -58,12 +58,13 @@ namespace Knot3.Framework.Effects
             screen.Viewport = model.World.Viewport;
 
             Camera camera = model.World.Camera;
-            effect.Parameters ["World"].SetValue (model.WorldMatrix * camera.WorldMatrix);
-            effect.Parameters ["View"].SetValue (camera.ViewMatrix);
-            effect.Parameters ["Projection"].SetValue (camera.ProjectionMatrix);
-            effect.Parameters ["WorldInverseTranspose"].SetValue (Matrix.Transpose (Matrix.Invert (model.WorldMatrix * camera.WorldMatrix)));
+            effect.Parameters ["xWorld"].SetValue (model.WorldMatrix * camera.WorldMatrix);
+            effect.Parameters ["xView"].SetValue (camera.ViewMatrix);
+            effect.Parameters ["xProjection"].SetValue (camera.ProjectionMatrix);
+            effect.Parameters ["xWorldInverseTranspose"].SetValue (Matrix.Transpose (Matrix.Invert (model.WorldMatrix * camera.WorldMatrix)));
 
-            effect.Parameters ["ModelTexture"].SetValue (GetTexture (model));
+            effect.Parameters ["xModelTexture"].SetValue (GetTexture (model));
+            effect.Parameters ["xLightDirection"].SetValue (new Vector4 (-1.0f, -2.0f, -1.0f, 0));
 
             foreach (ModelMesh mesh in model.Model.Meshes) {
                 mesh.Draw ();
@@ -80,12 +81,13 @@ namespace Knot3.Framework.Effects
             screen.Viewport = primitive.World.Viewport;
 
             Camera camera = primitive.World.Camera;
-            effect.Parameters ["World"].SetValue (primitive.WorldMatrix * camera.WorldMatrix);
-            effect.Parameters ["View"].SetValue (camera.ViewMatrix);
-            effect.Parameters ["Projection"].SetValue (camera.ProjectionMatrix);
-            effect.Parameters ["WorldInverseTranspose"].SetValue (Matrix.Transpose (Matrix.Invert (primitive.WorldMatrix * camera.WorldMatrix)));
+            effect.Parameters ["xWorld"].SetValue (primitive.WorldMatrix * camera.WorldMatrix);
+            effect.Parameters ["xView"].SetValue (camera.ViewMatrix);
+            effect.Parameters ["xProjection"].SetValue (camera.ProjectionMatrix);
+            effect.Parameters ["xWorldInverseTranspose"].SetValue (Matrix.Transpose (Matrix.Invert (primitive.WorldMatrix * camera.WorldMatrix)));
 
-            effect.Parameters ["ModelTexture"].SetValue (GetTexture (primitive));
+            effect.Parameters ["xModelTexture"].SetValue (GetTexture (primitive));
+            effect.Parameters ["xLightDirection"].SetValue (new Vector4 (-1.0f, -2.0f, -1.0f, 0));
 
             primitive.Primitive.Draw (effect: effect);
 
@@ -112,7 +114,9 @@ namespace Knot3.Framework.Effects
 #monogame Attribute (name=fragLightingFactor; usage=TextureCoordinate; index=0)
 #version 130
 
-uniform sampler2D ModelTexture;
+uniform sampler2D xModelTexture;
+uniform vec4 xLightDirection;
+
 in vec4 fragNormal;
 in vec4 fragTexCoord;
 in vec4 fragLightingFactor;
@@ -120,7 +124,11 @@ out vec4 fragColor;
 
 void main ()
 {
-    vec4 color = texture2D (ModelTexture, fragTexCoord.xy);
+    vec4 colorTexture = texture2D (xModelTexture, fragTexCoord.xy);
+    colorTexture.w = 1.0;
+    vec4 intensityDiffuse = colorTexture * clamp (dot (-normalize (fragNormal.xyz), normalize (xLightDirection.xyz)), -1.0, 2.0);
+
+    vec4 color = colorTexture * 0.4 + normalize (colorTexture+vec4 (1.0)) * intensityDiffuse * 0.6;
     color.w = 1.0;
     fragColor = color;
 }
@@ -133,10 +141,10 @@ void main ()
 #monogame Attribute (name=inputTexCoord; usage=TextureCoordinate; index=0)
 #version 130
 
-uniform mat4 World;
-uniform mat4 View;
-uniform mat4 Projection;
-uniform mat4 WorldInverseTranspose;
+uniform mat4 xWorld;
+uniform mat4 xView;
+uniform mat4 xProjection;
+uniform mat4 xWorldInverseTranspose;
 
 in vec4 inputPosition;
 in vec4 inputNormal;
@@ -146,8 +154,8 @@ out vec4 fragTexCoord;
 
 void main ()
 {
-    gl_Position = inputPosition * World * View * Projection;
-    fragNormal.xyz = normalize (inputNormal * WorldInverseTranspose).xyz;
+    gl_Position = inputPosition * xWorld * xView * xProjection;
+    fragNormal = normalize (vec4 ((inputNormal * xWorldInverseTranspose).xyz, 0));
     fragTexCoord.xy = inputTexCoord.xy;
 }
 

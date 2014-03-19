@@ -110,12 +110,12 @@ namespace Knot3.Framework.Widgets
         public void AddEntries (DistinctOption option)
         {
             dropdown.Clear ();
-            foreach (string _value in option.DisplayValidValues.Keys) {
+            foreach (string _value in new HashSet<string>(option.DisplayValidValues.Keys)) {
                 string value = _value; // create a copy for the action
                 Action<GameTime> onSelected = (time) => {
                     Log.Debug ("OnClick: ", value);
                     option.Value = option.DisplayValidValues [value];
-                    currentValue.InputText = value;
+                    currentValue.InputText = option.DisplayValue;
                     dropdown.IsVisible = false;
                     ValueChanged (time);
                 };

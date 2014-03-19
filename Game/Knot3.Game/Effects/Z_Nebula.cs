@@ -49,11 +49,6 @@ namespace Knot3.Game.Effects
             zNebulaEffect = screen.LoadEffect ("Z_Nebula");
         }
 
-        protected override void DrawRenderTarget (GameTime GameTime)
-        {
-            spriteBatch.Draw (RenderTarget, Vector2.Zero, Color.White);
-        }
-
         public override void RemapModel (Model model)
         {
             foreach (ModelMesh mesh in model.Meshes) {
@@ -89,6 +84,26 @@ namespace Knot3.Game.Effects
             foreach (ModelMesh mesh in model.Model.Meshes) {
                 mesh.Draw ();
             }
+
+            // Setze den Viewport wieder auf den ganzen Screen
+            screen.Viewport = original;
+        }
+
+        public override void DrawPrimitive (GamePrimitive model, GameTime time)
+        {
+            // Setze den Viewport auf den der aktuellen Spielwelt
+            Viewport original = screen.Viewport;
+            screen.Viewport = model.World.Viewport;
+
+            Camera camera = model.World.Camera;
+
+            zNebulaEffect.Parameters ["World"].SetValue (model.WorldMatrix * camera.WorldMatrix);
+            zNebulaEffect.Parameters ["View"].SetValue (camera.ViewMatrix);
+            zNebulaEffect.Parameters ["Projection"].SetValue (camera.ProjectionMatrix);
+
+            zNebulaEffect.CurrentTechnique = zNebulaEffect.Techniques ["Simplest"];
+
+            model.Primitive.Draw (zNebulaEffect);
 
             // Setze den Viewport wieder auf den ganzen Screen
             screen.Viewport = original;
