@@ -175,7 +175,7 @@ namespace Knot3.Framework.Effects
 
                 Camera camera = instancedPrimitive.World.Camera;
                 //effect.Parameters ["World"].SetValue (primitive.WorldMatrix * camera.WorldMatrix);
-                effect.Parameters ["xAmbient"].SetValue (new Vector4 (0.5f, 0, 0, 0));
+                effect.Parameters ["xLightDirection"].SetValue (new Vector4 (-1.0f, -2.0f, 0.5f, 0));
                 effect.Parameters ["xView"].SetValue (camera.ViewMatrix);
                 effect.Parameters ["xProjection"].SetValue (camera.ProjectionMatrix);
                 //effect.Parameters ["WorldInverseTranspose"].SetValue (Matrix.Transpose (Matrix.Invert (primitive.WorldMatrix * camera.WorldMatrix)));
@@ -243,7 +243,7 @@ namespace Knot3.Framework.Effects
 #version 130
 
 uniform sampler2D xModelTexture;
-uniform vec4 xAmbient;
+uniform vec4 xLightDirection;
 in vec4 fragNormal;
 in vec4 fragTexCoord;
 //in vec4 fragLightingFactor;
@@ -252,9 +252,10 @@ out vec4 fragColor;
 void main ()
 {
     vec4 colorTexture = texture2D (xModelTexture, fragTexCoord.xy);
-    vec4 colorDiffuse = vec4(1.0) * clamp (dot (-fragNormal.xyz, vec3 (-1.0)), 0.0, 1.0);
+    colorTexture.w = 1.0;
+    vec4 intensityDiffuse = colorTexture * clamp (dot (normalize(fragNormal.xyz), normalize(xLightDirection.xyz)), 0.0, 1.0);
 
-    vec4 color = colorTexture * 0.5 + colorDiffuse * 0.5;
+    vec4 color = colorTexture * 0.4 + normalize(colorTexture+vec4(1.0)) * intensityDiffuse * 0.6;
     color.w = 1.0;
     fragColor = color;
 }
@@ -288,8 +289,7 @@ void main ()
     mat4 worldInverseTranspose = transpose (instanceWorldInverseTranspose);
     
     gl_Position = vertexPosition * world * xView * xProjection;
-    
-    fragNormal.xyz = normalize (vertexNormal * worldInverseTranspose).xyz;
+    fragNormal = normalize (vec4((vertexNormal * worldInverseTranspose).xyz, 0));
     fragTexCoord.xy = vertexTexCoord.xy;
     //fragLightingFactor.x = 0;
 }
