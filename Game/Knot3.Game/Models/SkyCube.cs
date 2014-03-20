@@ -209,10 +209,10 @@ namespace Knot3.Game.Models
             effect.Projection = World.Camera.ProjectionMatrix;
 
             Matrix skyboxView = World.Camera.ViewMatrix;
-            /*  skyboxView.M41 = 0;
+            skyboxView.M41 = 0;
             skyboxView.M42 = 0;
             skyboxView.M43 = 0;
-            */ effect.View = skyboxView;
+            effect.View = skyboxView;
 
             effect.AmbientLightColor = new Vector3 (0.8f, 0.8f, 0.8f);
             effect.TextureEnabled = true;
