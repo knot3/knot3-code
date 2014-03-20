@@ -145,7 +145,7 @@ namespace Knot3.Framework.Models
 
         protected virtual void UpdateCategory ()
         {
-            UpdateCategory("");
+            UpdateCategory ("");
         }
 
         protected void UpdateCategory (string category)
@@ -171,7 +171,7 @@ namespace Knot3.Framework.Models
         /// </summary>
         public virtual void Update (GameTime time)
         {
-            //UpdateCategory("");
+            //UpdateCategory ("");
         }
 
         /// <summary>

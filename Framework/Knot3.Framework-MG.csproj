@@ -67,6 +67,7 @@
     <Compile Include="Knot3.Framework\Effects\RenderEffectStack.cs" />
     <Compile Include="Knot3.Framework\Effects\SimpleGLEffect-MG.cs" />
     <Compile Include="Knot3.Framework\Effects\StandardEffect.cs" />
+    <Compile Include="Knot3.Framework\Effects\WobbleEffect-MG.cs" />
     <Compile Include="Knot3.Framework\Input\ClickState.cs" />
     <Compile Include="Knot3.Framework\Input\IKeyEventListener.cs" />
     <Compile Include="Knot3.Framework\Input\IMouseClickEventListener.cs" />
@@ -151,7 +152,6 @@
     <Compile Include="Knot3.Framework\Widgets\VerticalAlignment.cs" />
     <Compile Include="Knot3.Framework\Widgets\Widget.cs" />
     <Compile Include="Knot3.Framework\Widgets\WidgetState.cs" />
-    <Compile Include="Knot3.Framework\Effects\WobbleEffect-MG.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

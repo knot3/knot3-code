@@ -63,7 +63,7 @@ namespace Knot3.Game.Models
             set {
                 if (_distance != value) {
                     _distance = value;
-                    scaleMatrix = Matrix.CreateScale(Vector3.One * _distance);
+                    scaleMatrix = Matrix.CreateScale (Vector3.One * _distance);
                 }
             }
         }
@@ -109,7 +109,7 @@ namespace Knot3.Game.Models
         {
             if (rectangles != null)
                 foreach (Parallelogram parallelogram in rectangles) {
-                    parallelogram.Dispose();
+                    parallelogram.Dispose ();
                 }
             rectangles = new Parallelogram [Direction.Values.Length];
             int i = 0;
@@ -193,7 +193,7 @@ namespace Knot3.Game.Models
         [ExcludeFromCodeCoverageAttribute]
         public override void Update (GameTime time)
         {
-            if (Math.Abs(1f-(Distance / (World.Camera.FarPlane / 3.6f))) > 0.05f) {
+            if (Math.Abs (1f-(Distance / (World.Camera.FarPlane / 3.6f))) > 0.05f) {
                 Distance = World.Camera.FarPlane / 3.6f;
             }
         }
@@ -212,7 +212,7 @@ namespace Knot3.Game.Models
             /*  skyboxView.M41 = 0;
             skyboxView.M42 = 0;
             skyboxView.M43 = 0;
-           */ effect.View = skyboxView;
+            */ effect.View = skyboxView;
 
             effect.AmbientLightColor = new Vector3 (0.8f, 0.8f, 0.8f);
             effect.TextureEnabled = true;

@@ -260,12 +260,12 @@ void main ()
     float worldTime = xWorldTime.x;
 
     float squareDistance = position.x * position.x + position.z * position.z;
-    position.y += 5 * sin(squareDistance * sin(worldTime / 143.0) / 1000);
+    position.y += 5 * sin (squareDistance * sin (worldTime / 143.0) / 1000);
     float y = position.y;
     float x = position.x;
-    float om = sin(squareDistance * sin(worldTime / 256.0) / 5000) * sin(worldTime / 200.0);
-    position.y = x*sin(om) + y*cos(om);
-    position.x = x*cos(om) - y*sin(om);
+    float om = sin (squareDistance * sin (worldTime / 256.0) / 5000) * sin (worldTime / 200.0);
+    position.y = x*sin (om) + y*cos (om);
+    position.x = x*cos (om) - y*sin (om);
 
     gl_Position = position;
 

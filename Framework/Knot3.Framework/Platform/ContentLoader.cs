@@ -88,7 +88,7 @@ namespace Knot3.Framework.Platform
 
         public static Texture2D LoadTexture (this IScreen screen, string name)
         {
-            int key = Hash(name);
+            int key = Hash (name);
             if (textureCache.ContainsKey (key)) {
                 return textureCache [key];
             }
@@ -156,7 +156,7 @@ namespace Knot3.Framework.Platform
 
         public static Texture2D CreateTexture (GraphicsDevice graphicsDevice, int width, int height, Color color)
         {
-            int key = Hash(color, width, height);
+            int key = Hash (color, width, height);
             if (textureCache.ContainsKey (key)) {
                 return textureCache [key];
             }
@@ -187,7 +187,7 @@ namespace Knot3.Framework.Platform
 
         public static Texture2D CreateGradient (GraphicsDevice graphicsDevice, Color topLeft, Color topRight, Color bottomLeft, Color bottomRight)
         {
-            int key = Hash(topLeft, topRight, bottomLeft, bottomRight);
+            int key = Hash (topLeft, topRight, bottomLeft, bottomRight);
             if (textureCache.ContainsKey (key)) {
                 return textureCache [key];
             }
@@ -215,11 +215,12 @@ namespace Knot3.Framework.Platform
             );
         }
 
-        private static int Hash (params object[] parameters) {
+        private static int Hash (params object[] parameters)
+        {
             int hash = 0;
             unchecked {
                 for (int i = 0; i < parameters.Length; ++i) {
-                    hash = hash * 99971 + parameters[i].GetHashCode();
+                    hash = hash * 99971 + parameters [i].GetHashCode ();
                 }
             }
             return hash;

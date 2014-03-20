@@ -149,53 +149,55 @@ namespace Knot3.Game.Data
             get {
                 if (pipeCount == 0) {
                     foreach (Node node in grid.Keys) {
-                        NodeContent content = grid[node];
+                        NodeContent content = grid [node];
                         foreach (var key in content.PipesOut.Keys) {
-                            Pipe pipe = content.PipesOut[key] as Pipe;
+                            Pipe pipe = content.PipesOut [key] as Pipe;
                             if (pipe.LastTick == CurrentTick) {
-                                if (pipeCount+1 >= pipeCache.Length)
+                                if (pipeCount+1 >= pipeCache.Length) {
                                     Array.Resize (ref pipeCache, pipeCache.Length + 200);
-                                pipeCache[pipeCount++] = pipe;
+                                }
+                                pipeCache [pipeCount++] = pipe;
                             }
                         }
                     }
                 }
-                for(int i = 0; i < pipeCount; ++i) {
-                    yield return pipeCache[i];
+                for (int i = 0; i < pipeCount; ++i) {
+                    yield return pipeCache [i];
                 }
             }
         }
 
-        private Pipe[] pipeCache = new Pipe[100];
+        private Pipe[] pipeCache = new Pipe [100];
         private int pipeCount = 0;
 
         public IEnumerable<Junction> Junctions
         {
             get {
                 if (junctionCount == 0) {
-                foreach (Node node in grid.Keys) {
-                    NodeContent content = grid[node];
-                    // zeige zwischen zwei Kanten in der selben Richtung keinen Übergang an,
-                    // wenn sie alleine an dem Kantenpunkt sind
-                    if (content.Junctions.Count == 1 && content.Junctions [0].EdgeFrom.Direction == content.Junctions [0].EdgeTo.Direction) {
-                        continue;
-                    }
-                    foreach (Junction junction in content.Junctions) {
-                        if (junction.LastTick == CurrentTick) {
-                                if (junctionCount+1 >= junctionCache.Length)
-                                Array.Resize (ref junctionCache, junctionCache.Length + 200);
-                            junctionCache[junctionCount++] = junction;
+                    foreach (Node node in grid.Keys) {
+                        NodeContent content = grid [node];
+                        // zeige zwischen zwei Kanten in der selben Richtung keinen Übergang an,
+                        // wenn sie alleine an dem Kantenpunkt sind
+                        if (content.Junctions.Count == 1 && content.Junctions [0].EdgeFrom.Direction == content.Junctions [0].EdgeTo.Direction) {
+                            continue;
+                        }
+                        foreach (Junction junction in content.Junctions) {
+                            if (junction.LastTick == CurrentTick) {
+                                if (junctionCount+1 >= junctionCache.Length) {
+                                    Array.Resize (ref junctionCache, junctionCache.Length + 200);
+                                }
+                                junctionCache [junctionCount++] = junction;
+                            }
                         }
                     }
                 }
-                }
-                for(int i = 0; i < junctionCount; ++i) {
-                    yield return junctionCache[i];
+                for (int i = 0; i < junctionCount; ++i) {
+                    yield return junctionCache [i];
                 }
             }
         }
 
-        private Junction[] junctionCache = new Junction[100];
+        private Junction[] junctionCache = new Junction [100];
         private int junctionCount = 0;
 
         /// <summary>

@@ -28,12 +28,12 @@
  * See the LICENSE file for full license details of the Knot3 project.
  */
 
+using System;
 using System.Diagnostics.CodeAnalysis;
 
 using Microsoft.Xna.Framework;
 
 using Knot3.Framework.Utilities;
-using System;
 
 namespace Knot3.Framework.Models
 {
@@ -48,7 +48,7 @@ namespace Knot3.Framework.Models
             HighlightIntensity = 0f;
             Alpha = 1f;
         }
-        
+
         /// <summary>
         /// Die Auswahlfarbe des Modells.
         /// </summary>
@@ -64,7 +64,7 @@ namespace Knot3.Framework.Models
             if (HighlightColor != color || HighlightIntensity != intensity) {
                 HighlightColor = color;
                 HighlightIntensity = intensity;
-                OnColorChanged();
+                OnColorChanged ();
             }
         }
 
@@ -73,7 +73,7 @@ namespace Knot3.Framework.Models
             if (HighlightIntensity > 0f) {
                 HighlightColor = Color.Transparent;
                 HighlightIntensity = 0f;
-                OnColorChanged();
+                OnColorChanged ();
             }
         }
 
@@ -105,7 +105,7 @@ namespace Knot3.Framework.Models
         /// <summary>
         /// Die Farbe des Modells.
         /// </summary>
-        public Color BaseColor { get { return _baseColor; } set { if (_baseColor != value) { _baseColor = value; OnColorChanged(); } } }
+        public Color BaseColor { get { return _baseColor; } set { if (_baseColor != value) { _baseColor = value; OnColorChanged (); } } }
 
         private Color _baseColor;
 
@@ -132,14 +132,14 @@ namespace Knot3.Framework.Models
         /// <summary>
         /// Die erste Farbe des Modells.
         /// </summary>
-        public Color Color1 { get { return _color1; } set { if (_color1 != value) { _color1 = value; OnColorChanged(); } } }
+        public Color Color1 { get { return _color1; } set { if (_color1 != value) { _color1 = value; OnColorChanged (); } } }
 
         private Color _color1;
 
         /// <summary>
         /// Die zweite Farbe des Modells.
         /// </summary>
-        public Color Color2 { get { return _color2; } set { if (_color2 != value) { _color2 = value; OnColorChanged(); } } }
+        public Color Color2 { get { return _color2; } set { if (_color2 != value) { _color2 = value; OnColorChanged (); } } }
 
         private Color _color2;
 

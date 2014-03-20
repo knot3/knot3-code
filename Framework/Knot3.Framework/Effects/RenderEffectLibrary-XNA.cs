@@ -27,6 +27,7 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
+
 using System;
 using System.Diagnostics.CodeAnalysis;
 
@@ -37,10 +38,10 @@ namespace Knot3.Framework.Effects
         private static void AddDefaultGLShaders ()
         {
             EffectLibrary.Add (new EffectFactory (
-                name: "default",
-                displayName: "Default (XNA)",
-                createInstance: (screen) => new StandardEffect (screen)
-            ));
+                                   name: "default",
+                                   displayName: "Default (XNA)",
+                                   createInstance: (screen) => new StandardEffect (screen)
+                               ));
         }
     }
 }
