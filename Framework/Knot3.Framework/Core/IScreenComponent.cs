@@ -55,5 +55,15 @@ namespace Knot3.Framework.Core
         /// [returntype=IEnumerable<IGameScreenComponent>]
         /// </summary>
         IEnumerable<IScreenComponent> SubComponents (GameTime time);
+
+        /// <summary>
+        /// Lade die Inhalte des Spielkomponents.
+        /// </summary>
+        void LoadContent (GameTime time);
+        
+        /// <summary>
+        /// Entlade die Inhalte des Spielkomponents.
+        /// </summary>
+        void UnloadContent (GameTime time);
     }
 }

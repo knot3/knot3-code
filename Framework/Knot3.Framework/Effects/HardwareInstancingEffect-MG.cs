@@ -186,6 +186,7 @@ namespace Knot3.Framework.Effects
                     buffer = cachePrimitivesBuffers [key] = new InstancedBuffer ();
                     buffer.InstanceBuffer = new VertexBuffer (screen.GraphicsDevice, instanceVertexDeclaration, instancedPrimitive.InstanceCapacity, BufferUsage.WriteOnly);
                     buffer.InstanceCount = 0;
+                    Log.Debug ("new VertexBuffer");
                 }
                 else {
                     buffer = cachePrimitivesBuffers [key];
@@ -195,6 +196,7 @@ namespace Knot3.Framework.Effects
                     Profiler.ProfileDelegate ["NewVertexBuffer"] = () => {
                         buffer.InstanceBuffer.Dispose ();
                         buffer.InstanceBuffer = new VertexBuffer (screen.GraphicsDevice, instanceVertexDeclaration, instancedPrimitive.InstanceCapacity, BufferUsage.WriteOnly);
+                        Log.Debug ("Dispose -> new VertexBuffer");
                     };
                 }
                 if (buffer.InstanceCount != instancedPrimitive.InstanceCount || buffer.InstanceUniqueHash != instancedPrimitive.InstanceUniqueHash) {
@@ -223,6 +225,7 @@ namespace Knot3.Framework.Effects
         {
             if (disposing) {
                 foreach (InstancedBuffer buffer in cachePrimitivesBuffers.Values) {
+                    Log.Debug ("Dispose VertexBuffer");
                     buffer.InstanceBuffer.Dispose ();
                 }
             }

@@ -27,10 +27,8 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
-
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-
 using Microsoft.Xna.Framework;
 
 namespace Knot3.Framework.Core
@@ -68,6 +66,20 @@ namespace Knot3.Framework.Core
         public virtual IEnumerable<IScreenComponent> SubComponents (GameTime GameTime)
         {
             yield break;
+        }
+
+        /// <summary>
+        /// Lade die Inhalte des Spielkomponents.
+        /// </summary>
+        public virtual void LoadContent (GameTime time)
+        {
+        }
+
+        /// <summary>
+        /// Entlade die Inhalte des Spielkomponents.
+        /// </summary>
+        public virtual void UnloadContent (GameTime time)
+        {
         }
     }
 

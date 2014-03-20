@@ -168,13 +168,8 @@ namespace Knot3.Framework.Core
         /// wird der neue Effekt übernommen.
         /// </summary>
         public World (IScreen screen, DisplayLayer drawOrder, Bounds bounds)
-        : this (screen: screen, drawOrder: drawOrder, effect: DefaultEffect (screen), bounds: bounds)
+        : this (screen: screen, drawOrder: drawOrder, effect: null, bounds: bounds)
         {
-            disposeEffect = true;
-            RenderEffectLibrary.RenderEffectChanged += (newEffectName, time) => {
-                CurrentEffect.Dispose ();
-                CurrentEffect = RenderEffectLibrary.CreateEffect (screen: screen, name: newEffectName);
-            };
         }
 
         private static IRenderEffect DefaultEffect (IScreen screen)
@@ -185,10 +180,30 @@ namespace Knot3.Framework.Core
             return effect;
         }
 
-        protected override void UnloadContent ()
+        /// <summary>
+        /// Lade die Inhalte des Spielkomponents.
+        /// </summary>
+        public override void LoadContent (GameTime time)
+        {
+            if (CurrentEffect == null) {
+                CurrentEffect = DefaultEffect (screen: Screen);
+
+                disposeEffect = true;
+                RenderEffectLibrary.RenderEffectChanged += (newEffectName, time2) => {
+                    CurrentEffect.Dispose ();
+                    CurrentEffect = RenderEffectLibrary.CreateEffect (screen: Screen, name: newEffectName);
+                };
+            }
+        }
+
+        /// <summary>
+        /// Entlade die Inhalte des Spielkomponents.
+        /// </summary>
+        public override void UnloadContent (GameTime time)
         {
             if (disposeEffect) {
                 CurrentEffect.Dispose ();
+                CurrentEffect = null;
             }
         }
 
@@ -235,8 +250,7 @@ namespace Knot3.Framework.Core
             }
         }
 
-        private Dictionary<Point,Dictionary<Vector4, Viewport>> viewportCache
-            = new Dictionary<Point,Dictionary<Vector4, Viewport>> ();
+        private Dictionary<Point, Dictionary<Vector4, Viewport>> viewportCache = new Dictionary<Point, Dictionary<Vector4, Viewport>> ();
 
         /// <summary>
         /// Gibt den aktuellen Viewport zurück.
@@ -347,10 +361,7 @@ namespace Knot3.Framework.Core
             foreach (IGameObject obj in this) {
                 if (obj.IsSelectable) {
                     // Berechne aus der angegebenen 2D-Position eine 3D-Position
-                    Vector3 position3D = Camera.To3D (
-                                             position: nearTo,
-                                             nearTo: obj.Center
-                                         );
+                    Vector3 position3D = Camera.To3D (position: nearTo, nearTo: obj.Center);
                     // Berechne die Distanz zwischen 3D-Mausposition und dem Spielobjekt
                     float distance = System.Math.Abs ((position3D - obj.Center).Length ());
                     distances [distance] = obj;

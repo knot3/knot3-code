@@ -148,6 +148,7 @@ namespace Knot3.Framework.Core
         public virtual void BeforeExit (IScreen nextScreen, GameTime time)
         {
             Log.Debug ("BeforeExit: ", this);
+            RemoveGameComponents (time, Game.Components.OfType<IScreenComponent> ().ToArray ());
             Game.Components.Clear ();
         }
 
@@ -175,6 +176,7 @@ namespace Knot3.Framework.Core
             Log.BlockList (id: 27, before: "  - ", after: "", begin: "Add components: ", end: "");
             foreach (IScreenComponent component in components) {
                 Log.ListElement (id: 27, element: component);
+                component.LoadContent (time);
                 Game.Components.Add (component);
                 AddGameComponents (time, component.SubComponents (time).ToArray ());
             }
@@ -190,6 +192,7 @@ namespace Knot3.Framework.Core
                 RemoveGameComponents (time, component.SubComponents (time).ToArray ());
                 Log.ListElement (id: 28, element: component);
                 Game.Components.Remove (component);
+                component.UnloadContent (time);
             }
         }
     }
