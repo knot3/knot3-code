@@ -33,19 +33,22 @@ using System.Diagnostics.CodeAnalysis;
 using Microsoft.Xna.Framework;
 
 using Knot3.Framework.Utilities;
+using System;
 
 namespace Knot3.Framework.Models
 {
     [ExcludeFromCodeCoverageAttribute]
     public abstract class ModelColoring
     {
+        public Action OnColorChanged = () => {};
+
         public ModelColoring ()
         {
             HighlightColor = Color.Transparent;
             HighlightIntensity = 0f;
             Alpha = 1f;
         }
-
+        
         /// <summary>
         /// Die Auswahlfarbe des Modells.
         /// </summary>
@@ -58,14 +61,20 @@ namespace Knot3.Framework.Models
 
         public void Highlight (float intensity, Color color)
         {
-            HighlightColor = color;
-            HighlightIntensity = intensity;
+            if (HighlightColor != color || HighlightIntensity != intensity) {
+                HighlightColor = color;
+                HighlightIntensity = intensity;
+                OnColorChanged();
+            }
         }
 
         public void Unhighlight ()
         {
-            HighlightColor = Color.Transparent;
-            HighlightIntensity = 0f;
+            if (HighlightIntensity > 0f) {
+                HighlightColor = Color.Transparent;
+                HighlightIntensity = 0f;
+                OnColorChanged();
+            }
         }
 
         /// <summary>
@@ -96,7 +105,9 @@ namespace Knot3.Framework.Models
         /// <summary>
         /// Die Farbe des Modells.
         /// </summary>
-        public Color BaseColor { get; set; }
+        public Color BaseColor { get { return _baseColor; } set { if (_baseColor != value) { _baseColor = value; OnColorChanged(); } } }
+
+        private Color _baseColor;
 
         public override Color MixedColor { get { return BaseColor.Mix (HighlightColor, HighlightIntensity); } }
 
@@ -121,12 +132,16 @@ namespace Knot3.Framework.Models
         /// <summary>
         /// Die erste Farbe des Modells.
         /// </summary>
-        public Color Color1 { get; set; }
+        public Color Color1 { get { return _color1; } set { if (_color1 != value) { _color1 = value; OnColorChanged(); } } }
+
+        private Color _color1;
 
         /// <summary>
         /// Die zweite Farbe des Modells.
         /// </summary>
-        public Color Color2 { get; set; }
+        public Color Color2 { get { return _color2; } set { if (_color2 != value) { _color2 = value; OnColorChanged(); } } }
+
+        private Color _color2;
 
         public override Color MixedColor
         {

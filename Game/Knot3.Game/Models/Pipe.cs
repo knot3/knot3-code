@@ -110,6 +110,9 @@ namespace Knot3.Game.Models
             // Berechne die Drehung
             Rotation += RotationMap [Edge.Direction];
 
+            // Aktualisiere die Kategorie
+            Coloring.OnColorChanged += UpdateCategory;
+
             incomplete = true;
         }
 
@@ -176,12 +179,10 @@ namespace Knot3.Game.Models
                 initialize ();
             }
 
-            Coloring = new SingleColor (color: Edge.Color);
+            (Coloring as SingleColor).BaseColor = Edge.Color;
+
             if (World.SelectedObject == this) {
                 Coloring.Highlight (intensity: 0.40f, color: Color.White);
-            }
-            else if (IsVirtual) {
-                Coloring.Highlight (intensity: 0.5f, color: Color.White);
             }
             else if (Knot != null && Knot.SelectedEdges.Contains (Edge)) {
                 Coloring.Highlight (intensity: 0.80f, color: Color.White);

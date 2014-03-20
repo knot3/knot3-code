@@ -84,11 +84,11 @@ namespace Knot3.Framework.Platform
             }
         }
 
-        private static Dictionary<string, Texture2D> textureCache = new Dictionary<string, Texture2D> ();
+        private static Dictionary<int, Texture2D> textureCache = new Dictionary<int, Texture2D> ();
 
         public static Texture2D LoadTexture (this IScreen screen, string name)
         {
-            string key = "Content_" + name;
+            int key = Hash(name);
             if (textureCache.ContainsKey (key)) {
                 return textureCache [key];
             }
@@ -156,7 +156,7 @@ namespace Knot3.Framework.Platform
 
         public static Texture2D CreateTexture (GraphicsDevice graphicsDevice, int width, int height, Color color)
         {
-            string key = color.ToString () + width.ToString () + "x" + height.ToString ();
+            int key = Hash(color, width, height);
             if (textureCache.ContainsKey (key)) {
                 return textureCache [key];
             }
@@ -187,7 +187,7 @@ namespace Knot3.Framework.Platform
 
         public static Texture2D CreateGradient (GraphicsDevice graphicsDevice, Color topLeft, Color topRight, Color bottomLeft, Color bottomRight)
         {
-            string key = topLeft.ToString () + topRight.ToString () +  bottomLeft.ToString () +  bottomRight.ToString () + "gradient";
+            int key = Hash(topLeft, topRight, bottomLeft, bottomRight);
             if (textureCache.ContainsKey (key)) {
                 return textureCache [key];
             }
@@ -213,6 +213,16 @@ namespace Knot3.Framework.Platform
             spriteBatch.Draw (
                 texture, bounds, null, color, 0f, Vector2.Zero, SpriteEffects.None, 0.1f
             );
+        }
+
+        private static int Hash (params object[] parameters) {
+            int hash = 0;
+            unchecked {
+                for (int i = 0; i < parameters.Length; ++i) {
+                    hash = hash * 99971 + parameters[i].GetHashCode();
+                }
+            }
+            return hash;
         }
 
         public static void DrawScaledString (this SpriteBatch spriteBatch, SpriteFont font,

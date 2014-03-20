@@ -88,6 +88,8 @@ namespace Knot3.Game.Models
                          direction: Direction.Vector,
                          position: Position - Direction.Vector * Length / 2
                      );
+
+            Coloring.OnColorChanged += UpdateCategory;
         }
 
         /// <summary>
@@ -96,9 +98,10 @@ namespace Knot3.Game.Models
         [ExcludeFromCodeCoverageAttribute]
         public override void Draw (GameTime time)
         {
-            Coloring = new SingleColor (Color.Red);
+            (Coloring as SingleColor).BaseColor = Color.Red;
+
             if (World.SelectedObject == this) {
-                Coloring.Highlight (intensity: 1f, color: Color.Orange);
+                Coloring.Highlight (intensity: 0.5f, color: Color.Yellow);
             }
             else {
                 Coloring.Unhighlight ();

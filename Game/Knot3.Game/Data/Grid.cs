@@ -147,20 +147,34 @@ namespace Knot3.Game.Data
         public IEnumerable<Pipe> Pipes
         {
             get {
-                foreach (NodeContent content in grid.Values) {
-                    foreach (Pipe pipe in content.PipesOut.Values) {
-                        if (pipe.LastTick == CurrentTick) {
-                            yield return pipe;
+                if (pipeCount == 0) {
+                    foreach (Node node in grid.Keys) {
+                        NodeContent content = grid[node];
+                        foreach (var key in content.PipesOut.Keys) {
+                            Pipe pipe = content.PipesOut[key] as Pipe;
+                            if (pipe.LastTick == CurrentTick) {
+                                if (pipeCount+1 >= pipeCache.Length)
+                                    Array.Resize (ref pipeCache, pipeCache.Length + 200);
+                                pipeCache[pipeCount++] = pipe;
+                            }
                         }
                     }
+                }
+                for(int i = 0; i < pipeCount; ++i) {
+                    yield return pipeCache[i];
                 }
             }
         }
 
+        private Pipe[] pipeCache = new Pipe[100];
+        private int pipeCount = 0;
+
         public IEnumerable<Junction> Junctions
         {
             get {
-                foreach (NodeContent content in grid.Values) {
+                if (junctionCount == 0) {
+                foreach (Node node in grid.Keys) {
+                    NodeContent content = grid[node];
                     // zeige zwischen zwei Kanten in der selben Richtung keinen Übergang an,
                     // wenn sie alleine an dem Kantenpunkt sind
                     if (content.Junctions.Count == 1 && content.Junctions [0].EdgeFrom.Direction == content.Junctions [0].EdgeTo.Direction) {
@@ -168,12 +182,21 @@ namespace Knot3.Game.Data
                     }
                     foreach (Junction junction in content.Junctions) {
                         if (junction.LastTick == CurrentTick) {
-                            yield return junction;
+                                if (junctionCount+1 >= junctionCache.Length)
+                                Array.Resize (ref junctionCache, junctionCache.Length + 200);
+                            junctionCache[junctionCount++] = junction;
                         }
                     }
                 }
+                }
+                for(int i = 0; i < junctionCount; ++i) {
+                    yield return junctionCache[i];
+                }
             }
         }
+
+        private Junction[] junctionCache = new Junction[100];
+        private int junctionCount = 0;
 
         /// <summary>
         /// Gibt die Rasterposition des Übergangs am Anfang der Kante zurück.
@@ -305,6 +328,9 @@ namespace Knot3.Game.Data
             };
 
             Profiler.ProfileDelegate ["Grid.Later"] = () => later ();
+
+            pipeCount = 0;
+            junctionCount = 0;
         }
     }
 }

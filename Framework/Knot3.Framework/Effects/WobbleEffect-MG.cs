@@ -76,38 +76,6 @@ namespace Knot3.Framework.Effects
             return new VertexDeclaration (instanceStreamElements);
         }
 
-        /*public override void DrawModel (GameModel model, GameTime time)
-        {
-            return;
-            // Setze den Viewport auf den der aktuellen Spielwelt
-            Viewport original = screen.Viewport;
-            screen.Viewport = model.World.Viewport;
-
-            Camera camera = model.World.Camera;
-            effect.Parameters ["World"].SetValue (model.WorldMatrix * camera.WorldMatrix);
-            effect.Parameters ["View"].SetValue (camera.ViewMatrix);
-            effect.Parameters ["Projection"].SetValue (camera.ProjectionMatrix);
-            effect.Parameters ["WorldInverseTranspose"].SetValue (Matrix.Transpose (Matrix.Invert (model.WorldMatrix * camera.WorldMatrix)));
-
-            effect.Parameters ["ModelTexture"].SetValue (GetTexture (model));
-
-            foreach (ModelMesh mesh in model.Model.Meshes) {
-                mesh.Draw ();
-            }
-
-            // Setze den Viewport wieder auf den ganzen Screen
-            screen.Viewport = original;
-        }*/
-
-        /*public override void RemapModel (Model model)
-        {
-            foreach (ModelMesh mesh in model.Meshes) {
-                foreach (ModelMeshPart part in mesh.MeshParts) {
-                    part.Effect = effect;
-                }
-            }
-        }*/
-
         private struct InstanceInfo {
             public Matrix WorldMatrix;
             public Matrix TransposeInverseWorldMatrix;
@@ -137,8 +105,7 @@ namespace Knot3.Framework.Effects
 
         public override void DrawPrimitive (GamePrimitive primitive, GameTime time)
         {
-            int texture = GetTextureHashCode (primitive);
-            string key = primitive.GetType ().Name + primitive.Primitive.GetType ().Name + texture.GetHashCode ();
+            string key = primitive.GameObjectCategory;
             InstancedPrimitive instancedPrimitive;
             if (!cacheInstancedPrimitives.ContainsKey (key)) {
                 cacheInstancedPrimitives [key] = instancedPrimitive = new InstancedPrimitive () {

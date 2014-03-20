@@ -61,8 +61,10 @@ namespace Knot3.Game.Models
                 return _distance;
             }
             set {
-                _distance = value;
-                ConstructRectangles ();
+                if (_distance != value) {
+                    _distance = value;
+                    scaleMatrix = Matrix.CreateScale(Vector3.One * _distance);
+                }
             }
         }
 
@@ -87,6 +89,7 @@ namespace Knot3.Game.Models
         /// Der Effekt, mit dem die Skybox gezeichnet wird.
         /// </summary>
         private BasicEffect effect;
+        private Matrix scaleMatrix;
 
         /// <summary>
         /// Erstellt ein neues KnotRenderer-Objekt für den angegebenen Spielzustand mit den angegebenen
@@ -104,25 +107,35 @@ namespace Knot3.Game.Models
 
         private void ConstructRectangles ()
         {
+            if (rectangles != null)
+                foreach (Parallelogram parallelogram in rectangles) {
+                    parallelogram.Dispose();
+                }
             rectangles = new Parallelogram [Direction.Values.Length];
-            textures = new Texture2D [Direction.Values.Length];
             int i = 0;
             foreach (Direction direction in Direction.Values) {
-                Vector3 position = direction * Distance;
+                Vector3 position = direction;
                 Vector3 up = direction == Direction.Up || direction == Direction.Down ? Vector3.Forward : Vector3.Up;
                 Vector3 left = Vector3.Normalize (Vector3.Cross (position, up));
                 Parallelogram parallelogram = new Parallelogram (
                     device: Screen.GraphicsDevice,
                     left: left,
-                    width: 2 * Distance,
+                    width: 2,
                     up: up,
-                    height: 2 * Distance,
+                    height: 2,
                     origin: position,
                     normalToCenter: true
                 );
                 rectangles [i] = parallelogram;
-                textures [i] = CachedSkyTexture (direction);
                 ++i;
+            }
+            if (textures == null) {
+                textures = new Texture2D [Direction.Values.Length];
+                i = 0;
+                foreach (Direction direction in Direction.Values) {
+                    textures [i] = CachedSkyTexture (direction);
+                    ++i;
+                }
             }
         }
 
@@ -180,8 +193,8 @@ namespace Knot3.Game.Models
         [ExcludeFromCodeCoverageAttribute]
         public override void Update (GameTime time)
         {
-            if (World.Camera.FarPlane - 500 != Distance) {
-                Distance = World.Camera.FarPlane / 2;
+            if (Math.Abs(1f-(Distance / (World.Camera.FarPlane / 3.6f))) > 0.05f) {
+                Distance = World.Camera.FarPlane / 3.6f;
             }
         }
 
@@ -192,14 +205,14 @@ namespace Knot3.Game.Models
             Viewport original = Screen.Viewport;
             Screen.Viewport = World.Viewport;
 
-            effect.World = World.Camera.WorldMatrix;
+            effect.World = scaleMatrix * World.Camera.WorldMatrix;
             effect.Projection = World.Camera.ProjectionMatrix;
 
             Matrix skyboxView = World.Camera.ViewMatrix;
-            skyboxView.M41 = 0;
+            /*  skyboxView.M41 = 0;
             skyboxView.M42 = 0;
             skyboxView.M43 = 0;
-            effect.View = skyboxView;
+           */ effect.View = skyboxView;
 
             effect.AmbientLightColor = new Vector3 (0.8f, 0.8f, 0.8f);
             effect.TextureEnabled = true;

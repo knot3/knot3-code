@@ -232,6 +232,9 @@ namespace Knot3.Game.Models
             Position = node;
 
             incomplete = true;
+
+            Coloring = new GradientColor (EdgeFrom, EdgeTo);
+            Coloring.OnColorChanged += UpdateCategory;
         }
 
         private bool incomplete;
@@ -309,6 +312,7 @@ namespace Knot3.Game.Models
             else if (JunctionsAtNode.Count == 3) {
                 chooseModelThreeJunctions ();
             }
+            UpdateCategory();
         }
 
         private void chooseModelOneJunction ()
@@ -371,15 +375,15 @@ namespace Knot3.Game.Models
                 initialize ();
             }
 
-            Coloring = new GradientColor (EdgeFrom, EdgeTo);
-            /*
-            if (IsVirtual) {
-                Coloring.Highlight (intensity: 0.5f, color: Color.White);
+
+            GradientColor gradient = Coloring as GradientColor;
+            if (gradient != null && gradient.Color1 != EdgeFrom.Color && gradient.Color2 != EdgeTo.Color) {
+                gradient.Color1 = EdgeFrom;
+                gradient.Color2 = EdgeTo;
+                UpdateCategory();
             }
-            else {
-                Coloring.Unhighlight ();
-            }
-            */
+
+
             base.Draw (time);
         }
 
