@@ -78,10 +78,10 @@ namespace Knot3.Game.Data
                 return PipesIn.ContainsKey (edge) ? PipesIn [edge] as Pipe : PipesOut [edge] as Pipe;
             }
 
-            public void SetTick (Edge edgeFrom, Edge edgeTo)
+            public void SetTick (Edge edgeFrom, Edge edgeTo, int tick)
             {
                 Junctions.Where (junction => junction.EdgeFrom == edgeFrom && junction.EdgeTo == edgeTo)
-                .ForEach (obj => obj.LastTick = CurrentTick);
+                .ForEach (obj => obj.LastTick = tick);
             }
 
             public void Update (Edge edgeFrom, Edge edgeTo)
@@ -93,21 +93,21 @@ namespace Knot3.Game.Data
 
             private static Edge[] removedEdges = new Edge [100];
 
-            public void RemoveOldStuff ()
+            public void RemoveOldStuff (int tick)
             {
-                RemoveOldPipes (PipesIn);
-                RemoveOldPipes (PipesOut);
+                RemoveOldPipes (PipesIn, tick);
+                RemoveOldPipes (PipesOut, tick);
 
-                Junctions.Where (obj => obj.LastTick != CurrentTick).ForEach (obj => obj.World = null);
-                Junctions.RemoveAll (obj => obj.LastTick != CurrentTick);
+                Junctions.Where (obj => obj.LastTick != tick).ForEach (obj => obj.World = null);
+                Junctions.RemoveAll (obj => obj.LastTick != tick);
             }
 
-            private void RemoveOldPipes (Hashtable table)
+            private void RemoveOldPipes (Hashtable table, int tick)
             {
                 int i = 0;
                 foreach (Edge edge in table.Keys) {
                     Pipe pipe = (table [edge] as Pipe);
-                    if (pipe.LastTick != CurrentTick) {
+                    if (pipe.LastTick != tick) {
                         pipe.World = null;
                         removedEdges [i++] = edge;
                     }
@@ -121,7 +121,7 @@ namespace Knot3.Game.Data
         private Dictionary<Node, NodeContent> grid = new Dictionary<Node, NodeContent> ();
         private Dictionary<Edge, Node> nodeBeforeEdge = new Dictionary<Edge, Node> ();
         private Dictionary<Edge, Node> nodeAfterEdge = new Dictionary<Edge, Node> ();
-        private static int CurrentTick = 0;
+        private int CurrentTick = 0;
 
         private NodeContent AtNode (Node node)
         {
@@ -319,13 +319,13 @@ namespace Knot3.Game.Data
                             content.Update (edgeA, edgeB);
                         };
                     }
-                    content.SetTick (edgeA, edgeB);
+                    content.SetTick (edgeA, edgeB, CurrentTick);
                 }
             };
 
             Profiler.ProfileDelegate ["Grid.Remove"] = () => {
                 foreach (NodeContent content in grid.Values) {
-                    content.RemoveOldStuff ();
+                    content.RemoveOldStuff (CurrentTick);
                 }
             };
 
