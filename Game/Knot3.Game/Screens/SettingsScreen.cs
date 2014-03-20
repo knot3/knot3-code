@@ -174,7 +174,7 @@ namespace Knot3.Game.Screens
             spriteBatch.DrawStringInRectangle (
                 font: Design.MenuFont (this),
                 text: MenuName.Localize (),
-                color: Color.White,
+                color: Design.WidgetForeground,
                 bounds: new Bounds (this, 0.050f, 0.050f, 0.900f, 0.050f),
                 alignX: HorizontalAlignment.Left,
                 alignY: VerticalAlignment.Center

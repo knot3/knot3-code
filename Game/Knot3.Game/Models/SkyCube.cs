@@ -107,10 +107,11 @@ namespace Knot3.Game.Models
 
         private void ConstructRectangles ()
         {
-            if (rectangles != null)
+            if (rectangles != null) {
                 foreach (Parallelogram parallelogram in rectangles) {
                     parallelogram.Dispose ();
                 }
+            }
             rectangles = new Parallelogram [Direction.Values.Length];
             int i = 0;
             foreach (Direction direction in Direction.Values) {
@@ -133,7 +134,12 @@ namespace Knot3.Game.Models
                 textures = new Texture2D [Direction.Values.Length];
                 i = 0;
                 foreach (Direction direction in Direction.Values) {
-                    textures [i] = CachedSkyTexture (direction);
+                    if (Config.Default ["debug", "projector-mode", false]) {
+                        textures [i] = ContentLoader.CreateTexture (Screen.GraphicsDevice, Color.White);
+                    }
+                    else {
+                        textures [i] = CachedSkyTexture (direction);
+                    }
                     ++i;
                 }
             }

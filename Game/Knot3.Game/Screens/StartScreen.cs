@@ -40,6 +40,7 @@ using Knot3.Framework.Math;
 using Knot3.Framework.Platform;
 using Knot3.Framework.Utilities;
 using Knot3.Framework.Widgets;
+using Knot3.Framework.Storage;
 
 namespace Knot3.Game.Screens
 {
@@ -71,6 +72,9 @@ namespace Knot3.Game.Screens
 
             // logo
             logo = this.LoadTexture (name: "logo");
+            if (Config.Default ["debug", "projector-mode", false]) {
+                logo = ContentLoader.InvertTexture (screen: this, texture: logo);
+            }
 
             // create a new SpriteBatch, which can be used to draw textures
             spriteBatch = new SpriteBatch (GraphicsDevice);
@@ -113,6 +117,9 @@ namespace Knot3.Game.Screens
             exitButton.AddKey (Keys.Escape);
             exitButton.SetCoordinates (left: 0.815f, top: 0.585f, right: 0.895f, bottom: 0.705f);
             exitButton.BackgroundTexture = this.LoadTexture ("exit300");
+            if (Config.Default ["debug", "projector-mode", false]) {
+                exitButton.BackgroundTexture = ContentLoader.InvertTexture (screen: this, texture: exitButton.BackgroundTexture);
+            }
 
             buttons.Add (creativeButton);
             buttons.Add (challengeButton);

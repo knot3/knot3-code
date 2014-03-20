@@ -42,6 +42,7 @@ using Knot3.Framework.Platform;
 using Knot3.Framework.Storage;
 
 using Knot3.Game.Models;
+using Knot3.Framework.Widgets;
 
 namespace Knot3.Game.Development
 {
@@ -279,7 +280,7 @@ namespace Knot3.Game.Development
             */
             _total_frames++;
             spriteBatch.Begin ();
-            DrawString ("FPS: " + _fps.ToString (), (int)(Screen.Viewport.Width / Config.Default ["video", "Supersamples", 1]) - (int)(170 * scale), (int)(50 * scale), Color.White);
+            DrawString ("FPS: " + _fps.ToString (), (int)(Screen.Viewport.Width / Config.Default ["video", "Supersamples", 1]) - (int)(170 * scale), (int)(50 * scale), Design.WidgetForeground);
             spriteBatch.End ();
         }
 

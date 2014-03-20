@@ -38,6 +38,7 @@ using Knot3.Framework.Storage;
 using Knot3.Framework.Widgets;
 
 using Knot3.Game.Screens;
+using Knot3.Game.Widgets;
 
 namespace Knot3.Game.Development
 {
@@ -116,6 +117,30 @@ namespace Knot3.Game.Development
             );
             unprojectItem.AddEntries (unprojectOption);
             settingsMenu.Add (unprojectItem);
+
+            BooleanOption projectorOption = new BooleanOption ("debug", "projector-mode", false, Config.Default);
+            CheckBoxItem projectorMode = new CheckBoxItem (
+                screen: this,
+                drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
+                text: "Video projector mode",
+                option: projectorOption
+            );
+            projectorMode.OnValueChanged += () => {
+                if (projectorOption.Value) {
+                    new ProjectorDesign().Apply();
+                    Config.Default ["video", "camera-overlay", false] = false;
+                    Config.Default ["video", "profiler-overlay", false] = false;
+                    Config.Default ["video", "knot-shader", "default"] = "default";
+                    Config.Default ["video", "Supersamples", 1f] = 2f;
+                    Config.Default ["video", "arrows", false] = false;
+                    Config.Default ["language", "current", "en"] = "de";
+                }
+                else {
+                    new HfGDesign().Apply();
+                }
+                NextScreen = new StartScreen(game);
+            };
+            settingsMenu.Add (projectorMode);
 
             /*
             CheckBoxItem shaderPascal = new CheckBoxItem (

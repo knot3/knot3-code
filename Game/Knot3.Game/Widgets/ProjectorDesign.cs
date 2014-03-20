@@ -38,23 +38,23 @@ using Knot3.Framework.Widgets;
 namespace Knot3.Game.Widgets
 {
     [ExcludeFromCodeCoverageAttribute]
-    public sealed class HfGDesign : IDesign
+    public sealed class ProjectorDesign : IDesign
     {
-        public HfGDesign ()
+        public ProjectorDesign ()
         {
         }
 
         public void Apply ()
         {
             Design.MenuFontName = "font-menu";
-            Design.DefaultLineColor = new Color (0xb4, 0xff, 0x00);
-            Design.DefaultOutlineColor = new Color (0x3b, 0x54, 0x00);
-            Design.WidgetBackground = Color.Black;
-            Design.WidgetForeground = Color.White;
-            Design.InGameBackground = Color.Black;
-            Design.ScreenBackground = Color.Black;
-            Design.DialogBackground = Color.Black.Mix (Color.White, 0.05f);
-            Design.DialogForeground = Color.White;
+            Design.DefaultLineColor = Color.DarkGreen;
+            Design.DefaultOutlineColor = Color.DarkGreen.Mix(Color.White, 0.10f);
+            Design.WidgetBackground = Color.GhostWhite;
+            Design.WidgetForeground = Color.Black;
+            Design.InGameBackground = Color.White;
+            Design.ScreenBackground = Color.White;
+            Design.DialogBackground = Color.Black.Mix (Color.White, 0.95f);
+            Design.DialogForeground = Color.Black;
             Design.WidgetBackgroundColorFunc = WidgetBackgroundColor;
             Design.WidgetForegroundColorFunc = WidgetForegroundColor;
             Design.MenuItemBackgroundColorFunc = MenuItemBackgroundColor;
@@ -63,8 +63,11 @@ namespace Knot3.Game.Widgets
 
         private static Color WidgetBackgroundColor (WidgetState state)
         {
-            if (state == WidgetState.None || state == WidgetState.Hovered) {
+            if (state == WidgetState.None) {
                 return Color.Transparent;
+            }
+            else if (state == WidgetState.Hovered) {
+                return Color.WhiteSmoke;
             }
             else if (state == WidgetState.Selected) {
                 return Color.Black;
@@ -77,13 +80,13 @@ namespace Knot3.Game.Widgets
         private static Color WidgetForegroundColor (WidgetState state)
         {
             if (state == WidgetState.Hovered) {
-                return Color.White;
+                return Color.Black;
             }
             else if (state == WidgetState.None) {
-                return Color.White * 0.7f;
+                return Color.Black * 0.85f;
             }
             else if (state == WidgetState.Selected) {
-                return Color.White;
+                return Color.Black;
             }
             else {
                 return Color.CornflowerBlue;
@@ -93,7 +96,7 @@ namespace Knot3.Game.Widgets
         private Color MenuItemBackgroundColor (WidgetState state)
         {
             if (state == WidgetState.Selected) {
-                return Color.White;
+                return Color.Black;
             }
             return Color.Transparent;
         }
@@ -101,13 +104,13 @@ namespace Knot3.Game.Widgets
         private Color MenuItemForegroundColor (WidgetState state)
         {
             if (state == WidgetState.Hovered) {
-                return Color.White;
-            }
-            else if (state == WidgetState.Selected) {
                 return Color.Black;
             }
+            else if (state == WidgetState.Selected) {
+                return Color.Wheat;
+            }
             else {
-                return Color.White * 0.7f;
+                return Color.Black * 0.7f;
             }
         }
     }

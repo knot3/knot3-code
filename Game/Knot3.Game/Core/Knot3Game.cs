@@ -79,7 +79,12 @@ namespace Knot3.Game.Core
             VSync = true;
 
             // design
-            new HfGDesign ().Apply ();
+            if (Config.Default ["debug", "projector-mode", false]) {
+                new ProjectorDesign ().Apply ();
+            }
+            else {
+                new HfGDesign ().Apply ();
+            }
 
             // audio
             AudioManager = new Knot3AudioManager (game: this);

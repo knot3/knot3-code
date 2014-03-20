@@ -27,14 +27,11 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
-
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-
 using Knot3.Framework.Audio;
 using Knot3.Framework.Effects;
 using Knot3.Framework.Platform;
@@ -54,7 +51,7 @@ namespace Knot3.Framework.Core
         protected Point lastResolution;
         protected bool isFullscreen;
 
-        public bool SkipNextScreenEffect {get; set;}
+        public bool SkipNextScreenEffect { get; set; }
 
         /// <summary>
         /// Wird dieses Attribut ausgelesen, dann gibt es einen Wahrheitswert zurück, der angibt,
@@ -81,7 +78,12 @@ namespace Knot3.Framework.Core
         protected Point ScreenResolution
         {
             get {
-                return new Point (GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height);
+                if (Config.Default ["debug", "projector-mode", false]) {
+                    return new Point (1024, 768);
+                }
+                else {
+                    return new Point (GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height);
+                }
             }
         }
 

@@ -27,16 +27,13 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
-
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
-
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-
 using Knot3.Framework.Core;
 using Knot3.Framework.Effects;
 using Knot3.Framework.Math;
@@ -123,7 +120,7 @@ namespace Knot3.Framework.Platform
         {
             try {
                 Texture2D texture = null;
-                Dependencies.CatchDllExceptions (()=> {
+                Dependencies.CatchDllExceptions (() => {
                     string filename = SystemInfo.RelativeContentDirectory + "Textures" + SystemInfo.PathSeparator + name;
                     FileStream stream = new FileStream (filename, FileMode.Open);
                     texture = Texture2D.FromStream (screen.GraphicsDevice, stream);
@@ -207,6 +204,18 @@ namespace Knot3.Framework.Platform
             }
         }
 
+        public static Texture2D InvertTexture (IScreen screen, Texture2D texture)
+        {
+            Color[] colors = new Color [texture.Width * texture.Height];
+            texture.GetData (colors);
+            for (int i = 0; i < colors.Length; ++i) {
+                colors [i] = new Color (Vector3.One - colors [i].ToVector3 ());
+            }
+            Texture2D newTexture = new Texture2D (screen.GraphicsDevice, texture.Width, texture.Height);
+            newTexture.SetData (colors);
+            return newTexture;
+        }
+
         public static void DrawColoredRectangle (this SpriteBatch spriteBatch, Color color, Rectangle bounds)
         {
             Texture2D texture = ContentLoader.CreateTexture (spriteBatch.GraphicsDevice, Color.White);
@@ -242,8 +251,8 @@ namespace Knot3.Framework.Platform
         }
 
         public static void DrawStringInRectangle (this SpriteBatch spriteBatch, SpriteFont font,
-                string text, Color color, Bounds bounds,
-                HorizontalAlignment alignX, VerticalAlignment alignY)
+                                                  string text, Color color, Bounds bounds,
+                                                  HorizontalAlignment alignX, VerticalAlignment alignY)
         {
             Vector2 scaledPosition = bounds.Position.AbsoluteVector;
             Vector2 scaledSize = bounds.Size.AbsoluteVector;
@@ -253,10 +262,10 @@ namespace Knot3.Framework.Platform
 
                 // finde die richtige Position
                 Vector2 textPosition = TextPosition (
-                                           font: font, text: text, scale: scale,
-                                           position: scaledPosition, size: scaledSize,
-                                           alignX: alignX, alignY: alignY
-                                       );
+                    font: font, text: text, scale: scale,
+                    position: scaledPosition, size: scaledSize,
+                    alignX: alignX, alignY: alignY
+                );
 
                 // zeichne die Schrift
                 spriteBatch.DrawString (font, text, textPosition, color, 0, Vector2.Zero, scale, SpriteEffects.None, 0.6f);
@@ -270,8 +279,8 @@ namespace Knot3.Framework.Platform
         }
 
         public static Vector2 ScaleStringInRectangle (this SpriteBatch spriteBatch, SpriteFont font,
-                string text, Color color, Rectangle bounds,
-                HorizontalAlignment alignX, VerticalAlignment alignY)
+                                                      string text, Color color, Rectangle bounds,
+                                                      HorizontalAlignment alignX, VerticalAlignment alignY)
         {
             Vector2 scaledSize = new Vector2 (bounds.Width, bounds.Height);
             try {
