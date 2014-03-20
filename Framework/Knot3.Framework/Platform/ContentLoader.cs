@@ -27,13 +27,16 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
+
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
+
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+
 using Knot3.Framework.Core;
 using Knot3.Framework.Effects;
 using Knot3.Framework.Math;
@@ -251,8 +254,8 @@ namespace Knot3.Framework.Platform
         }
 
         public static void DrawStringInRectangle (this SpriteBatch spriteBatch, SpriteFont font,
-                                                  string text, Color color, Bounds bounds,
-                                                  HorizontalAlignment alignX, VerticalAlignment alignY)
+                string text, Color color, Bounds bounds,
+                HorizontalAlignment alignX, VerticalAlignment alignY)
         {
             Vector2 scaledPosition = bounds.Position.AbsoluteVector;
             Vector2 scaledSize = bounds.Size.AbsoluteVector;
@@ -262,10 +265,10 @@ namespace Knot3.Framework.Platform
 
                 // finde die richtige Position
                 Vector2 textPosition = TextPosition (
-                    font: font, text: text, scale: scale,
-                    position: scaledPosition, size: scaledSize,
-                    alignX: alignX, alignY: alignY
-                );
+                                           font: font, text: text, scale: scale,
+                                           position: scaledPosition, size: scaledSize,
+                                           alignX: alignX, alignY: alignY
+                                       );
 
                 // zeichne die Schrift
                 spriteBatch.DrawString (font, text, textPosition, color, 0, Vector2.Zero, scale, SpriteEffects.None, 0.6f);
@@ -279,8 +282,8 @@ namespace Knot3.Framework.Platform
         }
 
         public static Vector2 ScaleStringInRectangle (this SpriteBatch spriteBatch, SpriteFont font,
-                                                      string text, Color color, Rectangle bounds,
-                                                      HorizontalAlignment alignX, VerticalAlignment alignY)
+                string text, Color color, Rectangle bounds,
+                HorizontalAlignment alignX, VerticalAlignment alignY)
         {
             Vector2 scaledSize = new Vector2 (bounds.Width, bounds.Height);
             try {

@@ -48,7 +48,7 @@ namespace Knot3.Game.Widgets
         {
             Design.MenuFontName = "font-menu";
             Design.DefaultLineColor = Color.DarkGreen;
-            Design.DefaultOutlineColor = Color.DarkGreen.Mix(Color.White, 0.10f);
+            Design.DefaultOutlineColor = Color.DarkGreen.Mix (Color.White, 0.10f);
             Design.WidgetBackground = Color.GhostWhite;
             Design.WidgetForeground = Color.Black;
             Design.InGameBackground = Color.White;

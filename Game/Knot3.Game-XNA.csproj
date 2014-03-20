@@ -182,6 +182,7 @@
     <Compile Include="Knot3.Game\Widgets\HfGDesign.cs" />
     <Compile Include="Knot3.Game\Widgets\HighscoreDialog.cs" />
     <Compile Include="Knot3.Game\Widgets\KeyInputItem.cs" />
+    <Compile Include="Knot3.Game\Widgets\ProjectorDesign.cs" />
     <Compile Include="Knot3.Game\Widgets\TextInputDialog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

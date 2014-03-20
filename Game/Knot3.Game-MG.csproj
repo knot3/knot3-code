@@ -115,9 +115,9 @@
     <Compile Include="Knot3.Game\Widgets\HfGDesign.cs" />
     <Compile Include="Knot3.Game\Widgets\HighscoreDialog.cs" />
     <Compile Include="Knot3.Game\Widgets\KeyInputItem.cs" />
+    <Compile Include="Knot3.Game\Widgets\ProjectorDesign.cs" />
     <Compile Include="Knot3.Game\Widgets\TextInputDialog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Knot3.Game\Widgets\ProjectorDesign.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

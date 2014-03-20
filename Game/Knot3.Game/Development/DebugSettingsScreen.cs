@@ -127,7 +127,7 @@ namespace Knot3.Game.Development
             );
             projectorMode.OnValueChanged += () => {
                 if (projectorOption.Value) {
-                    new ProjectorDesign().Apply();
+                    new ProjectorDesign ().Apply ();
                     Config.Default ["video", "camera-overlay", false] = false;
                     Config.Default ["video", "profiler-overlay", false] = false;
                     Config.Default ["video", "knot-shader", "default"] = "default";
@@ -136,9 +136,9 @@ namespace Knot3.Game.Development
                     Config.Default ["language", "current", "en"] = "de";
                 }
                 else {
-                    new HfGDesign().Apply();
+                    new HfGDesign ().Apply ();
                 }
-                NextScreen = new StartScreen(game);
+                NextScreen = new StartScreen (game);
             };
             settingsMenu.Add (projectorMode);
 
