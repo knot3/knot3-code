@@ -71,7 +71,7 @@ namespace Knot3.Game.Development
             spriteBatch = new SpriteBatch (screen.GraphicsDevice);
             effect.VertexColorEnabled = true;
             effect.World = Matrix.CreateFromYawPitchRoll (0, 0, 0);
-            if (Config.Default ["video", "camera-overlay", true]) {
+            if (Config.Default ["video", "camera-overlay", false]) {
                 debugModel = new DebugModel (screen: screen);
                 world.Add (debugModel);
             }
@@ -110,7 +110,7 @@ namespace Knot3.Game.Development
             scale = Math.Max (0.7f, (float)Screen.GraphicsDevice.PresentationParameters.BackBufferWidth / 1366f);
             lineHeight = (int)(20 * scale);
 
-            if (Config.Default ["video", "camera-overlay", true]) {
+            if (Config.Default ["video", "camera-overlay", false]) {
                 if (!debugModelAdded) {
                     World.Add (debugModel);
                     debugModelAdded = true;
