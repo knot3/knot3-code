@@ -80,6 +80,12 @@ namespace Knot3.Framework.Models
             // default values
             Coloring = new SingleColor (Color.Transparent);
             UniqueKey = modelname;
+            UpdateCategory();
+        }
+
+        protected override void UpdateCategory ()
+        {
+            base.UpdateCategory(category: Modelname);
         }
 
         /// <summary>

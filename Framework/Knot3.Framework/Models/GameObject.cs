@@ -129,6 +129,8 @@ namespace Knot3.Framework.Models
 
         public string UniqueKey { get; protected set; }
 
+        public string GameObjectCategory  {get; protected set; }
+
         public GameObject (Vector3 position = default (Vector3), Angles3 rotation = default (Angles3), Vector3 scale = default (Vector3),
                            bool isVisible = true, bool isSelectable = false, bool isMovable = false)
         {
@@ -141,11 +143,35 @@ namespace Knot3.Framework.Models
             UniqueKey = GetType ().Name;
         }
 
+        protected virtual void UpdateCategory ()
+        {
+            UpdateCategory("");
+        }
+
+        protected void UpdateCategory (string category)
+        {
+            GameObjectCategory = GetType ().Name + GetTextureHashCode (obj: this) + category;
+        }
+
+        protected int GetTextureHashCode (IGameObject obj)
+        {
+            if (obj is ITexturedObject && (obj as ITexturedObject).Texture != null) {
+                return (obj as ITexturedObject).Texture.GetHashCode ();
+            }
+            else if (obj is IColoredObject) {
+                return (obj as IColoredObject).Coloring.MixedColor.GetHashCode ();
+            }
+            else {
+                return 0;
+            }
+        }
+
         /// <summary>
         /// Wird für jeden Frame aufgerufen.
         /// </summary>
         public virtual void Update (GameTime time)
         {
+            //UpdateCategory("");
         }
 
         /// <summary>

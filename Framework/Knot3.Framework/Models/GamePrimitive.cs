@@ -54,7 +54,8 @@ namespace Knot3.Framework.Models
         /// <summary>
         /// Die Textur des Modells.
         /// </summary>
-        public Texture2D Texture { get; set; }
+        public Texture2D Texture { get { return _texture; } set { _texture = value; UpdateCategory(); } }
+        private Texture2D _texture;
 
         /// <summary>
         /// Der Dateiname des Modells.
@@ -72,7 +73,9 @@ namespace Knot3.Framework.Models
                     return _primitiveCache [key];
                 }
                 else {
-                    return _primitiveCache [key] = CreativePrimitive ();
+                    _primitiveCache [key] = CreativePrimitive ();
+                    UpdateCategory();
+                    return _primitiveCache [key];
                 }
             }
         }
@@ -99,9 +102,16 @@ namespace Knot3.Framework.Models
 
             // default values
             Coloring = new SingleColor (Color.Transparent);
+
+            UpdateCategory();
         }
 
         protected abstract Primitive CreativePrimitive ();
+
+        protected override void UpdateCategory ()
+        {
+            base.UpdateCategory(category: Primitive.GetType().Name);
+        }
 
         /// <summary>
         /// Gibt die Mitte des 3D-Modells zurück.

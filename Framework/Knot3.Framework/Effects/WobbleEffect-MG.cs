@@ -46,12 +46,12 @@ using Knot3.Framework.Primitives;
 namespace Knot3.Framework.Effects
 {
     [ExcludeFromCodeCoverageAttribute]
-    public class HardwareInstancingEffect : RenderEffect
+    public class WobbleEffect : RenderEffect
     {
         Effect effect;
         VertexDeclaration instanceVertexDeclaration;
 
-        public HardwareInstancingEffect (IScreen screen)
+        public WobbleEffect (IScreen screen)
         : base (screen)
         {
             //Effect hitest = screen.LoadEffect ("hitest");
@@ -75,38 +75,6 @@ namespace Knot3.Framework.Effects
             //instanceStreamElements [4] = new VertexElement (sizeof (float) * 16, VertexElementFormat.Vector2, VertexElementUsage.TextureCoordinate, 5);
             return new VertexDeclaration (instanceStreamElements);
         }
-
-        /*public override void DrawModel (GameModel model, GameTime time)
-        {
-            return;
-            // Setze den Viewport auf den der aktuellen Spielwelt
-            Viewport original = screen.Viewport;
-            screen.Viewport = model.World.Viewport;
-
-            Camera camera = model.World.Camera;
-            effect.Parameters ["World"].SetValue (model.WorldMatrix * camera.WorldMatrix);
-            effect.Parameters ["View"].SetValue (camera.ViewMatrix);
-            effect.Parameters ["Projection"].SetValue (camera.ProjectionMatrix);
-            effect.Parameters ["WorldInverseTranspose"].SetValue (Matrix.Transpose (Matrix.Invert (model.WorldMatrix * camera.WorldMatrix)));
-
-            effect.Parameters ["ModelTexture"].SetValue (GetTexture (model));
-
-            foreach (ModelMesh mesh in model.Model.Meshes) {
-                mesh.Draw ();
-            }
-
-            // Setze den Viewport wieder auf den ganzen Screen
-            screen.Viewport = original;
-        }*/
-
-        /*public override void RemapModel (Model model)
-        {
-            foreach (ModelMesh mesh in model.Meshes) {
-                foreach (ModelMeshPart part in mesh.MeshParts) {
-                    part.Effect = effect;
-                }
-            }
-        }*/
 
         private struct InstanceInfo {
             public Matrix WorldMatrix;
@@ -175,6 +143,7 @@ namespace Knot3.Framework.Effects
                 Camera camera = instancedPrimitive.World.Camera;
                 //effect.Parameters ["World"].SetValue (primitive.WorldMatrix * camera.WorldMatrix);
                 effect.Parameters ["xLightDirection"].SetValue (new Vector4 (-1.0f, -2.0f, -1.0f, 0));
+                effect.Parameters ["xWorldTime"].SetValue (new Vector4 ((float)time.TotalGameTime.TotalSeconds, 0, 0, 0));
                 effect.Parameters ["xView"].SetValue (camera.ViewMatrix);
                 effect.Parameters ["xProjection"].SetValue (camera.ProjectionMatrix);
                 //effect.Parameters ["WorldInverseTranspose"].SetValue (Matrix.Transpose (Matrix.Invert (primitive.WorldMatrix * camera.WorldMatrix)));
@@ -271,6 +240,7 @@ void main ()
 
 uniform mat4 xView;
 uniform mat4 xProjection;
+uniform vec4 xWorldTime;
 
 in vec4 vertexPosition;
 in vec4 vertexNormal;
@@ -286,7 +256,19 @@ void main ()
     mat4 world = transpose (instanceWorld);
     mat4 worldInverseTranspose = transpose (instanceWorldInverseTranspose);
     
-    gl_Position = vertexPosition * world * xView * xProjection;
+    vec4 position = vertexPosition * world * xView * xProjection;
+    float worldTime = xWorldTime.x;
+
+    float squareDistance = position.x * position.x + position.z * position.z;
+    position.y += 5 * sin(squareDistance * sin(worldTime / 143.0) / 1000);
+    float y = position.y;
+    float x = position.x;
+    float om = sin(squareDistance * sin(worldTime / 256.0) / 5000) * sin(worldTime / 200.0);
+    position.y = x*sin(om) + y*cos(om);
+    position.x = x*cos(om) - y*sin(om);
+
+    gl_Position = position;
+
     fragNormal = normalize (vec4 ((vertexNormal * worldInverseTranspose).xyz, 0));
     fragTexCoord.xy = vertexTexCoord.xy;
     //fragLightingFactor.x = 0;
