@@ -190,7 +190,8 @@ namespace Knot3.Framework.Core
 
                 disposeEffect = true;
                 RenderEffectLibrary.RenderEffectChanged += (newEffectName, time2) => {
-                    CurrentEffect.Dispose ();
+                    if (CurrentEffect != null)
+                        CurrentEffect.Dispose ();
                     CurrentEffect = RenderEffectLibrary.CreateEffect (screen: Screen, name: newEffectName);
                 };
             }
@@ -201,7 +202,7 @@ namespace Knot3.Framework.Core
         /// </summary>
         public override void UnloadContent (GameTime time)
         {
-            if (disposeEffect) {
+            if (disposeEffect && CurrentEffect != null) {
                 CurrentEffect.Dispose ();
                 CurrentEffect = null;
             }

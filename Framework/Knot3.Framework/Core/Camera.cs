@@ -216,7 +216,7 @@ namespace Knot3.Framework.Core
         private void UpdateMatrices (GameTime time)
         {
             aspectRatio = Screen.Viewport.AspectRatio;
-            FarPlane = 100000000 + MathHelper.Max (Position.Length (), Target.Length ()) * 3.6f;
+            FarPlane = 500000 + MathHelper.Max (Position.Length (), Target.Length ()) * 3.6f;
             ViewMatrix = Matrix.CreateLookAt (Position, Target, UpVector);
             WorldMatrix = Matrix.CreateFromYawPitchRoll (Rotation.Y, Rotation.X, Rotation.Z);
             ProjectionMatrix = Matrix.CreatePerspectiveFieldOfView (MathHelper.ToRadians (FoV), aspectRatio, nearPlane, FarPlane);
