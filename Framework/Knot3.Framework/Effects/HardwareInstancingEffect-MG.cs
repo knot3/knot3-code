@@ -42,6 +42,7 @@ using Knot3.Framework.Development;
 using Knot3.Framework.Models;
 using Knot3.Framework.Platform;
 using Knot3.Framework.Primitives;
+using Knot3.Framework.Utilities;
 
 namespace Knot3.Framework.Effects
 {
@@ -146,7 +147,8 @@ namespace Knot3.Framework.Effects
                     Texture = GetTexture (primitive),
                     Instances = new InstanceInfo [100],
                     InstanceCount = 0,
-                    InstanceUniqueHash = 0
+                    InstanceUniqueHash = 0,
+
                 };
             }
             else {
@@ -171,15 +173,13 @@ namespace Knot3.Framework.Effects
                 // Setze den Viewport auf den der aktuellen Spielwelt
                 Viewport original = screen.Viewport;
                 screen.Viewport = instancedPrimitive.World.Viewport;
-
+                
                 Camera camera = instancedPrimitive.World.Camera;
-                //effect.Parameters ["World"].SetValue (primitive.WorldMatrix * camera.WorldMatrix);
-                effect.Parameters ["xLightDirection"].SetValue (new Vector4 (-1.0f, -2.0f, -1.0f, 0));
                 effect.Parameters ["xView"].SetValue (camera.ViewMatrix);
                 effect.Parameters ["xProjection"].SetValue (camera.ProjectionMatrix);
-                //effect.Parameters ["WorldInverseTranspose"].SetValue (Matrix.Transpose (Matrix.Invert (primitive.WorldMatrix * camera.WorldMatrix)));
-
                 effect.Parameters ["xModelTexture"].SetValue (instancedPrimitive.Texture);
+                effect.Parameters ["xLightDirection"].SetValue (camera.LightDirection);
+                effect.Parameters ["xCameraPosition"].SetValue (camera.Position);
 
                 InstancedBuffer buffer;
                 if (!cachePrimitivesBuffers.ContainsKey (key)) {
@@ -238,10 +238,10 @@ namespace Knot3.Framework.Effects
         //#monogame ConstantBuffer (name=xProjection; sizeInBytes=64; parameters=[1]; offsets=[0])
 
         private readonly string SHADER_CODE = @"
-#monogame BeginShader (stage=pixel; constantBuffers=[0])
+#monogame BeginShader (stage=pixel; constantBuffers=[])
 #monogame Attribute (name=fragNormal; usage=Normal; index=0)
 #monogame Attribute (name=fragTexCoord; usage=TextureCoordinate; index=0)
-//#monogame Attribute (name=fragLightingFactor; usage=TextureCoordinate; index=0)
+#monogame Attribute (name=fragEyeDirection; usage=TextureCoordinate; index=1)
 #version 130
 
 uniform sampler2D xModelTexture;
@@ -249,15 +249,34 @@ uniform vec4 xLightDirection;
 
 in vec4 fragNormal;
 in vec4 fragTexCoord;
+in vec4 fragEyeDirection;
+
 out vec4 fragColor;
 
 void main ()
 {
-    vec4 colorTexture = texture2D (xModelTexture, fragTexCoord.xy);
-    colorTexture.w = 1.0;
-    vec4 intensityDiffuse = colorTexture * clamp (dot (-normalize (fragNormal.xyz), normalize (xLightDirection.xyz)), -1.0, 2.0);
+    // texture color
+    vec4 colorTexture = vec4 (texture2D (xModelTexture, fragTexCoord.xy).xyz, 1.0);
+    // normal
+    vec3 normal = normalize (fragNormal.xyz);
+    // light direction
+    vec3 lightDirection = normalize(xLightDirection.xyz);
 
-    vec4 color = colorTexture * 0.4 + normalize (colorTexture+vec4 (1.0)) * intensityDiffuse * 0.6;
+    // diffuse light intensity
+    float diffuse = clamp (dot (normal, -lightDirection), 0.0, 1.0);
+
+    // eye direction
+    vec3 eyeDirection = normalize (fragEyeDirection.xyz);
+    // reflected vector
+    vec3 reflect = normalize (reflect(lightDirection, normal));
+
+    // specular light intensity
+    float shininess = 20.0;
+    float specular = pow (clamp (dot (reflect, eyeDirection), 0.0, 1.0), shininess);
+    vec4 white = vec4(1.0);
+
+    // final color
+    vec4 color = clamp (colorTexture * clamp (white * 0.2 + white * diffuse, -1.0, 1.0) + specular, 0.0, 1.0);
     color.w = 1.0;
     fragColor = color;
 }
@@ -274,6 +293,7 @@ void main ()
 
 uniform mat4 xView;
 uniform mat4 xProjection;
+uniform vec4 xCameraPosition;
 
 in vec4 vertexPosition;
 in vec4 vertexNormal;
@@ -283,6 +303,7 @@ in mat4 instanceWorldInverseTranspose;
 
 out vec4 fragNormal;
 out vec4 fragTexCoord;
+out vec4 fragEyeDirection;
 
 void main ()
 {
@@ -292,7 +313,7 @@ void main ()
     gl_Position = vertexPosition * world * xView * xProjection;
     fragNormal = normalize (vec4 ((vertexNormal * worldInverseTranspose).xyz, 0));
     fragTexCoord.xy = vertexTexCoord.xy;
-    //fragLightingFactor.x = 0;
+    fragEyeDirection = normalize(vec4(xCameraPosition.xyz, 1.0) - vertexPosition * world);
 }
 
 #monogame EndShader ()

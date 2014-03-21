@@ -80,10 +80,10 @@ namespace Knot3.Game.Widgets
         private static Color WidgetForegroundColor (WidgetState state)
         {
             if (state == WidgetState.Hovered) {
-                return Color.Black;
+                return Color.Black * 0.80f;
             }
             else if (state == WidgetState.None) {
-                return Color.Black * 0.85f;
+                return Color.Black;
             }
             else if (state == WidgetState.Selected) {
                 return Color.Black;
@@ -104,13 +104,13 @@ namespace Knot3.Game.Widgets
         private Color MenuItemForegroundColor (WidgetState state)
         {
             if (state == WidgetState.Hovered) {
-                return Color.Black;
+                return Color.Black * 0.80f;
             }
             else if (state == WidgetState.Selected) {
                 return Color.Wheat;
             }
             else {
-                return Color.Black * 0.7f;
+                return Color.Black;
             }
         }
     }

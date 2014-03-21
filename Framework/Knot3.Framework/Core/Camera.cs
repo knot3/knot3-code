@@ -27,13 +27,10 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
-
 using System;
 using System.Diagnostics.CodeAnalysis;
-
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-
 using Knot3.Framework.Development;
 using Knot3.Framework.Math;
 using Knot3.Framework.Storage;
@@ -137,6 +134,12 @@ namespace Knot3.Framework.Core
 
         private Vector3 defaultPosition = new Vector3 (400, 400, 700);
 
+        public Vector3 SunPosition { get; set; }
+
+        public Vector3 LightDirection { get; private set; }
+
+        public int DayCycleMilliseconds { get; set; }
+
         /// <summary>
         /// Erstellt eine neue Kamera in einem bestimmten IGameScreen für eine bestimmte Spielwelt.
         /// </summary>
@@ -152,6 +155,8 @@ namespace Knot3.Framework.Core
             FoV = 60;
             nearPlane = 0.5f;
             FarPlane = 15000.0f;
+
+            DayCycleMilliseconds = 10000;
 
             UpdateMatrices (null);
         }
@@ -206,11 +211,22 @@ namespace Knot3.Framework.Core
             Viewport original = Screen.Viewport;
             Screen.Viewport = World.Viewport;
 
+            UpdateSun (time);
             UpdateMatrices (time);
             UpdateSmoothMove (time);
 
             // Setze den Viewport wieder auf den ganzen Screen
             Screen.Viewport = original;
+        }
+
+        private void UpdateSun (GameTime time)
+        {
+            if (DayCycleMilliseconds > 0) {
+                Vector3 sunStartPosition = Vector3.Normalize (Vector3.Left + Vector3.Forward) * FarPlane / 4;
+                Vector3 sunNormal = Vector3.Cross (sunStartPosition, UpVector);
+                SunPosition = sunStartPosition.RotateAroundVector (axis: sunNormal, angleRadians: (float)(time.TotalGameTime.TotalMilliseconds / DayCycleMilliseconds));
+            }
+            LightDirection = Vector3.Normalize (-SunPosition);
         }
 
         private void UpdateMatrices (GameTime time)
@@ -304,17 +320,17 @@ namespace Knot3.Framework.Core
                 Vector3 nearScreenPoint = new Vector3 (position.AbsoluteVector, 0);
                 Vector3 farScreenPoint = new Vector3 (position.AbsoluteVector, 1);
                 Vector3 nearWorldPoint = World.Viewport.Unproject (
-                                             source: nearScreenPoint,
-                                             projection: World.Camera.ProjectionMatrix,
-                                             view: World.Camera.ViewMatrix,
-                                             world: Matrix.Identity
-                                         );
+                    source: nearScreenPoint,
+                    projection: World.Camera.ProjectionMatrix,
+                    view: World.Camera.ViewMatrix,
+                    world: Matrix.Identity
+                );
                 Vector3 farWorldPoint = World.Viewport.Unproject (
-                                            source: farScreenPoint,
-                                            projection: World.Camera.ProjectionMatrix,
-                                            view: World.Camera.ViewMatrix,
-                                            world: Matrix.Identity
-                                        );
+                    source: farScreenPoint,
+                    projection: World.Camera.ProjectionMatrix,
+                    view: World.Camera.ViewMatrix,
+                    world: Matrix.Identity
+                );
 
                 Vector3 direction = farWorldPoint - nearWorldPoint;
 
@@ -324,17 +340,17 @@ namespace Knot3.Framework.Core
             }
             else {
                 Vector3 screenLocation = World.Viewport.Project (
-                                             source: nearTo,
-                                             projection: World.Camera.ProjectionMatrix,
-                                             view: World.Camera.ViewMatrix,
-                                             world: World.Camera.WorldMatrix
-                                         );
+                    source: nearTo,
+                    projection: World.Camera.ProjectionMatrix,
+                    view: World.Camera.ViewMatrix,
+                    world: World.Camera.WorldMatrix
+                );
                 Vector3 currentMousePosition = World.Viewport.Unproject (
-                                                   source: new Vector3 (position.AbsoluteVector, screenLocation.Z),
-                                                   projection: World.Camera.ProjectionMatrix,
-                                                   view: World.Camera.ViewMatrix,
-                                                   world: Matrix.Identity
-                                               );
+                    source: new Vector3 (position.AbsoluteVector, screenLocation.Z),
+                    projection: World.Camera.ProjectionMatrix,
+                    view: World.Camera.ViewMatrix,
+                    world: Matrix.Identity
+                );
                 return currentMousePosition;
             }
         }
@@ -342,11 +358,11 @@ namespace Knot3.Framework.Core
         public Vector2 To2D (Vector3 position)
         {
             Vector3 screenLocation = World.Viewport.Project (
-                                         source: position,
-                                         projection: World.Camera.ProjectionMatrix,
-                                         view: World.Camera.ViewMatrix,
-                                         world: World.Camera.WorldMatrix
-                                     );
+                source: position,
+                projection: World.Camera.ProjectionMatrix,
+                view: World.Camera.ViewMatrix,
+                world: World.Camera.WorldMatrix
+            );
             return new Vector2 (screenLocation.X, screenLocation.Y);
         }
     }

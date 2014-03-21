@@ -81,6 +81,16 @@ namespace Knot3.Game.Screens
             );
             settingsMenu.Add (showArrows);
 
+            // fullscreen
+            BooleanOption sunOption = new BooleanOption ("video", "show-sun", false, Config.Default);
+            CheckBoxItem showSun = new CheckBoxItem (
+                screen: this,
+                drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
+                text: "Show Sun",
+                option: sunOption
+                );
+            settingsMenu.Add (showSun);
+
             CheckBoxItem selectiveRender = new CheckBoxItem (
                 screen: this,
                 drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
@@ -186,14 +196,14 @@ namespace Knot3.Game.Screens
             renderEffectItem.AddEntries (renderEffectOption);
             settingsMenu.Add (renderEffectItem);
 
-            //fullscreen
+            // fullscreen
             BooleanOption fullscreenOption = new BooleanOption ("video", "fullscreen", false, Config.Default);
             CheckBoxItem fullscreen = new CheckBoxItem (
                 screen: this,
                 drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
                 text: "Fullscreen",
                 option: fullscreenOption
-            );
+                );
             fullscreen.OnValueChanged += () => Game.IsFullScreen = fullscreenOption.Value;
             settingsMenu.Add (fullscreen);
 
