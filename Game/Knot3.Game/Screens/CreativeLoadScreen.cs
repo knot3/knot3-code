@@ -84,19 +84,20 @@ namespace Knot3.Game.Screens
         : base (game)
         {
             savegameMenu = new Menu (this, DisplayLayer.ScreenUI + DisplayLayer.Menu);
-            savegameMenu.Bounds.Position = new ScreenPoint (this, 0.100f, 0.180f);
-            savegameMenu.Bounds.Size = new ScreenPoint (this, 0.300f, 0.620f);
+            savegameMenu.Bounds.Position = ScreenContentBounds.Position;
+            savegameMenu.Bounds.Size = new ScreenPoint (this, 0.300f, ScreenContentBounds.Size.Relative.Y);
             savegameMenu.Bounds.Padding = new ScreenPoint (this, 0.010f, 0.010f);
             savegameMenu.ItemAlignX = HorizontalAlignment.Left;
             savegameMenu.ItemAlignY = VerticalAlignment.Center;
             savegameMenu.ItemBackgroundColor = Design.ComboBoxItemBackgroundColorFunc;
             savegameMenu.ItemForegroundColor = Design.ComboBoxItemForegroundColorFunc;
+            savegameMenu.RelativeItemHeight = Design.DataItemHeight;
 
-            lines.AddPoints (.000f, .050f, .030f, .970f, .630f, .895f, .730f, .970f, .770f, .895f, .870f, .970f, .970f, .050f, 1.000f);
+            lines.AddPoints (.000f, .050f, .030f, .970f, .620f, .895f, .740f, .970f, .760f, .895f, .880f, .970f, .970f, .050f, 1.000f);
 
             title = new TextItem (screen: this, drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem, text: "Load Knot");
-            title.Bounds.Position = new ScreenPoint (this, 0.100f, 0.050f);
-            title.Bounds.Size = new ScreenPoint (this, 0.900f, 0.050f);
+            title.Bounds.Position = ScreenTitleBounds.Position;
+            title.Bounds.Size = new ScreenPoint (this, ScreenTitleBounds.Size.Relative.X, 0.050f);
             title.ForegroundColorFunc = (s) => Color.White;
 
             infoTitle = new TextItem (screen: this, drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem, text: "Knot Info:");

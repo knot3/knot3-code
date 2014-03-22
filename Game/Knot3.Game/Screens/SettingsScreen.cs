@@ -85,8 +85,8 @@ namespace Knot3.Game.Screens
             spriteBatch = new SpriteBatch (GraphicsDevice);
 
             navigationMenu = new Menu (this, DisplayLayer.ScreenUI + DisplayLayer.Menu);
-            navigationMenu.Bounds.Position = new ScreenPoint (this, 0.075f, 0.180f);
-            navigationMenu.Bounds.Size = new ScreenPoint (this, 0.200f, 0.770f);
+            navigationMenu.Bounds.Position = ScreenContentBounds.Position;
+            navigationMenu.Bounds.Size = new ScreenPoint (this, 0.200f, ScreenContentBounds.Size.Relative.Y);
             navigationMenu.Bounds.Padding = new ScreenPoint (this, 0.010f, 0.010f);
             navigationMenu.ItemAlignX = HorizontalAlignment.Left;
             navigationMenu.ItemAlignY = VerticalAlignment.Center;
@@ -163,11 +163,12 @@ namespace Knot3.Game.Screens
 
             // this menu contains the actual settings and is filled in the subclasses
             settingsMenu = new Menu (this, DisplayLayer.ScreenUI + DisplayLayer.Menu);
-            settingsMenu.Bounds.Position = new ScreenPoint (this, 0.300f, 0.180f);
-            settingsMenu.Bounds.Size = new ScreenPoint (this, 0.625f, 0.720f);
+            settingsMenu.Bounds.Position = ScreenContentBounds.Position + navigationMenu.Bounds.Size.OnlyX;
+            settingsMenu.Bounds.Size = ScreenContentBounds.Size - navigationMenu.Bounds.Size.OnlyX;;
             settingsMenu.Bounds.Padding = new ScreenPoint (this, 0.010f, 0.010f);
             settingsMenu.ItemAlignX = HorizontalAlignment.Left;
             settingsMenu.ItemAlignY = VerticalAlignment.Center;
+            settingsMenu.RelativeItemHeight = Design.DataItemHeight;
         }
 
         /// <summary>
@@ -194,7 +195,7 @@ namespace Knot3.Game.Screens
                 font: Design.MenuFont (this),
                 text: (MenuName + " Settings").Localize (),
                 color: Design.WidgetForeground,
-                bounds: new Bounds (this, 0.075f, 0.075f, 0.900f, 0.050f),
+                bounds: ScreenTitleBounds,
                 alignX: HorizontalAlignment.Left,
                 alignY: VerticalAlignment.Center
             );

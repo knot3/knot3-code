@@ -101,7 +101,7 @@ namespace Knot3.Framework.Widgets
         public Menu (IScreen screen, DisplayLayer drawOrder)
         : base (screen, drawOrder)
         {
-            RelativeItemHeight = 0.040f;
+            RelativeItemHeight = Design.NavigationItemHeight;
             spriteBatch = new SpriteBatch (screen.GraphicsDevice);
 
             ItemBackgroundColor = Design.MenuItemBackgroundColorFunc;

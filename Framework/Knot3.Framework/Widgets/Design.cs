@@ -84,5 +84,7 @@ namespace Knot3.Framework.Widgets
         public static Func<WidgetState, Color> MenuItemForegroundColorFunc;
         public static Func<WidgetState, Color> ComboBoxItemBackgroundColorFunc;
         public static Func<WidgetState, Color> ComboBoxItemForegroundColorFunc;
+        public static float NavigationItemHeight;
+        public static float DataItemHeight;
     }
 }
