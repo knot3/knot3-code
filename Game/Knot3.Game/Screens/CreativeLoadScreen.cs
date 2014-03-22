@@ -97,7 +97,7 @@ namespace Knot3.Game.Screens
 
             title = new TextItem (screen: this, drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem, text: "Load Knot");
             title.Bounds.Position = ScreenTitleBounds.Position;
-            title.Bounds.Size = new ScreenPoint (this, ScreenTitleBounds.Size.Relative.X, 0.050f);
+            title.Bounds.Size = ScreenTitleBounds.Size;
             title.ForegroundColorFunc = (s) => Color.White;
 
             infoTitle = new TextItem (screen: this, drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem, text: "Knot Info:");

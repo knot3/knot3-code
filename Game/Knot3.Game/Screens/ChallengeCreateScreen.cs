@@ -27,22 +27,18 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
-
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
-
 using Knot3.Framework.Core;
 using Knot3.Framework.Math;
 using Knot3.Framework.Platform;
 using Knot3.Framework.Storage;
 using Knot3.Framework.Utilities;
 using Knot3.Framework.Widgets;
-
 using Knot3.Game.Data;
 using Knot3.Game.Utilities;
 
@@ -81,19 +77,19 @@ namespace Knot3.Game.Screens
         : base (game)
         {
             startKnotMenu = new Menu (this, DisplayLayer.ScreenUI + DisplayLayer.Menu);
-            startKnotMenu.Bounds.Position = new ScreenPoint (this, 0.100f, 0.180f);
-            startKnotMenu.Bounds.Size = new ScreenPoint (this, 0.375f, 0.620f);
+            startKnotMenu.Bounds = ScreenContentBounds.FromLeft (0.47f).FromTop(0.98f);
             startKnotMenu.ItemBackgroundColor = Design.ComboBoxItemBackgroundColorFunc;
             startKnotMenu.ItemForegroundColor = Design.ComboBoxItemForegroundColorFunc;
+            startKnotMenu.RelativeItemHeight = Design.DataItemHeight;
 
             targetKnotMenu = new Menu (this, DisplayLayer.ScreenUI + DisplayLayer.Menu);
-            targetKnotMenu.Bounds.Position = new ScreenPoint (this, 0.525f, 0.180f);
-            targetKnotMenu.Bounds.Size = new ScreenPoint (this, 0.375f, 0.620f);
+            targetKnotMenu.Bounds = ScreenContentBounds.FromRight (0.47f).FromTop(0.98f);
             targetKnotMenu.ItemBackgroundColor = Design.ComboBoxItemBackgroundColorFunc;
             targetKnotMenu.ItemForegroundColor = Design.ComboBoxItemForegroundColorFunc;
+            targetKnotMenu.RelativeItemHeight = Design.DataItemHeight;
 
             challengeName = new InputItem (this, DisplayLayer.ScreenUI + DisplayLayer.MenuItem, "Name:", String.Empty);
-            challengeName.Bounds.Position = new ScreenPoint (this, 0.100f, 0.860f);
+            challengeName.Bounds.Position = ScreenContentBounds.Position + ScreenContentBounds.Size.OnlyY + new ScreenPoint (this, 0f, 0.050f);
             challengeName.Bounds.Size = new ScreenPoint (this, 0.375f, 0.040f);
             challengeName.OnValueChanged += () => TryConstructChallenge ();
             challengeName.NameWidth = 0.2f;
@@ -105,7 +101,7 @@ namespace Knot3.Game.Screens
                 name: "Create!",
                 onClick: OnCreateChallenge
             );
-            createButton.Bounds.Position = new ScreenPoint (this, 0.525f, 0.8525f);
+            createButton.Bounds.Position = ScreenContentBounds.Position + ScreenContentBounds.FromLeft(0.50f).Size + new ScreenPoint (this, 0f, 0.050f);
             createButton.Bounds.Size = new ScreenPoint (this, 0.125f, 0.050f);
 
             createButtonBorder = new Border (this, DisplayLayer.ScreenUI + DisplayLayer.MenuItem, createButton, 4, 4);
@@ -115,17 +111,11 @@ namespace Knot3.Game.Screens
             startKnotMenu.ItemAlignX = targetKnotMenu.ItemAlignX = HorizontalAlignment.Left;
             startKnotMenu.ItemAlignY = targetKnotMenu.ItemAlignY = VerticalAlignment.Center;
 
-            lines.AddPoints (.000f, .050f,
-                             .030f, .970f,
-                             .770f, .895f,
-                             .870f, .970f,
-                             .970f, .050f,
-                             1.000f
-                            );
+            lines.AddPoints (.000f, .050f, .030f, .970f, .760f, .895f, .880f, .970f, .970f, .050f, 1.000f);
 
             title = new TextItem (screen: this, drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem, text: "Create Challenge");
-            title.Bounds.Position = new ScreenPoint (this, 0.100f, 0.050f);
-            title.Bounds.Size = new ScreenPoint (this, 0.900f, 0.050f);
+            title.Bounds.Position = ScreenTitleBounds.Position;
+            title.Bounds.Size = ScreenTitleBounds.Size;
             title.ForegroundColorFunc = (s) => Color.White;
 
             // Erstelle einen Parser für das Dateiformat
@@ -190,8 +180,8 @@ namespace Knot3.Game.Screens
                 name: name,
                 onClick: SelectTargetKnot
             );
-            buttonStart.IsSelectable=true;
-            buttonTarget.IsSelectable=true;
+            buttonStart.IsSelectable = true;
+            buttonTarget.IsSelectable = true;
             buttonStart.IsLocalized = false;
             buttonTarget.IsLocalized = false;
 
@@ -207,9 +197,9 @@ namespace Knot3.Game.Screens
         {
             get {
                 return selectedStartKnot != null && selectedTargetKnot != null
-                       && selectedStartKnot.MetaData.Filename != selectedTargetKnot.MetaData.Filename
-                       && challengeName.InputText.Length > 0
-                       && !selectedStartKnot.Equals (selectedTargetKnot);
+                    && selectedStartKnot.MetaData.Filename != selectedTargetKnot.MetaData.Filename
+                    && challengeName.InputText.Length > 0
+                    && !selectedStartKnot.Equals (selectedTargetKnot);
             }
         }
 
@@ -258,13 +248,13 @@ namespace Knot3.Game.Screens
                         screen: this,
                         drawOrder: DisplayLayer.Dialog,
                         title: "Warning",
-                        text:"Do you want to overwrite the existing challenge?"
+                        text: "Do you want to overwrite the existing challenge?"
                     );
                     confirm.Submit += (r) => {
                         selectedChallenge.Save (true);
                         NextScreen = new ChallengeStartScreen (Game);
                     };
-                    AddGameComponents (null,confirm);
+                    AddGameComponents (null, confirm);
                 }
             }
         }
