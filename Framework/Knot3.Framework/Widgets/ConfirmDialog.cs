@@ -107,7 +107,7 @@ namespace Knot3.Framework.Widgets
                 name: "Cancel",
                 onClick: cancelAction
             );
-            cancelButton.Bounds.Size = new ScreenPoint (screen, ContentBounds.Size.Relative.X / 2, 0.05f);
+            cancelButton.Bounds.Size = new ScreenPoint (screen, ()=>ContentBounds.Size.Relative.X / 2, ()=>0.05f);
             cancelButton.Bounds.Position = ContentBounds.Position + ContentBounds.Size.OnlyY
                                            - cancelButton.Bounds.Size.OnlyY;
             buttons.Add (cancelButton);
@@ -122,7 +122,7 @@ namespace Knot3.Framework.Widgets
                 name: "Confirm",
                 onClick: submitAction
             );
-            submitButton.Bounds.Size = new ScreenPoint (screen, ContentBounds.Size.Relative.X / 2, 0.05f);
+            submitButton.Bounds.Size = new ScreenPoint (screen, ()=>ContentBounds.Size.Relative.X / 2, ()=>0.05f);
             submitButton.Bounds.Position = ContentBounds.Position + ContentBounds.Size.OnlyY
                                            - submitButton.Bounds.Size.OnlyY + ContentBounds.Size.OnlyX / 2;
             buttons.Add (submitButton);
@@ -135,8 +135,11 @@ namespace Knot3.Framework.Widgets
         : this (screen, drawOrder, title)
         {
             // Die Textanzeige
-            TextItem displayText = new TextItem (Screen, Index + DisplayLayer.MenuItem, text);
-            menu.Add (displayText);
+            foreach (string line in text.Split('\n')) {
+                TextItem displayText = new TextItem (Screen, Index + DisplayLayer.MenuItem, line);
+                menu.Add (displayText);
+            }
+            menu.RelativeItemHeight = Design.DataItemHeight;
         }
 
         /// <summary>

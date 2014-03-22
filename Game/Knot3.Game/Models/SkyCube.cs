@@ -240,49 +240,6 @@ namespace Knot3.Game.Models
             if (Math.Abs (1f - (Distance / (World.Camera.FarPlane / 3.6f))) > 0.05f) {
                 Distance = World.Camera.FarPlane / 3.6f;
             }
-            if (Config.Default ["video", "blinking-stars", true]) {
-                UpdateStars (time);
-            }
-        }
-
-        private int k = 0;
-
-        private void UpdateStars (GameTime time)
-        {
-            if (k++ % 10 == 0) {
-                Profiler.ProfileDelegate ["Stars Blink"] = () => {
-                    int SkyTextureCacheSize = (int)Config.Default ["video", "blinking-stars-cachesize", 20f];
-                    float alphaCounter = k * 0.002f;
-                    int key = (int)(Math.Abs(alphaCounter / SkyTextureCacheSize));
-                    Console.WriteLine("key="+key);
-                    foreach (SkyTexture SkyTexture in SkyTextures) {
-                        Profiler.Values ["Stars Textures #"] = SkyTexture.TextureCache.Count;
-                        if (SkyTexture.TextureCache.ContainsKey (key)) {
-                            SkyTexture.Texture = SkyTexture.TextureCache [key];
-                        }
-                        else {
-                            for (int s = 0; s < SkyTexture.SmallStars.Length; ++s) {
-                                Star star = SkyTexture.SmallStars [s];
-                                int i = star.H * SkyTexture.Width + star.W;
-                                SkyTexture.Colors [i] = star.Color * (float)Math.Abs(Math.Sin (MathHelper.TwoPi * alphaCounter + star.AlphaDiff));
-                            }
-                            for (int s = 0; s < SkyTexture.BigStars.Length; ++s) {
-                                Star star = SkyTexture.BigStars [s];
-                                int i = star.H * SkyTexture.Width + star.W;
-                                Color color = star.Color * (float)Math.Abs(Math.Sin (MathHelper.TwoPi * alphaCounter + star.AlphaDiff));
-                                SkyTexture.Colors [i] = color;
-                                SkyTexture.Colors [i + 1] = color;
-                                SkyTexture.Colors [i - 1] = color;
-                                SkyTexture.Colors [i + SkyTexture.Width] = color;
-                                SkyTexture.Colors [i - SkyTexture.Width] = color;
-                            }
-                            Texture2D tex = new Texture2D (Screen.GraphicsDevice, SkyTexture.Width, SkyTexture.Height);
-                            tex.SetData (SkyTexture.Colors);
-                            SkyTexture.Texture = SkyTexture.TextureCache [key] = tex;
-                        }
-                    }
-                };
-            }
         }
 
         [ExcludeFromCodeCoverageAttribute]
@@ -342,7 +299,6 @@ namespace Knot3.Game.Models
         private class SkyTexture
         {
             public Texture2D Texture;
-            public Dictionary<int, Texture2D> TextureCache = new Dictionary<int, Texture2D> ();
             public Color[] Colors;
             public Star[] BigStars;
             public Star[] SmallStars;

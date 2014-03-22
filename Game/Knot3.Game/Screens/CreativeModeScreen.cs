@@ -157,7 +157,7 @@ namespace Knot3.Game.Screens
             Knot = knot;
 
             // Hintergrund
-            SkyCube skyCube = new SkyCube (screen: this, position: Vector3.Zero, distance: 5000);
+            Sky skyCube = new Sky (screen: this, position: Vector3.Zero);
             world.Add (skyCube);
 
             // Sonne

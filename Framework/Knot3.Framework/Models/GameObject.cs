@@ -27,12 +27,9 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
-
 using System;
 using System.Diagnostics.CodeAnalysis;
-
 using Microsoft.Xna.Framework;
-
 using Knot3.Framework.Core;
 using Knot3.Framework.Math;
 
@@ -88,13 +85,15 @@ namespace Knot3.Framework.Models
         {
             get { return _world; }
             set {
-                if (_world != null) {
-                    _world.Camera.OnViewChanged -= OnViewChanged;
-                }
-                _world = value;
-                if (value != null) {
-                    _world.Camera.OnViewChanged += OnViewChanged;
-                    OnViewChanged ();
+                if (_world != value) {
+                    if (_world != null) {
+                        _world.Camera.OnViewChanged -= OnViewChanged;
+                    }
+                    _world = value;
+                    if (value != null) {
+                        _world.Camera.OnViewChanged += OnViewChanged;
+                        OnViewChanged ();
+                    }
                 }
             }
         }
@@ -129,7 +128,7 @@ namespace Knot3.Framework.Models
 
         public string UniqueKey { get; protected set; }
 
-        public string GameObjectCategory  {get; protected set; }
+        public string GameObjectCategory  { get; protected set; }
 
         public GameObject (Vector3 position = default (Vector3), Angles3 rotation = default (Angles3), Vector3 scale = default (Vector3),
                            bool isVisible = true, bool isSelectable = false, bool isMovable = false)
@@ -214,9 +213,8 @@ namespace Knot3.Framework.Models
         [ExcludeFromCodeCoverageAttribute]
         public override int GetHashCode ()
         {
-            return (UniqueKey+Position).GetHashCode ();
+            return (UniqueKey + Position).GetHashCode ();
         }
-
         /*
         public static bool operator == (GameObject o1, GameObject o2)
         {
@@ -230,7 +228,6 @@ namespace Knot3.Framework.Models
         {
             return !(o1 == o2);
         }*/
-
         private Vector3 _scale;
         private Angles3 _rotation;
         private Vector3 _position;
@@ -245,8 +242,8 @@ namespace Knot3.Framework.Models
             if (Scale != _scale || Rotation != _rotation || Position != _position) {
                 // world matrix
                 _worldMatrix = Matrix.CreateScale (Scale)
-                               * Matrix.CreateFromYawPitchRoll (Rotation.Y, Rotation.X, Rotation.Z)
-                               * Matrix.CreateTranslation (Position);
+                    * Matrix.CreateFromYawPitchRoll (Rotation.Y, Rotation.X, Rotation.Z)
+                    * Matrix.CreateTranslation (Position);
                 _worldMatrixInverseTranspose = Matrix.Transpose (Matrix.Invert (_worldMatrix));
 
                 // attrs

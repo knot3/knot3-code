@@ -27,15 +27,12 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
-
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-
 using Knot3.Framework.Core;
 using Knot3.Framework.Effects;
 using Knot3.Framework.Math;
@@ -44,6 +41,8 @@ using Knot3.Framework.Primitives;
 using Knot3.Framework.Storage;
 using Knot3.Framework.Utilities;
 using Knot3.Framework.Widgets;
+using Knot3.Framework.Platform;
+using Knot3.Game.Core;
 
 namespace Knot3.Game.Screens
 {
@@ -76,7 +75,10 @@ namespace Knot3.Game.Screens
                 drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
                 text: "Blinking Stars",
                 option: blinkingStarsOption
-                );
+            );
+            blinkingStars.OnValueChanged += () => {
+                (game as Knot3Game).NotAvailableOnXNA ();
+            };
             settingsMenu.Add (blinkingStars);
 
             // show sun
@@ -86,7 +88,7 @@ namespace Knot3.Game.Screens
                 drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
                 text: "Show Sun",
                 option: sunOption
-                );
+            );
             settingsMenu.Add (showSun);
 
             // day cycle
@@ -96,15 +98,15 @@ namespace Knot3.Game.Screens
             FloatOption dayCycleOption = new FloatOption (
                 section: "video",
                 name: "day-cycle-seconds",
-                defaultValue: validDayCycles[0],
+                defaultValue: validDayCycles [0],
                 validValues: validDayCycles,
                 configFile: Config.Default
-                );
+            );
             ComboBox dayCycleItem = new ComboBox (
                 screen: this,
                 drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
                 text: "Day cycle in seconds"
-                );
+            );
             dayCycleItem.AddEntries (dayCycleOption);
             settingsMenu.Add (dayCycleItem);
 
@@ -137,8 +139,8 @@ namespace Knot3.Game.Screens
 
             // Resolutions
             string currentResolution = GraphicsManager.GraphicsDevice.DisplayMode.Width.ToString ()
-                                       + "x"
-                                       + GraphicsManager.GraphicsDevice.DisplayMode.Height.ToString ();
+                + "x"
+                + GraphicsManager.GraphicsDevice.DisplayMode.Height.ToString ();
 
             DisplayModeCollection modes = GraphicsAdapter.DefaultAdapter.SupportedDisplayModes;
             HashSet<string> reso = new HashSet<string> ();
@@ -189,7 +191,7 @@ namespace Knot3.Game.Screens
                 drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
                 text: "Fullscreen",
                 option: fullscreenOption
-                );
+            );
             fullscreen.OnValueChanged += () => Game.IsFullScreen = fullscreenOption.Value;
             settingsMenu.Add (fullscreen);
 

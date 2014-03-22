@@ -27,26 +27,25 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
-
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
-
 using Knot3.Framework.Core;
 using Knot3.Framework.Effects;
 using Knot3.Framework.Input;
 using Knot3.Framework.Platform;
 using Knot3.Framework.Screens;
 using Knot3.Framework.Storage;
-
 using Knot3.Game.Audio;
 using Knot3.Game.Effects;
 using Knot3.Game.Input;
 using Knot3.Game.Screens;
 using Knot3.Game.Widgets;
+using Knot3.Framework.Widgets;
+using System.Diagnostics;
+using Knot3.Framework.Math;
 
 namespace Knot3.Game.Core
 {
@@ -92,11 +91,11 @@ namespace Knot3.Game.Core
 
             // effects
             RenderEffectLibrary.EffectLibrary.Add (new RenderEffectLibrary.EffectFactory (
-                    name: "celshader",
-                    displayName: "Cel Shading (XNA)",
-                    createInstance: (screen) => new CelShadingEffect (screen)
-                                                   )
-                                                  );
+                name: "celshader",
+                displayName: "Cel Shading (XNA)",
+                createInstance: (screen) => new CelShadingEffect (screen)
+            )
+            );
             /*
             RenderEffectLibrary.EffectLibrary.Add (new RenderEffectLibrary.EffectFactory (
                     name: "opaque",
@@ -140,6 +139,26 @@ namespace Knot3.Game.Core
         protected override void UnloadContent ()
         {
             base.UnloadContent ();
+        }
+
+        public void NotAvailableOnXNA ()
+        {
+            if (!SystemInfo.IsRunningOnMonogame () || true) {
+                ConfirmDialog confirm = new ConfirmDialog (
+                    screen: Screens.Peek (),
+                    drawOrder: DisplayLayer.Dialog,
+                    title: "Old Runtime Environment",
+                    text: "This feature is not available in the XNA version of this game.\nDo you want to download the MonoGame version?"
+                );
+                confirm.Bounds.Size = new ScreenPoint (Screens.Peek (), 0.800f, 0.400f);
+                confirm.Cancel += (l) => {
+                };
+                confirm.Submit += (r) => {
+                    Process.Start ("https://github.com/pse-knot/knot3-code/releases");
+                    Exit ();
+                };
+                Screens.Peek ().AddGameComponents (null, confirm);
+            }
         }
     }
 }

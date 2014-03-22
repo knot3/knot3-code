@@ -82,10 +82,13 @@
     <Compile Include="Knot3.Game\Input\Knot3PlayerAction.cs" />
     <Compile Include="Knot3.Game\Input\KnotInputHandler.cs" />
     <Compile Include="Knot3.Game\Models\Arrow.cs" />
+    <Compile Include="Knot3.Game\Models\Grid.cs" />
+    <Compile Include="Knot3.Game\Models\InstancedSky.cs" />
     <Compile Include="Knot3.Game\Models\Junction.cs" />
     <Compile Include="Knot3.Game\Models\KnotRenderer.cs" />
     <Compile Include="Knot3.Game\Models\Pipe.cs" />
     <Compile Include="Knot3.Game\Models\RectangleModel.cs" />
+    <Compile Include="Knot3.Game\Models\Sky-MG.cs" />
     <Compile Include="Knot3.Game\Models\SkyCube.cs" />
     <Compile Include="Knot3.Game\Program.cs" />
     <Compile Include="Knot3.Game\Screens\AudioSettingsScreen.cs" />
@@ -116,7 +119,6 @@
     <Compile Include="Knot3.Game\Widgets\ProjectorDesign.cs" />
     <Compile Include="Knot3.Game\Widgets\TextInputDialog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Knot3.Game\Models\Grid.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

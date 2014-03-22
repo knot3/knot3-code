@@ -83,6 +83,7 @@
     <Compile Include="Knot3.Framework\Input\InputManager.cs" />
     <Compile Include="Knot3.Framework\Input\KeyBindingListener.cs" />
     <Compile Include="Knot3.Framework\Input\KeyEvent.cs" />
+    <Compile Include="Knot3.Framework\Input\ModelMouseHandler.cs" />
     <Compile Include="Knot3.Framework\Input\MousePointer.cs" />
     <Compile Include="Knot3.Framework\Input\PlayerAction.cs" />
     <Compile Include="Knot3.Framework\Input\WidgetKeyHandler.cs" />
@@ -103,6 +104,7 @@
     <Compile Include="Knot3.Framework\Models\IGameObject.cs" />
     <Compile Include="Knot3.Framework\Models\ITexturedObject.cs" />
     <Compile Include="Knot3.Framework\Models\ModelColoring.cs" />
+    <Compile Include="Knot3.Framework\Models\Sun.cs" />
     <Compile Include="Knot3.Framework\Platform\ContentLoader-XNA.cs" />
     <Compile Include="Knot3.Framework\Platform\ContentLoader.cs" />
     <Compile Include="Knot3.Framework\Platform\Dependencies.cs" />
@@ -138,12 +140,12 @@
     <Compile Include="Knot3.Framework\Utilities\VectorHelper.cs" />
     <Compile Include="Knot3.Framework\Widgets\Border.cs" />
     <Compile Include="Knot3.Framework\Widgets\Button.cs" />
-    <Compile Include="Knot3.Framework\Widgets\CheckBoxItem.cs" />
+    <Compile Include="Knot3.Framework\Widgets\CheckBox.cs" />
+    <Compile Include="Knot3.Framework\Widgets\ComboBox.cs" />
     <Compile Include="Knot3.Framework\Widgets\ConfirmDialog.cs" />
     <Compile Include="Knot3.Framework\Widgets\Container.cs" />
     <Compile Include="Knot3.Framework\Widgets\Design.cs" />
     <Compile Include="Knot3.Framework\Widgets\Dialog.cs" />
-    <Compile Include="Knot3.Framework\Widgets\DropDownMenuItem.cs" />
     <Compile Include="Knot3.Framework\Widgets\ErrorDialog.cs" />
     <Compile Include="Knot3.Framework\Widgets\HorizontalAlignment.cs" />
     <Compile Include="Knot3.Framework\Widgets\IDesign.cs" />
