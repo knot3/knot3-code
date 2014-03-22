@@ -169,6 +169,17 @@ namespace Knot3.Game.Screens
             supersamplesItem.AddEntries (supersamplesOption);
             settingsMenu.Add (supersamplesItem);
 
+            // fullscreen
+            BooleanOption fullscreenOption = new BooleanOption ("video", "fullscreen", false, Config.Default);
+            CheckBoxItem fullscreen = new CheckBoxItem (
+                screen: this,
+                drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
+                text: "Fullscreen",
+                option: fullscreenOption
+                );
+            fullscreen.OnValueChanged += () => Game.IsFullScreen = fullscreenOption.Value;
+            settingsMenu.Add (fullscreen);
+
             // Model quality
             SliderItem sliderModelQuality = new SliderItem (
                 screen: this,
@@ -202,17 +213,6 @@ namespace Knot3.Game.Screens
             };
             renderEffectItem.AddEntries (renderEffectOption);
             settingsMenu.Add (renderEffectItem);
-
-            // fullscreen
-            BooleanOption fullscreenOption = new BooleanOption ("video", "fullscreen", false, Config.Default);
-            CheckBoxItem fullscreen = new CheckBoxItem (
-                screen: this,
-                drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
-                text: "Fullscreen",
-                option: fullscreenOption
-                );
-            fullscreen.OnValueChanged += () => Game.IsFullScreen = fullscreenOption.Value;
-            settingsMenu.Add (fullscreen);
         }
 
         /// <summary>
