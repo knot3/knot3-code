@@ -68,6 +68,11 @@ namespace Knot3.Game.Screens
         private Menu navigationMenu;
 
         /// <summary>
+        /// Das vertikale Menü wo die Einstellungen anzeigt. Hier nimmt der Spieler Einstellungen vor.
+        /// </summary>
+        protected Menu settingsMenu;
+
+        /// <summary>
         /// Zurück-Button.
         /// </summary>
         private MenuEntry backButton;
@@ -80,8 +85,8 @@ namespace Knot3.Game.Screens
             spriteBatch = new SpriteBatch (GraphicsDevice);
 
             navigationMenu = new Menu (this, DisplayLayer.ScreenUI + DisplayLayer.Menu);
-            navigationMenu.Bounds.Position = new ScreenPoint (this, 0.100f, 0.180f);
-            navigationMenu.Bounds.Size = new ScreenPoint (this, 0.300f, 0.770f);
+            navigationMenu.Bounds.Position = new ScreenPoint (this, 0.075f, 0.180f);
+            navigationMenu.Bounds.Size = new ScreenPoint (this, 0.200f, 0.770f);
             navigationMenu.Bounds.Padding = new ScreenPoint (this, 0.010f, 0.010f);
             navigationMenu.ItemAlignX = HorizontalAlignment.Left;
             navigationMenu.ItemAlignY = VerticalAlignment.Center;
@@ -140,8 +145,8 @@ namespace Knot3.Game.Screens
 
             lines.AddPoints (0.000f, 0.050f,
                              0.030f, 0.970f,
-                             0.770f, 0.895f,
-                             0.870f, 0.970f,
+                             0.760f, 0.895f,
+                             0.880f, 0.970f,
                              0.970f, 0.050f,
                              1.000f
                             );
@@ -155,6 +160,15 @@ namespace Knot3.Game.Screens
             backButton.AddKey (Keys.Escape);
             backButton.SetCoordinates (left: 0.770f, top: 0.910f, right: 0.870f, bottom: 0.960f);
             backButton.AlignX = HorizontalAlignment.Center;
+
+            
+
+            settingsMenu = new Menu (this, DisplayLayer.ScreenUI + DisplayLayer.Menu);
+            settingsMenu.Bounds.Position = new ScreenPoint (this, 0.300f, 0.180f);
+            settingsMenu.Bounds.Size = new ScreenPoint (this, 0.625f, 0.720f);
+            settingsMenu.Bounds.Padding = new ScreenPoint (this, 0.010f, 0.010f);
+            settingsMenu.ItemAlignX = HorizontalAlignment.Left;
+            settingsMenu.ItemAlignY = VerticalAlignment.Center;
         }
 
         /// <summary>
@@ -175,7 +189,7 @@ namespace Knot3.Game.Screens
                 font: Design.MenuFont (this),
                 text: MenuName.Localize (),
                 color: Design.WidgetForeground,
-                bounds: new Bounds (this, 0.050f, 0.050f, 0.900f, 0.050f),
+                bounds: new Bounds (this, 0.075f, 0.075f, 0.900f, 0.050f),
                 alignX: HorizontalAlignment.Left,
                 alignY: VerticalAlignment.Center
             );
