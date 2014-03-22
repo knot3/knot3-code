@@ -34,8 +34,9 @@ namespace Knot3.Framework.Models
         {
             Position = World.Camera.SunPosition;
             Scale = Vector3.One * MathHelper.Clamp((int)(World.Camera.SunPosition.Length() / 25f), 1000f, 10000f);
-            if (j % 100 == 0) {
+            if (j % 60 == 0) {
                 IsVisible = Config.Default ["video", "show-sun", true] && !Config.Default ["debug", "projector-mode", false];
+                World.Redraw = true;
             }
             ++j;
             base.Update (gameTime);

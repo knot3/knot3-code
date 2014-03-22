@@ -86,13 +86,13 @@ namespace Knot3.Game.Screens
             navigationMenu.ItemAlignX = HorizontalAlignment.Left;
             navigationMenu.ItemAlignY = VerticalAlignment.Center;
 
-            MenuEntry debugButton = new MenuEntry (
+            MenuEntry profileButton = new MenuEntry (
                 screen: this,
                 drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
-                name: "Debug",
-            onClick: (time) =>  {
+                name: "Profile",
+                onClick: (time) => {
                 game.SkipNextScreenEffect =true;
-                NextScreen = new DebugSettingsScreen (Game);
+                NextScreen = new ProfileSettingsScreen (Game);
             }
             );
             MenuEntry graphicsButton = new MenuEntry (
@@ -122,21 +122,21 @@ namespace Knot3.Game.Screens
                 NextScreen = new ControlSettingsScreen (Game);
             }
             );
-            MenuEntry profileButton = new MenuEntry (
+            MenuEntry debugButton = new MenuEntry (
                 screen: this,
                 drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
-                name: "Profile",
-            onClick: (time) => {
+                name: "Debug",
+                onClick: (time) =>  {
                 game.SkipNextScreenEffect =true;
-                NextScreen = new ProfileSettingsScreen (Game);
+                NextScreen = new DebugSettingsScreen (Game);
             }
             );
-
-            navigationMenu.Add (debugButton);
+            
+            navigationMenu.Add (profileButton);
             navigationMenu.Add (graphicsButton);
             navigationMenu.Add (audioButton);
             navigationMenu.Add (controlsButton);
-            navigationMenu.Add (profileButton);
+            navigationMenu.Add (debugButton);
 
             lines.AddPoints (0.000f, 0.050f,
                              0.030f, 0.970f,

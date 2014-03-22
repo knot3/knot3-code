@@ -81,7 +81,7 @@ namespace Knot3.Game.Screens
             );
             settingsMenu.Add (showArrows);
 
-            // fullscreen
+            // show sun
             BooleanOption sunOption = new BooleanOption ("video", "show-sun", false, Config.Default);
             CheckBoxItem showSun = new CheckBoxItem (
                 screen: this,
@@ -90,6 +90,25 @@ namespace Knot3.Game.Screens
                 option: sunOption
                 );
             settingsMenu.Add (showSun);
+
+            // day cycle
+            float[] validDayCycles = {
+                10, 20, 30, 60, 120, 300, 600, 900, 1200, 3600, 7200
+            };
+            FloatOption dayCycleOption = new FloatOption (
+                section: "video",
+                name: "day-cycle-seconds",
+                defaultValue: validDayCycles[0],
+                validValues: validDayCycles,
+                configFile: Config.Default
+                );
+            ComboBox dayCycleItem = new ComboBox (
+                screen: this,
+                drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
+                text: "Day cycle in seconds"
+                );
+            dayCycleItem.AddEntries (dayCycleOption);
+            settingsMenu.Add (dayCycleItem);
 
             CheckBoxItem selectiveRender = new CheckBoxItem (
                 screen: this,
@@ -135,7 +154,7 @@ namespace Knot3.Game.Screens
                 validValues: validResolutions,
                 configFile: Config.Default
             );
-            DropDownMenuItem resolutionItem = new DropDownMenuItem (
+            ComboBox resolutionItem = new ComboBox (
                 screen: this,
                 drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
                 text: "Resolution"
@@ -154,7 +173,7 @@ namespace Knot3.Game.Screens
                 validValues: validSupersamples,
                 configFile: Config.Default
             );
-            DropDownMenuItem supersamplesItem = new DropDownMenuItem (
+            ComboBox supersamplesItem = new ComboBox (
                 screen: this,
                 drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
                 text: "Supersamples"
@@ -185,7 +204,7 @@ namespace Knot3.Game.Screens
                 name: "knot-shader",
                 configFile: Config.Default
             );
-            DropDownMenuItem renderEffectItem = new DropDownMenuItem (
+            ComboBox renderEffectItem = new ComboBox (
                 screen: this,
                 drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
                 text: "Render Effect"
@@ -206,20 +225,6 @@ namespace Knot3.Game.Screens
                 );
             fullscreen.OnValueChanged += () => Game.IsFullScreen = fullscreenOption.Value;
             settingsMenu.Add (fullscreen);
-
-            // Languages
-            LanguageOption languageOption = new LanguageOption (
-                section: "language",
-                name: "current",
-                configFile: Config.Default
-            );
-            DropDownMenuItem languageItem = new DropDownMenuItem (
-                screen: this,
-                drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
-                text: "Language"
-            );
-            languageItem.AddEntries (languageOption);
-            settingsMenu.Add (languageItem);
         }
 
         /// <summary>

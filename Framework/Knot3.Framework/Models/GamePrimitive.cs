@@ -110,7 +110,7 @@ namespace Knot3.Framework.Models
 
         protected override void UpdateCategory ()
         {
-            base.UpdateCategory (category: Primitive.GetType ().Name);
+            base.UpdateCategory (category: Primitive != null ? Primitive.GetType ().Name : "?");
         }
 
         /// <summary>

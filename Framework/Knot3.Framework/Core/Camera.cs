@@ -138,7 +138,11 @@ namespace Knot3.Framework.Core
 
         public Vector3 LightDirection { get; private set; }
 
-        public int DayCycleMilliseconds { get; set; }
+        public float DayCycleSeconds
+        {
+            get { return Config.Default ["video", "day-cycle-seconds", 10]; }
+            set { Config.Default ["video", "day-cycle-seconds", 10] = value; }
+        }
 
         /// <summary>
         /// Erstellt eine neue Kamera in einem bestimmten IGameScreen für eine bestimmte Spielwelt.
@@ -155,8 +159,6 @@ namespace Knot3.Framework.Core
             FoV = 60;
             nearPlane = 0.5f;
             FarPlane = 15000.0f;
-
-            DayCycleMilliseconds = 10000;
 
             UpdateMatrices (null);
         }
@@ -221,10 +223,11 @@ namespace Knot3.Framework.Core
 
         private void UpdateSun (GameTime time)
         {
-            if (DayCycleMilliseconds > 0) {
-                Vector3 sunStartPosition = Vector3.Normalize (Vector3.Left + Vector3.Forward) * FarPlane / 4;
-                Vector3 sunNormal = Vector3.Cross (sunStartPosition, UpVector);
-                SunPosition = sunStartPosition.RotateAroundVector (axis: sunNormal, angleRadians: (float)(time.TotalGameTime.TotalMilliseconds / DayCycleMilliseconds));
+            if (DayCycleSeconds > 0) {
+                Vector3 sunStartPosition = Vector3.Up * 1000 + Vector3.Left * FarPlane / 4;
+                Vector3 sunNormal = Vector3.Up; //Vector3.Cross (sunStartPosition, UpVector);
+                SunPosition = sunStartPosition.RotateAroundVector (axis: sunNormal, angleRadians: (float)(time.TotalGameTime.TotalMilliseconds / (DayCycleSeconds * 1000f) * MathHelper.TwoPi));
+
             }
             LightDirection = Vector3.Normalize (-SunPosition);
         }

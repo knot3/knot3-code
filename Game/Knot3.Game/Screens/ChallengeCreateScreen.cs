@@ -83,10 +83,14 @@ namespace Knot3.Game.Screens
             startKnotMenu = new Menu (this, DisplayLayer.ScreenUI + DisplayLayer.Menu);
             startKnotMenu.Bounds.Position = new ScreenPoint (this, 0.100f, 0.180f);
             startKnotMenu.Bounds.Size = new ScreenPoint (this, 0.375f, 0.620f);
+            startKnotMenu.ItemBackgroundColor = Design.ComboBoxItemBackgroundColorFunc;
+            startKnotMenu.ItemForegroundColor = Design.ComboBoxItemForegroundColorFunc;
 
             targetKnotMenu = new Menu (this, DisplayLayer.ScreenUI + DisplayLayer.Menu);
             targetKnotMenu.Bounds.Position = new ScreenPoint (this, 0.525f, 0.180f);
             targetKnotMenu.Bounds.Size = new ScreenPoint (this, 0.375f, 0.620f);
+            targetKnotMenu.ItemBackgroundColor = Design.ComboBoxItemBackgroundColorFunc;
+            targetKnotMenu.ItemForegroundColor = Design.ComboBoxItemForegroundColorFunc;
 
             challengeName = new InputItem (this, DisplayLayer.ScreenUI + DisplayLayer.MenuItem, "Name:", String.Empty);
             challengeName.Bounds.Position = new ScreenPoint (this, 0.100f, 0.860f);

@@ -75,8 +75,21 @@ namespace Knot3.Game.Screens
             playerNameInput.OnValueSubmitted += () => {
                 Config.Default ["profile", "name", String.Empty] = playerNameInput.InputText;
             };
-
             settingsMenu.Add (playerNameInput);
+
+            // Languages
+            LanguageOption languageOption = new LanguageOption (
+                section: "language",
+                name: "current",
+                configFile: Config.Default
+                );
+            ComboBox languageItem = new ComboBox (
+                screen: this,
+                drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
+                text: "Language"
+                );
+            languageItem.AddEntries (languageOption);
+            settingsMenu.Add (languageItem);
         }
 
         /// <summary>

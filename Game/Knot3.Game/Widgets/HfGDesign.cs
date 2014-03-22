@@ -59,6 +59,8 @@ namespace Knot3.Game.Widgets
             Design.WidgetForegroundColorFunc = WidgetForegroundColor;
             Design.MenuItemBackgroundColorFunc = MenuItemBackgroundColor;
             Design.MenuItemForegroundColorFunc = MenuItemForegroundColor;
+            Design.ComboBoxItemBackgroundColorFunc = ComboBoxItemBackgroundColor;
+            Design.ComboBoxItemForegroundColorFunc = ComboBoxItemForegroundColor;
         }
 
         private static Color WidgetBackgroundColor (WidgetState state)
@@ -99,6 +101,30 @@ namespace Knot3.Game.Widgets
         }
 
         private Color MenuItemForegroundColor (WidgetState state)
+        {
+            if (state == WidgetState.Hovered) {
+                return Color.White;
+            }
+            else if (state == WidgetState.Selected) {
+                return Color.Black;
+            }
+            else {
+                return Color.White * 0.7f;
+            }
+        }
+
+        private Color ComboBoxItemBackgroundColor (WidgetState state)
+        {
+            if (state == WidgetState.Selected) {
+                return Color.White;
+            }
+            if (state == WidgetState.Hovered) {
+                return Color.Black.Mix(Color.White, 0.15f);
+            }
+            return Color.Transparent;
+        }
+
+        private Color ComboBoxItemForegroundColor (WidgetState state)
         {
             if (state == WidgetState.Hovered) {
                 return Color.White;

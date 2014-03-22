@@ -89,6 +89,8 @@ namespace Knot3.Game.Screens
             savegameMenu.Bounds.Padding = new ScreenPoint (this, 0.010f, 0.010f);
             savegameMenu.ItemAlignX = HorizontalAlignment.Left;
             savegameMenu.ItemAlignY = VerticalAlignment.Center;
+            savegameMenu.ItemBackgroundColor = Design.ComboBoxItemBackgroundColorFunc;
+            savegameMenu.ItemForegroundColor = Design.ComboBoxItemForegroundColorFunc;
 
             lines.AddPoints (.000f, .050f, .030f, .970f, .630f, .895f, .730f, .970f, .770f, .895f, .870f, .970f, .970f, .050f, 1.000f);
 

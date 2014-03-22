@@ -110,7 +110,7 @@ namespace Knot3.Game.Development
 
             string[] unprojectMethods = { "SelectedObject", "NearFarAverage" };
             DistinctOption unprojectOption = new DistinctOption ("debug", "unproject", unprojectMethods [0], unprojectMethods, Config.Default);
-            DropDownMenuItem unprojectItem = new DropDownMenuItem (
+            ComboBox unprojectItem = new ComboBox (
                 screen: this,
                 drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
                 text: "Unproject"

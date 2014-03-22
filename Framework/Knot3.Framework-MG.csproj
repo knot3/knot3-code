@@ -132,12 +132,10 @@
     <Compile Include="Knot3.Framework\Utilities\VectorHelper.cs" />
     <Compile Include="Knot3.Framework\Widgets\Border.cs" />
     <Compile Include="Knot3.Framework\Widgets\Button.cs" />
-    <Compile Include="Knot3.Framework\Widgets\CheckBoxItem.cs" />
     <Compile Include="Knot3.Framework\Widgets\ConfirmDialog.cs" />
     <Compile Include="Knot3.Framework\Widgets\Container.cs" />
     <Compile Include="Knot3.Framework\Widgets\Design.cs" />
     <Compile Include="Knot3.Framework\Widgets\Dialog.cs" />
-    <Compile Include="Knot3.Framework\Widgets\DropDownMenuItem.cs" />
     <Compile Include="Knot3.Framework\Widgets\ErrorDialog.cs" />
     <Compile Include="Knot3.Framework\Widgets\HorizontalAlignment.cs" />
     <Compile Include="Knot3.Framework\Widgets\IDesign.cs" />
@@ -153,6 +151,8 @@
     <Compile Include="Knot3.Framework\Widgets\Widget.cs" />
     <Compile Include="Knot3.Framework\Widgets\WidgetState.cs" />
     <Compile Include="Knot3.Framework\Models\Sun.cs" />
+    <Compile Include="Knot3.Framework\Widgets\ComboBox.cs" />
+    <Compile Include="Knot3.Framework\Widgets\CheckBox.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
