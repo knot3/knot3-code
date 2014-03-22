@@ -40,6 +40,7 @@ using Knot3.Framework.Platform;
 using Knot3.Framework.Primitives;
 using Knot3.Framework.Storage;
 using Knot3.Game.Data;
+using Knot3.Framework.Development;
 
 namespace Knot3.Game.Models
 {
@@ -70,23 +71,22 @@ namespace Knot3.Game.Models
         /// </summary>
         private Parallelogram[] rectangles;
         /// <summary>
-        /// Die einzelnen Texturen.
-        /// </summary>
-        private Texture2D[] textures;
-        /// <summary>
         /// Der Zufallsgenerator.
         /// </summary>
         private Random random;
         /// <summary>
         /// Der Texture-Cache.
         /// </summary>
-        private Dictionary<Direction, Texture2D> textureCache = new Dictionary<Direction, Texture2D> ();
+        private Dictionary<Direction, SkyTexture> textureCache = new Dictionary<Direction, SkyTexture> ();
         /// <summary>
         /// Der Effekt, mit dem die Skybox gezeichnet wird.
         /// </summary>
         private BasicEffect effect;
         private Matrix scaleMatrix;
-        private StarTexture[] starTextures = new StarTexture[0];
+        /// <summary>
+        /// Die einzelnen Texturen.
+        /// </summary>
+        private SkyTexture[] SkyTextures;
 
         /// <summary>
         /// Erstellt ein neues KnotRenderer-Objekt für den angegebenen Spielzustand mit den angegebenen
@@ -127,41 +127,58 @@ namespace Knot3.Game.Models
                 rectangles [i] = parallelogram;
                 ++i;
             }
-            if (textures == null) {
-                textures = new Texture2D [Direction.Values.Length];
+            if (SkyTextures == null) {
+                SkyTextures = new SkyTexture [Direction.Values.Length];
                 i = 0;
                 foreach (Direction direction in Direction.Values) {
-                    if (Config.Default ["debug", "projector-mode", false]) {
-                        textures [i] = ContentLoader.CreateTexture (Screen.GraphicsDevice, Color.White);
-                    }
-                    else {
-                        textures [i] = CachedSkyTexture (direction);
-                    }
+                    SkyTextures [i] = CachedSkyTexture (direction);
                     ++i;
                 }
             }
         }
 
-        private Texture2D CachedSkyTexture (Direction direction)
+        private SkyTexture CachedSkyTexture (Direction direction)
         {
-            if (!textureCache.ContainsKey (direction)) {
-                textureCache [direction] = CreateSkyTexture ();
+            if (textureCache.ContainsKey (direction)) {
+                return textureCache [direction];
             }
-            return textureCache [direction];
+            else if (textureCache.ContainsKey (direction.Reverse)) {
+                return textureCache [direction.Reverse];
+            }
+            else {
+                return textureCache [direction] = CreateSkyTexture ();
+            }
         }
 
-        private Texture2D CreateSkyTexture ()
+        private SkyTexture CreateSkyTexture ()
         {
             string effectName = Config.Default ["video", "knot-shader", "default"];
-            if (effectName == "celshader") {
-                return ContentLoader.CreateTexture (Screen.GraphicsDevice, Color.CornflowerBlue);
+            if (Config.Default ["debug", "projector-mode", false]) {
+                return CreateSolidColorTexture (ContentLoader.CreateTexture (Screen.GraphicsDevice, Color.White));
+            }
+            else if (effectName == "celshader") {
+                return CreateSolidColorTexture (ContentLoader.CreateTexture (Screen.GraphicsDevice, Color.CornflowerBlue));
             }
             else {
                 return CreateSpaceTexture ();
             }
         }
 
-        private Texture2D CreateSpaceTexture ()
+        private SkyTexture CreateSolidColorTexture (Texture2D texture)
+        {
+            Color[] colors = new Color[texture.Width * texture.Height];
+            SkyTexture skyTexture = new SkyTexture {
+                Texture = texture,
+                SmallStars = new Star[0],
+                BigStars = new Star[0],
+                Width = texture.Width,
+                Height = texture.Height,
+                Colors = colors
+            };
+            return skyTexture;
+        }
+
+        private SkyTexture CreateSpaceTexture ()
         {
             List<Star> bigStars = new List<Star> ();
             List<Star> smallStars = new List<Star> ();
@@ -206,7 +223,7 @@ namespace Knot3.Game.Models
                 }
             }
             texture.SetData (colors);
-            StarTexture starTexture = new StarTexture {
+            SkyTexture skyTexture = new SkyTexture {
                 Texture = texture,
                 SmallStars = smallStars.ToArray (),
                 BigStars = bigStars.ToArray (),
@@ -214,9 +231,7 @@ namespace Knot3.Game.Models
                 Height = height,
                 Colors = colors
             };
-            Array.Resize (ref starTextures, starTextures.Length + 1);
-            starTextures [starTextures.Length - 1] = starTexture;
-            return texture;
+            return skyTexture;
         }
 
         [ExcludeFromCodeCoverageAttribute]
@@ -235,25 +250,38 @@ namespace Knot3.Game.Models
         private void UpdateStars (GameTime time)
         {
             if (k++ % 10 == 0) {
-                foreach (StarTexture starTexture in starTextures) {
+                Profiler.ProfileDelegate ["Stars Blink"] = () => {
+                    int SkyTextureCacheSize = (int)Config.Default ["video", "blinking-stars-cachesize", 20f];
                     float alphaCounter = k * 0.002f;
-                    for (int s = 0; s < starTexture.SmallStars.Length; ++s) {
-                        Star star = starTexture.SmallStars [s];
-                        int i = star.H * starTexture.Width + star.W;
-                        starTexture.Colors [i] = star.Color * (float)Math.Sin (MathHelper.TwoPi * alphaCounter + star.AlphaDiff);
+                    int key = (int)(Math.Abs(alphaCounter / SkyTextureCacheSize));
+                    Console.WriteLine("key="+key);
+                    foreach (SkyTexture SkyTexture in SkyTextures) {
+                        Profiler.Values ["Stars Textures #"] = SkyTexture.TextureCache.Count;
+                        if (SkyTexture.TextureCache.ContainsKey (key)) {
+                            SkyTexture.Texture = SkyTexture.TextureCache [key];
+                        }
+                        else {
+                            for (int s = 0; s < SkyTexture.SmallStars.Length; ++s) {
+                                Star star = SkyTexture.SmallStars [s];
+                                int i = star.H * SkyTexture.Width + star.W;
+                                SkyTexture.Colors [i] = star.Color * (float)Math.Abs(Math.Sin (MathHelper.TwoPi * alphaCounter + star.AlphaDiff));
+                            }
+                            for (int s = 0; s < SkyTexture.BigStars.Length; ++s) {
+                                Star star = SkyTexture.BigStars [s];
+                                int i = star.H * SkyTexture.Width + star.W;
+                                Color color = star.Color * (float)Math.Abs(Math.Sin (MathHelper.TwoPi * alphaCounter + star.AlphaDiff));
+                                SkyTexture.Colors [i] = color;
+                                SkyTexture.Colors [i + 1] = color;
+                                SkyTexture.Colors [i - 1] = color;
+                                SkyTexture.Colors [i + SkyTexture.Width] = color;
+                                SkyTexture.Colors [i - SkyTexture.Width] = color;
+                            }
+                            Texture2D tex = new Texture2D (Screen.GraphicsDevice, SkyTexture.Width, SkyTexture.Height);
+                            tex.SetData (SkyTexture.Colors);
+                            SkyTexture.Texture = SkyTexture.TextureCache [key] = tex;
+                        }
                     }
-                    for (int s = 0; s < starTexture.BigStars.Length; ++s) {
-                        Star star = starTexture.BigStars [s];
-                        int i = star.H * starTexture.Width + star.W;
-                        Color color = star.Color * (float)Math.Sin (MathHelper.TwoPi * alphaCounter + star.AlphaDiff);
-                        starTexture.Colors [i] = color;
-                        starTexture.Colors [i + 1] = color;
-                        starTexture.Colors [i - 1] = color;
-                        starTexture.Colors [i + starTexture.Width] = color;
-                        starTexture.Colors [i - starTexture.Width] = color;
-                    }
-                    starTexture.Texture.SetData (starTexture.Colors);
-                }
+                };
             }
         }
 
@@ -284,7 +312,7 @@ namespace Knot3.Game.Models
             }
 
             for (int i = 0; i < rectangles.Length; ++i) {
-                effect.Texture = textures [i];
+                effect.Texture = SkyTextures [i].Texture;
                 rectangles [i].Draw (effect);
             }
 
@@ -311,9 +339,10 @@ namespace Knot3.Game.Models
             return GetEnumerator (); // Just return the generic version
         }
 
-        private class StarTexture
+        private class SkyTexture
         {
             public Texture2D Texture;
+            public Dictionary<int, Texture2D> TextureCache = new Dictionary<int, Texture2D> ();
             public Color[] Colors;
             public Star[] BigStars;
             public Star[] SmallStars;

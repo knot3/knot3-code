@@ -153,6 +153,7 @@
     <Compile Include="Knot3.Framework\Models\Sun.cs" />
     <Compile Include="Knot3.Framework\Widgets\ComboBox.cs" />
     <Compile Include="Knot3.Framework\Widgets\CheckBox.cs" />
+    <Compile Include="Knot3.Framework\Input\ModelMouseHandler.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

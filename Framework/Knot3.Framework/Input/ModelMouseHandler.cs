@@ -38,7 +38,7 @@ using Knot3.Framework.Input;
 using Knot3.Framework.Math;
 using Knot3.Framework.Models;
 
-namespace Knot3.Game.Models
+namespace Knot3.Framework.Input
 {
     /// <summary>
     /// Ein Inputhandler, der Mauseingaben auf 3D-Modellen verarbeitet.
