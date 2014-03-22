@@ -27,22 +27,18 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-
 using Knot3.Framework.Core;
 using Knot3.Framework.Models;
 using Knot3.Framework.Platform;
 using Knot3.Framework.Primitives;
 using Knot3.Framework.Storage;
-
 using Knot3.Game.Data;
 
 namespace Knot3.Game.Models
@@ -90,6 +86,7 @@ namespace Knot3.Game.Models
         /// </summary>
         private BasicEffect effect;
         private Matrix scaleMatrix;
+        private StarTexture[] starTextures = new StarTexture[0];
 
         /// <summary>
         /// Erstellt ein neues KnotRenderer-Objekt für den angegebenen Spielzustand mit den angegebenen
@@ -166,8 +163,10 @@ namespace Knot3.Game.Models
 
         private Texture2D CreateSpaceTexture ()
         {
-            int width = 1000;
-            int height = 1000;
+            List<Star> bigStars = new List<Star> ();
+            List<Star> smallStars = new List<Star> ();
+            int width = 800;
+            int height = 800;
             Texture2D texture = new Texture2D (Screen.GraphicsDevice, width, height);
             Color[] colors = new Color [width * height];
             for (int i = 0; i < colors.Length; i++) {
@@ -179,28 +178,82 @@ namespace Knot3.Game.Models
                     if (random.Next () % (width * 3) == w) {
                         float alpha = (1 + random.Next () % 3) / 3f;
                         Color white = Color.White * alpha;
-                        Color gray = Color.Gray * alpha;
                         colors [i] = white;
-                        colors [i - 1] = white;
                         colors [i + 1] = white;
-                        colors [i - width] = white;
-                        colors [i - width - 1] = gray;
-                        colors [i - width + 1] = gray;
+                        colors [i - 1] = white;
                         colors [i + width] = white;
-                        colors [i + width - 1] = gray;
-                        colors [i + width + 1] = gray;
+                        colors [i - width] = white;
+                        bigStars.Add (new Star (random) { W = w, H = h, Color = Color.White });
+                    }
+                    else if (random.Next () % (width * 3) == w) {
+                        float alpha = (1 + random.Next () % 3) / 3f;
+                        Color white = Color.White * alpha;
+                        colors [i] = white;
+                        smallStars.Add (new Star (random) { W = w, H = h, Color = Color.White });
+                    }
+                    else if (random.Next () % (width * 3) == w) {
+                        float alpha = (1 + random.Next () % 3) / 3f;
+                        Color green = Color.LimeGreen * alpha;
+                        colors [i] = green;
+                        smallStars.Add (new Star (random) { W = w, H = h, Color = Color.LimeGreen });
+                    }
+                    else if (random.Next () % (width * 3) == w) {
+                        float alpha = (1 + random.Next () % 3) / 3f;
+                        Color green = Color.DarkSeaGreen * alpha;
+                        colors [i] = green;
+                        smallStars.Add (new Star (random) { W = w, H = h, Color = Color.DarkSeaGreen });
                     }
                 }
             }
             texture.SetData (colors);
+            StarTexture starTexture = new StarTexture {
+                Texture = texture,
+                SmallStars = smallStars.ToArray (),
+                BigStars = bigStars.ToArray (),
+                Width = width,
+                Height = height,
+                Colors = colors
+            };
+            Array.Resize (ref starTextures, starTextures.Length + 1);
+            starTextures [starTextures.Length - 1] = starTexture;
             return texture;
         }
 
         [ExcludeFromCodeCoverageAttribute]
         public override void Update (GameTime time)
         {
-            if (Math.Abs (1f-(Distance / (World.Camera.FarPlane / 3.6f))) > 0.05f) {
+            if (Math.Abs (1f - (Distance / (World.Camera.FarPlane / 3.6f))) > 0.05f) {
                 Distance = World.Camera.FarPlane / 3.6f;
+            }
+            if (Config.Default ["video", "blinking-stars", true]) {
+                UpdateStars (time);
+            }
+        }
+
+        private int k = 0;
+
+        private void UpdateStars (GameTime time)
+        {
+            if (k++ % 10 == 0) {
+                foreach (StarTexture starTexture in starTextures) {
+                    float alphaCounter = k * 0.002f;
+                    for (int s = 0; s < starTexture.SmallStars.Length; ++s) {
+                        Star star = starTexture.SmallStars [s];
+                        int i = star.H * starTexture.Width + star.W;
+                        starTexture.Colors [i] = star.Color * (float)Math.Sin (MathHelper.TwoPi * alphaCounter + star.AlphaDiff);
+                    }
+                    for (int s = 0; s < starTexture.BigStars.Length; ++s) {
+                        Star star = starTexture.BigStars [s];
+                        int i = star.H * starTexture.Width + star.W;
+                        Color color = star.Color * (float)Math.Sin (MathHelper.TwoPi * alphaCounter + star.AlphaDiff);
+                        starTexture.Colors [i] = color;
+                        starTexture.Colors [i + 1] = color;
+                        starTexture.Colors [i - 1] = color;
+                        starTexture.Colors [i + starTexture.Width] = color;
+                        starTexture.Colors [i - starTexture.Width] = color;
+                    }
+                    starTexture.Texture.SetData (starTexture.Colors);
+                }
             }
         }
 
@@ -256,6 +309,29 @@ namespace Knot3.Game.Models
         IEnumerator IEnumerable.GetEnumerator ()
         {
             return GetEnumerator (); // Just return the generic version
+        }
+
+        private class StarTexture
+        {
+            public Texture2D Texture;
+            public Color[] Colors;
+            public Star[] BigStars;
+            public Star[] SmallStars;
+            public int Width;
+            public int Height;
+        }
+
+        private class Star
+        {
+            public int W;
+            public int H;
+            public Color Color;
+            public float AlphaDiff;
+
+            public Star (Random random)
+            {
+                AlphaDiff = (float)random.Next (1000);
+            }
         }
     }
 }

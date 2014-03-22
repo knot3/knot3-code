@@ -69,6 +69,16 @@ namespace Knot3.Game.Screens
             );
             settingsMenu.Add (showArrows);
 
+            // blinking stars
+            BooleanOption blinkingStarsOption = new BooleanOption ("video", "blinking-stars", true, Config.Default);
+            CheckBoxItem blinkingStars = new CheckBoxItem (
+                screen: this,
+                drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
+                text: "Blinking Stars",
+                option: blinkingStarsOption
+                );
+            settingsMenu.Add (blinkingStars);
+
             // show sun
             BooleanOption sunOption = new BooleanOption ("video", "show-sun", false, Config.Default);
             CheckBoxItem showSun = new CheckBoxItem (
@@ -98,6 +108,7 @@ namespace Knot3.Game.Screens
             dayCycleItem.AddEntries (dayCycleOption);
             settingsMenu.Add (dayCycleItem);
 
+            // selective rendering
             CheckBoxItem selectiveRender = new CheckBoxItem (
                 screen: this,
                 drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
@@ -106,6 +117,7 @@ namespace Knot3.Game.Screens
             );
             settingsMenu.Add (selectiveRender);
 
+            // auto camera when moving
             CheckBoxItem autoCameraMove = new CheckBoxItem (
                 screen: this,
                 drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
@@ -113,7 +125,8 @@ namespace Knot3.Game.Screens
                 option: new BooleanOption ("video", "auto-camera-move", true, Config.Default)
             );
             settingsMenu.Add (autoCameraMove);
-
+            
+            // auto camera
             CheckBoxItem autoCamera = new CheckBoxItem (
                 screen: this,
                 drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
