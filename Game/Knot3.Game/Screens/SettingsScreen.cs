@@ -103,7 +103,7 @@ namespace Knot3.Game.Screens
             MenuEntry graphicsButton = new MenuEntry (
                 screen: this,
                 drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
-                name: "Video",
+                name: "Graphics",
             onClick: (time) =>  {
                 game.SkipNextScreenEffect =true;
                 NextScreen = new GraphicsSettingsScreen (Game);
@@ -161,8 +161,7 @@ namespace Knot3.Game.Screens
             backButton.SetCoordinates (left: 0.770f, top: 0.910f, right: 0.870f, bottom: 0.960f);
             backButton.AlignX = HorizontalAlignment.Center;
 
-            
-
+            // this menu contains the actual settings and is filled in the subclasses
             settingsMenu = new Menu (this, DisplayLayer.ScreenUI + DisplayLayer.Menu);
             settingsMenu.Bounds.Position = new ScreenPoint (this, 0.300f, 0.180f);
             settingsMenu.Bounds.Size = new ScreenPoint (this, 0.625f, 0.720f);
@@ -178,6 +177,12 @@ namespace Knot3.Game.Screens
         {
             base.Entered (previousScreen, time);
             AddGameComponents (time, navigationMenu, backButton);
+
+            foreach (MenuEntry entry in navigationMenu) {
+                if (MenuName == entry.Text) {
+                    entry.ForegroundColorFunc = (state) => Design.DefaultLineColor;
+                }
+            }
         }
 
         [ExcludeFromCodeCoverageAttribute]
@@ -187,7 +192,7 @@ namespace Knot3.Game.Screens
             // text
             spriteBatch.DrawStringInRectangle (
                 font: Design.MenuFont (this),
-                text: MenuName.Localize (),
+                text: (MenuName + " Settings").Localize (),
                 color: Design.WidgetForeground,
                 bounds: new Bounds (this, 0.075f, 0.075f, 0.900f, 0.050f),
                 alignX: HorizontalAlignment.Left,
