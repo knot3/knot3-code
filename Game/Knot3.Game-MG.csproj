@@ -83,7 +83,7 @@
     <Compile Include="Knot3.Game\Input\KnotInputHandler.cs" />
     <Compile Include="Knot3.Game\Models\Arrow.cs" />
     <Compile Include="Knot3.Game\Models\Grid.cs" />
-    <Compile Include="Knot3.Game\Models\InstancedSky.cs" />
+    <Compile Include="Knot3.Game\Models\InstancedSky-MG.cs" />
     <Compile Include="Knot3.Game\Models\Junction.cs" />
     <Compile Include="Knot3.Game\Models\KnotRenderer.cs" />
     <Compile Include="Knot3.Game\Models\Pipe.cs" />
