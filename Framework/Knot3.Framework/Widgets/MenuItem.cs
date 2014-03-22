@@ -129,7 +129,7 @@ namespace Knot3.Framework.Widgets
         public void OnScroll (int scrollValue, GameTime time)
         {
             if (Container != null) {
-                Container.OnScroll (scrollValue);
+                Container.OnScroll (scrollValue, time);
             }
             else {
                 Log.Debug ("Warning: MenuItem is not assigned to a menu: ", this);

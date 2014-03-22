@@ -129,7 +129,7 @@ namespace Knot3.Framework.Models
         [ExcludeFromCodeCoverageAttribute]
         public override void Draw (GameTime time)
         {
-            if (IsVisible && InCameraFrustum) {
+            if (IsVisible && InCameraFrustum && Primitive != null) {
                 Screen.CurrentRenderEffects.CurrentEffect.DrawPrimitive (this, time);
             }
         }
