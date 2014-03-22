@@ -77,13 +77,13 @@ namespace Knot3.Game.Screens
         : base (game)
         {
             startKnotMenu = new Menu (this, DisplayLayer.ScreenUI + DisplayLayer.Menu);
-            startKnotMenu.Bounds = ScreenContentBounds.FromLeft (0.47f).FromTop(0.98f);
+            startKnotMenu.Bounds = ScreenContentBounds.FromLeft (0.47f).FromTop (0.98f);
             startKnotMenu.ItemBackgroundColor = Design.ComboBoxItemBackgroundColorFunc;
             startKnotMenu.ItemForegroundColor = Design.ComboBoxItemForegroundColorFunc;
             startKnotMenu.RelativeItemHeight = Design.DataItemHeight;
 
             targetKnotMenu = new Menu (this, DisplayLayer.ScreenUI + DisplayLayer.Menu);
-            targetKnotMenu.Bounds = ScreenContentBounds.FromRight (0.47f).FromTop(0.98f);
+            targetKnotMenu.Bounds = ScreenContentBounds.FromRight (0.47f).FromTop (0.98f);
             targetKnotMenu.ItemBackgroundColor = Design.ComboBoxItemBackgroundColorFunc;
             targetKnotMenu.ItemForegroundColor = Design.ComboBoxItemForegroundColorFunc;
             targetKnotMenu.RelativeItemHeight = Design.DataItemHeight;
@@ -101,7 +101,7 @@ namespace Knot3.Game.Screens
                 name: "Create!",
                 onClick: OnCreateChallenge
             );
-            createButton.Bounds.Position = ScreenContentBounds.Position + ScreenContentBounds.FromLeft(0.50f).Size + new ScreenPoint (this, 0f, 0.050f);
+            createButton.Bounds.Position = ScreenContentBounds.Position + ScreenContentBounds.FromLeft (0.50f).Size + new ScreenPoint (this, 0f, 0.050f);
             createButton.Bounds.Size = new ScreenPoint (this, 0.125f, 0.050f);
 
             createButtonBorder = new Border (this, DisplayLayer.ScreenUI + DisplayLayer.MenuItem, createButton, 4, 4);
