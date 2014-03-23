@@ -43,17 +43,14 @@ namespace Knot3.Game.Development
     {
         public DebugModel (IScreen screen) : base (screen: screen)
         {
+            Scale = new Vector3(5f,5f,5f);
             Coloring = new SingleColor (Color.White);
         }
 
         protected override Primitive CreativePrimitive ()
         {
             int tessellation = Primitive.CurrentCircleTessellation;
-            return new Sphere (
-                       device: Screen.GraphicsDevice,
-                       diameter: 1f,
-                       tessellation: tessellation
-                   );
+            return new Star (Screen.GraphicsDevice);
         }
 
         public override void Update (GameTime gameTime)
