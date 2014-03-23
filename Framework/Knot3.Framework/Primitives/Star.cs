@@ -27,8 +27,10 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
+
 using System;
 using System.Diagnostics.CodeAnalysis;
+
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
