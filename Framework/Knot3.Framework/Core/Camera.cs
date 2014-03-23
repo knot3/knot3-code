@@ -204,7 +204,7 @@ namespace Knot3.Framework.Core
                 return Vector3.Normalize (Target - Position);
             }
         }
-        
+
         /// <summary>
         /// Die Blickrichtung von der Kamera-Position zum Rotations-Ziel.
         /// </summary>
@@ -227,7 +227,7 @@ namespace Knot3.Framework.Core
                 Position = Position.SetDistanceTo (Target, value);
             }
         }
-        
+
         /// <summary>
         /// Der Abstand zwischen der Kamera-Position und dem Rotations-Ziel.
         /// </summary>

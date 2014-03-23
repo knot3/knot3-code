@@ -32,8 +32,8 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
-using System.Windows.Forms;
 using System.IO;
+using System.Windows.Forms;
 
 namespace Knot3.Framework.Platform
 {
@@ -45,28 +45,33 @@ namespace Knot3.Framework.Platform
         {
             try {
                 string filename = (string.IsNullOrWhiteSpace (version) ? program : program + "-" + version) + ".log";
-                logFile = File.AppendText(SystemInfo.LogDirectory + SystemInfo.PathSeparator + filename);
-            } catch (Exception ex) {
+                logFile = File.AppendText (SystemInfo.LogDirectory + SystemInfo.PathSeparator + filename);
+            }
+            catch (Exception ex) {
                 // we don't give a fuck whether we can open a log file
                 logFile = StreamWriter.Null;
                 Console.WriteLine (ex.ToString ());
             }
         }
 
-        private static void LogFileWrite(string text) {
+        private static void LogFileWrite (string text)
+        {
             try {
                 logFile.Write (text);
-            } catch (Exception) {
+            }
+            catch (Exception) {
             }
         }
 
         private static int k = 0;
 
-        private static void LogFileWriteLine(string text) {
+        private static void LogFileWriteLine (string text)
+        {
             try {
                 logFile.WriteLine (text);
-                if (k % 100 == 0) logFile.Flush();
-            } catch (Exception) {
+                if (k % 100 == 0) { logFile.Flush (); }
+            }
+            catch (Exception) {
             }
         }
 
@@ -136,7 +141,7 @@ namespace Knot3.Framework.Platform
             EndList ();
             Console.WriteLine (ex.ToString ());
             LogFileWriteLine (ex.ToString ());
-            logFile.Flush();
+            logFile.Flush ();
         }
 
         public static void ShowMessageBox (string text, string title)
