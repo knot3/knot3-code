@@ -135,6 +135,26 @@ namespace Knot3.ModelEditor
             return junctionMap.ContainsKey (node) ? junctionMap [node] : new List<Junction> ();
         }
 
+        public Junction JunctionBeforeEdge (Edge edge)
+        {
+            foreach (Junction junction in JunctionsAtNode (NodeBeforeEdge (edge))) {
+                if (junction.EdgeTo == edge) {
+                    return junction;
+                }
+            }
+            return null;
+        }
+
+        public Junction JunctionAfterEdge (Edge edge)
+        {
+            foreach (Junction junction in JunctionsAtNode (NodeAfterEdge (edge))) {
+                if (junction.EdgeFrom == edge) {
+                    return junction;
+                }
+            }
+            return null;
+        }
+
         public IEnumerable<Node> Nodes
         {
             get {
