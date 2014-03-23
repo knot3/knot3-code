@@ -37,6 +37,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Knot3.Framework.Core;
 using Knot3.Framework.Platform;
 using Knot3.Framework.Utilities;
+using Knot3.Framework.Storage;
 
 namespace Knot3.Framework.Widgets
 {
@@ -83,7 +84,7 @@ namespace Knot3.Framework.Widgets
         public override void Draw (GameTime time)
         {
             if (IsVisible) {
-                int scaledLineWidth = (int)new Vector2 (lineWidth, lineWidth).Scale (Screen.Viewport).X;
+                int scaledLineWidth = (int)(new Vector2 (lineWidth, lineWidth).Scale (Screen.Viewport).X);
 
                 if (points.Count >= 2) {
                     Rectangle[] rects = new Rectangle [points.Count - 1];

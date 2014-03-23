@@ -36,6 +36,7 @@ using Microsoft.Xna.Framework;
 
 using Knot3.Framework.Core;
 using Knot3.Framework.Math;
+using Knot3.Framework.Storage;
 
 namespace Knot3.Framework.Widgets
 {
@@ -106,7 +107,7 @@ namespace Knot3.Framework.Widgets
             if (position != lastPosition || size != lastSize) {
                 lastPosition = position;
                 lastSize = size;
-                Vector2 padding = Vector2.One * 0.001f * Padding;
+                Vector2 padding = Vector2.One * 0.001f * Padding * Config.Default ["video", "Supersamples", 2];
                 lines.Clear ();
                 lines.AddPoints (
                     position.X - padding.X,

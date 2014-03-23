@@ -49,19 +49,11 @@
     </None>
     <None Include="Sound\Pipe\Invalid-Move\13290__schademans__pipe9.ogg">
     </None>
-    <None Include="Shader\CelShader_3.0.mgfx">
-    </None>
     <None Include="Shader\CelShader_3.1.mgfx">
-    </None>
-    <None Include="Shader\OutlineShader_3.0.mgfx">
     </None>
     <None Include="Shader\OutlineShader_3.1.mgfx">
     </None>
-    <None Include="Shader\Z_Nebula_3.0.mgfx">
-    </None>
     <None Include="Shader\Z_Nebula_3.1.mgfx">
-    </None>
-    <None Include="Shader\OpaqueShader_3.0.mgfx">
     </None>
     <None Include="Shader\OpaqueShader_3.1.mgfx">
     </None>
