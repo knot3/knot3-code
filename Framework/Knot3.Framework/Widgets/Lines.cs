@@ -36,8 +36,8 @@ using Microsoft.Xna.Framework.Graphics;
 
 using Knot3.Framework.Core;
 using Knot3.Framework.Platform;
-using Knot3.Framework.Utilities;
 using Knot3.Framework.Storage;
+using Knot3.Framework.Utilities;
 
 namespace Knot3.Framework.Widgets
 {
