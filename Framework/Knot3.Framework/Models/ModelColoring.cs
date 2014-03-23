@@ -86,7 +86,8 @@ namespace Knot3.Framework.Models
 
         public abstract bool IsTransparent { get; }
 
-        protected int ColorHashCode(Color color) {
+        protected int ColorHashCode (Color color)
+        {
             return (int)color.PackedValue;
         }
     }
@@ -119,7 +120,7 @@ namespace Knot3.Framework.Models
 
         public override int GetHashCode ()
         {
-            return ColorHashCode(HighlightColor) * 83*83 + ColorHashCode(BaseColor) * 83 + (int)(Alpha*1000);
+            return ColorHashCode (HighlightColor) * 83*83 + ColorHashCode (BaseColor) * 83 + (int)(Alpha*1000);
         }
     }
 
