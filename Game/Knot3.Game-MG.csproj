@@ -57,7 +57,6 @@
     <Compile Include="Knot3.Game\Data\Direction.cs" />
     <Compile Include="Knot3.Game\Data\DirectionHelper.cs" />
     <Compile Include="Knot3.Game\Data\Edge.cs" />
-    <Compile Include="Knot3.Game\Data\Grid.cs" />
     <Compile Include="Knot3.Game\Data\IChallengeIO.cs" />
     <Compile Include="Knot3.Game\Data\IGrid.cs" />
     <Compile Include="Knot3.Game\Data\IJunction.cs" />
@@ -83,11 +82,13 @@
     <Compile Include="Knot3.Game\Input\Knot3PlayerAction.cs" />
     <Compile Include="Knot3.Game\Input\KnotInputHandler.cs" />
     <Compile Include="Knot3.Game\Models\Arrow.cs" />
+    <Compile Include="Knot3.Game\Models\Grid.cs" />
+    <Compile Include="Knot3.Game\Models\InstancedSky-MG.cs" />
     <Compile Include="Knot3.Game\Models\Junction.cs" />
     <Compile Include="Knot3.Game\Models\KnotRenderer.cs" />
-    <Compile Include="Knot3.Game\Models\ModelMouseHandler.cs" />
     <Compile Include="Knot3.Game\Models\Pipe.cs" />
     <Compile Include="Knot3.Game\Models\RectangleModel.cs" />
+    <Compile Include="Knot3.Game\Models\Sky-MG.cs" />
     <Compile Include="Knot3.Game\Models\SkyCube.cs" />
     <Compile Include="Knot3.Game\Program.cs" />
     <Compile Include="Knot3.Game\Screens\AudioSettingsScreen.cs" />

@@ -27,20 +27,16 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
-
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
-
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
-
 using Knot3.Framework.Core;
 using Knot3.Framework.Math;
 using Knot3.Framework.Storage;
 using Knot3.Framework.Widgets;
-
 using Knot3.Game.Data;
 using Knot3.Game.Screens;
 
@@ -80,16 +76,16 @@ namespace Knot3.Game.Widgets
                 screen: Screen,
                 drawOrder: Index + DisplayLayer.MenuItem,
                 name: "Settings",
-            onClick: (time) => {
+                onClick: (time) => {
                 Close (time);
-                Screen.NextScreen = new SettingsScreen (Screen.Game);
+                Screen.NextScreen = new ProfileSettingsScreen (Screen.Game);
             }
             );
             MenuEntry backButton = new MenuEntry (
                 screen: Screen,
                 drawOrder: Index + DisplayLayer.MenuItem,
                 name: "Back to Game",
-            onClick: (time) => {
+                onClick: (time) => {
                 Close (time);
             }
             );
@@ -97,7 +93,7 @@ namespace Knot3.Game.Widgets
                 screen: Screen,
                 drawOrder: Index + DisplayLayer.MenuItem,
                 name: "Save",
-            onClick: (time) => {
+                onClick: (time) => {
                 Close (time);
                 KnotSave (time);
             }
@@ -106,16 +102,16 @@ namespace Knot3.Game.Widgets
                 screen: Screen,
                 drawOrder: Index + DisplayLayer.MenuItem,
                 name: "Save As",
-            onClick: (time) => {
+                onClick: (time) => {
                 Close (time);
-                KnotSaveAs (()=> {}, time);
+                KnotSaveAs (() => {}, time);
             }
             );
             MenuEntry saveExitButton = new MenuEntry (
                 screen: Screen,
                 drawOrder: Index + DisplayLayer.MenuItem,
                 name: "Save and Exit",
-            onClick: (time) => {
+                onClick: (time) => {
                 Close (time);
                 KnotSaveExit (time);
             }
@@ -124,7 +120,7 @@ namespace Knot3.Game.Widgets
                 screen: Screen,
                 drawOrder: Index + DisplayLayer.MenuItem,
                 name: "Discard Changes and Exit",
-            onClick: (time) => {
+                onClick: (time) => {
                 Close (time);
                 Screen.NextScreen = new StartScreen (Screen.Game);
             }
@@ -153,7 +149,7 @@ namespace Knot3.Game.Widgets
                 knot.Save (true);
             }
             catch (NoFilenameException) {
-                KnotSaveAs (()=> {}, time);
+                KnotSaveAs (() => {}, time);
             }
         }
 
@@ -181,16 +177,16 @@ namespace Knot3.Game.Widgets
                         screen: Screen,
                         drawOrder: DisplayLayer.Dialog,
                         title: "Warning",
-                        text:"Do you want to overwrite the existing knot?"
+                        text: "Do you want to overwrite the existing knot?"
                     );
                     confirm.Cancel += (l) => {
-                        KnotSaveAs (()=>onClose (),time);
+                        KnotSaveAs (() => onClose (), time);
                     };
                     confirm.Submit += (r) => {
                         knot.Save (true);
                         onClose ();
                     };
-                    Screen.AddGameComponents (null,confirm);
+                    Screen.AddGameComponents (null, confirm);
                 }
             };
         }
@@ -202,7 +198,7 @@ namespace Knot3.Game.Widgets
                 Screen.NextScreen = new StartScreen (Screen.Game);
             }
             catch (NoFilenameException) {
-                KnotSaveAs (()=>Screen.NextScreen = new StartScreen (Screen.Game), time);
+                KnotSaveAs (() => Screen.NextScreen = new StartScreen (Screen.Game), time);
             }
         }
     }

@@ -59,6 +59,10 @@ namespace Knot3.Game.Widgets
             Design.WidgetForegroundColorFunc = WidgetForegroundColor;
             Design.MenuItemBackgroundColorFunc = MenuItemBackgroundColor;
             Design.MenuItemForegroundColorFunc = MenuItemForegroundColor;
+            Design.ComboBoxItemBackgroundColorFunc = ComboBoxItemBackgroundColor;
+            Design.ComboBoxItemForegroundColorFunc = ComboBoxItemForegroundColor;
+            Design.NavigationItemHeight = 0.040f;
+            Design.DataItemHeight = 0.033f;
         }
 
         private static Color WidgetBackgroundColor (WidgetState state)
@@ -80,10 +84,10 @@ namespace Knot3.Game.Widgets
         private static Color WidgetForegroundColor (WidgetState state)
         {
             if (state == WidgetState.Hovered) {
-                return Color.Black;
+                return Color.DarkGreen.Mix(Color.Black, 0.50f);
             }
             else if (state == WidgetState.None) {
-                return Color.Black * 0.85f;
+                return Color.Black;
             }
             else if (state == WidgetState.Selected) {
                 return Color.Black;
@@ -104,13 +108,37 @@ namespace Knot3.Game.Widgets
         private Color MenuItemForegroundColor (WidgetState state)
         {
             if (state == WidgetState.Hovered) {
+                return Color.DarkGreen.Mix(Color.Black, 0.50f);
+            }
+            else if (state == WidgetState.Selected) {
+                return Color.White;
+            }
+            else {
+                return Color.Black;
+            }
+        }
+
+        private Color ComboBoxItemBackgroundColor (WidgetState state)
+        {
+            if (state == WidgetState.Selected) {
+                return Color.DarkGreen;
+            }
+            if (state == WidgetState.Hovered) {
+                return Color.White.Mix(Color.DarkGreen, 0.25f);
+            }
+            return Color.Transparent;
+        }
+
+        private Color ComboBoxItemForegroundColor (WidgetState state)
+        {
+            if (state == WidgetState.Hovered) {
                 return Color.Black;
             }
             else if (state == WidgetState.Selected) {
-                return Color.Wheat;
+                return Color.White;
             }
             else {
-                return Color.Black * 0.7f;
+                return Color.Black;
             }
         }
     }

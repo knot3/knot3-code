@@ -38,6 +38,7 @@ using Knot3.Framework.Input;
 using Knot3.Framework.Widgets;
 
 using Knot3.Game.Audio;
+using Knot3.Framework.Math;
 
 namespace Knot3.Game.Screens
 {
@@ -47,10 +48,15 @@ namespace Knot3.Game.Screens
     [ExcludeFromCodeCoverageAttribute]
     public abstract class MenuScreen : Screen
     {
+        // der Mauszeiger
         private MousePointer pointer;
 
         // die Linien
         protected Lines lines;
+
+        // häufig verwendete Positionen und Größen
+        protected Bounds ScreenContentBounds;
+        protected Bounds ScreenTitleBounds;
 
         public MenuScreen (GameCore game)
         : base (game)
@@ -60,6 +66,10 @@ namespace Knot3.Game.Screens
 
             // der Mauszeiger
             pointer = new MousePointer (this);
+            
+            // häufig verwendete Positionen und Größen
+            ScreenContentBounds = new Bounds (screen: this, relX: 0.075f, relY: 0.180f, relWidth: 0.850f, relHeight: 0.650f);
+            ScreenTitleBounds = new Bounds (this, 0.075f, 0.075f, 0.900f, 0.050f);
         }
 
         /// <summary>

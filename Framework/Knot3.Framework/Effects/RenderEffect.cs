@@ -65,7 +65,7 @@ namespace Knot3.Framework.Effects
         /// </summary>
         protected SpriteBatch spriteBatch { get; set; }
 
-        protected float Supersampling { get { return Config.Default ["video", "Supersamples", 1]; } }
+        protected float Supersampling { get { return Config.Default ["video", "Supersamples", 2]; } }
 
         public bool SelectiveRendering { get; set; }
 
@@ -176,10 +176,22 @@ namespace Knot3.Framework.Effects
             if (screen.InputManager.KeyHeldDown (Keys.L)) {
                 effect.LightingEnabled = false;
             }
+            else if (!obj.IsLightingEnabled) {
+                effect.LightingEnabled = false;
+            }
             else {
                 effect.EnableDefaultLighting ();
+                effect.DirectionalLight0.Direction = obj.World.Camera.LightDirection;
+                effect.DirectionalLight0.DiffuseColor = Color.White.ToVector3();
+                effect.DirectionalLight0.Enabled = true;
+                effect.DirectionalLight1.Direction = -obj.World.Camera.LightDirection;
+                effect.DirectionalLight1.DiffuseColor = Color.White.ToVector3()/4;
+                effect.DirectionalLight1.Enabled = true;
+                effect.DirectionalLight2.Enabled = false;
+                effect.PreferPerPixelLighting = true;
             }
             effect.FogEnabled = false;
+            effect.Alpha = obj.Coloring.Alpha;
 
             // matrices
             effect.World = obj.WorldMatrix * obj.World.Camera.WorldMatrix;
@@ -208,11 +220,11 @@ namespace Knot3.Framework.Effects
 
         protected Texture2D GetTexture (IGameObject obj)
         {
-            if (obj is ITexturedObject && (obj as ITexturedObject).Texture != null) {
-                return (obj as ITexturedObject).Texture;
+            if (obj.Texture != null) {
+                return obj.Texture;
             }
-            else if (obj is IColoredObject) {
-                ModelColoring coloring = (obj as IColoredObject).Coloring;
+            else {
+                ModelColoring coloring = obj.Coloring;
                 if (coloring is GradientColor) {
                     return ContentLoader.CreateGradient (screen.GraphicsDevice, coloring as GradientColor);
                 }
@@ -220,9 +232,15 @@ namespace Knot3.Framework.Effects
                     return ContentLoader.CreateTexture (screen.GraphicsDevice, coloring.MixedColor);
                 }
             }
-            else {
-                return ContentLoader.CreateTexture (screen.GraphicsDevice, Color.CornflowerBlue);
-            }
+        }
+
+        protected Matrix SkyViewMatrix (Matrix viewMatrix)
+        {
+            Matrix skyboxView = viewMatrix;
+            skyboxView.M41 = 0;
+            skyboxView.M42 = 0;
+            skyboxView.M43 = 0;
+            return skyboxView;
         }
 
         /// <summary>
@@ -286,8 +304,8 @@ namespace Knot3.Framework.Effects
                     }
                     catch (NotSupportedException ex) {
                         Log.Debug (ex);
-                        if (Config.Default ["video", "Supersamples", 1] > 1) {
-                            Config.Default ["video", "Supersamples", 1] *= 0.8f;
+                        if (Config.Default ["video", "Supersamples", 2] > 1) {
+                            Config.Default ["video", "Supersamples", 2] *= 0.8f;
                         }
                         else {
                             throw;

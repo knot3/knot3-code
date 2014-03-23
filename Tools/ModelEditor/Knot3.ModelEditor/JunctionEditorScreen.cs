@@ -81,11 +81,11 @@ namespace Knot3.ModelEditor
         private Menu settingsMenu;
         private MenuEntry backButton;
         private FloatOption optionJunctionCount;
-        private DropDownMenuItem itemJunctionCount;
+        private ComboBox itemJunctionCount;
         private DistinctOption[] optionJuctionDirection;
-        private DropDownMenuItem[] itemJunctionDirection;
-        private DropDownMenuItem[] itemBumpRotation;
-        private DropDownMenuItem[] itemModels;
+        private ComboBox[] itemJunctionDirection;
+        private ComboBox[] itemBumpRotation;
+        private ComboBox[] itemModels;
 
         /// <summary>
         /// Erzeugt eine neue Instanz eines CreativeModeScreen-Objekts und initialisiert diese mit einem Knot3Game-Objekt game, sowie einem Knoten knot.
@@ -138,7 +138,7 @@ namespace Knot3.ModelEditor
                 validValues: validJunctionCounts,
                 configFile: Config.Default
             );
-            itemJunctionCount = new DropDownMenuItem (
+            itemJunctionCount = new ComboBox (
                 screen: this,
                 drawOrder: DisplayLayer.Overlay + DisplayLayer.MenuItem,
                 text: "Junctions #"
@@ -148,7 +148,7 @@ namespace Knot3.ModelEditor
 
             Direction[] validDirections = Direction.Values;
             optionJuctionDirection = new DistinctOption [3];
-            itemJunctionDirection = new DropDownMenuItem [3];
+            itemJunctionDirection = new ComboBox [3];
             for (int i = 0; i < 3; ++i) {
                 DistinctOption option = new DistinctOption (
                     section: "debug",
@@ -157,7 +157,7 @@ namespace Knot3.ModelEditor
                     validValues: validDirections.Select (d => d.Name),
                     configFile: Config.Default
                 );
-                DropDownMenuItem item = new DropDownMenuItem (
+                ComboBox item = new ComboBox (
                     screen: this,
                     drawOrder: DisplayLayer.Overlay + DisplayLayer.MenuItem,
                     text: Localizer.Localize ("Direction ") + i.ToString ()
@@ -168,9 +168,9 @@ namespace Knot3.ModelEditor
                 itemJunctionDirection [i] = item;
             }
 
-            itemBumpRotation = new DropDownMenuItem [3];
+            itemBumpRotation = new ComboBox [3];
             for (int i = 0; i < 3; ++i) {
-                DropDownMenuItem item = new DropDownMenuItem (
+                ComboBox item = new ComboBox (
                     screen: this,
                     drawOrder: DisplayLayer.Overlay + DisplayLayer.MenuItem,
                     text: Localizer.Localize ("Bump Angle ") + i.ToString ()
@@ -179,9 +179,9 @@ namespace Knot3.ModelEditor
                 itemBumpRotation [i] = item;
             }
 
-            itemModels = new DropDownMenuItem [3];
+            itemModels = new ComboBox [3];
             for (int i = 0; i < 3; ++i) {
-                DropDownMenuItem item = new DropDownMenuItem (
+                ComboBox item = new ComboBox (
                     screen: this,
                     drawOrder: DisplayLayer.Overlay + DisplayLayer.MenuItem,
                     text: Localizer.Localize ("Model ") + i.ToString ()

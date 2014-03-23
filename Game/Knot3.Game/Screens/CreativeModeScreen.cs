@@ -50,6 +50,7 @@ using Knot3.Game.Development;
 using Knot3.Game.Input;
 using Knot3.Game.Models;
 using Knot3.Game.Widgets;
+using Knot3.Framework.Models;
 
 namespace Knot3.Game.Screens
 {
@@ -156,8 +157,12 @@ namespace Knot3.Game.Screens
             Knot = knot;
 
             // Hintergrund
-            SkyCube skyCube = new SkyCube (screen: this, position: Vector3.Zero, distance: 5000);
+            Sky skyCube = new Sky (screen: this, position: Vector3.Zero);
             world.Add (skyCube);
+
+            // Sonne
+            Sun sun = new Sun (screen: this);
+            world.Add (sun);
 
             // Undo-Button
             undoButton = new Button (

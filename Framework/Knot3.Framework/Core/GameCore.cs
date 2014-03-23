@@ -81,12 +81,7 @@ namespace Knot3.Framework.Core
         protected Point ScreenResolution
         {
             get {
-                if (Config.Default ["debug", "projector-mode", false]) {
-                    return new Point (1024, 768);
-                }
-                else {
-                    return new Point (GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height);
-                }
+                return new Point (GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height);
             }
         }
 
@@ -98,6 +93,9 @@ namespace Knot3.Framework.Core
                 int width = int.Parse (reso [0]);
                 int height = int.Parse (reso [1]);
                 return new Point (width, height);
+            }
+            set {
+                Config.Default ["video", "resolution", defaultSize.X + "x" + defaultSize.Y] = value.X + "x" + value.Y;
             }
         }
 
@@ -211,6 +209,10 @@ namespace Knot3.Framework.Core
                 lastResolution = currentResolution;
                 FullScreenChanged ();
                 Log.Message ("Resolution (BackBuffer - now): ", BackbufferResolution);
+            }
+            if (Config.Default ["debug", "projector-mode", false]) {
+                WindowResolution = new Point (1024, 768);
+                IsFullScreen = false;
             }
         }
 

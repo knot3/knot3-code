@@ -27,23 +27,20 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-
 using Knot3.Framework.Core;
 using Knot3.Framework.Models;
 using Knot3.Framework.Platform;
 using Knot3.Framework.Primitives;
 using Knot3.Framework.Storage;
-
 using Knot3.Game.Data;
+using Knot3.Framework.Development;
 
 namespace Knot3.Game.Models
 {
@@ -74,22 +71,22 @@ namespace Knot3.Game.Models
         /// </summary>
         private Parallelogram[] rectangles;
         /// <summary>
-        /// Die einzelnen Texturen.
-        /// </summary>
-        private Texture2D[] textures;
-        /// <summary>
         /// Der Zufallsgenerator.
         /// </summary>
         private Random random;
         /// <summary>
         /// Der Texture-Cache.
         /// </summary>
-        private Dictionary<Direction, Texture2D> textureCache = new Dictionary<Direction, Texture2D> ();
+        private Dictionary<Direction, SkyTexture> textureCache = new Dictionary<Direction, SkyTexture> ();
         /// <summary>
         /// Der Effekt, mit dem die Skybox gezeichnet wird.
         /// </summary>
         private BasicEffect effect;
         private Matrix scaleMatrix;
+        /// <summary>
+        /// Die einzelnen Texturen.
+        /// </summary>
+        private SkyTexture[] SkyTextures;
 
         /// <summary>
         /// Erstellt ein neues KnotRenderer-Objekt für den angegebenen Spielzustand mit den angegebenen
@@ -130,44 +127,63 @@ namespace Knot3.Game.Models
                 rectangles [i] = parallelogram;
                 ++i;
             }
-            if (textures == null) {
-                textures = new Texture2D [Direction.Values.Length];
+            if (SkyTextures == null) {
+                SkyTextures = new SkyTexture [Direction.Values.Length];
                 i = 0;
                 foreach (Direction direction in Direction.Values) {
-                    if (Config.Default ["debug", "projector-mode", false]) {
-                        textures [i] = ContentLoader.CreateTexture (Screen.GraphicsDevice, Color.White);
-                    }
-                    else {
-                        textures [i] = CachedSkyTexture (direction);
-                    }
+                    SkyTextures [i] = CachedSkyTexture (direction);
                     ++i;
                 }
             }
         }
 
-        private Texture2D CachedSkyTexture (Direction direction)
+        private SkyTexture CachedSkyTexture (Direction direction)
         {
-            if (!textureCache.ContainsKey (direction)) {
-                textureCache [direction] = CreateSkyTexture ();
+            if (textureCache.ContainsKey (direction)) {
+                return textureCache [direction];
             }
-            return textureCache [direction];
+            else if (textureCache.ContainsKey (direction.Reverse)) {
+                return textureCache [direction.Reverse];
+            }
+            else {
+                return textureCache [direction] = CreateSkyTexture ();
+            }
         }
 
-        private Texture2D CreateSkyTexture ()
+        private SkyTexture CreateSkyTexture ()
         {
             string effectName = Config.Default ["video", "knot-shader", "default"];
-            if (effectName == "celshader") {
-                return ContentLoader.CreateTexture (Screen.GraphicsDevice, Color.CornflowerBlue);
+            if (Config.Default ["debug", "projector-mode", false]) {
+                return CreateSolidColorTexture (ContentLoader.CreateTexture (Screen.GraphicsDevice, Color.White));
+            }
+            else if (effectName == "celshader") {
+                return CreateSolidColorTexture (ContentLoader.CreateTexture (Screen.GraphicsDevice, Color.CornflowerBlue));
             }
             else {
                 return CreateSpaceTexture ();
             }
         }
 
-        private Texture2D CreateSpaceTexture ()
+        private SkyTexture CreateSolidColorTexture (Texture2D texture)
         {
-            int width = 1000;
-            int height = 1000;
+            Color[] colors = new Color[texture.Width * texture.Height];
+            SkyTexture skyTexture = new SkyTexture {
+                Texture = texture,
+                SmallStars = new Star[0],
+                BigStars = new Star[0],
+                Width = texture.Width,
+                Height = texture.Height,
+                Colors = colors
+            };
+            return skyTexture;
+        }
+
+        private SkyTexture CreateSpaceTexture ()
+        {
+            List<Star> bigStars = new List<Star> ();
+            List<Star> smallStars = new List<Star> ();
+            int width = 800;
+            int height = 800;
             Texture2D texture = new Texture2D (Screen.GraphicsDevice, width, height);
             Color[] colors = new Color [width * height];
             for (int i = 0; i < colors.Length; i++) {
@@ -179,27 +195,49 @@ namespace Knot3.Game.Models
                     if (random.Next () % (width * 3) == w) {
                         float alpha = (1 + random.Next () % 3) / 3f;
                         Color white = Color.White * alpha;
-                        Color gray = Color.Gray * alpha;
                         colors [i] = white;
-                        colors [i - 1] = white;
                         colors [i + 1] = white;
-                        colors [i - width] = white;
-                        colors [i - width - 1] = gray;
-                        colors [i - width + 1] = gray;
+                        colors [i - 1] = white;
                         colors [i + width] = white;
-                        colors [i + width - 1] = gray;
-                        colors [i + width + 1] = gray;
+                        colors [i - width] = white;
+                        bigStars.Add (new Star (random) { W = w, H = h, Color = Color.White });
+                    }
+                    else if (random.Next () % (width * 3) == w) {
+                        float alpha = (1 + random.Next () % 3) / 3f;
+                        Color white = Color.White * alpha;
+                        colors [i] = white;
+                        smallStars.Add (new Star (random) { W = w, H = h, Color = Color.White });
+                    }
+                    else if (random.Next () % (width * 3) == w) {
+                        float alpha = (1 + random.Next () % 3) / 3f;
+                        Color green = Color.LimeGreen * alpha;
+                        colors [i] = green;
+                        smallStars.Add (new Star (random) { W = w, H = h, Color = Color.LimeGreen });
+                    }
+                    else if (random.Next () % (width * 3) == w) {
+                        float alpha = (1 + random.Next () % 3) / 3f;
+                        Color green = Color.DarkSeaGreen * alpha;
+                        colors [i] = green;
+                        smallStars.Add (new Star (random) { W = w, H = h, Color = Color.DarkSeaGreen });
                     }
                 }
             }
             texture.SetData (colors);
-            return texture;
+            SkyTexture skyTexture = new SkyTexture {
+                Texture = texture,
+                SmallStars = smallStars.ToArray (),
+                BigStars = bigStars.ToArray (),
+                Width = width,
+                Height = height,
+                Colors = colors
+            };
+            return skyTexture;
         }
 
         [ExcludeFromCodeCoverageAttribute]
         public override void Update (GameTime time)
         {
-            if (Math.Abs (1f-(Distance / (World.Camera.FarPlane / 3.6f))) > 0.05f) {
+            if (Math.Abs (1f - (Distance / (World.Camera.FarPlane / 3.6f))) > 0.05f) {
                 Distance = World.Camera.FarPlane / 3.6f;
             }
         }
@@ -231,7 +269,7 @@ namespace Knot3.Game.Models
             }
 
             for (int i = 0; i < rectangles.Length; ++i) {
-                effect.Texture = textures [i];
+                effect.Texture = SkyTextures [i].Texture;
                 rectangles [i].Draw (effect);
             }
 
@@ -256,6 +294,29 @@ namespace Knot3.Game.Models
         IEnumerator IEnumerable.GetEnumerator ()
         {
             return GetEnumerator (); // Just return the generic version
+        }
+
+        private class SkyTexture
+        {
+            public Texture2D Texture;
+            public Color[] Colors;
+            public Star[] BigStars;
+            public Star[] SmallStars;
+            public int Width;
+            public int Height;
+        }
+
+        private class Star
+        {
+            public int W;
+            public int H;
+            public Color Color;
+            public float AlphaDiff;
+
+            public Star (Random random)
+            {
+                AlphaDiff = (float)random.Next (1000);
+            }
         }
     }
 }

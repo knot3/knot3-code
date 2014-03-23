@@ -49,24 +49,12 @@ namespace Knot3.Game.Development
     public class DebugSettingsScreen : SettingsScreen
     {
         /// <summary>
-        /// Das Menü, das die Einstellungen enthält.
-        /// </summary>
-        private Menu settingsMenu;
-
-        /// <summary>
         /// Erzeugt ein neues DebugSettingsScreen-Objekt und initialisiert dieses mit einem Knot3Game-Objekt.
         /// </summary>
         public DebugSettingsScreen (GameCore game)
         : base (game)
         {
             MenuName = "Debug";
-
-            settingsMenu = new Menu (this, DisplayLayer.ScreenUI + DisplayLayer.Menu);
-            settingsMenu.Bounds.Position = new ScreenPoint (this, 0.400f, 0.180f);
-            settingsMenu.Bounds.Size = new ScreenPoint (this, 0.500f, 0.770f);
-            settingsMenu.Bounds.Padding = new ScreenPoint (this, 0.010f, 0.010f);
-            settingsMenu.ItemAlignX = HorizontalAlignment.Left;
-            settingsMenu.ItemAlignY = VerticalAlignment.Center;
 
             CheckBoxItem showOverlay = new CheckBoxItem (
                 screen: this,
@@ -110,7 +98,7 @@ namespace Knot3.Game.Development
 
             string[] unprojectMethods = { "SelectedObject", "NearFarAverage" };
             DistinctOption unprojectOption = new DistinctOption ("debug", "unproject", unprojectMethods [0], unprojectMethods, Config.Default);
-            DropDownMenuItem unprojectItem = new DropDownMenuItem (
+            ComboBox unprojectItem = new ComboBox (
                 screen: this,
                 drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
                 text: "Unproject"
@@ -131,9 +119,10 @@ namespace Knot3.Game.Development
                     Config.Default ["video", "camera-overlay", false] = false;
                     Config.Default ["video", "profiler-overlay", false] = false;
                     Config.Default ["video", "knot-shader", "default"] = "default";
-                    Config.Default ["video", "Supersamples", 1f] = 2f;
+                    Config.Default ["video", "Supersamples", 2f] = 2f;
                     Config.Default ["video", "arrows", false] = false;
                     Config.Default ["language", "current", "en"] = "de";
+                    Config.Default ["video", "day-cycle-seconds", 60] = 10;
                 }
                 else {
                     new HfGDesign ().Apply ();

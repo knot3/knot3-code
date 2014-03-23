@@ -49,11 +49,6 @@ namespace Knot3.Game.Screens
     [ExcludeFromCodeCoverageAttribute]
     public class AudioSettingsScreen : SettingsScreen
     {
-        /// <summary>
-        /// Das Menü, das die Einstellungen enthält.
-        /// </summary>
-        private Menu settingsMenu { get; set; }
-
         private Dictionary<string, HashSet<Sound>> soundCategories = new Dictionary<string, HashSet<Sound>>()
         {
             {
@@ -81,13 +76,6 @@ namespace Knot3.Game.Screens
         : base (game)
         {
             MenuName = "Audio";
-
-            settingsMenu = new Menu (this, DisplayLayer.ScreenUI + DisplayLayer.Menu);
-            settingsMenu.Bounds.Position = new ScreenPoint (this, 0.400f, 0.180f);
-            settingsMenu.Bounds.Size = new ScreenPoint (this, 0.500f, 0.720f);
-            settingsMenu.Bounds.Padding = new ScreenPoint (this, 0.010f, 0.010f);
-            settingsMenu.ItemAlignX = HorizontalAlignment.Left;
-            settingsMenu.ItemAlignY = VerticalAlignment.Center;
 
             foreach (KeyValuePair<string, HashSet<Sound>> soundCategory in soundCategories) {
                 string volumeName = soundCategory.Key;

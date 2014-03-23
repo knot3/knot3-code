@@ -215,7 +215,7 @@ namespace Knot3.Game.Development
         {
             if (font != null) {
                 try {
-                    spriteBatch.DrawString (font, str.Localize (), new Vector2 (width, height) * Config.Default ["video", "Supersamples", 1], color, 0f, Vector2.Zero, scale * Config.Default ["video", "Supersamples", 1], SpriteEffects.None, 0f);
+                    spriteBatch.DrawString (font, str.Localize (), new Vector2 (width, height) * Config.Default ["video", "Supersamples", 2], color, 0f, Vector2.Zero, scale * Config.Default ["video", "Supersamples", 2], SpriteEffects.None, 0f);
                 }
                 catch (ArgumentException exp) {
                     Log.Debug (exp);
@@ -271,16 +271,16 @@ namespace Knot3.Game.Development
             /*
             float elapsed = (float)time.TotalGameTime.TotalMilliseconds;
             spriteBatch.Begin ();
-            DrawString ("FPS: " + _fps.ToString (), (int)(Screen.Viewport.Width / Config.Default ["video", "Supersamples", 1]) - (int)(170 * scale), (int)(50 * scale), Color.White);
-            DrawString ("totaltime: " + elapsed.ToString (), (int)(Screen.Viewport.Width / Config.Default ["video", "Supersamples", 1]) - (int)(170 * scale), (int)(70 * scale), Color.White);
-            DrawString ("_elapsed: " + preDrawElapsedTime.ToString (), (int)(Screen.Viewport.Width / Config.Default ["video", "Supersamples", 1]) - (int)(170 * scale), (int)(30 * scale), Color.White);
+            DrawString ("FPS: " + _fps.ToString (), (int)(Screen.Viewport.Width / Config.Default ["video", "Supersamples", 2]) - (int)(170 * scale), (int)(50 * scale), Color.White);
+            DrawString ("totaltime: " + elapsed.ToString (), (int)(Screen.Viewport.Width / Config.Default ["video", "Supersamples", 2]) - (int)(170 * scale), (int)(70 * scale), Color.White);
+            DrawString ("_elapsed: " + preDrawElapsedTime.ToString (), (int)(Screen.Viewport.Width / Config.Default ["video", "Supersamples", 2]) - (int)(170 * scale), (int)(30 * scale), Color.White);
             float sum = 5000 / (float) lastFrameTimes.Sum ();
-            DrawString ("sum: " + sum.ToString (), (int)(Screen.Viewport.Width / Config.Default ["video", "Supersamples", 1]) - (int)(170 * scale), (int)(10 * scale), Color.White);
+            DrawString ("sum: " + sum.ToString (), (int)(Screen.Viewport.Width / Config.Default ["video", "Supersamples", 2]) - (int)(170 * scale), (int)(10 * scale), Color.White);
             spriteBatch.End ();
             */
             _total_frames++;
             spriteBatch.Begin ();
-            DrawString ("FPS: " + _fps.ToString (), (int)(Screen.Viewport.Width / Config.Default ["video", "Supersamples", 1]) - (int)(170 * scale), (int)(50 * scale), Design.WidgetForeground);
+            DrawString ("FPS: " + _fps.ToString (), (int)(Screen.Viewport.Width / Config.Default ["video", "Supersamples", 2]) - (int)(170 * scale), (int)(50 * scale), Design.WidgetForeground);
             spriteBatch.End ();
         }
 
@@ -289,7 +289,7 @@ namespace Knot3.Game.Development
             spriteBatch.Begin ();
             int height = (int)(90 * scale);
             foreach (string name in Profiler.ProfilerMap.Keys.Cast<string>().OrderBy (key => key)) {
-                DrawString (name + ": " + Profiler.ProfilerMap [name], (int)(Screen.Viewport.Width / Config.Default ["video", "Supersamples", 1]) - (int)(170 * scale), height, Color.White);
+                DrawString (name + ": " + Profiler.ProfilerMap [name], (int)(Screen.Viewport.Width / Config.Default ["video", "Supersamples", 2]) - (int)(170 * scale), height, Color.White);
                 height += lineHeight;
             }
             spriteBatch.End ();

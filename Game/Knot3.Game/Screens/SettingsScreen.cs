@@ -68,6 +68,11 @@ namespace Knot3.Game.Screens
         private Menu navigationMenu;
 
         /// <summary>
+        /// Das vertikale Menü wo die Einstellungen anzeigt. Hier nimmt der Spieler Einstellungen vor.
+        /// </summary>
+        protected Menu settingsMenu;
+
+        /// <summary>
         /// Zurück-Button.
         /// </summary>
         private MenuEntry backButton;
@@ -80,25 +85,25 @@ namespace Knot3.Game.Screens
             spriteBatch = new SpriteBatch (GraphicsDevice);
 
             navigationMenu = new Menu (this, DisplayLayer.ScreenUI + DisplayLayer.Menu);
-            navigationMenu.Bounds.Position = new ScreenPoint (this, 0.100f, 0.180f);
-            navigationMenu.Bounds.Size = new ScreenPoint (this, 0.300f, 0.770f);
+            navigationMenu.Bounds.Position = ScreenContentBounds.Position;
+            navigationMenu.Bounds.Size = new ScreenPoint (this, 0.200f, ScreenContentBounds.Size.Relative.Y);
             navigationMenu.Bounds.Padding = new ScreenPoint (this, 0.010f, 0.010f);
             navigationMenu.ItemAlignX = HorizontalAlignment.Left;
             navigationMenu.ItemAlignY = VerticalAlignment.Center;
 
-            MenuEntry debugButton = new MenuEntry (
+            MenuEntry profileButton = new MenuEntry (
                 screen: this,
                 drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
-                name: "Debug",
-            onClick: (time) =>  {
+                name: "Profile",
+                onClick: (time) => {
                 game.SkipNextScreenEffect =true;
-                NextScreen = new DebugSettingsScreen (Game);
+                NextScreen = new ProfileSettingsScreen (Game);
             }
             );
             MenuEntry graphicsButton = new MenuEntry (
                 screen: this,
                 drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
-                name: "Video",
+                name: "Graphics",
             onClick: (time) =>  {
                 game.SkipNextScreenEffect =true;
                 NextScreen = new GraphicsSettingsScreen (Game);
@@ -122,26 +127,26 @@ namespace Knot3.Game.Screens
                 NextScreen = new ControlSettingsScreen (Game);
             }
             );
-            MenuEntry profileButton = new MenuEntry (
+            MenuEntry debugButton = new MenuEntry (
                 screen: this,
                 drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
-                name: "Profile",
-            onClick: (time) => {
+                name: "Debug",
+                onClick: (time) =>  {
                 game.SkipNextScreenEffect =true;
-                NextScreen = new ProfileSettingsScreen (Game);
+                NextScreen = new DebugSettingsScreen (Game);
             }
             );
-
-            navigationMenu.Add (debugButton);
+            
+            navigationMenu.Add (profileButton);
             navigationMenu.Add (graphicsButton);
             navigationMenu.Add (audioButton);
             navigationMenu.Add (controlsButton);
-            navigationMenu.Add (profileButton);
+            navigationMenu.Add (debugButton);
 
             lines.AddPoints (0.000f, 0.050f,
                              0.030f, 0.970f,
-                             0.770f, 0.895f,
-                             0.870f, 0.970f,
+                             0.760f, 0.895f,
+                             0.880f, 0.970f,
                              0.970f, 0.050f,
                              1.000f
                             );
@@ -155,6 +160,15 @@ namespace Knot3.Game.Screens
             backButton.AddKey (Keys.Escape);
             backButton.SetCoordinates (left: 0.770f, top: 0.910f, right: 0.870f, bottom: 0.960f);
             backButton.AlignX = HorizontalAlignment.Center;
+
+            // this menu contains the actual settings and is filled in the subclasses
+            settingsMenu = new Menu (this, DisplayLayer.ScreenUI + DisplayLayer.Menu);
+            settingsMenu.Bounds.Position = ScreenContentBounds.Position + navigationMenu.Bounds.Size.OnlyX;
+            settingsMenu.Bounds.Size = ScreenContentBounds.Size - navigationMenu.Bounds.Size.OnlyX;;
+            settingsMenu.Bounds.Padding = new ScreenPoint (this, 0.010f, 0.010f);
+            settingsMenu.ItemAlignX = HorizontalAlignment.Left;
+            settingsMenu.ItemAlignY = VerticalAlignment.Center;
+            settingsMenu.RelativeItemHeight = Design.DataItemHeight;
         }
 
         /// <summary>
@@ -164,6 +178,12 @@ namespace Knot3.Game.Screens
         {
             base.Entered (previousScreen, time);
             AddGameComponents (time, navigationMenu, backButton);
+
+            foreach (MenuEntry entry in navigationMenu) {
+                if (MenuName == entry.Text) {
+                    entry.ForegroundColorFunc = (state) => Design.DefaultLineColor;
+                }
+            }
         }
 
         [ExcludeFromCodeCoverageAttribute]
@@ -173,9 +193,9 @@ namespace Knot3.Game.Screens
             // text
             spriteBatch.DrawStringInRectangle (
                 font: Design.MenuFont (this),
-                text: MenuName.Localize (),
+                text: (MenuName + " Settings").Localize (),
                 color: Design.WidgetForeground,
-                bounds: new Bounds (this, 0.050f, 0.050f, 0.900f, 0.050f),
+                bounds: ScreenTitleBounds,
                 alignX: HorizontalAlignment.Left,
                 alignY: VerticalAlignment.Center
             );

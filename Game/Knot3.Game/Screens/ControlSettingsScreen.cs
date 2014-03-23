@@ -56,24 +56,12 @@ namespace Knot3.Game.Screens
     public class ControlSettingsScreen : SettingsScreen
     {
         /// <summary>
-        /// Das Menü, das die Einstellungen enthält.
-        /// </summary>
-        private Menu settingsMenu;
-
-        /// <summary>
         /// Erzeugt ein neues ControlSettingsScreen-Objekt und initialisiert dieses mit einem Knot3Game-Objekt.
         /// </summary>
         public ControlSettingsScreen (GameCore game)
         : base (game)
         {
             MenuName = "Controls";
-
-            settingsMenu = new Menu (this, DisplayLayer.ScreenUI + DisplayLayer.Menu);
-            settingsMenu.Bounds.Position = new ScreenPoint (this, 0.400f, 0.180f);
-            settingsMenu.Bounds.Size = new ScreenPoint (this, 0.500f, 0.620f);
-            settingsMenu.Bounds.Padding = new ScreenPoint (this, 0.010f, 0.010f);
-            settingsMenu.ItemAlignX = HorizontalAlignment.Left;
-            settingsMenu.ItemAlignY = VerticalAlignment.Center;
 
             CheckBoxItem moveToCenter = new CheckBoxItem (
                 screen: this,

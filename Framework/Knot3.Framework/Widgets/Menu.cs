@@ -45,7 +45,7 @@ namespace Knot3.Framework.Widgets
     /// Ein Menü, das alle Einträge vertikal anordnet.
     /// </summary>
     [ExcludeFromCodeCoverageAttribute]
-    public sealed class Menu : Container, IMouseClickEventListener, IMouseMoveEventListener
+    public sealed class Menu : Container, IMouseClickEventListener, IMouseMoveEventListener, IMouseScrollEventListener
     {
         /// <summary>
         /// Die von der Auflösung unabhängige Höhe der Menüeinträge in Prozent.
@@ -56,6 +56,8 @@ namespace Knot3.Framework.Widgets
         public float RelativeItemHeight { get; set; }
 
         public Bounds MouseClickBounds { get { return Bounds; } }
+
+        public Bounds MouseScrollBounds { get { return Bounds; } }
 
         private SpriteBatch spriteBatch;
 
@@ -99,7 +101,7 @@ namespace Knot3.Framework.Widgets
         public Menu (IScreen screen, DisplayLayer drawOrder)
         : base (screen, drawOrder)
         {
-            RelativeItemHeight = 0.040f;
+            RelativeItemHeight = Design.NavigationItemHeight;
             spriteBatch = new SpriteBatch (screen.GraphicsDevice);
 
             ItemBackgroundColor = Design.MenuItemBackgroundColorFunc;
@@ -166,9 +168,9 @@ namespace Knot3.Framework.Widgets
         }
 
         /// <summary>
-        /// Die Reaktion auf eine Bewegung des Mausrads.
+        /// Die Reaktion auf eine Bewegung des Mausrads. Das Menü scrollt die Einträge.
         /// </summary>
-        public override void OnScroll (int scrollValue)
+        public override void OnScroll (int scrollValue, GameTime time)
         {
             tempScrollValue = scrollValue;
         }

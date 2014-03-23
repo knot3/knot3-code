@@ -76,7 +76,7 @@ namespace Knot3.VisualTests
         /// </summary>
         private KnotRenderer knotRenderer;
         private FloatOption optionEdgeCount;
-        private DropDownMenuItem itemEdgeCount;
+        private ComboBox itemEdgeCount;
         private Menu settingsMenu;
         private InputItem itemDisplayTime;
         private InputItem itemFPS;
@@ -115,7 +115,7 @@ namespace Knot3.VisualTests
                 configFile: Config.Default
             ) { Verbose = false };
             optionEdgeCount.Value = validEdgeCounts.At (0);
-            itemEdgeCount = new DropDownMenuItem (
+            itemEdgeCount = new ComboBox (
                 screen: this,
                 drawOrder: DisplayLayer.Overlay + DisplayLayer.MenuItem,
                 text: "Edges:"

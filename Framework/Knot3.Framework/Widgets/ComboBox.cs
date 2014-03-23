@@ -47,7 +47,7 @@ namespace Knot3.Framework.Widgets
     /// Ein Menüeintrag, der den ausgewählten Wert anzeigt und bei einem Linksklick ein Dropdown-Menü zur Auswahl eines neuen Wertes ein- oder ausblendet.
     /// </summary>
     [ExcludeFromCodeCoverageAttribute]
-    public sealed class DropDownMenuItem : MenuItem
+    public sealed class ComboBox : MenuItem
     {
         /// <summary>
         /// Das Dropdown-Menü, das ein- und ausgeblendet werden kann.
@@ -74,14 +74,14 @@ namespace Knot3.Framework.Widgets
         /// Erzeugt ein neues ConfirmDialog-Objekt und initialisiert dieses mit dem zugehörigen IGameScreen-Objekt.
         /// Zudem ist die Angabe der Zeichenreihenfolge Pflicht.
         /// </summary>
-        public DropDownMenuItem (IScreen screen, DisplayLayer drawOrder, string text)
+        public ComboBox (IScreen screen, DisplayLayer drawOrder, string text)
         : base (screen, drawOrder, String.Empty)
         {
             dropdown = new Menu (screen: screen, drawOrder: Index + DisplayLayer.Menu);
             dropdown.Bounds.Position = ValueBounds.Position;
             dropdown.Bounds.Size = new ScreenPoint (Screen, () => ValueBounds.Size.OnlyX + ValueBounds.Size.OnlyY * 10);
-            dropdown.ItemForegroundColor = (s) => Container.ItemForegroundColor (s);
-            dropdown.ItemBackgroundColor = (s) => Design.WidgetBackground;
+            dropdown.ItemForegroundColor = Design.ComboBoxItemForegroundColorFunc; // (s) => Container.ItemForegroundColor (s);
+            dropdown.ItemBackgroundColor = Design.ComboBoxItemBackgroundColorFunc; // (s) => Design.WidgetBackground;
             dropdown.BackgroundColorFunc = (s) => Design.WidgetBackground;
             dropdown.ItemAlignX = HorizontalAlignment.Left;
             dropdown.ItemAlignY = VerticalAlignment.Center;

@@ -27,15 +27,12 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
-
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-
 using Knot3.Framework.Core;
 using Knot3.Framework.Effects;
 using Knot3.Framework.Math;
@@ -44,6 +41,8 @@ using Knot3.Framework.Primitives;
 using Knot3.Framework.Storage;
 using Knot3.Framework.Utilities;
 using Knot3.Framework.Widgets;
+using Knot3.Framework.Platform;
+using Knot3.Game.Core;
 
 namespace Knot3.Game.Screens
 {
@@ -54,24 +53,12 @@ namespace Knot3.Game.Screens
     public class GraphicsSettingsScreen : SettingsScreen
     {
         /// <summary>
-        /// Das Menü, das die Einstellungen enthält.
-        /// </summary>
-        private Menu settingsMenu;
-
-        /// <summary>
         /// Erzeugt ein neues GraphicsSettingsScreen-Objekt und initialisiert dieses mit einem Knot3Game-Objekt.
         /// </summary>
         public GraphicsSettingsScreen (GameCore game)
         : base (game)
         {
             MenuName = "Graphics";
-
-            settingsMenu = new Menu (this, DisplayLayer.ScreenUI + DisplayLayer.Menu);
-            settingsMenu.Bounds.Position = new ScreenPoint (this, 0.400f, 0.180f);
-            settingsMenu.Bounds.Size = new ScreenPoint (this, 0.500f, 0.720f);
-            settingsMenu.Bounds.Padding = new ScreenPoint (this, 0.010f, 0.010f);
-            settingsMenu.ItemAlignX = HorizontalAlignment.Left;
-            settingsMenu.ItemAlignY = VerticalAlignment.Center;
 
             CheckBoxItem showArrows = new CheckBoxItem (
                 screen: this,
@@ -81,6 +68,68 @@ namespace Knot3.Game.Screens
             );
             settingsMenu.Add (showArrows);
 
+            // blinking stars
+            BooleanOption blinkingStarsOption = new BooleanOption ("video", "stars-blinking", true, Config.Default);
+            CheckBoxItem blinkingStars = new CheckBoxItem (
+                screen: this,
+                drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
+                text: "Blinking Stars",
+                option: blinkingStarsOption
+                );
+            blinkingStars.OnValueChanged += () => {
+                (game as Knot3Game).NotAvailableOnXNA ();
+            };
+            settingsMenu.Add (blinkingStars);
+
+            // star count
+            float[] validStarCounts = {
+                100, 250, 500, 750, 1000, 1250, 1500, 2000, 2500, 3000, 5000
+            };
+            FloatOption starCountOption = new FloatOption (
+                section: "video",
+                name: "stars-count",
+                defaultValue: validStarCounts [4],
+                validValues: validStarCounts,
+                configFile: Config.Default
+                );
+            ComboBox starCountItem = new ComboBox (
+                screen: this,
+                drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
+                text: "Number of stars"
+                );
+            starCountItem.AddEntries (starCountOption);
+            settingsMenu.Add (starCountItem);
+
+            // show sun
+            BooleanOption sunOption = new BooleanOption ("video", "show-sun", false, Config.Default);
+            CheckBoxItem showSun = new CheckBoxItem (
+                screen: this,
+                drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
+                text: "Show Sun",
+                option: sunOption
+            );
+            settingsMenu.Add (showSun);
+
+            // day cycle
+            float[] validDayCycles = {
+                10, 20, 30, 60, 120, 300, 600, 900, 1200, 3600, 7200
+            };
+            FloatOption dayCycleOption = new FloatOption (
+                section: "video",
+                name: "day-cycle-seconds",
+                defaultValue: validDayCycles [3],
+                validValues: validDayCycles,
+                configFile: Config.Default
+            );
+            ComboBox dayCycleItem = new ComboBox (
+                screen: this,
+                drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
+                text: "Day cycle in seconds"
+            );
+            dayCycleItem.AddEntries (dayCycleOption);
+            settingsMenu.Add (dayCycleItem);
+
+            // selective rendering
             CheckBoxItem selectiveRender = new CheckBoxItem (
                 screen: this,
                 drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
@@ -89,6 +138,7 @@ namespace Knot3.Game.Screens
             );
             settingsMenu.Add (selectiveRender);
 
+            // auto camera when moving
             CheckBoxItem autoCameraMove = new CheckBoxItem (
                 screen: this,
                 drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
@@ -96,7 +146,8 @@ namespace Knot3.Game.Screens
                 option: new BooleanOption ("video", "auto-camera-move", true, Config.Default)
             );
             settingsMenu.Add (autoCameraMove);
-
+            
+            // auto camera
             CheckBoxItem autoCamera = new CheckBoxItem (
                 screen: this,
                 drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
@@ -107,8 +158,8 @@ namespace Knot3.Game.Screens
 
             // Resolutions
             string currentResolution = GraphicsManager.GraphicsDevice.DisplayMode.Width.ToString ()
-                                       + "x"
-                                       + GraphicsManager.GraphicsDevice.DisplayMode.Height.ToString ();
+                + "x"
+                + GraphicsManager.GraphicsDevice.DisplayMode.Height.ToString ();
 
             DisplayModeCollection modes = GraphicsAdapter.DefaultAdapter.SupportedDisplayModes;
             HashSet<string> reso = new HashSet<string> ();
@@ -125,7 +176,7 @@ namespace Knot3.Game.Screens
                 validValues: validResolutions,
                 configFile: Config.Default
             );
-            DropDownMenuItem resolutionItem = new DropDownMenuItem (
+            ComboBox resolutionItem = new ComboBox (
                 screen: this,
                 drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
                 text: "Resolution"
@@ -140,17 +191,28 @@ namespace Knot3.Game.Screens
             FloatOption supersamplesOption = new FloatOption (
                 section: "video",
                 name: "Supersamples",
-                defaultValue: 1f,
+                defaultValue: 2f,
                 validValues: validSupersamples,
                 configFile: Config.Default
             );
-            DropDownMenuItem supersamplesItem = new DropDownMenuItem (
+            ComboBox supersamplesItem = new ComboBox (
                 screen: this,
                 drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
                 text: "Supersamples"
             );
             supersamplesItem.AddEntries (supersamplesOption);
             settingsMenu.Add (supersamplesItem);
+
+            // fullscreen
+            BooleanOption fullscreenOption = new BooleanOption ("video", "fullscreen", false, Config.Default);
+            CheckBoxItem fullscreen = new CheckBoxItem (
+                screen: this,
+                drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
+                text: "Fullscreen",
+                option: fullscreenOption
+            );
+            fullscreen.OnValueChanged += () => Game.IsFullScreen = fullscreenOption.Value;
+            settingsMenu.Add (fullscreen);
 
             // Model quality
             SliderItem sliderModelQuality = new SliderItem (
@@ -175,7 +237,7 @@ namespace Knot3.Game.Screens
                 name: "knot-shader",
                 configFile: Config.Default
             );
-            DropDownMenuItem renderEffectItem = new DropDownMenuItem (
+            ComboBox renderEffectItem = new ComboBox (
                 screen: this,
                 drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
                 text: "Render Effect"
@@ -185,31 +247,6 @@ namespace Knot3.Game.Screens
             };
             renderEffectItem.AddEntries (renderEffectOption);
             settingsMenu.Add (renderEffectItem);
-
-            //fullscreen
-            BooleanOption fullscreenOption = new BooleanOption ("video", "fullscreen", false, Config.Default);
-            CheckBoxItem fullscreen = new CheckBoxItem (
-                screen: this,
-                drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
-                text: "Fullscreen",
-                option: fullscreenOption
-            );
-            fullscreen.OnValueChanged += () => Game.IsFullScreen = fullscreenOption.Value;
-            settingsMenu.Add (fullscreen);
-
-            // Languages
-            LanguageOption languageOption = new LanguageOption (
-                section: "language",
-                name: "current",
-                configFile: Config.Default
-            );
-            DropDownMenuItem languageItem = new DropDownMenuItem (
-                screen: this,
-                drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
-                text: "Language"
-            );
-            languageItem.AddEntries (languageOption);
-            settingsMenu.Add (languageItem);
         }
 
         /// <summary>

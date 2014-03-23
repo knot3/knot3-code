@@ -187,9 +187,9 @@ namespace Knot3.Framework.Widgets
         }
 
         /// <summary>
-        /// Die Reaktion auf eine Bewegung des Mausrads.
+        /// Die Reaktion auf eine Bewegung des Mausrads. Ein Container zeigt keine Reaktion.
         /// </summary>
-        public virtual void OnScroll (int scrollValue)
+        public virtual void OnScroll (int scrollValue, GameTime time)
         {
         }
 

@@ -27,14 +27,12 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
-
 using System;
 using System.Diagnostics.CodeAnalysis;
-
 using Microsoft.Xna.Framework;
-
 using Knot3.Framework.Core;
 using Knot3.Framework.Math;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Knot3.Framework.Models
 {
@@ -88,13 +86,15 @@ namespace Knot3.Framework.Models
         {
             get { return _world; }
             set {
-                if (_world != null) {
-                    _world.Camera.OnViewChanged -= OnViewChanged;
-                }
-                _world = value;
-                if (value != null) {
-                    _world.Camera.OnViewChanged += OnViewChanged;
-                    OnViewChanged ();
+                if (_world != value) {
+                    if (_world != null) {
+                        _world.Camera.OnViewChanged -= OnViewChanged;
+                    }
+                    _world = value;
+                    if (value != null) {
+                        _world.Camera.OnViewChanged += OnViewChanged;
+                        OnViewChanged ();
+                    }
                 }
             }
         }
@@ -123,13 +123,46 @@ namespace Knot3.Framework.Models
             }
         }
 
+        /// <summary>
+        /// Gibt die Ausmaße des Spielobjekts zurück.
+        /// </summary>
         public virtual BoundingSphere[] Bounds { get; protected set; }
 
-        protected bool InCameraFrustum { get { return _inFrustum; } }
+        /// <summary>
+        /// Gibt an, ob das Spielobjekt innerhalb des Frustums ist, das den sichtbaren Bereich enthält.
+        /// </summary>
+        public bool InCameraFrustum { get { return _inFrustum; } }
+
+        /// <summary>
+        /// Gibt an, ob das Spielobjekt mit Beleuchtung gezeichnet werden soll oder nicht.
+        /// </summary>
+        public bool IsLightingEnabled { get; set; }
+
+        /// <summary>
+        /// Gibt an, ob das Spielobjekt zur SkyBox oder etwas vergleichbarem gehört.
+        /// Falls diese Property true ist, wird eine veränderte View-Matrix verwendet.
+        /// </summary>
+        public bool IsSkyObject { get; set; }
 
         public string UniqueKey { get; protected set; }
 
-        public string GameObjectCategory  {get; protected set; }
+        /// <summary>
+        /// Gibt eine Kategorie an, die dabei hilft, Spielobjekte nach gleichartigen Objekten zu ordnen.
+        /// Wird beim Hardware-Instancing verwendet.
+        /// </summary>
+        public string GameObjectCategory  { get; protected set; }
+
+        /// <summary>
+        /// Die Farbe des Modells.
+        /// </summary>
+        public ModelColoring Coloring { get; set; }
+        
+        /// <summary>
+        /// Die Textur des Modells.
+        /// </summary>
+        public Texture2D Texture { get { return _texture; } set { _texture = value; UpdateCategory (); } }
+        private Texture2D _texture;
+
 
         public GameObject (Vector3 position = default (Vector3), Angles3 rotation = default (Angles3), Vector3 scale = default (Vector3),
                            bool isVisible = true, bool isSelectable = false, bool isMovable = false)
@@ -141,6 +174,9 @@ namespace Knot3.Framework.Models
             IsMovable = isMovable;
             Bounds = new BoundingSphere [0];
             UniqueKey = GetType ().Name;
+            IsLightingEnabled = true;
+            IsSkyObject = false;
+            Coloring = new SingleColor (Color.Transparent);
         }
 
         protected virtual void UpdateCategory ()
@@ -150,19 +186,16 @@ namespace Knot3.Framework.Models
 
         protected void UpdateCategory (string category)
         {
-            GameObjectCategory = GetType ().Name + GetTextureHashCode (obj: this) + category;
+            GameObjectCategory = GetType ().Name + GetTextureHashCode (obj: this) + category + IsLightingEnabled + IsSkyObject;
         }
 
         protected int GetTextureHashCode (IGameObject obj)
         {
-            if (obj is ITexturedObject && (obj as ITexturedObject).Texture != null) {
-                return (obj as ITexturedObject).Texture.GetHashCode ();
-            }
-            else if (obj is IColoredObject) {
-                return (obj as IColoredObject).Coloring.MixedColor.GetHashCode ();
+            if (obj.Texture != null) {
+                return obj.Texture.GetHashCode ();
             }
             else {
-                return 0;
+                return obj.Coloring.MixedColor.GetHashCode ();
             }
         }
 
@@ -171,7 +204,6 @@ namespace Knot3.Framework.Models
         /// </summary>
         public virtual void Update (GameTime time)
         {
-            //UpdateCategory ("");
         }
 
         /// <summary>
@@ -214,22 +246,8 @@ namespace Knot3.Framework.Models
         [ExcludeFromCodeCoverageAttribute]
         public override int GetHashCode ()
         {
-            return (UniqueKey+Position).GetHashCode ();
+            return (UniqueKey + Position).GetHashCode ();
         }
-
-        /*
-        public static bool operator == (GameObject o1, GameObject o2)
-        {
-            if ((object)o1 == null || ((object)o2) == null) {
-                return object.Equals (o1, o2);
-            }
-            return o2.Equals (o2);
-        }
-
-        public static bool operator != (GameObject o1, GameObject o2)
-        {
-            return !(o1 == o2);
-        }*/
 
         private Vector3 _scale;
         private Angles3 _rotation;
@@ -245,8 +263,8 @@ namespace Knot3.Framework.Models
             if (Scale != _scale || Rotation != _rotation || Position != _position) {
                 // world matrix
                 _worldMatrix = Matrix.CreateScale (Scale)
-                               * Matrix.CreateFromYawPitchRoll (Rotation.Y, Rotation.X, Rotation.Z)
-                               * Matrix.CreateTranslation (Position);
+                    * Matrix.CreateFromYawPitchRoll (Rotation.Y, Rotation.X, Rotation.Z)
+                    * Matrix.CreateTranslation (Position);
                 _worldMatrixInverseTranspose = Matrix.Transpose (Matrix.Invert (_worldMatrix));
 
                 // attrs

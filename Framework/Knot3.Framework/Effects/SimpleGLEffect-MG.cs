@@ -27,13 +27,10 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
-
 using System;
 using System.Diagnostics.CodeAnalysis;
-
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-
 using Knot3.Framework.Core;
 using Knot3.Framework.Models;
 using Knot3.Framework.Platform;
@@ -51,20 +48,29 @@ namespace Knot3.Framework.Effects
             effect = new Effect (screen.GraphicsDevice, SHADER_CODE, GetType ().Name);
         }
 
+        private void SetShaderParameters (GameObject obj, GameTime time)
+        {
+            Camera camera = obj.World.Camera;
+            effect.Parameters ["xWorld"].SetValue (obj.WorldMatrix * camera.WorldMatrix);
+            effect.Parameters ["xView"].SetValue (obj.IsSkyObject ? SkyViewMatrix (camera.ViewMatrix) : camera.ViewMatrix);
+            effect.Parameters ["xProjection"].SetValue (camera.ProjectionMatrix);
+            effect.Parameters ["xWorldInverseTranspose"].SetValue (Matrix.Transpose (Matrix.Invert (obj.WorldMatrix * camera.WorldMatrix)));
+            effect.Parameters ["xModelTexture"].SetValue (GetTexture (obj));
+            effect.Parameters ["xLightDirection"].SetValue (camera.LightDirection);
+            effect.Parameters ["xCameraPosition"].SetValue (camera.Position);
+            Vector4 flags = Vector4.Zero;
+            flags.X = obj.Coloring.Alpha;
+            flags.Y = obj.IsLightingEnabled ? 1 : 0;
+            effect.Parameters ["xFlags"].SetValue (flags);
+        }
+
         public override void DrawModel (GameModel model, GameTime time)
         {
             // Setze den Viewport auf den der aktuellen Spielwelt
             Viewport original = screen.Viewport;
             screen.Viewport = model.World.Viewport;
-
-            Camera camera = model.World.Camera;
-            effect.Parameters ["xWorld"].SetValue (model.WorldMatrix * camera.WorldMatrix);
-            effect.Parameters ["xView"].SetValue (camera.ViewMatrix);
-            effect.Parameters ["xProjection"].SetValue (camera.ProjectionMatrix);
-            effect.Parameters ["xWorldInverseTranspose"].SetValue (Matrix.Transpose (Matrix.Invert (model.WorldMatrix * camera.WorldMatrix)));
-
-            effect.Parameters ["xModelTexture"].SetValue (GetTexture (model));
-            effect.Parameters ["xLightDirection"].SetValue (new Vector4 (-1.0f, -2.0f, -1.0f, 0));
+            
+            SetShaderParameters (obj: model, time: time);
 
             foreach (ModelMesh mesh in model.Model.Meshes) {
                 mesh.Draw ();
@@ -80,15 +86,7 @@ namespace Knot3.Framework.Effects
             Viewport original = screen.Viewport;
             screen.Viewport = primitive.World.Viewport;
 
-            Camera camera = primitive.World.Camera;
-            effect.Parameters ["xWorld"].SetValue (primitive.WorldMatrix * camera.WorldMatrix);
-            effect.Parameters ["xView"].SetValue (camera.ViewMatrix);
-            effect.Parameters ["xProjection"].SetValue (camera.ProjectionMatrix);
-            effect.Parameters ["xWorldInverseTranspose"].SetValue (Matrix.Transpose (Matrix.Invert (primitive.WorldMatrix * camera.WorldMatrix)));
-
-            effect.Parameters ["xModelTexture"].SetValue (GetTexture (primitive));
-            effect.Parameters ["xLightDirection"].SetValue (new Vector4 (-1.0f, -2.0f, -1.0f, 0));
-
+            SetShaderParameters (obj: primitive, time: time);
             primitive.Primitive.Draw (effect: effect);
 
             // Setze den Viewport wieder auf den ganzen Screen
@@ -116,21 +114,49 @@ namespace Knot3.Framework.Effects
 
 uniform sampler2D xModelTexture;
 uniform vec4 xLightDirection;
+uniform vec4 xFlags;
+#define xAlpha xFlags[0]
+#define xIsLightingEnabled xFlags[1]
 
 in vec4 fragNormal;
 in vec4 fragTexCoord;
-in vec4 fragLightingFactor;
+in vec4 fragEyeDirection;
+
 out vec4 fragColor;
 
 void main ()
 {
-    vec4 colorTexture = texture2D (xModelTexture, fragTexCoord.xy);
-    colorTexture.w = 1.0;
-    vec4 intensityDiffuse = colorTexture * clamp (dot (-normalize (fragNormal.xyz), normalize (xLightDirection.xyz)), -1.0, 2.0);
+    // texture color
+    vec4 colorTexture = vec4 (texture2D (xModelTexture, fragTexCoord.xy).xyz, 1.0);
+    // normal
+    vec3 normal = normalize (fragNormal.xyz);
+    // light direction
+    vec3 lightDirection = normalize(xLightDirection.xyz);
 
-    vec4 color = colorTexture * 0.4 + normalize (colorTexture+vec4 (1.0)) * intensityDiffuse * 0.6;
-    color.w = 1.0;
-    fragColor = color;
+    // diffuse light intensity
+    float diffuse = clamp (dot (normal, -lightDirection), 0.0, 1.0);
+
+    // eye direction
+    vec3 eyeDirection = normalize (fragEyeDirection.xyz);
+    // reflected vector
+    vec3 reflect = normalize (reflect(lightDirection, normal));
+
+    // specular light intensity
+    float shininess = 25.0;
+    float specular = pow (clamp (dot (reflect, eyeDirection), 0.0, 1.0), shininess);
+    vec4 white = vec4(1.0);
+
+    // final color
+    if (xIsLightingEnabled > 0) {
+        vec4 color = clamp (colorTexture * clamp (white * 0.2 + white * diffuse, -1.0, 1.0) + specular, 0.0, 1.0);
+        color.w = xAlpha;
+        fragColor = color;
+    }
+    else {
+        vec4 color = colorTexture;
+        color.w = xAlpha;
+        fragColor = color;
+    }
 }
 
 #monogame EndShader ()
@@ -145,18 +171,21 @@ uniform mat4 xWorld;
 uniform mat4 xView;
 uniform mat4 xProjection;
 uniform mat4 xWorldInverseTranspose;
+uniform vec4 xCameraPosition;
 
 in vec4 inputPosition;
 in vec4 inputNormal;
 in vec4 inputTexCoord;
 out vec4 fragNormal;
 out vec4 fragTexCoord;
+out vec4 fragEyeDirection;
 
 void main ()
 {
     gl_Position = inputPosition * xWorld * xView * xProjection;
     fragNormal = normalize (vec4 ((inputNormal * xWorldInverseTranspose).xyz, 0));
     fragTexCoord.xy = inputTexCoord.xy;
+    fragEyeDirection = normalize(vec4(xCameraPosition.xyz, 1.0) - inputPosition * xWorld);
 }
 
 #monogame EndShader ()
