@@ -44,7 +44,7 @@ namespace Knot3.Framework.Models
 
         public override void Draw (GameTime gameTime)
         {
-            if (IsVisible && InCameraFrustum) {
+            if (IsVisible) {
                 effect.World = WorldMatrix * World.Camera.WorldMatrix;
                 effect.View = World.Camera.ViewMatrix;
                 effect.Projection = World.Camera.ProjectionMatrix;

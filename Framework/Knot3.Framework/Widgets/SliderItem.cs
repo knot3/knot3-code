@@ -162,7 +162,7 @@ namespace Knot3.Framework.Widgets
 
             spriteBatch.Begin ();
 
-            spriteBatch.Draw (lineTexture, coordinateLine, Color.White);
+            spriteBatch.Draw (lineTexture, coordinateLine, Design.WidgetForeground);
             spriteBatch.Draw (rectangleTexture, SliderRectangle, Design.DefaultLineColor);
 
             spriteBatch.End ();

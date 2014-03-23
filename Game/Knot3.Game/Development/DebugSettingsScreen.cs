@@ -122,6 +122,7 @@ namespace Knot3.Game.Development
                     Config.Default ["video", "Supersamples", 1f] = 2f;
                     Config.Default ["video", "arrows", false] = false;
                     Config.Default ["language", "current", "en"] = "de";
+                    Config.Default ["video", "day-cycle-seconds", 60] = 10;
                 }
                 else {
                     new HfGDesign ().Apply ();

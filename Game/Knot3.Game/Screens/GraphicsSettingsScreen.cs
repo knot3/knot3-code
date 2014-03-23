@@ -117,7 +117,7 @@ namespace Knot3.Game.Screens
             FloatOption dayCycleOption = new FloatOption (
                 section: "video",
                 name: "day-cycle-seconds",
-                defaultValue: validDayCycles [0],
+                defaultValue: validDayCycles [3],
                 validValues: validDayCycles,
                 configFile: Config.Default
             );

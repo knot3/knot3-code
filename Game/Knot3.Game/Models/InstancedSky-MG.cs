@@ -136,13 +136,15 @@ namespace Knot3.Game.Models
         [ExcludeFromCodeCoverageAttribute]
         public override void Draw (GameTime time)
         {
-            Profiler.ProfileDelegate ["Sky Draw"] = () => {
-                foreach (Star star in Stars) {
-                    star.World = World;
-                    star.IsLightingEnabled = false;
-                    star.Draw (time);
-                }
-            };
+            if (!Config.Default ["debug", "projector-mode", false]) {
+                Profiler.ProfileDelegate ["Sky Draw"] = () => {
+                    foreach (Star star in Stars) {
+                        star.World = World;
+                        star.IsLightingEnabled = false;
+                        star.Draw (time);
+                    }
+                };
+            }
         }
 
         public override GameObjectDistance Intersects (Ray ray)

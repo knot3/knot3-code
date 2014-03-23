@@ -140,8 +140,8 @@ namespace Knot3.Framework.Core
 
         public float DayCycleSeconds
         {
-            get { return Config.Default ["video", "day-cycle-seconds", 10]; }
-            set { Config.Default ["video", "day-cycle-seconds", 10] = value; }
+            get { return Config.Default ["video", "day-cycle-seconds", 60]; }
+            set { Config.Default ["video", "day-cycle-seconds", 60] = value; }
         }
 
         /// <summary>
