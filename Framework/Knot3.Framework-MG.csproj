@@ -58,6 +58,7 @@
     <Compile Include="Knot3.Framework\Development\DebugBoundings.cs" />
     <Compile Include="Knot3.Framework\Development\Profiler.cs" />
     <Compile Include="Knot3.Framework\Effects\HardwareInstancingEffect-MG.cs" />
+    <Compile Include="Knot3.Framework\Effects\IHardwareInstancingEffect.cs" />
     <Compile Include="Knot3.Framework\Effects\IRenderEffect.cs" />
     <Compile Include="Knot3.Framework\Effects\IRenderEffectStack.cs" />
     <Compile Include="Knot3.Framework\Effects\RenderEffect.cs" />
@@ -150,7 +151,6 @@
     <Compile Include="Knot3.Framework\Widgets\VerticalAlignment.cs" />
     <Compile Include="Knot3.Framework\Widgets\Widget.cs" />
     <Compile Include="Knot3.Framework\Widgets\WidgetState.cs" />
-    <Compile Include="Knot3.Framework\Effects\IHardwareInstancingEffect.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

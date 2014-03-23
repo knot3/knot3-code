@@ -67,6 +67,7 @@
     <Compile Include="Knot3.Framework\Core\World.cs" />
     <Compile Include="Knot3.Framework\Development\DebugBoundings.cs" />
     <Compile Include="Knot3.Framework\Development\Profiler.cs" />
+    <Compile Include="Knot3.Framework\Effects\IHardwareInstancingEffect.cs" />
     <Compile Include="Knot3.Framework\Effects\IRenderEffect.cs" />
     <Compile Include="Knot3.Framework\Effects\IRenderEffectStack.cs" />
     <Compile Include="Knot3.Framework\Effects\RenderEffect.cs" />
@@ -99,10 +100,7 @@
     <Compile Include="Knot3.Framework\Models\GameObject.cs" />
     <Compile Include="Knot3.Framework\Models\GameObjectDistance.cs" />
     <Compile Include="Knot3.Framework\Models\GamePrimitive.cs" />
-    <Compile Include="Knot3.Framework\Models\IColoredObject.cs" />
-    <Compile Include="Knot3.Framework\Models\IGameModel.cs" />
     <Compile Include="Knot3.Framework\Models\IGameObject.cs" />
-    <Compile Include="Knot3.Framework\Models\ITexturedObject.cs" />
     <Compile Include="Knot3.Framework\Models\ModelColoring.cs" />
     <Compile Include="Knot3.Framework\Models\Sun.cs" />
     <Compile Include="Knot3.Framework\Platform\ContentLoader-XNA.cs" />
