@@ -27,20 +27,24 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+
 using Knot3.Framework.Core;
+using Knot3.Framework.Development;
 using Knot3.Framework.Models;
 using Knot3.Framework.Platform;
 using Knot3.Framework.Primitives;
 using Knot3.Framework.Storage;
+
 using Knot3.Game.Data;
-using Knot3.Framework.Development;
 
 namespace Knot3.Game.Models
 {
@@ -166,11 +170,11 @@ namespace Knot3.Game.Models
 
         private SkyTexture CreateSolidColorTexture (Texture2D texture)
         {
-            Color[] colors = new Color[texture.Width * texture.Height];
+            Color[] colors = new Color [texture.Width * texture.Height];
             SkyTexture skyTexture = new SkyTexture {
                 Texture = texture,
-                SmallStars = new Star[0],
-                BigStars = new Star[0],
+                SmallStars = new Star [0],
+                BigStars = new Star [0],
                 Width = texture.Width,
                 Height = texture.Height,
                 Colors = colors

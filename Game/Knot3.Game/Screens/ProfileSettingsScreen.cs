@@ -70,12 +70,12 @@ namespace Knot3.Game.Screens
                 section: "language",
                 name: "current",
                 configFile: Config.Default
-                );
+            );
             ComboBox languageItem = new ComboBox (
                 screen: this,
                 drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
                 text: "Language"
-                );
+            );
             languageItem.AddEntries (languageOption);
             settingsMenu.Add (languageItem);
         }

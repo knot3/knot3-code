@@ -135,7 +135,7 @@ namespace Knot3.Framework.Widgets
         : this (screen, drawOrder, title)
         {
             // Die Textanzeige
-            foreach (string line in text.Split('\n')) {
+            foreach (string line in text.Split ('\n')) {
                 TextItem displayText = new TextItem (Screen, Index + DisplayLayer.MenuItem, line);
                 menu.Add (displayText);
             }

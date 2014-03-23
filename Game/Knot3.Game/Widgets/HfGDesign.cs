@@ -121,7 +121,7 @@ namespace Knot3.Game.Widgets
                 return Color.White;
             }
             if (state == WidgetState.Hovered) {
-                return Color.Black.Mix(Color.White, 0.15f);
+                return Color.Black.Mix (Color.White, 0.15f);
             }
             return Color.Transparent;
         }

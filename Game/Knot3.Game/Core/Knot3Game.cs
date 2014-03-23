@@ -27,25 +27,29 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
+
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
+
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+
 using Knot3.Framework.Core;
 using Knot3.Framework.Effects;
 using Knot3.Framework.Input;
+using Knot3.Framework.Math;
 using Knot3.Framework.Platform;
 using Knot3.Framework.Screens;
 using Knot3.Framework.Storage;
+using Knot3.Framework.Widgets;
+
 using Knot3.Game.Audio;
 using Knot3.Game.Effects;
 using Knot3.Game.Input;
 using Knot3.Game.Screens;
 using Knot3.Game.Widgets;
-using Knot3.Framework.Widgets;
-using System.Diagnostics;
-using Knot3.Framework.Math;
 
 namespace Knot3.Game.Core
 {
@@ -91,11 +95,11 @@ namespace Knot3.Game.Core
 
             // effects
             RenderEffectLibrary.EffectLibrary.Add (new RenderEffectLibrary.EffectFactory (
-                name: "celshader",
-                displayName: "Cel Shading (XNA)",
-                createInstance: (screen) => new CelShadingEffect (screen)
-            )
-            );
+                    name: "celshader",
+                    displayName: "Cel Shading (XNA)",
+                    createInstance: (screen) => new CelShadingEffect (screen)
+                                                   )
+                                                  );
             /*
             RenderEffectLibrary.EffectLibrary.Add (new RenderEffectLibrary.EffectFactory (
                     name: "opaque",

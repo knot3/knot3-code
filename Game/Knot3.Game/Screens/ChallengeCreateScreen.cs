@@ -27,18 +27,22 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
+
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+
 using Knot3.Framework.Core;
 using Knot3.Framework.Math;
 using Knot3.Framework.Platform;
 using Knot3.Framework.Storage;
 using Knot3.Framework.Utilities;
 using Knot3.Framework.Widgets;
+
 using Knot3.Game.Data;
 using Knot3.Game.Utilities;
 
@@ -197,9 +201,9 @@ namespace Knot3.Game.Screens
         {
             get {
                 return selectedStartKnot != null && selectedTargetKnot != null
-                    && selectedStartKnot.MetaData.Filename != selectedTargetKnot.MetaData.Filename
-                    && challengeName.InputText.Length > 0
-                    && !selectedStartKnot.Equals (selectedTargetKnot);
+                       && selectedStartKnot.MetaData.Filename != selectedTargetKnot.MetaData.Filename
+                       && challengeName.InputText.Length > 0
+                       && !selectedStartKnot.Equals (selectedTargetKnot);
             }
         }
 

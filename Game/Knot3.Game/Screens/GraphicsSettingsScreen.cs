@@ -27,21 +27,25 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
+
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+
 using Knot3.Framework.Core;
 using Knot3.Framework.Effects;
 using Knot3.Framework.Math;
 using Knot3.Framework.Models;
+using Knot3.Framework.Platform;
 using Knot3.Framework.Primitives;
 using Knot3.Framework.Storage;
 using Knot3.Framework.Utilities;
 using Knot3.Framework.Widgets;
-using Knot3.Framework.Platform;
+
 using Knot3.Game.Core;
 
 namespace Knot3.Game.Screens
@@ -75,7 +79,7 @@ namespace Knot3.Game.Screens
                 drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
                 text: "Blinking Stars",
                 option: blinkingStarsOption
-                );
+            );
             blinkingStars.OnValueChanged += () => {
                 (game as Knot3Game).NotAvailableOnXNA ();
             };
@@ -91,12 +95,12 @@ namespace Knot3.Game.Screens
                 defaultValue: validStarCounts [4],
                 validValues: validStarCounts,
                 configFile: Config.Default
-                );
+            );
             ComboBox starCountItem = new ComboBox (
                 screen: this,
                 drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
                 text: "Number of stars"
-                );
+            );
             starCountItem.AddEntries (starCountOption);
             settingsMenu.Add (starCountItem);
 
@@ -146,7 +150,7 @@ namespace Knot3.Game.Screens
                 option: new BooleanOption ("video", "auto-camera-move", true, Config.Default)
             );
             settingsMenu.Add (autoCameraMove);
-            
+
             // auto camera
             CheckBoxItem autoCamera = new CheckBoxItem (
                 screen: this,
@@ -158,8 +162,8 @@ namespace Knot3.Game.Screens
 
             // Resolutions
             string currentResolution = GraphicsManager.GraphicsDevice.DisplayMode.Width.ToString ()
-                + "x"
-                + GraphicsManager.GraphicsDevice.DisplayMode.Height.ToString ();
+                                       + "x"
+                                       + GraphicsManager.GraphicsDevice.DisplayMode.Height.ToString ();
 
             DisplayModeCollection modes = GraphicsAdapter.DefaultAdapter.SupportedDisplayModes;
             HashSet<string> reso = new HashSet<string> ();

@@ -37,6 +37,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
 using Knot3.Framework.Core;
+using Knot3.Framework.Input;
 using Knot3.Framework.Math;
 using Knot3.Framework.Platform;
 using Knot3.Framework.Storage;
@@ -47,7 +48,6 @@ using Knot3.Game.Data;
 using Knot3.Game.Input;
 using Knot3.Game.Models;
 using Knot3.Game.Utilities;
-using Knot3.Framework.Input;
 
 namespace Knot3.Game.Screens
 {
@@ -93,7 +93,7 @@ namespace Knot3.Game.Screens
             savegameMenu.ItemBackgroundColor = Design.ComboBoxItemBackgroundColorFunc;
             savegameMenu.ItemForegroundColor = Design.ComboBoxItemForegroundColorFunc;
             savegameMenu.RelativeItemHeight = Design.DataItemHeight;
-            
+
             lines.AddPoints (.000f, .050f, .030f, .970f, .620f, .895f, .740f, .970f, .760f, .895f, .880f, .970f, .970f, .050f, 1.000f);
 
             title = new TextItem (screen: this, drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem, text: "Start Challenge");

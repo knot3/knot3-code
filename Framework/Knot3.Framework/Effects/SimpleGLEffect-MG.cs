@@ -27,10 +27,13 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
+
 using System;
 using System.Diagnostics.CodeAnalysis;
+
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+
 using Knot3.Framework.Core;
 using Knot3.Framework.Models;
 using Knot3.Framework.Platform;
@@ -69,7 +72,7 @@ namespace Knot3.Framework.Effects
             // Setze den Viewport auf den der aktuellen Spielwelt
             Viewport original = screen.Viewport;
             screen.Viewport = model.World.Viewport;
-            
+
             SetShaderParameters (obj: model, time: time);
 
             foreach (ModelMesh mesh in model.Model.Meshes) {
@@ -115,8 +118,8 @@ namespace Knot3.Framework.Effects
 uniform sampler2D xModelTexture;
 uniform vec4 xLightDirection;
 uniform vec4 xFlags;
-#define xAlpha xFlags[0]
-#define xIsLightingEnabled xFlags[1]
+#define xAlpha xFlags [0]
+#define xIsLightingEnabled xFlags [1]
 
 in vec4 fragNormal;
 in vec4 fragTexCoord;
@@ -131,7 +134,7 @@ void main ()
     // normal
     vec3 normal = normalize (fragNormal.xyz);
     // light direction
-    vec3 lightDirection = normalize(xLightDirection.xyz);
+    vec3 lightDirection = normalize (xLightDirection.xyz);
 
     // diffuse light intensity
     float diffuse = clamp (dot (normal, -lightDirection), 0.0, 1.0);
@@ -139,12 +142,12 @@ void main ()
     // eye direction
     vec3 eyeDirection = normalize (fragEyeDirection.xyz);
     // reflected vector
-    vec3 reflect = normalize (reflect(lightDirection, normal));
+    vec3 reflect = normalize (reflect (lightDirection, normal));
 
     // specular light intensity
     float shininess = 25.0;
     float specular = pow (clamp (dot (reflect, eyeDirection), 0.0, 1.0), shininess);
-    vec4 white = vec4(1.0);
+    vec4 white = vec4 (1.0);
 
     // final color
     if (xIsLightingEnabled > 0) {
@@ -185,7 +188,7 @@ void main ()
     gl_Position = inputPosition * xWorld * xView * xProjection;
     fragNormal = normalize (vec4 ((inputNormal * xWorldInverseTranspose).xyz, 0));
     fragTexCoord.xy = inputTexCoord.xy;
-    fragEyeDirection = normalize(vec4(xCameraPosition.xyz, 1.0) - inputPosition * xWorld);
+    fragEyeDirection = normalize (vec4 (xCameraPosition.xyz, 1.0) - inputPosition * xWorld);
 }
 
 #monogame EndShader ()

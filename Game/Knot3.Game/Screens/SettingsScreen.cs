@@ -95,7 +95,7 @@ namespace Knot3.Game.Screens
                 screen: this,
                 drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
                 name: "Profile",
-                onClick: (time) => {
+            onClick: (time) => {
                 game.SkipNextScreenEffect =true;
                 NextScreen = new ProfileSettingsScreen (Game);
             }
@@ -131,12 +131,12 @@ namespace Knot3.Game.Screens
                 screen: this,
                 drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
                 name: "Debug",
-                onClick: (time) =>  {
+            onClick: (time) =>  {
                 game.SkipNextScreenEffect =true;
                 NextScreen = new DebugSettingsScreen (Game);
             }
             );
-            
+
             navigationMenu.Add (profileButton);
             navigationMenu.Add (graphicsButton);
             navigationMenu.Add (audioButton);

@@ -27,21 +27,25 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+
 using Knot3.Framework.Core;
+using Knot3.Framework.Development;
+using Knot3.Framework.Effects;
 using Knot3.Framework.Models;
 using Knot3.Framework.Platform;
 using Knot3.Framework.Primitives;
 using Knot3.Framework.Storage;
+
 using Knot3.Game.Data;
-using Knot3.Framework.Development;
-using Knot3.Framework.Effects;
 using Knot3.Game.Effects;
 
 namespace Knot3.Game.Models
@@ -95,13 +99,13 @@ namespace Knot3.Game.Models
         private Star[] CreateStars (int count)
         {
             Color[] colors = new Color[] { Color.White, Color.DarkSeaGreen, Color.LimeGreen };
-            Star[] stars = new Star[count];
+            Star[] stars = new Star [count];
             for (int i = 0; i < count; ++i) {
                 Vector3 position = new Vector3 ((float)random.NextDouble () - 0.5f, (float)random.NextDouble () - 0.5f, (float)random.NextDouble () - 0.5f);
                 position.Normalize ();
                 stars [i] = new Star (screen: Screen, color: colors [random.Next () % colors.Length]) {
                     RelativePosition = position,
-                    Scale = Vector3.One * (500 + random.Next()%1000)
+                    Scale = Vector3.One * (500 + random.Next ()%1000)
                 };
             }
             return stars;

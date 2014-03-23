@@ -32,10 +32,10 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 using Knot3.Framework.Core;
 using Knot3.Framework.Math;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace Knot3.Framework.Models
 {
@@ -104,12 +104,11 @@ namespace Knot3.Framework.Models
         /// Überprüft, ob der Mausstrahl das Spielobjekt schneidet.
         /// </summary>
         GameObjectDistance Intersects (Ray ray);
-        
+
         /// <summary>
         /// Gibt die Ausmaße des Spielobjekts zurück.
         /// </summary>
         BoundingSphere[] Bounds { get; }
-        
 
         /// <summary>
         /// Gibt an, ob das Spielobjekt innerhalb des Frustums ist, das den sichtbaren Bereich enthält.
@@ -128,13 +127,13 @@ namespace Knot3.Framework.Models
         bool IsSkyObject { get; }
 
         string UniqueKey { get; }
-        
+
         /// <summary>
         /// Gibt eine Kategorie an, die dabei hilft, Spielobjekte nach gleichartigen Objekten zu ordnen.
         /// Wird beim Hardware-Instancing verwendet.
         /// </summary>
         string GameObjectCategory  { get; }
-        
+
         /// <summary>
         /// Die Farbe des Modells.
         /// </summary>

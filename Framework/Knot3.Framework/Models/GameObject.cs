@@ -27,12 +27,15 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
+
 using System;
 using System.Diagnostics.CodeAnalysis;
+
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+
 using Knot3.Framework.Core;
 using Knot3.Framework.Math;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace Knot3.Framework.Models
 {
@@ -156,13 +159,12 @@ namespace Knot3.Framework.Models
         /// Die Farbe des Modells.
         /// </summary>
         public ModelColoring Coloring { get; set; }
-        
+
         /// <summary>
         /// Die Textur des Modells.
         /// </summary>
         public Texture2D Texture { get { return _texture; } set { _texture = value; UpdateCategory (); } }
         private Texture2D _texture;
-
 
         public GameObject (Vector3 position = default (Vector3), Angles3 rotation = default (Angles3), Vector3 scale = default (Vector3),
                            bool isVisible = true, bool isSelectable = false, bool isMovable = false)
@@ -263,8 +265,8 @@ namespace Knot3.Framework.Models
             if (Scale != _scale || Rotation != _rotation || Position != _position) {
                 // world matrix
                 _worldMatrix = Matrix.CreateScale (Scale)
-                    * Matrix.CreateFromYawPitchRoll (Rotation.Y, Rotation.X, Rotation.Z)
-                    * Matrix.CreateTranslation (Position);
+                               * Matrix.CreateFromYawPitchRoll (Rotation.Y, Rotation.X, Rotation.Z)
+                               * Matrix.CreateTranslation (Position);
                 _worldMatrixInverseTranspose = Matrix.Transpose (Matrix.Invert (_worldMatrix));
 
                 // attrs

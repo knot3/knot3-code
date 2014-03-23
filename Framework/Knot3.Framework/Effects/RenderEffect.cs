@@ -182,10 +182,10 @@ namespace Knot3.Framework.Effects
             else {
                 effect.EnableDefaultLighting ();
                 effect.DirectionalLight0.Direction = obj.World.Camera.LightDirection;
-                effect.DirectionalLight0.DiffuseColor = Color.White.ToVector3();
+                effect.DirectionalLight0.DiffuseColor = Color.White.ToVector3 ();
                 effect.DirectionalLight0.Enabled = true;
                 effect.DirectionalLight1.Direction = -obj.World.Camera.LightDirection;
-                effect.DirectionalLight1.DiffuseColor = Color.White.ToVector3()/4;
+                effect.DirectionalLight1.DiffuseColor = Color.White.ToVector3 ()/4;
                 effect.DirectionalLight1.Enabled = true;
                 effect.DirectionalLight2.Enabled = false;
                 effect.PreferPerPixelLighting = true;

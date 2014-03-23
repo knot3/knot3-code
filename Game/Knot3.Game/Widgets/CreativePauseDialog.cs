@@ -27,16 +27,20 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
+
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
+
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+
 using Knot3.Framework.Core;
 using Knot3.Framework.Math;
 using Knot3.Framework.Storage;
 using Knot3.Framework.Widgets;
+
 using Knot3.Game.Data;
 using Knot3.Game.Screens;
 
@@ -76,7 +80,7 @@ namespace Knot3.Game.Widgets
                 screen: Screen,
                 drawOrder: Index + DisplayLayer.MenuItem,
                 name: "Settings",
-                onClick: (time) => {
+            onClick: (time) => {
                 Close (time);
                 Screen.NextScreen = new ProfileSettingsScreen (Screen.Game);
             }
@@ -85,7 +89,7 @@ namespace Knot3.Game.Widgets
                 screen: Screen,
                 drawOrder: Index + DisplayLayer.MenuItem,
                 name: "Back to Game",
-                onClick: (time) => {
+            onClick: (time) => {
                 Close (time);
             }
             );
@@ -93,7 +97,7 @@ namespace Knot3.Game.Widgets
                 screen: Screen,
                 drawOrder: Index + DisplayLayer.MenuItem,
                 name: "Save",
-                onClick: (time) => {
+            onClick: (time) => {
                 Close (time);
                 KnotSave (time);
             }
@@ -102,7 +106,7 @@ namespace Knot3.Game.Widgets
                 screen: Screen,
                 drawOrder: Index + DisplayLayer.MenuItem,
                 name: "Save As",
-                onClick: (time) => {
+            onClick: (time) => {
                 Close (time);
                 KnotSaveAs (() => {}, time);
             }
@@ -111,7 +115,7 @@ namespace Knot3.Game.Widgets
                 screen: Screen,
                 drawOrder: Index + DisplayLayer.MenuItem,
                 name: "Save and Exit",
-                onClick: (time) => {
+            onClick: (time) => {
                 Close (time);
                 KnotSaveExit (time);
             }
@@ -120,7 +124,7 @@ namespace Knot3.Game.Widgets
                 screen: Screen,
                 drawOrder: Index + DisplayLayer.MenuItem,
                 name: "Discard Changes and Exit",
-                onClick: (time) => {
+            onClick: (time) => {
                 Close (time);
                 Screen.NextScreen = new StartScreen (Screen.Game);
             }

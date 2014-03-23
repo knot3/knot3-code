@@ -84,7 +84,7 @@ namespace Knot3.Game.Widgets
         private static Color WidgetForegroundColor (WidgetState state)
         {
             if (state == WidgetState.Hovered) {
-                return Color.DarkGreen.Mix(Color.Black, 0.50f);
+                return Color.DarkGreen.Mix (Color.Black, 0.50f);
             }
             else if (state == WidgetState.None) {
                 return Color.Black;
@@ -108,7 +108,7 @@ namespace Knot3.Game.Widgets
         private Color MenuItemForegroundColor (WidgetState state)
         {
             if (state == WidgetState.Hovered) {
-                return Color.DarkGreen.Mix(Color.Black, 0.50f);
+                return Color.DarkGreen.Mix (Color.Black, 0.50f);
             }
             else if (state == WidgetState.Selected) {
                 return Color.White;
@@ -124,7 +124,7 @@ namespace Knot3.Game.Widgets
                 return Color.DarkGreen;
             }
             if (state == WidgetState.Hovered) {
-                return Color.White.Mix(Color.DarkGreen, 0.25f);
+                return Color.White.Mix (Color.DarkGreen, 0.25f);
             }
             return Color.Transparent;
         }
