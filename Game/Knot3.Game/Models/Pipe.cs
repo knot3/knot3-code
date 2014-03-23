@@ -61,7 +61,7 @@ namespace Knot3.Game.Models
         /// </summary>
         public Knot Knot { get; set; }
 
-        private IGrid Grid;
+        public IGrid Grid;
 
         /// <summary>
         /// Die Position, an der die Kante beginnt.

@@ -181,6 +181,7 @@ namespace Knot3.Game.Development
                 DrawVectorCoordinates (selectedObjectCenter, width2, width3, width4, height);
 
                 if (World.SelectedObject is Pipe) {
+                    height += lineHeight;
                     DrawString ("Pipe: ", width1, height, Color.White);
                     Pipe pipe = World.SelectedObject as Pipe;
                     height += lineHeight;
@@ -188,15 +189,20 @@ namespace Knot3.Game.Development
                     if (pipe.Knot != null) {
                         str += "   #" + pipe.Knot.ToList ().FindIndex (g => g == pipe.Edge).ToString ();
                     }
+
                     DrawString (str, width2, height, Color.Yellow);
-                }
-                if (World.SelectedObject is Junction) {
-                    DrawString ("JunctionColor: ", width1, height, Color.White);
-                    Junction pipe = World.SelectedObject as Junction;
                     height += lineHeight;
-                    string str = "1. "+(pipe.Coloring as GradientColor).Color1+"2. "+(pipe.Coloring as GradientColor).Color2 ;
-                    DrawString (str, width2, height, Color.Yellow);
+                    DrawString ("edgecolor: "+(pipe.Coloring as SingleColor).BaseColor, width1, height, Color.White);
+                    height += lineHeight;
+                    DrawString ("junction: ", width1, height, Color.White);
+                    Junction test = pipe.Grid.JunctionAfterEdge(pipe.Edge);
+                    if(test!=null){
+                        height += lineHeight;
+                        GradientColor color = test.Coloring as GradientColor;
+                        DrawString ("1: "+color.Color1+"2: "+color.Color2, width1, height, Color.White);
+                    }
                 }
+           
                 else {
                     height += lineHeight;
                 }

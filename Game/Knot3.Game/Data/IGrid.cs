@@ -51,6 +51,12 @@ namespace Knot3.Game.Data
 
         List<Junction> JunctionsAfterEdge (Edge edge);
 
+        Junction JunctionBeforeEdge (Edge edge);
+       
+        Junction JunctionAfterEdge (Edge edge);
+      
+
+
         List<Junction> JunctionsAtNode (Node node);
 
         Node NodeBeforeEdge (Edge edge);
