@@ -78,7 +78,7 @@ namespace Knot3.Game.Widgets
                 name: "Settings",
             onClick: (time) => {
                 Close (time);
-                Screen.NextScreen = new ProfileSettingsScreen (Screen.Game);
+                Screen.NextScreen = new GeneralSettingsScreen (Screen.Game);
             }
             );
             MenuEntry backButton = new MenuEntry (

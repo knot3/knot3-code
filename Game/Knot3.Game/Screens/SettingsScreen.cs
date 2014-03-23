@@ -97,7 +97,7 @@ namespace Knot3.Game.Screens
                 name: "General",
             onClick: (time) => {
                 game.SkipNextScreenEffect =true;
-                NextScreen = new ProfileSettingsScreen (Game);
+                NextScreen = new GeneralSettingsScreen (Game);
             }
             );
             MenuEntry graphicsButton = new MenuEntry (

@@ -44,15 +44,15 @@ namespace Knot3.Game.Screens
     /// Der Spielzustand, der die Profil-Einstellungen darstellt.
     /// </summary>
     [ExcludeFromCodeCoverageAttribute]
-    public class ProfileSettingsScreen : SettingsScreen
+    public class GeneralSettingsScreen : SettingsScreen
     {
         /// <summary>
         /// Erzeugt eine neue Instanz eines ProfileSettingsScreen-Objekts und initialisiert dieses mit einem Knot3Game-Objekt.
         /// </summary>
-        public ProfileSettingsScreen (GameCore game)
+        public GeneralSettingsScreen (GameCore game)
         : base (game)
         {
-            MenuName = "Profile";
+            MenuName = "General";
 
             InputItem playerNameInput = new InputItem (
                 screen: this,
