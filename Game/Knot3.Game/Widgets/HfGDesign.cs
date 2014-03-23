@@ -63,6 +63,7 @@ namespace Knot3.Game.Widgets
             Design.ComboBoxItemForegroundColorFunc = ComboBoxItemForegroundColor;
             Design.NavigationItemHeight = 0.040f;
             Design.DataItemHeight = 0.033f;
+            Design.TitleForegroundColor = Color.Black;
         }
 
         private static Color WidgetBackgroundColor (WidgetState state)
