@@ -98,12 +98,20 @@ namespace Knot3.Game.Models
 
         private Star[] CreateStars (int count)
         {
-            Color[] colors = new Color[] { Color.White, Color.DarkSeaGreen, Color.LimeGreen };
+            Color[] colors = new Color[] { Color.White, Color.Red, Color.MediumBlue, Color.Orange };
             Star[] stars = new Star [count];
+           
+            Color color;
             for (int i = 0; i < count; ++i) {
                 Vector3 position = new Vector3 ((float)random.NextDouble () - 0.5f, (float)random.NextDouble () - 0.5f, (float)random.NextDouble () - 0.5f);
                 position.Normalize ();
-                stars [i] = new Star (screen: Screen, color: colors [random.Next () % colors.Length]) {
+                if((random.Next() %100 )<65){
+                    color = Color.White;
+                }
+                else{
+                    color = colors [random.Next () % colors.Length];
+                }
+                stars [i] = new Star (screen: Screen, color: color) {
                     RelativePosition = position,
                     Scale = Vector3.One * (500 + random.Next ()%1000)
                 };
