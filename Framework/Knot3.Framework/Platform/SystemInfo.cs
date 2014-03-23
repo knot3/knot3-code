@@ -79,6 +79,18 @@ namespace Knot3.Framework.Platform
         }
 
         /// <summary>
+        /// Das Verzeichnis, das die Logdateien enthält.
+        /// </summary>
+        public static string LogDirectory
+        {
+            get {
+                string directory = SettingsDirectory + "Logs";
+                Directory.CreateDirectory (directory);
+                return directory;
+            }
+        }
+
+        /// <summary>
         /// Das Bildschirmfotoverzeichnis.
         /// </summary>
         public static string ScreenshotDirectory

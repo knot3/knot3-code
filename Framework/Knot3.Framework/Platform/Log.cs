@@ -33,12 +33,43 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Windows.Forms;
+using System.IO;
 
 namespace Knot3.Framework.Platform
 {
     [ExcludeFromCodeCoverageAttribute]
     public static class Log
     {
+        private static StreamWriter logFile;
+        public static void Init (string program = "game", string version = "")
+        {
+            try {
+                string filename = (string.IsNullOrWhiteSpace (version) ? program : program + "-" + version) + ".log";
+                logFile = File.AppendText(SystemInfo.LogDirectory + SystemInfo.PathSeparator + filename);
+            } catch (Exception ex) {
+                // we don't give a fuck whether we can open a log file
+                logFile = StreamWriter.Null;
+                Console.WriteLine (ex.ToString ());
+            }
+        }
+
+        private static void LogFileWrite(string text) {
+            try {
+                logFile.Write (text);
+            } catch (Exception) {
+            }
+        }
+
+        private int k = 0;
+
+        private static void LogFileWriteLine(string text) {
+            try {
+                logFile.WriteLine (text);
+                if (k % 100 == 0) logFile.Flush();
+            } catch (Exception) {
+            }
+        }
+
         // Windows Performance
         private static string lastDebugStr = "";
         private static int lastDebugTimes = 0;
@@ -56,6 +87,13 @@ namespace Knot3.Framework.Platform
             else {
                 DebugWindows (message);
             }
+            DebugLog (message);
+        }
+
+        public static void DebugLog (params object[] message)
+        {
+            string str = string.Join ("", message);
+            LogFileWriteLine (str);
         }
 
         public static void DebugLinux (params object[] message)
@@ -89,16 +127,24 @@ namespace Knot3.Framework.Platform
         {
             EndList ();
             Console.WriteLine (string.Join ("", message));
+            LogFileWriteLine (string.Join ("", message));
         }
 
         public static void Error (Exception ex)
         {
             EndList ();
             Console.WriteLine (ex.ToString ());
+            LogFileWriteLine (ex.ToString ());
+            logFile.Flush();
         }
 
         public static void ShowMessageBox (string text, string title)
         {
+            LogFileWriteLine ("Open Message Box:");
+            LogFileWriteLine ("Title: " + title);
+            LogFileWriteLine ("Text: <<EOT");
+            LogFileWriteLine (text);
+            LogFileWriteLine ("EOT");
             MessageBox.Show (text, title);
         }
 
@@ -132,6 +178,7 @@ namespace Knot3.Framework.Platform
         {
             if (lastListId != null) {
                 Console.Write (lists [lastListId].End);
+                LogFileWrite (lists [lastListId].End);
                 lastListId = null;
             }
         }
@@ -143,10 +190,14 @@ namespace Knot3.Framework.Platform
                 if (lastListId != id.ToString ()) {
                     EndList ();
                     Console.Write (def.Begin);
+                    LogFileWrite (def.Begin);
                 }
                 Console.Write (def.Before);
                 Console.Write (element.ToString ());
                 Console.Write (def.After);
+                LogFileWrite (def.Before);
+                LogFileWrite (element.ToString ());
+                LogFileWrite (def.After);
 
                 lastListId = id.ToString ();
             }
