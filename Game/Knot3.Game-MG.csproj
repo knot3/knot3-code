@@ -100,9 +100,9 @@
     <Compile Include="Knot3.Game\Screens\CreativeMainScreen.cs" />
     <Compile Include="Knot3.Game\Screens\CreativeModeScreen.cs" />
     <Compile Include="Knot3.Game\Screens\CreditsScreen.cs" />
+    <Compile Include="Knot3.Game\Screens\GeneralSettingsScreen.cs" />
     <Compile Include="Knot3.Game\Screens\GraphicsSettingsScreen.cs" />
     <Compile Include="Knot3.Game\Screens\MenuScreen.cs" />
-    <Compile Include="Knot3.Game\Screens\ProfileSettingsScreen.cs" />
     <Compile Include="Knot3.Game\Screens\SettingsScreen.cs" />
     <Compile Include="Knot3.Game\Screens\StartScreen.cs" />
     <Compile Include="Knot3.Game\Screens\TutorialChallengeModeScreen.cs" />
