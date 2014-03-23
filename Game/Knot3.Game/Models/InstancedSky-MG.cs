@@ -27,16 +27,13 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-
 using Knot3.Framework.Core;
 using Knot3.Framework.Development;
 using Knot3.Framework.Effects;
@@ -44,7 +41,6 @@ using Knot3.Framework.Models;
 using Knot3.Framework.Platform;
 using Knot3.Framework.Primitives;
 using Knot3.Framework.Storage;
-
 using Knot3.Game.Data;
 using Knot3.Game.Effects;
 
@@ -105,7 +101,7 @@ namespace Knot3.Game.Models
             for (int i = 0; i < count; ++i) {
                 Vector3 position = new Vector3 ((float)random.NextDouble () - 0.5f, (float)random.NextDouble () - 0.5f, (float)random.NextDouble () - 0.5f);
                 position.Normalize ();
-                if ((random.Next () %100 )<65) {
+                if ((random.Next () % 100) < 65) {
                     color = Color.White;
                 }
                 else {
@@ -190,7 +186,7 @@ namespace Knot3.Game.Models
                 Coloring = new SingleColor (color);
                 UpdateCategory ();
                 AlphaCounter = (float)random.NextDouble ();
-                Scale = new Vector3 (3f,3f,3f);
+                Scale = new Vector3 (3f, 3f, 3f);
             }
 
             protected override Primitive CreativePrimitive ()
@@ -201,7 +197,7 @@ namespace Knot3.Game.Models
             public override void Update (GameTime gameTime)
             {
                 AlphaCounter += 0.001f;
-                float newAlpha = distinctValues (0.1f+(Math.Abs ((float)Math.Sin (MathHelper.TwoPi * AlphaCounter))*0.9f) );
+                float newAlpha = distinctValues (0.1f + (Math.Abs ((float)Math.Sin (MathHelper.TwoPi * AlphaCounter)) * 0.9f));
                 if (newAlpha != Coloring.Alpha) {
                     Coloring.Alpha = newAlpha;
                     UpdateCategory ();
@@ -211,7 +207,7 @@ namespace Knot3.Game.Models
 
             private float distinctValues (float value)
             {
-                for (float i = 1f; i > 0f; i -= 0.05f) {
+                for (float i = 1f; i > 0f; i -= 0.10f) {
                     if (value >= i) {
                         return i;
                     }
