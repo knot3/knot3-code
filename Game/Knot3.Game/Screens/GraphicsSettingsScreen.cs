@@ -64,101 +64,104 @@ namespace Knot3.Game.Screens
         {
             MenuName = "Graphics";
 
-            CheckBoxItem showArrows = new CheckBoxItem (
+            CheckBoxItem itemShowArrows = new CheckBoxItem (
                 screen: this,
                 drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
                 text: "Show Arrows",
                 option: new BooleanOption ("video", "arrows", false, Config.Default)
             );
-            settingsMenu.Add (showArrows);
+            settingsMenu.Add (itemShowArrows);
 
             // blinking stars
-            BooleanOption blinkingStarsOption = new BooleanOption ("video", "stars-blinking", true, Config.Default);
-            CheckBoxItem blinkingStars = new CheckBoxItem (
+            BooleanOption optionBlinkingStars = new BooleanOption ("video", "stars-blinking", true, Config.Default);
+            CheckBoxItem itemBlinkingStars = new CheckBoxItem (
                 screen: this,
                 drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
                 text: "Blinking Stars",
-                option: blinkingStarsOption
+                option: optionBlinkingStars
             );
-            blinkingStars.OnValueChanged += () => {
+            itemBlinkingStars.OnValueChanged += () => {
                 (game as Knot3Game).NotAvailableOnXNA ();
             };
-            settingsMenu.Add (blinkingStars);
+            settingsMenu.Add (itemBlinkingStars);
 
             // star count
             float[] validStarCounts = {
                 100, 250, 500, 750, 1000, 1250, 1500, 2000, 2500, 3000, 5000
             };
-            FloatOption starCountOption = new FloatOption (
+            FloatOption optionStarCount = new FloatOption (
                 section: "video",
                 name: "stars-count",
                 defaultValue: validStarCounts [4],
                 validValues: validStarCounts,
                 configFile: Config.Default
             );
-            ComboBox starCountItem = new ComboBox (
+            ComboBox itemStarCount = new ComboBox (
                 screen: this,
                 drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
                 text: "Number of stars"
-            );
-            starCountItem.AddEntries (starCountOption);
-            settingsMenu.Add (starCountItem);
+            ) {
+                NameWidth = 0.75f,
+                ValueWidth = 0.25f
+            };
+            itemStarCount.AddEntries (optionStarCount);
+            settingsMenu.Add (itemStarCount);
 
             // show sun
-            BooleanOption sunOption = new BooleanOption ("video", "show-sun", false, Config.Default);
-            CheckBoxItem showSun = new CheckBoxItem (
+            BooleanOption optionShowSun = new BooleanOption ("video", "show-sun", false, Config.Default);
+            CheckBoxItem itemShowSun = new CheckBoxItem (
                 screen: this,
                 drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
                 text: "Show Sun",
-                option: sunOption
+                option: optionShowSun
             );
-            settingsMenu.Add (showSun);
+            settingsMenu.Add (itemShowSun);
 
             // day cycle
             float[] validDayCycles = {
                 10, 20, 30, 60, 120, 300, 600, 900, 1200, 3600, 7200
             };
-            FloatOption dayCycleOption = new FloatOption (
+            FloatOption optionDayCycle = new FloatOption (
                 section: "video",
                 name: "day-cycle-seconds",
                 defaultValue: validDayCycles [3],
                 validValues: validDayCycles,
                 configFile: Config.Default
             );
-            ComboBox dayCycleItem = new ComboBox (
+            ComboBox itemDayCycle = new ComboBox (
                 screen: this,
                 drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
                 text: "Day cycle in seconds"
             );
-            dayCycleItem.AddEntries (dayCycleOption);
-            settingsMenu.Add (dayCycleItem);
+            itemDayCycle.AddEntries (optionDayCycle);
+            settingsMenu.Add (itemDayCycle);
 
             // selective rendering
-            CheckBoxItem selectiveRender = new CheckBoxItem (
+            CheckBoxItem itemSelectiveRender = new CheckBoxItem (
                 screen: this,
                 drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
                 text: "Selective Rendering",
                 option: new BooleanOption ("video", "selectiveRendering", false, Config.Default)
             );
-            settingsMenu.Add (selectiveRender);
+            settingsMenu.Add (itemSelectiveRender);
 
             // auto camera when moving
-            CheckBoxItem autoCameraMove = new CheckBoxItem (
+            CheckBoxItem itemAutoCameraMove = new CheckBoxItem (
                 screen: this,
                 drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
                 text: "Auto Camera (edge move)",
                 option: new BooleanOption ("video", "auto-camera-move", true, Config.Default)
             );
-            settingsMenu.Add (autoCameraMove);
+            settingsMenu.Add (itemAutoCameraMove);
 
             // auto camera
-            CheckBoxItem autoCamera = new CheckBoxItem (
+            CheckBoxItem itemAutoCamera = new CheckBoxItem (
                 screen: this,
                 drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
                 text: "Auto Camera",
                 option: new BooleanOption ("video", "auto-camera-nomove", false, Config.Default)
             );
-            settingsMenu.Add (autoCamera);
+            settingsMenu.Add (itemAutoCamera);
 
             // Resolutions
             string currentResolution = GraphicsManager.GraphicsDevice.DisplayMode.Width.ToString ()
@@ -173,50 +176,50 @@ namespace Knot3.Game.Screens
             reso.Add ("1024x600");
             string[] validResolutions = reso.ToArray ();
             validResolutions = validResolutions.OrderBy (x => Decimal.Parse (x.Split ('x') [0], System.Globalization.NumberStyles.Any)).ToArray ();
-            DistinctOption resolutionOption = new DistinctOption (
+            DistinctOption optionResolution = new DistinctOption (
                 section: "video",
                 name: "resolution",
                 defaultValue: currentResolution,
                 validValues: validResolutions,
                 configFile: Config.Default
             );
-            ComboBox resolutionItem = new ComboBox (
+            ComboBox itemResolution = new ComboBox (
                 screen: this,
                 drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
                 text: "Resolution"
             );
-            resolutionItem.AddEntries (resolutionOption);
-            settingsMenu.Add (resolutionItem);
+            itemResolution.AddEntries (optionResolution);
+            settingsMenu.Add (itemResolution);
 
             // Supersampling
             float[] validSupersamples = {
-                1f, 1.25f, 1.5f, 1.75f, 2f
+                1f, 1.25f, 1.5f, 1.75f, 2f, 2.5f, 3f
             };
-            FloatOption supersamplesOption = new FloatOption (
+            FloatOption optionSupersamples = new FloatOption (
                 section: "video",
                 name: "Supersamples",
                 defaultValue: 2f,
                 validValues: validSupersamples,
                 configFile: Config.Default
             );
-            ComboBox supersamplesItem = new ComboBox (
+            ComboBox itemSupersamples = new ComboBox (
                 screen: this,
                 drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
                 text: "Supersamples"
             );
-            supersamplesItem.AddEntries (supersamplesOption);
-            settingsMenu.Add (supersamplesItem);
+            itemSupersamples.AddEntries (optionSupersamples);
+            settingsMenu.Add (itemSupersamples);
 
             // fullscreen
-            BooleanOption fullscreenOption = new BooleanOption ("video", "fullscreen", false, Config.Default);
-            CheckBoxItem fullscreen = new CheckBoxItem (
+            BooleanOption optionFullscreen = new BooleanOption ("video", "fullscreen", false, Config.Default);
+            CheckBoxItem itemFullscreen = new CheckBoxItem (
                 screen: this,
                 drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
                 text: "Fullscreen",
-                option: fullscreenOption
+                option: optionFullscreen
             );
-            fullscreen.OnValueChanged += () => Game.IsFullScreen = fullscreenOption.Value;
-            settingsMenu.Add (fullscreen);
+            itemFullscreen.OnValueChanged += () => Game.IsFullScreen = optionFullscreen.Value;
+            settingsMenu.Add (itemFullscreen);
 
             // Model quality
             SliderItem sliderModelQuality = new SliderItem (
@@ -236,29 +239,21 @@ namespace Knot3.Game.Screens
             settingsMenu.Add (sliderModelQuality);
 
             // Rendereffects
-            RenderEffectOption renderEffectOption = new RenderEffectOption (
+            RenderEffectOption optionRenderEffect = new RenderEffectOption (
                 section: "video",
-                name: "knot-shader",
+                name: "current-world-effect",
                 configFile: Config.Default
             );
-            ComboBox renderEffectItem = new ComboBox (
+            ComboBox itemRenderEffect = new ComboBox (
                 screen: this,
                 drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
                 text: "Render Effect"
             );
-            renderEffectItem.ValueChanged += (time) => {
-                RenderEffectLibrary.RenderEffectChanged (Config.Default ["video", "knot-shader", "default"], time);
+            itemRenderEffect.ValueChanged += (time) => {
+                RenderEffectLibrary.RenderEffectChanged (Config.Default ["video", "current-world-effect", "default"], time);
             };
-            renderEffectItem.AddEntries (renderEffectOption);
-            settingsMenu.Add (renderEffectItem);
-        }
-
-        /// <summary>
-        /// Wird für jeden Frame aufgerufen.
-        /// </summary>
-        [ExcludeFromCodeCoverageAttribute]
-        public override void Update (GameTime time)
-        {
+            itemRenderEffect.AddEntries (optionRenderEffect);
+            settingsMenu.Add (itemRenderEffect);
         }
 
         /// <summary>

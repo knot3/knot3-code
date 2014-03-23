@@ -46,14 +46,23 @@ namespace Knot3.Framework.Core
     [ExcludeFromCodeCoverageAttribute]
     public abstract class GameCore : Microsoft.Xna.Framework.Game
     {
+        /// <summary>
+        /// Die Standard-Fenstergröße.
+        /// </summary>
         private static readonly Point defaultSize = SystemInfo.IsRunningOnLinux ()
                 ? new Point (1024, 600) : new Point (1280, 720);
 
+        /// <summary>
+        /// Wird aufgerufern, wenn in den Vollbildmodus oder aus dem Vollbildmodus heraus gewechselt wurde.
+        /// </summary>
         public Action FullScreenChanged { get; set; }
 
         protected Point lastResolution;
         protected bool isFullscreen;
 
+        /// <summary>
+        /// Gibt an, ob der Fade-Effekt beim Wechseln zum nächsten Screen überprungen werden soll.
+        /// </summary>
         public bool SkipNextScreenEffect { get; set; }
 
         /// <summary>
@@ -78,6 +87,9 @@ namespace Knot3.Framework.Core
             }
         }
 
+        /// <summary>
+        /// Gibt die aktuelle Bildschirm-Auflösung an.
+        /// </summary>
         protected Point ScreenResolution
         {
             get {
@@ -85,6 +97,9 @@ namespace Knot3.Framework.Core
             }
         }
 
+        /// <summary>
+        /// Gibt die in der Konfigurationsdatei hinterlegte aktuelle Fenstergröße an.
+        /// </summary>
         protected Point WindowResolution
         {
             get {
@@ -99,6 +114,9 @@ namespace Knot3.Framework.Core
             }
         }
 
+        /// <summary>
+        /// Gibt die aktuell von MonoGame verwendete Backbuffer-Größe an.
+        /// </summary>
         protected Point BackbufferResolution
         {
             get {
@@ -133,7 +151,7 @@ namespace Knot3.Framework.Core
         }
 
         /// <summary>
-        /// Der aktuelle Grafikgeräteverwalter des XNA-Frameworks.
+        /// Der aktuelle Grafikgeräteverwalter des MonoGame-Frameworks.
         /// </summary>
         public GraphicsDeviceManager Graphics { get; private set; }
 
@@ -144,8 +162,8 @@ namespace Knot3.Framework.Core
 
         /// <summary>
         /// Erstellt ein neues zentrales Spielobjekt und setzt die Auflösung des BackBuffers auf
-        /// die in der Einstellungsdatei gespeicherte Auflösung oder falls nicht vorhanden auf die aktuelle
-        /// Bildschirmauflösung und wechselt in den Vollbildmodus.
+        /// die in der Einstellungsdatei gespeicherte Auflösung, oder falls nicht vorhanden auf die aktuelle
+        /// Bildschirmauflösung und wechselt in den Vollbildmodus, falls in der Einstellungsdatei angegeben.
         /// </summary>
         public GameCore ()
         {
@@ -183,12 +201,25 @@ namespace Knot3.Framework.Core
             IsFullScreen = Config.Default ["video", "fullscreen", false];
         }
 
+        /// <summary>
+        /// Gibt den aktuellen Start-Screen zurück. Muss in einer Subklasse überschrieben werden.
+        /// </summary>
         public abstract IScreen DefaultScreen { get; }
 
+        /// <summary>
+        /// Gibt für zwei angegebene Screens, den vorherigen und den, in den gewechselt werden soll, einen Übergangseffekt zurück.
+        /// Falls diese Property in einer Subklasse nicht gesetzt oder auf null gesetzt wird, wird kein Übergangseffekt verwendet.
+        /// </summary>
         public Func<IScreen, IScreen, IRenderEffect> ScreenTransitionEffect;
 
+        /// <summary>
+        /// Gibt den aktuellen Screen zurück.
+        /// </summary>
         public IScreen CurrentScreen { get { return Screens.Peek (); } }
 
+        /// <summary>
+        /// Initializes the screens.
+        /// </summary>
         private void InitializeScreens ()
         {
             // screens
@@ -197,6 +228,9 @@ namespace Knot3.Framework.Core
             Screens.Peek ().Entered (null, null);
         }
 
+        /// <summary>
+        /// Updates the resolution.
+        /// </summary>
         protected void updateResolution ()
         {
             Point currentResolution = IsFullScreen ? ScreenResolution : WindowResolution;
@@ -216,10 +250,17 @@ namespace Knot3.Framework.Core
             }
         }
 
+        /// <summary>
+        /// Gets or sets a value indicating whether the error screen is enabled.
+        /// </summary>
         public bool ErrorScreenEnabled { get; protected set; }
 
         private Exception firstException = null;
 
+        /// <summary>
+        /// Zeigt einen Fehler in einem Error-Dialog an. Falls dies nicht möglich ist, weil die Exception auch im nächsten Frame
+        /// weiterhin auftritt, wird auf den Desktop gewechselt und eine Windows-Forms-MessageBox angezeigt.
+        /// </summary>
         public void ShowError (Exception ex)
         {
             if (firstException == null) {
@@ -235,7 +276,7 @@ namespace Knot3.Framework.Core
         }
 
         /// <summary>
-        /// Ruft die Draw ()-Methode des aktuellen Spielzustands auf.
+        /// Ruft die Draw ()-Methode des aktuellen Screens auf.
         /// </summary>
         protected override void Draw (GameTime time)
         {
@@ -283,7 +324,7 @@ namespace Knot3.Framework.Core
         }
 
         /// <summary>
-        /// Wird für jeden Frame aufgerufen.
+        /// Ruft die Update ()-Methode des aktuellen Screens auf.
         /// </summary>
         protected override void Update (GameTime time)
         {

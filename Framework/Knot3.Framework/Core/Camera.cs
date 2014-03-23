@@ -97,7 +97,7 @@ namespace Knot3.Framework.Core
         }
 
         /// <summary>
-        /// Die View-Matrix wird über die statische Methode CreateLookAt der Klasse Matrix des XNA-Frameworks
+        /// Die View-Matrix wird über die statische Methode CreateLookAt der Klasse Matrix des MonoGame-Frameworks
         /// mit Matrix.CreateLookAt (Position, Target, Vector3.Up) berechnet.
         /// </summary>
         public Matrix ViewMatrix { get; private set; }
@@ -108,7 +108,7 @@ namespace Knot3.Framework.Core
         public Matrix WorldMatrix { get; private set; }
 
         /// <summary>
-        /// Die Projektionsmatrix wird über die statische XNA-Methode Matrix.CreatePerspectiveFieldOfView berechnet.
+        /// Die Projektionsmatrix wird über die statische MonoGame-Methode Matrix.CreatePerspectiveFieldOfView berechnet.
         /// </summary>
         public Matrix ProjectionMatrix { get; private set; }
 
@@ -127,20 +127,49 @@ namespace Knot3.Framework.Core
         /// </summary>
         public Angles3 Rotation { get; set; }
 
+        /// <summary>
+        /// Der Vektor, der bestimmt, wo "oben" ist.
+        /// </summary>
         public Vector3 UpVector { get; private set; }
 
+        /// <summary>
+        /// Wird aufgerufen, wenn sich die Kamera-Parameter wie Kamera-Position oder Kamera-Target geändert haben.
+        /// </summary>
         public Action OnViewChanged = () => {};
+
+        /// <summary>
+        /// Das Seitenverhältnis des Screens.
+        /// </summary>
         private float aspectRatio;
+
+        /// <summary>
+        /// Die Near Plane.
+        /// </summary>
         private float nearPlane;
 
+        /// <summary>
+        /// Die Far Plane.
+        /// </summary>
         public float FarPlane { get; private set; }
 
+        /// <summary>
+        /// Die Standard-Kamera-Position
+        /// </summary>
         private Vector3 defaultPosition = new Vector3 (400, 400, 700);
 
+        /// <summary>
+        /// Die aktuelle Position der Sonne.
+        /// </summary>
         public Vector3 SunPosition { get; set; }
 
+        /// <summary>
+        /// Die aktuelle Richtung des Lichts, das von der Sonne ausgeht.
+        /// </summary>
         public Vector3 LightDirection { get; private set; }
 
+        /// <summary>
+        /// Die Länge eines Tageszyklus in Sekunden.
+        /// </summary>
         public float DayCycleSeconds
         {
             get { return Config.Default ["video", "day-cycle-seconds", 60]; }
@@ -167,7 +196,7 @@ namespace Knot3.Framework.Core
         }
 
         /// <summary>
-        /// Die Blickrichtung.
+        /// Die Blickrichtung von der Kamera-Position zum Kamera-Ziel.
         /// </summary>
         public Vector3 PositionToTargetDirection
         {
@@ -175,7 +204,10 @@ namespace Knot3.Framework.Core
                 return Vector3.Normalize (Target - Position);
             }
         }
-
+        
+        /// <summary>
+        /// Die Blickrichtung von der Kamera-Position zum Rotations-Ziel.
+        /// </summary>
         public Vector3 PositionToArcballTargetDirection
         {
             get {
@@ -184,7 +216,7 @@ namespace Knot3.Framework.Core
         }
 
         /// <summary>
-        /// Der Abstand zwischen der Kamera und dem Kamera-Ziel.
+        /// Der Abstand zwischen der Kamera-Position und dem Kamera-Ziel.
         /// </summary>
         public float PositionToTargetDistance
         {
@@ -195,7 +227,10 @@ namespace Knot3.Framework.Core
                 Position = Position.SetDistanceTo (Target, value);
             }
         }
-
+        
+        /// <summary>
+        /// Der Abstand zwischen der Kamera-Position und dem Rotations-Ziel.
+        /// </summary>
         public float PositionToArcballTargetDistance
         {
             get {
@@ -224,6 +259,9 @@ namespace Knot3.Framework.Core
             Screen.Viewport = original;
         }
 
+        /// <summary>
+        /// Aktualiert die Sonnen-Position und die Lichtrichtung.
+        /// </summary>
         private void UpdateSun (GameTime time)
         {
             if (DayCycleSeconds > 0) {
@@ -234,6 +272,9 @@ namespace Knot3.Framework.Core
             LightDirection = Vector3.Normalize (-SunPosition);
         }
 
+        /// <summary>
+        /// Aktualisiert die Matrizen.
+        /// </summary>
         private void UpdateMatrices (GameTime time)
         {
             aspectRatio = Screen.Viewport.AspectRatio;
@@ -278,6 +319,9 @@ namespace Knot3.Framework.Core
             }
         }
 
+        /// <summary>
+        /// Setzt die Kamera auf die Standard-Position zurück.
+        /// </summary>
         public void ResetCamera ()
         {
             Position = defaultPosition;

@@ -54,7 +54,7 @@ using Knot3.Game.Widgets;
 namespace Knot3.Game.Core
 {
     /// <summary>
-    /// Die zentrale Spielklasse, die von der \glqq Game\grqq~-Klasse des XNA-Frameworks erbt.
+    /// Die zentrale Spielklasse, die von der \glqq Game\grqq~-Klasse des MonoGame-Frameworks erbt.
     /// </summary>
     [ExcludeFromCodeCoverageAttribute]
     public class Knot3Game : GameCore
@@ -147,7 +147,7 @@ namespace Knot3.Game.Core
 
         public void NotAvailableOnXNA ()
         {
-            if (!SystemInfo.IsRunningOnMonogame ()||true) {
+            if (!SystemInfo.IsRunningOnMonogame ()) {
                 ConfirmDialog confirm = new ConfirmDialog (
                     screen: Screens.Peek (),
                     drawOrder: DisplayLayer.Dialog,

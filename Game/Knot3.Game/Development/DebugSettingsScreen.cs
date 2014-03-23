@@ -118,7 +118,7 @@ namespace Knot3.Game.Development
                     new ProjectorDesign ().Apply ();
                     Config.Default ["video", "camera-overlay", false] = false;
                     Config.Default ["video", "profiler-overlay", false] = false;
-                    Config.Default ["video", "knot-shader", "default"] = "default";
+                    Config.Default ["video", "current-world-effect", "default"] = "default";
                     Config.Default ["video", "Supersamples", 2f] = 2f;
                     Config.Default ["video", "arrows", false] = false;
                     Config.Default ["language", "current", "en"] = "de";

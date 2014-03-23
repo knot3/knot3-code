@@ -69,6 +69,8 @@ namespace Knot3.Framework.Widgets
         }
 
         public Action<GameTime> ValueChanged = (time) => {};
+        public override float NameWidth { get { return currentValue.NameWidth; } set { currentValue.NameWidth = value; } }
+        public override float ValueWidth { get { return currentValue.ValueWidth; } set { currentValue.ValueWidth = value; } }
 
         /// <summary>
         /// Erzeugt ein neues ConfirmDialog-Objekt und initialisiert dieses mit dem zugehörigen IGameScreen-Objekt.

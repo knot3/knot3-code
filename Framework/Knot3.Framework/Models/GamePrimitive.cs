@@ -52,7 +52,7 @@ namespace Knot3.Framework.Models
         protected string Modelname { get; set; }
 
         /// <summary>
-        /// Die Klasse des XNA-Frameworks, die ein automatisch generiertes 3D-Modell repräsentiert.
+        /// Die Klasse des MonoGame-Frameworks, die ein automatisch generiertes 3D-Modell repräsentiert.
         /// </summary>
         public Primitive Primitive
         {

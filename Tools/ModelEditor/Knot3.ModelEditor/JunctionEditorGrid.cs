@@ -66,7 +66,7 @@ namespace Knot3.ModelEditor
         private Dictionary<Node, List<Junction>> junctionMap = new Dictionary<Node, List<Junction>> ();
 
         /// <summary>
-        /// Die Skalierung, die bei einer Konvertierung in einen Vector3 des XNA-Frameworks durch die ToVector ()-Methode der Node-Objekte verwendet wird.
+        /// Die Skalierung, die bei einer Konvertierung in einen Vector3 des MonoGame-Frameworks durch die ToVector ()-Methode der Node-Objekte verwendet wird.
         /// </summary>
         public int Scale { get; set; }
 

@@ -42,17 +42,17 @@ namespace Knot3.Framework.Math
     /// </summary>
     public struct Angles3 : IEquatable<Angles3> {
         /// <summary>
-        /// Der Winkel im Bogenmaß für das Rollen um die X-Achse. Siehe statische Methode Matrix.CreateRotationX (float) des XNA-Frameworks.
+        /// Der Winkel im Bogenmaß für das Rollen um die X-Achse. Siehe statische Methode Matrix.CreateRotationX (float) des MonoGame-Frameworks.
         /// </summary>
         public float X { get; set; }
 
         /// <summary>
-        /// Der Winkel im Bogenmaß für das Rollen um die Y-Achse. Siehe statische Methode Matrix.CreateRotationY (float) des XNA-Frameworks.
+        /// Der Winkel im Bogenmaß für das Rollen um die Y-Achse. Siehe statische Methode Matrix.CreateRotationY (float) des MonoGame-Frameworks.
         /// </summary>
         public float Y { get; set; }
 
         /// <summary>
-        /// Der Winkel im Bogenmaß für das Rollen um die Z-Achse. Siehe statische Methode Matrix.CreateRotationZ (float) des XNA-Frameworks.
+        /// Der Winkel im Bogenmaß für das Rollen um die Z-Achse. Siehe statische Methode Matrix.CreateRotationZ (float) des MonoGame-Frameworks.
         /// </summary>
         public float Z { get; set; }
 

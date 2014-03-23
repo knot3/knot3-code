@@ -65,6 +65,11 @@ namespace Knot3.Framework.Core
         }
 
         private Camera _camera;
+
+        /// <summary>
+        /// Gibt an, ob die interne Kamera, die im Konstruktor erstellt wurde, genutzt werden soll oder ob eine
+        /// externe Kamera zugewiesen wurde, die stattdessen verwendet werden soll.
+        /// </summary>
         private bool useInternalCamera = true;
 
         /// <summary>
@@ -75,7 +80,7 @@ namespace Knot3.Framework.Core
         private IGameObject _selectedObject;
 
         /// <summary>
-        /// Das aktuell ausgewählte Spielobjekt.
+        /// Das aktuell ausgewählte Spielobjekt. "Ausgewählt" bedeutet hier, dass sich die Maus über den Objekt befindet.
         /// </summary>
         public IGameObject SelectedObject
         {
@@ -114,6 +119,11 @@ namespace Knot3.Framework.Core
         public IRenderEffect CurrentEffect { get; set; }
 
         /// <summary>
+        /// Gibt an, ob der aktuell angewendete Rendereffekt dispost werden soll.
+        /// </summary>
+        private bool disposeEffect = false;
+
+        /// <summary>
         /// Wird ausgelöst, wenn das selektierte Spielobjekt geändert wurde.
         /// </summary>
         public Action<IGameObject> SelectionChanged = (o) => {};
@@ -133,8 +143,6 @@ namespace Knot3.Framework.Core
         /// Die Ausmaße der Welt auf dem Screen.
         /// </summary>
         public Bounds Bounds { get; private set; }
-
-        private bool disposeEffect = false;
 
         /// <summary>
         /// Erstellt eine neue Spielwelt im angegebenen Spielzustand, dem angegebenen Rendereffekt und dem
@@ -172,16 +180,20 @@ namespace Knot3.Framework.Core
         {
         }
 
+        /// <summary>
+        /// Liest den Standard-Effekt aus der Konfigurationsdatei aus und liefert ein entsprechendes RenderEffekt-Objekt zurück.
+        /// </summary>
         private static IRenderEffect DefaultEffect (IScreen screen)
         {
             // suche den eingestellten Standardeffekt heraus
-            string effectName = Config.Default ["video", "knot-shader", "default"];
+            string effectName = Config.Default ["video", "current-world-effect", "default"];
             IRenderEffect effect = RenderEffectLibrary.CreateEffect (screen: screen, name: effectName);
             return effect;
         }
 
         /// <summary>
-        /// Lade die Inhalte des Spielkomponents.
+        /// Lade die Inhalte der Spielwelt. Falls kein Rendereffekt im Konstruktor übergeben wurde,
+        /// wird der Standard-Effekt als zu verwendender Rendereffekt zugewiesen.
         /// </summary>
         public override void LoadContent (GameTime time)
         {
@@ -199,7 +211,7 @@ namespace Knot3.Framework.Core
         }
 
         /// <summary>
-        /// Entlade die Inhalte des Spielkomponents.
+        /// Entlade die Inhalte. Falls das aktuell verwendete Rendereffekt-Objekt in dieser Klasse erstellt werde, dispose es auch hier.
         /// </summary>
         public override void UnloadContent (GameTime time)
         {

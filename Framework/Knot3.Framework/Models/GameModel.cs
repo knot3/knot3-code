@@ -53,7 +53,7 @@ namespace Knot3.Framework.Models
         public string Modelname { get; set; }
 
         /// <summary>
-        /// Die Klasse des XNA-Frameworks, die ein 3D-Modell repräsentiert.
+        /// Die Klasse des MonoGame-Frameworks, die ein 3D-Modell repräsentiert.
         /// </summary>
         public virtual Model Model { get { return Screen.LoadModel (Modelname); } }
 

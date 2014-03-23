@@ -73,12 +73,12 @@ namespace Knot3.Framework.Core
         IScreen NextScreen { get; set; }
 
         /// <summary>
-        /// Der GraphicsDeviceManager von XNA.
+        /// Der GraphicsDeviceManager von MonoGame.
         /// </summary>
         GraphicsDeviceManager GraphicsManager { get; }
 
         /// <summary>
-        /// Das GraphicsDevice von XNA.
+        /// Das GraphicsDevice von MonoGame.
         /// </summary>
         GraphicsDevice GraphicsDevice { get; }
 
@@ -103,14 +103,14 @@ namespace Knot3.Framework.Core
         bool ClearScreenHistory { get; }
 
         /// <summary>
-        /// Beginnt mit dem Füllen der Spielkomponentenliste des XNA-Frameworks und fügt sowohl für Tastatur- als auch für
+        /// Beginnt mit dem Füllen der Spielkomponentenliste des MonoGame-Frameworks und fügt sowohl für Tastatur- als auch für
         /// Mauseingaben einen Inputhandler für Widgets hinzu. Wird in Unterklassen von IGameScreen reimplementiert und fügt zusätzlich weitere
         /// Spielkomponenten hinzu.
         /// </summary>
         void Entered (IScreen previousScreen, GameTime time);
 
         /// <summary>
-        /// Leert die Spielkomponentenliste des XNA-Frameworks.
+        /// Leert die Spielkomponentenliste des MonoGame-Frameworks.
         /// </summary>
         void BeforeExit (IScreen nextScreen, GameTime time);
 

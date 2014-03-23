@@ -54,7 +54,7 @@ using Knot3.Game.Widgets;
 namespace Knot3.ModelEditor
 {
     /// <summary>
-    /// Die zentrale Spielklasse, die von der \glqq Game\grqq~-Klasse des XNA-Frameworks erbt.
+    /// Die zentrale Spielklasse, die von der \glqq Game\grqq~-Klasse des MonoGame-Frameworks erbt.
     /// </summary>
     [ExcludeFromCodeCoverageAttribute]
     public class ModelEditorGame : GameCore

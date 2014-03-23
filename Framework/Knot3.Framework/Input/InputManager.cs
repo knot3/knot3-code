@@ -42,7 +42,7 @@ using Knot3.Framework.Utilities;
 namespace Knot3.Framework.Input
 {
     /// <summary>
-    /// Stellt für jeden Frame die Maus- und Tastatureingaben bereit. Daraus werden die nicht von XNA bereitgestellten Mauseingaben berechnet. Zusätzlich wird die aktuelle Eingabeaktion berechnet.
+    /// Stellt für jeden Frame die Maus- und Tastatureingaben bereit. Daraus werden die nicht von MonoGame bereitgestellten Mauseingaben berechnet. Zusätzlich wird die aktuelle Eingabeaktion berechnet.
     /// </summary>
     [ExcludeFromCodeCoverageAttribute]
     public sealed class InputManager : KeyBindingListener<InputManager>
@@ -58,32 +58,32 @@ namespace Knot3.Framework.Input
         public ClickState LeftMouseButton { get; private set; }
 
         /// <summary>
-        /// Enthält den Mauszustand von XNA zum aktuellen Frame.
+        /// Enthält den Mauszustand von MonoGame zum aktuellen Frame.
         /// </summary>
         public MouseState CurrentMouseState { get; set; }
 
         /// <summary>
-        /// Enthält die Mausposition von XNA zum aktuellen Frame.
+        /// Enthält die Mausposition von MonoGame zum aktuellen Frame.
         /// </summary>
         public ScreenPoint CurrentMousePosition { get { return CurrentMouseState.ToScreenPoint (Screen); } }
 
         /// <summary>
-        /// Enthält den Tastaturzustand von XNA zum aktuellen Frame.
+        /// Enthält den Tastaturzustand von MonoGame zum aktuellen Frame.
         /// </summary>
         public KeyboardState CurrentKeyboardState { get; private set; }
 
         /// <summary>
-        /// Enthält den Mauszustand von XNA zum vorherigen Frame.
+        /// Enthält den Mauszustand von MonoGame zum vorherigen Frame.
         /// </summary>
         public MouseState PreviousMouseState { get; private set; }
 
         /// <summary>
-        /// Enthält die Mausposition von XNA zum vorherigen Frame.
+        /// Enthält die Mausposition von MonoGame zum vorherigen Frame.
         /// </summary>
         public ScreenPoint PreviousMousePosition { get { return PreviousMouseState.ToScreenPoint (Screen); } }
 
         /// <summary>
-        /// Enthält den Tastaturzustand von XNA zum vorherigen Frame.
+        /// Enthält den Tastaturzustand von MonoGame zum vorherigen Frame.
         /// </summary>
         public KeyboardState PreviousKeyboardState { get; private set; }
 

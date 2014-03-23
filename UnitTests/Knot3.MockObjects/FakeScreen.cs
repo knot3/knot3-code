@@ -120,7 +120,7 @@ namespace Knot3.MockObjects
         }
 
         /// <summary>
-        /// Beginnt mit dem Füllen der Spielkomponentenliste des XNA-Frameworks und fügt sowohl für Tastatur- als auch für
+        /// Beginnt mit dem Füllen der Spielkomponentenliste des MonoGame-Frameworks und fügt sowohl für Tastatur- als auch für
         /// Mauseingaben einen Inputhandler für Widgets hinzu. Wird in Unterklassen von IGameScreen reimplementiert und fügt zusätzlich weitere
         /// Spielkomponenten hinzu.
         /// </summary>
@@ -129,7 +129,7 @@ namespace Knot3.MockObjects
         }
 
         /// <summary>
-        /// Leert die Spielkomponentenliste des XNA-Frameworks.
+        /// Leert die Spielkomponentenliste des MonoGame-Frameworks.
         /// </summary>
         public void BeforeExit (IScreen nextScreen, GameTime time)
         {

@@ -37,7 +37,7 @@ namespace Knot3.Framework.Effects
 {
     /// <summary>
     /// Ein Stapel, der während der Draw-Aufrufe die Hierarchie der aktuell verwendeten Rendereffekte verwaltet
-    /// und automatisch das aktuell von XNA verwendete Rendertarget auf das Rendertarget des obersten Rendereffekts
+    /// und automatisch das aktuell von MonoGame verwendete Rendertarget auf das Rendertarget des obersten Rendereffekts
     /// setzt.
     /// </summary>
     [ExcludeFromCodeCoverageAttribute]

@@ -156,7 +156,7 @@ namespace Knot3.Game.Models
 
         private SkyTexture CreateSkyTexture ()
         {
-            string effectName = Config.Default ["video", "knot-shader", "default"];
+            string effectName = Config.Default ["video", "current-world-effect", "default"];
             if (Config.Default ["debug", "projector-mode", false]) {
                 return CreateSolidColorTexture (ContentLoader.CreateTexture (Screen.GraphicsDevice, Color.White));
             }
@@ -267,7 +267,7 @@ namespace Knot3.Game.Models
             effect.VertexColorEnabled = false;
 
             effect.LightingEnabled = false;
-            string effectName = Config.Default ["video", "knot-shader", "default"];
+            string effectName = Config.Default ["video", "current-world-effect", "default"];
             if (Screen.InputManager.KeyHeldDown (Keys.F7) || effectName == "celshader") {
                 effect.EnableDefaultLighting ();  // Beleuchtung aktivieren
             }

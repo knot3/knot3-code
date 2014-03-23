@@ -38,7 +38,7 @@ using Knot3.Framework.Platform;
 namespace Knot3.Framework.Audio
 {
     /// <summary>
-    /// Ein Wrapper um die SoundEffect-Klasse des XNA-Frameworks.
+    /// Ein Wrapper um die SoundEffect-Klasse des MonoGame-Frameworks.
     /// </summary>
     [ExcludeFromCodeCoverageAttribute]
     public class SoundEffectFile : IAudioFile
