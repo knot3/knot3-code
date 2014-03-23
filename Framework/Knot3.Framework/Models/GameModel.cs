@@ -45,18 +45,8 @@ namespace Knot3.Framework.Models
     /// Repräsentiert ein 3D-Modell in einer Spielwelt.
     /// </summary>
     [ExcludeFromCodeCoverageAttribute]
-    public abstract class GameModel : GameObject, IGameModel, ITexturedObject, IColoredObject
+    public abstract class GameModel : GameObject
     {
-        /// <summary>
-        /// Die Farbe des Modells.
-        /// </summary>
-        public ModelColoring Coloring { get; set; }
-
-        /// <summary>
-        /// Die Textur des Modells.
-        /// </summary>
-        public Texture2D Texture { get; set; }
-
         /// <summary>
         /// Der Dateiname des Modells.
         /// </summary>
@@ -78,7 +68,6 @@ namespace Knot3.Framework.Models
             Modelname = modelname;
 
             // default values
-            Coloring = new SingleColor (Color.Transparent);
             UniqueKey = modelname;
             UpdateCategory ();
         }

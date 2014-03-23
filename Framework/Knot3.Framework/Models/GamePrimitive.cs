@@ -44,19 +44,8 @@ using Knot3.Framework.Utilities;
 namespace Knot3.Framework.Models
 {
     [ExcludeFromCodeCoverageAttribute]
-    public abstract class GamePrimitive : GameObject, IGameModel, ITexturedObject, IColoredObject
+    public abstract class GamePrimitive : GameObject
     {
-        /// <summary>
-        /// Die Farbe des Modells.
-        /// </summary>
-        public ModelColoring Coloring { get; set; }
-
-        /// <summary>
-        /// Die Textur des Modells.
-        /// </summary>
-        public Texture2D Texture { get { return _texture; } set { _texture = value; UpdateCategory (); } }
-        private Texture2D _texture;
-
         /// <summary>
         /// Der Dateiname des Modells.
         /// </summary>
@@ -99,10 +88,6 @@ namespace Knot3.Framework.Models
         public GamePrimitive (IScreen screen)
         {
             Screen = screen;
-
-            // default values
-            Coloring = new SingleColor (Color.Transparent);
-
             UpdateCategory ();
         }
 

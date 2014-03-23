@@ -32,6 +32,7 @@ using System.Diagnostics.CodeAnalysis;
 using Microsoft.Xna.Framework;
 using Knot3.Framework.Core;
 using Knot3.Framework.Math;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Knot3.Framework.Models
 {
@@ -122,17 +123,46 @@ namespace Knot3.Framework.Models
             }
         }
 
+        /// <summary>
+        /// Gibt die Ausmaße des Spielobjekts zurück.
+        /// </summary>
         public virtual BoundingSphere[] Bounds { get; protected set; }
 
+        /// <summary>
+        /// Gibt an, ob das Spielobjekt innerhalb des Frustums ist, das den sichtbaren Bereich enthält.
+        /// </summary>
         public bool InCameraFrustum { get { return _inFrustum; } }
 
+        /// <summary>
+        /// Gibt an, ob das Spielobjekt mit Beleuchtung gezeichnet werden soll oder nicht.
+        /// </summary>
         public bool IsLightingEnabled { get; set; }
 
+        /// <summary>
+        /// Gibt an, ob das Spielobjekt zur SkyBox oder etwas vergleichbarem gehört.
+        /// Falls diese Property true ist, wird eine veränderte View-Matrix verwendet.
+        /// </summary>
         public bool IsSkyObject { get; set; }
 
         public string UniqueKey { get; protected set; }
 
+        /// <summary>
+        /// Gibt eine Kategorie an, die dabei hilft, Spielobjekte nach gleichartigen Objekten zu ordnen.
+        /// Wird beim Hardware-Instancing verwendet.
+        /// </summary>
         public string GameObjectCategory  { get; protected set; }
+
+        /// <summary>
+        /// Die Farbe des Modells.
+        /// </summary>
+        public ModelColoring Coloring { get; set; }
+        
+        /// <summary>
+        /// Die Textur des Modells.
+        /// </summary>
+        public Texture2D Texture { get { return _texture; } set { _texture = value; UpdateCategory (); } }
+        private Texture2D _texture;
+
 
         public GameObject (Vector3 position = default (Vector3), Angles3 rotation = default (Angles3), Vector3 scale = default (Vector3),
                            bool isVisible = true, bool isSelectable = false, bool isMovable = false)
@@ -146,6 +176,7 @@ namespace Knot3.Framework.Models
             UniqueKey = GetType ().Name;
             IsLightingEnabled = true;
             IsSkyObject = false;
+            Coloring = new SingleColor (Color.Transparent);
         }
 
         protected virtual void UpdateCategory ()
@@ -160,14 +191,11 @@ namespace Knot3.Framework.Models
 
         protected int GetTextureHashCode (IGameObject obj)
         {
-            if (obj is ITexturedObject && (obj as ITexturedObject).Texture != null) {
-                return (obj as ITexturedObject).Texture.GetHashCode ();
-            }
-            else if (obj is IColoredObject) {
-                return (obj as IColoredObject).Coloring.MixedColor.GetHashCode ();
+            if (obj.Texture != null) {
+                return obj.Texture.GetHashCode ();
             }
             else {
-                return 0;
+                return obj.Coloring.MixedColor.GetHashCode ();
             }
         }
 

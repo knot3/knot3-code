@@ -35,6 +35,7 @@ using Microsoft.Xna.Framework;
 
 using Knot3.Framework.Core;
 using Knot3.Framework.Math;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Knot3.Framework.Models
 {
@@ -103,9 +104,45 @@ namespace Knot3.Framework.Models
         /// Überprüft, ob der Mausstrahl das Spielobjekt schneidet.
         /// </summary>
         GameObjectDistance Intersects (Ray ray);
-
+        
+        /// <summary>
+        /// Gibt die Ausmaße des Spielobjekts zurück.
+        /// </summary>
         BoundingSphere[] Bounds { get; }
+        
+
+        /// <summary>
+        /// Gibt an, ob das Spielobjekt innerhalb des Frustums ist, das den sichtbaren Bereich enthält.
+        /// </summary>
+        bool InCameraFrustum { get; }
+
+        /// <summary>
+        /// Gibt an, ob das Spielobjekt mit Beleuchtung gezeichnet werden soll oder nicht.
+        /// </summary>
+        bool IsLightingEnabled { get; }
+
+        /// <summary>
+        /// Gibt an, ob das Spielobjekt zur SkyBox oder etwas vergleichbarem gehört.
+        /// Falls diese Property true ist, wird eine veränderte View-Matrix verwendet.
+        /// </summary>
+        bool IsSkyObject { get; }
 
         string UniqueKey { get; }
+        
+        /// <summary>
+        /// Gibt eine Kategorie an, die dabei hilft, Spielobjekte nach gleichartigen Objekten zu ordnen.
+        /// Wird beim Hardware-Instancing verwendet.
+        /// </summary>
+        string GameObjectCategory  { get; }
+        
+        /// <summary>
+        /// Die Farbe des Modells.
+        /// </summary>
+        ModelColoring Coloring { get; }
+
+        /// <summary>
+        /// Die Textur des Modells.
+        /// </summary>
+        Texture2D Texture { get; }
     }
 }

@@ -176,6 +176,9 @@ namespace Knot3.Framework.Effects
             if (screen.InputManager.KeyHeldDown (Keys.L)) {
                 effect.LightingEnabled = false;
             }
+            else if (!obj.IsLightingEnabled) {
+                effect.LightingEnabled = false;
+            }
             else {
                 effect.EnableDefaultLighting ();
                 effect.DirectionalLight0.Direction = obj.World.Camera.LightDirection;
@@ -188,6 +191,7 @@ namespace Knot3.Framework.Effects
                 effect.PreferPerPixelLighting = true;
             }
             effect.FogEnabled = false;
+            effect.Alpha = obj.Coloring.Alpha;
 
             // matrices
             effect.World = obj.WorldMatrix * obj.World.Camera.WorldMatrix;
@@ -216,11 +220,11 @@ namespace Knot3.Framework.Effects
 
         protected Texture2D GetTexture (IGameObject obj)
         {
-            if (obj is ITexturedObject && (obj as ITexturedObject).Texture != null) {
-                return (obj as ITexturedObject).Texture;
+            if (obj.Texture != null) {
+                return obj.Texture;
             }
-            else if (obj is IColoredObject) {
-                ModelColoring coloring = (obj as IColoredObject).Coloring;
+            else {
+                ModelColoring coloring = obj.Coloring;
                 if (coloring is GradientColor) {
                     return ContentLoader.CreateGradient (screen.GraphicsDevice, coloring as GradientColor);
                 }
@@ -228,9 +232,15 @@ namespace Knot3.Framework.Effects
                     return ContentLoader.CreateTexture (screen.GraphicsDevice, coloring.MixedColor);
                 }
             }
-            else {
-                return ContentLoader.CreateTexture (screen.GraphicsDevice, Color.CornflowerBlue);
-            }
+        }
+
+        protected Matrix SkyViewMatrix (Matrix viewMatrix)
+        {
+            Matrix skyboxView = viewMatrix;
+            skyboxView.M41 = 0;
+            skyboxView.M42 = 0;
+            skyboxView.M43 = 0;
+            return skyboxView;
         }
 
         /// <summary>

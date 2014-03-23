@@ -195,15 +195,6 @@ namespace Knot3.Framework.Effects
             }
         }
 
-        Matrix SkyViewMatrix (Matrix viewMatrix)
-        {
-            Matrix skyboxView = viewMatrix;
-            skyboxView.M41 = 0;
-            skyboxView.M42 = 0;
-            skyboxView.M43 = 0;
-            return skyboxView;
-        }
-
         protected override void BeforeEnd (GameTime time)
         {
             Profiler.ProfileDelegate ["Instancing"] = () => {
