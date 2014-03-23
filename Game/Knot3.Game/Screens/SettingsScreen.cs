@@ -94,7 +94,7 @@ namespace Knot3.Game.Screens
             MenuEntry profileButton = new MenuEntry (
                 screen: this,
                 drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
-                name: "Profile",
+                name: "General",
             onClick: (time) => {
                 game.SkipNextScreenEffect =true;
                 NextScreen = new ProfileSettingsScreen (Game);
