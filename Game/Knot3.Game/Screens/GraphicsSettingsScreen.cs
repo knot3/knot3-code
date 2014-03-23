@@ -199,7 +199,7 @@ namespace Knot3.Game.Screens
 
             // Supersampling
             float[] validSupersamples = {
-                1f, 1.25f, 1.5f, 1.75f, 2f, 2.5f, 3f
+                1f, 1.25f, 1.5f, 1.75f, 2f
             };
             FloatOption optionSupersamples = new FloatOption (
                 section: "video",
