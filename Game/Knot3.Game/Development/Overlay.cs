@@ -43,6 +43,7 @@ using Knot3.Framework.Storage;
 using Knot3.Framework.Widgets;
 
 using Knot3.Game.Models;
+using Knot3.Framework.Models;
 
 namespace Knot3.Game.Development
 {
@@ -187,6 +188,13 @@ namespace Knot3.Game.Development
                     if (pipe.Knot != null) {
                         str += "   #" + pipe.Knot.ToList ().FindIndex (g => g == pipe.Edge).ToString ();
                     }
+                    DrawString (str, width2, height, Color.Yellow);
+                }
+                if (World.SelectedObject is Junction) {
+                    DrawString ("JunctionColor: ", width1, height, Color.White);
+                    Junction pipe = World.SelectedObject as Junction;
+                    height += lineHeight;
+                    string str = "1. "+(pipe.Coloring as GradientColor).Color1+"2. "+(pipe.Coloring as GradientColor).Color2 ;
                     DrawString (str, width2, height, Color.Yellow);
                 }
                 else {
