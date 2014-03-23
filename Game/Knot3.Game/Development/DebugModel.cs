@@ -43,7 +43,7 @@ namespace Knot3.Game.Development
     {
         public DebugModel (IScreen screen) : base (screen: screen)
         {
-            Scale = new Vector3(5f,5f,5f);
+            Scale = new Vector3 (5f,5f,5f);
             Coloring = new SingleColor (Color.White);
         }
 
