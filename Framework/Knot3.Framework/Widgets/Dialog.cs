@@ -75,7 +75,7 @@ namespace Knot3.Framework.Widgets
 
         public Bounds MouseMoveBounds { get { return TitleBounds; } }
 
-        protected Func<Color>  TitleForegroundColor{get;set;}
+        protected Func<Color>  TitleForegroundColor {get; set;}
 
         /// <summary>
         /// Erzeugt ein neues Dialog-Objekt und initialisiert dieses mit dem zugehörigen IGameScreen-Objekt.
@@ -152,7 +152,7 @@ namespace Knot3.Framework.Widgets
 
             // zeichne den Titel des Dialogs
             spriteBatch.DrawColoredRectangle (TitleBackgroundColor (), TitleBounds);
-            spriteBatch.DrawStringInRectangle (font, Title.Localize (), TitleForegroundColor(), TitleBounds, AlignX, AlignY);
+            spriteBatch.DrawStringInRectangle (font, Title.Localize (), TitleForegroundColor (), TitleBounds, AlignX, AlignY);
 
             spriteBatch.End ();
         }
