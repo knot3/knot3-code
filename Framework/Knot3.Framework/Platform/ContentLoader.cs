@@ -177,12 +177,27 @@ namespace Knot3.Framework.Platform
 
         public static Texture2D CreateGradient (GraphicsDevice graphicsDevice, GradientColor coloring)
         {
-            return CreateGradient (graphicsDevice: graphicsDevice, topLeft: coloring.Color1, topRight: coloring.Color2, bottomLeft: coloring.Color1, bottomRight: coloring.Color2);
+            return CreateGradient (graphicsDevice: graphicsDevice, color1: coloring.Color1, color2: coloring.Color2);
         }
 
         public static Texture2D CreateGradient (GraphicsDevice graphicsDevice, Color color1, Color color2)
         {
-            return CreateGradient (graphicsDevice: graphicsDevice, topLeft: color1, topRight: color2, bottomLeft: color2, bottomRight: color1);
+            int key = Hash (color1, color2);
+            if (textureCache.ContainsKey (key)) {
+                return textureCache [key];
+            }
+            else {
+                // create a texture with the specified size
+                Texture2D texture = new Texture2D (graphicsDevice, 2, 1);
+
+                // fill it with the specified colors
+                Color[] colors = new Color [texture.Width * texture.Height];
+                colors [0] = color1;
+                colors [1] = color2;
+                texture.SetData (colors);
+                textureCache [key] = texture;
+                return texture;
+            }
         }
 
         public static Texture2D CreateGradient (GraphicsDevice graphicsDevice, Color topLeft, Color topRight, Color bottomLeft, Color bottomRight)

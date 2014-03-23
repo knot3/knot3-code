@@ -27,13 +27,10 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
-
 using System;
 using System.Diagnostics.CodeAnalysis;
-
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-
 using Knot3.Framework.Utilities;
 
 namespace Knot3.Framework.Primitives
@@ -54,7 +51,7 @@ namespace Knot3.Framework.Primitives
             float halfHeight = height / 2;
             float radius = diameter / 2;
 
-            Vector3 bumpDirection = Vector3.Right*height;
+            Vector3 bumpDirection = Vector3.Right * height;
             Vector3 top = Vector3.Forward * halfHeight;
             Vector3 bottom = Vector3.Backward * halfHeight;
             var bumpOffsets = new[] {
@@ -71,22 +68,25 @@ namespace Knot3.Framework.Primitives
 
             for (int k = 0; k+1 < bumpOffsets.Length; ++k) {
                 var bumpOffset1 = bumpOffsets [k];
-                var bumpOffset2 = bumpOffsets [k+1];
+                var bumpOffset2 = bumpOffsets [k + 1];
 
                 for (int i = 0; i < tessellation; i++) {
                     Vector3 normal = GetCircleVector (i, tessellation);
-                    float textureU = (float)i / (float)tessellation;
-                    float textureV = bumpOffset1.h;
+                    float textureU1 = bumpOffset1.h;//(float)i / (float)tessellation;
+                    float textureU2 = bumpOffset2.h;//(float)i / (float)tessellation;
+                    textureU1 = 0.25f + textureU1 / 2;
+                    textureU2 = 0.25f + textureU2 / 2;
+                    float textureV = 0;
 
                     AddVertex (
                         position: normal * radius + top + (bottom - top) * bumpOffset1.h + bumpDirection * bumpOffset1.bump,
                         normal: normal,
-                        texCoord: new Vector2 (textureU, textureV)
+                        texCoord: new Vector2 (textureU1, textureV)
                     );
                     AddVertex (
                         position: normal * radius + top + (bottom - top) * bumpOffset2.h + bumpDirection * bumpOffset2.bump,
                         normal: normal,
-                        texCoord: new Vector2 (textureU, textureV)
+                        texCoord: new Vector2 (textureU2, textureV)
                     );
 
                     int vertexOffset = tessellation * k * 2;

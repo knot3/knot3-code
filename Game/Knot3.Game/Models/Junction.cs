@@ -381,6 +381,11 @@ namespace Knot3.Game.Models
                 gradient.Color2 = EdgeTo;
                 UpdateCategory ();
             }
+            if (Screen.InputManager.KeyPressed (Microsoft.Xna.Framework.Input.Keys.O)) {
+                gradient.Color1 = EdgeFrom;
+                gradient.Color2 = EdgeTo;
+                UpdateCategory ();
+            }
 
             base.Draw (time);
         }
