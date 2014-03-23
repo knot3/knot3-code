@@ -132,7 +132,10 @@ namespace Knot3.Game.Screens
                 screen: this,
                 drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
                 text: "Day cycle in seconds"
-            );
+            ) {
+                NameWidth = 0.75f,
+                ValueWidth = 0.25f
+            };
             itemDayCycle.AddEntries (optionDayCycle);
             settingsMenu.Add (itemDayCycle);
 
@@ -187,7 +190,10 @@ namespace Knot3.Game.Screens
                 screen: this,
                 drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
                 text: "Resolution"
-            );
+            ) {
+                NameWidth = 0.75f,
+                ValueWidth = 0.25f
+            };
             itemResolution.AddEntries (optionResolution);
             settingsMenu.Add (itemResolution);
 
@@ -206,7 +212,10 @@ namespace Knot3.Game.Screens
                 screen: this,
                 drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
                 text: "Supersamples"
-            );
+            ) {
+                NameWidth = 0.75f,
+                ValueWidth = 0.25f
+            };
             itemSupersamples.AddEntries (optionSupersamples);
             settingsMenu.Add (itemSupersamples);
 
