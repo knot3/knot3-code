@@ -119,7 +119,7 @@ namespace Knot3.Game.Development
                     Config.Default ["video", "camera-overlay", false] = false;
                     Config.Default ["video", "profiler-overlay", false] = false;
                     Config.Default ["video", "knot-shader", "default"] = "default";
-                    Config.Default ["video", "Supersamples", 1f] = 2f;
+                    Config.Default ["video", "Supersamples", 2f] = 2f;
                     Config.Default ["video", "arrows", false] = false;
                     Config.Default ["language", "current", "en"] = "de";
                     Config.Default ["video", "day-cycle-seconds", 60] = 10;

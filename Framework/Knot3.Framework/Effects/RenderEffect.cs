@@ -65,7 +65,7 @@ namespace Knot3.Framework.Effects
         /// </summary>
         protected SpriteBatch spriteBatch { get; set; }
 
-        protected float Supersampling { get { return Config.Default ["video", "Supersamples", 1]; } }
+        protected float Supersampling { get { return Config.Default ["video", "Supersamples", 2]; } }
 
         public bool SelectiveRendering { get; set; }
 
@@ -304,8 +304,8 @@ namespace Knot3.Framework.Effects
                     }
                     catch (NotSupportedException ex) {
                         Log.Debug (ex);
-                        if (Config.Default ["video", "Supersamples", 1] > 1) {
-                            Config.Default ["video", "Supersamples", 1] *= 0.8f;
+                        if (Config.Default ["video", "Supersamples", 2] > 1) {
+                            Config.Default ["video", "Supersamples", 2] *= 0.8f;
                         }
                         else {
                             throw;

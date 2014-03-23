@@ -191,7 +191,7 @@ namespace Knot3.Game.Screens
             FloatOption supersamplesOption = new FloatOption (
                 section: "video",
                 name: "Supersamples",
-                defaultValue: 1f,
+                defaultValue: 2f,
                 validValues: validSupersamples,
                 configFile: Config.Default
             );
