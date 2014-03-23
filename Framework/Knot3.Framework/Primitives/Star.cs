@@ -27,31 +27,29 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
-
 using System;
 using System.Diagnostics.CodeAnalysis;
-
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Knot3.Framework.Primitives
 {
-    public class Star:Primitive
+    public class Star : Primitive
     {
         public Star (GraphicsDevice device)
         {
-            AddVertex (position: new Vector3 (0.5f,0f,0f), normal: new Vector3 (0f,0f,1f), texCoord: new Vector2 (0.5f,0f));
-            AddVertex (position: new Vector3 (0.8f,0.75f,0f), normal:new Vector3 (0f,0f,1f), texCoord: new Vector2 (0.8f,0.75f));
-            AddVertex (position: new Vector3 (0.2f,0.75f,0f), normal:new Vector3 (0f,0f,1f), texCoord: new Vector2 (0.2f,0.75f));
-            AddVertex (position: new Vector3 (0.5f,1f,0f), normal:new Vector3 (0f,0f,1f), texCoord: new Vector2 (0.5f,1f));
-            AddVertex (position: new Vector3 (0.8f,0.25f,0f), normal:new Vector3 (0f,0f,1f), texCoord: new Vector2 (0.8f,0.25f));
-            AddVertex (position: new Vector3 (0.2f,0.25f,0f), normal:new Vector3 (0f,0f,1f), texCoord: new Vector2 (0.2f,0.25f));
-            AddVertex (position: new Vector3 (0.5f,0f,0f), normal: new Vector3 (0f,0f,-1f), texCoord: new Vector2 (0.5f,0f));
-            AddVertex (position: new Vector3 (0.8f,0.75f,0f), normal:new Vector3 (0f,0f,-1f), texCoord: new Vector2 (0.8f,0.75f));
-            AddVertex (position: new Vector3 (0.2f,0.75f,0f), normal:new Vector3 (0f,0f,-1f), texCoord: new Vector2 (0.2f,0.75f));
-            AddVertex (position: new Vector3 (0.5f,1f,0f), normal:new Vector3 (0f,0f,-1f), texCoord: new Vector2 (0.5f,1f));
-            AddVertex (position: new Vector3 (0.8f,0.25f,0f), normal:new Vector3 (0f,0f,-1f), texCoord: new Vector2 (0.8f,0.25f));
-            AddVertex (position: new Vector3 (0.2f,0.25f,0f), normal:new Vector3 (0f,0f,-1f), texCoord: new Vector2 (0.2f,0.25f));
+            AddVertex (position: new Vector3 (0.5f, 0f, 0f), normal: new Vector3 (0f, 0f, 1f), texCoord: new Vector2 (0.5f, 0f));
+            AddVertex (position: new Vector3 (0.8f, 0.75f, 0f), normal: new Vector3 (0f, 0f, 1f), texCoord: new Vector2 (0.8f, 0.75f));
+            AddVertex (position: new Vector3 (0.2f, 0.75f, 0f), normal: new Vector3 (0f, 0f, 1f), texCoord: new Vector2 (0.2f, 0.75f));
+            AddVertex (position: new Vector3 (0.5f, 1f, 0f), normal: new Vector3 (0f, 0f, 1f), texCoord: new Vector2 (0.5f, 1f));
+            AddVertex (position: new Vector3 (0.8f, 0.25f, 0f), normal: new Vector3 (0f, 0f, 1f), texCoord: new Vector2 (0.8f, 0.25f));
+            AddVertex (position: new Vector3 (0.2f, 0.25f, 0f), normal: new Vector3 (0f, 0f, 1f), texCoord: new Vector2 (0.2f, 0.25f));
+            AddVertex (position: new Vector3 (0.5f, 0f, 0f), normal: new Vector3 (0f, 0f, -1f), texCoord: new Vector2 (0.5f, 0f));
+            AddVertex (position: new Vector3 (0.8f, 0.75f, 0f), normal: new Vector3 (0f, 0f, -1f), texCoord: new Vector2 (0.8f, 0.75f));
+            AddVertex (position: new Vector3 (0.2f, 0.75f, 0f), normal: new Vector3 (0f, 0f, -1f), texCoord: new Vector2 (0.2f, 0.75f));
+            AddVertex (position: new Vector3 (0.5f, 1f, 0f), normal: new Vector3 (0f, 0f, -1f), texCoord: new Vector2 (0.5f, 1f));
+            AddVertex (position: new Vector3 (0.8f, 0.25f, 0f), normal: new Vector3 (0f, 0f, -1f), texCoord: new Vector2 (0.8f, 0.25f));
+            AddVertex (position: new Vector3 (0.2f, 0.25f, 0f), normal: new Vector3 (0f, 0f, -1f), texCoord: new Vector2 (0.2f, 0.25f));
 
             AddIndex (1);
             AddIndex (0);

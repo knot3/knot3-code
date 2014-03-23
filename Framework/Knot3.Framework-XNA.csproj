@@ -114,6 +114,7 @@
     <Compile Include="Knot3.Framework\Primitives\Parallelogram.cs" />
     <Compile Include="Knot3.Framework\Primitives\Primitive.cs" />
     <Compile Include="Knot3.Framework\Primitives\Sphere.cs" />
+    <Compile Include="Knot3.Framework\Primitives\Star.cs" />
     <Compile Include="Knot3.Framework\Primitives\Torus.cs" />
     <Compile Include="Knot3.Framework\Screens\ErrorScreen.cs" />
     <Compile Include="Knot3.Framework\Storage\BooleanOption.cs" />
