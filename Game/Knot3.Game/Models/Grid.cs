@@ -27,16 +27,20 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+
 using Microsoft.Xna.Framework;
+
 using Knot3.Framework.Core;
 using Knot3.Framework.Development;
 using Knot3.Framework.Platform;
 using Knot3.Framework.Utilities;
+
 using Knot3.Game.Models;
 
 namespace Knot3.Game.Data
