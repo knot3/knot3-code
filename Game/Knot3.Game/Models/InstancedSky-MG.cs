@@ -100,15 +100,15 @@ namespace Knot3.Game.Models
         {
             Color[] colors = new Color[] { Color.White, Color.Red, Color.MediumBlue, Color.Orange };
             Star[] stars = new Star [count];
-           
+
             Color color;
             for (int i = 0; i < count; ++i) {
                 Vector3 position = new Vector3 ((float)random.NextDouble () - 0.5f, (float)random.NextDouble () - 0.5f, (float)random.NextDouble () - 0.5f);
                 position.Normalize ();
-                if((random.Next() %100 )<65){
+                if ((random.Next () %100 )<65) {
                     color = Color.White;
                 }
-                else{
+                else {
                     color = colors [random.Next () % colors.Length];
                 }
                 stars [i] = new Star (screen: Screen, color: color) {
