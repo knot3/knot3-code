@@ -105,6 +105,7 @@ namespace Knot3.Framework.Platform
         [Conditional ("DEBUG")]
         public static void DebugWindows (params object[] message)
         {
+            return; // for release
             string str = string.Join ("", message);
             if (str == lastDebugStr) {
                 ++lastDebugTimes;
