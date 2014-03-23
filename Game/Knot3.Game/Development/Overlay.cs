@@ -195,14 +195,14 @@ namespace Knot3.Game.Development
                     DrawString ("edgecolor: "+(pipe.Coloring as SingleColor).BaseColor, width1, height, Color.White);
                     height += lineHeight;
                     DrawString ("junction: ", width1, height, Color.White);
-                    Junction test = pipe.Grid.JunctionAfterEdge(pipe.Edge);
-                    if(test!=null){
+                    Junction test = pipe.Grid.JunctionAfterEdge (pipe.Edge);
+                    if (test!=null) {
                         height += lineHeight;
                         GradientColor color = test.Coloring as GradientColor;
                         DrawString ("1: "+color.Color1+"2: "+color.Color2, width1, height, Color.White);
                     }
                 }
-           
+
                 else {
                     height += lineHeight;
                 }
