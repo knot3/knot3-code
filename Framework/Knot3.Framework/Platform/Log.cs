@@ -60,7 +60,7 @@ namespace Knot3.Framework.Platform
             }
         }
 
-        private int k = 0;
+        private static int k = 0;
 
         private static void LogFileWriteLine(string text) {
             try {
