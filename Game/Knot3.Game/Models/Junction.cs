@@ -163,7 +163,7 @@ namespace Knot3.Game.Models
 
             { Tuple.Create (Direction.Left, Direction.Left),           JunctionDirection.RightRight },
             { Tuple.Create (Direction.Left, Direction.Up),             JunctionDirection.DownRight },
-            
+
             { Tuple.Create (Direction.Left, Direction.Forward),        JunctionDirection.LeftForward },
             { Tuple.Create (Direction.Left, Direction.Backward),       JunctionDirection.LeftBackward },
 
@@ -420,7 +420,7 @@ namespace Knot3.Game.Models
                 gradient.Color2 = EdgeTo;
                 UpdateCategory ();
             }
-            if(Screen.InputManager.KeyPressed(Microsoft.Xna.Framework.Input.Keys.O)){
+            if (Screen.InputManager.KeyPressed (Microsoft.Xna.Framework.Input.Keys.O)) {
                 gradient.Color1 = EdgeFrom;
                 gradient.Color2 = EdgeTo;
                 UpdateCategory ();
