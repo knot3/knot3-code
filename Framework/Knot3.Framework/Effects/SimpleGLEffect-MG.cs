@@ -138,6 +138,7 @@ void main ()
 
     // diffuse light intensity
     float diffuse = clamp (dot (normal, -lightDirection), 0.0, 1.0);
+    float diffuseReverse = clamp (dot (normal, lightDirection), 0.0, 1.0);
 
     // eye direction
     vec3 eyeDirection = normalize (fragEyeDirection.xyz);
@@ -151,7 +152,7 @@ void main ()
 
     // final color
     if (xIsLightingEnabled > 0) {
-        vec4 color = clamp (colorTexture * clamp (white * 0.2 + white * diffuse, -1.0, 1.0) + specular, 0.0, 1.0);
+        vec4 color = clamp (colorTexture * clamp (white * 0.2 + white * diffuse + white * diffuseReverse * 0.2, -1.0, 1.0) + specular, 0.0, 1.0);
         color.w = xAlpha;
         fragColor = color;
     }
