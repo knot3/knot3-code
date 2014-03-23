@@ -48,11 +48,6 @@ namespace Knot3.Framework.Effects
                                    createInstance: (screen) => new HardwareInstancingEffect (screen)
                                ));
             EffectLibrary.Add (new EffectFactory (
-                                   name: "hardware-instancing-nolighting-gl",
-                                   displayName: "Instancing, No Lighting (GL)",
-                                   createInstance: (screen) => new NoLightingHardwareInstancingEffect (screen)
-                               ));
-            EffectLibrary.Add (new EffectFactory (
                                    name: "wobble-gl",
                                    displayName: "Wobble (GL)",
                                    createInstance: (screen) => new WobbleEffect (screen)

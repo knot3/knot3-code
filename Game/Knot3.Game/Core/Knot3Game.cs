@@ -143,7 +143,7 @@ namespace Knot3.Game.Core
 
         public void NotAvailableOnXNA ()
         {
-            if (!SystemInfo.IsRunningOnMonogame () || true) {
+            if (!SystemInfo.IsRunningOnMonogame ()||true) {
                 ConfirmDialog confirm = new ConfirmDialog (
                     screen: Screens.Peek (),
                     drawOrder: DisplayLayer.Dialog,

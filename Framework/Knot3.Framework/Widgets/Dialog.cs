@@ -41,6 +41,7 @@ using Knot3.Framework.Input;
 using Knot3.Framework.Math;
 using Knot3.Framework.Platform;
 using Knot3.Framework.Utilities;
+using Knot3.Framework.Storage;
 
 namespace Knot3.Framework.Widgets
 {
@@ -148,7 +149,7 @@ namespace Knot3.Framework.Widgets
 
             // zeichne den Titel des Dialogs
             spriteBatch.DrawColoredRectangle (TitleBackgroundColor (), TitleBounds);
-            spriteBatch.DrawStringInRectangle (font, Title, ForegroundColor, TitleBounds, AlignX, AlignY);
+            spriteBatch.DrawStringInRectangle (font, Title.Localize (), ForegroundColor, TitleBounds, AlignX, AlignY);
 
             spriteBatch.End ();
         }

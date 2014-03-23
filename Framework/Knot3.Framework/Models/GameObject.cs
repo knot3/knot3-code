@@ -124,7 +124,11 @@ namespace Knot3.Framework.Models
 
         public virtual BoundingSphere[] Bounds { get; protected set; }
 
-        protected bool InCameraFrustum { get { return _inFrustum; } }
+        public bool InCameraFrustum { get { return _inFrustum; } }
+
+        public bool IsLightingEnabled { get; set; }
+
+        public bool IsSkyObject { get; set; }
 
         public string UniqueKey { get; protected set; }
 
@@ -140,6 +144,8 @@ namespace Knot3.Framework.Models
             IsMovable = isMovable;
             Bounds = new BoundingSphere [0];
             UniqueKey = GetType ().Name;
+            IsLightingEnabled = true;
+            IsSkyObject = false;
         }
 
         protected virtual void UpdateCategory ()
@@ -149,7 +155,7 @@ namespace Knot3.Framework.Models
 
         protected void UpdateCategory (string category)
         {
-            GameObjectCategory = GetType ().Name + GetTextureHashCode (obj: this) + category;
+            GameObjectCategory = GetType ().Name + GetTextureHashCode (obj: this) + category + IsLightingEnabled + IsSkyObject;
         }
 
         protected int GetTextureHashCode (IGameObject obj)
@@ -170,7 +176,6 @@ namespace Knot3.Framework.Models
         /// </summary>
         public virtual void Update (GameTime time)
         {
-            //UpdateCategory ("");
         }
 
         /// <summary>
@@ -215,19 +220,7 @@ namespace Knot3.Framework.Models
         {
             return (UniqueKey + Position).GetHashCode ();
         }
-        /*
-        public static bool operator == (GameObject o1, GameObject o2)
-        {
-            if ((object)o1 == null || ((object)o2) == null) {
-                return object.Equals (o1, o2);
-            }
-            return o2.Equals (o2);
-        }
 
-        public static bool operator != (GameObject o1, GameObject o2)
-        {
-            return !(o1 == o2);
-        }*/
         private Vector3 _scale;
         private Angles3 _rotation;
         private Vector3 _position;

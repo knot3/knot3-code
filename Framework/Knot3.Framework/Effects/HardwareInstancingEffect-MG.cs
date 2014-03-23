@@ -27,16 +27,13 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-
 using Knot3.Framework.Core;
 using Knot3.Framework.Development;
 using Knot3.Framework.Models;
@@ -47,7 +44,7 @@ using Knot3.Framework.Utilities;
 namespace Knot3.Framework.Effects
 {
     [ExcludeFromCodeCoverageAttribute]
-    public class HardwareInstancingEffect : RenderEffect
+    public class HardwareInstancingEffect : RenderEffect, IHardwareInstancingEffect
     {
         Effect effect;
         VertexDeclaration instanceVertexDeclaration;
@@ -64,64 +61,43 @@ namespace Knot3.Framework.Effects
 
         private VertexDeclaration GenerateInstanceVertexDeclaration ()
         {
-            VertexElement[] instanceStreamElements = new VertexElement [8];
+            VertexElement[] instanceStreamElements = new VertexElement [10];
+            // WorldMatrix
             instanceStreamElements [0] = new VertexElement (0, VertexElementFormat.Vector4, VertexElementUsage.TextureCoordinate, 1);
-            instanceStreamElements [1] = new VertexElement (sizeof (float) * 4, VertexElementFormat.Vector4, VertexElementUsage.TextureCoordinate, 2);
-            instanceStreamElements [2] = new VertexElement (sizeof (float) * 8, VertexElementFormat.Vector4, VertexElementUsage.TextureCoordinate, 3);
-            instanceStreamElements [3] = new VertexElement (sizeof (float) * 12, VertexElementFormat.Vector4, VertexElementUsage.TextureCoordinate, 4);
-            instanceStreamElements [4] = new VertexElement (sizeof (float) * 16, VertexElementFormat.Vector4, VertexElementUsage.TextureCoordinate, 5);
-            instanceStreamElements [5] = new VertexElement (sizeof (float) * 20, VertexElementFormat.Vector4, VertexElementUsage.TextureCoordinate, 6);
-            instanceStreamElements [6] = new VertexElement (sizeof (float) * 24, VertexElementFormat.Vector4, VertexElementUsage.TextureCoordinate, 7);
-            instanceStreamElements [7] = new VertexElement (sizeof (float) * 28, VertexElementFormat.Vector4, VertexElementUsage.TextureCoordinate, 8);
-            //instanceStreamElements [4] = new VertexElement (sizeof (float) * 16, VertexElementFormat.Vector2, VertexElementUsage.TextureCoordinate, 5);
+            instanceStreamElements [1] = new VertexElement (sizeof(float) * 4, VertexElementFormat.Vector4, VertexElementUsage.TextureCoordinate, 2);
+            instanceStreamElements [2] = new VertexElement (sizeof(float) * 8, VertexElementFormat.Vector4, VertexElementUsage.TextureCoordinate, 3);
+            instanceStreamElements [3] = new VertexElement (sizeof(float) * 12, VertexElementFormat.Vector4, VertexElementUsage.TextureCoordinate, 4);
+            // TransposeInverseWorldMatrix
+            instanceStreamElements [4] = new VertexElement (sizeof(float) * 16, VertexElementFormat.Vector4, VertexElementUsage.TextureCoordinate, 5);
+            instanceStreamElements [5] = new VertexElement (sizeof(float) * 20, VertexElementFormat.Vector4, VertexElementUsage.TextureCoordinate, 6);
+            instanceStreamElements [6] = new VertexElement (sizeof(float) * 24, VertexElementFormat.Vector4, VertexElementUsage.TextureCoordinate, 7);
+            instanceStreamElements [7] = new VertexElement (sizeof(float) * 28, VertexElementFormat.Vector4, VertexElementUsage.TextureCoordinate, 8);
+            // Alpha
+            instanceStreamElements [8] = new VertexElement (sizeof(float) * 32, VertexElementFormat.Single, VertexElementUsage.TextureCoordinate, 9);
+            // IsLightingEnabled
+            instanceStreamElements [9] = new VertexElement (sizeof(float) * 33, VertexElementFormat.Single, VertexElementUsage.TextureCoordinate, 10);
             return new VertexDeclaration (instanceStreamElements);
         }
 
-        /*public override void DrawModel (GameModel model, GameTime time)
+        private struct InstanceInfo
         {
-            return;
-            // Setze den Viewport auf den der aktuellen Spielwelt
-            Viewport original = screen.Viewport;
-            screen.Viewport = model.World.Viewport;
-
-            Camera camera = model.World.Camera;
-            effect.Parameters ["World"].SetValue (model.WorldMatrix * camera.WorldMatrix);
-            effect.Parameters ["View"].SetValue (camera.ViewMatrix);
-            effect.Parameters ["Projection"].SetValue (camera.ProjectionMatrix);
-            effect.Parameters ["WorldInverseTranspose"].SetValue (Matrix.Transpose (Matrix.Invert (model.WorldMatrix * camera.WorldMatrix)));
-
-            effect.Parameters ["ModelTexture"].SetValue (GetTexture (model));
-
-            foreach (ModelMesh mesh in model.Model.Meshes) {
-                mesh.Draw ();
-            }
-
-            // Setze den Viewport wieder auf den ganzen Screen
-            screen.Viewport = original;
-        }*/
-
-        /*public override void RemapModel (Model model)
-        {
-            foreach (ModelMesh mesh in model.Meshes) {
-                foreach (ModelMeshPart part in mesh.MeshParts) {
-                    part.Effect = effect;
-                }
-            }
-        }*/
-
-        private struct InstanceInfo {
             public Matrix WorldMatrix;
             public Matrix TransposeInverseWorldMatrix;
+            public float Alpha;
+            public float IsLightingEnabled;
         }
 
         private class InstancedPrimitive
         {
             public Primitive Primitive;
             public World World;
+            public bool IsSkyObject;
             public Texture2D Texture;
             public InstanceInfo[] Instances;
             public int InstanceCount;
+
             public int InstanceCapacity { get { return Instances.Length; } }
+
             public double InstanceUniqueHash;
         }
 
@@ -129,7 +105,9 @@ namespace Knot3.Framework.Effects
         {
             public VertexBuffer InstanceBuffer;
             public int InstanceCount;
+
             public int InstanceCapacity { get { return InstanceBuffer.VertexCount; } }
+
             public double InstanceUniqueHash;
         }
 
@@ -148,7 +126,7 @@ namespace Knot3.Framework.Effects
                     Instances = new InstanceInfo [100],
                     InstanceCount = 0,
                     InstanceUniqueHash = 0,
-
+                    IsSkyObject = primitive.IsSkyObject
                 };
             }
             else {
@@ -159,7 +137,9 @@ namespace Knot3.Framework.Effects
             }
             InstanceInfo instanceInfo = new InstanceInfo {
                 WorldMatrix = primitive.WorldMatrix * primitive.World.Camera.WorldMatrix,
-                TransposeInverseWorldMatrix = primitive.WorldMatrixInverseTranspose * primitive.World.Camera.WorldMatrix
+                TransposeInverseWorldMatrix = primitive.WorldMatrixInverseTranspose * primitive.World.Camera.WorldMatrix,
+                Alpha = primitive.Coloring.Alpha,
+                IsLightingEnabled = primitive.IsLightingEnabled ? 1 : 0
             };
             instancedPrimitive.Instances [instancedPrimitive.InstanceCount++] = instanceInfo;
             instancedPrimitive.InstanceUniqueHash += primitive.Position.LengthSquared ();
@@ -167,6 +147,7 @@ namespace Knot3.Framework.Effects
 
         private void DrawAllPrimitives (GameTime time)
         {
+            Profiler.Values ["Diff. Inst."] = cacheInstancedPrimitives.Count;
             foreach (string key in cacheInstancedPrimitives.Keys) {
                 InstancedPrimitive instancedPrimitive = cacheInstancedPrimitives [key];
 
@@ -175,7 +156,7 @@ namespace Knot3.Framework.Effects
                 screen.Viewport = instancedPrimitive.World.Viewport;
                 
                 Camera camera = instancedPrimitive.World.Camera;
-                effect.Parameters ["xView"].SetValue (camera.ViewMatrix);
+                effect.Parameters ["xView"].SetValue (instancedPrimitive.IsSkyObject ? SkyViewMatrix(camera.ViewMatrix) : camera.ViewMatrix);
                 effect.Parameters ["xProjection"].SetValue (camera.ProjectionMatrix);
                 effect.Parameters ["xModelTexture"].SetValue (instancedPrimitive.Texture);
                 effect.Parameters ["xLightDirection"].SetValue (camera.LightDirection);
@@ -214,6 +195,15 @@ namespace Knot3.Framework.Effects
             }
         }
 
+        Matrix SkyViewMatrix (Matrix viewMatrix)
+        {
+            Matrix skyboxView = viewMatrix;
+            skyboxView.M41 = 0;
+            skyboxView.M42 = 0;
+            skyboxView.M43 = 0;
+            return skyboxView;
+        }
+
         protected override void BeforeEnd (GameTime time)
         {
             Profiler.ProfileDelegate ["Instancing"] = () => {
@@ -230,18 +220,17 @@ namespace Knot3.Framework.Effects
                 }
             }
         }
-
         //#monogame EffectParameter (name=xView; class=Matrix; type=Single; rows=4; columns=4)
         //#monogame ConstantBuffer (name=xView; sizeInBytes=64; parameters=[0]; offsets=[0])
-
         //#monogame EffectParameter (name=xProjection; class=Matrix; type=Single; rows=4; columns=4)
         //#monogame ConstantBuffer (name=xProjection; sizeInBytes=64; parameters=[1]; offsets=[0])
-
         private readonly string SHADER_CODE = @"
 #monogame BeginShader (stage=pixel; constantBuffers=[])
 #monogame Attribute (name=fragNormal; usage=Normal; index=0)
 #monogame Attribute (name=fragTexCoord; usage=TextureCoordinate; index=0)
 #monogame Attribute (name=fragEyeDirection; usage=TextureCoordinate; index=1)
+#monogame Attribute (name=fragAlpha; usage=TextureCoordinate; index=2)
+#monogame Attribute (name=fragIsLightingEnabled; usage=TextureCoordinate; index=3)
 #version 130
 
 uniform sampler2D xModelTexture;
@@ -250,6 +239,8 @@ uniform vec4 xLightDirection;
 in vec4 fragNormal;
 in vec4 fragTexCoord;
 in vec4 fragEyeDirection;
+in float fragAlpha;
+in float fragIsLightingEnabled;
 
 out vec4 fragColor;
 
@@ -276,9 +267,16 @@ void main ()
     vec4 white = vec4(1.0);
 
     // final color
-    vec4 color = clamp (colorTexture * clamp (white * 0.2 + white * diffuse, -1.0, 1.0) + specular, 0.0, 1.0);
-    color.w = 1.0;
-    fragColor = color;
+    if (fragIsLightingEnabled > 0) {
+        vec4 color = clamp (colorTexture * clamp (white * 0.2 + white * diffuse, -1.0, 1.0) + specular, 0.0, 1.0);
+        color.w = fragAlpha;
+        fragColor = color;
+    }
+    else {
+        vec4 color = colorTexture;
+        color.w = fragAlpha;
+        fragColor = color;
+    }
 }
 
 #monogame EndShader ()
@@ -289,6 +287,8 @@ void main ()
 #monogame Attribute (name=vertexTexCoord; usage=TextureCoordinate; index=0)
 #monogame Attribute (name=instanceWorld; usage=TextureCoordinate; index=[1, 2, 3, 4])
 #monogame Attribute (name=instanceWorldInverseTranspose; usage=TextureCoordinate; index=[5, 6, 7, 8])
+#monogame Attribute (name=instanceAlpha; usage=TextureCoordinate; index=9)
+#monogame Attribute (name=instanceIsLightingEnabled; usage=TextureCoordinate; index=10)
 #version 130
 
 uniform mat4 xView;
@@ -300,10 +300,14 @@ in vec4 vertexNormal;
 in vec4 vertexTexCoord;
 in mat4 instanceWorld;
 in mat4 instanceWorldInverseTranspose;
+in float instanceAlpha;
+in float instanceIsLightingEnabled;
 
 out vec4 fragNormal;
 out vec4 fragTexCoord;
 out vec4 fragEyeDirection;
+out float fragAlpha;
+out float fragIsLightingEnabled;
 
 void main ()
 {
@@ -314,6 +318,8 @@ void main ()
     fragNormal = normalize (vec4 ((vertexNormal * worldInverseTranspose).xyz, 0));
     fragTexCoord.xy = vertexTexCoord.xy;
     fragEyeDirection = normalize(vec4(xCameraPosition.xyz, 1.0) - vertexPosition * world);
+    fragAlpha = instanceAlpha;
+    fragIsLightingEnabled = instanceIsLightingEnabled;
 }
 
 #monogame EndShader ()

@@ -69,17 +69,36 @@ namespace Knot3.Game.Screens
             settingsMenu.Add (showArrows);
 
             // blinking stars
-            BooleanOption blinkingStarsOption = new BooleanOption ("video", "blinking-stars", true, Config.Default);
+            BooleanOption blinkingStarsOption = new BooleanOption ("video", "stars-blinking", true, Config.Default);
             CheckBoxItem blinkingStars = new CheckBoxItem (
                 screen: this,
                 drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
                 text: "Blinking Stars",
                 option: blinkingStarsOption
-            );
+                );
             blinkingStars.OnValueChanged += () => {
                 (game as Knot3Game).NotAvailableOnXNA ();
             };
             settingsMenu.Add (blinkingStars);
+
+            // star count
+            float[] validStarCounts = {
+                100, 250, 500, 750, 1000, 1250, 1500, 2000, 2500, 3000, 5000
+            };
+            FloatOption starCountOption = new FloatOption (
+                section: "video",
+                name: "stars-count",
+                defaultValue: validStarCounts [4],
+                validValues: validStarCounts,
+                configFile: Config.Default
+                );
+            ComboBox starCountItem = new ComboBox (
+                screen: this,
+                drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
+                text: "Number of stars"
+                );
+            starCountItem.AddEntries (starCountOption);
+            settingsMenu.Add (starCountItem);
 
             // show sun
             BooleanOption sunOption = new BooleanOption ("video", "show-sun", false, Config.Default);

@@ -41,6 +41,8 @@ using Knot3.Framework.Primitives;
 using Knot3.Framework.Storage;
 using Knot3.Game.Data;
 using Knot3.Framework.Development;
+using Knot3.Framework.Effects;
+using Knot3.Game.Effects;
 
 namespace Knot3.Game.Models
 {
@@ -61,6 +63,7 @@ namespace Knot3.Game.Models
                 if (_distance != value) {
                     _distance = value;
                     scaleMatrix = Matrix.CreateScale (Vector3.One * _distance);
+                    UpdateScale ();
                 }
             }
         }
@@ -69,16 +72,12 @@ namespace Knot3.Game.Models
         /// <summary>
         /// Der Zufallsgenerator.
         /// </summary>
-        private Random random;
+        protected static Random random;
         /// <summary>
         /// Der Effekt, mit dem die Skybox gezeichnet wird.
         /// </summary>
-        private BasicEffect effect;
         private Matrix scaleMatrix;
-        /// <summary>
-        /// Die einzelnen Texturen.
-        /// </summary>
-        private SkyTexture[] SkyTextures;
+        private Star[] Stars;
 
         /// <summary>
         /// Erstellt ein neues KnotRenderer-Objekt für den angegebenen Spielzustand mit den angegebenen
@@ -89,8 +88,30 @@ namespace Knot3.Game.Models
             Screen = screen;
             Position = position;
             random = new Random ();
-            effect = new BasicEffect (screen.GraphicsDevice);
+            Stars = CreateStars (count: (int)Config.Default ["video", "stars-count", 1000]);
             Distance = distance;
+        }
+
+        private Star[] CreateStars (int count)
+        {
+            Color[] colors = new Color[] { Color.White, Color.DarkSeaGreen, Color.LimeGreen };
+            Star[] stars = new Star[count];
+            for (int i = 0; i < count; ++i) {
+                Vector3 position = new Vector3 ((float)random.NextDouble () - 0.5f, (float)random.NextDouble () - 0.5f, (float)random.NextDouble () - 0.5f);
+                position.Normalize ();
+                stars [i] = new Star (screen: Screen, color: colors [random.Next () % colors.Length]) {
+                    RelativePosition = position,
+                    Scale = Vector3.One * (500 + random.Next()%1000)
+                };
+            }
+            return stars;
+        }
+
+        private void UpdateScale ()
+        {
+            foreach (Star star in Stars) {
+                star.Position = Vector3.Transform (star.RelativePosition, scaleMatrix);
+            }
         }
 
         [ExcludeFromCodeCoverageAttribute]
@@ -99,85 +120,29 @@ namespace Knot3.Game.Models
             if (Math.Abs (1f - (Distance / (World.Camera.FarPlane / 3.6f))) > 0.05f) {
                 Distance = World.Camera.FarPlane / 3.6f;
             }
-            if (Config.Default ["video", "blinking-stars", true]) {
-                UpdateStars (time);
-            }
-        }
 
-        private int k = 0;
+            UpdateStars (time);
+        }
 
         private void UpdateStars (GameTime time)
         {
-            if (k++ % 10 == 0) {
-                Profiler.ProfileDelegate ["Stars Blink"] = () => {
-                    int SkyTextureCacheSize = (int)Config.Default ["video", "blinking-stars-cachesize", 20f];
-                    float alphaCounter = k * 0.002f;
-                    int key = (int)(Math.Abs(alphaCounter / SkyTextureCacheSize));
-                    Console.WriteLine("key="+key);
-                    foreach (SkyTexture SkyTexture in SkyTextures) {
-                        Profiler.Values ["Stars Textures #"] = SkyTexture.TextureCache.Count;
-                        if (SkyTexture.TextureCache.ContainsKey (key)) {
-                            SkyTexture.Texture = SkyTexture.TextureCache [key];
-                        }
-                        else {
-                            for (int s = 0; s < SkyTexture.SmallStars.Length; ++s) {
-                                Star star = SkyTexture.SmallStars [s];
-                                int i = star.H * SkyTexture.Width + star.W;
-                                SkyTexture.Colors [i] = star.Color * (float)Math.Abs(Math.Sin (MathHelper.TwoPi * alphaCounter + star.AlphaDiff));
-                            }
-                            for (int s = 0; s < SkyTexture.BigStars.Length; ++s) {
-                                Star star = SkyTexture.BigStars [s];
-                                int i = star.H * SkyTexture.Width + star.W;
-                                Color color = star.Color * (float)Math.Abs(Math.Sin (MathHelper.TwoPi * alphaCounter + star.AlphaDiff));
-                                SkyTexture.Colors [i] = color;
-                                SkyTexture.Colors [i + 1] = color;
-                                SkyTexture.Colors [i - 1] = color;
-                                SkyTexture.Colors [i + SkyTexture.Width] = color;
-                                SkyTexture.Colors [i - SkyTexture.Width] = color;
-                            }
-                            Texture2D tex = new Texture2D (Screen.GraphicsDevice, SkyTexture.Width, SkyTexture.Height);
-                            tex.SetData (SkyTexture.Colors);
-                            SkyTexture.Texture = SkyTexture.TextureCache [key] = tex;
-                        }
-                    }
-                };
-            }
+            Profiler.ProfileDelegate ["Sky Upd"] = () => {
+                foreach (Star star in Stars) {
+                    star.Update (time);
+                }
+            };
         }
 
         [ExcludeFromCodeCoverageAttribute]
         public override void Draw (GameTime time)
         {
-            // Setze den Viewport auf den der aktuellen Spielwelt
-            Viewport original = Screen.Viewport;
-            Screen.Viewport = World.Viewport;
-
-            effect.World = scaleMatrix * World.Camera.WorldMatrix;
-            effect.Projection = World.Camera.ProjectionMatrix;
-
-            Matrix skyboxView = World.Camera.ViewMatrix;
-            skyboxView.M41 = 0;
-            skyboxView.M42 = 0;
-            skyboxView.M43 = 0;
-            effect.View = skyboxView;
-
-            effect.AmbientLightColor = new Vector3 (0.8f, 0.8f, 0.8f);
-            effect.TextureEnabled = true;
-            effect.VertexColorEnabled = false;
-
-            effect.LightingEnabled = false;
-            string effectName = Config.Default ["video", "knot-shader", "default"];
-            if (Screen.InputManager.KeyHeldDown (Keys.F7) || effectName == "celshader") {
-                effect.EnableDefaultLighting ();  // Beleuchtung aktivieren
-            }
-
-            /*
-            for (int i = 0; i < rectangles.Length; ++i) {
-                effect.Texture = SkyTextures [i].Texture;
-                rectangles [i].Draw (effect);
-            }*/
-
-            // Setze den Viewport wieder auf den ganzen Screen
-            Screen.Viewport = original;
+            Profiler.ProfileDelegate ["Sky Draw"] = () => {
+                foreach (Star star in Stars) {
+                    star.World = World;
+                    star.IsLightingEnabled = false;
+                    star.Draw (time);
+                }
+            };
         }
 
         public override GameObjectDistance Intersects (Ray ray)
@@ -199,27 +164,44 @@ namespace Knot3.Game.Models
             return GetEnumerator (); // Just return the generic version
         }
 
-        private class SkyTexture
+        private class Star : GamePrimitive
         {
-            public Texture2D Texture;
-            public Dictionary<int, Texture2D> TextureCache = new Dictionary<int, Texture2D> ();
-            public Color[] Colors;
-            public Star[] BigStars;
-            public Star[] SmallStars;
-            public int Width;
-            public int Height;
-        }
+            public Vector3 RelativePosition { get; set; }
 
-        private class Star
-        {
-            public int W;
-            public int H;
-            public Color Color;
-            public float AlphaDiff;
+            private float AlphaCounter;
 
-            public Star (Random random)
+            public Star (IScreen screen, Color color) : base (screen: screen)
             {
-                AlphaDiff = (float)random.Next (1000);
+                IsSkyObject = true;
+                Coloring = new SingleColor (color);
+                UpdateCategory ();
+                AlphaCounter = (float)random.NextDouble ();
+            }
+
+            protected override Primitive CreativePrimitive ()
+            {
+                return new Sphere (device: Screen.GraphicsDevice, diameter: 1f, tessellation: 4);
+            }
+
+            public override void Update (GameTime gameTime)
+            {
+                AlphaCounter += 0.001f;
+                float newAlpha = distinctValues ((float)Math.Sin (MathHelper.TwoPi * AlphaCounter));
+                if (newAlpha != Coloring.Alpha) {
+                    Coloring.Alpha = newAlpha;
+                    UpdateCategory ();
+                }
+                base.Update (gameTime);
+            }
+
+            private float distinctValues (float value)
+            {
+                for (float i = 1f; i > 0f; i -= 0.05f) {
+                    if (value >= i) {
+                        return i;
+                    }
+                }
+                return 0f;
             }
         }
     }
