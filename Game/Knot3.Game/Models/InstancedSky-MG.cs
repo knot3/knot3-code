@@ -200,7 +200,7 @@ namespace Knot3.Game.Models
             public override void Update (GameTime gameTime)
             {
                 AlphaCounter += 0.001f;
-                float newAlpha = distinctValues (0.1f+(Math.Abs((float)Math.Sin (MathHelper.TwoPi * AlphaCounter))*0.9f) );
+                float newAlpha = distinctValues (0.1f+(Math.Abs ((float)Math.Sin (MathHelper.TwoPi * AlphaCounter))*0.9f) );
                 if (newAlpha != Coloring.Alpha) {
                     Coloring.Alpha = newAlpha;
                     UpdateCategory ();
@@ -216,7 +216,6 @@ namespace Knot3.Game.Models
                     }
                 }
                 return 0f;
-               
             }
         }
     }
