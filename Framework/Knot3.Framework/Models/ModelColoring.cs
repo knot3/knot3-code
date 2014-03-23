@@ -27,12 +27,9 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
-
 using System;
 using System.Diagnostics.CodeAnalysis;
-
 using Microsoft.Xna.Framework;
-
 using Knot3.Framework.Utilities;
 
 namespace Knot3.Framework.Models
@@ -112,6 +109,10 @@ namespace Knot3.Framework.Models
         public override Color MixedColor { get { return BaseColor.Mix (HighlightColor, HighlightIntensity); } }
 
         public override bool IsTransparent { get { return BaseColor == Color.Transparent; } }
+
+        public override int GetHashCode() {
+            return HighlightColor.GetHashCode () * 83*83 + BaseColor.GetHashCode () * 83 + Alpha.GetHashCode ();
+        }
     }
 
     [ExcludeFromCodeCoverageAttribute]
@@ -155,6 +156,10 @@ namespace Knot3.Framework.Models
             get {
                 return Color1 == Color.Transparent && Color2 == Color.Transparent;
             }
+        }
+
+        public override int GetHashCode() {
+            return HighlightColor.GetHashCode () * 83*83*83 + Color1.GetHashCode () * 83*83 + Color2.GetHashCode () * 83 + Alpha.GetHashCode ();
         }
     }
 }

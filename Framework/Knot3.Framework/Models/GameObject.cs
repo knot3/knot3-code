@@ -197,7 +197,7 @@ namespace Knot3.Framework.Models
                 return obj.Texture.GetHashCode ();
             }
             else {
-                return obj.Coloring.MixedColor.GetHashCode ();
+                return obj.Coloring.GetHashCode ();
             }
         }
 

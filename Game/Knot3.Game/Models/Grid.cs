@@ -27,20 +27,16 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-
 using Microsoft.Xna.Framework;
-
 using Knot3.Framework.Core;
 using Knot3.Framework.Development;
 using Knot3.Framework.Platform;
 using Knot3.Framework.Utilities;
-
 using Knot3.Game.Models;
 
 namespace Knot3.Game.Data
@@ -153,7 +149,7 @@ namespace Knot3.Game.Data
                         foreach (var key in content.PipesOut.Keys) {
                             Pipe pipe = content.PipesOut [key] as Pipe;
                             if (pipe.LastTick == CurrentTick) {
-                                if (pipeCount+1 >= pipeCache.Length) {
+                                if (pipeCount + 1 >= pipeCache.Length) {
                                     Array.Resize (ref pipeCache, pipeCache.Length + 200);
                                 }
                                 pipeCache [pipeCount++] = pipe;
@@ -183,7 +179,7 @@ namespace Knot3.Game.Data
                         }
                         foreach (Junction junction in content.Junctions) {
                             if (junction.LastTick == CurrentTick) {
-                                if (junctionCount+1 >= junctionCache.Length) {
+                                if (junctionCount + 1 >= junctionCache.Length) {
                                     Array.Resize (ref junctionCache, junctionCache.Length + 200);
                                 }
                                 junctionCache [junctionCount++] = junction;
@@ -229,6 +225,26 @@ namespace Knot3.Game.Data
         public List<Junction> JunctionsAfterEdge (Edge edge)
         {
             return JunctionsAtNode (NodeAfterEdge (edge));
+        }
+
+        public Junction JunctionBeforeEdge (Edge edge)
+        {
+            foreach (Junction junction in JunctionsAtNode (NodeBeforeEdge (edge))) {
+                if (junction.EdgeTo == edge) {
+                    return junction;
+                }
+            }
+            return null;
+        }
+
+        public Junction JunctionAfterEdge (Edge edge)
+        {
+            foreach (Junction junction in JunctionsAtNode (NodeAfterEdge (edge))) {
+                if (junction.EdgeFrom == edge) {
+                    return junction;
+                }
+            }
+            return null;
         }
 
         public IEnumerable<Node> Nodes

@@ -416,6 +416,7 @@ namespace Knot3.Game.Models
                 UpdateCategory ();
             }
             if (Screen.InputManager.KeyPressed (Microsoft.Xna.Framework.Input.Keys.O)) {
+                Log.Debug ("(", gradient.Color1, ",", gradient.Color2, ") => (", EdgeFrom, ",", EdgeTo, ")");
                 gradient.Color1 = EdgeFrom;
                 gradient.Color2 = EdgeTo;
                 UpdateCategory ();
