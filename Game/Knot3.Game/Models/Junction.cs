@@ -415,10 +415,19 @@ namespace Knot3.Game.Models
                     gradient.Color1 = EdgeTo;
                     UpdateCategory ();
                 }
+                else{
+                    gradient.Color2 = EdgeFrom;
+                    gradient.Color1 = EdgeTo;
+                    UpdateCategory ();
+                }
             }
             if (Screen.InputManager.KeyPressed (Microsoft.Xna.Framework.Input.Keys.O)) {
                 Log.Debug ("(", gradient.Color1, ",", gradient.Color2, ") => (", EdgeFrom, ",", EdgeTo, ")");
                 if (angledColorMirrorSet.Contains(Tuple.Create (EdgeFrom.Direction, EdgeTo.Direction))){
+                    gradient.Color2 = EdgeFrom;
+                    gradient.Color1 = EdgeTo;
+                    UpdateCategory ();
+                }else {
                     gradient.Color2 = EdgeFrom;
                     gradient.Color1 = EdgeTo;
                     UpdateCategory ();
