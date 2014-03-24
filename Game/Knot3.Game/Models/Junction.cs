@@ -123,7 +123,7 @@ namespace Knot3.Game.Models
             { Tuple.Create (Direction.Left, Direction.Left),           JunctionDirection.RightRight },//doesn't work
             { Tuple.Create (Direction.Left, Direction.Up),             JunctionDirection.DownRight },//doesn't work
             { Tuple.Create (Direction.Left, Direction.Down),           JunctionDirection.UpRight },//doesn't work
-            { Tuple.Create (Direction.Left, Direction.Forward),        JunctionDirection.LeftForward },//doesn't work   
+            { Tuple.Create (Direction.Left, Direction.Forward),        JunctionDirection.LeftForward },//doesn't work
 
             { Tuple.Create (Direction.Right, Direction.Right),         JunctionDirection.RightRight },//doesn't work
             { Tuple.Create (Direction.Right, Direction.Up),            JunctionDirection.DownLeft },//doesn't work
@@ -141,7 +141,7 @@ namespace Knot3.Game.Models
         };
 
         private static HashSet<Tuple<Direction, Direction>> angledColorMirrorSet
-        = new HashSet<Tuple<Direction, Direction>> ()
+            = new HashSet<Tuple<Direction, Direction>> ()
         {
             { Tuple.Create (Direction.Up, Direction.Up),               JunctionDirection.UpUp },
             { Tuple.Create (Direction.Up, Direction.Left),             JunctionDirection.UpLeft },
@@ -176,7 +176,6 @@ namespace Knot3.Game.Models
             { Tuple.Create (Direction.Backward, Direction.Up),         JunctionDirection.DownForward },//doesn't work
             { Tuple.Create (Direction.Backward, Direction.Down),       JunctionDirection.UpForward },//doesn't work
         };
-
 
         private static Dictionary<JunctionDirection, Angles3> angledJunctionRotationMap
             = new Dictionary<JunctionDirection, Angles3> ()
