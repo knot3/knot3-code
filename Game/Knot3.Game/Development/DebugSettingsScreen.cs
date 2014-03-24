@@ -106,31 +106,6 @@ namespace Knot3.Game.Development
             unprojectItem.AddEntries (unprojectOption);
             settingsMenu.Add (unprojectItem);
 
-            BooleanOption projectorOption = new BooleanOption ("debug", "projector-mode", false, Config.Default);
-            CheckBoxItem projectorMode = new CheckBoxItem (
-                screen: this,
-                drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
-                text: "Video projector mode",
-                option: projectorOption
-            );
-            projectorMode.OnValueChanged += () => {
-                if (projectorOption.Value) {
-                    new ProjectorDesign ().Apply ();
-                    Config.Default ["video", "camera-overlay", false] = false;
-                    Config.Default ["video", "profiler-overlay", false] = false;
-                    Config.Default ["video", "current-world-effect", "default"] = "default";
-                    Config.Default ["video", "Supersamples", 2f] = 2f;
-                    Config.Default ["video", "arrows", false] = false;
-                    Config.Default ["language", "current", "en"] = "de";
-                    Config.Default ["video", "day-cycle-seconds", 60] = 10;
-                }
-                else {
-                    new HfGDesign ().Apply ();
-                }
-                NextScreen = new StartScreen (game);
-            };
-            settingsMenu.Add (projectorMode);
-
             /*
             CheckBoxItem shaderPascal = new CheckBoxItem (
                 screen: this,

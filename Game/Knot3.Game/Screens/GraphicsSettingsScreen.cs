@@ -47,6 +47,7 @@ using Knot3.Framework.Utilities;
 using Knot3.Framework.Widgets;
 
 using Knot3.Game.Core;
+using Knot3.Game.Widgets;
 
 namespace Knot3.Game.Screens
 {
@@ -263,6 +264,32 @@ namespace Knot3.Game.Screens
             };
             itemRenderEffect.AddEntries (optionRenderEffect);
             settingsMenu.Add (itemRenderEffect);
+
+            // Projector Mode
+            BooleanOption optionProjectorMode = new BooleanOption ("debug", "projector-mode", false, Config.Default);
+            CheckBoxItem itemProjectorMode = new CheckBoxItem (
+                screen: this,
+                drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
+                text: "Video projector mode",
+                option: optionProjectorMode
+                );
+            itemProjectorMode.OnValueChanged += () => {
+                if (optionProjectorMode.Value) {
+                    new ProjectorDesign ().Apply ();
+                    Config.Default ["video", "camera-overlay", false] = false;
+                    Config.Default ["video", "profiler-overlay", false] = false;
+                    Config.Default ["video", "current-world-effect", "default"] = "default";
+                    Config.Default ["video", "Supersamples", 2f] = 2f;
+                    Config.Default ["video", "arrows", false] = false;
+                    Config.Default ["language", "current", "en"] = "de";
+                    Config.Default ["video", "day-cycle-seconds", 60] = 10;
+                }
+                else {
+                    new HfGDesign ().Apply ();
+                }
+                NextScreen = new StartScreen (game);
+            };
+            settingsMenu.Add (itemProjectorMode);
         }
 
         /// <summary>
