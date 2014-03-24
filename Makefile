@@ -21,7 +21,7 @@ VISUALTESTS_DIR = VisualTests
 CONTENT_DIR = Content
 STD_KNOT_DIR = Game/Standard_Knots
 
-DOC_PDF = doc/Spielanleitung.pdf
+DOC_PDFS = doc/
 
 .PHONY: project_code
 
@@ -45,7 +45,7 @@ install: build
 	$(CP) LICENSE $(GAMEDIR)/
 	$(CP) debian/changelog $(GAMEDIR)/CHANGELOG
 	$(MKDIR) $(DOCDIR)
-	$(CP) $(DOC_PDF) $(DOCDIR)/
+	$(CPR) $(DOC_PDFS)/* $(DOCDIR)/
 
 uninstall:
 	$(RM) $(BINDIR)/$(NAME)
@@ -96,7 +96,8 @@ package-windows: build-windows
 	$(CP) debian/changelog $(DESTDIR)/CHANGELOG
 	$(CP) README.md $(DESTDIR)/README
 	$(RM) $(DESTDIR)/*.pdb $(DESTDIR)/*.mdb $(DESTDIR)/*.config
-	$(CP) $(DOC_PDF) $(DESTDIR)/
+	$(MKDIR) $(DESTDIR)/doc/
+	$(CPR) $(DOC_PDFS)/* $(DESTDIR)/doc/
 
 dep-ubuntu-saucy:
 	sudo apt-get -q -y install mono-devel mono-dmcs nunit-console libopenal1
