@@ -59,6 +59,7 @@ namespace Knot3.Framework.Primitives
             Vector3 bottom = Vector3.Backward * halfHeight;
             var bumpOffsets = new[] {
                 new { h = 0.00f, bump = 0.00f },
+                new { h = 0.10f, bump = 0.10f },
                 new { h = 0.20f, bump = 0.25f },
                 new { h = 0.25f, bump = 0.35f },
                 new { h = 0.30f, bump = 0.45f },
@@ -66,6 +67,7 @@ namespace Knot3.Framework.Primitives
                 new { h = 0.70f, bump = 0.45f },
                 new { h = 0.75f, bump = 0.35f },
                 new { h = 0.80f, bump = 0.25f },
+                new { h = 0.90f, bump = 0.10f },
                 new { h = 1.00f, bump = 0.00f },
             };
 
