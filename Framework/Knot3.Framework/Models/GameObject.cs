@@ -27,10 +27,13 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
+
 using System;
 using System.Diagnostics.CodeAnalysis;
+
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+
 using Knot3.Framework.Core;
 using Knot3.Framework.Math;
 using Knot3.Framework.Utilities;
@@ -285,7 +288,7 @@ namespace Knot3.Framework.Models
         {
             if (overrideValues || Scale != _scale || Rotation != _rotation || Position != _position) {
                 Matrix rotationMatrix = _rotationQuaternion.HasValue ? Matrix.CreateFromQuaternion (_rotationQuaternion.Value)
-                    : Matrix.CreateFromYawPitchRoll (Rotation.Y, Rotation.X, Rotation.Z);
+                                        : Matrix.CreateFromYawPitchRoll (Rotation.Y, Rotation.X, Rotation.Z);
                 // world matrix
                 _worldMatrix = Matrix.CreateScale (Scale) * rotationMatrix * Matrix.CreateTranslation (Position);
                 _worldMatrixInverseTranspose = Matrix.Transpose (Matrix.Invert (_worldMatrix));

@@ -27,14 +27,17 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
+
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
+
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+
 using Knot3.Framework.Core;
 using Knot3.Framework.Development;
 using Knot3.Framework.Math;
@@ -134,10 +137,10 @@ namespace Knot3.Framework.Utilities
         public static Vector3 Clamp (this Vector3 v, Vector3 lower, Vector3 higher)
         {
             return new Vector3 (
-                MathHelper.Clamp (v.X, lower.X, higher.X),
-                MathHelper.Clamp (v.Y, lower.Y, higher.Y),
-                MathHelper.Clamp (v.Z, lower.Z, higher.Z)
-            );
+                       MathHelper.Clamp (v.X, lower.X, higher.X),
+                       MathHelper.Clamp (v.Y, lower.Y, higher.Y),
+                       MathHelper.Clamp (v.Z, lower.Z, higher.Z)
+                   );
         }
 
         public static Vector3 Clamp (this Vector3 v, int minLength, int maxLength)
@@ -523,7 +526,7 @@ namespace Knot3.Framework.Utilities
             float dot = Vector3.Dot (sourceDirection, destDirection);
 
             if (System.Math.Abs (dot - (-1.0f)) < 0.000001f) {
-                // vector a and b point exactly in the opposite direction, 
+                // vector a and b point exactly in the opposite direction,
                 // so it is a 180 degrees turn around the up-axis
                 return new Quaternion (up, MathHelper.ToRadians (180.0f));
             }
