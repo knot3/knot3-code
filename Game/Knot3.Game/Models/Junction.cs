@@ -410,9 +410,10 @@ namespace Knot3.Game.Models
                     gradient.Color1 = EdgeTo;
                     UpdateCategory ();
                 }
-                else {
-                    gradient.Color2 = EdgeFrom;
-                    gradient.Color1 = EdgeTo;
+
+                else{
+                    gradient.Color1 = EdgeFrom;
+                    gradient.Color2 = EdgeTo;
                     UpdateCategory ();
                 }
             }
@@ -422,10 +423,10 @@ namespace Knot3.Game.Models
                     gradient.Color2 = EdgeFrom;
                     gradient.Color1 = EdgeTo;
                     UpdateCategory ();
-                }
-                else {
-                    gradient.Color2 = EdgeFrom;
-                    gradient.Color1 = EdgeTo;
+                }else {
+                    gradient.Color1 = EdgeFrom;
+                    gradient.Color2 = EdgeTo;
+
                     UpdateCategory ();
                 }
             }
