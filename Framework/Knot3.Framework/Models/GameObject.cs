@@ -160,6 +160,8 @@ namespace Knot3.Framework.Models
         /// </summary>
         public ModelColoring Coloring { get; set; }
 
+        public bool IsSingleColored { get; set; }
+
         /// <summary>
         /// Die Textur des Modells.
         /// </summary>
@@ -188,12 +190,16 @@ namespace Knot3.Framework.Models
 
         protected void UpdateCategory (string category)
         {
+            IsSingleColored = Coloring is SingleColor;
             GameObjectCategory = GetType ().Name + GetTextureHashCode (obj: this) + category + IsLightingEnabled + IsSkyObject;
         }
 
         protected int GetTextureHashCode (IGameObject obj)
         {
-            if (obj.Texture != null) {
+            if (IsSingleColored) {
+                return 0;
+            }
+            else if (obj.Texture != null) {
                 return obj.Texture.GetHashCode ();
             }
             else {

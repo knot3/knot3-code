@@ -64,7 +64,7 @@ namespace Knot3.Framework.Effects
 
         private VertexDeclaration GenerateInstanceVertexDeclaration ()
         {
-            VertexElement[] instanceStreamElements = new VertexElement [10];
+            VertexElement[] instanceStreamElements = new VertexElement [11];
             // WorldMatrix
             instanceStreamElements [0] = new VertexElement (0, VertexElementFormat.Vector4, VertexElementUsage.TextureCoordinate, 1);
             instanceStreamElements [1] = new VertexElement (sizeof (float) * 4, VertexElementFormat.Vector4, VertexElementUsage.TextureCoordinate, 2);
@@ -79,6 +79,8 @@ namespace Knot3.Framework.Effects
             instanceStreamElements [8] = new VertexElement (sizeof (float) * 32, VertexElementFormat.Single, VertexElementUsage.TextureCoordinate, 9);
             // IsLightingEnabled
             instanceStreamElements [9] = new VertexElement (sizeof (float) * 33, VertexElementFormat.Single, VertexElementUsage.TextureCoordinate, 10);
+            // SingleColor
+            instanceStreamElements [10] = new VertexElement (sizeof (float) * 34, VertexElementFormat.Vector4, VertexElementUsage.TextureCoordinate, 11);
             return new VertexDeclaration (instanceStreamElements);
         }
 
@@ -87,6 +89,7 @@ namespace Knot3.Framework.Effects
             public Matrix TransposeInverseWorldMatrix;
             public float Alpha;
             public float IsLightingEnabled;
+            public Vector4 SingleColor;
         }
 
         private class InstancedPrimitive
@@ -141,7 +144,8 @@ namespace Knot3.Framework.Effects
                 WorldMatrix = primitive.WorldMatrix * primitive.World.Camera.WorldMatrix,
                 TransposeInverseWorldMatrix = primitive.WorldMatrixInverseTranspose * primitive.World.Camera.WorldMatrix,
                 Alpha = primitive.Coloring.Alpha,
-                IsLightingEnabled = primitive.IsLightingEnabled ? 1 : 0
+                IsLightingEnabled = primitive.IsLightingEnabled ? 1 : 0,
+                SingleColor = primitive.IsSingleColored ? primitive.Coloring.MixedColor.ToVector4 () : Vector4.Zero
             };
             instancedPrimitive.Instances [instancedPrimitive.InstanceCount++] = instanceInfo;
             instancedPrimitive.InstanceUniqueHash += primitive.Position.LengthSquared ();
@@ -224,6 +228,7 @@ namespace Knot3.Framework.Effects
 #monogame Attribute (name=fragEyeDirection; usage=TextureCoordinate; index=1)
 #monogame Attribute (name=fragAlpha; usage=TextureCoordinate; index=2)
 #monogame Attribute (name=fragIsLightingEnabled; usage=TextureCoordinate; index=3)
+#monogame Attribute (name=fragSingleColor; usage=TextureCoordinate; index=4)
 #version 130
 
 uniform sampler2D xModelTexture;
@@ -234,6 +239,7 @@ in vec4 fragTexCoord;
 in vec4 fragEyeDirection;
 in float fragAlpha;
 in float fragIsLightingEnabled;
+in vec4 fragSingleColor;
 
 out vec4 fragColor;
 
@@ -241,6 +247,11 @@ void main ()
 {
     // texture color
     vec4 colorTexture = vec4 (texture2D (xModelTexture, fragTexCoord.xy).xyz, 1.0);
+    if (fragSingleColor.w > 0) {
+        // the game object's SingleColor attribute is set
+        colorTexture = fragSingleColor;
+    }
+
     // normal
     vec3 normal = normalize (fragNormal.xyz);
     // light direction
@@ -260,12 +271,13 @@ void main ()
     float specular = pow (clamp (dot (reflect, eyeDirection), 0.0, 1.0), shininess);
     vec4 white = vec4 (1.0);
 
-    // final color
+    // draw with lighting
     if (fragIsLightingEnabled > 0) {
         vec4 color = clamp (colorTexture * clamp (white * 0.2 + white * diffuse + white * diffuseReverse * 0.2, -1.0, 1.0) + specular, 0.0, 1.0);
         color.w = fragAlpha;
         fragColor = color;
     }
+    // draw without lighting
     else {
         vec4 color = colorTexture;
         color.w = fragAlpha;
@@ -283,6 +295,7 @@ void main ()
 #monogame Attribute (name=instanceWorldInverseTranspose; usage=TextureCoordinate; index=[5, 6, 7, 8])
 #monogame Attribute (name=instanceAlpha; usage=TextureCoordinate; index=9)
 #monogame Attribute (name=instanceIsLightingEnabled; usage=TextureCoordinate; index=10)
+#monogame Attribute (name=instanceSingleColor; usage=TextureCoordinate; index=11)
 #version 130
 
 uniform mat4 xView;
@@ -296,12 +309,14 @@ in mat4 instanceWorld;
 in mat4 instanceWorldInverseTranspose;
 in float instanceAlpha;
 in float instanceIsLightingEnabled;
+in vec4 instanceSingleColor;
 
 out vec4 fragNormal;
 out vec4 fragTexCoord;
 out vec4 fragEyeDirection;
 out float fragAlpha;
 out float fragIsLightingEnabled;
+out vec4 fragSingleColor;
 
 void main ()
 {
@@ -314,6 +329,7 @@ void main ()
     fragEyeDirection = normalize (vec4 (xCameraPosition.xyz, 1.0) - vertexPosition * world);
     fragAlpha = instanceAlpha;
     fragIsLightingEnabled = instanceIsLightingEnabled;
+    fragSingleColor = instanceSingleColor;
 }
 
 #monogame EndShader ()

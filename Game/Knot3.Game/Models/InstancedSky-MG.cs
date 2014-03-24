@@ -191,6 +191,7 @@ namespace Knot3.Game.Models
                 UpdateCategory ();
                 AlphaCounter = (float)random.NextDouble ();
                 Scale = new Vector3 (3f, 3f, 3f);
+                IsSingleColored = true;
             }
 
             protected override Primitive CreativePrimitive ()
@@ -201,7 +202,7 @@ namespace Knot3.Game.Models
             public override void Update (GameTime gameTime)
             {
                 AlphaCounter += 0.001f;
-                float newAlpha = distinctValues (0.1f + (Math.Abs ((float)Math.Sin (MathHelper.TwoPi * AlphaCounter)) * 0.9f));
+                float newAlpha = 0.1f + (Math.Abs ((float)Math.Sin (MathHelper.TwoPi * AlphaCounter)) * 0.9f);
                 if (newAlpha != Coloring.Alpha) {
                     Coloring.Alpha = newAlpha;
                     UpdateCategory ();
@@ -209,15 +210,16 @@ namespace Knot3.Game.Models
                 base.Update (gameTime);
             }
 
+            /*
             private float distinctValues (float value)
             {
-                for (float i = 1f; i > 0f; i -= 0.10f) {
+                for (float i = 1f; i > 0f; i -= 0.01f) {
                     if (value >= i) {
                         return i;
                     }
                 }
                 return 0f;
-            }
+            }*/
         }
     }
 }

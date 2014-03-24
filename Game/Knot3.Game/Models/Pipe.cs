@@ -112,6 +112,7 @@ namespace Knot3.Game.Models
 
             // Aktualisiere die Kategorie
             Coloring.OnColorChanged += UpdateCategory;
+            IsSingleColored = true;
 
             incomplete = true;
         }
