@@ -402,7 +402,7 @@ namespace Knot3.Game.Models
             }
 
             GradientColor gradient = Coloring as GradientColor;
-            if (gradient != null && gradient.Color1 != EdgeFrom.Color && gradient.Color2 != EdgeTo.Color) {
+            if (gradient != null &&( gradient.Color1 != EdgeFrom.Color || gradient.Color2 != EdgeTo.Color)) {
                 if (angledColorMirrorSet.Contains (Tuple.Create (EdgeFrom.Direction, EdgeTo.Direction))) {
                     gradient.Color2 = EdgeFrom;
                     gradient.Color1 = EdgeTo;
