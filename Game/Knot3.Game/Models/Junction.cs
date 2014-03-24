@@ -116,17 +116,41 @@ namespace Knot3.Game.Models
         private static Dictionary<Tuple<Direction, Direction>, JunctionDirection> angledJunctionDirectionMap
             = new Dictionary<Tuple<Direction, Direction>, JunctionDirection> ()
         {
+            { Tuple.Create (Direction.Up, Direction.Up),               JunctionDirection.UpUp },//doesn't work
+
+            { Tuple.Create (Direction.Down, Direction.Down),           JunctionDirection.UpUp },//doesn't work
+
+            { Tuple.Create (Direction.Left, Direction.Left),           JunctionDirection.RightRight },//doesn't work
+            { Tuple.Create (Direction.Left, Direction.Up),             JunctionDirection.DownRight },//doesn't work
+            { Tuple.Create (Direction.Left, Direction.Down),           JunctionDirection.UpRight },//doesn't work
+            { Tuple.Create (Direction.Left, Direction.Forward),        JunctionDirection.LeftForward },//doesn't work   
+
+            { Tuple.Create (Direction.Right, Direction.Right),         JunctionDirection.RightRight },//doesn't work
+            { Tuple.Create (Direction.Right, Direction.Up),            JunctionDirection.DownLeft },//doesn't work
+            { Tuple.Create (Direction.Right, Direction.Down),          JunctionDirection.UpLeft },//doesn't work
+            { Tuple.Create (Direction.Right, Direction.Backward),      JunctionDirection.RightBackward },//doesn't work
+
+            { Tuple.Create (Direction.Forward, Direction.Forward),     JunctionDirection.BackwardBackward },//doesn't work
+            { Tuple.Create (Direction.Forward, Direction.Right),       JunctionDirection.LeftBackward },//doesn't work
+            { Tuple.Create (Direction.Forward, Direction.Up),          JunctionDirection.DownBackward },//doesn't work
+            { Tuple.Create (Direction.Forward, Direction.Down),        JunctionDirection.UpBackward },//doesn't work
+
+            { Tuple.Create (Direction.Backward, Direction.Left),       JunctionDirection.RightForward },//doesn't work
+            { Tuple.Create (Direction.Backward, Direction.Up),         JunctionDirection.DownForward },//doesn't work
+            { Tuple.Create (Direction.Backward, Direction.Down),       JunctionDirection.UpForward },//doesn't work
+        };
+
+        private static HashSet<Tuple<Direction, Direction>> angledColorMirrorSet
+        = new HashSet<Tuple<Direction, Direction>> ()
+        {
             { Tuple.Create (Direction.Up, Direction.Up),               JunctionDirection.UpUp },
             { Tuple.Create (Direction.Up, Direction.Left),             JunctionDirection.UpLeft },
             { Tuple.Create (Direction.Up, Direction.Right),            JunctionDirection.UpRight },
             { Tuple.Create (Direction.Up, Direction.Forward),          JunctionDirection.UpForward },
-            { Tuple.Create (Direction.Up, Direction.Backward),         JunctionDirection.UpBackward },
 
             { Tuple.Create (Direction.Down, Direction.Down),           JunctionDirection.UpUp },
             { Tuple.Create (Direction.Down, Direction.Left),           JunctionDirection.DownLeft },
             { Tuple.Create (Direction.Down, Direction.Right),          JunctionDirection.DownRight },
-            { Tuple.Create (Direction.Down, Direction.Forward),        JunctionDirection.DownForward },
-            { Tuple.Create (Direction.Down, Direction.Backward),       JunctionDirection.DownBackward },
 
             { Tuple.Create (Direction.Left, Direction.Left),           JunctionDirection.RightRight },
             { Tuple.Create (Direction.Left, Direction.Up),             JunctionDirection.DownRight },
@@ -143,48 +167,16 @@ namespace Knot3.Game.Models
             { Tuple.Create (Direction.Forward, Direction.Forward),     JunctionDirection.BackwardBackward },
             { Tuple.Create (Direction.Forward, Direction.Left),        JunctionDirection.RightBackward },
             { Tuple.Create (Direction.Forward, Direction.Right),       JunctionDirection.LeftBackward },
-            { Tuple.Create (Direction.Forward, Direction.Up),          JunctionDirection.DownBackward },
+            { Tuple.Create (Direction.Forward, Direction.Up),          JunctionDirection.DownBackward },//doesn't work
             { Tuple.Create (Direction.Forward, Direction.Down),        JunctionDirection.UpBackward },
 
             { Tuple.Create (Direction.Backward, Direction.Backward),   JunctionDirection.BackwardBackward },
             { Tuple.Create (Direction.Backward, Direction.Left),       JunctionDirection.RightForward },
             { Tuple.Create (Direction.Backward, Direction.Right),      JunctionDirection.LeftForward },
-            { Tuple.Create (Direction.Backward, Direction.Up),         JunctionDirection.DownForward },
-            { Tuple.Create (Direction.Backward, Direction.Down),       JunctionDirection.UpForward },
+            { Tuple.Create (Direction.Backward, Direction.Up),         JunctionDirection.DownForward },//doesn't work
+            { Tuple.Create (Direction.Backward, Direction.Down),       JunctionDirection.UpForward },//doesn't work
         };
-        /*
-        private static HashSet<Tuple<Direction, Direction>> angledColorMirrorSet
-        = new HashSet<Tuple<Direction, Direction>> ()
-        {
-            { Tuple.Create (Direction.Up, Direction.Right),            JunctionDirection.UpRight },
 
-            { Tuple.Create (Direction.Down, Direction.Down),           JunctionDirection.UpUp },
-            { Tuple.Create (Direction.Down, Direction.Forward),        JunctionDirection.DownForward },
-
-            { Tuple.Create (Direction.Left, Direction.Left),           JunctionDirection.RightRight },
-            { Tuple.Create (Direction.Left, Direction.Up),             JunctionDirection.DownRight },
-
-            { Tuple.Create (Direction.Left, Direction.Forward),        JunctionDirection.LeftForward },
-            { Tuple.Create (Direction.Left, Direction.Backward),       JunctionDirection.LeftBackward },
-
-            { Tuple.Create (Direction.Right, Direction.Right),         JunctionDirection.RightRight },
-            { Tuple.Create (Direction.Right, Direction.Up),            JunctionDirection.DownLeft },//doesnt work
-            { Tuple.Create (Direction.Right, Direction.Down),          JunctionDirection.UpLeft },
-            { Tuple.Create (Direction.Right, Direction.Forward),       JunctionDirection.RightForward },
-            { Tuple.Create (Direction.Right, Direction.Backward),      JunctionDirection.RightBackward },//doesnt work
-
-            { Tuple.Create (Direction.Forward, Direction.Forward),     JunctionDirection.BackwardBackward },
-            { Tuple.Create (Direction.Forward, Direction.Left),        JunctionDirection.RightBackward },
-            { Tuple.Create (Direction.Forward, Direction.Up),          JunctionDirection.DownBackward },
-            { Tuple.Create (Direction.Forward, Direction.Down),        JunctionDirection.UpBackward },//doesnt work
-
-            { Tuple.Create (Direction.Backward, Direction.Backward),   JunctionDirection.BackwardBackward },
-            { Tuple.Create (Direction.Backward, Direction.Left),       JunctionDirection.RightForward },//doesnt work
-            { Tuple.Create (Direction.Backward, Direction.Right),      JunctionDirection.LeftForward },
-            { Tuple.Create (Direction.Backward, Direction.Up),         JunctionDirection.DownForward },
-            { Tuple.Create (Direction.Backward, Direction.Down),       JunctionDirection.UpForward },//doesnt work
-        };
-        */
 
         private static Dictionary<JunctionDirection, Angles3> angledJunctionRotationMap
             = new Dictionary<JunctionDirection, Angles3> ()
