@@ -28,6 +28,7 @@
  * See the LICENSE file for full license details of the Knot3 project.
  */
 
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
@@ -43,7 +44,6 @@ using Knot3.Framework.Utilities;
 using Knot3.Framework.Widgets;
 
 using Knot3.Game.Development;
-using System.Diagnostics;
 
 namespace Knot3.Game.Screens
 {
@@ -128,13 +128,13 @@ namespace Knot3.Game.Screens
                 NextScreen = new ControlSettingsScreen (Game);
             }
             );
-          
+
             navigationMenu.Add (profileButton);
             navigationMenu.Add (graphicsButton);
             navigationMenu.Add (audioButton);
             navigationMenu.Add (controlsButton);
 
-            initalizeDebugButton();
+            initalizeDebugButton ();
 
             lines.AddPoints (0.000f, 0.050f,
                              0.030f, 0.970f,
@@ -179,15 +179,16 @@ namespace Knot3.Game.Screens
             }
         }
         [Conditional ("DEBUG")]
-        private void initalizeDebugButton(){
+        private void initalizeDebugButton ()
+        {
             MenuEntry debugButton = new MenuEntry (
                 screen: this,
                 drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
                 name: "Debug",
-                onClick: (time) =>  {
-                    Game.SkipNextScreenEffect =true;
-                    NextScreen = new DebugSettingsScreen (Game);
-                }
+            onClick: (time) =>  {
+                Game.SkipNextScreenEffect =true;
+                NextScreen = new DebugSettingsScreen (Game);
+            }
             );
             navigationMenu.Add (debugButton);
         }
