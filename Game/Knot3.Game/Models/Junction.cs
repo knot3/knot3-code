@@ -156,18 +156,14 @@ namespace Knot3.Game.Models
         private static HashSet<Tuple<Direction, Direction>> angledColorMirrorSet
             = new HashSet<Tuple<Direction, Direction>> ()
         {
-
             { Tuple.Create (Direction.Up, Direction.Up) },//doesn't work
 
-
             { Tuple.Create (Direction.Down, Direction.Down)},//doesn't work
-
 
             { Tuple.Create (Direction.Left, Direction.Left)},//doesn't work
             { Tuple.Create (Direction.Left, Direction.Up)},//doesn't work
             { Tuple.Create (Direction.Left, Direction.Down) },//doesn't work
-            { Tuple.Create (Direction.Left, Direction.Forward) },//doesn't work   
-
+            { Tuple.Create (Direction.Left, Direction.Forward) },//doesn't work
 
             { Tuple.Create (Direction.Right, Direction.Right) },//doesn't work
             { Tuple.Create (Direction.Right, Direction.Up) },//doesn't work
@@ -409,8 +405,7 @@ namespace Knot3.Game.Models
 
             GradientColor gradient = Coloring as GradientColor;
             if (gradient != null && gradient.Color1 != EdgeFrom.Color && gradient.Color2 != EdgeTo.Color) {
-               
-                if (angledColorMirrorSet.Contains(Tuple.Create (EdgeFrom.Direction, EdgeTo.Direction))){
+                if (angledColorMirrorSet.Contains (Tuple.Create (EdgeFrom.Direction, EdgeTo.Direction))) {
                     gradient.Color2 = EdgeFrom;
                     gradient.Color1 = EdgeTo;
                     UpdateCategory ();
@@ -423,7 +418,7 @@ namespace Knot3.Game.Models
             }
             if (Screen.InputManager.KeyPressed (Microsoft.Xna.Framework.Input.Keys.O)) {
                 Log.Debug ("(", gradient.Color1, ",", gradient.Color2, ") => (", EdgeFrom, ",", EdgeTo, ")");
-                if (angledColorMirrorSet.Contains(Tuple.Create (EdgeFrom.Direction, EdgeTo.Direction))){
+                if (angledColorMirrorSet.Contains (Tuple.Create (EdgeFrom.Direction, EdgeTo.Direction))) {
                     gradient.Color2 = EdgeFrom;
                     gradient.Color1 = EdgeTo;
                     UpdateCategory ();
