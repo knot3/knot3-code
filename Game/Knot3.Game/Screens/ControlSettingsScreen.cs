@@ -63,14 +63,6 @@ namespace Knot3.Game.Screens
         {
             MenuName = "Controls";
 
-            CheckBoxItem moveToCenter = new CheckBoxItem (
-                screen: this,
-                drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
-                text: "Move Rotation Targets to Center",
-                option: new BooleanOption ("video", "arcball-around-center", true, Config.Default)
-            );
-            settingsMenu.Add (moveToCenter);
-
             // Die statischen Initialierer der folgenden Inputhandler müssen geladen sein, egal, ob der User bereits
             // im Spiel war oder nicht, denn davon hängt es ab, ob sie bereits auf natürliche Weise initialiert wurden.
             // Falls das nicht der Fall ist, rufen wir über Reflection den statischen Initialierer auf, ohne die Klassen
