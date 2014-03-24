@@ -178,7 +178,7 @@ namespace Knot3.Game.Screens
                 }
             }
         }
-        [Conditional ("DEBUG")]
+        //[Conditional ("DEBUG")]
         private void initalizeDebugButton ()
         {
             MenuEntry debugButton = new MenuEntry (
