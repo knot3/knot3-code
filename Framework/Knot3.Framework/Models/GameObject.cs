@@ -27,15 +27,13 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
-
 using System;
 using System.Diagnostics.CodeAnalysis;
-
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-
 using Knot3.Framework.Core;
 using Knot3.Framework.Math;
+using Knot3.Framework.Utilities;
 
 namespace Knot3.Framework.Models
 {
@@ -165,7 +163,15 @@ namespace Knot3.Framework.Models
         /// <summary>
         /// Die Textur des Modells.
         /// </summary>
-        public Texture2D Texture { get { return _texture; } set { _texture = value; UpdateCategory (); } }
+        public Texture2D Texture
+        {
+            get { return _texture; }
+            set {
+                _texture = value;
+                UpdateCategory ();
+            }
+        }
+
         private Texture2D _texture;
 
         public GameObject (Vector3 position = default (Vector3), Angles3 rotation = default (Angles3), Vector3 scale = default (Vector3),
@@ -257,6 +263,14 @@ namespace Knot3.Framework.Models
             return (UniqueKey + Position).GetHashCode ();
         }
 
+        public void RotateToFaceTarget (Vector3 target)
+        {
+            Vector3 upDirection = World != null ? World.Camera.UpVector : Vector3.Up;
+            Vector3 targetDirection = Vector3.Normalize (target - Position);
+            _rotationQuaternion = VectorHelper.RotateToFaceTarget (sourceDirection: Vector3.Forward, destDirection: targetDirection, up: upDirection);
+            UpdatePrecomputed (overrideValues: true);
+        }
+
         private Vector3 _scale;
         private Angles3 _rotation;
         private Vector3 _position;
@@ -265,14 +279,15 @@ namespace Knot3.Framework.Models
         private bool _inFrustum;
         private BoundingBox _overallBoundingBox;
         private BoundingBox _frustumBoundingBox;
+        private Quaternion? _rotationQuaternion;
 
-        private void UpdatePrecomputed ()
+        private void UpdatePrecomputed (bool overrideValues = false)
         {
-            if (Scale != _scale || Rotation != _rotation || Position != _position) {
+            if (overrideValues || Scale != _scale || Rotation != _rotation || Position != _position) {
+                Matrix rotationMatrix = _rotationQuaternion.HasValue ? Matrix.CreateFromQuaternion (_rotationQuaternion.Value)
+                    : Matrix.CreateFromYawPitchRoll (Rotation.Y, Rotation.X, Rotation.Z);
                 // world matrix
-                _worldMatrix = Matrix.CreateScale (Scale)
-                               * Matrix.CreateFromYawPitchRoll (Rotation.Y, Rotation.X, Rotation.Z)
-                               * Matrix.CreateTranslation (Position);
+                _worldMatrix = Matrix.CreateScale (Scale) * rotationMatrix * Matrix.CreateTranslation (Position);
                 _worldMatrixInverseTranspose = Matrix.Transpose (Matrix.Invert (_worldMatrix));
 
                 // attrs

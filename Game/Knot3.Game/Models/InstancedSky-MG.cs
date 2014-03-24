@@ -123,6 +123,7 @@ namespace Knot3.Game.Models
         {
             foreach (Star star in Stars) {
                 star.Position = Vector3.Transform (star.RelativePosition, scaleMatrix);
+                star.RotateToFaceTarget (Vector3.Zero);
             }
         }
 
