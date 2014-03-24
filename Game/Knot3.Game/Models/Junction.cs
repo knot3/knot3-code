@@ -259,7 +259,7 @@ namespace Knot3.Game.Models
 
             incomplete = true;
 
-            Coloring = new GradientColor (EdgeFrom, EdgeTo);
+            Coloring = new GradientColor (Color.Transparent, Color.Transparent);
             Coloring.OnColorChanged += UpdateCategory;
         }
 
