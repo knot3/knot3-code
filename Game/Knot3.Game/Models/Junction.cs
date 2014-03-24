@@ -27,15 +27,12 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-
 using Microsoft.Xna.Framework;
-
 using Knot3.Framework.Core;
 using Knot3.Framework.Math;
 using Knot3.Framework.Models;
@@ -43,7 +40,6 @@ using Knot3.Framework.Platform;
 using Knot3.Framework.Primitives;
 using Knot3.Framework.Storage;
 using Knot3.Framework.Utilities;
-
 using Knot3.Game.Data;
 
 namespace Knot3.Game.Models
@@ -114,8 +110,7 @@ namespace Knot3.Game.Models
         }
 
         private static Dictionary<Tuple<Direction, Direction>, JunctionDirection> angledJunctionDirectionMap
-            = new Dictionary<Tuple<Direction, Direction>, JunctionDirection> ()
-        {
+            = new Dictionary<Tuple<Direction, Direction>, JunctionDirection> () {
             { Tuple.Create (Direction.Up, Direction.Up),               JunctionDirection.UpUp },
             { Tuple.Create (Direction.Up, Direction.Left),             JunctionDirection.UpLeft },
             { Tuple.Create (Direction.Up, Direction.Right),            JunctionDirection.UpRight },
@@ -152,37 +147,33 @@ namespace Knot3.Game.Models
             { Tuple.Create (Direction.Backward, Direction.Up),         JunctionDirection.DownForward },
             { Tuple.Create (Direction.Backward, Direction.Down),       JunctionDirection.UpForward },
         };
-
         private static HashSet<Tuple<Direction, Direction>> angledColorMirrorSet
-            = new HashSet<Tuple<Direction, Direction>> ()
-        {
-            { Tuple.Create (Direction.Up, Direction.Up) },//doesn't work
+            = new HashSet<Tuple<Direction, Direction>> () {
+            { Tuple.Create (Direction.Up, Direction.Up) }, //doesn't work
 
-            { Tuple.Create (Direction.Down, Direction.Down)},//doesn't work
+            { Tuple.Create (Direction.Down, Direction.Down) }, //doesn't work
 
-            { Tuple.Create (Direction.Left, Direction.Left)},//doesn't work
-            { Tuple.Create (Direction.Left, Direction.Up)},//doesn't work
-            { Tuple.Create (Direction.Left, Direction.Down) },//doesn't work
-            { Tuple.Create (Direction.Left, Direction.Forward) },//doesn't work
+            { Tuple.Create (Direction.Left, Direction.Left) }, //doesn't work
+            { Tuple.Create (Direction.Left, Direction.Up) }, //doesn't work
+            { Tuple.Create (Direction.Left, Direction.Down) }, //doesn't work
+            { Tuple.Create (Direction.Left, Direction.Forward) }, //doesn't work
 
-            { Tuple.Create (Direction.Right, Direction.Right) },//doesn't work
-            { Tuple.Create (Direction.Right, Direction.Up) },//doesn't work
-            { Tuple.Create (Direction.Right, Direction.Down)},//doesn't work
-            { Tuple.Create (Direction.Right, Direction.Backward)},//doesn't work
+            { Tuple.Create (Direction.Right, Direction.Right) }, //doesn't work
+            { Tuple.Create (Direction.Right, Direction.Up) }, //doesn't work
+            { Tuple.Create (Direction.Right, Direction.Down) }, //doesn't work
+            { Tuple.Create (Direction.Right, Direction.Backward) }, //doesn't work
 
-            { Tuple.Create (Direction.Forward, Direction.Forward)},//doesn't work
-            { Tuple.Create (Direction.Forward, Direction.Right) },//doesn't work
-            { Tuple.Create (Direction.Forward, Direction.Up) },//doesn't work
-            { Tuple.Create (Direction.Forward, Direction.Down) },//doesn't work
+            { Tuple.Create (Direction.Forward, Direction.Forward) }, //doesn't work
+            { Tuple.Create (Direction.Forward, Direction.Right) }, //doesn't work
+            { Tuple.Create (Direction.Forward, Direction.Up) }, //doesn't work
+            { Tuple.Create (Direction.Forward, Direction.Down) }, //doesn't work
 
-            { Tuple.Create (Direction.Backward, Direction.Left)},//doesn't work
-            { Tuple.Create (Direction.Backward, Direction.Up)},//doesn't work
-            { Tuple.Create (Direction.Backward, Direction.Down)},//doesn't work
+            { Tuple.Create (Direction.Backward, Direction.Left) }, //doesn't work
+            { Tuple.Create (Direction.Backward, Direction.Up) }, //doesn't work
+            { Tuple.Create (Direction.Backward, Direction.Down) }, //doesn't work
         };
-
         private static Dictionary<JunctionDirection, Angles3> angledJunctionRotationMap
-            = new Dictionary<JunctionDirection, Angles3> ()
-        {
+            = new Dictionary<JunctionDirection, Angles3> () {
             { JunctionDirection.UpForward,         Angles3.FromDegrees (0, 0, 0) },
             { JunctionDirection.UpBackward,        Angles3.FromDegrees (0, 180, 0) },
             { JunctionDirection.UpLeft,            Angles3.FromDegrees (0, 90, 0) },
@@ -200,8 +191,7 @@ namespace Knot3.Game.Models
             { JunctionDirection.BackwardBackward,  Angles3.FromDegrees (0, 0, 0) },
         };
         private static Dictionary<Direction, Angles3> straightJunctionRotationMap
-            = new Dictionary<Direction, Angles3> ()
-        {
+            = new Dictionary<Direction, Angles3> () {
             { Direction.Up,         Angles3.FromDegrees (90, 0, 0) },
             { Direction.Down,       Angles3.FromDegrees (270, 0, 0) },
             { Direction.Left,       Angles3.FromDegrees (0, 90, 0) },
@@ -210,8 +200,7 @@ namespace Knot3.Game.Models
             { Direction.Backward,   Angles3.FromDegrees (0, 0, 180) },
         };
         private static Dictionary<Tuple<Direction, Direction>, Tuple<float, float>> curvedJunctionBumpRotationMap
-            = new Dictionary<Tuple<Direction, Direction>, Tuple<float, float>> ()
-        {
+            = new Dictionary<Tuple<Direction, Direction>, Tuple<float, float>> () {
             { Tuple.Create (Direction.Up, Direction.Left),            Tuple.Create (90f, 0f) }, // works
             { Tuple.Create (Direction.Up, Direction.Right),           Tuple.Create (-90f, 0f) }, // works
             { Tuple.Create (Direction.Up, Direction.Forward),         Tuple.Create (0f, 180f) }, // works
@@ -302,30 +291,30 @@ namespace Knot3.Game.Models
             int tessellation = Primitive.CurrentCircleTessellation;
             if (Modelname == "pipe-angled") {
                 return new Torus (
-                           device: Screen.GraphicsDevice,
-                           diameter: 4f,
-                           thickness: 1f,
-                           tessellation: tessellation,
-                           circlePercent: 0.25f,
-                           translation: Vector3.Left * 2 + Vector3.Backward * 2,
-                           rotation: Angles3.FromDegrees (90, 0, 90)
-                       );
+                    device: Screen.GraphicsDevice,
+                    diameter: 4f,
+                    thickness: 1f,
+                    tessellation: tessellation,
+                    circlePercent: 0.25f,
+                    translation: Vector3.Left * 2 + Vector3.Backward * 2,
+                    rotation: Angles3.FromDegrees (90, 0, 90)
+                );
             }
             else if (Modelname == "pipe-straight") {
                 return new Cylinder (
-                           device: Screen.GraphicsDevice,
-                           height: 1f,
-                           diameter: 1f,
-                           tessellation: tessellation
-                       );
+                    device: Screen.GraphicsDevice,
+                    height: 1f,
+                    diameter: 1f,
+                    tessellation: tessellation
+                );
             }
             else {
                 return new CurvedCylinder (
-                           device: Screen.GraphicsDevice,
-                           height: 1f,
-                           diameter: 1f,
-                           tessellation: tessellation
-                       );
+                    device: Screen.GraphicsDevice,
+                    height: 1f,
+                    diameter: 1f,
+                    tessellation: tessellation
+                );
             }
         }
 
@@ -410,7 +399,6 @@ namespace Knot3.Game.Models
                     gradient.Color1 = EdgeTo;
                     UpdateCategory ();
                 }
-
                 else {
                     gradient.Color1 = EdgeFrom;
                     gradient.Color2 = EdgeTo;
@@ -427,7 +415,6 @@ namespace Knot3.Game.Models
                 else {
                     gradient.Color1 = EdgeFrom;
                     gradient.Color2 = EdgeTo;
-
                     UpdateCategory ();
                 }
             }
@@ -452,7 +439,8 @@ namespace Knot3.Game.Models
         }
     }
 
-    enum JunctionDirection {
+    enum JunctionDirection
+    {
         UpForward,
         UpBackward,
         UpLeft,
