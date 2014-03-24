@@ -156,28 +156,32 @@ namespace Knot3.Game.Models
         private static HashSet<Tuple<Direction, Direction>> angledColorMirrorSet
             = new HashSet<Tuple<Direction, Direction>> ()
         {
-            { Tuple.Create (Direction.Up, Direction.Up),               JunctionDirection.UpUp },//doesn't work
 
-            { Tuple.Create (Direction.Down, Direction.Down),           JunctionDirection.UpUp },//doesn't work
+            { Tuple.Create (Direction.Up, Direction.Up) },//doesn't work
 
-            { Tuple.Create (Direction.Left, Direction.Left),           JunctionDirection.RightRight },//doesn't work
-            { Tuple.Create (Direction.Left, Direction.Up),             JunctionDirection.DownRight },//doesn't work
-            { Tuple.Create (Direction.Left, Direction.Down),           JunctionDirection.UpRight },//doesn't work
-            { Tuple.Create (Direction.Left, Direction.Forward),        JunctionDirection.LeftForward },//doesn't work
 
-            { Tuple.Create (Direction.Right, Direction.Right),         JunctionDirection.RightRight },//doesn't work
-            { Tuple.Create (Direction.Right, Direction.Up),            JunctionDirection.DownLeft },//doesn't work
-            { Tuple.Create (Direction.Right, Direction.Down),          JunctionDirection.UpLeft },//doesn't work
-            { Tuple.Create (Direction.Right, Direction.Backward),      JunctionDirection.RightBackward },//doesn't work
+            { Tuple.Create (Direction.Down, Direction.Down)},//doesn't work
 
-            { Tuple.Create (Direction.Forward, Direction.Forward),     JunctionDirection.BackwardBackward },//doesn't work
-            { Tuple.Create (Direction.Forward, Direction.Right),       JunctionDirection.LeftBackward },//doesn't work
-            { Tuple.Create (Direction.Forward, Direction.Up),          JunctionDirection.DownBackward },//doesn't work
-            { Tuple.Create (Direction.Forward, Direction.Down),        JunctionDirection.UpBackward },//doesn't work
 
-            { Tuple.Create (Direction.Backward, Direction.Left),       JunctionDirection.RightForward },//doesn't work
-            { Tuple.Create (Direction.Backward, Direction.Up),         JunctionDirection.DownForward },//doesn't work
-            { Tuple.Create (Direction.Backward, Direction.Down),       JunctionDirection.UpForward },//doesn't work
+            { Tuple.Create (Direction.Left, Direction.Left)},//doesn't work
+            { Tuple.Create (Direction.Left, Direction.Up)},//doesn't work
+            { Tuple.Create (Direction.Left, Direction.Down) },//doesn't work
+            { Tuple.Create (Direction.Left, Direction.Forward) },//doesn't work   
+
+
+            { Tuple.Create (Direction.Right, Direction.Right) },//doesn't work
+            { Tuple.Create (Direction.Right, Direction.Up) },//doesn't work
+            { Tuple.Create (Direction.Right, Direction.Down)},//doesn't work
+            { Tuple.Create (Direction.Right, Direction.Backward)},//doesn't work
+
+            { Tuple.Create (Direction.Forward, Direction.Forward)},//doesn't work
+            { Tuple.Create (Direction.Forward, Direction.Right) },//doesn't work
+            { Tuple.Create (Direction.Forward, Direction.Up) },//doesn't work
+            { Tuple.Create (Direction.Forward, Direction.Down) },//doesn't work
+
+            { Tuple.Create (Direction.Backward, Direction.Left)},//doesn't work
+            { Tuple.Create (Direction.Backward, Direction.Up)},//doesn't work
+            { Tuple.Create (Direction.Backward, Direction.Down)},//doesn't work
         };
 
         private static Dictionary<JunctionDirection, Angles3> angledJunctionRotationMap
@@ -405,15 +409,20 @@ namespace Knot3.Game.Models
 
             GradientColor gradient = Coloring as GradientColor;
             if (gradient != null && gradient.Color1 != EdgeFrom.Color && gradient.Color2 != EdgeTo.Color) {
-                gradient.Color1 = EdgeFrom;
-                gradient.Color2 = EdgeTo;
-                UpdateCategory ();
+               
+                if (angledColorMirrorSet.Contains(Tuple.Create (EdgeFrom.Direction, EdgeTo.Direction))){
+                    gradient.Color2 = EdgeFrom;
+                    gradient.Color1 = EdgeTo;
+                    UpdateCategory ();
+                }
             }
             if (Screen.InputManager.KeyPressed (Microsoft.Xna.Framework.Input.Keys.O)) {
                 Log.Debug ("(", gradient.Color1, ",", gradient.Color2, ") => (", EdgeFrom, ",", EdgeTo, ")");
-                gradient.Color1 = EdgeFrom;
-                gradient.Color2 = EdgeTo;
-                UpdateCategory ();
+                if (angledColorMirrorSet.Contains(Tuple.Create (EdgeFrom.Direction, EdgeTo.Direction))){
+                    gradient.Color2 = EdgeFrom;
+                    gradient.Color1 = EdgeTo;
+                    UpdateCategory ();
+                }
             }
 
             base.Draw (time);
