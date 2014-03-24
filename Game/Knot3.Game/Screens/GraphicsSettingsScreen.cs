@@ -272,7 +272,7 @@ namespace Knot3.Game.Screens
                 drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
                 text: "Video projector mode",
                 option: optionProjectorMode
-                );
+            );
             itemProjectorMode.OnValueChanged += () => {
                 if (optionProjectorMode.Value) {
                     new ProjectorDesign ().Apply ();
