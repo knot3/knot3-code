@@ -68,7 +68,7 @@ namespace Knot3.Game.Development
                 screen: this,
                 drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
                 text: "Show FPS",
-                option: new BooleanOption ("video", "fps-overlay", true, Config.Default)
+                option: new BooleanOption ("video", "fps-overlay", false, Config.Default)
             );
             settingsMenu.Add (showFps);
 
