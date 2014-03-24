@@ -97,7 +97,7 @@ namespace Knot3.Game.Development
             if (Config.Default ["video", "camera-overlay", false]) {
                 DrawOverlay (time);
             }
-            if (Config.Default ["video", "fps-overlay", true]) {
+            if (Config.Default ["video", "fps-overlay", false]) {
                 DrawFPS (time);
             }
             if (Config.Default ["video", "profiler-overlay", false]) {
