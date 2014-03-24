@@ -43,6 +43,7 @@ using Knot3.Framework.Utilities;
 using Knot3.Framework.Widgets;
 
 using Knot3.Game.Development;
+using System.Diagnostics;
 
 namespace Knot3.Game.Screens
 {
@@ -127,21 +128,13 @@ namespace Knot3.Game.Screens
                 NextScreen = new ControlSettingsScreen (Game);
             }
             );
-            MenuEntry debugButton = new MenuEntry (
-                screen: this,
-                drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
-                name: "Debug",
-            onClick: (time) =>  {
-                game.SkipNextScreenEffect =true;
-                NextScreen = new DebugSettingsScreen (Game);
-            }
-            );
-
+          
             navigationMenu.Add (profileButton);
             navigationMenu.Add (graphicsButton);
             navigationMenu.Add (audioButton);
             navigationMenu.Add (controlsButton);
-            navigationMenu.Add (debugButton);
+
+            initalizeDebugButton();
 
             lines.AddPoints (0.000f, 0.050f,
                              0.030f, 0.970f,
@@ -185,7 +178,19 @@ namespace Knot3.Game.Screens
                 }
             }
         }
-
+        [Conditional ("DEBUG")]
+        private void initalizeDebugButton(){
+            MenuEntry debugButton = new MenuEntry (
+                screen: this,
+                drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
+                name: "Debug",
+                onClick: (time) =>  {
+                    Game.SkipNextScreenEffect =true;
+                    NextScreen = new DebugSettingsScreen (Game);
+                }
+            );
+            navigationMenu.Add (debugButton);
+        }
         [ExcludeFromCodeCoverageAttribute]
         public override void Draw (GameTime time)
         {
