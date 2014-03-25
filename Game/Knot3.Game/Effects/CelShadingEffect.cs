@@ -142,6 +142,36 @@ namespace Knot3.Game.Effects
         }
 
         /// <summary>
+        /// Zeichnet das Spielmodell model mit dem Cel-Shading-Effekt.
+        /// Eine Anwendung des NVIDIA-Toon-Shaders.
+        /// </summary>
+        public override void DrawPrimitive (GamePrimitive model, GameTime time)
+        {
+            // Setze den Viewport auf den der aktuellen Spielwelt
+            Viewport original = Screen.Viewport;
+            Screen.Viewport = model.World.Viewport;
+
+            Camera camera = model.World.Camera;
+            lightDirection = new Vector4 (-Vector3.Cross (Vector3.Normalize (camera.PositionToTargetDirection), camera.UpVector), 1);
+            celShader.Parameters ["LightDirection"].SetValue (lightDirection);
+            celShader.Parameters ["World"].SetValue (model.WorldMatrix * camera.WorldMatrix);
+            celShader.Parameters ["InverseWorld"].SetValue (Matrix.Invert (model.WorldMatrix * camera.WorldMatrix));
+            celShader.Parameters ["View"].SetValue (camera.ViewMatrix);
+            celShader.Parameters ["Projection"].SetValue (camera.ProjectionMatrix);
+            celShader.CurrentTechnique = celShader.Techniques ["ToonShader"];
+
+            if (!model.Coloring.IsTransparent) {
+                Color = model.Coloring.MixedColor;
+            }
+
+
+            model.Primitive.Draw (effect: celShader);
+
+            // Setze den Viewport wieder auf den ganzen Screen
+            Screen.Viewport = original;
+        }
+
+        /// <summary>
         /// Weist dem 3D-Modell den Cel-Shader zu.
         /// </summary>
         public override void RemapModel (Model model)
