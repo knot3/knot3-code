@@ -41,6 +41,8 @@ namespace Knot3.Framework.Effects
         public InstancingEffect (IScreen screen)
             : base (screen: screen)
         {
+            screen.Game.Graphics.ApplyChanges ();
+            Profiler.ProfilerMap.Clear ();
         }
 
         private GameModel[] modelQueue = new GameModel[100];
@@ -59,6 +61,7 @@ namespace Knot3.Framework.Effects
             for (int i = 0; i < queuedModels; ++i) {
                 base.DrawModel (modelQueue [i], time);
             }
+            queuedModels = 0;
         }
 
         protected abstract void DrawAllPrimitives (GameTime time);
@@ -67,8 +70,10 @@ namespace Knot3.Framework.Effects
         {
             Screen.GraphicsDevice.Clear (Color.Transparent);
 
-            Profiler.ProfileDelegate ["Instancing"] = () => {
+            Profiler.ProfileDelegate ["Instancing.Prm"] = () => {
                 DrawAllPrimitives (time);
+            };
+            Profiler.ProfileDelegate ["Instancing.Mds"] = () => {
                 DrawAllModels (time);
             };
         }

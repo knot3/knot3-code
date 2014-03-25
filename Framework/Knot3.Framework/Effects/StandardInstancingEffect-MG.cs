@@ -56,6 +56,7 @@ namespace Knot3.Framework.Effects
         : base (screen)
         {
             effect = new Effect (Screen.GraphicsDevice, SHADER_CODE, GetType ().Name);
+            RegisterEffect (effect);
             instanceVertexDeclaration = GenerateInstanceVertexDeclaration ();
         }
 
@@ -158,38 +159,51 @@ namespace Knot3.Framework.Effects
                 Viewport original = Screen.Viewport;
                 Screen.Viewport = instancedPrimitive.World.Viewport;
 
-                Camera camera = instancedPrimitive.World.Camera;
-                effect.Parameters ["xView"].SetValue (instancedPrimitive.IsSkyObject ? SkyViewMatrix (camera.ViewMatrix) : camera.ViewMatrix);
-                effect.Parameters ["xProjection"].SetValue (camera.ProjectionMatrix);
-                effect.Parameters ["xModelTexture"].SetValue (instancedPrimitive.Texture);
-                effect.Parameters ["xLightDirection"].SetValue (camera.LightDirection);
-                effect.Parameters ["xCameraPosition"].SetValue (camera.Position);
-
-                InstancedBuffer buffer;
-                if (!cachePrimitivesBuffers.ContainsKey (key)) {
-                    buffer = cachePrimitivesBuffers [key] = new InstancedBuffer ();
-                    buffer.InstanceBuffer = new VertexBuffer (Screen.GraphicsDevice, instanceVertexDeclaration, instancedPrimitive.InstanceCapacity, BufferUsage.WriteOnly);
-                    buffer.InstanceCount = 0;
-                    Log.Debug ("new VertexBuffer");
-                }
-                else {
-                    buffer = cachePrimitivesBuffers [key];
-                }
-
-                if (buffer.InstanceCapacity < instancedPrimitive.InstanceCapacity) {
-                    Profiler.ProfileDelegate ["NewVertexBuffer"] = () => {
-                        buffer.InstanceBuffer.Dispose ();
+                
+                Profiler.ProfileDelegate ["Instancing.Param"] = () => {
+                    Camera camera = instancedPrimitive.World.Camera;
+                    effect.Parameters ["xView"].SetValue (instancedPrimitive.IsSkyObject ? SkyViewMatrix (camera.ViewMatrix) : camera.ViewMatrix);
+                    effect.Parameters ["xProjection"].SetValue (camera.ProjectionMatrix);
+                    effect.Parameters ["xModelTexture"].SetValue (instancedPrimitive.Texture);
+                    effect.Parameters ["xLightDirection"].SetValue (camera.LightDirection);
+                    effect.Parameters ["xCameraPosition"].SetValue (camera.Position);
+                };
+                
+                InstancedBuffer buffer = null;
+                Profiler.ProfileDelegate ["Instancing.1"] = () => {
+                    if (!cachePrimitivesBuffers.ContainsKey (key)) {
+                        buffer = cachePrimitivesBuffers [key] = new InstancedBuffer ();
                         buffer.InstanceBuffer = new VertexBuffer (Screen.GraphicsDevice, instanceVertexDeclaration, instancedPrimitive.InstanceCapacity, BufferUsage.WriteOnly);
-                        Log.Debug ("Dispose -> new VertexBuffer");
-                    };
-                }
-                if (buffer.InstanceCount != instancedPrimitive.InstanceCount || buffer.InstanceUniqueHash != instancedPrimitive.InstanceUniqueHash) {
-                    buffer.InstanceBuffer.SetData (instancedPrimitive.Instances);
-                    buffer.InstanceCount = instancedPrimitive.InstanceCount;
-                    buffer.InstanceUniqueHash = instancedPrimitive.InstanceUniqueHash;
-                }
+                        buffer.InstanceCount = 0;
+                        Log.Debug ("new VertexBuffer");
+                    }
+                    else {
+                        buffer = cachePrimitivesBuffers [key];
+                    }
+                };
+                
+                Profiler.ProfileDelegate ["Instancing.2"] = () => {
+                    if (buffer.InstanceCapacity < instancedPrimitive.InstanceCapacity) {
+                        Profiler.ProfileDelegate ["NewVertexBuffer"] = () => {
+                            buffer.InstanceBuffer.Dispose ();
+                            buffer.InstanceBuffer = new VertexBuffer (Screen.GraphicsDevice, instanceVertexDeclaration, instancedPrimitive.InstanceCapacity, BufferUsage.WriteOnly);
+                            Log.Debug ("Dispose -> new VertexBuffer");
+                        };
+                    }
+                };
+                
+                Profiler.ProfileDelegate ["Instancing.3"] = () => {
+                    if (buffer.InstanceCount != instancedPrimitive.InstanceCount || buffer.InstanceUniqueHash != instancedPrimitive.InstanceUniqueHash) {
+                        buffer.InstanceBuffer.SetData (instancedPrimitive.Instances);
+                        buffer.InstanceCount = instancedPrimitive.InstanceCount;
+                        buffer.InstanceUniqueHash = instancedPrimitive.InstanceUniqueHash;
+                    }
+                };
 
-                instancedPrimitive.Primitive.DrawInstances (effect: effect, instanceBuffer: ref buffer.InstanceBuffer, instanceCount: instancedPrimitive.InstanceCount);
+                
+                Profiler.ProfileDelegate ["Instancing.Draw"] = () => {
+                    instancedPrimitive.Primitive.DrawInstances (effect: effect, instanceBuffer: ref buffer.InstanceBuffer, instanceCount: instancedPrimitive.InstanceCount);
+                };
 
                 // Setze den Viewport wieder auf den ganzen Screen
                 Screen.Viewport = original;

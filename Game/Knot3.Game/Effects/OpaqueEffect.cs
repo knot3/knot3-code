@@ -47,6 +47,7 @@ namespace Knot3.Game.Effects
         : base (screen)
         {
             pascalEffect = screen.LoadEffect ("OpaqueShader");
+            RegisterEffect (pascalEffect);
         }
 
         public override void RemapModel (Model model)

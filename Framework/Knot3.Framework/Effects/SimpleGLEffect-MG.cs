@@ -48,9 +48,8 @@ namespace Knot3.Framework.Effects
         public SimpleGLEffect (IScreen screen)
         : base (screen)
         {
-            Screen.Game.Graphics.ApplyChanges ();
-
             effect = new Effect (Screen.GraphicsDevice, SHADER_CODE, GetType ().Name);
+            RegisterEffect (effect);
         }
 
         private void SetShaderParameters (GameObject obj, GameTime time)

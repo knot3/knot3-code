@@ -47,6 +47,7 @@ namespace Knot3.Game.Effects
         : base (screen)
         {
             zNebulaEffect = screen.LoadEffect ("Z_Nebula");
+            RegisterEffect (zNebulaEffect);
         }
 
         public override void RemapModel (Model model)

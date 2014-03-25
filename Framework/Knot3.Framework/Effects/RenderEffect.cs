@@ -75,6 +75,7 @@ namespace Knot3.Framework.Effects
             spriteBatch = new SpriteBatch (Screen.GraphicsDevice);
             Screen.Game.FullScreenChanged += () => renderTargets.Clear ();
             SelectiveRendering = true;
+            Screen.Game.Graphics.ApplyChanges ();
         }
 
         /// <summary>
@@ -161,6 +162,7 @@ namespace Knot3.Framework.Effects
 
             if (basicEffectForPrimitives == null) {
                 basicEffectForPrimitives = new BasicEffect (Screen.GraphicsDevice);
+                RegisterEffect (basicEffectForPrimitives);
             }
 
             ModifyBasicEffect (effect: basicEffectForPrimitives, primitive: primitive);
@@ -323,8 +325,19 @@ namespace Knot3.Framework.Effects
             GC.SuppressFinalize (this);
         }
 
+        private List<Effect> effectsToDispose = new List<Effect>();
+
+        protected void RegisterEffect (Effect effect) {
+            effectsToDispose.Add (effect);
+        }
+
         protected virtual void Dispose (bool disposing)
         {
+            if (disposing) {
+                foreach (Effect effect in effectsToDispose) {
+                    effect.Dispose ();
+                }
+            }
         }
 
         ~RenderEffect ()

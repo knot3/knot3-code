@@ -71,6 +71,7 @@ namespace Knot3.Game.Effects
             /* Load and initialize the cel-shader effect
              */
             celShader = screen.LoadEffect ("CelShader");
+            RegisterEffect (celShader);
             celShader.Parameters ["LightDirection"].SetValue (lightDirection);
             celMap = screen.LoadTexture ("CelMap");
             if (celMap == null) {
@@ -82,6 +83,7 @@ namespace Knot3.Game.Effects
             /* Load and initialize the outline shader effect
              */
             outlineShader = screen.LoadEffect ("OutlineShader");
+            RegisterEffect (outlineShader);
             outlineShader.Parameters ["Thickness"].SetValue (outlineThickness);
             outlineShader.Parameters ["Threshold"].SetValue (outlineThreshold);
             outlineShader.Parameters ["ScreenSize"].SetValue (new Vector2 (screen.Viewport.Bounds.Width, screen.Viewport.Bounds.Height));

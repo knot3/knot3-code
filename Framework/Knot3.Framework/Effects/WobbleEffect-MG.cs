@@ -55,6 +55,7 @@ namespace Knot3.Framework.Effects
         : base (screen)
         {
             effect = new Effect (Screen.GraphicsDevice, SHADER_CODE, GetType ().Name);
+            RegisterEffect (effect);
             instanceVertexDeclaration = GenerateInstanceVertexDeclaration ();
         }
 
@@ -185,6 +186,7 @@ namespace Knot3.Framework.Effects
                     buffer.InstanceBuffer.Dispose ();
                 }
             }
+            base.Dispose (disposing);
         }
 
         private readonly string SHADER_CODE = @"
