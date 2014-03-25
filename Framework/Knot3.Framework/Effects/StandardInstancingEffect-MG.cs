@@ -159,7 +159,6 @@ namespace Knot3.Framework.Effects
                 Viewport original = Screen.Viewport;
                 Screen.Viewport = instancedPrimitive.World.Viewport;
 
-                
                 Profiler.ProfileDelegate ["Instancing.Param"] = () => {
                     Camera camera = instancedPrimitive.World.Camera;
                     effect.Parameters ["xView"].SetValue (instancedPrimitive.IsSkyObject ? SkyViewMatrix (camera.ViewMatrix) : camera.ViewMatrix);
@@ -168,7 +167,7 @@ namespace Knot3.Framework.Effects
                     effect.Parameters ["xLightDirection"].SetValue (camera.LightDirection);
                     effect.Parameters ["xCameraPosition"].SetValue (camera.Position);
                 };
-                
+
                 InstancedBuffer buffer = null;
                 Profiler.ProfileDelegate ["Instancing.1"] = () => {
                     if (!cachePrimitivesBuffers.ContainsKey (key)) {
@@ -181,7 +180,7 @@ namespace Knot3.Framework.Effects
                         buffer = cachePrimitivesBuffers [key];
                     }
                 };
-                
+
                 Profiler.ProfileDelegate ["Instancing.2"] = () => {
                     if (buffer.InstanceCapacity < instancedPrimitive.InstanceCapacity) {
                         Profiler.ProfileDelegate ["NewVertexBuffer"] = () => {
@@ -191,7 +190,7 @@ namespace Knot3.Framework.Effects
                         };
                     }
                 };
-                
+
                 Profiler.ProfileDelegate ["Instancing.3"] = () => {
                     if (buffer.InstanceCount != instancedPrimitive.InstanceCount || buffer.InstanceUniqueHash != instancedPrimitive.InstanceUniqueHash) {
                         buffer.InstanceBuffer.SetData (instancedPrimitive.Instances);
@@ -200,7 +199,6 @@ namespace Knot3.Framework.Effects
                     }
                 };
 
-                
                 Profiler.ProfileDelegate ["Instancing.Draw"] = () => {
                     instancedPrimitive.Primitive.DrawInstances (effect: effect, instanceBuffer: ref buffer.InstanceBuffer, instanceCount: instancedPrimitive.InstanceCount);
                 };

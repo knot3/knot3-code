@@ -164,7 +164,6 @@ namespace Knot3.Game.Effects
                 Color = model.Coloring.MixedColor;
             }
 
-
             model.Primitive.Draw (effect: celShader);
 
             // Setze den Viewport wieder auf den ganzen Screen

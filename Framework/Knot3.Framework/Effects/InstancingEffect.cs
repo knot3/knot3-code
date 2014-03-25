@@ -27,10 +27,13 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
+
 using System;
 using System.Diagnostics.CodeAnalysis;
-using Knot3.Framework.Core;
+
 using Microsoft.Xna.Framework;
+
+using Knot3.Framework.Core;
 using Knot3.Framework.Development;
 using Knot3.Framework.Models;
 
@@ -39,13 +42,13 @@ namespace Knot3.Framework.Effects
     public abstract class InstancingEffect : RenderEffect
     {
         public InstancingEffect (IScreen screen)
-            : base (screen: screen)
+        : base (screen: screen)
         {
             screen.Game.Graphics.ApplyChanges ();
             Profiler.ProfilerMap.Clear ();
         }
 
-        private GameModel[] modelQueue = new GameModel[100];
+        private GameModel[] modelQueue = new GameModel [100];
         private int queuedModels = 0;
 
         public override void DrawModel (GameModel model, GameTime time)

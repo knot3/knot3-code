@@ -327,7 +327,8 @@ namespace Knot3.Framework.Effects
 
         private List<Effect> effectsToDispose = new List<Effect>();
 
-        protected void RegisterEffect (Effect effect) {
+        protected void RegisterEffect (Effect effect)
+        {
             effectsToDispose.Add (effect);
         }
 

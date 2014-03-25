@@ -27,12 +27,15 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
+
 using System;
 using System.Diagnostics.CodeAnalysis;
+using System.IO;
+
 using Microsoft.Xna.Framework.Graphics;
+
 using Knot3.Framework.Core;
 using Knot3.Framework.Platform;
-using System.IO;
 
 namespace Knot3.Framework.Platform
 {
