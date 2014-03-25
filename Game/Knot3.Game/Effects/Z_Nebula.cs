@@ -70,8 +70,8 @@ namespace Knot3.Game.Effects
         public override void DrawModel (GameModel model, GameTime time)
         {
             // Setze den Viewport auf den der aktuellen Spielwelt
-            Viewport original = screen.Viewport;
-            screen.Viewport = model.World.Viewport;
+            Viewport original = Screen.Viewport;
+            Screen.Viewport = model.World.Viewport;
 
             Camera camera = model.World.Camera;
 
@@ -86,14 +86,14 @@ namespace Knot3.Game.Effects
             }
 
             // Setze den Viewport wieder auf den ganzen Screen
-            screen.Viewport = original;
+            Screen.Viewport = original;
         }
 
         public override void DrawPrimitive (GamePrimitive model, GameTime time)
         {
             // Setze den Viewport auf den der aktuellen Spielwelt
-            Viewport original = screen.Viewport;
-            screen.Viewport = model.World.Viewport;
+            Viewport original = Screen.Viewport;
+            Screen.Viewport = model.World.Viewport;
 
             Camera camera = model.World.Camera;
 
@@ -106,7 +106,7 @@ namespace Knot3.Game.Effects
             model.Primitive.Draw (zNebulaEffect);
 
             // Setze den Viewport wieder auf den ganzen Screen
-            screen.Viewport = original;
+            Screen.Viewport = original;
         }
 
         Effect zNebulaEffect;

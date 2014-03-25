@@ -97,7 +97,7 @@ namespace Knot3.Game.Effects
 
             spriteBatch.Draw (
                 RenderTarget,
-                new Vector2 (screen.Viewport.X, screen.Viewport.Y),
+                new Vector2 (Screen.Viewport.X, Screen.Viewport.Y),
                 null,
                 Color.White,
                 0f,
@@ -115,8 +115,8 @@ namespace Knot3.Game.Effects
         public override void DrawModel (GameModel model, GameTime time)
         {
             // Setze den Viewport auf den der aktuellen Spielwelt
-            Viewport original = screen.Viewport;
-            screen.Viewport = model.World.Viewport;
+            Viewport original = Screen.Viewport;
+            Screen.Viewport = model.World.Viewport;
 
             Camera camera = model.World.Camera;
             lightDirection = new Vector4 (-Vector3.Cross (Vector3.Normalize (camera.PositionToTargetDirection), camera.UpVector), 1);
@@ -136,7 +136,7 @@ namespace Knot3.Game.Effects
             }
 
             // Setze den Viewport wieder auf den ganzen Screen
-            screen.Viewport = original;
+            Screen.Viewport = original;
         }
 
         /// <summary>

@@ -83,7 +83,7 @@ namespace Knot3.Game.Effects
 
                 spriteBatch.Draw (
                     PreviousRenderTarget,
-                    new Vector2 (screen.Viewport.X, screen.Viewport.Y),
+                    new Vector2 (Screen.Viewport.X, Screen.Viewport.Y),
                     null,
                     Color.White,
                     0f,
@@ -100,7 +100,7 @@ namespace Knot3.Game.Effects
 
             spriteBatch.Draw (
                 RenderTarget,
-                new Vector2 (screen.Viewport.X, screen.Viewport.Y),
+                new Vector2 (Screen.Viewport.X, Screen.Viewport.Y),
                 null,
                 Color.White * (1 - alpha),
                 0f,

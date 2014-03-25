@@ -58,7 +58,7 @@ namespace Knot3.Framework.Effects
         /// <summary>
         /// Der Spielzustand, in dem der Effekt verwendet wird.
         /// </summary>
-        protected IScreen screen { get; set; }
+        protected IScreen Screen { get; set; }
 
         /// <summary>
         /// Ein Spritestapel (s. Glossar oder http://msdn.microsoft.com/en-us/library/bb203919.aspx), der verwendet wird, um das Rendertarget dieses Rendereffekts auf das übergeordnete Rendertarget zu zeichnen.
@@ -71,9 +71,9 @@ namespace Knot3.Framework.Effects
 
         public RenderEffect (IScreen screen)
         {
-            this.screen = screen;
-            spriteBatch = new SpriteBatch (screen.GraphicsDevice);
-            screen.Game.FullScreenChanged += () => renderTargets.Clear ();
+            Screen = screen;
+            spriteBatch = new SpriteBatch (Screen.GraphicsDevice);
+            Screen.Game.FullScreenChanged += () => renderTargets.Clear ();
             SelectiveRendering = true;
         }
 
@@ -83,25 +83,25 @@ namespace Knot3.Framework.Effects
         /// </summary>
         public void Begin (GameTime time)
         {
-            if (screen.CurrentRenderEffects.CurrentEffect == this) {
+            if (Screen.CurrentRenderEffects.CurrentEffect == this) {
                 throw new InvalidOperationException ("Begin () can be called only once on " + this + "!");
             }
 
             RenderTarget = CurrentRenderTarget;
-            screen.CurrentRenderEffects.Push (this);
-            screen.GraphicsDevice.Clear (Color.Transparent);
+            Screen.CurrentRenderEffects.Push (this);
+            Screen.GraphicsDevice.Clear (Color.Transparent);
 
             //spriteBatch.Begin (SpriteSortMode.Immediate, BlendState.NonPremultiplied);
-            //spriteBatch.Draw (TextureHelper.Create (screen.Device, screen.Viewport.Width, screen.Viewport.Height, background),
+            //spriteBatch.Draw (TextureHelper.Create (Screen.Device, Screen.Viewport.Width, Screen.Viewport.Height, background),
             //                  Vector2.Zero, Color.White);
             //spriteBatch.End ();
 
-            // set the stencil screen
-            screen.GraphicsDevice.DepthStencilState = DepthStencilState.Default;
-            // Setting the other screens isn't really necessary but good form
-            screen.GraphicsDevice.BlendState = BlendState.Opaque;
-            screen.GraphicsDevice.RasterizerState = RasterizerState.CullCounterClockwise;
-            screen.GraphicsDevice.SamplerStates [0] = SamplerState.LinearWrap;
+            // set the stencil Screen
+            Screen.GraphicsDevice.DepthStencilState = DepthStencilState.Default;
+            // Setting the other Screens isn't really necessary but good form
+            Screen.GraphicsDevice.BlendState = BlendState.Opaque;
+            Screen.GraphicsDevice.RasterizerState = RasterizerState.CullCounterClockwise;
+            Screen.GraphicsDevice.SamplerStates [0] = SamplerState.LinearWrap;
         }
 
         protected virtual void BeforeEnd (GameTime time)
@@ -116,7 +116,7 @@ namespace Knot3.Framework.Effects
         public virtual void End (GameTime time)
         {
             BeforeEnd (time);
-            screen.CurrentRenderEffects.Pop ();
+            Screen.CurrentRenderEffects.Pop ();
 
             spriteBatch.Begin (SpriteSortMode.Immediate, BlendState.NonPremultiplied);
             DrawRenderTarget (time);
@@ -129,8 +129,8 @@ namespace Knot3.Framework.Effects
         public virtual void DrawModel (GameModel model, GameTime time)
         {
             // Setze den Viewport auf den der aktuellen Spielwelt
-            Viewport original = screen.Viewport;
-            screen.Viewport = model.World.Viewport;
+            Viewport original = Screen.Viewport;
+            Screen.Viewport = model.World.Viewport;
 
             foreach (ModelMesh mesh in model.Model.Meshes) {
                 foreach (ModelMeshPart part in mesh.MeshParts) {
@@ -145,7 +145,7 @@ namespace Knot3.Framework.Effects
             }
 
             // Setze den Viewport wieder auf den ganzen Screen
-            screen.Viewport = original;
+            Screen.Viewport = original;
         }
 
         private BasicEffect basicEffectForPrimitives;
@@ -156,24 +156,24 @@ namespace Knot3.Framework.Effects
         public virtual void DrawPrimitive (GamePrimitive primitive, GameTime time)
         {
             // Setze den Viewport auf den der aktuellen Spielwelt
-            Viewport original = screen.Viewport;
-            screen.Viewport = primitive.World.Viewport;
+            Viewport original = Screen.Viewport;
+            Screen.Viewport = primitive.World.Viewport;
 
             if (basicEffectForPrimitives == null) {
-                basicEffectForPrimitives = new BasicEffect (screen.GraphicsDevice);
+                basicEffectForPrimitives = new BasicEffect (Screen.GraphicsDevice);
             }
 
             ModifyBasicEffect (effect: basicEffectForPrimitives, primitive: primitive);
             primitive.Primitive.Draw (effect: basicEffectForPrimitives);
 
             // Setze den Viewport wieder auf den ganzen Screen
-            screen.Viewport = original;
+            Screen.Viewport = original;
         }
 
         protected void ModifyBasicEffect (BasicEffect effect, IGameObject obj)
         {
             // lighting
-            if (screen.InputManager.KeyHeldDown (Keys.L)) {
+            if (Screen.InputManager.KeyHeldDown (Keys.L)) {
                 effect.LightingEnabled = false;
             }
             else if (!obj.IsLightingEnabled) {
@@ -226,10 +226,10 @@ namespace Knot3.Framework.Effects
             else {
                 ModelColoring coloring = obj.Coloring;
                 if (coloring is GradientColor) {
-                    return ContentLoader.CreateGradient (screen.GraphicsDevice, coloring as GradientColor);
+                    return ContentLoader.CreateGradient (Screen.GraphicsDevice, coloring as GradientColor);
                 }
                 else {
-                    return ContentLoader.CreateTexture (screen.GraphicsDevice, coloring.MixedColor);
+                    return ContentLoader.CreateTexture (Screen.GraphicsDevice, coloring.MixedColor);
                 }
             }
         }
@@ -259,7 +259,7 @@ namespace Knot3.Framework.Effects
         {
             spriteBatch.Draw (
                 RenderTarget,
-                new Vector2 (screen.Viewport.X, screen.Viewport.Y),
+                new Vector2 (Screen.Viewport.X, Screen.Viewport.Y),
                 null,
                 Color.White,
                 0f,
@@ -283,10 +283,10 @@ namespace Knot3.Framework.Effects
         public RenderTarget2D CurrentRenderTarget
         {
             get {
-                PresentationParameters pp = screen.GraphicsDevice.PresentationParameters;
+                PresentationParameters pp = Screen.GraphicsDevice.PresentationParameters;
                 Point resolution = new Point (pp.BackBufferWidth, pp.BackBufferHeight);
-                Rectangle viewport = new Rectangle (screen.Viewport.X, screen.Viewport.Y,
-                                                    screen.Viewport.Width, screen.Viewport.Height);
+                Rectangle viewport = new Rectangle (Screen.Viewport.X, Screen.Viewport.Y,
+                                                    Screen.Viewport.Width, Screen.Viewport.Height);
                 if (!renderTargets.ContainsKey (resolution)) {
                     renderTargets [resolution] = new Dictionary<Rectangle, Dictionary<float, RenderTarget2D>> ();
                 }
@@ -297,7 +297,7 @@ namespace Knot3.Framework.Effects
                     try {
                         Log.Debug ("Supersampling=", Supersampling);
                         renderTargets [resolution] [viewport] [Supersampling] = new RenderTarget2D (
-                            screen.GraphicsDevice, (int)(viewport.Width * Supersampling), (int)(viewport.Height * Supersampling),
+                            Screen.GraphicsDevice, (int)(viewport.Width * Supersampling), (int)(viewport.Height * Supersampling),
                             false, SurfaceFormat.Color, DepthFormat.Depth24, 1, RenderTargetUsage.PreserveContents
                         );
                         break;

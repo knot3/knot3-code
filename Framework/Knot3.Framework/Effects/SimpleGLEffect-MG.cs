@@ -48,7 +48,9 @@ namespace Knot3.Framework.Effects
         public SimpleGLEffect (IScreen screen)
         : base (screen)
         {
-            effect = new Effect (screen.GraphicsDevice, SHADER_CODE, GetType ().Name);
+            Screen.Game.Graphics.ApplyChanges ();
+
+            effect = new Effect (Screen.GraphicsDevice, SHADER_CODE, GetType ().Name);
         }
 
         private void SetShaderParameters (GameObject obj, GameTime time)
@@ -70,8 +72,8 @@ namespace Knot3.Framework.Effects
         public override void DrawModel (GameModel model, GameTime time)
         {
             // Setze den Viewport auf den der aktuellen Spielwelt
-            Viewport original = screen.Viewport;
-            screen.Viewport = model.World.Viewport;
+            Viewport original = Screen.Viewport;
+            Screen.Viewport = model.World.Viewport;
 
             SetShaderParameters (obj: model, time: time);
 
@@ -80,20 +82,20 @@ namespace Knot3.Framework.Effects
             }
 
             // Setze den Viewport wieder auf den ganzen Screen
-            screen.Viewport = original;
+            Screen.Viewport = original;
         }
 
         public override void DrawPrimitive (GamePrimitive primitive, GameTime time)
         {
             // Setze den Viewport auf den der aktuellen Spielwelt
-            Viewport original = screen.Viewport;
-            screen.Viewport = primitive.World.Viewport;
+            Viewport original = Screen.Viewport;
+            Screen.Viewport = primitive.World.Viewport;
 
             SetShaderParameters (obj: primitive, time: time);
             primitive.Primitive.Draw (effect: effect);
 
             // Setze den Viewport wieder auf den ganzen Screen
-            screen.Viewport = original;
+            Screen.Viewport = original;
         }
 
         /// <summary>

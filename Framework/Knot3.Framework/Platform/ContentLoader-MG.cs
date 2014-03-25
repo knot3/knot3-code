@@ -27,14 +27,12 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
-
 using System;
 using System.Diagnostics.CodeAnalysis;
-
 using Microsoft.Xna.Framework.Graphics;
-
 using Knot3.Framework.Core;
 using Knot3.Framework.Platform;
+using System.IO;
 
 namespace Knot3.Framework.Platform
 {
@@ -56,13 +54,14 @@ namespace Knot3.Framework.Platform
                 }
             }
             filenames = new string[] {
-                SystemInfo.RelativeContentDirectory + "Shader/" + name + ".mgfx",
-                SystemInfo.RelativeContentDirectory + "Shader/" + name + "_3.0.mgfx",
-                SystemInfo.RelativeContentDirectory + "Shader/" + name + "_3.1.mgfx"
+                SystemInfo.RelativeContentDirectory + "Shader/" + name,
+                SystemInfo.RelativeContentDirectory + "Shader/" + name + "_3.0",
+                SystemInfo.RelativeContentDirectory + "Shader/" + name + "_3.1"
             };
             foreach (string filename in filenames) {
                 try {
-                    Effect effect = new Effect (screen.GraphicsDevice, System.IO.File.ReadAllBytes (filename), name);
+                    Effect effect = new Effect (screen.GraphicsDevice, System.IO.File.ReadAllBytes (filename + ".mgfx"), name);
+                    File.WriteAllText (filename + ".glfx_gen", effect.EffectCode);
                     return effect;
                 }
                 catch (Exception ex) {

@@ -27,13 +27,57 @@
  *
  * See the LICENSE file for full license details of the Knot3 project.
  */
-
 using System;
 using System.Diagnostics.CodeAnalysis;
+using Knot3.Framework.Core;
+using Microsoft.Xna.Framework;
+using Knot3.Framework.Development;
+using Knot3.Framework.Models;
 
-namespace Knot3.Framework
+namespace Knot3.Framework.Effects
 {
-    public interface IHardwareInstancingEffect
+    public abstract class InstancingEffect : RenderEffect
     {
+        public InstancingEffect (IScreen screen)
+            : base (screen: screen)
+        {
+        }
+
+        private GameModel[] modelQueue = new GameModel[100];
+        private int queuedModels = 0;
+
+        public override void DrawModel (GameModel model, GameTime time)
+        {
+            if (queuedModels + 1 >= modelQueue.Length) {
+                Array.Resize (ref modelQueue, modelQueue.Length + 100);
+            }
+            modelQueue [queuedModels++] = model;
+        }
+
+        protected virtual void DrawAllModels (GameTime time)
+        {
+            for (int i = 0; i < queuedModels; ++i) {
+                base.DrawModel (modelQueue [i], time);
+            }
+        }
+
+        protected abstract void DrawAllPrimitives (GameTime time);
+
+        protected override void BeforeEnd (GameTime time)
+        {
+            Screen.GraphicsDevice.Clear (Color.Transparent);
+
+            Profiler.ProfileDelegate ["Instancing"] = () => {
+                DrawAllPrimitives (time);
+                DrawAllModels (time);
+            };
+        }
+
+        protected override void Dispose (bool disposing)
+        {
+            if (disposing) {
+            }
+            base.Dispose (disposing);
+        }
     }
 }

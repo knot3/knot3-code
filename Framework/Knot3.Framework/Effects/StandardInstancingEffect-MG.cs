@@ -47,18 +47,15 @@ using Knot3.Framework.Utilities;
 namespace Knot3.Framework.Effects
 {
     [ExcludeFromCodeCoverageAttribute]
-    public class HardwareInstancingEffect : RenderEffect, IHardwareInstancingEffect
+    public class StandardInstancingEffect : InstancingEffect
     {
         Effect effect;
         VertexDeclaration instanceVertexDeclaration;
 
-        public HardwareInstancingEffect (IScreen screen)
+        public StandardInstancingEffect (IScreen screen)
         : base (screen)
         {
-            //Effect hitest = screen.LoadEffect ("hitest");
-            //System.IO.File.WriteAllText (SystemInfo.RelativeBaseDirectory + "hitest.glfx_gen", hitest.EffectCode);
-
-            effect = new Effect (screen.GraphicsDevice, SHADER_CODE, GetType ().Name);
+            effect = new Effect (Screen.GraphicsDevice, SHADER_CODE, GetType ().Name);
             instanceVertexDeclaration = GenerateInstanceVertexDeclaration ();
         }
 
@@ -151,15 +148,15 @@ namespace Knot3.Framework.Effects
             instancedPrimitive.InstanceUniqueHash += primitive.Position.LengthSquared ();
         }
 
-        private void DrawAllPrimitives (GameTime time)
+        protected override void DrawAllPrimitives (GameTime time)
         {
             Profiler.Values ["Diff. Inst."] = cacheInstancedPrimitives.Count;
             foreach (string key in cacheInstancedPrimitives.Keys) {
                 InstancedPrimitive instancedPrimitive = cacheInstancedPrimitives [key];
 
                 // Setze den Viewport auf den der aktuellen Spielwelt
-                Viewport original = screen.Viewport;
-                screen.Viewport = instancedPrimitive.World.Viewport;
+                Viewport original = Screen.Viewport;
+                Screen.Viewport = instancedPrimitive.World.Viewport;
 
                 Camera camera = instancedPrimitive.World.Camera;
                 effect.Parameters ["xView"].SetValue (instancedPrimitive.IsSkyObject ? SkyViewMatrix (camera.ViewMatrix) : camera.ViewMatrix);
@@ -171,7 +168,7 @@ namespace Knot3.Framework.Effects
                 InstancedBuffer buffer;
                 if (!cachePrimitivesBuffers.ContainsKey (key)) {
                     buffer = cachePrimitivesBuffers [key] = new InstancedBuffer ();
-                    buffer.InstanceBuffer = new VertexBuffer (screen.GraphicsDevice, instanceVertexDeclaration, instancedPrimitive.InstanceCapacity, BufferUsage.WriteOnly);
+                    buffer.InstanceBuffer = new VertexBuffer (Screen.GraphicsDevice, instanceVertexDeclaration, instancedPrimitive.InstanceCapacity, BufferUsage.WriteOnly);
                     buffer.InstanceCount = 0;
                     Log.Debug ("new VertexBuffer");
                 }
@@ -182,7 +179,7 @@ namespace Knot3.Framework.Effects
                 if (buffer.InstanceCapacity < instancedPrimitive.InstanceCapacity) {
                     Profiler.ProfileDelegate ["NewVertexBuffer"] = () => {
                         buffer.InstanceBuffer.Dispose ();
-                        buffer.InstanceBuffer = new VertexBuffer (screen.GraphicsDevice, instanceVertexDeclaration, instancedPrimitive.InstanceCapacity, BufferUsage.WriteOnly);
+                        buffer.InstanceBuffer = new VertexBuffer (Screen.GraphicsDevice, instanceVertexDeclaration, instancedPrimitive.InstanceCapacity, BufferUsage.WriteOnly);
                         Log.Debug ("Dispose -> new VertexBuffer");
                     };
                 }
@@ -195,17 +192,10 @@ namespace Knot3.Framework.Effects
                 instancedPrimitive.Primitive.DrawInstances (effect: effect, instanceBuffer: ref buffer.InstanceBuffer, instanceCount: instancedPrimitive.InstanceCount);
 
                 // Setze den Viewport wieder auf den ganzen Screen
-                screen.Viewport = original;
+                Screen.Viewport = original;
 
                 instancedPrimitive.InstanceCount = 0;
             }
-        }
-
-        protected override void BeforeEnd (GameTime time)
-        {
-            Profiler.ProfileDelegate ["Instancing"] = () => {
-                DrawAllPrimitives (time);
-            };
         }
 
         protected override void Dispose (bool disposing)
@@ -216,11 +206,9 @@ namespace Knot3.Framework.Effects
                     buffer.InstanceBuffer.Dispose ();
                 }
             }
+            base.Dispose (disposing);
         }
-        //#monogame EffectParameter (name=xView; class=Matrix; type=Single; rows=4; columns=4)
-        //#monogame ConstantBuffer (name=xView; sizeInBytes=64; parameters=[0]; offsets=[0])
-        //#monogame EffectParameter (name=xProjection; class=Matrix; type=Single; rows=4; columns=4)
-        //#monogame ConstantBuffer (name=xProjection; sizeInBytes=64; parameters=[1]; offsets=[0])
+
         private readonly string SHADER_CODE = @"
 #monogame BeginShader (stage=pixel; constantBuffers=[])
 #monogame Attribute (name=fragNormal; usage=Normal; index=0)

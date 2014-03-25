@@ -45,7 +45,7 @@ namespace Knot3.Framework.Effects
             EffectLibrary.Add (new EffectFactory (
                                    name: "hardware-instancing-gl",
                                    displayName: "Hardware Instancing (GL)",
-                                   createInstance: (screen) => new HardwareInstancingEffect (screen)
+                                   createInstance: (screen) => new StandardInstancingEffect (screen)
                                ));
             EffectLibrary.Add (new EffectFactory (
                                    name: "wobble-gl",
@@ -58,7 +58,7 @@ namespace Knot3.Framework.Effects
             EffectLibrary.Add (new EffectFactory (
                                    name: "default",
                                    displayName: "Default (GL)",
-                                   createInstance: (screen) => new HardwareInstancingEffect (screen)
+                                   createInstance: (screen) => new StandardInstancingEffect (screen)
                                ));
         }
     }
