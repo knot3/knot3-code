@@ -63,7 +63,7 @@ namespace Knot3.Game.Widgets
             // Der Titel-Text ist mittig ausgerichtet
             AlignX = HorizontalAlignment.Center;
             Bounds.Size = new ScreenPoint (screen, 0.60f, 0.5f);
-            
+
             // Erstelle das Highscore-Menü
             highscoreList = new Menu (Screen, Index + DisplayLayer.Menu);
             highscoreList.Bounds = ContentBounds;
