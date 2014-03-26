@@ -129,7 +129,8 @@ namespace Knot3.Game.Widgets
             menu.Add (textItem);
             textInput.IsEnabled = true;
             textInput.IsInputEnabled = true;
-            textInput.ValueWidth = 0.75f;
+            textInput.NameWidth = 0.35f;
+            textInput.ValueWidth = 0.65f;
 
             ValidKeys.AddRange (new Keys[] { Keys.Enter, Keys.Escape });
         }
