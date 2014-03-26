@@ -47,8 +47,8 @@ namespace Knot3.Game.Widgets
         public void Apply ()
         {
             Design.MenuFontName = "font-menu";
-            Design.DefaultLineColor = Color.DarkGreen;
-            Design.DefaultOutlineColor = Color.DarkGreen.Mix (Color.White, 0.10f);
+            Design.DefaultLineColor = new Color (0xb4, 0xff, 0x00);
+            Design.DefaultOutlineColor = new Color (0x3b, 0x54, 0x00);
             Design.WidgetBackground = Color.GhostWhite;
             Design.WidgetForeground = Color.Black;
             Design.InGameBackground = Color.White;
@@ -63,6 +63,7 @@ namespace Knot3.Game.Widgets
             Design.ComboBoxItemForegroundColorFunc = ComboBoxItemForegroundColor;
             Design.NavigationItemHeight = 0.040f;
             Design.DataItemHeight = 0.033f;
+            Design.TitleForegroundColor = Color.Black;
         }
 
         private static Color WidgetBackgroundColor (WidgetState state)
