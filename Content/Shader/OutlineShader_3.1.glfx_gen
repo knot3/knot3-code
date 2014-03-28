@@ -1,0 +1,95 @@
+#monogame ConstantBuffer(name=ps_uniforms_vec4; sizeInBytes=48; parameters=[0, 1, 2]; offsets=[0, 16, 32])
+
+#monogame BeginShader(stage=pixel; constantBuffers=[0])
+#monogame Sampler(name=ps_s0; type=Sampler2D; textureSlot=0; samplerSlot=0; parameter=3)
+
+#ifdef GL_ES
+precision mediump float;
+precision mediump int;
+#endif
+
+uniform vec4 ps_uniforms_vec4[3];
+const vec4 ps_c3 = vec4(-0.0, 0.0, 0.33333, -2.0);
+const vec4 ps_c4 = vec4(1.0, 0.0, 0.0, 0.0);
+vec4 ps_r0;
+vec4 ps_r1;
+vec4 ps_r2;
+vec4 ps_r3;
+vec4 ps_r4;
+vec4 ps_r5;
+vec4 ps_r6;
+vec4 ps_r7;
+vec4 ps_r8;
+#define ps_c0 ps_uniforms_vec4[0]
+#define ps_c1 ps_uniforms_vec4[1]
+#define ps_c2 ps_uniforms_vec4[2]
+uniform sampler2D ps_s0;
+varying vec4 vTexCoord0;
+#define ps_t0 vTexCoord0
+#define ps_oC0 gl_FragColor
+
+void main()
+{
+	ps_r0 = texture2D(ps_s0, ps_t0.xy);
+	ps_r1.x = ps_c3.x;
+	ps_r1.z = 1.0 / ps_c0.y;
+	ps_r1.w = ps_r1.z * ps_c1.x;
+	ps_r2.y = (ps_c1.x * ps_r1.z) + ps_t0.y;
+	ps_r1.y = -ps_r1.w;
+	ps_r1.xy = ps_r1.xy + ps_t0.xy;
+	ps_r1.z = 1.0 / ps_c0.x;
+	ps_r3.x = ps_r1.z * ps_c1.x;
+	ps_r3.y = ps_c3.y;
+	ps_r4.xy = ps_r1.xy + -ps_r3.xy;
+	ps_r5.xy = ps_r1.xy + ps_r3.xy;
+	ps_r6.xy = -ps_r3.xy + ps_t0.xy;
+	ps_r7.xy = ps_r3.xy + ps_t0.xy;
+	ps_r2.x = ps_t0.x;
+	ps_r8.xy = ps_r2.xy + -ps_r3.xy;
+	ps_r3.xy = ps_r2.xy + ps_r3.xy;
+	ps_r4 = texture2D(ps_s0, ps_r4.xy);
+	ps_r1 = texture2D(ps_s0, ps_r1.xy);
+	ps_r5 = texture2D(ps_s0, ps_r5.xy);
+	ps_r6 = texture2D(ps_s0, ps_r6.xy);
+	ps_r7 = texture2D(ps_s0, ps_r7.xy);
+	ps_r2 = texture2D(ps_s0, ps_r2.xy);
+	ps_r3 = texture2D(ps_s0, ps_r3.xy);
+	ps_r8 = texture2D(ps_s0, ps_r8.xy);
+	ps_r1.w = dot(ps_r4.xyz, ps_c3.zzz);
+	ps_r2.w = dot(ps_r1.xyz, ps_c3.zzz);
+	ps_r2.w = (ps_r2.w * ps_c3.w) + -ps_r1.w;
+	ps_r3.w = dot(ps_r5.xyz, ps_c3.zzz);
+	ps_r6.w = -ps_r1.w + ps_r3.w;
+	ps_r2.w = ps_r2.w + -ps_r3.w;
+	ps_r3.w = dot(ps_r6.xyz, ps_c3.zzz);
+	ps_r3.w = (ps_r3.w * ps_c3.w) + ps_r6.w;
+	ps_r8.w = dot(ps_r7.xyz, ps_c3.zzz);
+	ps_r3.w = (ps_r8.w * -ps_c3.w) + ps_r3.w;
+	ps_r8.w = dot(ps_r2.xyz, ps_c3.zzz);
+	ps_r1.x = dot(ps_r3.xyz, ps_c3.zzz);
+	ps_r1.y = dot(ps_r8.xyz, ps_c3.zzz);
+	ps_r1.z = -ps_r1.y + ps_r3.w;
+	ps_r1.y = ps_r1.y + ps_r2.w;
+	ps_r1.y = (ps_r8.w * -ps_c3.w) + ps_r1.y;
+	ps_r1.y = ps_r1.x + ps_r1.y;
+	ps_r1.x = ps_r1.x + ps_r1.z;
+	ps_r1.x = ps_r1.x * ps_r1.x;
+	ps_r1.x = (ps_r1.y * ps_r1.y) + ps_r1.x;
+	ps_r1.x = inversesqrt(ps_r1.x);
+	ps_r1.x = 1.0 / ps_r1.x;
+	ps_r1.x = -ps_r1.x + ps_c2.x;
+	ps_r1.xyz = ((ps_r1.x >= 0.0) ? ps_c4.xxx : ps_c4.yyy);
+	ps_r1.w = ps_c4.x;
+	ps_r0 = ps_r0 * ps_r1;
+	ps_oC0 = ps_r0;
+}
+
+
+#monogame EndShader()
+
+#monogame EffectParameter(name=ScreenSize; class=Vector; type=Single; semantic=; rows=1; columns=2; elements=[]; structMembers=[])
+#monogame EffectParameter(name=Thickness; class=Scalar; type=Single; semantic=; rows=1; columns=1; elements=[]; structMembers=[])
+#monogame EffectParameter(name=Threshold; class=Scalar; type=Single; semantic=; rows=1; columns=1; elements=[]; structMembers=[])
+#monogame EffectParameter(name=ColorMapSampler; class=Object; type=Texture2D; semantic=; rows=0; columns=0; elements=[]; structMembers=[])
+#monogame EffectPass(name=Pass0; vertexShader=255; pixelShader=0)
+#monogame EffectTechnique(name=PostOutline)
