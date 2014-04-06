@@ -42,7 +42,7 @@ install: build
 	$(CPR) $(TOOL_MODELEDITOR_DIR)/bin/Debug/* $(GAMEDIR)/
 	$(CPR) $(CODE_DIR)/bin/Debug/* $(GAMEDIR)/
 	$(CPR) $(STD_KNOT_DIR) $(GAMEDIR)/
-	$(CP) LICENSE $(GAMEDIR)/
+	$(CP) LICENSE.md $(GAMEDIR)/
 	$(CP) debian/changelog $(GAMEDIR)/CHANGELOG
 	$(MKDIR) $(DOCDIR)
 	$(CPR) $(DOC_PDFS)/* $(DOCDIR)/
@@ -92,7 +92,7 @@ package-windows: build-windows
 	mono ILRepack-tmp/tools/ILRepack.exe /out:ConfigReset.exe tmp-package-windows/ConfigReset.exe tmp-package-windows/Knot3.Framework.dll
 	$(CP) Knot3.exe ConfigReset.exe $(DESTDIR)/
 	$(RMR) Knot3.exe tmp-package-windows ILRepack-tmp ILRepack.zip
-	$(CP) LICENSE $(DESTDIR)/
+	$(CP) LICENSE.md $(DESTDIR)/
 	$(CP) debian/changelog $(DESTDIR)/CHANGELOG
 	$(CP) README.md $(DESTDIR)/README
 	$(RM) $(DESTDIR)/*.pdb $(DESTDIR)/*.mdb $(DESTDIR)/*.config
