@@ -1,4 +1,5 @@
 notifications:
+  slack: knot3:bsZjAIfIGf9T5WqUdCUcUsgh
   email:
     recipients:
       - pascal.knodel@student.kit.edu
