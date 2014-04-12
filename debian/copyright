@@ -1,6 +1,6 @@
 Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: knot3
-Source: <http://www.knot3.de.gg>
+Source: <http://www.knot3.de>
 
 Files: *
 Copyright: 2014 Tobias Schulz <tobias.schulz186@gmail.com>

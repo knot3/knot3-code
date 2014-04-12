@@ -1,12 +1,24 @@
-#Knot3 [![Build Status](https://travis-ci.org/pse-knot/knot3-code.png?branch=master)](https://travis-ci.org/pse-knot/knot3-code) [![Stories in Ready](https://badge.waffle.io/pse-knot/knot3-code.png?label=ready)](https://waffle.io/pse-knot/knot3-code)
+#Knot3 [![Build Status](https://travis-ci.org/knot3/knot3-code.png?branch=master)](https://travis-ci.org/knot3/knot3-code)
 
-Bei Knot3 handelt es sich um ein innovatives Spiel bei dem man Knoten im dreidimensionalem Raum entweder frei modifizieren oder nach Vorgabe auf Zeit ineinander überführen kann.
+  Bei Knot&sup3; handelt es sich um ein innovatives Spiel, bei dem man Knoten im dreidimensionalem Raum entweder frei modifizieren
+oder nach Vorgabe auf Zeit ineinander überführen kann. 
+
+  Das Spiel ist ein Studentenprojekt des Karlsruher Instituts für Technologie (KIT),
+das im Rahmen des Kurses [Praxis der Softwareentwicklung](http://cg.ivd.kit.edu/lehre/ws2013/pse/index.php)
+im Wintersemester 2013/14 von sechs Studenten des KIT umgesetzt wurde.
+Die Idee zu diesem Spiel entstand am [Lehrstuhl für Computergrafik](http://cg.ivd.kit.edu/lehre/ws2013/pse/index.php)
+in Zusammenarbeit mit der
+[Hochschule für Gestaltung](http://postdigital.hfg-karlsruhe.de/users/greta-luise-hoffmann) in Karlsruhe.
+
+  Das Spiel basiert auf dem [XNA-Framework](http://msdn.microsoft.com/en-us/aa937791.aspx) von Microsoft bzw. auf der freien Implementierung
+[MonoGame-SDL2](https://github.com/flibitijibibo/MonoGame).
+Es ist für Windows, Linux und Mac OS X verfügbar und wird als nicht-kommerzielle Software unter einer [freien Lizenz](http://knot3.github.io/license.html) zur Verfügung gestellt.
 
 ##Installation
 
-This project uses git submodules, so you need to close it with the --recursive parameter to clone all the dependencies too (otherwise it won't build):
+This project uses git submodules, so you need to clone it with the --recursive parameter to clone all the dependencies too (otherwise it won't build):
 
-    git clone --recursive https://github.com/pse-knot/knot3-code.git
+    git clone --recursive https://github.com/knot3/knot3-code.git
 
 Run the following command to update all submodules:
 
@@ -73,12 +85,23 @@ Then, open the solution file "Knot3-MonoGame.sln" in Xamarin Studio to build the
 
 ##Authors
 
-* [Tobias Schulz](https://github.com/tobiasschulz)
-* [Gerd Augsburg](https://github.com/Balduro)
-* [Maximilian Reuter](https://github.com/Maximilian-Reuter)
-* [Pascal Knodel](https://github.com/pse)
-* [Christina Erler](https://github.com/Sakurachan4)
-* [Daniel Warzel](https://github.com/wudi0910)
+Knot3 is the work of students at [Karlsruhe Institute of Technology](http://www.informatik.kit.edu/)
+in collaborative work with [M. Retzlaff](https://cg.ivd.kit.edu/retzlaff/) (<retzlaff@kit.edu>),
+[G. Hoffmann](http://postdigital.hfg-karlsruhe.de/users/greta-luise-hoffmann)
+and [T. Schmidt](https://cg.ivd.kit.edu/schmidt/index.php) (<thorsten.schmidt@kit.edu>).
+In the winter term of 2013 the following students were involved in the development:
 
-Knot3 is the work of students at [Karlsruhe Institute of Technology](http://www.kit.edu)
-in collaborative work with M. Retzlaff, F. Kalka, G. Hoffmann, T. Schmidt.
+| Name              | Assignment                 | GitHub                                                      | Website                        |
+| ----------------- | -------------------------- | ----------------------------------------------------------- | ------------------------------ |
+| Gerd Augsburg     | Projektleitung             | [@Balduro](https://github.com/Balduro)                      | <http://balduro.de.gg>         |
+| Maximilian Reuter | Pflichtenheft              | [@Maximilian-Reuter](https://github.com/Maximilian-Reuter)  |                                |
+| Christina Erler   | Entwurfsdokument           | [@Sakurachan4](https://github.com/Sakurachan4)              |                                |
+| Tobias Schulz     | Implementierung            | [@tobiasschulz](https://github.com/tobiasschulz)            | <http://www.tobias-schulz.eu>  |
+| Pascal Knodel     | Qualitätssicherung         | [@pse](https://github.com/pse)                              |                                |
+| Daniel Warzel     | Abschlusspräsentation      | [@wudi0910](https://github.com/wudi0910)                    |                                |
+
+The game is free software; you can redistribute it and/or modify it under the terms of [these licenses](http://knot3.github.io/license.html).
+
+More information about the "Praxis der Softwareentwicklung" course is available at the [Lehrstuhl für Computergrafik](http://cg.ivd.kit.edu/lehre/ws2013/pse/index.php)
+of Professor [Dachsbacher](http://cg.ivd.kit.edu/dachsbacher/index.php) and the [Lehrstuhl Programmierparadigmen](http://pp.info.uni-karlsruhe.de/lehre/WS201314/pse/)
+of Professor [Snelting](http://pp.info.uni-karlsruhe.de/personhp/gregor_snelting.php).

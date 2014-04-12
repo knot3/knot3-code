@@ -51,9 +51,12 @@ namespace Knot3.Game
         {
             Log.Init (program: "knot3", version: Version);
             Log.Message ("Knot" + Char.ConvertFromUtf32 ('\u00B3').ToString () + " " + Version);
-            Log.Message ("Copyright (C) 2013-2014 Tobias Schulz, Maximilian Reuter,\n" +
-                         "Pascal Knodel, Gerd Augsburg, Christina Erler, Daniel Warzel,\n" +
-                         "M. Retzlaff, G. Hoffmann, T. Schmidt, Torsten Pelzer"
+            Log.Message ("Copyright (C) 2013-2014 Tobias Schulz, Maximilian Reuter, Pascal Knodel\n" +
+                         "Gerd Augsburg, Christina Erler, Daniel Warzel, Torsten Pelzer,\n" +
+                         "M. Retzlaff, G. Hoffmann, T. Schmidt"
+                        );
+            Log.Message ("This is free software; see the source for copying conditions. There is NO\n" +
+                         "warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE."
                         );
             Log.Message ();
 

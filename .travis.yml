@@ -2,15 +2,28 @@ notifications:
   slack: knot3:bsZjAIfIGf9T5WqUdCUcUsgh
   email:
     recipients:
-      - pascal.knodel@student.kit.edu
-      - tobias.schulz186@gmail.com
-      - daniel.warzel@student.kit.edu
-      - gerd.augsburg@student.kit.edu
-      - uahih@student.kit.edu
+    - pascal.knodel@student.kit.edu
+    - tobias.schulz186@gmail.com
+    - daniel.warzel@student.kit.edu
+    - gerd.augsburg@student.kit.edu
+    - uahih@student.kit.edu
     on_success: change
     on_failure: always
 language: c
 script:
-  - git submodule update --init --recursive
-  - make dep-ubuntu-precise
-  - make test
+- git config --global user.name "Knot3 Server"
+- git config --global user.email "uaeti@student.kit.edu"
+- git remote set-url origin https://github.com/${TRAVIS_REPO_SLUG}.git
+- git fetch --unshallow
+- git checkout -f ${TRAVIS_BRANCH}
+- git checkout -f HEAD
+- scripts/code-format.sh
+- scripts/package.sh
+- scripts/deploy.sh
+- git submodule update --init --recursive
+- make dep-ubuntu-precise
+- make test
+env:
+  global:
+  - secure: esM79oCjIsMgWC1+4mAZ+TeF7fy015nqt8FGbHXHuhSMS6fdbn0zi1SAlMkuatVumY4AavopKrdW5UAJBsDwCJbumnJ4b2rBx118tpIjFuaH72X50c+rCkl7jGT6h4dDkc1oZHkLEXVh16EAgAAVT6WxTEi/PBRg4mdhHm+nNek=
+  - secure: NLWrMQxISGqTQeZ8eFvUvT0SABwC25lYtx53+dhwoUrrnbbY0mG39l+2SM68VDQgTFi5ciaL66MxmKSOi6L+lHUEL5RGbrxOf/L5j8joqIw0DhuiLcSkSn4vhxPwELMifvgNWzqs5QjAoj3+FSOC6qWS0i1Q0YkZD0+q6RoPtT4=

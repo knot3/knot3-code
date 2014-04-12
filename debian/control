@@ -5,8 +5,8 @@ Maintainer: Tobias Schulz <tobias.schulz186@gmail.com>
 Build-Depends: debhelper (>= 8.0.0)
 Standards-Version: 3.9.4
 Homepage: http://www.knot3.de
-#Vcs-Git: git://git.debian.org/collab-maint/knot3.git
-#Vcs-Browser: http://git.debian.org/?p=collab-maint/knot3.git;a=summary
+#Vcs-Git: git://github.com/knot3/knot3-code.git
+#Vcs-Browser: https://github.com/knot3/knot3-code
 
 Package: knot3
 Architecture: any
