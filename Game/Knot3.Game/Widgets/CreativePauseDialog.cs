@@ -176,8 +176,7 @@ namespace Knot3.Game.Widgets
                     knot.Save (false);
                     onClose ();
                 }
-                catch (FileAlreadyExistsException)
-                {
+                catch (FileAlreadyExistsException) {
                     ConfirmDialog confirm = new ConfirmDialog (
                         screen: Screen,
                         drawOrder: DisplayLayer.Dialog,

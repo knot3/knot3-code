@@ -202,8 +202,7 @@ namespace Knot3.Framework.Core
 
                 disposeEffect = true;
                 RenderEffectLibrary.RenderEffectChanged += (newEffectName, time2) => {
-                    if (CurrentEffect != null)
-                    {
+                    if (CurrentEffect != null) {
                         CurrentEffect.Dispose ();
                     }
                     CurrentEffect = RenderEffectLibrary.CreateEffect (screen: Screen, name: newEffectName);

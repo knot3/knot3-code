@@ -284,8 +284,7 @@ namespace Knot3.Game.Screens
                 option: optionProjectorMode
             );
             itemProjectorMode.OnValueChanged += () => {
-                if (optionProjectorMode.Value)
-                {
+                if (optionProjectorMode.Value) {
                     new ProjectorDesign ().Apply ();
                     Config.Default ["video", "camera-overlay", false] = false;
                     Config.Default ["video", "profiler-overlay", false] = false;

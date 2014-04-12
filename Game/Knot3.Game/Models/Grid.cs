@@ -354,8 +354,7 @@ namespace Knot3.Game.Models
 
             Profiler.ProfileDelegate ["Grid.Remove"] = () => {
                 // Remove old pipes and junctions
-                foreach (NodeContent content in grid.Values)
-                {
+                foreach (NodeContent content in grid.Values) {
                     content.RemoveOldStuff (CurrentTick);
                 }
             };
@@ -440,8 +439,7 @@ namespace Knot3.Game.Models
             // Finde alle Flächenpositionen
             Profiler.ProfileDelegate ["Grid.SurfLocs"] = () => {
                 // für alle drei Achsen -> "axis"...
-                foreach (Axis axis in Axis.Values)
-                {
+                foreach (Axis axis in Axis.Values) {
                     Axis side1 = axis.Side1;
                     Axis side2 = axis.Side2;
                     Axis[] otherSides = new Axis[] { side1, side2 };
@@ -525,8 +523,7 @@ namespace Knot3.Game.Models
             };
 
             Profiler.ProfileDelegate ["Grid.Surfaces"] = () => {
-                foreach (SurfaceLocation location in surfaceLocations.Values)
-                {
+                foreach (SurfaceLocation location in surfaceLocations.Values) {
                     if (location.Sides.Count >= 2) {
                         Log.Debug ("location: ", location.Location);
 
@@ -547,8 +544,7 @@ namespace Knot3.Game.Models
             Profiler.ProfileDelegate ["Grid.RemoveSurf"] = () => {
                 // Remove old surfaces
                 Vector3[] locations = surfaceGrid.Keys.ToArray ();
-                foreach (Vector3 location in locations)
-                {
+                foreach (Vector3 location in locations) {
                     if (surfaceGrid [location].LastTick != CurrentTick) {
                         surfaceGrid.Remove (location);
                     }

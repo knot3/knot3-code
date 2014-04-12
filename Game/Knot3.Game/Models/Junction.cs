@@ -114,7 +114,7 @@ namespace Knot3.Game.Models
         }
 
         private static Dictionary<Tuple<Direction, Direction>, JunctionDirection> angledJunctionDirectionMap
-        = new Dictionary<Tuple<Direction, Direction>, JunctionDirection> ()
+            = new Dictionary<Tuple<Direction, Direction>, JunctionDirection> ()
         {
             { Tuple.Create (Direction.Up, Direction.Up),               JunctionDirection.UpUp },
             { Tuple.Create (Direction.Up, Direction.Left),             JunctionDirection.UpLeft },
@@ -153,7 +153,7 @@ namespace Knot3.Game.Models
             { Tuple.Create (Direction.Backward, Direction.Down),       JunctionDirection.UpForward },
         };
         private static HashSet<Tuple<Direction, Direction>> angledColorMirrorSet
-        = new HashSet<Tuple<Direction, Direction>> ()
+            = new HashSet<Tuple<Direction, Direction>> ()
         {
             { Tuple.Create (Direction.Up, Direction.Up) }, //doesn't work
 
@@ -179,7 +179,7 @@ namespace Knot3.Game.Models
             { Tuple.Create (Direction.Backward, Direction.Down) }, //doesn't work
         };
         private static Dictionary<JunctionDirection, Angles3> angledJunctionRotationMap
-        = new Dictionary<JunctionDirection, Angles3> ()
+            = new Dictionary<JunctionDirection, Angles3> ()
         {
             { JunctionDirection.UpForward,         Angles3.FromDegrees (0, 0, 0) },
             { JunctionDirection.UpBackward,        Angles3.FromDegrees (0, 180, 0) },
@@ -198,7 +198,7 @@ namespace Knot3.Game.Models
             { JunctionDirection.BackwardBackward,  Angles3.FromDegrees (0, 0, 0) },
         };
         private static Dictionary<Direction, Angles3> straightJunctionRotationMap
-        = new Dictionary<Direction, Angles3> ()
+            = new Dictionary<Direction, Angles3> ()
         {
             { Direction.Up,         Angles3.FromDegrees (90, 0, 0) },
             { Direction.Down,       Angles3.FromDegrees (270, 0, 0) },
@@ -208,7 +208,7 @@ namespace Knot3.Game.Models
             { Direction.Backward,   Angles3.FromDegrees (0, 0, 180) },
         };
         private static Dictionary<Tuple<Direction, Direction>, Tuple<float, float>> curvedJunctionBumpRotationMap
-        = new Dictionary<Tuple<Direction, Direction>, Tuple<float, float>> ()
+            = new Dictionary<Tuple<Direction, Direction>, Tuple<float, float>> ()
         {
             { Tuple.Create (Direction.Up, Direction.Left),            Tuple.Create (90f, 0f) }, // works
             { Tuple.Create (Direction.Up, Direction.Right),           Tuple.Create (-90f, 0f) }, // works

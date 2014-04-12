@@ -56,8 +56,7 @@ namespace Knot3.Framework.Platform
                 // iterate over files in the zip file
                 foreach (ZipEntry entry in zip) {
                     CatchExtractExceptions (() => {
-                        if (entry.FileName.ToLower ().Contains ("dll"))
-                        {
+                        if (entry.FileName.ToLower ().Contains ("dll")) {
                             // extract the file to the current directory
                             entry.Extract (".", ExtractExistingFileAction.OverwriteSilently);
                             // downloading was obviously sucessful
@@ -122,8 +121,7 @@ namespace Knot3.Framework.Platform
             bool success = DownloadPackage (dll: dllFilename, downloadUrl: DOWNLOAD_URL_OPENAL_SOFT, zipFilename: "openal-soft.zip");
             if (success) {
                 Action<string> findDll = (filename) => {
-                    if (filename.ToLower ().Contains ("win32") && filename.ToLower ().Contains (dllFilename))
-                    {
+                    if (filename.ToLower ().Contains ("win32") && filename.ToLower ().Contains (dllFilename)) {
                         Log.Message ("Found OpenAL Soft DLL in zip file: ", filename);
                         File.Copy (filename, dllFilename, true);
                     }

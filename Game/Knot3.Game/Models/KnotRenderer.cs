@@ -349,27 +349,23 @@ namespace Knot3.Game.Models
                 Profiler.Values ["# InFrustum"] = 0;
                 Profiler.Values ["RenderEffect"] = 0;
                 Profiler.ProfileDelegate ["Pipes"] = () => {
-                    foreach (Pipe pipe in grid.Pipes)
-                    {
+                    foreach (Pipe pipe in grid.Pipes) {
                         pipe.Draw (time);
                     }
                 };
                 Profiler.ProfileDelegate ["Nodes"] = () => {
-                    foreach (Junction junction in grid.Junctions)
-                    {
+                    foreach (Junction junction in grid.Junctions) {
                         //Log.Debug ("junction=", junction, ", LastTick=", junction.LastTick, ", modelname=",junction.Scale);
                         junction.Draw (time);
                     }
                 };
                 Profiler.ProfileDelegate ["Arrows"] = () => {
-                    foreach (Arrow arrow in arrows)
-                    {
+                    foreach (Arrow arrow in arrows) {
                         arrow.Draw (time);
                     }
                 };
                 Profiler.ProfileDelegate ["Surfaces"] = () => {
-                    foreach (Surface surface in grid.Surfaces)
-                    {
+                    foreach (Surface surface in grid.Surfaces) {
                         surface.Draw (time);
                     }
                 };

@@ -91,16 +91,14 @@ namespace Knot3.Game.Screens
                 );
                 slider.OnValueChanged = (time) => {
                     float volume = (float)slider.Value / 100f;
-                    foreach (Sound sound in sounds)
-                    {
+                    foreach (Sound sound in sounds) {
                         AudioManager.SetVolume (soundType: sound, volume: volume);
                     }
                 };
                 settingsMenu.Add (slider);
                 UpdateSliders += () => {
                     float volume = 0f;
-                    foreach (Sound sound in sounds)
-                    {
+                    foreach (Sound sound in sounds) {
                         volume += AudioManager.Volume (soundType: sound) * 100f;
                     }
                     volume /= sounds.Count;

@@ -179,8 +179,7 @@ namespace Knot3.Game.Screens
 
             // Erstelle eine Lamdafunktion, die beim Auswählen des Menüeintrags ausgeführt wird
             Action<GameTime> preview = (time) => {
-                if (previewKnotMetaData != meta)
-                {
+                if (previewKnotMetaData != meta) {
                     RemoveGameComponents (time, knotInfo);
                     knotInfo.Clear ();
 

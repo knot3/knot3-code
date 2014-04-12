@@ -280,7 +280,7 @@ namespace Knot3.Framework.Effects
         }
 
         private Dictionary<Point,Dictionary<Rectangle,Dictionary<float, RenderTarget2D>>> renderTargets
-        = new Dictionary<Point,Dictionary<Rectangle,Dictionary<float, RenderTarget2D>>> ();
+            = new Dictionary<Point,Dictionary<Rectangle,Dictionary<float, RenderTarget2D>>> ();
 
         public RenderTarget2D CurrentRenderTarget
         {

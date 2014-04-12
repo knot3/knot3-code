@@ -183,8 +183,7 @@ namespace Knot3.Game.Screens
         {
             // Erstelle eine Lamdafunktion, die beim Auswählen des Menüeintrags ausgeführt wird
             Action<GameTime> LoadFile = (time) => {
-                if (previewChallenge == null || previewChallenge.MetaData != meta)
-                {
+                if (previewChallenge == null || previewChallenge.MetaData != meta) {
                     RemoveGameComponents (time, challengeInfo);
                     challengeInfo.Clear ();
 
@@ -206,7 +205,7 @@ namespace Knot3.Game.Screens
                         screen: this,
                         drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
                         name: ("Avg Time: ").Localize () + (meta.FormatedAvgTime).Localize (),
-                        onClick: (t) => {}
+                    onClick: (t) => {}
                     );
                     avgtimeEntry.IsLocalized = false;
                     avgtimeEntry.Enabled = false;

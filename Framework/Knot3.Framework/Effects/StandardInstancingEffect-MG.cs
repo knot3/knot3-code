@@ -170,8 +170,7 @@ namespace Knot3.Framework.Effects
 
                 InstancedBuffer buffer = null;
                 Profiler.ProfileDelegate ["Instancing.1"] = () => {
-                    if (!cachePrimitivesBuffers.ContainsKey (key))
-                    {
+                    if (!cachePrimitivesBuffers.ContainsKey (key)) {
                         buffer = cachePrimitivesBuffers [key] = new InstancedBuffer ();
                         buffer.InstanceBuffer = new VertexBuffer (Screen.GraphicsDevice, instanceVertexDeclaration, instancedPrimitive.InstanceCapacity, BufferUsage.WriteOnly);
                         buffer.InstanceCount = 0;
@@ -183,8 +182,7 @@ namespace Knot3.Framework.Effects
                 };
 
                 Profiler.ProfileDelegate ["Instancing.2"] = () => {
-                    if (buffer.InstanceCapacity < instancedPrimitive.InstanceCapacity)
-                    {
+                    if (buffer.InstanceCapacity < instancedPrimitive.InstanceCapacity) {
                         Profiler.ProfileDelegate ["NewVertexBuffer"] = () => {
                             buffer.InstanceBuffer.Dispose ();
                             buffer.InstanceBuffer = new VertexBuffer (Screen.GraphicsDevice, instanceVertexDeclaration, instancedPrimitive.InstanceCapacity, BufferUsage.WriteOnly);
@@ -194,8 +192,7 @@ namespace Knot3.Framework.Effects
                 };
 
                 Profiler.ProfileDelegate ["Instancing.3"] = () => {
-                    if (buffer.InstanceCount != instancedPrimitive.InstanceCount || buffer.InstanceUniqueHash != instancedPrimitive.InstanceUniqueHash)
-                    {
+                    if (buffer.InstanceCount != instancedPrimitive.InstanceCount || buffer.InstanceUniqueHash != instancedPrimitive.InstanceUniqueHash) {
                         buffer.InstanceBuffer.SetData (instancedPrimitive.Instances);
                         buffer.InstanceCount = instancedPrimitive.InstanceCount;
                         buffer.InstanceUniqueHash = instancedPrimitive.InstanceUniqueHash;

@@ -82,7 +82,7 @@ namespace Knot3.Game.Data
             Left, Right, Up, Down, Forward, Backward
         };
         private static readonly Dictionary<Direction, Direction> ReverseMap
-        = new Dictionary<Direction, Direction> ()
+            = new Dictionary<Direction, Direction> ()
         {
             { Left, Right }, { Right, Left },
             { Up, Down }, { Down, Up },
@@ -90,7 +90,7 @@ namespace Knot3.Game.Data
             { Zero, Zero }
         };
         private static readonly Dictionary<Direction, Axis> AxisMap
-        = new Dictionary<Direction, Axis> ()
+            = new Dictionary<Direction, Axis> ()
         {
             { Left, Axis.X }, { Right, Axis.X },
             { Up, Axis.Y }, { Down, Axis.Y },
