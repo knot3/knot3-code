@@ -447,7 +447,8 @@ namespace Knot3.Game.Models
                     // wähle eine Position auf der "Startebene"
                     for (Node tmp0 = Node.Zero; tmp0 [side1] < sizeNode [side1]; tmp0 += side1) {
                         for (Node tmp1 = tmp0; tmp1 [side2] < sizeNode [side2]; tmp1 += side2) {
-                            Log.Debug ("plane=", (minNode, tmp1), ", towards=", axis, ", side1=", side1);
+                            Node __plane = minNode + tmp1;
+                            Log.Debug ("plane=", __plane, ", towards=", axis, ", side1=", side1);
 
                             // für alle anderen Achsen -> "otherSide"
                             foreach (Axis otherSide in otherSides) {
