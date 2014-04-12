@@ -175,44 +175,75 @@ namespace Knot3.Game.Development
             DrawString ("Distance: ", width1, height, Color.White);
             DrawString (World.Camera.PositionToTargetDistance, width2, height, Color.White);
             height += lineHeight;
-            DrawString ("Selected Object: ", width1, height, Color.White);
-            if (World.SelectedObject != null) {
-                Vector3 selectedObjectCenter = World.SelectedObject.Center;
-                DrawVectorCoordinates (selectedObjectCenter, width2, width3, width4, height);
-
-                if (World.SelectedObject is Pipe) {
-                    height += lineHeight;
-                    DrawString ("Pipe: ", width1, height, Color.White);
-                    Pipe pipe = World.SelectedObject as Pipe;
-                    height += lineHeight;
-                    string str = pipe.Edge.Direction;
-                    if (pipe.Knot != null) {
-                        str += "   #" + pipe.Knot.ToList ().FindIndex (g => g == pipe.Edge).ToString ();
-                    }
-
-                    DrawString (str, width2, height, Color.Yellow);
-                    height += lineHeight;
-                    DrawString ("edgecolor: "+(pipe.Coloring as SingleColor).BaseColor, width1, height, Color.White);
-                    height += lineHeight;
-                    DrawString ("junction: ", width1, height, Color.White);
-                    Junction test = pipe.Grid.JunctionAfterEdge (pipe.Edge);
-                    if (test!=null) {
-                        height += lineHeight;
-                        GradientColor color = test.Coloring as GradientColor;
-                        DrawString ("1: "+color.Color1+"2: "+color.Color2, width1, height, Color.White);
-                    }
-                }
-
-                else {
-                    height += lineHeight;
-                }
-            }
-            height += lineHeight;
-            DrawString ("Distance: ", width1, height, Color.White);
-            DrawString (World.SelectedObjectDistance, width2, height, Color.White);
-            height += lineHeight;
             DrawString ("FoV: ", width1, height, Color.White);
             DrawString (World.Camera.FoV, width2, height, Color.White);
+            height += lineHeight;
+
+            if (World.SelectedObject != null) {
+                height += lineHeight;
+                DrawString ("Selected Object: ", width1, height, Color.White);
+                DrawString (World.SelectedObject.GetType ().Name, width2, height, Color.White);
+                height += lineHeight;
+                DrawString ("Distance: ", width1, height, Color.White);
+                DrawString (World.SelectedObjectDistance, width2, height, Color.White);
+                height += lineHeight;
+                DrawString ("Position: ", width1, height, Color.White);
+                DrawVectorCoordinates (World.SelectedObject.Center, width2, width3, width4, height);
+                height += lineHeight;
+
+                if (World.SelectedObject is Pipe) {
+                    Pipe pipe = World.SelectedObject as Pipe;
+
+                    DrawString ("Edge Direction: ", width1, height, Color.White);
+                    DrawString ("" + pipe.Edge, width2, height, Color.White);
+                    height += lineHeight;
+                    DrawString ("Edge Index: ", width1, height, Color.White);
+                    string str = pipe.Knot != null ? "#" + pipe.Knot.ToList ().FindIndex (g => g == pipe.Edge).ToString () : "";
+                    DrawString (str, width2, height, Color.White);
+                    height += lineHeight;
+                    DrawString ("Edge Color: ", width1, height, Color.White);
+                    DrawString ((pipe.Coloring as SingleColor).BaseColor, width2, height, Color.White);
+                    height += lineHeight;
+
+                    Junction junctionBefore = pipe.Grid.JunctionBeforeEdge (pipe.Edge);
+                    if (junctionBefore != null && junctionBefore.IsVisible) {
+                        DrawString ("Color of Junction after Edge: ", width1, height, Color.White);
+                        height += lineHeight;
+                        GradientColor color = junctionBefore.Coloring as GradientColor;
+                        DrawString ("    Color 1", width1, height, Color.White);
+                        DrawString (color.Color1, width2, height, Color.White);
+                        height += lineHeight;
+                        DrawString ("    Color 2", width1, height, Color.White);
+                        DrawString (color.Color2, width2, height, Color.White);
+                        height += lineHeight;
+                    }
+                    Junction junctionAfter = pipe.Grid.JunctionAfterEdge (pipe.Edge);
+                    if (junctionAfter != null && junctionAfter.IsVisible) {
+                        DrawString ("Color of Junction after Edge: ", width1, height, Color.White);
+                        height += lineHeight;
+                        GradientColor color = junctionAfter.Coloring as GradientColor;
+                        DrawString ("    Color 1", width1, height, Color.White);
+                        DrawString (color.Color1, width2, height, Color.White);
+                        height += lineHeight;
+                        DrawString ("    Color 2", width1, height, Color.White);
+                        DrawString (color.Color2, width2, height, Color.White);
+                        height += lineHeight;
+                    }
+                }
+                else if (World.SelectedObject is Surface) {
+                    Surface surface = World.SelectedObject as Surface;
+                    SurfaceLocation location = surface.Location;
+
+                    DrawString ("Sides of Surface: ", width1, height, Color.White);
+                    height += lineHeight;
+                    int k = 0;
+                    foreach (SurfaceSide side in location.Sides) {
+                        DrawString ("    Side " + (k++), width1, height, Color.White);
+                        DrawString ("" + side.Edge, width2, height, Color.White);
+                        height += lineHeight;
+                    }
+                }
+            }
             height += lineHeight;
 
             spriteBatch.End ();
@@ -245,6 +276,11 @@ namespace Knot3.Game.Development
             DrawString (String.Empty + n.ToString (), width, height, color);
         }
 
+        private void DrawString (Color c, int width, int height, Color color)
+        {
+            DrawString ("####", width, height, c);
+            DrawString (String.Empty + c.ToString (), width + 50, height, color);
+        }
         /*int _total_frames = 0;
         float _elapsed_time = 0.0f;
         float _fps_interval_seconds = 0.100f;
@@ -303,7 +339,7 @@ namespace Knot3.Game.Development
             spriteBatch.Begin ();
             int height = (int)(90 * scale);
             foreach (string name in Profiler.ProfilerMap.Keys.Cast<string>().OrderBy (key => key)) {
-                DrawString (name + ": " + Profiler.ProfilerMap [name], (int)(Screen.Viewport.Width / Config.Default ["video", "Supersamples", 2]) - (int)(170 * scale), height, Color.White);
+                DrawString (name + ": " + Profiler.ProfilerMap [name], (int)(Screen.Viewport.Width / Config.Default ["video", "Supersamples", 2]) - (int)(200 * scale), height, Color.White);
                 height += lineHeight;
             }
             spriteBatch.End ();

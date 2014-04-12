@@ -82,12 +82,12 @@ namespace Knot3.Game.Models
             Rotation += RotationMap [direction];
 
             // Berechne die Bounding-Spheres
-            Bounds = VectorHelper.CylinderBounds (
-                         length: Length,
-                         radius: Diameter / 2,
-                         direction: Direction.Vector,
-                         position: Position - Direction.Vector * Length / 2
-                     );
+            BoundingSpheres = VectorHelper.CylinderBounds (
+                                  length: Length,
+                                  radius: Diameter / 2,
+                                  direction: Direction.Vector,
+                                  position: Position - Direction.Vector * Length / 2
+                              );
 
             Coloring.OnColorChanged += UpdateCategory;
         }

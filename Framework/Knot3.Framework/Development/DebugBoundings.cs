@@ -97,7 +97,7 @@ namespace Knot3.Framework.Development
                 if (model.IsVisible) {
                     screen.GraphicsDevice.SetVertexBuffer (vertBuffer);
 
-                    foreach (BoundingSphere sphere in model.Bounds) {
+                    foreach (BoundingSphere sphere in model.BoundingSpheres) {
                         effect.World = Matrix.CreateScale (sphere.Radius) * Matrix.CreateTranslation (sphere.Center);
                         effect.View = World.Camera.ViewMatrix;
                         effect.Projection = World.Camera.ProjectionMatrix;

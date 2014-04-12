@@ -184,9 +184,9 @@ namespace Knot3.Game.Screens
             // assign the specified player knot
             PlayerKnot = challenge.Start.Clone () as Knot;
             // assign the specified target knot
-            ChallengeKnotRenderer.RenderKnot (challenge.Target);
+            ChallengeKnotRenderer.RenderKnot (newKnot: challenge.Target, isFinalDestination: true);
             // assign the specified start knot
-            PlayerKnotRenderer.RenderKnot (PlayerKnot);
+            PlayerKnotRenderer.RenderKnot (newKnot: PlayerKnot, isFinalDestination: true);
 
             SkyCube playerSkyCube = new SkyCube (screen: this, position: Vector3.Zero, distance: 10000);
             PlayerWorld.Add (playerSkyCube);
@@ -297,7 +297,7 @@ namespace Knot3.Game.Screens
         private void registerCurrentKnot ()
         {
             // den Knoten dem KnotRenderer zuweisen
-            PlayerKnotRenderer.RenderKnot (_playerKnot);
+            PlayerKnotRenderer.RenderKnot (newKnot: _playerKnot, isFinalDestination: true);
             // den Knoten dem Kantenverschieber zuweisen
             PlayerEdgeMovement.Knot = _playerKnot;
         }

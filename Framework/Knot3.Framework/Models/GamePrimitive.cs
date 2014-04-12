@@ -75,7 +75,8 @@ namespace Knot3.Framework.Models
         static GamePrimitive ()
         {
             Primitive.OnModelQualityChanged += (time) => {
-                foreach (Primitive primitive in _primitiveCache.Values) {
+                foreach (Primitive primitive in _primitiveCache.Values)
+                {
                     primitive.Dispose ();
                 }
                 _primitiveCache.Clear ();

@@ -140,7 +140,8 @@ namespace Knot3.Game.Models
         private void UpdateStars (GameTime time)
         {
             Profiler.ProfileDelegate ["Sky Upd"] = () => {
-                foreach (Star star in Stars) {
+                foreach (Star star in Stars)
+                {
                     star.Update (time);
                 }
             };
@@ -151,7 +152,8 @@ namespace Knot3.Game.Models
         {
             if (!Config.Default ["debug", "projector-mode", false]) {
                 Profiler.ProfileDelegate ["Sky Draw"] = () => {
-                    foreach (Star star in Stars) {
+                    foreach (Star star in Stars)
+                    {
                         star.World = World;
                         star.IsLightingEnabled = false;
                         star.Draw (time);

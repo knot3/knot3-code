@@ -36,6 +36,7 @@ using Microsoft.Xna.Framework.Input;
 
 using Knot3.Framework.Core;
 using Knot3.Framework.Input;
+using Knot3.Framework.Platform;
 using Knot3.Framework.Widgets;
 
 namespace Knot3.Game.Widgets
@@ -68,8 +69,7 @@ namespace Knot3.Game.Widgets
             colorPicker = new ColorPicker (Screen, Index + DisplayLayer.MenuItem, selectedColor);
             colorPicker.Bounds.Position = ContentBounds.Position;
             colorPicker.ColorSelected += OnColorSelected;
-            //TODO
-            //RelativeContentSize = colorPicker.RelativeSize ();
+            Bounds.Size = TitleBounds.Size.Const.OnlyY + colorPicker.Bounds.Size + Bounds.Padding * 2;
 
             // Diese Tasten werden akzeptiert
             ValidKeys.AddRange (new Keys[] { Keys.Escape });

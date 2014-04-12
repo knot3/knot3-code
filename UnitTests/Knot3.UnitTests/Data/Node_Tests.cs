@@ -92,13 +92,6 @@ namespace Knot3.UnitTests.Data
         }
 
         [Test]
-        public void Node_Clone_Tests ()
-        {
-            Object clonedNode = node1.Clone ();
-            Assert.IsTrue (clonedNode.Equals (node1));
-        }
-
-        [Test]
         public void Node_ToString_Tests ()
         {
             Assert.AreEqual (node1.ToString (), "(1,1,1)");

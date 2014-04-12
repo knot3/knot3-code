@@ -56,6 +56,10 @@ namespace Knot3.Game.Data
         /// </summary>
         public HashSet<int> Rectangles { get; private set; }
 
+        public Node StartNode { get; set; }
+
+        public Node EndNode { get; set; }
+
         private int id;
         private static int previousId = 0;
 
@@ -79,6 +83,14 @@ namespace Knot3.Game.Data
             Color = color;
             id = ++previousId;
             Rectangles = new HashSet<int>();
+        }
+
+        private Edge (Edge edge)
+        {
+            Direction = edge.Direction;
+            Color = edge.Color;
+            id = edge.id;
+            Rectangles = edge.Rectangles;
         }
 
         public static bool operator == (Edge a, Edge b)
@@ -173,7 +185,7 @@ namespace Knot3.Game.Data
 
         public object Clone ()
         {
-            return new Edge (Direction, Color);
+            return new Edge (edge: this);
         }
 
         public static List<Color> Colors = new List<Color> ()

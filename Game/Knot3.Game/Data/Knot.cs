@@ -85,27 +85,22 @@ namespace Knot3.Game.Data
         /// Enthält die selektierten Kanten.
         /// </summary>
         private HashSet<Edge> selectedEdges;
-
         /// <summary>
         /// WTF?!
         /// </summary>
         public int debugId;
-
         /// <summary>
         /// Wird aufgerufen, wenn sich die Selektion geändert hat.
         /// </summary>
         public Action SelectionChanged = () => {};
-
         /// <summary>
         /// Enthält die zuletzt selektierte Kante.
         /// </summary>
         private CircleEntry<Edge> lastSelected;
-
         /// <summary>
         /// Wird aufgerufen, wenn sich die Startkante geändert hat.
         /// </summary>
         public Action<Vector3> StartEdgeChanged = (v) => {};
-
         /// <summary>
         /// Der Cache für die Knotencharakteristik.
         /// </summary>
@@ -155,7 +150,8 @@ namespace Knot3.Game.Data
                 format: metaData.Format,
                 filename: metaData.Filename
             );
-            this.startElement = new CircleEntry<Edge> (edges);
+            startElement = new CircleEntry<Edge> (edges);
+            SetNodes (startElement);
             selectedEdges = new HashSet<Edge> ();
             OffSet = Vector3.Zero;
         }
@@ -163,6 +159,7 @@ namespace Knot3.Game.Data
         private Knot (KnotMetaData metaData, CircleEntry<Edge> start, HashSet<Edge> selected, Vector3 offset)
         {
             startElement = start;
+            SetNodes (startElement);
             MetaData = new KnotMetaData (
                 name: metaData.Name,
                 countEdges: () => this.startElement.Count,
@@ -272,6 +269,9 @@ namespace Knot3.Game.Data
             }
             while (current != newCircle);
 
+            // Weise den Edges die Start- und End-Nodes zu
+            SetNodes (newCircle);
+
             if (Verbose) {
                 Log.Debug ("New Knot after Remove #", newCircle.Count, " = ", string.Join (", ", from c in newCircle select c.Direction));
             }
@@ -285,10 +285,33 @@ namespace Knot3.Game.Data
             return true;
         }
 
+        public void UpdateNodes ()
+        {
+            SetNodes (startElement);
+        }
+
+        private void SetNodes (CircleEntry<Edge> circle)
+        {
+            float x = 0f, y = 0f, z = 0f;
+            foreach (Edge edge in circle) {
+                setNodes (edge, ref x, ref y, ref z);
+            }
+        }
+
+        private void setNodes (Edge edge, ref float x, ref float y, ref float z)
+        {
+            edge.StartNode = new Node ((int)x, (int)y, (int)z);
+            Vector3 v = edge.Direction.Vector;
+            x += v.X;
+            y += v.Y;
+            z += v.Z;
+            edge.EndNode = new Node ((int)x, (int)y, (int)z);
+        }
+
         public Vector3 MoveCenterToZero ()
         {
             Vector3 position3D = Vector3.Zero;
-            Dictionary<Vector3, Edge> occupancy = new Dictionary<Vector3, Edge>();
+            Dictionary<Vector3, Edge> occupancy = new Dictionary<Vector3, Edge> ();
             foreach (Edge edge in startElement) {
                 occupancy.Add (position3D + (edge.Direction / 2), edge);
                 position3D += edge;
@@ -403,7 +426,7 @@ namespace Knot3.Game.Data
                 throw new NoFilenameException ("Error: Knot: MetaData.Filename is null!");
             }
             else {
-                MetaData.Format.Save (this,force);
+                MetaData.Format.Save (this, force);
             }
         }
 
@@ -528,7 +551,7 @@ namespace Knot3.Game.Data
         {
             KnotMetaData metaData = new KnotMetaData (MetaData.Name, () => MetaData.CountEdges, format, filename);
             Knot knotToSave = new Knot (metaData, startElement);
-            format.Save (knotToSave,false);
+            format.Save (knotToSave, false);
         }
 
         /// <summary>

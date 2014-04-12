@@ -31,6 +31,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 
 using Microsoft.Xna.Framework;
 
@@ -74,24 +75,22 @@ namespace Knot3.Game.Data
         /// Keine Richtung.
         /// </summary>
         public static readonly Direction Zero = new Direction (Vector3.Zero, "Zero");
-
         /// <summary>
         /// Gibt alle Richtungswerte zurück.
         /// </summary>
         public new static readonly Direction[] Values = {
-            Left, Right, Up, Down, Forward,	Backward
+            Left, Right, Up, Down, Forward, Backward
         };
         private static readonly Dictionary<Direction, Direction> ReverseMap
-            = new Dictionary<Direction, Direction> ()
+        = new Dictionary<Direction, Direction> ()
         {
             { Left, Right }, { Right, Left },
             { Up, Down }, { Down, Up },
             { Forward, Backward }, { Backward, Forward },
             { Zero, Zero }
         };
-
         private static readonly Dictionary<Direction, Axis> AxisMap
-            = new Dictionary<Direction, Axis> ()
+        = new Dictionary<Direction, Axis> ()
         {
             { Left, Axis.X }, { Right, Axis.X },
             { Up, Axis.Y }, { Down, Axis.Y },

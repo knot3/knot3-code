@@ -130,7 +130,7 @@ namespace Knot3.UnitTests.Data
         {
             Edge orig = Edge.Left;
             Edge cloned = orig.Clone () as Edge;
-            Assert.AreNotEqual (orig, cloned);
+            Assert.AreEqual (orig, cloned);
             Assert.AreEqual (orig.Direction, cloned.Direction);
             Assert.AreEqual ((Direction)orig, (Direction)cloned);
         }

@@ -63,10 +63,6 @@ namespace Knot3.Game.Models
         /// die nach einer Auswahl von Kanten durch den Spieler angezeigt werden.
         /// </summary>
         private List<Arrow> arrows;
-        /// <summary>
-        /// Die Liste der Flächen zwischen den Kanten.
-        /// </summary>
-        private HashSet<RectangleModel> rectangles;
         private List<GameModel> debugModels;
 
         /// <summary>
@@ -108,50 +104,23 @@ namespace Knot3.Game.Models
             Screen = screen;
             Position = position;
             arrows = new List<Arrow> ();
-            rectangles = new HashSet<RectangleModel> ();
             debugModels = new List<GameModel> ();
             grid = new Grid (screen: Screen);
         }
 
         /// <summary>
-        /// Ruft die Intersects (Ray)-Methode der Kanten, Übergänge und Pfeile auf und liefert das beste Ergebnis zurück.
-        /// </summary>
-        public override GameObjectDistance Intersects (Ray ray)
-        {
-            GameObjectDistance nearest = null;
-            if (!Screen.InputManager.GrabMouseMovement) {
-                foreach (Pipe pipe in grid.Pipes) {
-                    GameObjectDistance intersection = pipe.Intersects (ray);
-                    if (intersection != null) {
-                        if (intersection.Distance > 0 && (nearest == null || intersection.Distance < nearest.Distance)) {
-                            nearest = intersection;
-                        }
-                    }
-                }
-                foreach (Arrow arrow in arrows) {
-                    GameObjectDistance intersection = arrow.Intersects (ray);
-                    if (intersection != null) {
-                        if (intersection.Distance > 0 && (nearest == null || intersection.Distance < nearest.Distance)) {
-                            nearest = intersection;
-                        }
-                    }
-                }
-            }
-            return nearest;
-        }
-
-        /// <summary>
         /// Wird mit dem EdgesChanged-Event des Knotens verknüft.
         /// </summary>
-        public void RenderKnot (Knot newKnot)
+        public void RenderKnot (Knot newKnot, bool isFinalDestination)
         {
             if (knot != newKnot) {
                 knot = newKnot;
+                knot.UpdateNodes ();
 
                 grid.Knot = knot;
                 grid.World = World;
                 grid.Offset = Position + knot.OffSet;
-                Profiler.ProfileDelegate ["Grid"] = () => grid.Update ();
+                Profiler.ProfileDelegate ["Grid"] = () => grid.Update (withSurfaces: isFinalDestination);
 
                 if (Config.Default ["debug", "show-startedge-direction", false]) {
                     CreateStartArrow ();
@@ -159,7 +128,6 @@ namespace Knot3.Game.Models
                 if (showArrows) {
                     CreateArrows ();
                 }
-                CreateRectangles ();
 
                 World.Redraw = true;
             }
@@ -204,8 +172,8 @@ namespace Knot3.Game.Models
         private void CreateArrow (Edge edge)
         {
             try {
-                Node node1 = grid.NodeBeforeEdge (edge);
-                Node node2 = grid.NodeAfterEdge (edge);
+                Node node1 = edge.StartNode;
+                Node node2 = edge.EndNode;
                 foreach (Direction direction in Direction.Values) {
                     if (knot.IsValidDirection (direction)) {
                         Vector3 towardsCamera = World.Camera.PositionToTargetDirection;
@@ -225,11 +193,12 @@ namespace Knot3.Game.Models
             }
         }
 
-        private void CreateRectangles ()
+        /*
+        private void CreateOldRectangles ()
         {
             rectangles.Clear ();
 
-            RectangleMap rectMap = new RectangleMap (grid);
+            OldRectangleMap rectMap = new OldRectangleMap (grid);
             foreach (Edge edge in knot) {
                 rectMap.AddEdge (edge: edge, isVirtual: false);
             }
@@ -240,13 +209,13 @@ namespace Knot3.Game.Models
                 ValidRectanglePosition[] validPositions = rectMap.ValidPositions ().ToArray ();
                 foreach (ValidRectanglePosition validPosition in validPositions) {
                     //Log.Debug ("validPosition=", validPosition);
-                    newRectangles += CreateRectangle (validPosition, ref rectMap) ? 1 : 0;
+                    newRectangles += CreateOldRectangle (validPosition, ref rectMap) ? 1 : 0;
                 }
             }
             while (newRectangles > 0);
         }
 
-        private bool CreateRectangle (ValidRectanglePosition rect, ref RectangleMap rectMap)
+        private bool CreateOldRectangle (ValidRectanglePosition rect, ref OldRectangleMap rectMap)
         {
             Edge edgeAB = rect.EdgeAB;
             Edge edgeCD = rect.EdgeCD;
@@ -273,7 +242,7 @@ namespace Knot3.Game.Models
                     height: Node.Scale,
                     normalToCenter: false
                 );
-                RectangleModel rectangle = new RectangleModel (
+                OldRectangleModel rectangle = new OldRectangleModel (
                     screen: Screen,
                     texture: texture,
                     parallelogram: parallelogram,
@@ -341,6 +310,7 @@ namespace Knot3.Game.Models
             texture.SetData (colors);
             return texture;
         }
+        */
 
         /// <summary>
         /// Ruft die Update ()-Methoden der Kanten, Übergänge und Pfeile auf.
@@ -357,8 +327,8 @@ namespace Knot3.Game.Models
             foreach (Arrow arrow in arrows) {
                 arrow.Update (time);
             }
-            foreach (RectangleModel rectangle in rectangles) {
-                rectangle.Update (time);
+            foreach (Surface surface in grid.Surfaces) {
+                surface.Update (time);
             }
 
             if (time.TotalGameTime.Seconds % 10 == 0) {
@@ -379,24 +349,28 @@ namespace Knot3.Game.Models
                 Profiler.Values ["# InFrustum"] = 0;
                 Profiler.Values ["RenderEffect"] = 0;
                 Profiler.ProfileDelegate ["Pipes"] = () => {
-                    foreach (Pipe pipe in grid.Pipes) {
+                    foreach (Pipe pipe in grid.Pipes)
+                    {
                         pipe.Draw (time);
                     }
                 };
                 Profiler.ProfileDelegate ["Nodes"] = () => {
-                    foreach (Junction junction in grid.Junctions) {
+                    foreach (Junction junction in grid.Junctions)
+                    {
                         //Log.Debug ("junction=", junction, ", LastTick=", junction.LastTick, ", modelname=",junction.Scale);
                         junction.Draw (time);
                     }
                 };
                 Profiler.ProfileDelegate ["Arrows"] = () => {
-                    foreach (Arrow arrow in arrows) {
+                    foreach (Arrow arrow in arrows)
+                    {
                         arrow.Draw (time);
                     }
                 };
-                Profiler.ProfileDelegate ["Rectangles"] = () => {
-                    foreach (RectangleModel rectangle in rectangles) {
-                        rectangle.Draw (time);
+                Profiler.ProfileDelegate ["Surfaces"] = () => {
+                    foreach (Surface surface in grid.Surfaces)
+                    {
+                        surface.Draw (time);
                     }
                 };
                 foreach (GameModel model in debugModels) {
@@ -404,6 +378,7 @@ namespace Knot3.Game.Models
                 }
                 Profiler.Values ["# Pipes"] = grid.Pipes.Count ();
                 Profiler.Values ["# Nodes"] = grid.Nodes.Count ();
+                Profiler.Values ["# Surfaces"] = grid.Surfaces.Count ();
             }
         }
 
@@ -422,14 +397,50 @@ namespace Knot3.Game.Models
             foreach (Arrow arrow in arrows) {
                 yield return arrow;
             }
-            foreach (RectangleModel rectangle in rectangles) {
-                yield return rectangle;
+            foreach (Surface surface in grid.Surfaces) {
+                yield return surface;
             }
         }
+
         // Explicit interface implementation for nongeneric interface
         IEnumerator IEnumerable.GetEnumerator ()
         {
             return GetEnumerator (); // Just return the generic version
+        }
+
+        /// <summary>
+        /// Ruft die Intersects (Ray)-Methode der Kanten, Übergänge und Pfeile auf und liefert das beste Ergebnis zurück.
+        /// </summary>
+        public override GameObjectDistance Intersects (Ray ray)
+        {
+            GameObjectDistance nearest = null;
+            if (!Screen.InputManager.GrabMouseMovement) {
+                foreach (Pipe pipe in grid.Pipes) {
+                    GameObjectDistance intersection = pipe.Intersects (ray);
+                    if (intersection != null) {
+                        if (intersection.Distance > 0 && (nearest == null || intersection.Distance < nearest.Distance)) {
+                            nearest = intersection;
+                        }
+                    }
+                }
+                foreach (Arrow arrow in arrows) {
+                    GameObjectDistance intersection = arrow.Intersects (ray);
+                    if (intersection != null) {
+                        if (intersection.Distance > 0 && (nearest == null || intersection.Distance < nearest.Distance)) {
+                            nearest = intersection;
+                        }
+                    }
+                }
+                foreach (Surface surface in grid.Surfaces) {
+                    GameObjectDistance intersection = surface.Intersects (ray);
+                    if (intersection != null) {
+                        if (intersection.Distance > 0 && (nearest == null || intersection.Distance < nearest.Distance)) {
+                            nearest = intersection;
+                        }
+                    }
+                }
+            }
+            return nearest;
         }
     }
 }

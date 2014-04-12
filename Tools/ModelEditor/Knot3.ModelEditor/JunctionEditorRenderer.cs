@@ -195,13 +195,15 @@ namespace Knot3.ModelEditor
                 Profiler.Values ["RenderEffect"] = 0;
                 Profiler.ProfileDelegate ["Pipes"] = () => {
                     Log.Debug ("Pipes: ", string.Join (", ", pipes.Select (pipe => pipe.Edge)));
-                    foreach (Pipe pipe in pipes) {
+                    foreach (Pipe pipe in pipes)
+                    {
                         pipe.Draw (time);
                     }
                 };
                 Profiler.ProfileDelegate ["Nodes"] = () => {
                     Log.Debug ("Junction: ", string.Join (", ", junctions.Select (junction => junction.Node)));
-                    foreach (Junction junction in junctions) {
+                    foreach (Junction junction in junctions)
+                    {
                         junction.Draw (time);
                     }
                 };

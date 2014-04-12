@@ -275,7 +275,7 @@ namespace Knot3.Game.Screens
         private void registerCurrentKnot ()
         {
             // den Knoten dem KnotRenderer zuweisen
-            knotRenderer.RenderKnot (knot);
+            knotRenderer.RenderKnot (newKnot: knot, isFinalDestination: true);
             // den Knoten dem Kantenverschieber zuweisen
             edgeMovement.Knot = knot;
             // den Knoten dem Kanteneinfärber zuweisen

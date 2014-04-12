@@ -65,6 +65,7 @@ namespace Knot3.Game.Screens
         {
             MenuName = "Graphics";
 
+            // arrows
             CheckBoxItem itemShowArrows = new CheckBoxItem (
                 screen: this,
                 drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
@@ -72,6 +73,15 @@ namespace Knot3.Game.Screens
                 option: new BooleanOption ("video", "arrows", false, Config.Default)
             );
             settingsMenu.Add (itemShowArrows);
+
+            // surfaces
+            CheckBoxItem itemShowSurfaces = new CheckBoxItem (
+                screen: this,
+                drawOrder: DisplayLayer.ScreenUI + DisplayLayer.MenuItem,
+                text: "Show Surfaces",
+                option: new BooleanOption ("video", "surfaces", false, Config.Default)
+            );
+            settingsMenu.Add (itemShowSurfaces);
 
             // blinking stars
             BooleanOption optionBlinkingStars = new BooleanOption ("video", "stars-blinking", true, Config.Default);
@@ -274,7 +284,8 @@ namespace Knot3.Game.Screens
                 option: optionProjectorMode
             );
             itemProjectorMode.OnValueChanged += () => {
-                if (optionProjectorMode.Value) {
+                if (optionProjectorMode.Value)
+                {
                     new ProjectorDesign ().Apply ();
                     Config.Default ["video", "camera-overlay", false] = false;
                     Config.Default ["video", "profiler-overlay", false] = false;

@@ -56,9 +56,5 @@ namespace Knot3.Game.Data
         Junction JunctionAfterEdge (Edge edge);
 
         List<Junction> JunctionsAtNode (Node node);
-
-        Node NodeBeforeEdge (Edge edge);
-
-        Node NodeAfterEdge (Edge edge);
     }
 }

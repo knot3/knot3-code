@@ -28,50 +28,59 @@
  * See the LICENSE file for full license details of the Knot3 project.
  */
 
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-
-using Knot3.Framework.Core;
-using Knot3.Framework.Models;
-using Knot3.Framework.Primitives;
-using Knot3.Framework.Utilities;
-
-namespace Knot3.Game.Models
+namespace Knot3.Framework.Utilities
 {
-    /// <summary>
-    /// Ein 3D-Modell, das eine Flächen zwischen Kanten darstellt.
-    /// </summary>
-    [ExcludeFromCodeCoverageAttribute]
-    public sealed class RectangleModel : GamePrimitive
+    public class ArrayList<T> : IEnumerable<T>
     {
-        public bool IsVirtual { get; set; }
+        private T[] array;
+        private int count;
+        private int step;
 
-        private Parallelogram Parallelogram;
-
-        /// <summary>
-        /// Erstellt ein neues 3D-Modell mit dem angegebenen Spielzustand und den angegebenen Spielinformationen.
-        /// [base=screen, info]
-        /// </summary>
-        public RectangleModel (IScreen screen, Texture2D texture, Parallelogram parallelogram, Vector3 position)
-        : base (screen: screen)
+        public ArrayList (int capacity = 10, int step = 20)
         {
-            Texture = texture;
-            Position = position;
-            Parallelogram = parallelogram;
+            array = new T [capacity];
+            this.step = step;
         }
 
-        protected override Primitive CreativePrimitive ()
+        public void Add (params T[] elements)
         {
-            return Parallelogram;
+            foreach (T element in elements) {
+                if (count + 1 >= array.Length) {
+                    Array.Resize (ref array, array.Length + step);
+                }
+                array [count++] = element;
+            }
         }
 
-        [ExcludeFromCodeCoverageAttribute]
-        public override void Draw (GameTime time)
+        public T this [int index]
         {
-            base.Draw (time);
+            get {
+                return array [index];
+            }
+        }
+
+        public int Count { get { return count; } }
+
+        public void Clear ()
+        {
+            count = 0;
+        }
+
+        public IEnumerator<T> GetEnumerator ()
+        {
+            for (int i = 0; i < count; ++i) {
+                yield return array [i];
+            }
+        }
+
+        IEnumerator IEnumerable.GetEnumerator ()
+        {
+            return GetEnumerator (); // just return the generic version
         }
     }
 }

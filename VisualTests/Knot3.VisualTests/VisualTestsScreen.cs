@@ -159,7 +159,7 @@ namespace Knot3.VisualTests
         private void Render (GameTime time)
         {
             Knot knot = KnotGenerator.generateSquareKnot (EdgeCount, "VisualTest-Knot");
-            knotRenderer.RenderKnot (knot);
+            knotRenderer.RenderKnot (newKnot: knot, isFinalDestination: true);
 
             world.Camera.Target = KnotCenter (knot);
         }
@@ -168,10 +168,10 @@ namespace Knot3.VisualTests
         {
             Grid nodeMap = new Grid (screen: this);
             nodeMap.Knot = knot;
-            nodeMap.Update ();
+            nodeMap.Update (withSurfaces: true);
             Vector3 center = Vector3.Zero;
             foreach (Edge edge in knot) {
-                center += nodeMap.NodeBeforeEdge (edge);
+                center += edge.StartNode;
             }
             center /= knot.Count ();
             return center;
@@ -219,7 +219,6 @@ namespace Knot3.VisualTests
             // FPS
             UpdateFPS (time);
         }
-
         // FPS
         int _total_frames = 0;
         float _elapsed_time = 0.0f;

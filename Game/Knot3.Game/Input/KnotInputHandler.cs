@@ -328,7 +328,8 @@ namespace Knot3.Game.Input
         public void MoveCameraAndTarget (Vector3 move, GameTime time)
         {
             Profiler.ProfileDelegate ["Move"] = () => {
-                if (move.Length () > 0) {
+                if (move.Length () > 0)
+                {
                     move *= 5;
                     Vector3 targetDirection = camera.PositionToTargetDirection;
                     Vector3 up = camera.UpVector;
@@ -347,7 +348,8 @@ namespace Knot3.Game.Input
         public void MoveTarget (Vector3 move, GameTime time)
         {
             Profiler.ProfileDelegate ["Move"] = () => {
-                if (move.Length () > 0) {
+                if (move.Length () > 0)
+                {
                     move *= 5;
                     Vector3 targetDirection = camera.PositionToTargetDirection;
                     Vector3 up = camera.UpVector;
@@ -375,7 +377,7 @@ namespace Knot3.Game.Input
             if (world.SelectedObject == null && world.Any ()) {
                 // selektiere das Objekt, das der Mausposition am nächsten ist!
                 IGameObject[] nearestObjects
-                    = world.FindNearestObjects (nearTo: Screen.InputManager.CurrentMousePosition).ToArray ();
+                = world.FindNearestObjects (nearTo: Screen.InputManager.CurrentMousePosition).ToArray ();
                 if (nearestObjects.Length > 0) {
                     world.SelectedObject = nearestObjects [0];
                 }

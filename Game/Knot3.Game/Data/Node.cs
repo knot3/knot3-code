@@ -30,6 +30,7 @@
 
 using System;
 using System.Diagnostics.CodeAnalysis;
+using System.Runtime.Serialization;
 
 using Microsoft.Xna.Framework;
 
@@ -39,27 +40,42 @@ namespace Knot3.Game.Data
     /// Eine Position im 3D-Raster. Die Werte für alle drei Koordinaten sind Integer, wobei 1 die Breite der Raster-Abschnitte angibt.
     /// Eine Skalierung auf Koordinaten im 3D-Raum und damit einhergehend eine Konvertierung in ein Vector3-Objekt des MonoGame-Frameworks kann mit der Methode ToVector () angefordert werden.
     /// </summary>
-    public sealed class Node : IEquatable<Node>, ICloneable
-    {
+    public struct Node : IEquatable<Node> {
         /// <summary>
         /// X steht für eine x-Koordinate im dreidimensionalen Raster.
         /// </summary>
-        public int X { get; private set; }
-
+        [DataMember]
+        public int X;
         /// <summary>
         /// Y steht für eine y-Koordinate im dreidimensionalen Raster.
         /// </summary>
-        public int Y { get; private set; }
-
+        [DataMember]
+        public int Y;
         /// <summary>
         /// Z steht für eine z-Koordinate im dreidimensionalen Raster.
         /// </summary>
-        public int Z { get; private set; }
-
+        [DataMember]
+        public int Z;
         /// <summary>
         /// Ein Skalierungswert.
         /// </summary>
         public static readonly int Scale = 100;
+
+        public static Node Zero { get { return zero; } }
+
+        public static Node One { get { return one; } }
+
+        public static Node UnitX { get { return unitX; } }
+
+        public static Node UnitY { get { return unitY; } }
+
+        public static Node UnitZ { get { return unitZ; } }
+
+        private static Node zero = new Node (0, 0, 0);
+        private static Node one = new Node (1, 1, 1);
+        private static Node unitX = new Node (1, 0, 0);
+        private static Node unitY = new Node (0, 1, 0);
+        private static Node unitZ = new Node (0, 0, 1);
 
         /// <summary>
         /// Erzeugt eine neue Instanz eines Node-Objekts und initialisiert diese mit Werten
@@ -99,9 +115,14 @@ namespace Knot3.Game.Data
             return new Node (a.X + (int)b.X, a.Y + (int)b.Y, a.Z + (int)b.Z);
         }
 
-        public static Vector3 operator - (Node a, Node b)
+        public static Node operator + (Node a, Node b)
         {
-            return new Vector3 (a.X - b.X, a.Y - b.Y, a.Z - b.Z);
+            return new Node (a.X + b.X, a.Y + b.Y, a.Z + b.Z);
+        }
+
+        public static Node operator - (Node a, Node b)
+        {
+            return new Node (a.X - b.X, a.Y - b.Y, a.Z - b.Z);
         }
 
         public static Node operator + (Node a, Direction b)
@@ -114,14 +135,24 @@ namespace Knot3.Game.Data
             return new Node (a.X - (int)b.Vector.X, a.Y - (int)b.Vector.Y, a.Z - (int)b.Vector.Z);
         }
 
-        public static Node operator + (Direction a, Node b)
+        public static Node operator + (Node a, Axis b)
         {
-            return b+a;
+            return a + Direction.FromAxis (b);
         }
 
-        public static Node operator - (Direction a, Node b)
+        public static Node operator - (Node a, Axis b)
         {
-            return b-a;
+            return a - Direction.FromAxis (b);
+        }
+
+        public static Node Min (Node value1, Node value2)
+        {
+            return new Node (Math.Min (value1.X, value2.X), Math.Min (value1.Y, value2.Y), Math.Min (value1.Z, value2.Z));
+        }
+
+        public static Node Max (Node value1, Node value2)
+        {
+            return new Node (Math.Max (value1.X, value2.X), Math.Max (value1.Y, value2.Y), Math.Max (value1.Z, value2.Z));
         }
 
         [ExcludeFromCodeCoverageAttribute]
@@ -136,24 +167,8 @@ namespace Knot3.Game.Data
             return "(" + X.ToString () + "," + Y.ToString () + "," + Z.ToString () + ")";
         }
 
-        public object Clone ()
-        {
-            return new Node (X, Y, Z);
-        }
-
         public static bool operator == (Node a, Node b)
         {
-            // If both are null, or both are same instance, return true.
-            if (System.Object.ReferenceEquals (a, b)) {
-                return true;
-            }
-
-            // If one is null, but not both, return false.
-            if (((object)a == null) || ((object)b == null)) {
-                return false;
-            }
-
-            // Return true if the fields match:
             return a.X == b.X && a.Y == b.Y && a.Z == b.Z;
         }
 
@@ -174,6 +189,13 @@ namespace Knot3.Game.Data
             }
             else {
                 return false;
+            }
+        }
+
+        public int this [Axis axis]
+        {
+            get {
+                return axis.Index == 0 ? X : axis.Index == 1 ? Y : Z;
             }
         }
     }

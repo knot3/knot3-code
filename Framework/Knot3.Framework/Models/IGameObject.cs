@@ -108,7 +108,12 @@ namespace Knot3.Framework.Models
         /// <summary>
         /// Gibt die Ausmaße des Spielobjekts zurück.
         /// </summary>
-        BoundingSphere[] Bounds { get; }
+        BoundingSphere[] BoundingSpheres { get; }
+
+        /// <summary>
+        /// Gibt die Ausmaße des Spielobjekts zurück.
+        /// </summary>
+        BoundingBox[] BoundingBoxes { get; }
 
         /// <summary>
         /// Gibt an, ob das Spielobjekt innerhalb des Frustums ist, das den sichtbaren Bereich enthält.

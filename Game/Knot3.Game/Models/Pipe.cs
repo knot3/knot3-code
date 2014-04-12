@@ -147,12 +147,12 @@ namespace Knot3.Game.Models
             // Bounds
             float length = (PositionTo - PositionFrom).Length ();
             float radius = 6.25f;
-            Bounds = VectorHelper.CylinderBounds (
-                         length: length,
-                         radius: radius,
-                         direction: Edge.Direction.Vector,
-                         position: PositionFrom
-                     );
+            BoundingSpheres = VectorHelper.CylinderBounds (
+                                  length: length,
+                                  radius: radius,
+                                  direction: Edge.Direction.Vector,
+                                  position: PositionFrom
+                              );
 
             OnViewChanged ();
         }

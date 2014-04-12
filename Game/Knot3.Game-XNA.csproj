@@ -135,7 +135,6 @@
     <Compile Include="Knot3.Game\Data\KnotStringIO.cs" />
     <Compile Include="Knot3.Game\Data\Node.cs" />
     <Compile Include="Knot3.Game\Data\PrinterIO.cs" />
-    <Compile Include="Knot3.Game\Data\RectangleMap.cs" />
     <Compile Include="Knot3.Game\Development\DebugModel.cs" />
     <Compile Include="Knot3.Game\Development\DebugSettingsScreen.cs" />
     <Compile Include="Knot3.Game\Development\Overlay.cs" />
@@ -153,9 +152,9 @@
     <Compile Include="Knot3.Game\Models\Junction.cs" />
     <Compile Include="Knot3.Game\Models\KnotRenderer.cs" />
     <Compile Include="Knot3.Game\Models\Pipe.cs" />
-    <Compile Include="Knot3.Game\Models\RectangleModel.cs" />
     <Compile Include="Knot3.Game\Models\Sky-XNA.cs" />
     <Compile Include="Knot3.Game\Models\SkyCube.cs" />
+    <Compile Include="Knot3.Game\Models\Surface.cs" />
     <Compile Include="Knot3.Game\Program.cs" />
     <Compile Include="Knot3.Game\Screens\AudioSettingsScreen.cs" />
     <Compile Include="Knot3.Game\Screens\ChallengeCreateScreen.cs" />

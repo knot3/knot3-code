@@ -130,7 +130,12 @@ namespace Knot3.Framework.Models
         /// <summary>
         /// Gibt die Ausmaße des Spielobjekts zurück.
         /// </summary>
-        public virtual BoundingSphere[] Bounds { get; protected set; }
+        public BoundingSphere[] BoundingSpheres { get; protected set; }
+
+        /// <summary>
+        /// Gibt die Ausmaße des Spielobjekts zurück.
+        /// </summary>
+        public BoundingBox[] BoundingBoxes { get; protected set; }
 
         /// <summary>
         /// Gibt an, ob das Spielobjekt innerhalb des Frustums ist, das den sichtbaren Bereich enthält.
@@ -185,7 +190,8 @@ namespace Knot3.Framework.Models
             IsVisible = isVisible;
             IsSelectable = isSelectable;
             IsMovable = isMovable;
-            Bounds = new BoundingSphere [0];
+            BoundingSpheres = new BoundingSphere [0];
+            BoundingBoxes = new BoundingBox [0];
             UniqueKey = GetType ().Name;
             IsLightingEnabled = true;
             IsSkyObject = false;
@@ -234,8 +240,17 @@ namespace Knot3.Framework.Models
         public virtual GameObjectDistance Intersects (Ray ray)
         {
             if (ray.Intersects (_overallBoundingBox) != null) {
-                foreach (BoundingSphere sphere in Bounds) {
+                foreach (BoundingSphere sphere in BoundingSpheres) {
                     float? distance = ray.Intersects (sphere);
+                    if (distance != null) {
+                        GameObjectDistance intersection = new GameObjectDistance () {
+                            Object = this, Distance = distance.Value
+                        };
+                        return intersection;
+                    }
+                }
+                foreach (BoundingBox box in BoundingBoxes) {
+                    float? distance = ray.Intersects (box);
                     if (distance != null) {
                         GameObjectDistance intersection = new GameObjectDistance () {
                             Object = this, Distance = distance.Value

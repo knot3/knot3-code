@@ -29,6 +29,7 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 
 using Knot3.Framework.Core;
@@ -37,14 +38,31 @@ namespace Knot3.Game.Data
 {
     public class Axis : TypesafeEnum<Axis>
     {
-        public static readonly Axis X = new Axis ("X");
-        public static readonly Axis Y = new Axis ("Y");
-        public static readonly Axis Z = new Axis ("Z");
-        public static readonly Axis Zero = new Axis ("Zero");
+        public static readonly Axis X = new Axis ("X", 0);
+        public static readonly Axis Y = new Axis ("Y", 1);
+        public static readonly Axis Z = new Axis ("Z", 2);
+        public static readonly Axis Zero = new Axis ("Zero", -1);
 
-        private Axis (string name)
+        public int Index { get; private set; }
+
+        public Axis Side1 { get; private set; }
+
+        public Axis Side2 { get; private set; }
+
+        static Axis ()
+        {
+            X.Side1 = Y;
+            X.Side2 = Z;
+            Y.Side1 = X;
+            Y.Side2 = Z;
+            Z.Side1 = X;
+            Z.Side2 = Y;
+        }
+
+        private Axis (string name, int index)
         : base (name)
         {
+            Index = index;
         }
     }
 }
