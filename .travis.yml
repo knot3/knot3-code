@@ -25,5 +25,5 @@ script:
 - make test
 env:
   global:
-  - secure: esM79oCjIsMgWC1+4mAZ+TeF7fy015nqt8FGbHXHuhSMS6fdbn0zi1SAlMkuatVumY4AavopKrdW5UAJBsDwCJbumnJ4b2rBx118tpIjFuaH72X50c+rCkl7jGT6h4dDkc1oZHkLEXVh16EAgAAVT6WxTEi/PBRg4mdhHm+nNek=
-  - secure: NLWrMQxISGqTQeZ8eFvUvT0SABwC25lYtx53+dhwoUrrnbbY0mG39l+2SM68VDQgTFi5ciaL66MxmKSOi6L+lHUEL5RGbrxOf/L5j8joqIw0DhuiLcSkSn4vhxPwELMifvgNWzqs5QjAoj3+FSOC6qWS0i1Q0YkZD0+q6RoPtT4=
+  - secure: W7sO9sslOwT3l4TzJ/slpKEOLlbu1usYiMJa7oESZEg/nHIa8IK0hsWrnQ5LgIfTRq/kz/N2UuX3nJGOY+fpBYTjJMbOEifXiqnzCXlvHy376pYcm8ijwCjb02qdeaDtOrategSARnRp5fmfBkrPVgjyXs3g6jbR+ir+SBTCLCw=
+  - secure: sYpWn1SS7utHdhH4gEsjSbnkzExZdc+jV2V1lkzdQmWPZhX3qdtci+8Du7dpZ8paYKaN7nHSpr26yPxOH/gRtPyqGfnRlj5DWsVzCigP07PTStvoNN//4H8cTAx5ULUVJLJ0Si7XELbOdQrjwJWkQmVjgQdGISCW/dWSNd1S/G0=
