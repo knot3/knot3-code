@@ -96,7 +96,7 @@ In the winter term of 2013 the following students were involved in the developme
 | Gerd Augsburg     | Projektleitung             | [@Balduro](https://github.com/Balduro)                      | <http://balduro.de.gg>         |
 | Maximilian Reuter | Pflichtenheft              | [@Maximilian-Reuter](https://github.com/Maximilian-Reuter)  |                                |
 | Christina Erler   | Entwurfsdokument           | [@Sakurachan4](https://github.com/Sakurachan4)              |                                |
-| Tobias Schulz     | Implementierung            | [@tobiasschulz](https://github.com/tobiasschulz)            | <http://www.tobias-schulz.eu>  |
+| Tobias Schulz     | Implementierung            | [@tobiasschulz](https://github.com/tobiasschulz)            | <http://www.tobiasschulz.me>  |
 | Pascal Knodel     | Qualitätssicherung         | [@pse](https://github.com/pse)                              |                                |
 | Daniel Warzel     | Abschlusspräsentation      | [@wudi0910](https://github.com/wudi0910)                    |                                |
 
