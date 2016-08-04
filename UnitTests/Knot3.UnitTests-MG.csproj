@@ -31,7 +31,10 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="nunit.framework" />
+    <Reference Include="nunit.framework">
+      <HintPath>..\packages\NUnit.3.4.1\lib\net40\nunit.framework.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Knot3.MockObjects\FakeEffect.cs" />
@@ -87,5 +90,8 @@
       <Project>{F8C66EB3-E81D-45FB-B28E-747BE332230F}</Project>
       <Name>OggSharp</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>

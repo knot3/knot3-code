@@ -45,8 +45,8 @@ namespace Knot3.Framework.Platform
     {
         public static string DOWNLOAD_URL_SDL2 = "http://www.libsdl.org/release/SDL2-2.0.3-win32-x86.zip";
         public static string DOWNLOAD_URL_SDL2_image = "http://www.libsdl.org/projects/SDL_image/release/SDL2_image-2.0.0-win32-x86.zip";
-        public static string DOWNLOAD_URL_OPENAL_SOFT = "http://kcat.strangesoft.net/openal-soft-1.15.1-bin.zip";
-        public static string EXTRACT_DIRECTORY_OPENAL_SOFT = "openal-soft-1.15.1-bin";
+        public static string DOWNLOAD_URL_OPENAL_SOFT = "http://kcat.strangesoft.net/openal-binaries/openal-soft-1.17.2-bin.zip";
+        public static string EXTRACT_DIRECTORY_OPENAL_SOFT = "openal-soft-1.17.2-bin";
 
         private static int ExtractZip (string zipFilename)
         {
