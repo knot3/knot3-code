@@ -17,7 +17,6 @@ script:
 - git fetch --unshallow
 - git checkout -f ${TRAVIS_BRANCH}
 - git checkout -f HEAD
-- scripts/code-format.sh
 - scripts/package.sh
 - scripts/deploy.sh
 - git submodule update --init --recursive
